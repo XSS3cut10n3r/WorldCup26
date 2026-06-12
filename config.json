@@ -1,0 +1,13 @@
+{
+  "scoring": {
+    "GROUP_STAGE_WIN": 1,
+    "GROUP_STAGE_DRAW": 0.5,
+    "LAST_32": 2,
+    "LAST_16": 3,
+    "QUARTER_FINALS": 4,
+    "SEMI_FINALS": 5,
+    "THIRD_PLACE": 0,
+    "FINAL": 6
+  },
+  "notes": "THIRD_PLACE is the bronze-medal match. Set to 0 to ignore it, or e.g. 5 to score it like a semi-final. Penalty-shootout wins count as full wins automatically."
+}
