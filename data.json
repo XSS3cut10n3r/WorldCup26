@@ -355,7 +355,25 @@
       "utcDate": "2026-06-11T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-12T19:00:00Z",
+      "home": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": 0
+      },
+      "away": {
+        "name": "Bosnia-Herzegovina",
+        "owner": "Tomi",
+        "goals": 0
+      },
+      "penalties": false
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -393,23 +411,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-12T19:00:00Z",
-      "home": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": null
-      },
-      "away": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": null
-      },
-      "penalties": false
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -596,6 +597,23 @@
         "goals": null
       },
       "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-15T22:00:00Z",
+      "home": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": null
+      },
+      "away": {
+        "name": "Uruguay",
+        "owner": "Iva",
+        "goals": null
+      },
+      "penalties": false
     }
   ],
   "scoring": {
@@ -609,5 +627,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-12T19:03:32Z"
+  "generated": "2026-06-12T19:12:07Z"
 }
