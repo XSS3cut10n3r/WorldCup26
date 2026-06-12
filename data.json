@@ -50,6 +50,55 @@
       "rank": 1
     },
     {
+      "name": "Kelly",
+      "points": 0.5,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 0.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "name": "Tomi",
+      "points": 0.5,
+      "teams": [
+        {
+          "name": "Germany",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Sweden",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Bosnia and Herzegovina",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "New Zealand",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 3
+    },
+    {
       "name": "Agatha",
       "points": 0.0,
       "teams": [
@@ -69,7 +118,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Charlotte",
@@ -91,7 +140,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Darcy",
@@ -118,7 +167,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Iva",
@@ -140,29 +189,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
-    },
-    {
-      "name": "Kelly",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Mat",
@@ -184,7 +211,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Ondine",
@@ -211,7 +238,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Paul",
@@ -238,7 +265,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Pete",
@@ -260,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Sydney",
@@ -287,7 +314,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Tom",
@@ -309,37 +336,24 @@
           "eliminated": false
         }
       ],
-      "rank": 3
-    },
-    {
-      "name": "Tomi",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Germany",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Sweden",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Bosnia and Herzegovina",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "New Zealand",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 3
+      "rank": 5
     }
   ],
   "events": [
+    {
+      "owner": "Tomi",
+      "team": "Bosnia and Herzegovina",
+      "points": 0.5,
+      "label": "Bosnia and Herzegovina drew (Group stage)",
+      "utcDate": "2026-06-12T19:00:00Z"
+    },
+    {
+      "owner": "Kelly",
+      "team": "Canada",
+      "points": 0.5,
+      "label": "Canada drew (Group stage)",
+      "utcDate": "2026-06-12T19:00:00Z"
+    },
     {
       "owner": "Charlie",
       "team": "South Korea",
@@ -355,16 +369,17 @@
       "utcDate": "2026-06-11T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-12T19:00:00Z",
       "home": {
         "name": "Canada",
         "owner": "Kelly",
-        "goals": 0
+        "goals": 1
       },
       "away": {
         "name": "Bosnia-Herzegovina",
@@ -372,9 +387,7 @@
         "goals": 1
       },
       "penalties": false
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -627,5 +640,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-12T19:54:07Z"
+  "generated": "2026-06-12T21:07:10Z"
 }
