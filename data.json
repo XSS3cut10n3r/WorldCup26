@@ -1,6 +1,55 @@
 {
   "leaderboard": [
     {
+      "name": "Charlie",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "Colombia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "South Korea",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Saudi Arabia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Jordan",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "name": "Nik",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Mexico",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Czechia",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Agatha",
       "points": 0.0,
       "teams": [
@@ -20,34 +69,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
-    },
-    {
-      "name": "Charlie",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Colombia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "South Korea",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Saudi Arabia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Jordan",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Charlotte",
@@ -69,7 +91,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -96,7 +118,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Iva",
@@ -118,7 +140,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Kelly",
@@ -140,7 +162,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Mat",
@@ -162,29 +184,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
-    },
-    {
-      "name": "Nik",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Mexico",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Czechia",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Ondine",
@@ -211,7 +211,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Paul",
@@ -238,7 +238,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Pete",
@@ -260,7 +260,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Sydney",
@@ -287,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Tom",
@@ -309,7 +309,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "name": "Tomi",
@@ -336,13 +336,268 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 3
     }
   ],
-  "events": [],
+  "events": [
+    {
+      "owner": "Charlie",
+      "team": "South Korea",
+      "points": 1,
+      "label": "South Korea won (Group stage)",
+      "utcDate": "2026-06-12T02:00:00Z"
+    },
+    {
+      "owner": "Nik",
+      "team": "Mexico",
+      "points": 1,
+      "label": "Mexico won (Group stage)",
+      "utcDate": "2026-06-11T19:00:00Z"
+    }
+  ],
   "live": [],
-  "recent": [],
-  "upcoming": [],
+  "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-12T02:00:00Z",
+      "home": {
+        "name": "South Korea",
+        "owner": "Charlie",
+        "goals": 2
+      },
+      "away": {
+        "name": "Czechia",
+        "owner": "Nik",
+        "goals": 1
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-11T19:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 2
+      },
+      "away": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": 0
+      },
+      "penalties": false
+    }
+  ],
+  "upcoming": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-12T19:00:00Z",
+      "home": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": null
+      },
+      "away": {
+        "name": "Bosnia-Herzegovina",
+        "owner": "Tomi",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-13T01:00:00Z",
+      "home": {
+        "name": "United States",
+        "owner": "Darcy",
+        "goals": null
+      },
+      "away": {
+        "name": "Paraguay",
+        "owner": "Pete",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-13T19:00:00Z",
+      "home": {
+        "name": "Qatar",
+        "owner": "Iva",
+        "goals": null
+      },
+      "away": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-13T22:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": null
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-14T01:00:00Z",
+      "home": {
+        "name": "Haiti",
+        "owner": "Darcy",
+        "goals": null
+      },
+      "away": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-14T04:00:00Z",
+      "home": {
+        "name": "Australia",
+        "owner": "Agatha",
+        "goals": null
+      },
+      "away": {
+        "name": "Turkey",
+        "owner": "Iva",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-14T17:00:00Z",
+      "home": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": null
+      },
+      "away": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-14T20:00:00Z",
+      "home": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": null
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-14T23:00:00Z",
+      "home": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": null
+      },
+      "away": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-15T02:00:00Z",
+      "home": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": null
+      },
+      "away": {
+        "name": "Tunisia",
+        "owner": "Darcy",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-15T16:00:00Z",
+      "home": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": null
+      },
+      "away": {
+        "name": "Cape Verde Islands",
+        "owner": "Paul",
+        "goals": null
+      },
+      "penalties": false
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-15T19:00:00Z",
+      "home": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": null
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": null
+      },
+      "penalties": false
+    }
+  ],
   "scoring": {
     "GROUP_STAGE_WIN": 1,
     "GROUP_STAGE_DRAW": 0.5,
@@ -353,6 +608,6 @@
     "THIRD_PLACE": 0,
     "FINAL": 6
   },
-  "tournamentStarted": false,
-  "generated": "2026-06-12T18:52:22Z"
+  "tournamentStarted": true,
+  "generated": "2026-06-12T19:03:32Z"
 }
