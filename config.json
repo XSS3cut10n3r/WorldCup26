@@ -9,5 +9,20 @@
     "THIRD_PLACE": 0,
     "FINAL": 6
   },
-  "notes": "THIRD_PLACE is the bronze-medal match. Set to 0 to ignore it, or e.g. 5 to score it like a semi-final. Penalty-shootout wins count as full wins automatically."
+  "notes": "THIRD_PLACE is the bronze-medal match. Set to 0 to ignore it, or e.g. 5 to score it like a semi-final. Penalty-shootout wins count as full wins automatically.",
+  "fifaRankingNote": "Final pre-tournament FIFA/Coca-Cola World Ranking, released 11 June 2026 (next update is after the final, so these are fixed for the whole tournament). Used as tiebreaker #5 in the best-third-place ranking.",
+  "fifaRanking": {
+    "Argentina": 1, "Spain": 2, "France": 3, "England": 4, "Portugal": 5,
+    "Brazil": 6, "Morocco": 7, "Netherlands": 8, "Belgium": 9, "Germany": 10,
+    "Croatia": 11, "Colombia": 13, "Mexico": 14, "Senegal": 15, "Uruguay": 16,
+    "United States": 17, "Japan": 18, "Switzerland": 19, "Iran": 21,
+    "Türkiye": 22, "Ecuador": 23, "Austria": 24, "South Korea": 25,
+    "Australia": 27, "Algeria": 28, "Egypt": 29, "Canada": 30, "Norway": 31,
+    "Côte d'Ivoire": 33, "Panama": 34, "Sweden": 38, "Czechia": 39,
+    "Paraguay": 40, "Scotland": 42, "DR Congo": 45, "Tunisia": 46,
+    "Uzbekistan": 50, "Iraq": 56, "Qatar": 57, "South Africa": 60,
+    "Saudi Arabia": 61, "Jordan": 63, "Bosnia and Herzegovina": 64,
+    "Cabo Verde": 67, "Ghana": 73, "Curaçao": 82, "Haiti": 83,
+    "New Zealand": 85
+  }
 }

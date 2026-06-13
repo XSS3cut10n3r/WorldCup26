@@ -217,6 +217,8 @@
   .match .team { min-width: 0; }
   .match .team.away { text-align: right; }
   .match .tname { font-weight: 600; font-size: 15px; }
+  .match .tname.proj { font-style: italic; color: var(--chalk-dim); }
+  .match .tname.unres { font-style: italic; color: var(--chalk-faint); font-weight: 500; }
   .match .towner { font-size: 12px; color: var(--chalk-faint); }
   .match .mid { text-align: center; }
   .match .score {
@@ -269,6 +271,226 @@
   .rule .v { font-family: var(--display); font-weight: 700; font-size: 22px; }
   .rule .k { font-size: 11.5px; color: var(--chalk-dim); }
 
+  /* ---------- Knockout bracket ---------- */
+  .bracket {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    align-items: stretch;
+    padding: 4px 2px 14px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .bround {
+    min-width: 205px;
+    flex: 0 0 205px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bround-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--chalk-dim);
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--pitch-line);
+    margin-bottom: 10px;
+  }
+  .bround-title.minor { margin-top: 18px; }
+  .bround-matches {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 8px;
+  }
+  .bmatch {
+    border: 1px solid var(--pitch-line);
+    background: var(--pitch-deep);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 13px;
+  }
+  .bmatch.is-live { border-color: rgba(255,90,69,0.55); }
+  .bline {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 2px 0;
+  }
+  .bline .bn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .bline .bo { font-size: 10.5px; color: var(--chalk-faint); }
+  .bline .bg { font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .bline.winner .bn { font-weight: 600; }
+  .bline.loser { color: var(--chalk-faint); }
+  .bline.loser .bg { color: var(--chalk-faint); }
+  .bline.loser .bn {
+    text-decoration: line-through;
+    text-decoration-color: var(--live);
+    text-decoration-thickness: 1.5px;
+  }
+  .bline.projd .bn { font-style: italic; color: var(--chalk-dim); }
+  .bline.unres .bn { font-style: italic; color: var(--chalk-faint); font-weight: 400; }
+  .bmeta {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--chalk-faint);
+    margin-top: 3px;
+    border-top: 1px dashed var(--pitch-line);
+    padding-top: 3px;
+  }
+  .bmatch.is-live .bmeta { color: var(--live); }
+
+  /* ---------- Tabs ---------- */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 2px 0 6px;
+  }
+  .tab {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--chalk-dim);
+    background: var(--pitch-deep);
+    border: 1px solid var(--pitch-line);
+    border-radius: 999px;
+    padding: 9px 24px;
+    cursor: pointer;
+    transition: color 0.15s, background 0.15s;
+  }
+  .tab:hover { color: var(--chalk); }
+  .tab.active {
+    color: var(--pitch-deep);
+    background: var(--chalk);
+    border-color: var(--chalk);
+  }
+  .tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* ---------- Group tables ---------- */
+  .ggrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  .gcard {
+    border: 1px solid var(--pitch-line);
+    background: var(--pitch-deep);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .gname {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .gtable { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .gtable th {
+    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--chalk-faint);
+    text-align: center;
+    padding: 2px 7px;
+  }
+  .gtable th.l, .gtable td.gteam { text-align: left; }
+  .gtable td {
+    padding: 5px 7px;
+    border-top: 1px dashed var(--pitch-line);
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .gtable td.gteam { width: 100%; }
+  .gpos { color: var(--chalk-faint); }
+  .gowner { display: block; font-size: 10.5px; color: var(--chalk-faint); }
+  .gtable tr.adv td { background: rgba(242, 240, 228, 0.06); }
+  .gtable tr.adv td.gteam, .gtable tr.adv td.gpts { font-weight: 600; }
+  .gtable-wrap {
+    border: 1px solid var(--pitch-line);
+    background: var(--pitch-deep);
+    border-radius: 10px;
+    padding: 6px 14px 10px;
+    overflow-x: auto;
+  }
+  .gnote { font-size: 13.5px; color: var(--chalk-dim); margin: 10px 2px; }
+
+  /* ---------- Rulebook (large highlighted rules text) ---------- */
+  .rulebook {
+    border: 1px solid var(--pitch-line);
+    background: var(--pitch-deep);
+    border-radius: 12px;
+    padding: 26px 26px 30px;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  .rulebook h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.03em;
+    margin: 26px 0 10px;
+  }
+  .rulebook h3:first-child { margin-top: 0; }
+  .rulebook p { color: var(--chalk-dim); margin-bottom: 10px; }
+  .rulebook mark {
+    background: rgba(232, 195, 74, 0.22);
+    color: var(--chalk);
+    padding: 0 4px;
+    border-radius: 3px;
+  }
+  ol.criteria { list-style: none; counter-reset: c; margin: 14px 0 6px; }
+  ol.criteria li {
+    counter-increment: c;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 9px 0;
+    border-bottom: 1px dashed var(--pitch-line);
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 21px;
+    letter-spacing: 0.02em;
+  }
+  ol.criteria li::before {
+    content: counter(c);
+    font-size: 15px;
+    color: var(--chalk-dim);
+    border: 1.5px solid var(--pitch-line);
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    flex: 0 0 32px;
+  }
+  ul.cardpts { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
+  ul.cardpts li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-size: 18px;
+  }
+  ul.cardpts .v {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 26px;
+    min-width: 58px;
+    text-align: right;
+    background: rgba(232, 195, 74, 0.22);
+    border-radius: 6px;
+    padding: 0 8px;
+  }
+
   .empty {
     color: var(--chalk-faint);
     font-style: italic;
@@ -308,6 +530,13 @@
     <div class="updated" id="updated">Loading scores…</div>
   </header>
 
+  <nav class="tabs" aria-label="Site sections">
+    <button class="tab active" data-view="home">Leaderboard</button>
+    <button class="tab" data-view="groups">Groups</button>
+    <button class="tab" data-view="bracket">Bracket</button>
+    <button class="tab" data-view="conduct">Conduct</button>
+  </nav>
+
   <div id="app"></div>
 
   <footer>
@@ -334,9 +563,14 @@
   };
 
   function teamCell(t, side) {
+    const unres = t.resolved === false;
+    const proj = t.projected === true;
+    const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
+    const sub = t.owner ? esc(t.owner)
+      : (proj && t.slot ? esc(t.slot) : "&mdash;");
     return `<div class="team ${side}">
-      <div class="tname">${esc(t.name)}</div>
-      <div class="towner">${t.owner ? esc(t.owner) : "&mdash;"}</div>
+      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""}">${nm}</div>
+      <div class="towner">${sub}</div>
     </div>`;
   }
 
@@ -365,10 +599,16 @@
     const anyLive = (data.live || []).length > 0;
     updatedEl.innerHTML = (anyLive ? '<span class="live-dot"></span> ' : "") +
       "Scores as of " + esc(when);
+    app.innerHTML = view === "groups" ? renderGroups(data)
+                  : view === "bracket" ? renderBracket(data)
+                  : view === "conduct" ? renderConduct(data)
+                  : renderHome(data);
+  }
 
+  function renderHome(data) {
     let html = "";
 
-    if (anyLive) {
+    if ((data.live || []).length) {
       html += section('<span class="live-dot"></span>&nbsp;Live now',
         `<div class="matches">${data.live.map(matchCard).join("")}</div>`);
     }
@@ -415,8 +655,212 @@
       `<div class="rules">${rules.map(([k, v]) =>
         `<div class="rule"><div class="v">${fmtPts(v ?? 0)}</div><div class="k">${esc(k)}</div></div>`).join("")}</div>`);
 
-    app.innerHTML = html;
+    return html;
   }
+
+  function renderGroups(data) {
+    let html = "";
+    const signedGD = n => (n > 0 ? "+" + n : String(n));
+
+    // The 12 group tables
+    const gs = data.groups || [];
+    if (gs.length) {
+      const cards = gs.map(g => {
+        const trs = g.table.map(r =>
+          `<tr class="${r.pos <= 2 ? "adv" : ""}">
+            <td class="gpos">${r.pos}</td>
+            <td class="gteam">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
+            <td>${r.played}</td><td>${signedGD(r.gd)}</td><td class="gpts">${r.points}</td>
+          </tr>`).join("");
+        return `<div class="gcard"><div class="gname">${esc(g.group)}</div>
+          <table class="gtable">
+            <thead><tr><th></th><th class="l">Team</th><th>P</th><th>GD</th><th>Pts</th></tr></thead>
+            <tbody>${trs}</tbody></table></div>`;
+      }).join("");
+      html += section("Group tables", `<div class="ggrid">${cards}</div>
+        <p class="gnote">Highlighted rows are currently in the automatic qualification places (top two of each group).</p>`);
+    } else {
+      html += section("Group tables",
+        `<div class="empty">Group tables appear here once the tournament data is available.</div>`);
+    }
+
+    // Best third-place race
+    const th = data.thirdPlace || [];
+    if (th.length) {
+      const trs = th.map(t =>
+        `<tr class="${t.qualifies ? "adv" : ""}">
+          <td class="gpos">${t.rank}</td>
+          <td class="gteam">${esc(t.team)}
+            <span class="gowner">${esc(t.group)}${t.owner ? " &middot; " + esc(t.owner) : ""}</span></td>
+          <td>${t.played}</td><td>${t.points}</td><td>${signedGD(t.gd)}</td><td>${t.gf}</td>
+          <td>${t.conduct ?? 0}</td><td>${t.fifaRank ?? "&mdash;"}</td>
+        </tr>`).join("");
+      html += section("Best third-place race", `
+        <p class="gnote">The top <b>8</b> third-placed teams (highlighted) advance to the
+        Round of 32. Ranked by points, then goal difference, goals scored, conduct score,
+        and FIFA world ranking.</p>
+        <div class="gtable-wrap"><table class="gtable">
+          <thead><tr><th></th><th class="l">Team</th><th>P</th><th>Pts</th><th>GD</th><th>GF</th><th>Cond</th><th>FIFA</th></tr></thead>
+          <tbody>${trs}</tbody></table></div>`);
+    }
+
+    // Qualification & tiebreak rulebook — large, clear, highlighted
+    html += section("How third place is decided", `<div class="rulebook">
+      <h3>How will the best third-place teams be determined?</h3>
+      <p>Similar to the group tiebreakers, the third-placed teams in the group stage
+         will be ranked by these criteria, <mark>in order</mark>:</p>
+      <ol class="criteria">
+        <li>Points</li>
+        <li>Goal difference</li>
+        <li>Goals scored</li>
+        <li>Team conduct score</li>
+        <li>FIFA world ranking</li>
+      </ol>
+      <h3>How is team conduct score calculated?</h3>
+      <p>Yellow cards and red cards accumulated are the two elements used to calculate
+         this, with cards issued to <mark>both players and team officials</mark> contributing
+         to the score.</p>
+      <ul class="cardpts">
+        <li><span class="v">&minus;1</span> Yellow card</li>
+        <li><span class="v">&minus;3</span> Indirect red card (resulting from a second yellow card)</li>
+        <li><span class="v">&minus;4</span> Direct red card</li>
+        <li><span class="v">&minus;5</span> Yellow card and direct red card</li>
+      </ul>
+    </div>`);
+
+    return html;
+  }
+
+  function renderBracket(data) {
+    const rounds = (data.bracket || []);
+    if (!rounds.length) {
+      return section("Knockout bracket",
+        `<div class="empty">The bracket appears here once tournament data loads.</div>`);
+    }
+    const anyProjected = rounds.some(r => r.matches.some(m =>
+      m.home.projected || m.away.projected));
+    const bline = (t, side, m) => {
+      const live = m.status === "IN_PLAY" || m.status === "PAUSED";
+      const done = m.status === "FINISHED" || m.status === "AWARDED";
+      let cls = t.projected ? "projd" : (!t.resolved ? "unres" : "");
+      if (done && m.winner && m.winner !== "DRAW") {
+        const won = (m.winner === "HOME_TEAM") === (side === "home");
+        cls = won ? "winner" : "loser";
+      }
+      const goals = (done || live) && t.goals !== null && t.goals !== undefined
+        ? `<span class="bg">${t.goals}</span>` : "";
+      const name = t.resolved ? esc(t.name) : esc(t.slot);
+      const sub = t.resolved
+        ? [t.projected ? esc(t.slot) : "", t.owner ? esc(t.owner) : ""]
+            .filter(Boolean).join(" &middot; ")
+        : "";
+      return `<div class="bline ${cls}">
+        <span class="bn">${name}${sub ? ` <span class="bo">${sub}</span>` : ""}</span>
+        ${goals}</div>`;
+    };
+    const bcard = m => {
+      const live = m.status === "IN_PLAY" || m.status === "PAUSED";
+      const done = m.status === "FINISHED" || m.status === "AWARDED";
+      const meta = live ? '<span class="live-dot"></span> Live'
+        : done ? (m.penalties ? "FT &middot; pens" : "FT")
+        : (m.utcDate ? esc(fmtKick(m.utcDate)) : "Date TBC");
+      return `<div class="bmatch ${live ? "is-live" : ""}">
+        ${bline(m.home, "home", m)}${bline(m.away, "away", m)}
+        <div class="bmeta">M${m.matchNo ?? ""} &middot; ${meta}</div></div>`;
+    };
+    const cols = [];
+    const byCode = Object.fromEntries(rounds.map(r => [r.stageCode, r]));
+    ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS"].forEach(code => {
+      const r = byCode[code];
+      if (r) cols.push(`<div class="bround"><div class="bround-title">${esc(r.stage)}</div>
+        <div class="bround-matches">${r.matches.map(bcard).join("")}</div></div>`);
+    });
+    const fin = byCode["FINAL"], third = byCode["THIRD_PLACE"];
+    if (fin || third) {
+      let col = `<div class="bround">`;
+      if (fin) col += `<div class="bround-title">${esc(fin.stage)}</div>
+        <div class="bround-matches" style="flex:0">${fin.matches.map(bcard).join("")}</div>`;
+      if (third) col += `<div class="bround-title minor">${esc(third.stage)}</div>
+        <div class="bround-matches" style="flex:0">${third.matches.map(bcard).join("")}</div>`;
+      cols.push(col + `</div>`);
+    }
+    return section("Knockout bracket", `
+      ${anyProjected
+        ? `<p class="gnote"><i>Italic teams are projected from the current
+           standings</i> — they update after every group game and lock in as
+           groups finish. Third-place slots follow FIFA's official allocation
+           table (Annex C), so this is the real bracket if the groups ended today.</p>`
+        : ""}
+      <div class="bracket">${cols.join("")}</div>`);
+  }
+
+  function renderConduct(data) {
+    const cd = data.conduct || {};
+    const people = cd.people || [];
+    const teams = cd.teams || [];
+    if (!people.length && !teams.length) {
+      return section("Conduct", `<div class="empty">Conduct data appears here
+        once card counts are entered in <b>cards-manual.json</b>.</div>`);
+    }
+    let html = "";
+
+    // Worst conduct — same look as the main standings, inverted honor
+    const rows = people.map(p => {
+      const chips = p.teams.map(t =>
+        `<span class="chip">${esc(t.name)} <b>${t.score}</b></span>`).join("");
+      return `<div class="row ${p.rank === 1 && p.score < 0 ? "leader" : ""}">
+        <div class="rank">${p.rank}</div>
+        <div class="who"><div class="name">${esc(p.name)}</div><div class="teams">${chips}</div></div>
+        <div class="pts">${p.score}<small>card pts</small></div>
+      </div>`;
+    }).join("");
+    html += section("Worst conduct", `
+      <p class="gnote">Every card your teams collect counts against you.
+      Rank 1 holds the family's dirtiest squad list &mdash; wear it proudly.</p>
+      <div class="board">${rows}</div>`);
+
+    // Full team table
+    if (teams.length) {
+      const ctrs = teams.map(t =>
+        `<tr>
+          <td class="gpos">${t.rank}</td>
+          <td class="gteam">${esc(t.team)}${t.owner ? `<span class="gowner">${esc(t.owner)}</span>` : ""}</td>
+          <td>${t.yellow}</td><td>${t.indirect_red}</td><td>${t.direct_red}</td>
+          <td>${t.yellow_direct_red}</td><td class="gpts">${t.score}</td>
+        </tr>`).join("");
+      html += section("Team conduct score", `
+        <p class="gnote">Best-behaved teams first &mdash; this is tiebreaker #4 in the
+        best-third-place race on the Groups page. Yellow &minus;1 &middot;
+        second-yellow red &minus;3 &middot; straight red &minus;4 &middot;
+        yellow then straight red &minus;5. Cards issued to players and team
+        officials both count.</p>
+        <div class="gtable-wrap"><table class="gtable">
+          <thead><tr><th></th><th class="l">Team</th><th>Y</th><th>2Y&rarr;R</th><th>R</th><th>Y+R</th><th>Score</th></tr></thead>
+          <tbody>${ctrs}</tbody></table></div>
+        ${cd.hasData ? "" :
+          `<p class="gnote">No cards entered yet &mdash; totals update when
+           <b>cards-manual.json</b> in the repository is edited.</p>`}`);
+    }
+    return html;
+  }
+
+  // ---------- Tab switching with hash routing ----------
+  let view = ["groups", "bracket", "conduct"].includes(location.hash.slice(1))
+    ? location.hash.slice(1) : "home";
+  let lastData = null;
+
+  function setView(v) {
+    view = v;
+    history.replaceState(null, "", v === "home" ? location.pathname : "#" + v);
+    document.querySelectorAll(".tab").forEach(b =>
+      b.classList.toggle("active", b.dataset.view === v));
+    if (lastData) render(lastData);
+    window.scrollTo({ top: 0 });
+  }
+  document.querySelectorAll(".tab").forEach(b =>
+    b.addEventListener("click", () => setView(b.dataset.view)));
+  document.querySelectorAll(".tab").forEach(b =>
+    b.classList.toggle("active", b.dataset.view === view));
 
   function fail() {
     updatedEl.textContent = "Couldn't load scores";
@@ -429,7 +873,7 @@
   function load() {
     fetch("data.json?t=" + Date.now())
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(render)
+      .then(d => { lastData = d; render(d); })
       .catch(fail);
   }
 
