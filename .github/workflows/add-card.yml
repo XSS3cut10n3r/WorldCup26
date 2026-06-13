@@ -1,0 +1,127 @@
+name: Add card
+
+on:
+  workflow_dispatch:
+    inputs:
+      team:
+        description: "Team that received the card(s)"
+        required: true
+        type: choice
+        options:
+          - Algeria
+          - Argentina
+          - Australia
+          - Austria
+          - Belgium
+          - Bosnia and Herzegovina
+          - Brazil
+          - Cabo Verde
+          - Canada
+          - Colombia
+          - Croatia
+          - Curaçao
+          - Czechia
+          - Côte d'Ivoire
+          - DR Congo
+          - Ecuador
+          - Egypt
+          - England
+          - France
+          - Germany
+          - Ghana
+          - Haiti
+          - Iran
+          - Iraq
+          - Japan
+          - Jordan
+          - Mexico
+          - Morocco
+          - Netherlands
+          - New Zealand
+          - Norway
+          - Panama
+          - Paraguay
+          - Portugal
+          - Qatar
+          - Saudi Arabia
+          - Scotland
+          - Senegal
+          - South Africa
+          - South Korea
+          - Spain
+          - Sweden
+          - Switzerland
+          - Tunisia
+          - Türkiye
+          - United States
+          - Uruguay
+          - Uzbekistan
+      card:
+        description: "Card type (FIFA conduct categories)"
+        required: true
+        type: choice
+        options:
+          - yellow
+          - indirect_red (second yellow -> sent off)
+          - direct_red (straight red, no prior yellow)
+          - yellow_direct_red (yellow, then straight red, same player)
+      count:
+        description: "How many (use -1 to undo a mistake)"
+        required: true
+        default: "1"
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  add-card:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Apply card to cards-manual.json
+        env:
+          TEAM: ${{ inputs.team }}
+          CARD: ${{ inputs.card }}
+          COUNT: ${{ inputs.count }}
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          team = os.environ["TEAM"]
+          card = os.environ["CARD"].split(" ")[0]   # strip the explanatory label
+          count = int(os.environ["COUNT"])
+          cards = json.load(open("cards-manual.json", encoding="utf-8"))
+          if team not in cards:
+              sys.exit(f"Team {team!r} not found in cards-manual.json")
+          if card not in cards[team]:
+              sys.exit(f"Unknown card type {card!r}")
+          cards[team][card] = max(0, cards[team][card] + count)
+          json.dump(cards, open("cards-manual.json", "w", encoding="utf-8"),
+                    indent=2, ensure_ascii=False)
+          print(f"{team}: {card} is now {cards[team][card]}")
+          PY
+
+      - name: Refresh site data immediately
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        continue-on-error: true
+        run: python scripts/update_scores.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add cards-manual.json data.json
+          if git diff --staged --quiet; then
+            echo "Nothing changed."
+          else
+            git commit -m "Card: ${{ inputs.team }} +${{ inputs.count }} ${{ inputs.card }}"
+            git push || { git pull --rebase origin main && git push; }
+          fi
