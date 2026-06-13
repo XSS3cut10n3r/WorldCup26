@@ -2590,16 +2590,6 @@
         "rank": 1
       },
       {
-        "team": "United States",
-        "owner": "Darcy",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 0,
@@ -2627,7 +2617,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 43
+        "rank": 42
+      },
+      {
+        "team": "United States",
+        "owner": "Darcy",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 42
       },
       {
         "team": "Canada",
@@ -2808,6 +2808,29 @@
         "rank": 6
       },
       {
+        "name": "Darcy",
+        "score": -1,
+        "teams": [
+          {
+            "name": "France",
+            "score": 0
+          },
+          {
+            "name": "United States",
+            "score": -1
+          },
+          {
+            "name": "Tunisia",
+            "score": 0
+          },
+          {
+            "name": "Haiti",
+            "score": 0
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Agatha",
         "score": 0,
         "teams": [
@@ -2824,7 +2847,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Charlotte",
@@ -2843,30 +2866,7 @@
             "score": 0
           }
         ],
-        "rank": 7
-      },
-      {
-        "name": "Darcy",
-        "score": 0,
-        "teams": [
-          {
-            "name": "France",
-            "score": 0
-          },
-          {
-            "name": "United States",
-            "score": 0
-          },
-          {
-            "name": "Tunisia",
-            "score": 0
-          },
-          {
-            "name": "Haiti",
-            "score": 0
-          }
-        ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Iva",
@@ -2885,7 +2885,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Mat",
@@ -2904,7 +2904,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Ondine",
@@ -2927,7 +2927,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Paul",
@@ -2950,7 +2950,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Tom",
@@ -2969,7 +2969,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       }
     ],
     "hasData": true
@@ -2985,5 +2985,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T03:36:04Z"
+  "generated": "2026-06-13T03:36:52Z"
 }
