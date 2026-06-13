@@ -379,7 +379,7 @@
   /* ---------- Group tables ---------- */
   .ggrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 12px;
   }
   .gcard {
@@ -405,7 +405,7 @@
     color: var(--chalk-faint);
     font-style: italic;
   }
-  .gtable { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .gtable { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
   .gtable th {
     font-weight: 500;
     font-size: 10px;
@@ -422,7 +422,11 @@
     text-align: center;
     font-variant-numeric: tabular-nums;
   }
-  .gtable td.gteam { width: 100%; }
+  /* Position column narrow, team column flexible, every stat column the
+     same fixed width so P/Pts/GD/GF/Cond/FIFA are equidistant and centered. */
+  .gtable th:nth-child(1), .gtable td:nth-child(1) { width: 24px; }
+  .gtable td.gteam { width: auto; overflow: hidden; text-overflow: ellipsis; }
+  .gtable th:nth-child(n+3), .gtable td:nth-child(n+3) { width: 34px; }
   .gpos { color: var(--chalk-faint); }
   .gowner { display: block; font-size: 10.5px; color: var(--chalk-faint); }
   .gtable tr.adv td { background: rgba(242, 240, 228, 0.06); }
