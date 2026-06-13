@@ -689,7 +689,7 @@
           </tr>`).join("");
         return `<div class="gcard"><div class="gname">${esc(g.group)}${g.ranked ? "" : ` <span class="gpending">awaiting first games</span>`}</div>
           <table class="gtable">
-            <thead><tr><th></th><th class="l">Team</th><th>P</th><th>Pts</th><th>GD</th><th>GF</th><th>Cond</th><th>FIFA</th></tr></thead>
+            <thead><tr><th></th><th class="l">Team</th><th>P</th><th>Pts</th><th>GD</th><th>GF</th><th>Con</th><th>FIFA</th></tr></thead>
             <tbody>${trs}</tbody></table></div>`;
       }).join("");
       html += section("Group tables", `<div class="ggrid">${cards}</div>
@@ -715,7 +715,7 @@
         Round of 32. Ranked by points, then goal difference, goals scored, conduct score,
         and FIFA world ranking.</p>
         <div class="gtable-wrap"><table class="gtable">
-          <thead><tr><th></th><th class="l">Team</th><th>P</th><th>Pts</th><th>GD</th><th>GF</th><th>Cond</th><th>FIFA</th></tr></thead>
+          <thead><tr><th></th><th class="l">Team</th><th>P</th><th>Pts</th><th>GD</th><th>GF</th><th>Con</th><th>FIFA</th></tr></thead>
           <tbody>${trs}</tbody></table></div>`);
     }
 
