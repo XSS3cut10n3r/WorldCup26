@@ -16,7 +16,7 @@ the whole tournament.
 | Round of 16 win | 3 |
 | Quarter-final win | 4 |
 | Semi-final win | 5 |
-| Third-place match win | 0 *(off — see below)* |
+| Third-place match win | 3 |
 | Final win | 6 |
 
 Penalty-shootout wins count as full wins. Change any value in **`config.json`**
