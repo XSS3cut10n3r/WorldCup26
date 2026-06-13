@@ -2190,7 +2190,7 @@
       "gd": 0,
       "points": 1,
       "group": "Group B",
-      "conduct": 0,
+      "conduct": -1,
       "fifaRank": 57,
       "rank": 1,
       "qualifies": true,
@@ -2519,16 +2519,6 @@
         "rank": 1
       },
       {
-        "team": "Qatar",
-        "owner": "Iva",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Saudi Arabia",
         "owner": "Charlie",
         "yellow": 0,
@@ -2629,6 +2619,16 @@
         "rank": 1
       },
       {
+        "team": "Qatar",
+        "owner": "Iva",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 41
+      },
+      {
         "team": "South Korea",
         "owner": "Charlie",
         "yellow": 1,
@@ -2636,7 +2636,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "United States",
@@ -2646,7 +2646,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Canada",
@@ -2850,6 +2850,25 @@
         "rank": 6
       },
       {
+        "name": "Iva",
+        "score": -1,
+        "teams": [
+          {
+            "name": "Uruguay",
+            "score": 0
+          },
+          {
+            "name": "Türkiye",
+            "score": 0
+          },
+          {
+            "name": "Qatar",
+            "score": -1
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Agatha",
         "score": 0,
         "teams": [
@@ -2866,7 +2885,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Charlotte",
@@ -2885,26 +2904,7 @@
             "score": 0
           }
         ],
-        "rank": 8
-      },
-      {
-        "name": "Iva",
-        "score": 0,
-        "teams": [
-          {
-            "name": "Uruguay",
-            "score": 0
-          },
-          {
-            "name": "Türkiye",
-            "score": 0
-          },
-          {
-            "name": "Qatar",
-            "score": 0
-          }
-        ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Mat",
@@ -2923,7 +2923,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Ondine",
@@ -2946,7 +2946,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Paul",
@@ -2969,7 +2969,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Tom",
@@ -2988,7 +2988,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       }
     ],
     "hasData": true
@@ -3004,5 +3004,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T19:23:08Z"
+  "generated": "2026-06-13T19:25:26Z"
 }
