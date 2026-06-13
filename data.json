@@ -369,7 +369,26 @@
       "utcDate": "2026-06-11T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-13T01:00:00Z",
+      "home": {
+        "name": "United States",
+        "owner": "Darcy",
+        "goals": 2
+      },
+      "away": {
+        "name": "Paraguay",
+        "owner": "Pete",
+        "goals": 0
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -427,24 +446,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-13T01:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": 2
-      },
-      "away": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": 0
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -556,7 +557,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
+      "status": "SCHEDULED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -602,6 +603,24 @@
       "away": {
         "name": "Cape Verde Islands",
         "owner": "Paul",
+        "goals": null
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-15T19:00:00Z",
+      "home": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": null
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
         "goals": null
       },
       "penalties": false,
@@ -2960,5 +2979,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T01:39:02Z"
+  "generated": "2026-06-13T01:44:06Z"
 }
