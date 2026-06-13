@@ -369,26 +369,7 @@
       "utcDate": "2026-06-11T19:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-13T01:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": 0
-      },
-      "away": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": 0
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -446,6 +427,24 @@
     }
   ],
   "upcoming": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-13T01:00:00Z",
+      "home": {
+        "name": "United States",
+        "owner": "Darcy",
+        "goals": null
+      },
+      "away": {
+        "name": "Paraguay",
+        "owner": "Pete",
+        "goals": null
+      },
+      "penalties": false,
+      "winner": null
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -603,24 +602,6 @@
       "away": {
         "name": "Cape Verde Islands",
         "owner": "Paul",
-        "goals": null
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-15T19:00:00Z",
-      "home": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": null
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
         "goals": null
       },
       "penalties": false,
@@ -2998,5 +2979,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T01:08:42Z"
+  "generated": "2026-06-13T01:13:46Z"
 }
