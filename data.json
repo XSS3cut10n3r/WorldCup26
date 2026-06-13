@@ -696,8 +696,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Morocco",
-            "owner": "Agatha",
+            "name": "Turkey",
+            "owner": "Iva",
             "goals": null,
             "projected": true,
             "slot": "3rd place A/B/C/D/F",
@@ -721,8 +721,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Haiti",
-            "owner": "Darcy",
+            "name": "Morocco",
+            "owner": "Agatha",
             "goals": null,
             "projected": true,
             "slot": "Runner-up Group C",
@@ -771,8 +771,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Turkey",
-            "owner": "Iva",
+            "name": "Spain",
+            "owner": "Pete",
             "goals": null,
             "projected": true,
             "slot": "3rd place C/D/F/G/H",
@@ -896,8 +896,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Spain",
-            "owner": "Pete",
+            "name": "Norway",
+            "owner": "Charlotte",
             "goals": null,
             "projected": true,
             "slot": "3rd place A/E/H/I/J",
@@ -1622,8 +1622,8 @@
         },
         {
           "pos": 2,
-          "team": "Haiti",
-          "owner": "Darcy",
+          "team": "Morocco",
+          "owner": "Agatha",
           "played": 0,
           "won": 0,
           "draw": 0,
@@ -1635,8 +1635,8 @@
         },
         {
           "pos": 3,
-          "team": "Morocco",
-          "owner": "Agatha",
+          "team": "Haiti",
+          "owner": "Darcy",
           "played": 0,
           "won": 0,
           "draw": 0,
@@ -2235,25 +2235,6 @@
     },
     {
       "pos": 3,
-      "team": "Morocco",
-      "owner": "Agatha",
-      "played": 0,
-      "won": 0,
-      "draw": 0,
-      "lost": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "points": 0,
-      "group": "Group C",
-      "conduct": 0,
-      "fifaRank": 7,
-      "rank": 4,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Croatia",
       "owner": "Tom",
       "played": 0,
@@ -2267,7 +2248,7 @@
       "group": "Group L",
       "conduct": 0,
       "fifaRank": 11,
-      "rank": 5,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2286,7 +2267,7 @@
       "group": "Group G",
       "conduct": 0,
       "fifaRank": 21,
-      "rank": 6,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2305,7 +2286,7 @@
       "group": "Group D",
       "conduct": 0,
       "fifaRank": 22,
-      "rank": 7,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2324,7 +2305,7 @@
       "group": "Group E",
       "conduct": 0,
       "fifaRank": 23,
-      "rank": 8,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2343,8 +2324,8 @@
       "group": "Group I",
       "conduct": 0,
       "fifaRank": 31,
-      "rank": 9,
-      "qualifies": false,
+      "rank": 8,
+      "qualifies": true,
       "manualTie": false
     },
     {
@@ -2362,7 +2343,7 @@
       "group": "Group F",
       "conduct": 0,
       "fifaRank": 38,
-      "rank": 10,
+      "rank": 9,
       "qualifies": false,
       "manualTie": false
     },
@@ -2381,6 +2362,25 @@
       "group": "Group J",
       "conduct": 0,
       "fifaRank": 63,
+      "rank": 10,
+      "qualifies": false,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Haiti",
+      "owner": "Darcy",
+      "played": 0,
+      "won": 0,
+      "draw": 0,
+      "lost": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "points": 0,
+      "group": "Group C",
+      "conduct": 0,
+      "fifaRank": 83,
       "rank": 11,
       "qualifies": false,
       "manualTie": false
@@ -3193,5 +3193,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T21:54:35Z"
+  "generated": "2026-06-13T22:04:40Z"
 }
