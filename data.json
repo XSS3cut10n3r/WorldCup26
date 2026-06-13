@@ -28,6 +28,33 @@
       "rank": 1
     },
     {
+      "name": "Darcy",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "France",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "United States",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Tunisia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Haiti",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Nik",
       "points": 1.0,
       "teams": [
@@ -69,7 +96,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Tomi",
@@ -96,7 +123,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Agatha",
@@ -118,7 +145,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -140,34 +167,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
-    },
-    {
-      "name": "Darcy",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "France",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "United States",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Tunisia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Haiti",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Iva",
@@ -189,7 +189,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Mat",
@@ -211,7 +211,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Ondine",
@@ -238,7 +238,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Paul",
@@ -265,7 +265,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Pete",
@@ -287,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Sydney",
@@ -314,7 +314,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Tom",
@@ -336,10 +336,17 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     }
   ],
   "events": [
+    {
+      "owner": "Darcy",
+      "team": "United States",
+      "points": 1,
+      "label": "United States won (Group stage)",
+      "utcDate": "2026-06-13T01:00:00Z"
+    },
     {
       "owner": "Tomi",
       "team": "Bosnia and Herzegovina",
@@ -369,27 +376,26 @@
       "utcDate": "2026-06-11T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-13T01:00:00Z",
       "home": {
         "name": "United States",
         "owner": "Darcy",
-        "goals": 3
+        "goals": 4
       },
       "away": {
         "name": "Paraguay",
         "owner": "Pete",
-        "goals": 0
+        "goals": 1
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -1648,8 +1654,8 @@
           "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 3,
-          "ga": 0,
+          "gf": 4,
+          "ga": 1,
           "gd": 3,
           "points": 3
         },
@@ -1687,8 +1693,8 @@
           "won": 0,
           "draw": 0,
           "lost": 1,
-          "gf": 0,
-          "ga": 3,
+          "gf": 1,
+          "ga": 4,
           "gd": -3,
           "points": 0
         }
@@ -2634,16 +2640,6 @@
         "rank": 44
       },
       {
-        "team": "Paraguay",
-        "owner": "Pete",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 44
-      },
-      {
         "team": "Bosnia and Herzegovina",
         "owner": "Tomi",
         "yellow": 3,
@@ -2651,7 +2647,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 46
+        "rank": 45
       },
       {
         "team": "Mexico",
@@ -2661,7 +2657,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 47
+        "rank": 46
+      },
+      {
+        "team": "Paraguay",
+        "owner": "Pete",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 46
       },
       {
         "team": "South Africa",
@@ -2718,6 +2724,25 @@
         "rank": 2
       },
       {
+        "name": "Pete",
+        "score": -5,
+        "teams": [
+          {
+            "name": "Spain",
+            "score": 0
+          },
+          {
+            "name": "Japan",
+            "score": 0
+          },
+          {
+            "name": "Paraguay",
+            "score": -5
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Tomi",
         "score": -3,
         "teams": [
@@ -2738,7 +2763,7 @@
             "score": 0
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Kelly",
@@ -2757,26 +2782,7 @@
             "score": -2
           }
         ],
-        "rank": 4
-      },
-      {
-        "name": "Pete",
-        "score": -2,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": 0
-          },
-          {
-            "name": "Japan",
-            "score": 0
-          },
-          {
-            "name": "Paraguay",
-            "score": -2
-          }
-        ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Charlie",
@@ -2979,5 +2985,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T02:19:39Z"
+  "generated": "2026-06-13T03:36:04Z"
 }
