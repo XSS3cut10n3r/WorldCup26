@@ -154,6 +154,11 @@ def main():
 
     display_matches = []
     group_counts = {}  # group letter -> [finished, total]
+    # Per-team group record computed from FINISHED matches ONLY, keyed by
+    # normalized team name. The free-tier standings feed folds in the live
+    # scoreline of in-progress games (a 0-0 kickoff shows as a played draw),
+    # so we rebuild the table numbers from settled results instead.
+    gstats = {}
 
     for m in matches:
         stage = m.get("stage", "")
@@ -189,6 +194,29 @@ def main():
             "winner": score.get("winner"),
         }
         display_matches.append(entry)
+
+        # Tally settled group results into per-team records (finished only).
+        if stage == "GROUP_STAGE" and status in FINISHED:
+            gh, ga = full_time.get("home"), full_time.get("away")
+            if gh is not None and ga is not None:
+                for tm, gf, gag in ((home, gh, ga), (away, ga, gh)):
+                    nm = normalize(tm.get("name") or "")
+                    if not nm:
+                        continue
+                    rec = gstats.setdefault(nm, {
+                        "played": 0, "won": 0, "draw": 0, "lost": 0,
+                        "gf": 0, "ga": 0, "points": 0})
+                    rec["played"] += 1
+                    rec["gf"] += gf
+                    rec["ga"] += gag
+                    if gf > gag:
+                        rec["won"] += 1
+                        rec["points"] += 3
+                    elif gf == gag:
+                        rec["draw"] += 1
+                        rec["points"] += 1
+                    else:
+                        rec["lost"] += 1
 
         if status not in FINISHED:
             continue
@@ -262,20 +290,30 @@ def main():
         for row in s.get("table", []):
             team = row.get("team", {}) or {}
             hit = match_team(team, lookup)
+            nm = normalize(team.get("name") or "")
+            rec = gstats.get(nm, {"played": 0, "won": 0, "draw": 0,
+                                  "lost": 0, "gf": 0, "ga": 0, "points": 0})
             table.append({
-                "pos": row.get("position"),
+                "pos": row.get("position"),  # feed order; used as fallback
                 "team": team.get("name", "?"),
                 "owner": hit[0] if hit else None,
-                "played": row.get("playedGames", 0),
-                "won": row.get("won", 0),
-                "draw": row.get("draw", 0),
-                "lost": row.get("lost", 0),
-                "gf": row.get("goalsFor", 0),
-                "ga": row.get("goalsAgainst", 0),
-                "gd": row.get("goalDifference", 0),
-                "points": row.get("points", 0),
+                "played": rec["played"],
+                "won": rec["won"],
+                "draw": rec["draw"],
+                "lost": rec["lost"],
+                "gf": rec["gf"],
+                "ga": rec["ga"],
+                "gd": rec["gf"] - rec["ga"],
+                "points": rec["points"],
             })
         if table:
+            # Order by settled results (points, GD, GF), then the feed's own
+            # position as a stable tiebreaker so head-to-head ordering from
+            # the provider is preserved when our computed stats are level.
+            table.sort(key=lambda r: (-r["points"], -r["gd"], -r["gf"],
+                                      r["pos"] if r["pos"] is not None else 99))
+            for i, r in enumerate(table, start=1):
+                r["pos"] = i
             groups.append({"group": gname, "table": table})
     groups.sort(key=lambda g: g["group"])
     if raw_standings and not groups:
