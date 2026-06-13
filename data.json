@@ -380,7 +380,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-13T22:00:00Z",
       "home": {
         "name": "Brazil",
@@ -740,8 +740,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Haiti",
-            "owner": "Darcy",
+            "name": "Morocco",
+            "owner": "Agatha",
             "goals": null,
             "projected": true,
             "slot": "Runner-up Group C",
@@ -757,8 +757,8 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-30T01:00:00Z",
           "home": {
-            "name": "Morocco",
-            "owner": "Agatha",
+            "name": "Brazil",
+            "owner": "Sydney",
             "goals": null,
             "projected": true,
             "slot": "Winner Group C",
@@ -1628,6 +1628,19 @@
       "table": [
         {
           "pos": 1,
+          "team": "Brazil",
+          "owner": "Sydney",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0
+        },
+        {
+          "pos": 2,
           "team": "Morocco",
           "owner": "Agatha",
           "played": 0,
@@ -1640,7 +1653,7 @@
           "points": 0
         },
         {
-          "pos": 2,
+          "pos": 3,
           "team": "Haiti",
           "owner": "Darcy",
           "played": 0,
@@ -1653,21 +1666,8 @@
           "points": 0
         },
         {
-          "pos": 3,
-          "team": "Scotland",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
           "pos": 4,
-          "team": "Brazil",
+          "team": "Scotland",
           "owner": "Sydney",
           "played": 0,
           "won": 0,
@@ -2368,25 +2368,6 @@
     },
     {
       "pos": 3,
-      "team": "Scotland",
-      "owner": "Sydney",
-      "played": 0,
-      "won": 0,
-      "draw": 0,
-      "lost": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "points": 0,
-      "group": "Group C",
-      "conduct": 0,
-      "fifaRank": 42,
-      "rank": 10,
-      "qualifies": false,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Jordan",
       "owner": "Charlie",
       "played": 0,
@@ -2400,6 +2381,25 @@
       "group": "Group J",
       "conduct": 0,
       "fifaRank": 63,
+      "rank": 10,
+      "qualifies": false,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Haiti",
+      "owner": "Darcy",
+      "played": 0,
+      "won": 0,
+      "draw": 0,
+      "lost": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "points": 0,
+      "group": "Group C",
+      "conduct": 0,
+      "fifaRank": 83,
       "rank": 11,
       "qualifies": false,
       "manualTie": false
@@ -3212,5 +3212,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T22:46:12Z"
+  "generated": "2026-06-13T23:01:17Z"
 }
