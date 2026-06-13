@@ -557,7 +557,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -2584,6 +2584,16 @@
         "rank": 1
       },
       {
+        "team": "United States",
+        "owner": "Darcy",
+        "yellow": 0,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": 0,
+        "rank": 1
+      },
+      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 0,
@@ -2611,7 +2621,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 42
+        "rank": 43
       },
       {
         "team": "South Korea",
@@ -2621,17 +2631,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 42
-      },
-      {
-        "team": "United States",
-        "owner": "Darcy",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 42
+        "rank": 43
       },
       {
         "team": "Canada",
@@ -2783,29 +2783,6 @@
         "rank": 5
       },
       {
-        "name": "Darcy",
-        "score": -1,
-        "teams": [
-          {
-            "name": "France",
-            "score": 0
-          },
-          {
-            "name": "United States",
-            "score": -1
-          },
-          {
-            "name": "Tunisia",
-            "score": 0
-          },
-          {
-            "name": "Haiti",
-            "score": 0
-          }
-        ],
-        "rank": 5
-      },
-      {
         "name": "Pete",
         "score": -1,
         "teams": [
@@ -2841,7 +2818,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
       },
       {
         "name": "Charlotte",
@@ -2860,7 +2837,30 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
+      },
+      {
+        "name": "Darcy",
+        "score": 0,
+        "teams": [
+          {
+            "name": "France",
+            "score": 0
+          },
+          {
+            "name": "United States",
+            "score": 0
+          },
+          {
+            "name": "Tunisia",
+            "score": 0
+          },
+          {
+            "name": "Haiti",
+            "score": 0
+          }
+        ],
+        "rank": 7
       },
       {
         "name": "Iva",
@@ -2879,7 +2879,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
       },
       {
         "name": "Mat",
@@ -2898,7 +2898,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
       },
       {
         "name": "Ondine",
@@ -2921,7 +2921,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
       },
       {
         "name": "Paul",
@@ -2944,7 +2944,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
       },
       {
         "name": "Tom",
@@ -2963,7 +2963,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 7
       }
     ],
     "hasData": true
@@ -2979,5 +2979,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T02:16:04Z"
+  "generated": "2026-06-13T02:18:26Z"
 }
