@@ -2,21 +2,24 @@ name: Update scores
 
 on:
   schedule:
-    # Every 20 minutes. GitHub may delay scheduled runs by a few minutes.
-    # You can tighten this to '*/10 * * * *' during big match days.
-    - cron: "*/5 * * * *"
-  workflow_dispatch: {}   # lets you trigger a run manually from the Actions tab
+    # GitHub may start this late or skip slots entirely — that's fine,
+    # because each run loops internally for ~55 minutes, updating scores
+    # every 5 minutes. Any single run starting per hour keeps the site
+    # fresh. Offset minutes avoid the congested :00/:05/:10 grid.
+    - cron: "4-59/15 * * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
   group: update-scores
-  cancel-in-progress: false
+  cancel-in-progress: true   # a newly started run replaces the old loop
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 70
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -26,19 +29,22 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Fetch scores and rebuild data.json
+      - name: Update loop — fetch, commit, sleep, repeat (~55 min)
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-        run: python scripts/update_scores.py
-
-      - name: Commit updated data if it changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
-          if git diff --staged --quiet; then
-            echo "No score changes."
-          else
-            git commit -m "Update scores"
-            git push
-          fi
+          for i in $(seq 1 11); do
+            echo "--- iteration $i of 11 ---"
+            git pull --rebase origin main || true
+            python scripts/update_scores.py
+            git add data.json
+            if git diff --staged --quiet; then
+              echo "No score changes."
+            else
+              git commit -m "Update scores"
+              git push || { git pull --rebase origin main && git push; }
+            fi
+            if [ "$i" -lt 11 ]; then sleep 300; fi
+          done
