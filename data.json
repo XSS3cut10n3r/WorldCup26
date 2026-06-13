@@ -376,7 +376,26 @@
       "utcDate": "2026-06-11T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-13T19:00:00Z",
+      "home": {
+        "name": "Qatar",
+        "owner": "Iva",
+        "goals": 0
+      },
+      "away": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": 0
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -452,24 +471,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-13T19:00:00Z",
-      "home": {
-        "name": "Qatar",
-        "owner": "Iva",
-        "goals": null
-      },
-      "away": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": null
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -627,6 +628,24 @@
       "away": {
         "name": "Egypt",
         "owner": "Tom",
+        "goals": null
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-15T22:00:00Z",
+      "home": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": null
+      },
+      "away": {
+        "name": "Uruguay",
+        "owner": "Iva",
         "goals": null
       },
       "penalties": false,
@@ -1562,27 +1581,27 @@
           "pos": 3,
           "team": "Qatar",
           "owner": "Iva",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
           "gf": 0,
           "ga": 0,
           "gd": 0,
-          "points": 0
+          "points": 1
         },
         {
           "pos": 3,
           "team": "Switzerland",
           "owner": "Mat",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
           "gf": 0,
           "ga": 0,
           "gd": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -2162,14 +2181,14 @@
       "pos": 3,
       "team": "Qatar",
       "owner": "Iva",
-      "played": 0,
+      "played": 1,
       "won": 0,
-      "draw": 0,
+      "draw": 1,
       "lost": 0,
       "gf": 0,
       "ga": 0,
       "gd": 0,
-      "points": 0,
+      "points": 1,
       "group": "Group B",
       "conduct": 0,
       "fifaRank": 57,
@@ -2985,5 +3004,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T15:08:57Z"
+  "generated": "2026-06-13T19:23:08Z"
 }
