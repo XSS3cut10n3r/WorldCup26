@@ -159,6 +159,9 @@ def main():
     # scoreline of in-progress games (a 0-0 kickoff shows as a played draw),
     # so we rebuild the table numbers from settled results instead.
     gstats = {}
+    # Finished group matches per group letter, as (home_norm, away_norm,
+    # home_goals, away_goals) — used for head-to-head tiebreaks.
+    ghead = {}
 
     for m in matches:
         stage = m.get("stage", "")
@@ -199,6 +202,11 @@ def main():
         if stage == "GROUP_STAGE" and status in FINISHED:
             gh, ga = full_time.get("home"), full_time.get("away")
             if gh is not None and ga is not None:
+                hn = normalize(home.get("name") or "")
+                an = normalize(away.get("name") or "")
+                letter = (m.get("group") or "")[-1:]
+                if hn and an and letter:
+                    ghead.setdefault(letter, []).append((hn, an, gh, ga))
                 for tm, gf, gag in ((home, gh, ga), (away, ga, gh)):
                     nm = normalize(tm.get("name") or "")
                     if not nm:
@@ -270,68 +278,13 @@ def main():
     # live / recent / upcoming are built AFTER the bracket (further down),
     # so knockout fixtures show computed teams instead of the raw feed's TBDs.
 
-    # ---- Group tables & best third-place race -------------------------
-    groups = []
-    raw_standings = fetch_standings(token)
-    for s in raw_standings:
-        # Keep total (not home/away-split) tables that belong to a group.
-        # Deliberately no check on s["stage"]: the World Cup standings
-        # endpoint only contains group tables, and stage labels have
-        # proven unreliable.
-        if s.get("type") not in (None, "TOTAL"):
-            continue
-        raw_group = (s.get("group") or "").strip()
-        if not raw_group or not s.get("table"):
-            continue
-        gname = raw_group.replace("GROUP_", "Group ")
-        if not gname.lower().startswith("group"):
-            gname = "Group " + gname
-        table = []
-        for row in s.get("table", []):
-            team = row.get("team", {}) or {}
-            hit = match_team(team, lookup)
-            nm = normalize(team.get("name") or "")
-            rec = gstats.get(nm, {"played": 0, "won": 0, "draw": 0,
-                                  "lost": 0, "gf": 0, "ga": 0, "points": 0})
-            table.append({
-                "pos": row.get("position"),  # feed order; used as fallback
-                "team": team.get("name", "?"),
-                "owner": hit[0] if hit else None,
-                "played": rec["played"],
-                "won": rec["won"],
-                "draw": rec["draw"],
-                "lost": rec["lost"],
-                "gf": rec["gf"],
-                "ga": rec["ga"],
-                "gd": rec["gf"] - rec["ga"],
-                "points": rec["points"],
-            })
-        if table:
-            # Order by settled results (points, GD, GF), then the feed's own
-            # position as a stable tiebreaker so head-to-head ordering from
-            # the provider is preserved when our computed stats are level.
-            table.sort(key=lambda r: (-r["points"], -r["gd"], -r["gf"],
-                                      r["pos"] if r["pos"] is not None else 99))
-            for i, r in enumerate(table, start=1):
-                r["pos"] = i
-            groups.append({"group": gname, "table": table})
-    groups.sort(key=lambda g: g["group"])
-    if raw_standings and not groups:
-        s0 = raw_standings[0]
-        print(f"Note: {len(raw_standings)} standings entries received but none "
-              f"parsed as group tables. First entry: stage={s0.get('stage')!r} "
-              f"type={s0.get('type')!r} group={s0.get('group')!r} "
-              f"keys={sorted(s0.keys())}")
-    elif not raw_standings:
-        print("Note: standings endpoint returned no entries "
-              "(rate limit or data not yet published).")
-
     # ---- Team conduct (maintained by hand) -----------------------------
     # Cards live in cards-manual.json: { "Team": {"yellow": n,
     # "indirect_red": n, "direct_red": n, "yellow_direct_red": n}, ... }.
     # Edit that file after match days; this script picks it up on its next
     # scheduled run. Scoring: yellow -1, second-yellow red -3, straight
-    # red -4, yellow-then-straight-red -5.
+    # red -4, yellow-then-straight-red -5. Computed before the group tables
+    # because conduct is a group tiebreaker.
     card_keys = ("yellow", "indirect_red", "direct_red", "yellow_direct_red")
     manual = {}
     manual_path = ROOT / "cards-manual.json"
@@ -380,20 +333,137 @@ def main():
     fifa_ranks = {normalize(k): v
                   for k, v in (config.get("fifaRanking") or {}).items()}
 
+    def rank_group(rows, finished):
+        """Order one group's rows by the full FIFA tiebreaker hierarchy.
+
+        Primary: total points. Among teams level on points, a head-to-head
+        mini-table decides (points, then GD, then goals in matches between
+        the tied teams only). Teams still level fall to overall criteria:
+        goal difference, goals scored, conduct score (higher is better),
+        then FIFA world ranking."""
+        def overall_only(r):
+            return (-r["points"], -r["gd"], -r["gf"],
+                    -conduct_scores.get(r["norm"], 0),
+                    fifa_ranks.get(r["norm"]) or 999, r["team"])
+        ordered = []
+        by_points = sorted(rows, key=lambda r: -r["points"])
+        i = 0
+        while i < len(by_points):
+            j = i
+            while j < len(by_points) and by_points[j]["points"] == by_points[i]["points"]:
+                j += 1
+            block = by_points[i:j]
+            if len(block) == 1:
+                ordered.extend(block)
+            else:
+                names = {r["norm"] for r in block}
+                h2h = {nm: {"pts": 0, "gf": 0, "ga": 0} for nm in names}
+                for (hn, an, gh, ga) in finished:
+                    if hn in names and an in names:
+                        h2h[hn]["gf"] += gh; h2h[hn]["ga"] += ga
+                        h2h[an]["gf"] += ga; h2h[an]["ga"] += gh
+                        if gh > ga:
+                            h2h[hn]["pts"] += 3
+                        elif gh < ga:
+                            h2h[an]["pts"] += 3
+                        else:
+                            h2h[hn]["pts"] += 1; h2h[an]["pts"] += 1
+
+                def key(r):
+                    hh = h2h[r["norm"]]
+                    hgd = hh["gf"] - hh["ga"]
+                    return (-hh["pts"], -hgd, -hh["gf"]) + overall_only(r)
+                ordered.extend(sorted(block, key=key))
+            i = j
+        return ordered
+
+    # ---- Group tables & best third-place race -------------------------
+    groups = []
+    raw_standings = fetch_standings(token)
+    for s in raw_standings:
+        # Keep total (not home/away-split) tables that belong to a group.
+        # Deliberately no check on s["stage"]: the World Cup standings
+        # endpoint only contains group tables, and stage labels have
+        # proven unreliable.
+        if s.get("type") not in (None, "TOTAL"):
+            continue
+        raw_group = (s.get("group") or "").strip()
+        if not raw_group or not s.get("table"):
+            continue
+        gname = raw_group.replace("GROUP_", "Group ")
+        if not gname.lower().startswith("group"):
+            gname = "Group " + gname
+        table = []
+        for row in s.get("table", []):
+            team = row.get("team", {}) or {}
+            hit = match_team(team, lookup)
+            nm = normalize(team.get("name") or "")
+            rec = gstats.get(nm, {"played": 0, "won": 0, "draw": 0,
+                                  "lost": 0, "gf": 0, "ga": 0, "points": 0})
+            table.append({
+                "pos": row.get("position"),  # feed order; used as fallback
+                "team": team.get("name", "?"),
+                "norm": nm,
+                "owner": hit[0] if hit else None,
+                "played": rec["played"],
+                "won": rec["won"],
+                "draw": rec["draw"],
+                "lost": rec["lost"],
+                "gf": rec["gf"],
+                "ga": rec["ga"],
+                "gd": rec["gf"] - rec["ga"],
+                "points": rec["points"],
+                "conduct": conduct_scores.get(nm, 0),
+                "fifaRank": fifa_ranks.get(nm),
+            })
+        if table:
+            letter = gname.split()[-1]
+            # Full FIFA tiebreaker ordering (head-to-head, then overall).
+            table = rank_group(table, ghead.get(letter, []))
+            for i, r in enumerate(table, start=1):
+                r["pos"] = i
+                r.pop("norm", None)
+            # A group is "ranked" only once EVERY team has played >=1 game.
+            # Until then we don't highlight leaders/third or lock bracket
+            # slots for this group.
+            ranked = len(table) > 0 and all(r["played"] >= 1 for r in table)
+            groups.append({"group": gname, "table": table, "ranked": ranked})
+    groups.sort(key=lambda g: g["group"])
+    if raw_standings and not groups:
+        s0 = raw_standings[0]
+        print(f"Note: {len(raw_standings)} standings entries received but none "
+              f"parsed as group tables. First entry: stage={s0.get('stage')!r} "
+              f"type={s0.get('type')!r} group={s0.get('group')!r} "
+              f"keys={sorted(s0.keys())}")
+    elif not raw_standings:
+        print("Note: standings endpoint returned no entries "
+              "(rate limit or data not yet published).")
+
     thirds = []
     for g in groups:
+        # Only groups where every team has played at least once belong in the
+        # best-third race; unranked groups are omitted entirely.
+        if not g.get("ranked"):
+            continue
         third = next((r for r in g["table"] if r["pos"] == 3), None)
         if third:
             t = dict(third)
             t["group"] = g["group"]
+            t["ranked"] = True
             t["conduct"] = conduct_scores.get(normalize(t["team"]), 0)
             t["fifaRank"] = fifa_ranks.get(normalize(t["team"]))
             thirds.append(t)
+    # Rank third-placed teams by the same overall criteria used within groups:
+    # points, goal difference, goals, conduct (higher is better), FIFA rank.
     thirds.sort(key=lambda r: (-r["points"], -r["gd"], -r["gf"],
                                -r["conduct"], r["fifaRank"] or 999, r["team"]))
+    # Highlight the current top 8 third-placed teams (the Round-of-32 cut)
+    # among the groups that are ranked, even while other groups are still
+    # being played — this is the live "if it ended now" projection. Unranked
+    # groups are already excluded above, so their thirds never appear here.
     for i, t in enumerate(thirds):
         t["rank"] = i + 1
-        t["qualifies"] = i < 8  # top 8 of 12 advance to the Round of 32
+        t["qualifies"] = i < 8
     for i, t in enumerate(thirds):
         key = (t["points"], t["gd"], t["gf"], t["conduct"], t["fifaRank"])
         t["manualTie"] = any(
@@ -461,6 +531,10 @@ def main():
     slot_resolved = {}  # "1A"/"2A" -> {"name", "owner", "projected"}
     for g in groups:
         letter = g["group"].split()[-1]
+        # Don't project a winner/runner-up until every team in the group has
+        # played at least once; until then the slot shows its generic label.
+        if not g.get("ranked"):
+            continue
         for pos, prefix in ((1, "1"), (2, "2")):
             row = next((r for r in g["table"] if r["pos"] == pos), None)
             if row:
@@ -471,7 +545,14 @@ def main():
 
     third_assign = {}  # winner-slot letter -> third-placed side dict
     qual = [t for t in thirds if t.get("qualifies")]
+    # Allowed third-place groups for each Round-of-32 slot (host winner group
+    # letter -> set of group letters whose third may land there).
+    allowed = {}
+    for mdef in template["r32"]:
+        if mdef["away"].startswith("T:"):
+            allowed[mdef["home"][1]] = set(mdef["away"][2:])
     if len(qual) == 8:
+        # Exactly eight qualifiers: FIFA's Annex C gives the official mapping.
         combo = "".join(sorted(t["group"].split()[-1] for t in qual))
         assignment = template["thirdAllocation"].get(combo)
         if assignment:
@@ -482,6 +563,31 @@ def main():
                     "name": t["team"], "owner": t["owner"],
                     "projected": not all_groups_done,
                 }
+    elif qual:
+        # Fewer than eight ranked groups: Annex C isn't defined, so place the
+        # available thirds best-effort into slots whose allowed-group set
+        # matches, maximizing how many fit (bipartite matching, rank order).
+        # Tentative — re-derived exactly via Annex C once 8 groups are ranked.
+        qg = [(t, t["group"].split()[-1]) for t in qual]
+        match_for_slot = {}
+
+        def assign(ti, seen):
+            gl = qg[ti][1]
+            for slot in template["thirdSlots"]:
+                if gl in allowed.get(slot, set()) and slot not in seen:
+                    seen.add(slot)
+                    if slot not in match_for_slot or assign(match_for_slot[slot], seen):
+                        match_for_slot[slot] = ti
+                        return True
+            return False
+
+        for ti in range(len(qg)):
+            assign(ti, set())
+        for slot, ti in match_for_slot.items():
+            t = qg[ti][0]
+            third_assign[slot] = {
+                "name": t["team"], "owner": t["owner"], "projected": True,
+            }
 
     api_real = {}  # stageCode -> fixtures with both teams known
     api_tbd = {}   # stageCode -> TBD fixtures (date fallback), date order
