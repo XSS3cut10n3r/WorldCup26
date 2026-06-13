@@ -564,7 +564,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -672,12 +672,12 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Bosnia-Herzegovina",
+            "owner": "Tomi",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group B",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -964,8 +964,8 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "Bosnia-Herzegovina",
-            "owner": "Tomi",
+            "name": "Switzerland",
+            "owner": "Mat",
             "goals": null,
             "projected": true,
             "slot": "Winner Group B",
@@ -1553,6 +1553,19 @@
       "table": [
         {
           "pos": 1,
+          "team": "Switzerland",
+          "owner": "Mat",
+          "played": 1,
+          "won": 1,
+          "draw": 0,
+          "lost": 0,
+          "gf": 1,
+          "ga": 0,
+          "gd": 1,
+          "points": 3
+        },
+        {
+          "pos": 2,
           "team": "Bosnia-Herzegovina",
           "owner": "Tomi",
           "played": 1,
@@ -1565,7 +1578,7 @@
           "points": 1
         },
         {
-          "pos": 1,
+          "pos": 2,
           "team": "Canada",
           "owner": "Kelly",
           "played": 1,
@@ -1578,30 +1591,17 @@
           "points": 1
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "Qatar",
           "owner": "Iva",
           "played": 1,
           "won": 0,
-          "draw": 1,
-          "lost": 0,
+          "draw": 0,
+          "lost": 1,
           "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1
-        },
-        {
-          "pos": 3,
-          "team": "Switzerland",
-          "owner": "Mat",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1
+          "ga": 1,
+          "gd": -1,
+          "points": 0
         }
       ]
     },
@@ -2179,25 +2179,6 @@
   "thirdPlace": [
     {
       "pos": 3,
-      "team": "Qatar",
-      "owner": "Iva",
-      "played": 1,
-      "won": 0,
-      "draw": 1,
-      "lost": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "points": 1,
-      "group": "Group B",
-      "conduct": -2,
-      "fifaRank": 57,
-      "rank": 1,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Czechia",
       "owner": "Nik",
       "played": 1,
@@ -2211,7 +2192,7 @@
       "group": "Group A",
       "conduct": 0,
       "fifaRank": 39,
-      "rank": 2,
+      "rank": 1,
       "qualifies": true,
       "manualTie": false
     }
@@ -3004,5 +2985,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T19:28:44Z"
+  "generated": "2026-06-13T19:33:13Z"
 }
