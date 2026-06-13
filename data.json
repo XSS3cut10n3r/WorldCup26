@@ -564,7 +564,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
+      "status": "SCHEDULED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -664,12 +664,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-28T19:00:00Z",
           "home": {
-            "name": "South Korea",
-            "owner": "Charlie",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group A",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -689,12 +689,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-29T17:00:00Z",
           "home": {
-            "name": "Curaçao",
-            "owner": "Ondine",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group E",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -714,12 +714,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-29T20:30:00Z",
           "home": {
-            "name": "Japan",
-            "owner": "Pete",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group F",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -739,12 +739,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-30T01:00:00Z",
           "home": {
-            "name": "Brazil",
-            "owner": "Sydney",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group C",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -764,12 +764,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-30T17:00:00Z",
           "home": {
-            "name": "France",
-            "owner": "Darcy",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group I",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -814,12 +814,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-01T01:00:00Z",
           "home": {
-            "name": "Mexico",
-            "owner": "Nik",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group A",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -839,12 +839,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-01T16:00:00Z",
           "home": {
-            "name": "England",
-            "owner": "Mat",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group L",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -864,12 +864,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-01T20:00:00Z",
           "home": {
-            "name": "United States",
-            "owner": "Darcy",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group D",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -889,12 +889,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-02T00:00:00Z",
           "home": {
-            "name": "Egypt",
-            "owner": "Tom",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group G",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -939,12 +939,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-02T23:00:00Z",
           "home": {
-            "name": "Cape Verde Islands",
-            "owner": "Paul",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group H",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -964,12 +964,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "Bosnia-Herzegovina",
-            "owner": "Tomi",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group B",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -989,12 +989,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T18:00:00Z",
           "home": {
-            "name": "Algeria",
-            "owner": "Mat",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group J",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -1014,12 +1014,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T22:00:00Z",
           "home": {
-            "name": "Congo DR",
-            "owner": "Tom",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group K",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -1039,12 +1039,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-04T01:30:00Z",
           "home": {
-            "name": "Australia",
-            "owner": "Agatha",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group D",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "TBD",
@@ -1490,732 +1490,8 @@
       ]
     }
   ],
-  "groups": [
-    {
-      "group": "Group A",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Mexico",
-          "owner": "Nik",
-          "played": 1,
-          "won": 1,
-          "draw": 0,
-          "lost": 0,
-          "gf": 2,
-          "ga": 0,
-          "gd": 2,
-          "points": 3
-        },
-        {
-          "pos": 2,
-          "team": "South Korea",
-          "owner": "Charlie",
-          "played": 1,
-          "won": 1,
-          "draw": 0,
-          "lost": 0,
-          "gf": 2,
-          "ga": 1,
-          "gd": 1,
-          "points": 3
-        },
-        {
-          "pos": 3,
-          "team": "Czechia",
-          "owner": "Nik",
-          "played": 1,
-          "won": 0,
-          "draw": 0,
-          "lost": 1,
-          "gf": 1,
-          "ga": 2,
-          "gd": -1,
-          "points": 0
-        },
-        {
-          "pos": 4,
-          "team": "South Africa",
-          "owner": "Sydney",
-          "played": 1,
-          "won": 0,
-          "draw": 0,
-          "lost": 1,
-          "gf": 0,
-          "ga": 2,
-          "gd": -2,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group B",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Bosnia-Herzegovina",
-          "owner": "Tomi",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 1,
-          "gd": 0,
-          "points": 1
-        },
-        {
-          "pos": 1,
-          "team": "Canada",
-          "owner": "Kelly",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 1,
-          "gd": 0,
-          "points": 1
-        },
-        {
-          "pos": 3,
-          "team": "Qatar",
-          "owner": "Iva",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1
-        },
-        {
-          "pos": 3,
-          "team": "Switzerland",
-          "owner": "Mat",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1
-        }
-      ]
-    },
-    {
-      "group": "Group C",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Brazil",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Haiti",
-          "owner": "Darcy",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Morocco",
-          "owner": "Agatha",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Scotland",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group D",
-      "table": [
-        {
-          "pos": 1,
-          "team": "United States",
-          "owner": "Darcy",
-          "played": 1,
-          "won": 1,
-          "draw": 0,
-          "lost": 0,
-          "gf": 4,
-          "ga": 1,
-          "gd": 3,
-          "points": 3
-        },
-        {
-          "pos": 2,
-          "team": "Australia",
-          "owner": "Agatha",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 2,
-          "team": "Turkey",
-          "owner": "Iva",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 4,
-          "team": "Paraguay",
-          "owner": "Pete",
-          "played": 1,
-          "won": 0,
-          "draw": 0,
-          "lost": 1,
-          "gf": 1,
-          "ga": 4,
-          "gd": -3,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group E",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Curaçao",
-          "owner": "Ondine",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Germany",
-          "owner": "Tomi",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Ecuador",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Ivory Coast",
-          "owner": "Paul",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group F",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Japan",
-          "owner": "Pete",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Netherlands",
-          "owner": "Charlotte",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Sweden",
-          "owner": "Tomi",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Tunisia",
-          "owner": "Darcy",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group G",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Egypt",
-          "owner": "Tom",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Belgium",
-          "owner": "Paul",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Iran",
-          "owner": "Ondine",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "New Zealand",
-          "owner": "Tomi",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group H",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Cape Verde Islands",
-          "owner": "Paul",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Saudi Arabia",
-          "owner": "Charlie",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Spain",
-          "owner": "Pete",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Uruguay",
-          "owner": "Iva",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group I",
-      "table": [
-        {
-          "pos": 1,
-          "team": "France",
-          "owner": "Darcy",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Iraq",
-          "owner": "Agatha",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Norway",
-          "owner": "Charlotte",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Senegal",
-          "owner": "Ondine",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group J",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Algeria",
-          "owner": "Mat",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Argentina",
-          "owner": "Nik",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Jordan",
-          "owner": "Charlie",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Austria",
-          "owner": "Kelly",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group K",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Congo DR",
-          "owner": "Tom",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Colombia",
-          "owner": "Charlie",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Portugal",
-          "owner": "Kelly",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Uzbekistan",
-          "owner": "Ondine",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    },
-    {
-      "group": "Group L",
-      "table": [
-        {
-          "pos": 1,
-          "team": "England",
-          "owner": "Mat",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Ghana",
-          "owner": "Charlotte",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Croatia",
-          "owner": "Tom",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "Panama",
-          "owner": "Paul",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        }
-      ]
-    }
-  ],
-  "thirdPlace": [
-    {
-      "pos": 3,
-      "team": "Qatar",
-      "owner": "Iva",
-      "played": 1,
-      "won": 0,
-      "draw": 1,
-      "lost": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "points": 1,
-      "group": "Group B",
-      "conduct": -1,
-      "fifaRank": 57,
-      "rank": 1,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Czechia",
-      "owner": "Nik",
-      "played": 1,
-      "won": 0,
-      "draw": 0,
-      "lost": 1,
-      "gf": 1,
-      "ga": 2,
-      "gd": -1,
-      "points": 0,
-      "group": "Group A",
-      "conduct": 0,
-      "fifaRank": 39,
-      "rank": 2,
-      "qualifies": true,
-      "manualTie": false
-    }
-  ],
+  "groups": [],
+  "thirdPlace": [],
   "conduct": {
     "teams": [
       {
@@ -3004,5 +2280,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T19:25:26Z"
+  "generated": "2026-06-13T19:28:10Z"
 }
