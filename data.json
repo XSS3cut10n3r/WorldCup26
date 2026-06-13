@@ -376,7 +376,26 @@
       "utcDate": "2026-06-12T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-13T22:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 0
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 0
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -470,24 +489,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-13T22:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": null
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": null
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -645,6 +646,24 @@
       "away": {
         "name": "Uruguay",
         "owner": "Iva",
+        "goals": null
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-16T01:00:00Z",
+      "home": {
+        "name": "Iran",
+        "owner": "Ondine",
+        "goals": null
+      },
+      "away": {
+        "name": "New Zealand",
+        "owner": "Tomi",
         "goals": null
       },
       "penalties": false,
@@ -3193,5 +3212,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T22:04:40Z"
+  "generated": "2026-06-13T22:09:42Z"
 }
