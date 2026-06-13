@@ -556,7 +556,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -820,8 +820,8 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-01T20:00:00Z",
           "home": {
-            "name": "Australia",
-            "owner": "Agatha",
+            "name": "Paraguay",
+            "owner": "Pete",
             "goals": null,
             "projected": true,
             "slot": "Winner Group D",
@@ -1623,6 +1623,32 @@
       "table": [
         {
           "pos": 1,
+          "team": "Paraguay",
+          "owner": "Pete",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 1
+        },
+        {
+          "pos": 1,
+          "team": "United States",
+          "owner": "Darcy",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 1
+        },
+        {
+          "pos": 3,
           "team": "Australia",
           "owner": "Agatha",
           "played": 0,
@@ -1635,35 +1661,9 @@
           "points": 0
         },
         {
-          "pos": 1,
-          "team": "Paraguay",
-          "owner": "Pete",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
+          "pos": 3,
           "team": "Turkey",
           "owner": "Iva",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0
-        },
-        {
-          "pos": 1,
-          "team": "United States",
-          "owner": "Darcy",
           "played": 0,
           "won": 0,
           "draw": 0,
@@ -2135,6 +2135,25 @@
   "thirdPlace": [
     {
       "pos": 3,
+      "team": "Australia",
+      "owner": "Agatha",
+      "played": 0,
+      "won": 0,
+      "draw": 0,
+      "lost": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "points": 0,
+      "group": "Group D",
+      "conduct": 0,
+      "fifaRank": 27,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Qatar",
       "owner": "Iva",
       "played": 0,
@@ -2148,7 +2167,7 @@
       "group": "Group B",
       "conduct": 0,
       "fifaRank": 57,
-      "rank": 1,
+      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2167,7 +2186,7 @@
       "group": "Group A",
       "conduct": 0,
       "fifaRank": 39,
-      "rank": 2,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     }
@@ -2960,5 +2979,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T00:58:36Z"
+  "generated": "2026-06-13T01:03:39Z"
 }
