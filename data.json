@@ -1701,7 +1701,7 @@
           "ga": 0,
           "gd": 0,
           "points": 0,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 6
         }
       ],
@@ -2727,16 +2727,6 @@
         "rank": 1
       },
       {
-        "team": "Brazil",
-        "owner": "Sydney",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 39
-      },
-      {
         "team": "South Korea",
         "owner": "Charlie",
         "yellow": 1,
@@ -2767,6 +2757,16 @@
         "rank": 39
       },
       {
+        "team": "Brazil",
+        "owner": "Sydney",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 42
+      },
+      {
         "team": "Canada",
         "owner": "Kelly",
         "yellow": 2,
@@ -2774,7 +2774,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Qatar",
@@ -2784,7 +2784,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -2830,11 +2830,11 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -11,
+        "score": -12,
         "teams": [
           {
             "name": "Brazil",
-            "score": -1
+            "score": -2
           },
           {
             "name": "Ecuador",
@@ -3132,5 +3132,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T23:06:03Z"
+  "generated": "2026-06-13T23:09:00Z"
 }
