@@ -2614,16 +2614,6 @@
         "rank": 1
       },
       {
-        "team": "Paraguay",
-        "owner": "Pete",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 43
-      },
-      {
         "team": "South Korea",
         "owner": "Charlie",
         "yellow": 1,
@@ -2641,7 +2631,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 45
+        "rank": 44
+      },
+      {
+        "team": "Paraguay",
+        "owner": "Pete",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 44
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -2760,6 +2760,25 @@
         "rank": 4
       },
       {
+        "name": "Pete",
+        "score": -2,
+        "teams": [
+          {
+            "name": "Spain",
+            "score": 0
+          },
+          {
+            "name": "Japan",
+            "score": 0
+          },
+          {
+            "name": "Paraguay",
+            "score": -2
+          }
+        ],
+        "rank": 4
+      },
+      {
         "name": "Charlie",
         "score": -1,
         "teams": [
@@ -2780,26 +2799,7 @@
             "score": 0
           }
         ],
-        "rank": 5
-      },
-      {
-        "name": "Pete",
-        "score": -1,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": 0
-          },
-          {
-            "name": "Japan",
-            "score": 0
-          },
-          {
-            "name": "Paraguay",
-            "score": -1
-          }
-        ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Agatha",
@@ -2979,5 +2979,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T02:18:26Z"
+  "generated": "2026-06-13T02:19:39Z"
 }
