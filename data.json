@@ -2503,16 +2503,6 @@
         "rank": 1
       },
       {
-        "team": "Paraguay",
-        "owner": "Pete",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Portugal",
         "owner": "Kelly",
         "yellow": 0,
@@ -2643,6 +2633,16 @@
         "rank": 1
       },
       {
+        "team": "Paraguay",
+        "owner": "Pete",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 43
+      },
+      {
         "team": "South Korea",
         "owner": "Charlie",
         "yellow": 1,
@@ -2650,7 +2650,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 44
+        "rank": 43
       },
       {
         "team": "Canada",
@@ -2802,6 +2802,25 @@
         "rank": 5
       },
       {
+        "name": "Pete",
+        "score": -1,
+        "teams": [
+          {
+            "name": "Spain",
+            "score": 0
+          },
+          {
+            "name": "Japan",
+            "score": 0
+          },
+          {
+            "name": "Paraguay",
+            "score": -1
+          }
+        ],
+        "rank": 5
+      },
+      {
         "name": "Agatha",
         "score": 0,
         "teams": [
@@ -2818,7 +2837,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Charlotte",
@@ -2837,7 +2856,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Darcy",
@@ -2860,7 +2879,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Iva",
@@ -2879,7 +2898,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Mat",
@@ -2898,7 +2917,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Ondine",
@@ -2921,7 +2940,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Paul",
@@ -2944,26 +2963,7 @@
             "score": 0
           }
         ],
-        "rank": 6
-      },
-      {
-        "name": "Pete",
-        "score": 0,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": 0
-          },
-          {
-            "name": "Japan",
-            "score": 0
-          },
-          {
-            "name": "Paraguay",
-            "score": 0
-          }
-        ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Tom",
@@ -2982,7 +2982,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       }
     ],
     "hasData": true
@@ -2998,5 +2998,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T01:18:49Z"
+  "generated": "2026-06-13T01:19:44Z"
 }
