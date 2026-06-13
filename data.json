@@ -872,8 +872,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Switzerland",
-            "owner": "Mat",
+            "name": "Norway",
+            "owner": "Charlotte",
             "goals": null,
             "projected": true,
             "slot": "3rd place B/E/F/I/J",
@@ -2255,25 +2255,6 @@
     },
     {
       "pos": 3,
-      "team": "Switzerland",
-      "owner": "Mat",
-      "played": 0,
-      "won": 0,
-      "draw": 0,
-      "lost": 0,
-      "gf": 0,
-      "ga": 0,
-      "gd": 0,
-      "points": 0,
-      "group": "Group B",
-      "conduct": 0,
-      "fifaRank": 19,
-      "rank": 5,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Iran",
       "owner": "Ondine",
       "played": 0,
@@ -2287,7 +2268,7 @@
       "group": "Group G",
       "conduct": 0,
       "fifaRank": 21,
-      "rank": 6,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2306,7 +2287,7 @@
       "group": "Group D",
       "conduct": 0,
       "fifaRank": 22,
-      "rank": 7,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2325,7 +2306,7 @@
       "group": "Group E",
       "conduct": 0,
       "fifaRank": 23,
-      "rank": 8,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2344,8 +2325,8 @@
       "group": "Group I",
       "conduct": 0,
       "fifaRank": 31,
-      "rank": 9,
-      "qualifies": false,
+      "rank": 8,
+      "qualifies": true,
       "manualTie": false
     },
     {
@@ -2363,7 +2344,7 @@
       "group": "Group F",
       "conduct": 0,
       "fifaRank": 38,
-      "rank": 10,
+      "rank": 9,
       "qualifies": false,
       "manualTie": false
     },
@@ -2382,6 +2363,25 @@
       "group": "Group J",
       "conduct": 0,
       "fifaRank": 63,
+      "rank": 10,
+      "qualifies": false,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Switzerland",
+      "owner": "Mat",
+      "played": 0,
+      "won": 0,
+      "draw": 0,
+      "lost": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "points": 0,
+      "group": "Group B",
+      "conduct": -1,
+      "fifaRank": 19,
       "rank": 11,
       "qualifies": false,
       "manualTie": false
@@ -2759,16 +2759,6 @@
         "rank": 1
       },
       {
-        "team": "Switzerland",
-        "owner": "Mat",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Tunisia",
         "owner": "Darcy",
         "yellow": 0,
@@ -2816,7 +2806,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 41
+        "rank": 40
+      },
+      {
+        "team": "Switzerland",
+        "owner": "Mat",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 40
       },
       {
         "team": "United States",
@@ -2826,7 +2826,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 41
+        "rank": 40
       },
       {
         "team": "Canada",
@@ -3059,6 +3059,25 @@
         "rank": 7
       },
       {
+        "name": "Mat",
+        "score": -1,
+        "teams": [
+          {
+            "name": "England",
+            "score": 0
+          },
+          {
+            "name": "Switzerland",
+            "score": -1
+          },
+          {
+            "name": "Algeria",
+            "score": 0
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Agatha",
         "score": 0,
         "teams": [
@@ -3075,7 +3094,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Charlotte",
@@ -3094,26 +3113,7 @@
             "score": 0
           }
         ],
-        "rank": 9
-      },
-      {
-        "name": "Mat",
-        "score": 0,
-        "teams": [
-          {
-            "name": "England",
-            "score": 0
-          },
-          {
-            "name": "Switzerland",
-            "score": 0
-          },
-          {
-            "name": "Algeria",
-            "score": 0
-          }
-        ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Ondine",
@@ -3136,7 +3136,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Paul",
@@ -3159,7 +3159,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Tom",
@@ -3178,7 +3178,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       }
     ],
     "hasData": true
@@ -3194,5 +3194,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-13T20:19:38Z"
+  "generated": "2026-06-13T20:22:51Z"
 }
