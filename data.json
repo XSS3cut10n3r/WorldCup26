@@ -1,6 +1,28 @@
 {
   "leaderboard": [
     {
+      "name": "Agatha",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Morocco",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Australia",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Iraq",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Sydney",
       "points": 1.5,
       "teams": [
@@ -52,7 +74,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -79,7 +101,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Nik",
@@ -101,29 +123,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
-    },
-    {
-      "name": "Agatha",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Morocco",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "Australia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Iraq",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 5
+      "rank": 3
     },
     {
       "name": "Iva",
@@ -145,7 +145,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Kelly",
@@ -167,7 +167,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Mat",
@@ -189,7 +189,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Tomi",
@@ -216,7 +216,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Agatha",
+      "team": "Australia",
+      "points": 1,
+      "label": "Australia won (Group stage)",
+      "utcDate": "2026-06-14T04:00:00Z"
+    },
+    {
       "owner": "Sydney",
       "team": "Scotland",
       "points": 1,
@@ -367,20 +374,14 @@
       "points": 0.5,
       "label": "Switzerland drew (Group stage)",
       "utcDate": "2026-06-13T19:00:00Z"
-    },
-    {
-      "owner": "Iva",
-      "team": "Qatar",
-      "points": 0.5,
-      "label": "Qatar drew (Group stage)",
-      "utcDate": "2026-06-13T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-14T04:00:00Z",
       "home": {
         "name": "Australia",
@@ -394,9 +395,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -468,24 +467,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-12T19:00:00Z",
-      "home": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": 1
-      },
-      "away": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": 1
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -715,8 +696,8 @@
             "resolved": false
           },
           "away": {
-            "name": "Czechia",
-            "owner": "Nik",
+            "name": "Turkey",
+            "owner": "Iva",
             "goals": null,
             "projected": true,
             "slot": "3rd place A/B/C/D/F",
@@ -882,12 +863,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-01T20:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "United States",
+            "owner": "Darcy",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group D",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Qatar",
@@ -915,12 +896,12 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Czechia",
+            "owner": "Nik",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "3rd place A/E/H/I/J",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -1057,12 +1038,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-04T01:30:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Australia",
+            "owner": "Agatha",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group D",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -1729,14 +1710,14 @@
           "pos": 2,
           "team": "Australia",
           "owner": "Agatha",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
+          "gf": 2,
           "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gd": 2,
+          "points": 3,
           "conduct": 0,
           "fifaRank": 27
         },
@@ -1744,13 +1725,13 @@
           "pos": 3,
           "team": "Turkey",
           "owner": "Iva",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
+          "lost": 1,
           "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "ga": 2,
+          "gd": -2,
           "points": 0,
           "conduct": -1,
           "fifaRank": 22
@@ -1771,7 +1752,7 @@
           "fifaRank": 40
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group E",
@@ -2360,6 +2341,26 @@
       "group": "Group A",
       "ranked": true,
       "rank": 3,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Turkey",
+      "owner": "Iva",
+      "played": 1,
+      "won": 0,
+      "draw": 0,
+      "lost": 1,
+      "gf": 0,
+      "ga": 2,
+      "gd": -2,
+      "points": 0,
+      "conduct": -1,
+      "fifaRank": 22,
+      "group": "Group D",
+      "ranked": true,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     }
@@ -3152,5 +3153,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T05:58:10Z"
+  "generated": "2026-06-14T06:08:16Z"
 }
