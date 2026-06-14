@@ -380,12 +380,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-14T17:00:00Z",
       "home": {
         "name": "Germany",
         "owner": "Tomi",
-        "goals": 3,
+        "goals": 4,
         "fifaRank": 10
       },
       "away": {
@@ -3204,5 +3204,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T18:11:18Z"
+  "generated": "2026-06-14T18:16:20Z"
 }
