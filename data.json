@@ -528,7 +528,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
+      "status": "SCHEDULED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -1727,21 +1727,6 @@
         },
         {
           "pos": 2,
-          "team": "Turkey",
-          "owner": "Iva",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 22
-        },
-        {
-          "pos": 3,
           "team": "Australia",
           "owner": "Agatha",
           "played": 0,
@@ -1754,6 +1739,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 27
+        },
+        {
+          "pos": 3,
+          "team": "Turkey",
+          "owner": "Iva",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -1,
+          "fifaRank": 22
         },
         {
           "pos": 4,
@@ -2697,16 +2697,6 @@
         "rank": 1
       },
       {
-        "team": "Türkiye",
-        "owner": "Iva",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 0,
@@ -2734,7 +2724,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 37
+        "rank": 36
       },
       {
         "team": "South Korea",
@@ -2744,7 +2734,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 37
+        "rank": 36
       },
       {
         "team": "Switzerland",
@@ -2754,7 +2744,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 37
+        "rank": 36
+      },
+      {
+        "team": "Türkiye",
+        "owner": "Iva",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 36
       },
       {
         "team": "United States",
@@ -2764,7 +2764,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 37
+        "rank": 36
       },
       {
         "team": "Brazil",
@@ -2910,6 +2910,25 @@
         "rank": 2
       },
       {
+        "name": "Iva",
+        "score": -3,
+        "teams": [
+          {
+            "name": "Uruguay",
+            "score": 0
+          },
+          {
+            "name": "Türkiye",
+            "score": -1
+          },
+          {
+            "name": "Qatar",
+            "score": -2
+          }
+        ],
+        "rank": 4
+      },
+      {
         "name": "Tomi",
         "score": -3,
         "teams": [
@@ -2953,26 +2972,7 @@
             "score": -1
           }
         ],
-        "rank": 5
-      },
-      {
-        "name": "Iva",
-        "score": -2,
-        "teams": [
-          {
-            "name": "Uruguay",
-            "score": 0
-          },
-          {
-            "name": "Türkiye",
-            "score": 0
-          },
-          {
-            "name": "Qatar",
-            "score": -2
-          }
-        ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Kelly",
@@ -2991,7 +2991,7 @@
             "score": -2
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Charlie",
@@ -3152,5 +3152,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T05:42:59Z"
+  "generated": "2026-06-14T05:47:56Z"
 }
