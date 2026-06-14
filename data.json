@@ -376,7 +376,28 @@
       "utcDate": "2026-06-13T22:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-14T20:00:00Z",
+      "home": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": 0,
+        "fifaRank": 8
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": 0,
+        "fifaRank": 18
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -480,26 +501,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-14T20:00:00Z",
-      "home": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": null,
-        "fifaRank": 8
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": null,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -676,6 +677,26 @@
         "owner": "Mat",
         "goals": null,
         "fifaRank": 28
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-17T04:00:00Z",
+      "home": {
+        "name": "Austria",
+        "owner": "Kelly",
+        "goals": null,
+        "fifaRank": 24
+      },
+      "away": {
+        "name": "Jordan",
+        "owner": "Charlie",
+        "goals": null,
+        "fifaRank": 63
       },
       "penalties": false,
       "winner": null
@@ -3183,5 +3204,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T20:00:45Z"
+  "generated": "2026-06-14T20:05:48Z"
 }
