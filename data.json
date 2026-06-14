@@ -1876,21 +1876,6 @@
       "table": [
         {
           "pos": 1,
-          "team": "Netherlands",
-          "owner": "Charlotte",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 8
-        },
-        {
-          "pos": 2,
           "team": "Japan",
           "owner": "Pete",
           "played": 0,
@@ -1905,7 +1890,7 @@
           "fifaRank": 18
         },
         {
-          "pos": 3,
+          "pos": 2,
           "team": "Sweden",
           "owner": "Tomi",
           "played": 0,
@@ -1920,7 +1905,7 @@
           "fifaRank": 38
         },
         {
-          "pos": 4,
+          "pos": 3,
           "team": "Tunisia",
           "owner": "Darcy",
           "played": 0,
@@ -1933,6 +1918,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 46
+        },
+        {
+          "pos": 4,
+          "team": "Netherlands",
+          "owner": "Charlotte",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -1,
+          "fifaRank": 8
         }
       ],
       "ranked": false
@@ -2649,16 +2649,6 @@
         "rank": 1
       },
       {
-        "team": "Netherlands",
-        "owner": "Charlotte",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "New Zealand",
         "owner": "Tomi",
         "yellow": 0,
@@ -2776,7 +2766,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 36
+        "rank": 35
+      },
+      {
+        "team": "Netherlands",
+        "owner": "Charlotte",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 35
       },
       {
         "team": "South Korea",
@@ -2786,7 +2786,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Switzerland",
@@ -2796,7 +2796,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Türkiye",
@@ -2806,7 +2806,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "United States",
@@ -2816,7 +2816,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Brazil",
@@ -3069,6 +3069,25 @@
         "rank": 8
       },
       {
+        "name": "Charlotte",
+        "score": -1,
+        "teams": [
+          {
+            "name": "Netherlands",
+            "score": -1
+          },
+          {
+            "name": "Norway",
+            "score": 0
+          },
+          {
+            "name": "Ghana",
+            "score": 0
+          }
+        ],
+        "rank": 8
+      },
+      {
         "name": "Mat",
         "score": -1,
         "teams": [
@@ -3104,26 +3123,7 @@
             "score": 0
           }
         ],
-        "rank": 10
-      },
-      {
-        "name": "Charlotte",
-        "score": 0,
-        "teams": [
-          {
-            "name": "Netherlands",
-            "score": 0
-          },
-          {
-            "name": "Norway",
-            "score": 0
-          },
-          {
-            "name": "Ghana",
-            "score": 0
-          }
-        ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Ondine",
@@ -3146,7 +3146,7 @@
             "score": 0
           }
         ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Paul",
@@ -3169,7 +3169,7 @@
             "score": 0
           }
         ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Tom",
@@ -3188,7 +3188,7 @@
             "score": 0
           }
         ],
-        "rank": 10
+        "rank": 11
       }
     ],
     "hasData": true
@@ -3204,5 +3204,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T21:19:14Z"
+  "generated": "2026-06-14T21:20:51Z"
 }
