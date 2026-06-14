@@ -376,26 +376,7 @@
       "utcDate": "2026-06-13T01:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-14T01:00:00Z",
-      "home": {
-        "name": "Haiti",
-        "owner": "Darcy",
-        "goals": 0
-      },
-      "away": {
-        "name": "Scotland",
-        "owner": "Sydney",
-        "goals": 1
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -489,6 +470,24 @@
     }
   ],
   "upcoming": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-14T01:00:00Z",
+      "home": {
+        "name": "Haiti",
+        "owner": "Darcy",
+        "goals": 0
+      },
+      "away": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": 1
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -646,24 +645,6 @@
       "away": {
         "name": "New Zealand",
         "owner": "Tomi",
-        "goals": null
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-16T19:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null
-      },
-      "away": {
-        "name": "Senegal",
-        "owner": "Ondine",
         "goals": null
       },
       "penalties": false,
@@ -3132,5 +3113,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T01:35:59Z"
+  "generated": "2026-06-14T01:41:02Z"
 }
