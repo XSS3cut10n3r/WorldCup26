@@ -19,6 +19,7 @@
     --chalk-faint: rgba(242, 240, 228, 0.35);
     --gold: #E8C34A;
     --live: #FF5A45;
+    --up: #57C97A;
     --display: "Oswald", sans-serif;
     --body: "Barlow", sans-serif;
   }
@@ -203,6 +204,20 @@
   }
   .row.leader .rank { border-color: var(--gold); color: var(--gold); }
   .row.leader .pts { color: var(--gold); }
+
+  /* Per-update movement on the Odds board: a small green ▲ / red ▼ under the
+     big number. Selector outscopes ".row.leader .pts { color: gold }" so the
+     arrow keeps its own colour even on the gold leader row. */
+  .pts .delta {
+    display: block;
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    margin-top: 3px;
+  }
+  .row .pts .delta.up { color: var(--up); }
+  .row .pts .delta.down { color: var(--live); }
 
   /* ---------- Match cards ---------- */
   .matches { display: grid; gap: 10px; }
@@ -865,7 +880,7 @@
   // ---- Odds race: identical mechanic to the standings, but each person
   // counts up from 0.0% to their combined win odds. Reuses the same FLIP and
   // shuffle helpers; only the value the cell shows differs (a "% to win"). ----
-  function oddsSetVal(r, vPct){ r.ptsEl.innerHTML = vPct.toFixed(1) + "%<small>to win</small>"; }
+  function oddsSetVal(r, vPct){ r.ptsEl.innerHTML = vPct.toFixed(1) + "%<small>to win</small>" + (r.deltaHTML || ""); }
 
   function animateOdds(){
     const board = app.querySelector(".board");
@@ -874,7 +889,7 @@
     const st = (oddsData && oddsData.standings) || [];
     if(els.length < 2 || els.length !== st.length) return;
     const n = els.length;
-    const rows = els.map((el,i)=>({ el, target: (st[i].odds||0)*100, current:0,
+    const rows = els.map((el,i)=>({ el, target: (st[i].odds||0)*100, current:0, deltaHTML:"",
       rankEl: el.querySelector(".rank"), ptsEl: el.querySelector(".pts") }));
     rows.forEach(r=>{ r.el.classList.remove("leader"); oddsSetVal(r,0); });
     let order = lbShuffle([...Array(n).keys()]);
@@ -888,7 +903,7 @@
       if(!board.isConnected) return;
       order=[...Array(n).keys()];                                // exact data order
       lbFlip(board, rows, order);
-      rows.forEach((r,i)=>{ oddsSetVal(r, r.target);
+      rows.forEach((r,i)=>{ r.deltaHTML = fmtDelta(st[i].delta); oddsSetVal(r, r.target);
         r.rankEl.textContent = st[i].rank;                       // real ranks (ties shared)
         r.el.classList.toggle("leader", st[i].rank===1 && st[i].odds>0); });
       setTimeout(()=>{ rows.forEach(r=>{ r.el.style.transition=""; r.el.style.transform=""; }); }, 760);
@@ -914,6 +929,16 @@
     if (v <= 0) return "0%";
     if (v < 0.1) return "&lt;0.1%";
     return v.toFixed(1) + "%";
+  }
+
+  // Movement since the last update (input is a signed 0..1 delta). Returns a
+  // coloured ▲/▼ span, or "" when unknown (first run) or negligible (<0.05pp).
+  function fmtDelta(d){
+    if (d === null || d === undefined) return "";
+    const v = d * 100;
+    if (Math.abs(v) < 0.05) return "";
+    const up = v > 0;
+    return `<span class="delta ${up ? "up" : "down"}">${up ? "▲" : "▼"} ${Math.abs(v).toFixed(1)}%</span>`;
   }
 
   function render(data) {
@@ -1366,15 +1391,16 @@
       return `<div class="row ${r.rank === 1 && r.odds > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
         <div class="who"><div class="name">${esc(r.name)}</div><div class="teams">${chips}</div></div>
-        <div class="pts">${(r.odds * 100).toFixed(1)}%<small>to win</small></div>
+        <div class="pts">${(r.odds * 100).toFixed(1)}%<small>to win</small>${fmtDelta(r.delta)}</div>
       </div>`;
     }).join("");
 
     const note = `<p class="gnote">Live championship odds from <b>Kalshi</b>,
       normalized to 100% (the market's built-in margin removed). Each person's
       figure is the combined chance that <i>one of their teams</i> lifts the
-      trophy &mdash; the chips show each team's individual odds. Knocked-out
-      teams are struck through.</p>`;
+      trophy &mdash; the chips show each team's individual odds, and the
+      <span style="color:var(--up)">▲</span>/<span style="color:var(--live)">▼</span>
+      is their change since the last update. Knocked-out teams are struck through.</p>`;
     return section("Odds to win the Cup", note + `<div class="board">${rows}</div>`);
   }
 
