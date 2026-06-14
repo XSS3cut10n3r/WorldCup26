@@ -1686,7 +1686,7 @@
           "ga": 0,
           "gd": 0,
           "points": 0,
-          "conduct": 0,
+          "conduct": -1,
           "fifaRank": 42
         },
         {
@@ -2637,16 +2637,6 @@
         "rank": 1
       },
       {
-        "team": "Scotland",
-        "owner": "Sydney",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Senegal",
         "owner": "Ondine",
         "yellow": 0,
@@ -2724,7 +2714,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 38
+        "rank": 37
+      },
+      {
+        "team": "Scotland",
+        "owner": "Sydney",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 37
       },
       {
         "team": "South Korea",
@@ -2734,7 +2734,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Switzerland",
@@ -2744,7 +2744,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "United States",
@@ -2754,7 +2754,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Brazil",
@@ -2830,7 +2830,7 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -12,
+        "score": -13,
         "teams": [
           {
             "name": "Brazil",
@@ -2846,7 +2846,7 @@
           },
           {
             "name": "Scotland",
-            "score": 0
+            "score": -1
           }
         ],
         "rank": 1
@@ -3132,5 +3132,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T02:18:14Z"
+  "generated": "2026-06-14T02:22:23Z"
 }
