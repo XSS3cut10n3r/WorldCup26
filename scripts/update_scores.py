@@ -731,6 +731,13 @@ def main():
          if e["status"] not in FINISHED and e["status"] not in LIVE],
         key=lambda e: e["utcDate"] or "9999-12-31T00:00:00Z")[:10]
 
+    # Attach FIFA world ranking to each side shown in the leaderboard match
+    # lists (display only — no scoring, bracket, or group logic depends on it).
+    for entry in live + finished + upcoming:
+        for side in (entry.get("home"), entry.get("away")):
+            if side and side.get("name") and side["name"] != "TBD":
+                side["fifaRank"] = fifa_ranks.get(normalize(side["name"]))
+
 
     payload = {
         "leaderboard": rows,
