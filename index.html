@@ -819,6 +819,67 @@
     return `<section><div class="section-head"><h2>${title}</h2></div>${inner}</section>`;
   }
 
+  // ---- Animated standings: rows start shuffled at 0 points and race up into
+  // their final order, counting in 0.5s with an exponentially accelerating pace
+  // (350ms between steps at the start, easing to 100ms by the end). Only the
+  // row positions and the points numbers move — the card markup is untouched. ----
+  let lbAnimated = false;
+  const lbReduceMotion = () =>
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function lbShuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+  function lbSetPts(r,v){ r.ptsEl.innerHTML = fmtPts(v) + "<small>pts</small>"; }
+
+  // FLIP: glide rows to a new order, handling their variable heights.
+  function lbFlip(board, rows, order){
+    const first = rows.map(r => r.el.getBoundingClientRect().top);
+    order.forEach(ri => board.appendChild(rows[ri].el));
+    const d = rows.map((r,i) => first[i] - r.el.getBoundingClientRect().top);
+    rows.forEach((r,i)=>{ if(Math.abs(d[i])>0.5){ r.el.style.transition="none"; r.el.style.transform=`translateY(${d[i]}px)`; }});
+    void board.offsetWidth;                       // one reflow, then play
+    rows.forEach((r,i)=>{ if(Math.abs(d[i])>0.5){ r.el.style.transition="transform .7s cubic-bezier(.34,1.2,.5,1)"; r.el.style.transform=""; }});
+  }
+
+  function animateLeaderboard(data){
+    const board = app.querySelector(".board");
+    if(!board) return;
+    const els = [...board.querySelectorAll(".row")];
+    const lb = data.leaderboard || [];
+    if(els.length < 2 || els.length !== lb.length) return;
+    const n = els.length;
+    const rows = els.map((el,i)=>({ el, target: lb[i].points, current:0,
+      rankEl: el.querySelector(".rank"), ptsEl: el.querySelector(".pts") }));
+    rows.forEach(r=>{ r.el.classList.remove("leader"); lbSetPts(r,0); });
+    let order = lbShuffle([...Array(n).keys()]);
+    order.forEach(ri => board.appendChild(rows[ri].el));        // shuffled start, no anim
+    order.forEach((ri,idx)=> rows[ri].rankEl.textContent = idx+1);
+
+    const STEP=0.5, START=350, END=100;
+    const totalSteps = Math.max(1, Math.ceil(Math.max(...rows.map(r=>r.target))/STEP));
+    let k=0;
+    const finish=()=>{
+      if(!board.isConnected) return;
+      order=[...Array(n).keys()];                                // exact data order
+      lbFlip(board, rows, order);
+      rows.forEach((r,i)=>{ lbSetPts(r, r.target);
+        r.rankEl.textContent = lb[i].rank;                       // real ranks (ties shared)
+        r.el.classList.toggle("leader", lb[i].rank===1 && lb[i].points>0); });
+      setTimeout(()=>{ rows.forEach(r=>{ r.el.style.transition=""; r.el.style.transform=""; }); }, 760);
+    };
+    const stepFn=()=>{
+      if(!board.isConnected) return;
+      let climbing=false;
+      rows.forEach(r=>{ if(r.current<r.target){ r.current=Math.min(r.target,r.current+STEP); climbing=true; } lbSetPts(r,r.current); });
+      const prev=new Map(order.map((ri,i)=>[ri,i]));             // stable tiebreak keeps the shuffle until points diverge
+      order=[...order].sort((a,b)=> (rows[b].current-rows[a].current) || (prev.get(a)-prev.get(b)));
+      lbFlip(board, rows, order);
+      order.forEach((ri,idx)=> rows[ri].rankEl.textContent = idx+1);
+      k++;
+      if(climbing){ const p=Math.min(1,k/totalSteps); setTimeout(stepFn, START*Math.pow(END/START,p)); }
+      else finish();
+    };
+    setTimeout(stepFn, 600);                                     // hold the shuffled board a beat
+  }
+
   function render(data) {
     const when = data.generated ? new Date(data.generated).toLocaleString() : "—";
     const anyLive = (data.live || []).length > 0;
@@ -829,6 +890,11 @@
                   : view === "conduct" ? renderConduct(data)
                   : renderHome(data);
     tickCountdown();
+    if(!lbAnimated && !["groups","bracket","conduct"].includes(view)
+       && (data.leaderboard||[]).length > 1 && !lbReduceMotion()){
+      lbAnimated = true;
+      animateLeaderboard(data);
+    }
   }
 
   function renderHome(data) {
