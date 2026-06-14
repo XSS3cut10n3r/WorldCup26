@@ -316,31 +316,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: clamp(8px, 1.4vw, 16px);
     margin-top: 8px;
   }
-  .cd-team { display: flex; align-items: center; gap: 12px; }
-  .cd-tinfo { width: 132px; }
+  .cd-team { display: flex; align-items: center; gap: clamp(7px, 1vw, 13px); }
+  .cd-tinfo { width: clamp(78px, 18.5vw, 165px); }
   .cd-team.home .cd-tinfo { text-align: right; }
   .cd-team.away .cd-tinfo { text-align: left; }
-  .cd-center { width: 244px; flex: 0 0 auto; }
+  .cd-center { width: clamp(118px, 32.8vw, 300px); flex: 0 0 auto; }
   .cd-timer {
     font-family: var(--display);
     font-weight: 700;
-    font-size: 42px;
+    font-size: clamp(18px, 5.4vw, 50px);
     line-height: 1.02;
     color: var(--gold);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
   }
-  .cd-name { font-weight: 600; font-size: 20px; line-height: 1.12; overflow-wrap: break-word; }
-  .cd-owner { font-size: 13px; color: var(--chalk-faint); }
+  .cd-name { font-weight: 600; font-size: clamp(12px, 2.8vw, 25px); line-height: 1.12; overflow-wrap: break-word; }
+  .cd-owner { font-size: clamp(11px, 1.7vw, 16px); color: var(--chalk-faint); }
   .cd-rank {
-    width: 52px;
+    width: clamp(44px, 6.8vw, 60px);
     flex: 0 0 auto;
     font-family: var(--display);
     font-weight: 600;
-    font-size: 28px;
+    font-size: clamp(17px, 3.6vw, 33px);
     line-height: 1;
     color: var(--chalk-faint);
     font-variant-numeric: tabular-nums;
@@ -348,12 +348,11 @@
   .cd-team.home .cd-rank { text-align: left; }
   .cd-team.away .cd-rank { text-align: right; }
   .cd-stage {
-    font-size: 11px;
+    font-size: clamp(9.5px, 1.3vw, 12px);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--chalk-faint);
     margin-top: 4px;
-    white-space: nowrap;
   }
 
   /* ---------- Events ---------- */
@@ -653,23 +652,17 @@
   }
 
   /* Countdown switches to the stacked (rank-on-top) layout before the wider
-     beside-the-timer row would run out of room and clip a team name. */
+     beside-the-timer row would run out of room and clip a team name. Sizes
+     come from the shared clamp()s above, so the text still scales fluidly. */
   @media (max-width: 740px) {
-    .cd-row { gap: 8px; }
     .cd-team { flex-direction: column; gap: 1px; }
     .cd-team.home { align-items: flex-start; }
     .cd-team.away { align-items: flex-end; }
-    .cd-tinfo { width: 94px; }
     .cd-team.home .cd-tinfo { text-align: left; }
     .cd-team.away .cd-tinfo { text-align: right; }
-    .cd-name { font-size: 14px; }
-    .cd-owner { font-size: 11px; }
-    .cd-rank { width: 94px; font-size: 18px; }
+    .cd-rank { width: clamp(78px, 18.5vw, 165px); }
     .cd-team.home .cd-rank { text-align: left; order: -1; }
     .cd-team.away .cd-rank { text-align: right; }
-    .cd-center { width: 132px; }
-    .cd-timer { font-size: 23px; }
-    .cd-stage { font-size: 10px; }
   }
 
   @media (max-width: 560px) {
