@@ -391,78 +391,58 @@
   .rule .k { font-size: 11.5px; color: var(--chalk-dim); }
 
   /* ---------- Knockout bracket ---------- */
-  .bracket {
-    display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    align-items: stretch;
-    padding: 4px 2px 14px;
-    -webkit-overflow-scrolling: touch;
+  .bkt-section { width: min(1340px, 94vw); margin-left: 50%; transform: translateX(-50%); }
+  @media (max-width: 600px) { .bkt-section { width: 100%; margin-left: 0; transform: none; } }
+  .bkt-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin: 2px 0 18px; }
+  .bkt-tabs button {
+    font-family: var(--display); font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; font-size: 12px; padding: 7px 14px; border-radius: 999px;
+    cursor: pointer; background: transparent; color: var(--chalk-dim);
+    border: 1px solid var(--pitch-line); transition: 0.18s;
   }
-  .bround {
-    min-width: 205px;
-    flex: 0 0 205px;
-    display: flex;
-    flex-direction: column;
+  .bkt-tabs button:hover { border-color: var(--gold); color: var(--chalk); }
+  .bkt-tabs button.active { background: var(--gold); color: var(--pitch-deep); border-color: var(--gold); }
+
+  .bkt-stage { position: relative; width: 100%; }
+  .bkt-links { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+  .bkt-box {
+    position: absolute; z-index: 1; background: var(--pitch-deep);
+    border: 1px solid var(--pitch-line); border-radius: 6px; overflow: hidden;
+    padding: 3px 8px; box-sizing: border-box;
+    display: flex; flex-direction: column; justify-content: center;
+    transition: top .46s cubic-bezier(.3,.85,.3,1), left .46s cubic-bezier(.3,.85,.3,1),
+      width .46s cubic-bezier(.3,.85,.3,1), height .46s cubic-bezier(.3,.85,.3,1), box-shadow .3s;
   }
-  .bround-title {
-    font-family: var(--display);
-    font-weight: 600;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--chalk-dim);
-    text-align: center;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--pitch-line);
-    margin-bottom: 10px;
-  }
-  .bround-title.minor { margin-top: 18px; }
-  .bround-matches {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 8px;
-  }
-  .bmatch {
-    border: 1px solid var(--pitch-line);
-    background: var(--pitch-deep);
-    border-radius: 8px;
-    padding: 7px 10px;
-    font-size: 13px;
-  }
-  .bmatch.is-live { border-color: rgba(255,90,69,0.55); }
-  .bline {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 8px;
-    padding: 2px 0;
-  }
-  .bline .bn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .bline .bo { font-size: 10.5px; color: var(--chalk-faint); }
-  .bline .bg { font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .bline.winner .bn { font-weight: 600; }
-  .bline.loser { color: var(--chalk-faint); }
-  .bline.loser .bg { color: var(--chalk-faint); }
-  .bline.loser .bn {
-    text-decoration: line-through;
-    text-decoration-color: var(--live);
-    text-decoration-thickness: 1.5px;
-  }
+  .bkt-box.on { box-shadow: 0 7px 22px rgba(0,0,0,0.32); border-color: rgba(232,195,74,0.45);
+    animation: bktpop .5s cubic-bezier(.34,1.3,.5,1); }
+  @keyframes bktpop { 0% { transform: scale(.82); } 55% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+  .bline { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; line-height: 1.3; }
+  .bline .bn { font-weight: 600; flex: 0 0 auto; overflow: hidden; text-overflow: ellipsis; }
+  .bline .bsub { color: var(--chalk-faint); flex: 1 1 auto; min-width: 0; overflow: hidden;
+    text-overflow: ellipsis; font-size: 0.8em; }
+  .bline .bsc { font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums;
+    margin-left: auto; flex: 0 0 auto; }
+  .bline.winner .bn { color: var(--gold); }
+  .bline.loser { opacity: 0.42; }
+  .bline.loser .bn { text-decoration: line-through; text-decoration-color: var(--live); text-decoration-thickness: 1.5px; }
   .bline.projd .bn { font-style: italic; color: var(--chalk-dim); }
-  .bline.unres .bn { font-style: italic; color: var(--chalk-faint); font-weight: 400; }
-  .bmeta {
-    font-size: 10px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--chalk-faint);
-    margin-top: 3px;
-    border-top: 1px dashed var(--pitch-line);
-    padding-top: 3px;
-  }
-  .bmatch.is-live .bmeta { color: var(--live); }
+  .bline.unres .bn { font-style: italic; color: var(--chalk-faint); font-weight: 500; }
+  .bmeta2 { font-size: 10.5px; letter-spacing: 0.05em; color: var(--chalk-faint);
+    margin-top: 5px; padding-top: 5px; border-top: 1px dashed var(--pitch-line);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .bkt-box.on .bline { font-size: 14px; }
+  .bkt-box:not(.on) .bline { font-size: 10px; gap: 5px; }
+  .bkt-box:not(.on) .bn { flex: 1 1 auto; min-width: 0; }
+
+  .bkt-list { display: none; }
+  .bkt-list .lcard { background: var(--pitch-deep); border: 1px solid var(--pitch-line);
+    border-radius: 9px; padding: 11px 15px; margin-bottom: 10px; }
+  .bkt-list .bline { font-size: 16px; }
+  .bkt-list .bline + .bline { margin-top: 3px; }
+  .bkt-list .bmeta2 { font-size: 11.5px; margin-top: 7px; }
+
 
   /* ---------- Tabs ---------- */
   .tabs {
@@ -890,6 +870,7 @@
                   : view === "conduct" ? renderConduct(data)
                   : renderHome(data);
     tickCountdown();
+    if (view === "bracket") mountBracket(data);
     if(!lbAnimated && !["groups","bracket","conduct"].includes(view)
        && (data.leaderboard||[]).length > 1 && !lbReduceMotion()){
       lbAnimated = true;
@@ -1032,68 +1013,220 @@
     return html;
   }
 
+  // ===== Knockout bracket: meet-in-the-middle, round toggles, connector lines =====
+  // Static FIFA 2026 feed map: match number -> [home feeder, away feeder].
+  const BKT_FEED = {89:[74,77],90:[73,75],91:[76,78],92:[79,80],93:[83,84],94:[81,82],
+    95:[86,88],96:[85,87],97:[89,90],98:[93,94],99:[91,92],100:[95,96],
+    101:[97,98],102:[99,100],104:[101,102]};
+  const BKT_RND = {LAST_32:"R32",LAST_16:"R16",QUARTER_FINALS:"QF",SEMI_FINALS:"SF",FINAL:"F",THIRD_PLACE:"T"};
+  const BKT_COLR = ["R32","R16","QF","SF","F","SF","QF","R16","R32"];
+  let bktActive = "R32", BKT = null, bktResizeBound = false;
+
+  // Build the bracket tree: vertical unit + side (L/R/C) for every match.
+  function bktTree() {
+    const unit = {}, side = {}, cnt = {L:0, R:0};
+    function rec(no, sd) {
+      side[no] = sd;
+      const f = BKT_FEED[no];
+      if (!f) { unit[no] = cnt[sd]++; return unit[no]; }   // leaf (R32)
+      const a = rec(f[0], sd), b = rec(f[1], sd);
+      unit[no] = (a + b) / 2;                               // parent = midpoint of children
+      return unit[no];
+    }
+    const ff = BKT_FEED[104];
+    rec(ff[0], "L"); rec(ff[1], "R");
+    unit[104] = 3.5; side[104] = "C";
+    unit[103] = 3.5; side[103] = "C";
+    return {unit, side};
+  }
+  function bktColOf(round, sd) {
+    const L = sd === "L";
+    if (round === "R32") return L ? 0 : 8;
+    if (round === "R16") return L ? 1 : 7;
+    if (round === "QF")  return L ? 2 : 6;
+    if (round === "SF")  return L ? 3 : 5;
+    return 4; // F, T
+  }
+
+  function bktLine(t, sideKey, m, full) {
+    const live = m.status === "IN_PLAY" || m.status === "PAUSED";
+    const done = m.status === "FINISHED" || m.status === "AWARDED";
+    let cls = t.projected ? "projd" : (!t.resolved ? "unres" : "");
+    if (done && m.winner && m.winner !== "DRAW") {
+      const won = (m.winner === "HOME_TEAM") === (sideKey === "home");
+      cls = won ? "winner" : "loser";
+    }
+    const goals = (done || live) && t.goals !== null && t.goals !== undefined
+      ? `<span class="bsc">${t.goals}</span>` : "";
+    const name = t.resolved ? esc(t.name) : esc(t.slot);
+    let sub = "";
+    if (full) {
+      const parts = [];
+      if (t.resolved) parts.push(esc(t.slot));
+      if (t.owner) parts.push(esc(t.owner));
+      sub = parts.join(" &middot; ");
+    }
+    return `<div class="bline ${cls}"><span class="bn">${name}</span>` +
+      (sub ? `<span class="bsub">${sub}</span>` : "") + goals + `</div>`;
+  }
+  function bktMeta(m) {
+    const live = m.status === "IN_PLAY" || m.status === "PAUSED";
+    const done = m.status === "FINISHED" || m.status === "AWARDED";
+    const meta = live ? '<span class="live-dot"></span> Live'
+      : done ? (m.penalties ? "FT &middot; pens" : "FT")
+      : (m.utcDate ? esc(fmtKick(m.utcDate)) : "Date TBC");
+    return `M${m.matchNo ?? ""} &middot; ${meta}`;
+  }
+  function bktContent(m, full) {
+    let h = bktLine(m.home, "home", m, full) + bktLine(m.away, "away", m, full);
+    if (full) h += `<div class="bmeta2">${bktMeta(m)}</div>`;
+    return h;
+  }
+
+  function bktRectC(no) {
+    const el = document.getElementById("bkt-box-" + no); if (!el) return null;
+    const b = document.getElementById("bkt-stage").getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    return {l: r.left - b.left, r: r.right - b.left, cy: (r.top + r.bottom) / 2 - b.top};
+  }
+  function bktPath(con) {
+    const p = bktRectC(con.p); if (!p) return "";
+    const cs = con.c.map(bktRectC).filter(Boolean); if (!cs.length) return "";
+    if (con.single) {
+      const c = cs[0];
+      if (con.side === "L") { const cx = c.r, px = p.l, m = (cx + px) / 2; return "M" + cx + " " + c.cy + "H" + m + "V" + p.cy + "H" + px; }
+      const cx = c.l, px = p.r, m = (cx + px) / 2; return "M" + cx + " " + c.cy + "H" + m + "V" + p.cy + "H" + px;
+    }
+    if (cs.length < 2) return "";
+    if (con.side === "L") { const cx = cs[0].r, px = p.l, m = (cx + px) / 2;
+      return "M" + cx + " " + cs[0].cy + "H" + m + "M" + cs[1].r + " " + cs[1].cy + "H" + m + "M" + m + " " + cs[0].cy + "V" + cs[1].cy + "M" + m + " " + p.cy + "H" + px; }
+    const cx = cs[0].l, px = p.r, m = (cx + px) / 2;
+    return "M" + cx + " " + cs[0].cy + "H" + m + "M" + cs[1].l + " " + cs[1].cy + "H" + m + "M" + m + " " + cs[0].cy + "V" + cs[1].cy + "M" + m + " " + p.cy + "H" + px;
+  }
+  function bktDraw() {
+    const stage = document.getElementById("bkt-stage"); if (!stage || !BKT) return;
+    const W = stage.clientWidth, H = stage.scrollHeight || stage.clientHeight;
+    const svg = document.getElementById("bkt-links");
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H); svg.style.height = H + "px";
+    let base = "", hot = "";
+    BKT.conns.forEach(c => { const d = bktPath(c); if (!d) return;
+      (c.pr === bktActive || c.cr === bktActive) ? hot += d : base += d; });
+    const lb = document.getElementById("bkt-base"), lh = document.getElementById("bkt-hot");
+    lb.setAttribute("d", base); lb.setAttribute("stroke", "rgba(242,240,228,.20)"); lb.setAttribute("stroke-width", "1.3");
+    lh.setAttribute("d", hot); lh.setAttribute("stroke", "#E8C34A"); lh.setAttribute("stroke-width", "2"); lh.setAttribute("stroke-opacity", ".92");
+  }
+
+  function bktRenderStage(animate) {
+    const stage = document.getElementById("bkt-stage"); if (!stage || !BKT) return;
+    document.getElementById("bkt-list").style.display = "none"; stage.style.display = "";
+    const W = stage.clientWidth;
+    // Cap the popped round's columns so they don't stretch into dead space;
+    // give the freed width to the other rounds so the later stages read bigger.
+    const ACTIVE_MAX = 320, INACTIVE_MIN = 92;
+    const nA = BKT_COLR.filter(r => r === bktActive).length;
+    let aw = Math.min(ACTIVE_MAX, (W - (9 - nA) * INACTIVE_MIN) / nA);
+    aw = Math.max(aw, 150);
+    const iw = (W - aw * nA) / (9 - nA);
+    const colX = [], colW = []; let x = 0;
+    BKT_COLR.forEach((r, c) => { colW[c] = (r === bktActive ? aw : iw); colX[c] = x; x += colW[c]; });
+    const activeH = 72, smallH = 30, vgap = 7;
+    const spacing = {R32:1, R16:2, QF:4, SF:8, F:8}[bktActive] || 8;
+    const unitH = Math.max(smallH + vgap, (activeH + vgap) / spacing);
+    const H = 8 * unitH; stage.style.height = H + "px";
+    const isOn = round => round === bktActive || (bktActive === "F" && round === "T");
+    Object.keys(BKT.byNo).forEach(k => {
+      const no = +k, info = BKT.byNo[no], round = info.round;
+      const el = document.getElementById("bkt-box-" + no); if (!el) return;
+      const on = isOn(round), bh = on ? activeH : smallH;
+      el.classList.toggle("on", on);
+      el.innerHTML = bktContent(info.m, on);
+      el.style.height = bh + "px";
+      if (round === "F" || round === "T") {
+        const fH = isOn("F") ? activeH : smallH, gapC = bktActive === "F" ? 14 : 8;
+        const ctr = H / 2;
+        el.style.left = (colX[4] + 5) + "px"; el.style.width = (colW[4] - 10) + "px";
+        el.style.top = (round === "F" ? ctr - fH / 2 : ctr + fH / 2 + gapC) + "px";
+      } else {
+        const sd = BKT.tree.side[no], col = bktColOf(round, sd);
+        const cy = (BKT.tree.unit[no] + 0.5) * unitH;
+        el.style.left = (colX[col] + 5) + "px"; el.style.width = (colW[col] - 10) + "px";
+        el.style.top = (cy - bh / 2) + "px";
+      }
+    });
+    bktDraw();
+    if (animate) { const t0 = performance.now(); (function f(){ bktDraw(); if (performance.now() - t0 < 580) requestAnimationFrame(f); })(); }
+  }
+  function bktRenderList() {
+    const stage = document.getElementById("bkt-stage"), list = document.getElementById("bkt-list");
+    if (!stage || !list || !BKT) return;
+    stage.style.display = "none"; list.style.display = "block";
+    let nos = Object.keys(BKT.byNo).map(Number).filter(no => {
+      const r = BKT.byNo[no].round; return r === bktActive || (bktActive === "F" && r === "T");
+    });
+    nos.sort((a, b) => a - b);
+    if (bktActive === "F") nos = [104, 103].filter(no => BKT.byNo[no]);
+    list.innerHTML = nos.map(no => `<div class="lcard">${bktContent(BKT.byNo[no].m, true)}</div>`).join("");
+  }
+  function bktLayout(animate) {
+    if (!BKT) return;
+    (window.innerWidth < 600) ? bktRenderList() : bktRenderStage(animate);
+  }
+  function bktSyncTabs() {
+    document.querySelectorAll("#bkt-tabs button").forEach(b => b.classList.toggle("active", b.dataset.r === bktActive));
+  }
+  function mountBracket(data) {
+    const stage = document.getElementById("bkt-stage"); if (!stage) return;
+    const rounds = data.bracket || [];
+    const byNo = {};
+    rounds.forEach(r => r.matches.forEach(m => { byNo[m.matchNo] = {m, round: BKT_RND[r.stageCode] || "?"}; }));
+    const tree = bktTree();
+    const conns = [];
+    Object.keys(BKT_FEED).forEach(k => { const no = +k; if (no === 104) return;
+      conns.push({p: no, c: BKT_FEED[no], side: tree.side[no],
+        pr: (byNo[no] || {}).round, cr: (byNo[BKT_FEED[no][0]] || {}).round}); });
+    conns.push({p: 104, c: [101], side: "L", single: true, pr: "F", cr: "SF"});
+    conns.push({p: 104, c: [102], side: "R", single: true, pr: "F", cr: "SF"});
+    BKT = {data, byNo, tree, conns};
+    [...stage.querySelectorAll(".bkt-box")].forEach(e => e.remove());
+    Object.keys(byNo).forEach(no => { const d = document.createElement("div");
+      d.className = "bkt-box"; d.id = "bkt-box-" + no; stage.appendChild(d); });
+    document.querySelectorAll("#bkt-tabs button").forEach(b => {
+      b.onclick = () => { bktActive = b.dataset.r; bktSyncTabs(); bktLayout(true); };
+    });
+    bktSyncTabs();
+    if (!bktResizeBound) { bktResizeBound = true; let rt;
+      window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => bktLayout(false), 140); }); }
+    bktLayout(false);
+  }
+
   function renderBracket(data) {
     const rounds = (data.bracket || []);
     if (!rounds.length) {
       return section("Knockout bracket",
         `<div class="empty">The bracket appears here once tournament data loads.</div>`);
     }
-    const anyProjected = rounds.some(r => r.matches.some(m =>
-      m.home.projected || m.away.projected));
-    const bline = (t, side, m) => {
-      const live = m.status === "IN_PLAY" || m.status === "PAUSED";
-      const done = m.status === "FINISHED" || m.status === "AWARDED";
-      let cls = t.projected ? "projd" : (!t.resolved ? "unres" : "");
-      if (done && m.winner && m.winner !== "DRAW") {
-        const won = (m.winner === "HOME_TEAM") === (side === "home");
-        cls = won ? "winner" : "loser";
-      }
-      const goals = (done || live) && t.goals !== null && t.goals !== undefined
-        ? `<span class="bg">${t.goals}</span>` : "";
-      const name = t.resolved ? esc(t.name) : esc(t.slot);
-      const sub = t.resolved
-        ? [t.projected ? esc(t.slot) : "", t.owner ? esc(t.owner) : ""]
-            .filter(Boolean).join(" &middot; ")
-        : "";
-      return `<div class="bline ${cls}">
-        <span class="bn">${name}${sub ? ` <span class="bo">${sub}</span>` : ""}</span>
-        ${goals}</div>`;
-    };
-    const bcard = m => {
-      const live = m.status === "IN_PLAY" || m.status === "PAUSED";
-      const done = m.status === "FINISHED" || m.status === "AWARDED";
-      const meta = live ? '<span class="live-dot"></span> Live'
-        : done ? (m.penalties ? "FT &middot; pens" : "FT")
-        : (m.utcDate ? esc(fmtKick(m.utcDate)) : "Date TBC");
-      return `<div class="bmatch ${live ? "is-live" : ""}">
-        ${bline(m.home, "home", m)}${bline(m.away, "away", m)}
-        <div class="bmeta">M${m.matchNo ?? ""} &middot; ${meta}</div></div>`;
-    };
-    const cols = [];
-    const byCode = Object.fromEntries(rounds.map(r => [r.stageCode, r]));
-    ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS"].forEach(code => {
-      const r = byCode[code];
-      if (r) cols.push(`<div class="bround"><div class="bround-title">${esc(r.stage)}</div>
-        <div class="bround-matches">${r.matches.map(bcard).join("")}</div></div>`);
-    });
-    const fin = byCode["FINAL"], third = byCode["THIRD_PLACE"];
-    if (fin || third) {
-      let col = `<div class="bround">`;
-      if (fin) col += `<div class="bround-title">${esc(fin.stage)}</div>
-        <div class="bround-matches" style="flex:0">${fin.matches.map(bcard).join("")}</div>`;
-      if (third) col += `<div class="bround-title minor">${esc(third.stage)}</div>
-        <div class="bround-matches" style="flex:0">${third.matches.map(bcard).join("")}</div>`;
-      cols.push(col + `</div>`);
-    }
-    return section("Knockout bracket", `
-      ${anyProjected
-        ? `<p class="gnote"><i>Italic teams are projected from the current
-           standings</i> — they update after every group game and lock in as
-           groups finish. Third-place slots follow FIFA's official allocation
-           table (Annex C), so this is the real bracket if the groups ended today.</p>`
-        : ""}
-      <div class="bracket">${cols.join("")}</div>`);
+    const anyProjected = rounds.some(r => r.matches.some(m => m.home.projected || m.away.projected));
+    const note = anyProjected
+      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i> —
+         they update after every group game and lock in as groups finish. Third-place slots
+         follow FIFA's official allocation table (Annex C), so this is the real bracket if the
+         groups ended today.</p>`
+      : "";
+    return `<section class="bkt-section">
+      <div class="section-head"><h2>Knockout bracket</h2></div>
+      ${note}
+      <div class="bkt-tabs" id="bkt-tabs">
+        <button data-r="R32">Round of 32</button>
+        <button data-r="R16">Round of 16</button>
+        <button data-r="QF">Quarter-finals</button>
+        <button data-r="SF">Semi-finals</button>
+        <button data-r="F">Final</button>
+      </div>
+      <div class="bkt-stage" id="bkt-stage"><svg class="bkt-links" id="bkt-links"><path id="bkt-base" fill="none"></path><path id="bkt-hot" fill="none"></path></svg></div>
+      <div class="bkt-list" id="bkt-list"></div>
+    </section>`;
   }
+
 
   function renderConduct(data) {
     const cd = data.conduct || {};
