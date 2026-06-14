@@ -128,7 +128,7 @@
     animation: pulse 1.4s ease-in-out infinite;
   }
   @keyframes pulse { 50% { opacity: 0.35; } }
-  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .live-dot, .match.upset::after { animation: none; } }
 
   /* ---------- Leaderboard ---------- */
   .board { border-top: 2px solid var(--pitch-line); }
@@ -256,6 +256,41 @@
   }
   .match.is-live { border-color: rgba(255,90,69,0.55); }
   .match.is-live .meta { color: var(--live); }
+
+  /* Upset — lower-ranked team beat a higher-ranked one. Gold outline, a
+     corner "UPSET" pill, and a slow gold shimmer sweeping across the card. */
+  .match.upset { position: relative; border-color: var(--gold); }
+  .match.upset::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(100deg, transparent 32%,
+      rgba(232,195,74,0.16) 50%, transparent 68%);
+    background-size: 250% 100%;
+    background-position: 150% 0;
+    animation: upsetSweep 4s ease-in-out infinite;
+  }
+  @keyframes upsetSweep {
+    0% { background-position: 150% 0; }
+    55%, 100% { background-position: -60% 0; }
+  }
+  .upset-badge {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 4;
+    background: var(--gold);
+    color: var(--pitch-deep);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    padding: 2px 10px;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
 
   /* ---------- Events ---------- */
   .events { list-style: none; display: grid; gap: 8px; }
@@ -633,12 +668,22 @@
     const live = m.status === "IN_PLAY" || m.status === "PAUSED";
     const done = m.status === "FINISHED" || m.status === "AWARDED";
     const hasScore = m.home.goals !== null && m.home.goals !== undefined;
+    // Upset: a finished game the lower-ranked side won (winner's FIFA rank
+    // number is larger). Penalty wins count — the winner is the team that
+    // advanced. Needs both ranks known.
+    let upset = false;
+    if (done && m.winner && m.winner !== "DRAW") {
+      const wr = m.winner === "HOME_TEAM" ? m.home.fifaRank : m.away.fifaRank;
+      const lr = m.winner === "HOME_TEAM" ? m.away.fifaRank : m.home.fifaRank;
+      if (wr != null && lr != null && wr > lr) upset = true;
+    }
     const mid = (live || done) && hasScore
       ? `<div class="score">${m.home.goals}&ndash;${m.away.goals}</div>
          <div class="meta">${live ? '<span class="live-dot"></span> Live' : (m.penalties ? "FT &middot; pens" : "FT")} &middot; ${esc(m.stage)}</div>`
       : `<div class="score" style="font-size:15px;font-weight:500;color:var(--chalk-dim)">${esc(fmtKick(m.utcDate))}</div>
          <div class="meta">${esc(m.stage)}</div>`;
-    return `<div class="match ${live ? "is-live" : ""}">
+    return `<div class="match ${live ? "is-live" : ""} ${upset ? "upset" : ""}">
+      ${upset ? '<div class="upset-badge">UPSET</div>' : ""}
       ${teamCell(m.home, "home")}
       <div class="mid">${mid}</div>
       ${teamCell(m.away, "away")}
