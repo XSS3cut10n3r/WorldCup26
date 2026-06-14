@@ -677,12 +677,13 @@
     <button class="tab" data-view="groups">Groups</button>
     <button class="tab" data-view="bracket">Bracket</button>
     <button class="tab" data-view="conduct">Conduct</button>
+    <button class="tab" data-view="odds">Odds</button>
   </nav>
 
   <div id="app"></div>
 
   <footer>
-    Scores via football-data.org &middot; updates automatically every 20 minutes &middot;
+    Scores via football-data.org &middot; odds via Kalshi &middot; updates automatically every 20 minutes &middot;
     kickoff times shown in your local time
   </footer>
 </div>
@@ -804,6 +805,7 @@
   // (350ms between steps at the start, easing to 100ms by the end). Only the
   // row positions and the points numbers move — the card markup is untouched. ----
   let lbAnimated = false;
+  let oddsAnimated = false;
   const lbReduceMotion = () =>
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function lbShuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
@@ -860,21 +862,87 @@
     setTimeout(stepFn, 600);                                     // hold the shuffled board a beat
   }
 
+  // ---- Odds race: identical mechanic to the standings, but each person
+  // counts up from 0.0% to their combined win odds. Reuses the same FLIP and
+  // shuffle helpers; only the value the cell shows differs (a "% to win"). ----
+  function oddsSetVal(r, vPct){ r.ptsEl.innerHTML = vPct.toFixed(1) + "%<small>to win</small>"; }
+
+  function animateOdds(){
+    const board = app.querySelector(".board");
+    if(!board) return;
+    const els = [...board.querySelectorAll(".row")];
+    const st = (oddsData && oddsData.standings) || [];
+    if(els.length < 2 || els.length !== st.length) return;
+    const n = els.length;
+    const rows = els.map((el,i)=>({ el, target: (st[i].odds||0)*100, current:0,
+      rankEl: el.querySelector(".rank"), ptsEl: el.querySelector(".pts") }));
+    rows.forEach(r=>{ r.el.classList.remove("leader"); oddsSetVal(r,0); });
+    let order = lbShuffle([...Array(n).keys()]);
+    order.forEach(ri => board.appendChild(rows[ri].el));        // shuffled start, no anim
+    order.forEach((ri,idx)=> rows[ri].rankEl.textContent = idx+1);
+
+    const STEP=0.5, START=350, END=100;
+    const totalSteps = Math.max(1, Math.ceil(Math.max(...rows.map(r=>r.target))/STEP));
+    let k=0;
+    const finish=()=>{
+      if(!board.isConnected) return;
+      order=[...Array(n).keys()];                                // exact data order
+      lbFlip(board, rows, order);
+      rows.forEach((r,i)=>{ oddsSetVal(r, r.target);
+        r.rankEl.textContent = st[i].rank;                       // real ranks (ties shared)
+        r.el.classList.toggle("leader", st[i].rank===1 && st[i].odds>0); });
+      setTimeout(()=>{ rows.forEach(r=>{ r.el.style.transition=""; r.el.style.transform=""; }); }, 760);
+    };
+    const stepFn=()=>{
+      if(!board.isConnected) return;
+      let climbing=false;
+      rows.forEach(r=>{ if(r.current<r.target){ r.current=Math.min(r.target,r.current+STEP); climbing=true; } oddsSetVal(r,r.current); });
+      const prev=new Map(order.map((ri,i)=>[ri,i]));             // stable tiebreak keeps the shuffle until odds diverge
+      order=[...order].sort((a,b)=> (rows[b].current-rows[a].current) || (prev.get(a)-prev.get(b)));
+      lbFlip(board, rows, order);
+      order.forEach((ri,idx)=> rows[ri].rankEl.textContent = idx+1);
+      k++;
+      if(climbing){ const p=Math.min(1,k/totalSteps); setTimeout(stepFn, START*Math.pow(END/START,p)); }
+      else finish();
+    };
+    setTimeout(stepFn, 600);                                     // hold the shuffled board a beat
+  }
+
+  // Percentage formatter for the team chips (input is a 0..1 probability).
+  function fmtPct(p){
+    const v = (p || 0) * 100;
+    if (v <= 0) return "0%";
+    if (v < 0.1) return "&lt;0.1%";
+    return v.toFixed(1) + "%";
+  }
+
   function render(data) {
-    const when = data.generated ? new Date(data.generated).toLocaleString() : "—";
-    const anyLive = (data.live || []).length > 0;
-    updatedEl.innerHTML = (anyLive ? '<span class="live-dot"></span> ' : "") +
-      "Scores as of " + esc(when);
+    if (view === "odds") {
+      const ow = oddsData && oddsData.generated
+        ? new Date(oddsData.generated).toLocaleString() : null;
+      updatedEl.innerHTML = ow ? "Odds as of " + esc(ow) : "Odds not loaded yet";
+    } else {
+      const when = data.generated ? new Date(data.generated).toLocaleString() : "—";
+      const anyLive = (data.live || []).length > 0;
+      updatedEl.innerHTML = (anyLive ? '<span class="live-dot"></span> ' : "") +
+        "Scores as of " + esc(when);
+    }
     app.innerHTML = view === "groups" ? renderGroups(data)
                   : view === "bracket" ? renderBracket(data)
                   : view === "conduct" ? renderConduct(data)
+                  : view === "odds" ? renderOdds(data)
                   : renderHome(data);
     tickCountdown();
     if (view === "bracket") mountBracket(data);
-    if(!lbAnimated && !["groups","bracket","conduct"].includes(view)
+    if(!lbAnimated && !["groups","bracket","conduct","odds"].includes(view)
        && (data.leaderboard||[]).length > 1 && !lbReduceMotion()){
       lbAnimated = true;
       animateLeaderboard(data);
+    }
+    if(!oddsAnimated && view === "odds" && oddsData
+       && (oddsData.standings||[]).length > 1 && !lbReduceMotion()){
+      oddsAnimated = true;
+      animateOdds();
     }
   }
 
@@ -1278,10 +1346,43 @@
     return html;
   }
 
+  function renderOdds(data) {
+    if (!oddsData || !(oddsData.standings || []).length) {
+      return section("Odds to win the Cup", `<div class="empty">Championship odds
+        appear here once the <b>Update odds</b> workflow has run. Trigger it from
+        the repository's Actions tab, then refresh.</div>`);
+    }
+    // Reuse the battle-tested elimination flags from data.json — both files
+    // key teams by the exact assignments.json spelling, so names line up.
+    const elim = new Set();
+    ((data && data.leaderboard) || []).forEach(p =>
+      (p.teams || []).forEach(t => { if (t.eliminated) elim.add(t.name); }));
+
+    const rows = (oddsData.standings || []).map(r => {
+      const chips = r.teams.map(t => {
+        const out = elim.has(t.name);
+        return `<span class="chip ${out ? "out" : ""}">${esc(t.name)} <b>${fmtPct(out ? 0 : t.odds)}</b></span>`;
+      }).join("");
+      return `<div class="row ${r.rank === 1 && r.odds > 0 ? "leader" : ""}">
+        <div class="rank">${r.rank}</div>
+        <div class="who"><div class="name">${esc(r.name)}</div><div class="teams">${chips}</div></div>
+        <div class="pts">${(r.odds * 100).toFixed(1)}%<small>to win</small></div>
+      </div>`;
+    }).join("");
+
+    const note = `<p class="gnote">Live championship odds from <b>Kalshi</b>,
+      normalized to 100% (the market's built-in margin removed). Each person's
+      figure is the combined chance that <i>one of their teams</i> lifts the
+      trophy &mdash; the chips show each team's individual odds. Knocked-out
+      teams are struck through.</p>`;
+    return section("Odds to win the Cup", note + `<div class="board">${rows}</div>`);
+  }
+
   // ---------- Tab switching with hash routing ----------
-  let view = ["groups", "bracket", "conduct"].includes(location.hash.slice(1))
+  let view = ["groups", "bracket", "conduct", "odds"].includes(location.hash.slice(1))
     ? location.hash.slice(1) : "home";
   let lastData = null;
+  let oddsData = null;
 
   function setView(v) {
     view = v;
@@ -1309,6 +1410,12 @@
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(d => { lastData = d; render(d); })
       .catch(fail);
+    // Odds live in their own file, written by the separate "Update odds"
+    // workflow. Missing/!ok is fine — the Odds tab just shows its empty state.
+    fetch("odds.json?t=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) { oddsData = d; if (view === "odds") render(lastData); } })
+      .catch(() => {});
   }
 
   load();
