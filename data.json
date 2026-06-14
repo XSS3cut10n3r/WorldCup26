@@ -1676,21 +1676,6 @@
         },
         {
           "pos": 3,
-          "team": "Scotland",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -1,
-          "fifaRank": 42
-        },
-        {
-          "pos": 4,
           "team": "Haiti",
           "owner": "Darcy",
           "played": 0,
@@ -1703,6 +1688,21 @@
           "points": 0,
           "conduct": -1,
           "fifaRank": 83
+        },
+        {
+          "pos": 4,
+          "team": "Scotland",
+          "owner": "Sydney",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -3,
+          "fifaRank": 42
         }
       ],
       "ranked": false
@@ -2717,16 +2717,6 @@
         "rank": 37
       },
       {
-        "team": "Scotland",
-        "owner": "Sydney",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 37
-      },
-      {
         "team": "South Korea",
         "owner": "Charlie",
         "yellow": 1,
@@ -2764,7 +2754,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Canada",
@@ -2774,7 +2764,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Qatar",
@@ -2784,7 +2774,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -2794,7 +2784,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 45
+        "rank": 44
+      },
+      {
+        "team": "Scotland",
+        "owner": "Sydney",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 44
       },
       {
         "team": "Mexico",
@@ -2830,7 +2830,7 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -13,
+        "score": -15,
         "teams": [
           {
             "name": "Brazil",
@@ -2846,7 +2846,7 @@
           },
           {
             "name": "Scotland",
-            "score": -1
+            "score": -3
           }
         ],
         "rank": 1
@@ -3132,5 +3132,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T02:43:26Z"
+  "generated": "2026-06-14T03:04:50Z"
 }
