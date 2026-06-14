@@ -668,14 +668,15 @@
     const live = m.status === "IN_PLAY" || m.status === "PAUSED";
     const done = m.status === "FINISHED" || m.status === "AWARDED";
     const hasScore = m.home.goals !== null && m.home.goals !== undefined;
-    // Upset: a finished game the lower-ranked side won (winner's FIFA rank
-    // number is larger). Penalty wins count — the winner is the team that
-    // advanced. Needs both ranks known.
+    // Upset: a finished game the lower-ranked side won by a clear margin —
+    // the winner's FIFA rank number is at least 5 higher than the loser's.
+    // Penalty wins count (the winner is the team that advanced). Both ranks
+    // must be known.
     let upset = false;
     if (done && m.winner && m.winner !== "DRAW") {
       const wr = m.winner === "HOME_TEAM" ? m.home.fifaRank : m.away.fifaRank;
       const lr = m.winner === "HOME_TEAM" ? m.away.fifaRank : m.home.fifaRank;
-      if (wr != null && lr != null && wr > lr) upset = true;
+      if (wr != null && lr != null && wr - lr >= 5) upset = true;
     }
     const mid = (live || done) && hasScore
       ? `<div class="score">${m.home.goals}&ndash;${m.away.goals}</div>
