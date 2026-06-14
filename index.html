@@ -259,7 +259,9 @@
 
   /* Upset — lower-ranked team beat a higher-ranked one. Gold outline, a
      corner "UPSET" pill, and a slow gold shimmer sweeping across the card. */
-  .match.upset { position: relative; border-color: var(--gold); }
+  /* The UPSET pill pokes 10px above the card (top:-10px); add that much top
+     spacing so the pill doesn't crowd the card above it (e.g. two upsets in a row). */
+  .match.upset { position: relative; border-color: var(--gold); margin-top: 10px; }
   .match.upset::after {
     content: "";
     position: absolute;
