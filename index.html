@@ -545,22 +545,12 @@
     .rank { width: 32px; height: 32px; font-size: 15px; }
     .who .name { font-size: 18px; }
     .pts { font-size: 27px; min-width: 52px; }
-    /* Stack the card: both teams across the top, score/date on its own
-       centered row beneath — gives names room and lets long date strings
-       use the full width instead of crushing the team columns. */
-    .match {
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas: "home away" "mid mid";
-      gap: 8px 10px;
-      padding: 12px 14px;
-    }
-    .match .team.home { grid-area: home; }
-    .match .team.away { grid-area: away; }
-    .match .mid { grid-area: mid; }
-    .match .tname { font-size: 16px; }
-    .match .towner { font-size: 12.5px; }
-    .match .trank { font-size: 20px; }
-    .match .meta { white-space: normal; }
+    /* Mobile keeps the original compact single-row match card: no FIFA
+       ranks, original font sizes. (Desktop keeps the larger names + ranks.) */
+    .match { padding: 10px 12px; }
+    .match .trank { display: none; }
+    .match .tname { font-size: 13.5px; }
+    .match .towner { font-size: 12px; }
   }
 </style>
 </head>
