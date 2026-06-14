@@ -376,7 +376,26 @@
       "utcDate": "2026-06-13T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-14T04:00:00Z",
+      "home": {
+        "name": "Australia",
+        "owner": "Agatha",
+        "goals": 0
+      },
+      "away": {
+        "name": "Turkey",
+        "owner": "Iva",
+        "goals": 0
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -474,24 +493,6 @@
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
       "status": "TIMED",
-      "utcDate": "2026-06-14T04:00:00Z",
-      "home": {
-        "name": "Australia",
-        "owner": "Agatha",
-        "goals": null
-      },
-      "away": {
-        "name": "Turkey",
-        "owner": "Iva",
-        "goals": null
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
       "utcDate": "2026-06-14T17:00:00Z",
       "home": {
         "name": "Germany",
@@ -527,7 +528,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -645,6 +646,24 @@
       "away": {
         "name": "Senegal",
         "owner": "Ondine",
+        "goals": null
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-16T22:00:00Z",
+      "home": {
+        "name": "Iraq",
+        "owner": "Agatha",
+        "goals": null
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
         "goals": null
       },
       "penalties": false,
@@ -3133,5 +3152,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T03:55:59Z"
+  "generated": "2026-06-14T04:11:36Z"
 }
