@@ -153,6 +153,28 @@
       "rank": 4
     },
     {
+      "name": "Charlotte",
+      "points": 0.5,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Norway",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Ghana",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 7
+    },
+    {
       "name": "Iva",
       "points": 0.5,
       "teams": [
@@ -219,26 +241,26 @@
       "rank": 7
     },
     {
-      "name": "Charlotte",
-      "points": 0.0,
+      "name": "Pete",
+      "points": 0.5,
       "teams": [
         {
-          "name": "Netherlands",
+          "name": "Spain",
           "points": 0,
           "eliminated": false
         },
         {
-          "name": "Norway",
-          "points": 0,
+          "name": "Japan",
+          "points": 0.5,
           "eliminated": false
         },
         {
-          "name": "Ghana",
+          "name": "Paraguay",
           "points": 0,
           "eliminated": false
         }
       ],
-      "rank": 10
+      "rank": 7
     },
     {
       "name": "Ondine",
@@ -265,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 10
+      "rank": 12
     },
     {
       "name": "Paul",
@@ -292,29 +314,7 @@
           "eliminated": false
         }
       ],
-      "rank": 10
-    },
-    {
-      "name": "Pete",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Spain",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Japan",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Paraguay",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 10
+      "rank": 12
     },
     {
       "name": "Tom",
@@ -336,10 +336,24 @@
           "eliminated": false
         }
       ],
-      "rank": 10
+      "rank": 12
     }
   ],
   "events": [
+    {
+      "owner": "Pete",
+      "team": "Japan",
+      "points": 0.5,
+      "label": "Japan drew (Group stage)",
+      "utcDate": "2026-06-14T20:00:00Z"
+    },
+    {
+      "owner": "Charlotte",
+      "team": "Netherlands",
+      "points": 0.5,
+      "label": "Netherlands drew (Group stage)",
+      "utcDate": "2026-06-14T20:00:00Z"
+    },
     {
       "owner": "Tomi",
       "team": "Germany",
@@ -360,27 +374,14 @@
       "points": 1,
       "label": "Scotland won (Group stage)",
       "utcDate": "2026-06-14T01:00:00Z"
-    },
-    {
-      "owner": "Agatha",
-      "team": "Morocco",
-      "points": 0.5,
-      "label": "Morocco drew (Group stage)",
-      "utcDate": "2026-06-13T22:00:00Z"
-    },
-    {
-      "owner": "Sydney",
-      "team": "Brazil",
-      "points": 0.5,
-      "label": "Brazil drew (Group stage)",
-      "utcDate": "2026-06-13T22:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-14T20:00:00Z",
       "home": {
         "name": "Netherlands",
@@ -396,9 +397,7 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -475,26 +474,6 @@
         "owner": "Agatha",
         "goals": 1,
         "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-13T19:00:00Z",
-      "home": {
-        "name": "Qatar",
-        "owner": "Iva",
-        "goals": 1,
-        "fifaRank": 57
-      },
-      "away": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": 1,
-        "fifaRank": 19
       },
       "penalties": false,
       "winner": "DRAW"
@@ -1878,19 +1857,34 @@
           "pos": 1,
           "team": "Japan",
           "owner": "Pete",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
+          "gf": 2,
+          "ga": 2,
           "gd": 0,
-          "points": 0,
+          "points": 1,
           "conduct": 0,
           "fifaRank": 18
         },
         {
           "pos": 2,
+          "team": "Netherlands",
+          "owner": "Charlotte",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 2,
+          "ga": 2,
+          "gd": 0,
+          "points": 1,
+          "conduct": -2,
+          "fifaRank": 8
+        },
+        {
+          "pos": 3,
           "team": "Sweden",
           "owner": "Tomi",
           "played": 0,
@@ -1905,7 +1899,7 @@
           "fifaRank": 38
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "Tunisia",
           "owner": "Darcy",
           "played": 0,
@@ -1918,21 +1912,6 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 46
-        },
-        {
-          "pos": 4,
-          "team": "Netherlands",
-          "owner": "Charlotte",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -2,
-          "fifaRank": 8
         }
       ],
       "ranked": false
@@ -3204,5 +3183,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T21:56:29Z"
+  "generated": "2026-06-14T22:06:33Z"
 }
