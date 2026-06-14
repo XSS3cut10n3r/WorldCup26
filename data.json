@@ -1,6 +1,33 @@
 {
   "leaderboard": [
     {
+      "name": "Sydney",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Brazil",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Ecuador",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "South Africa",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Scotland",
+          "points": 1,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Charlie",
       "points": 1.0,
       "teams": [
@@ -25,7 +52,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Darcy",
@@ -52,7 +79,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Nik",
@@ -74,7 +101,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Agatha",
@@ -96,7 +123,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Iva",
@@ -118,7 +145,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Kelly",
@@ -140,7 +167,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Mat",
@@ -162,34 +189,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
-    },
-    {
-      "name": "Sydney",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Brazil",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "Ecuador",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "South Africa",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Scotland",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Tomi",
@@ -216,7 +216,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Charlotte",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Sydney",
+      "team": "Scotland",
+      "points": 1,
+      "label": "Scotland won (Group stage)",
+      "utcDate": "2026-06-14T01:00:00Z"
+    },
+    {
       "owner": "Agatha",
       "team": "Morocco",
       "points": 0.5,
@@ -367,20 +374,14 @@
       "points": 0.5,
       "label": "Qatar drew (Group stage)",
       "utcDate": "2026-06-13T19:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "United States",
-      "points": 1,
-      "label": "United States won (Group stage)",
-      "utcDate": "2026-06-13T01:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-14T01:00:00Z",
       "home": {
         "name": "Haiti",
@@ -394,9 +395,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -468,24 +467,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-12T02:00:00Z",
-      "home": {
-        "name": "South Korea",
-        "owner": "Charlie",
-        "goals": 2
-      },
-      "away": {
-        "name": "Czechia",
-        "owner": "Nik",
-        "goals": 1
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -546,7 +527,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -740,12 +721,12 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Morocco",
+            "owner": "Agatha",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group C",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -757,12 +738,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-30T01:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Scotland",
+            "owner": "Sydney",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group C",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -840,12 +821,12 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Brazil",
+            "owner": "Sydney",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "3rd place C/E/F/H/I",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -1646,6 +1627,21 @@
       "table": [
         {
           "pos": 1,
+          "team": "Scotland",
+          "owner": "Sydney",
+          "played": 1,
+          "won": 1,
+          "draw": 0,
+          "lost": 0,
+          "gf": 1,
+          "ga": 0,
+          "gd": 1,
+          "points": 3,
+          "conduct": -3,
+          "fifaRank": 42
+        },
+        {
+          "pos": 2,
           "team": "Morocco",
           "owner": "Agatha",
           "played": 1,
@@ -1660,7 +1656,7 @@
           "fifaRank": 7
         },
         {
-          "pos": 2,
+          "pos": 3,
           "team": "Brazil",
           "owner": "Sydney",
           "played": 1,
@@ -1675,37 +1671,22 @@
           "fifaRank": 6
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "Haiti",
           "owner": "Darcy",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
+          "lost": 1,
           "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "ga": 1,
+          "gd": -1,
           "points": 0,
           "conduct": -1,
           "fifaRank": 83
-        },
-        {
-          "pos": 4,
-          "team": "Scotland",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -3,
-          "fifaRank": 42
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group D",
@@ -2305,6 +2286,26 @@
   "thirdPlace": [
     {
       "pos": 3,
+      "team": "Brazil",
+      "owner": "Sydney",
+      "played": 1,
+      "won": 0,
+      "draw": 1,
+      "lost": 0,
+      "gf": 1,
+      "ga": 1,
+      "gd": 0,
+      "points": 1,
+      "conduct": -2,
+      "fifaRank": 6,
+      "group": "Group C",
+      "ranked": true,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Qatar",
       "owner": "Iva",
       "played": 1,
@@ -2319,7 +2320,7 @@
       "fifaRank": 57,
       "group": "Group B",
       "ranked": true,
-      "rank": 1,
+      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2339,7 +2340,7 @@
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
-      "rank": 2,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     }
@@ -3132,5 +3133,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T03:05:40Z"
+  "generated": "2026-06-14T03:10:43Z"
 }
