@@ -221,6 +221,7 @@
   .match .tname.proj { font-style: italic; color: var(--chalk-dim); }
   .match .tname.unres { font-style: italic; color: var(--chalk-faint); font-weight: 500; }
   .match .towner { font-size: 12px; color: var(--chalk-faint); }
+  .match .trank { font-variant-numeric: tabular-nums; opacity: 0.85; }
   .match .mid { text-align: center; }
   .match .score {
     font-family: var(--display);
@@ -580,8 +581,12 @@
     const unres = t.resolved === false;
     const proj = t.projected === true;
     const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
-    const sub = t.owner ? esc(t.owner)
-      : (proj && t.slot ? esc(t.slot) : "&mdash;");
+    const parts = [];
+    if (t.owner) parts.push(esc(t.owner));
+    else if (proj && t.slot) parts.push(esc(t.slot));
+    if (t.fifaRank !== null && t.fifaRank !== undefined)
+      parts.push(`<span class="trank">FIFA #${t.fifaRank}</span>`);
+    const sub = parts.length ? parts.join(" &middot; ") : "&mdash;";
     return `<div class="team ${side}">
       <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""}">${nm}</div>
       <div class="towner">${sub}</div>
