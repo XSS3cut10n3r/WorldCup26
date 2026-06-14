@@ -504,7 +504,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -1931,7 +1931,7 @@
           "ga": 0,
           "gd": 0,
           "points": 0,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 8
         }
       ],
@@ -2769,16 +2769,6 @@
         "rank": 35
       },
       {
-        "team": "Netherlands",
-        "owner": "Charlotte",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 35
-      },
-      {
         "team": "South Korea",
         "owner": "Charlie",
         "yellow": 1,
@@ -2826,7 +2816,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 41
+        "rank": 40
       },
       {
         "team": "Canada",
@@ -2836,7 +2826,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 41
+        "rank": 40
+      },
+      {
+        "team": "Netherlands",
+        "owner": "Charlotte",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 40
       },
       {
         "team": "Qatar",
@@ -2846,7 +2846,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 41
+        "rank": 40
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3004,6 +3004,25 @@
         "rank": 4
       },
       {
+        "name": "Charlotte",
+        "score": -2,
+        "teams": [
+          {
+            "name": "Netherlands",
+            "score": -2
+          },
+          {
+            "name": "Norway",
+            "score": 0
+          },
+          {
+            "name": "Ghana",
+            "score": 0
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Darcy",
         "score": -2,
         "teams": [
@@ -3066,26 +3085,7 @@
             "score": 0
           }
         ],
-        "rank": 8
-      },
-      {
-        "name": "Charlotte",
-        "score": -1,
-        "teams": [
-          {
-            "name": "Netherlands",
-            "score": -1
-          },
-          {
-            "name": "Norway",
-            "score": 0
-          },
-          {
-            "name": "Ghana",
-            "score": 0
-          }
-        ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Mat",
@@ -3104,7 +3104,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Agatha",
@@ -3204,5 +3204,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T21:39:23Z"
+  "generated": "2026-06-14T21:42:47Z"
 }
