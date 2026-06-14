@@ -376,7 +376,28 @@
       "utcDate": "2026-06-13T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-14T17:00:00Z",
+      "home": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": 0,
+        "fifaRank": 10
+      },
+      "away": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": 0,
+        "fifaRank": 82
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -480,26 +501,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-14T17:00:00Z",
-      "home": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": null,
-        "fifaRank": 10
-      },
-      "away": {
-        "name": "Curaçao",
-        "owner": "Ondine",
-        "goals": null,
-        "fifaRank": 82
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -676,6 +677,26 @@
         "owner": "Charlotte",
         "goals": null,
         "fifaRank": 31
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-17T01:00:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": null,
+        "fifaRank": 1
+      },
+      "away": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": null,
+        "fifaRank": 28
       },
       "penalties": false,
       "winner": null
@@ -3183,5 +3204,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T14:34:04Z"
+  "generated": "2026-06-14T17:08:08Z"
 }
