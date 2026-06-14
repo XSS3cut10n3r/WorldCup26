@@ -53,7 +53,7 @@ the next scheduled run picks it up automatically.
 
 6. **Run it once manually.** Go to the **Actions** tab → **Update scores** →
    **Run workflow**. When it finishes green, refresh your site — real fixture
-   data should appear. From then on it runs itself every 20 minutes.
+   data should appear. From then on it runs itself every 20 minutes (Ideally it would do this, but Github Cron jobs aren't very reliable so it runs every few hours. You can do frequent manual runs!).
 
 ## How it works
 
