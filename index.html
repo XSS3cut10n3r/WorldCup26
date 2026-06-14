@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="theme-color" content="#15431C">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#15431C">
 <title>Family World Cup 2026 — Leaderboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -539,6 +539,18 @@
     text-align: center;
     font-size: 12.5px;
     color: var(--chalk-faint);
+  }
+
+  @media (min-width: 561px) {
+    /* Desktop-only leaderboard tweaks */
+    .eyebrow { font-size: 13.7px; }       /* +5% */
+    .sub { font-size: 16.5px; }           /* +10% */
+    .section-head h2 { font-size: 21px; } /* +5% */
+    /* Put each person's country chips on the same line as their name so the
+       standings read as thin single-line rows, evenly spread across width. */
+    .who { display: flex; align-items: center; gap: 18px; }
+    .who .name { white-space: nowrap; flex: 0 0 auto; }
+    .teams { margin-top: 0; flex: 0 1 auto; flex-wrap: nowrap; gap: 10px; }
   }
 
   @media (max-width: 560px) {
