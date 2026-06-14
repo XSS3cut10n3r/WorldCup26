@@ -156,6 +156,21 @@ def shared_ranks(items, key):
         it["rank"] = rank
 
 
+def _core(payload: dict) -> dict:
+    """Change-detection view of a payload: only the meaningful odds data.
+
+    Ignores 'generated' (always changes) and each person's 'delta' (derived
+    from the previous file), so a run that produces identical odds is still a
+    no-op and the on-disk arrows keep pointing at the last real movement."""
+    return {
+        "standings": [{"name": s.get("name"), "odds": s.get("odds"),
+                       "teams": s.get("teams")} for s in payload.get("standings", [])],
+        "overround": payload.get("overround"),
+        "source": payload.get("source"),
+        "event": payload.get("event"),
+    }
+
+
 def main():
     assignments = load_json(ROOT / "assignments.json")
     participants = assignments["participants"]
@@ -228,15 +243,26 @@ def main():
     }
 
     out_path = ROOT / "odds.json"
+    # Load the previous snapshot for two purposes: change-detection (skip a
+    # no-op run) and per-person deltas (how much each member moved since the
+    # last time the file actually changed).
+    prev_odds = {}
     if out_path.exists():
         try:
             existing = load_json(out_path)
-            existing.pop("generated", None)
-            if existing == payload:
+            prev_odds = {s["name"]: s.get("odds", 0.0)
+                         for s in existing.get("standings", [])}
+            if _core(existing) == _core(payload):
                 print("No odds changes since last run; odds.json left untouched.")
                 return
         except (json.JSONDecodeError, OSError):
             pass
+
+    # Odds moved (or first ever run): record each person's change. A member
+    # with no previous figure (first run) gets null -> the page shows no arrow.
+    for s in standings:
+        s["delta"] = (round(s["odds"] - prev_odds[s["name"]], 6)
+                      if s["name"] in prev_odds else None)
 
     payload["generated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with open(out_path, "w", encoding="utf-8") as f:
