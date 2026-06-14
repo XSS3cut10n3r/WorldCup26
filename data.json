@@ -50,6 +50,33 @@
       "rank": 1
     },
     {
+      "name": "Tomi",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Germany",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Sweden",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Bosnia and Herzegovina",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "New Zealand",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Charlie",
       "points": 1.0,
       "teams": [
@@ -74,7 +101,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Darcy",
@@ -101,7 +128,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Nik",
@@ -123,7 +150,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Iva",
@@ -145,7 +172,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Kelly",
@@ -167,7 +194,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Mat",
@@ -189,34 +216,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
-    },
-    {
-      "name": "Tomi",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Germany",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Sweden",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Bosnia and Herzegovina",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "New Zealand",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Charlotte",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Tomi",
+      "team": "Germany",
+      "points": 1,
+      "label": "Germany won (Group stage)",
+      "utcDate": "2026-06-14T17:00:00Z"
+    },
+    {
       "owner": "Agatha",
       "team": "Australia",
       "points": 1,
@@ -367,20 +374,14 @@
       "points": 0.5,
       "label": "Brazil drew (Group stage)",
       "utcDate": "2026-06-13T22:00:00Z"
-    },
-    {
-      "owner": "Mat",
-      "team": "Switzerland",
-      "points": 0.5,
-      "label": "Switzerland drew (Group stage)",
-      "utcDate": "2026-06-13T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-14T17:00:00Z",
       "home": {
         "name": "Germany",
@@ -396,9 +397,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -478,26 +477,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-13T01:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": 4,
-        "fifaRank": 17
-      },
-      "away": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": 1,
-        "fifaRank": 40
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -524,7 +503,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
+      "status": "SCHEDULED",
       "utcDate": "2026-06-14T23:00:00Z",
       "home": {
         "name": "Ivory Coast",
@@ -1812,14 +1791,14 @@
           "pos": 1,
           "team": "Germany",
           "owner": "Tomi",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gf": 7,
+          "ga": 1,
+          "gd": 6,
+          "points": 3,
           "conduct": 0,
           "fifaRank": 10
         },
@@ -1857,13 +1836,13 @@
           "pos": 4,
           "team": "Curaçao",
           "owner": "Ondine",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "lost": 1,
+          "gf": 1,
+          "ga": 7,
+          "gd": -6,
           "points": 0,
           "conduct": 0,
           "fifaRank": 82
@@ -3204,5 +3183,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-14T19:03:16Z"
+  "generated": "2026-06-14T19:08:19Z"
 }
