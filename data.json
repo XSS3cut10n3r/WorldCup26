@@ -153,6 +153,33 @@
       "rank": 4
     },
     {
+      "name": "Paul",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "Belgium",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Panama",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Cabo Verde",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 4
+    },
+    {
       "name": "Charlotte",
       "points": 0.5,
       "teams": [
@@ -172,7 +199,7 @@
           "eliminated": false
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Iva",
@@ -194,7 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Kelly",
@@ -216,7 +243,7 @@
           "eliminated": false
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Mat",
@@ -238,7 +265,7 @@
           "eliminated": false
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Pete",
@@ -260,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Ondine",
@@ -287,34 +314,7 @@
           "eliminated": false
         }
       ],
-      "rank": 12
-    },
-    {
-      "name": "Paul",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Belgium",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Côte d'Ivoire",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Panama",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Cabo Verde",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 12
+      "rank": 13
     },
     {
       "name": "Tom",
@@ -336,10 +336,17 @@
           "eliminated": false
         }
       ],
-      "rank": 12
+      "rank": 13
     }
   ],
   "events": [
+    {
+      "owner": "Paul",
+      "team": "Côte d'Ivoire",
+      "points": 1,
+      "label": "Côte d'Ivoire won (Group stage)",
+      "utcDate": "2026-06-14T23:00:00Z"
+    },
     {
       "owner": "Pete",
       "team": "Japan",
@@ -367,36 +374,9 @@
       "points": 1,
       "label": "Australia won (Group stage)",
       "utcDate": "2026-06-14T04:00:00Z"
-    },
-    {
-      "owner": "Sydney",
-      "team": "Scotland",
-      "points": 1,
-      "label": "Scotland won (Group stage)",
-      "utcDate": "2026-06-14T01:00:00Z"
     }
   ],
   "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-14T23:00:00Z",
-      "home": {
-        "name": "Ivory Coast",
-        "owner": "Paul",
-        "goals": 1,
-        "fifaRank": 33
-      },
-      "away": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": 0,
-        "fifaRank": 23
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -419,6 +399,26 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-14T23:00:00Z",
+      "home": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": 1,
+        "fifaRank": 33
+      },
+      "away": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": 0,
+        "fifaRank": 23
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -498,26 +498,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-13T22:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": 1,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": 1,
-        "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -759,12 +739,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-29T17:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Germany",
+            "owner": "Tomi",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group E",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Turkey",
@@ -859,12 +839,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-30T21:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Ivory Coast",
+            "owner": "Paul",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group E",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -1042,12 +1022,12 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Ecuador",
+            "owner": "Sydney",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "3rd place E/F/G/I/J",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -1845,33 +1825,33 @@
         },
         {
           "pos": 2,
-          "team": "Ecuador",
-          "owner": "Sydney",
-          "played": 0,
-          "won": 0,
+          "team": "Ivory Coast",
+          "owner": "Paul",
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
+          "gf": 1,
           "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gd": 1,
+          "points": 3,
           "conduct": 0,
-          "fifaRank": 23
+          "fifaRank": 33
         },
         {
           "pos": 3,
-          "team": "Ivory Coast",
-          "owner": "Paul",
-          "played": 0,
+          "team": "Ecuador",
+          "owner": "Sydney",
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
+          "lost": 1,
           "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "ga": 1,
+          "gd": -1,
           "points": 0,
           "conduct": 0,
-          "fifaRank": 33
+          "fifaRank": 23
         },
         {
           "pos": 4,
@@ -1889,7 +1869,7 @@
           "fifaRank": 82
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group F",
@@ -2417,6 +2397,26 @@
     },
     {
       "pos": 3,
+      "team": "Ecuador",
+      "owner": "Sydney",
+      "played": 1,
+      "won": 0,
+      "draw": 0,
+      "lost": 1,
+      "gf": 0,
+      "ga": 1,
+      "gd": -1,
+      "points": 0,
+      "conduct": 0,
+      "fifaRank": 23,
+      "group": "Group E",
+      "ranked": true,
+      "rank": 4,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Turkey",
       "owner": "Iva",
       "played": 1,
@@ -2431,7 +2431,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     }
@@ -3224,5 +3224,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T02:51:46Z"
+  "generated": "2026-06-15T02:56:49Z"
 }
