@@ -1942,21 +1942,6 @@
       "table": [
         {
           "pos": 1,
-          "team": "Belgium",
-          "owner": "Paul",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 9
-        },
-        {
-          "pos": 2,
           "team": "Iran",
           "owner": "Ondine",
           "played": 0,
@@ -1971,7 +1956,7 @@
           "fifaRank": 21
         },
         {
-          "pos": 3,
+          "pos": 2,
           "team": "New Zealand",
           "owner": "Tomi",
           "played": 0,
@@ -1984,6 +1969,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 85
+        },
+        {
+          "pos": 3,
+          "team": "Belgium",
+          "owner": "Paul",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -1,
+          "fifaRank": 9
         },
         {
           "pos": 4,
@@ -2499,16 +2499,6 @@
         "rank": 1
       },
       {
-        "team": "Belgium",
-        "owner": "Paul",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Colombia",
         "owner": "Charlie",
         "yellow": 0,
@@ -2739,6 +2729,16 @@
         "rank": 1
       },
       {
+        "team": "Belgium",
+        "owner": "Paul",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 28
+      },
+      {
         "team": "Cabo Verde",
         "owner": "Paul",
         "yellow": 1,
@@ -2746,7 +2746,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Ecuador",
@@ -2756,7 +2756,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Egypt",
@@ -2766,7 +2766,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Haiti",
@@ -2776,7 +2776,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "South Korea",
@@ -2786,7 +2786,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Spain",
@@ -2796,7 +2796,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Switzerland",
@@ -2806,7 +2806,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Tunisia",
@@ -2816,7 +2816,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Türkiye",
@@ -2826,7 +2826,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "United States",
@@ -2836,7 +2836,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Brazil",
@@ -3003,11 +3003,11 @@
       },
       {
         "name": "Paul",
-        "score": -4,
+        "score": -5,
         "teams": [
           {
             "name": "Belgium",
-            "score": 0
+            "score": -1
           },
           {
             "name": "Côte d'Ivoire",
@@ -3022,7 +3022,7 @@
             "score": -1
           }
         ],
-        "rank": 4
+        "rank": 3
       },
       {
         "name": "Darcy",
@@ -3244,5 +3244,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T19:17:34Z"
+  "generated": "2026-06-15T19:18:28Z"
 }
