@@ -380,7 +380,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-15T16:00:00Z",
       "home": {
         "name": "Spain",
@@ -2008,21 +2008,6 @@
       "table": [
         {
           "pos": 1,
-          "team": "Spain",
-          "owner": "Pete",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 2
-        },
-        {
-          "pos": 2,
           "team": "Uruguay",
           "owner": "Iva",
           "played": 0,
@@ -2037,7 +2022,7 @@
           "fifaRank": 16
         },
         {
-          "pos": 3,
+          "pos": 2,
           "team": "Saudi Arabia",
           "owner": "Charlie",
           "played": 0,
@@ -2050,6 +2035,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 61
+        },
+        {
+          "pos": 3,
+          "team": "Spain",
+          "owner": "Pete",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -1,
+          "fifaRank": 2
         },
         {
           "pos": 4,
@@ -2719,16 +2719,6 @@
         "rank": 1
       },
       {
-        "team": "Spain",
-        "owner": "Pete",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Sweden",
         "owner": "Tomi",
         "yellow": 0,
@@ -2766,7 +2756,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Ecuador",
@@ -2776,7 +2766,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Haiti",
@@ -2786,7 +2776,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "South Korea",
@@ -2796,7 +2786,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
+      },
+      {
+        "team": "Spain",
+        "owner": "Pete",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 30
       },
       {
         "team": "Switzerland",
@@ -2806,7 +2806,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Tunisia",
@@ -2816,7 +2816,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Türkiye",
@@ -2826,7 +2826,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "United States",
@@ -2836,7 +2836,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Brazil",
@@ -2964,6 +2964,25 @@
         "rank": 1
       },
       {
+        "name": "Pete",
+        "score": -6,
+        "teams": [
+          {
+            "name": "Spain",
+            "score": -1
+          },
+          {
+            "name": "Japan",
+            "score": 0
+          },
+          {
+            "name": "Paraguay",
+            "score": -5
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Nik",
         "score": -5,
         "teams": [
@@ -2980,26 +2999,7 @@
             "score": 0
           }
         ],
-        "rank": 2
-      },
-      {
-        "name": "Pete",
-        "score": -5,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": 0
-          },
-          {
-            "name": "Japan",
-            "score": 0
-          },
-          {
-            "name": "Paraguay",
-            "score": -5
-          }
-        ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Paul",
@@ -3244,5 +3244,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T16:55:00Z"
+  "generated": "2026-06-15T17:55:28Z"
 }
