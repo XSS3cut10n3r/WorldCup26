@@ -1,6 +1,33 @@
 {
   "leaderboard": [
     {
+      "name": "Tomi",
+      "points": 2.5,
+      "teams": [
+        {
+          "name": "Germany",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Sweden",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Bosnia and Herzegovina",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "New Zealand",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Agatha",
       "points": 1.5,
       "teams": [
@@ -20,7 +47,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Sydney",
@@ -47,34 +74,7 @@
           "eliminated": false
         }
       ],
-      "rank": 1
-    },
-    {
-      "name": "Tomi",
-      "points": 1.5,
-      "teams": [
-        {
-          "name": "Germany",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Sweden",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Bosnia and Herzegovina",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "New Zealand",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Charlie",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Tomi",
+      "team": "Sweden",
+      "points": 1,
+      "label": "Sweden won (Group stage)",
+      "utcDate": "2026-06-15T02:00:00Z"
+    },
+    {
       "owner": "Paul",
       "team": "Côte d'Ivoire",
       "points": 1,
@@ -367,25 +374,19 @@
       "points": 1,
       "label": "Germany won (Group stage)",
       "utcDate": "2026-06-14T17:00:00Z"
-    },
-    {
-      "owner": "Agatha",
-      "team": "Australia",
-      "points": 1,
-      "label": "Australia won (Group stage)",
-      "utcDate": "2026-06-14T04:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-15T02:00:00Z",
       "home": {
         "name": "Sweden",
         "owner": "Tomi",
-        "goals": 2,
+        "goals": 5,
         "fifaRank": 38
       },
       "away": {
@@ -396,9 +397,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -478,26 +477,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-14T01:00:00Z",
-      "home": {
-        "name": "Haiti",
-        "owner": "Darcy",
-        "goals": 0,
-        "fifaRank": 83
-      },
-      "away": {
-        "name": "Scotland",
-        "owner": "Sydney",
-        "goals": 1,
-        "fifaRank": 42
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -764,12 +743,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-29T20:30:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Sweden",
+            "owner": "Tomi",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group F",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Morocco",
@@ -797,12 +776,12 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Japan",
+            "owner": "Pete",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group F",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -822,12 +801,12 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Netherlands",
+            "owner": "Charlotte",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "3rd place C/D/F/G/H",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -1876,6 +1855,21 @@
       "table": [
         {
           "pos": 1,
+          "team": "Sweden",
+          "owner": "Tomi",
+          "played": 1,
+          "won": 1,
+          "draw": 0,
+          "lost": 0,
+          "gf": 5,
+          "ga": 1,
+          "gd": 4,
+          "points": 3,
+          "conduct": 0,
+          "fifaRank": 38
+        },
+        {
+          "pos": 2,
           "team": "Japan",
           "owner": "Pete",
           "played": 1,
@@ -1890,7 +1884,7 @@
           "fifaRank": 18
         },
         {
-          "pos": 2,
+          "pos": 3,
           "team": "Netherlands",
           "owner": "Charlotte",
           "played": 1,
@@ -1905,37 +1899,22 @@
           "fifaRank": 8
         },
         {
-          "pos": 3,
-          "team": "Sweden",
-          "owner": "Tomi",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 38
-        },
-        {
           "pos": 4,
           "team": "Tunisia",
           "owner": "Darcy",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "lost": 1,
+          "gf": 1,
+          "ga": 5,
+          "gd": -4,
           "points": 0,
           "conduct": 0,
           "fifaRank": 46
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group G",
@@ -2337,6 +2316,26 @@
   "thirdPlace": [
     {
       "pos": 3,
+      "team": "Netherlands",
+      "owner": "Charlotte",
+      "played": 1,
+      "won": 0,
+      "draw": 1,
+      "lost": 0,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "points": 1,
+      "conduct": -2,
+      "fifaRank": 8,
+      "group": "Group F",
+      "ranked": true,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Brazil",
       "owner": "Sydney",
       "played": 1,
@@ -2351,7 +2350,7 @@
       "fifaRank": 6,
       "group": "Group C",
       "ranked": true,
-      "rank": 1,
+      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2371,7 +2370,7 @@
       "fifaRank": 57,
       "group": "Group B",
       "ranked": true,
-      "rank": 2,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     },
@@ -2391,7 +2390,7 @@
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
-      "rank": 3,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2411,7 +2410,7 @@
       "fifaRank": 23,
       "group": "Group E",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2431,7 +2430,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     }
@@ -3224,5 +3223,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T02:56:49Z"
+  "generated": "2026-06-15T07:41:01Z"
 }
