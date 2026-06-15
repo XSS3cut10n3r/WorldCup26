@@ -28,34 +28,12 @@
       "rank": 1
     },
     {
-      "name": "Agatha",
-      "points": 1.5,
-      "teams": [
-        {
-          "name": "Morocco",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "Australia",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Iraq",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Paul",
-      "points": 1.5,
+      "points": 2.0,
       "teams": [
         {
           "name": "Belgium",
-          "points": 0,
+          "points": 0.5,
           "eliminated": false
         },
         {
@@ -75,6 +53,28 @@
         }
       ],
       "rank": 2
+    },
+    {
+      "name": "Agatha",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Morocco",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Australia",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Iraq",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 3
     },
     {
       "name": "Sydney",
@@ -101,7 +101,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Charlie",
@@ -290,6 +290,28 @@
       "rank": 9
     },
     {
+      "name": "Tom",
+      "points": 0.5,
+      "teams": [
+        {
+          "name": "Croatia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Egypt",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "DR Congo",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 9
+    },
+    {
       "name": "Ondine",
       "points": 0.0,
       "teams": [
@@ -314,32 +336,24 @@
           "eliminated": false
         }
       ],
-      "rank": 13
-    },
-    {
-      "name": "Tom",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Croatia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Egypt",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "DR Congo",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 13
+      "rank": 14
     }
   ],
   "events": [
+    {
+      "owner": "Tom",
+      "team": "Egypt",
+      "points": 0.5,
+      "label": "Egypt drew (Group stage)",
+      "utcDate": "2026-06-15T19:00:00Z"
+    },
+    {
+      "owner": "Paul",
+      "team": "Belgium",
+      "points": 0.5,
+      "label": "Belgium drew (Group stage)",
+      "utcDate": "2026-06-15T19:00:00Z"
+    },
     {
       "owner": "Paul",
       "team": "Cabo Verde",
@@ -360,45 +374,30 @@
       "points": 1,
       "label": "Sweden won (Group stage)",
       "utcDate": "2026-06-15T02:00:00Z"
-    },
-    {
-      "owner": "Paul",
-      "team": "Côte d'Ivoire",
-      "points": 1,
-      "label": "Côte d'Ivoire won (Group stage)",
-      "utcDate": "2026-06-14T23:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Japan",
-      "points": 0.5,
-      "label": "Japan drew (Group stage)",
-      "utcDate": "2026-06-14T20:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-15T19:00:00Z",
       "home": {
         "name": "Belgium",
         "owner": "Paul",
-        "goals": 0,
+        "goals": 1,
         "fifaRank": 9
       },
       "away": {
         "name": "Egypt",
         "owner": "Tom",
-        "goals": 0,
+        "goals": 1,
         "fifaRank": 29
       },
       "penalties": false,
       "winner": "DRAW"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -478,26 +477,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-14T17:00:00Z",
-      "home": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": 7,
-        "fifaRank": 10
-      },
-      "away": {
-        "name": "Curaçao",
-        "owner": "Ondine",
-        "goals": 1,
-        "fifaRank": 82
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -1608,6 +1587,27 @@
       "ranked": true
     },
     {
+      "group": "Group Atlantic Division",
+      "table": [
+        {
+          "pos": 1,
+          "team": "Cape Verde Islands",
+          "owner": "Paul",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 1,
+          "conduct": -1,
+          "fifaRank": 67
+        }
+      ],
+      "ranked": true
+    },
+    {
       "group": "Group B",
       "table": [
         {
@@ -1735,6 +1735,27 @@
           "points": 0,
           "conduct": -1,
           "fifaRank": 83
+        }
+      ],
+      "ranked": true
+    },
+    {
+      "group": "Group Central Division",
+      "table": [
+        {
+          "pos": 1,
+          "team": "Spain",
+          "owner": "Pete",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 1,
+          "conduct": -1,
+          "fifaRank": 2
         }
       ],
       "ranked": true
@@ -1942,6 +1963,36 @@
       "table": [
         {
           "pos": 1,
+          "team": "Belgium",
+          "owner": "Paul",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": -1,
+          "fifaRank": 9
+        },
+        {
+          "pos": 2,
+          "team": "Egypt",
+          "owner": "Tom",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": -1,
+          "fifaRank": 29
+        },
+        {
+          "pos": 3,
           "team": "Iran",
           "owner": "Ondine",
           "played": 0,
@@ -1956,7 +2007,7 @@
           "fifaRank": 21
         },
         {
-          "pos": 2,
+          "pos": 4,
           "team": "New Zealand",
           "owner": "Tomi",
           "played": 0,
@@ -1969,102 +2020,6 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 85
-        },
-        {
-          "pos": 3,
-          "team": "Belgium",
-          "owner": "Paul",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -1,
-          "fifaRank": 9
-        },
-        {
-          "pos": 4,
-          "team": "Egypt",
-          "owner": "Tom",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -1,
-          "fifaRank": 29
-        }
-      ],
-      "ranked": false
-    },
-    {
-      "group": "Group H",
-      "table": [
-        {
-          "pos": 1,
-          "team": "Spain",
-          "owner": "Pete",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1,
-          "conduct": -1,
-          "fifaRank": 2
-        },
-        {
-          "pos": 2,
-          "team": "Cape Verde Islands",
-          "owner": "Paul",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1,
-          "conduct": -1,
-          "fifaRank": 67
-        },
-        {
-          "pos": 3,
-          "team": "Uruguay",
-          "owner": "Iva",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 16
-        },
-        {
-          "pos": 4,
-          "team": "Saudi Arabia",
-          "owner": "Charlie",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 61
         }
       ],
       "ranked": false
@@ -3244,5 +3199,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T19:18:28Z"
+  "generated": "2026-06-15T21:06:24Z"
 }
