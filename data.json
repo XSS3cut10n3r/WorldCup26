@@ -1814,7 +1814,7 @@
           "ga": 0,
           "gd": 1,
           "points": 3,
-          "conduct": 0,
+          "conduct": -3,
           "fifaRank": 33
         },
         {
@@ -2538,16 +2538,6 @@
         "rank": 1
       },
       {
-        "team": "Côte d'Ivoire",
-        "owner": "Paul",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "DR Congo",
         "owner": "Tom",
         "yellow": 0,
@@ -2785,7 +2775,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "South Korea",
@@ -2795,7 +2785,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Switzerland",
@@ -2805,7 +2795,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Türkiye",
@@ -2815,7 +2805,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "United States",
@@ -2825,7 +2815,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Brazil",
@@ -2835,7 +2825,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Canada",
@@ -2845,7 +2835,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Netherlands",
@@ -2855,7 +2845,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Qatar",
@@ -2865,7 +2855,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -2875,7 +2865,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 44
+        "rank": 43
+      },
+      {
+        "team": "Côte d'Ivoire",
+        "owner": "Paul",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 43
       },
       {
         "team": "Scotland",
@@ -2885,7 +2885,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 44
+        "rank": 43
       },
       {
         "team": "Mexico",
@@ -3000,6 +3000,29 @@
         "rank": 4
       },
       {
+        "name": "Paul",
+        "score": -3,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": 0
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -3
+          },
+          {
+            "name": "Panama",
+            "score": 0
+          },
+          {
+            "name": "Cabo Verde",
+            "score": 0
+          }
+        ],
+        "rank": 4
+      },
+      {
         "name": "Tomi",
         "score": -3,
         "teams": [
@@ -3039,7 +3062,7 @@
             "score": 0
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Darcy",
@@ -3062,7 +3085,7 @@
             "score": -1
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Kelly",
@@ -3081,7 +3104,7 @@
             "score": -2
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Charlie",
@@ -3104,7 +3127,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Mat",
@@ -3123,7 +3146,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Agatha",
@@ -3142,7 +3165,7 @@
             "score": 0
           }
         ],
-        "rank": 11
+        "rank": 12
       },
       {
         "name": "Ondine",
@@ -3165,30 +3188,7 @@
             "score": 0
           }
         ],
-        "rank": 11
-      },
-      {
-        "name": "Paul",
-        "score": 0,
-        "teams": [
-          {
-            "name": "Belgium",
-            "score": 0
-          },
-          {
-            "name": "Côte d'Ivoire",
-            "score": 0
-          },
-          {
-            "name": "Panama",
-            "score": 0
-          },
-          {
-            "name": "Cabo Verde",
-            "score": 0
-          }
-        ],
-        "rank": 11
+        "rank": 12
       },
       {
         "name": "Tom",
@@ -3207,7 +3207,7 @@
             "score": 0
           }
         ],
-        "rank": 11
+        "rank": 12
       }
     ],
     "hasData": true
@@ -3223,5 +3223,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T08:16:18Z"
+  "generated": "2026-06-15T10:14:17Z"
 }
