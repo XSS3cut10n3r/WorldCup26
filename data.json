@@ -1973,7 +1973,7 @@
           "ga": 1,
           "gd": 0,
           "points": 1,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 9
         },
         {
@@ -2684,16 +2684,6 @@
         "rank": 1
       },
       {
-        "team": "Belgium",
-        "owner": "Paul",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 28
-      },
-      {
         "team": "Cabo Verde",
         "owner": "Paul",
         "yellow": 1,
@@ -2784,6 +2774,16 @@
         "rank": 28
       },
       {
+        "team": "Belgium",
+        "owner": "Paul",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 37
+      },
+      {
         "team": "Brazil",
         "owner": "Sydney",
         "yellow": 2,
@@ -2791,7 +2791,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Canada",
@@ -2801,7 +2801,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Egypt",
@@ -2811,7 +2811,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Netherlands",
@@ -2821,7 +2821,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Qatar",
@@ -2831,7 +2831,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -2919,6 +2919,29 @@
         "rank": 1
       },
       {
+        "name": "Paul",
+        "score": -6,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": -2
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -3
+          },
+          {
+            "name": "Panama",
+            "score": 0
+          },
+          {
+            "name": "Cabo Verde",
+            "score": -1
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Pete",
         "score": -6,
         "teams": [
@@ -2954,30 +2977,7 @@
             "score": 0
           }
         ],
-        "rank": 3
-      },
-      {
-        "name": "Paul",
-        "score": -5,
-        "teams": [
-          {
-            "name": "Belgium",
-            "score": -1
-          },
-          {
-            "name": "Côte d'Ivoire",
-            "score": -3
-          },
-          {
-            "name": "Panama",
-            "score": 0
-          },
-          {
-            "name": "Cabo Verde",
-            "score": -1
-          }
-        ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Darcy",
@@ -3199,5 +3199,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T21:07:38Z"
+  "generated": "2026-06-15T21:08:14Z"
 }
