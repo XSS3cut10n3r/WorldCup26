@@ -20,6 +20,7 @@
     --gold: #E8C34A;
     --live: #FF5A45;
     --up: #57C97A;
+    --held: #FF5147;
     --display: "Oswald", sans-serif;
     --body: "Barlow", sans-serif;
   }
@@ -129,7 +130,7 @@
     animation: pulse 1.4s ease-in-out infinite;
   }
   @keyframes pulse { 50% { opacity: 0.35; } }
-  @media (prefers-reduced-motion: reduce) { .live-dot, .match.upset::after { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .live-dot, .match.upset::after, .match.held, .held-badge { animation: none; } }
 
   /* ---------- Leaderboard ---------- */
   .board { border-top: 2px solid var(--pitch-line); }
@@ -307,6 +308,50 @@
     padding: 2px 10px;
     border-radius: 999px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  /* Held — a big underdog (25+ FIFA places below) drew a much stronger side.
+     Red outline + corner "HELD" pill, with a bright red glow that breathes
+     around the whole card, plus a glowing heartbeat on the pill itself. */
+  .match.held {
+    position: relative;
+    border-color: var(--held);
+    margin-top: 11px;
+    animation: heldBreathe 2.2s ease-in-out infinite;
+  }
+  @keyframes heldBreathe {
+    0%, 100% { border-color: rgba(255,81,71,0.55); box-shadow: 0 0 0 0 rgba(255,81,71,0); }
+    50% { border-color: rgba(255,81,71,1); box-shadow: 0 0 32px 4px rgba(255,81,71,0.45); }
+  }
+  .held-badge {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 4;
+    background: var(--pitch-deep);
+    color: var(--held);
+    border: 1.5px solid var(--held);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 2px 10px;
+    border-radius: 999px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transform-origin: center;
+    animation: heldGlow 2.2s ease-in-out infinite, heldHeart 2.2s ease-in-out infinite;
+  }
+  @keyframes heldGlow {
+    0%, 100% { box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 0 0 0 rgba(255,81,71,0); }
+    50% { box-shadow: 0 2px 6px rgba(0,0,0,0.3), 0 0 13px 2px rgba(255,81,71,0.7); }
+  }
+  @keyframes heldHeart {
+    0%, 46%, 100% { transform: scale(1); }
+    10% { transform: scale(1.16); }
+    20% { transform: scale(1); }
+    30% { transform: scale(1.11); }
+    40% { transform: scale(1); }
   }
 
   /* ---------- Next-match countdown ---------- */
@@ -798,13 +843,22 @@
       const lr = m.winner === "HOME_TEAM" ? m.away.fifaRank : m.home.fifaRank;
       if (wr != null && lr != null && wr - lr >= 5) upset = true;
     }
+    // Held: a finished draw in which one side is a big underdog — its FIFA rank
+    // number is at least 25 higher (lower-ranked) than its opponent's. Mutually
+    // exclusive with upset (which requires a winner). Both ranks must be known.
+    let held = false;
+    if (done && m.winner === "DRAW") {
+      const hr = m.home.fifaRank, ar = m.away.fifaRank;
+      if (hr != null && ar != null && Math.abs(hr - ar) >= 25) held = true;
+    }
     const mid = (live || done) && hasScore
       ? `<div class="score">${m.home.goals}&ndash;${m.away.goals}</div>
          <div class="meta">${live ? '<span class="live-dot"></span> Live' : (m.penalties ? "FT &middot; pens" : "FT")} &middot; ${esc(m.stage)}</div>`
       : `<div class="score" style="font-size:15px;font-weight:500;color:var(--chalk-dim)">${esc(fmtKick(m.utcDate))}</div>
          <div class="meta">${esc(m.stage)}</div>`;
-    return `<div class="match ${live ? "is-live" : ""} ${upset ? "upset" : ""}">
+    return `<div class="match ${live ? "is-live" : ""} ${upset ? "upset" : ""} ${held ? "held" : ""}">
       ${upset ? '<div class="upset-badge">UPSET</div>' : ""}
+      ${held ? '<div class="held-badge">Held</div>' : ""}
       ${teamCell(m.home, "home")}
       <div class="mid">${mid}</div>
       ${teamCell(m.away, "away")}
