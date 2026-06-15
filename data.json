@@ -1829,7 +1829,7 @@
           "ga": 1,
           "gd": -1,
           "points": 0,
-          "conduct": 0,
+          "conduct": -1,
           "fifaRank": 23
         },
         {
@@ -2406,7 +2406,7 @@
       "ga": 1,
       "gd": -1,
       "points": 0,
-      "conduct": 0,
+      "conduct": -1,
       "fifaRank": 23,
       "group": "Group E",
       "ranked": true,
@@ -2540,16 +2540,6 @@
       {
         "team": "DR Congo",
         "owner": "Tom",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
-        "team": "Ecuador",
-        "owner": "Sydney",
         "yellow": 0,
         "indirect_red": 0,
         "direct_red": 0,
@@ -2768,6 +2758,16 @@
         "rank": 1
       },
       {
+        "team": "Ecuador",
+        "owner": "Sydney",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 33
+      },
+      {
         "team": "Haiti",
         "owner": "Darcy",
         "yellow": 1,
@@ -2775,7 +2775,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "South Korea",
@@ -2785,7 +2785,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Switzerland",
@@ -2795,7 +2795,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Türkiye",
@@ -2805,7 +2805,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "United States",
@@ -2815,7 +2815,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Brazil",
@@ -2921,7 +2921,7 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -15,
+        "score": -16,
         "teams": [
           {
             "name": "Brazil",
@@ -2929,7 +2929,7 @@
           },
           {
             "name": "Ecuador",
-            "score": 0
+            "score": -1
           },
           {
             "name": "South Africa",
@@ -3223,5 +3223,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T10:14:17Z"
+  "generated": "2026-06-15T10:14:47Z"
 }
