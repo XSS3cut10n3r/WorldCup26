@@ -380,12 +380,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-15T22:00:00Z",
       "home": {
         "name": "Saudi Arabia",
         "owner": "Charlie",
-        "goals": 0,
+        "goals": 1,
         "fifaRank": 61
       },
       "away": {
@@ -395,7 +395,7 @@
         "fifaRank": 16
       },
       "penalties": false,
-      "winner": "DRAW"
+      "winner": "HOME_TEAM"
     }
   ],
   "recent": [
@@ -3244,5 +3244,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T22:28:14Z"
+  "generated": "2026-06-15T23:11:45Z"
 }
