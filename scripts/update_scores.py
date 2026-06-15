@@ -10,6 +10,11 @@ Run by GitHub Actions on a schedule. Requires the environment variable
 FOOTBALL_DATA_TOKEN (a free football-data.org API key).
 
 No third-party dependencies — standard library only.
+
+GROUP STRUCTURE IS HARDCODED. The 2026 draw is fixed, so which teams sit in
+which group (and the group names) come from groups.json, never from the API.
+Only match results come from the API. This means an unreliable standings feed
+can no longer reshape, rename, or break the group tables.
 """
 
 import json
@@ -23,7 +28,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 API_URL = "https://api.football-data.org/v4/competitions/WC/matches"
-STANDINGS_URL = "https://api.football-data.org/v4/competitions/WC/standings"
 
 # Known finished-match statuses in the football-data.org v4 API.
 FINISHED = {"FINISHED", "AWARDED"}
@@ -95,18 +99,6 @@ def fetch_matches(token: str) -> list:
     return payload.get("matches", [])
 
 
-def fetch_standings(token: str) -> list:
-    """Group tables. Failure here is non-fatal: scores still update."""
-    req = urllib.request.Request(STANDINGS_URL, headers={"X-Auth-Token": token})
-    try:
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            payload = json.load(resp)
-    except (urllib.error.HTTPError, urllib.error.URLError) as e:
-        print(f"Warning: standings fetch failed ({e}); group tables skipped this run.")
-        return []
-    return payload.get("standings", [])
-
-
 def team_owner_lookup(assignments: dict) -> dict:
     """normalized team name -> (owner, canonical team name as the family wrote it)"""
     lookup = {}
@@ -143,6 +135,15 @@ def main():
     scoring = config["scoring"]
     lookup = team_owner_lookup(assignments)
 
+    # Hardcoded official group composition (groups.json). This is the single
+    # source of truth for group membership, names, and letters — the API is
+    # never consulted for group structure.
+    groups_def = load_json(ROOT / "groups.json")
+    team2group = {}
+    for letter, teams in groups_def.items():
+        for t in teams:
+            team2group[normalize(t)] = letter
+
     matches = fetch_matches(token)
     matches.sort(key=lambda m: m.get("utcDate") or "")
 
@@ -153,26 +154,19 @@ def main():
     events = []        # scoring events, newest last
 
     display_matches = []
-    group_counts = {}  # group letter -> [finished, total]
     # Per-team group record computed from FINISHED matches ONLY, keyed by
     # normalized team name. The free-tier standings feed folds in the live
     # scoreline of in-progress games (a 0-0 kickoff shows as a played draw),
     # so we rebuild the table numbers from settled results instead.
     gstats = {}
     # Finished group matches per group letter, as (home_norm, away_norm,
-    # home_goals, away_goals) — used for head-to-head tiebreaks.
+    # home_goals, away_goals) — used for head-to-head tiebreaks. The group
+    # letter is resolved from the hardcoded mapping, not the API's label.
     ghead = {}
 
     for m in matches:
         stage = m.get("stage", "")
         status = m.get("status", "")
-        if stage == "GROUP_STAGE":
-            letter = (m.get("group") or "")[-1:]
-            if letter:
-                c = group_counts.setdefault(letter, [0, 0])
-                c[1] += 1
-                if status in FINISHED:
-                    c[0] += 1
         score = m.get("score", {}) or {}
         full_time = score.get("fullTime", {}) or {}
         home, away = m.get("homeTeam", {}) or {}, m.get("awayTeam", {}) or {}
@@ -204,7 +198,9 @@ def main():
             if gh is not None and ga is not None:
                 hn = normalize(home.get("name") or "")
                 an = normalize(away.get("name") or "")
-                letter = (m.get("group") or "")[-1:]
+                # Group letter from the hardcoded mapping (robust to whatever
+                # the API calls the group, or if it omits it entirely).
+                letter = team2group.get(hn) or team2group.get(an)
                 if hn and an and letter:
                     ghead.setdefault(letter, []).append((hn, an, gh, ga))
                 for tm, gf, gag in ((home, gh, ga), (away, ga, gh)):
@@ -378,31 +374,21 @@ def main():
         return ordered
 
     # ---- Group tables & best third-place race -------------------------
+    # Built from the HARDCODED groups.json (membership, names, letters) plus
+    # the per-team records computed from finished matches above. No API
+    # standings feed is involved, so the groups can never be reshaped,
+    # renamed, or dropped by a bad/rate-limited response.
     groups = []
-    raw_standings = fetch_standings(token)
-    for s in raw_standings:
-        # Keep total (not home/away-split) tables that belong to a group.
-        # Deliberately no check on s["stage"]: the World Cup standings
-        # endpoint only contains group tables, and stage labels have
-        # proven unreliable.
-        if s.get("type") not in (None, "TOTAL"):
-            continue
-        raw_group = (s.get("group") or "").strip()
-        if not raw_group or not s.get("table"):
-            continue
-        gname = raw_group.replace("GROUP_", "Group ")
-        if not gname.lower().startswith("group"):
-            gname = "Group " + gname
+    for letter in sorted(groups_def):          # "A" .. "L"
         table = []
-        for row in s.get("table", []):
-            team = row.get("team", {}) or {}
-            hit = match_team(team, lookup)
-            nm = normalize(team.get("name") or "")
+        for tname in groups_def[letter]:
+            nm = normalize(tname)
+            hit = lookup.get(nm)
             rec = gstats.get(nm, {"played": 0, "won": 0, "draw": 0,
                                   "lost": 0, "gf": 0, "ga": 0, "points": 0})
             table.append({
-                "pos": row.get("position"),  # feed order; used as fallback
-                "team": team.get("name", "?"),
+                "pos": None,
+                "team": tname,
                 "norm": nm,
                 "owner": hit[0] if hit else None,
                 "played": rec["played"],
@@ -416,28 +402,15 @@ def main():
                 "conduct": conduct_scores.get(nm, 0),
                 "fifaRank": fifa_ranks.get(nm),
             })
-        if table:
-            letter = gname.split()[-1]
-            # Full FIFA tiebreaker ordering (head-to-head, then overall).
-            table = rank_group(table, ghead.get(letter, []))
-            for i, r in enumerate(table, start=1):
-                r["pos"] = i
-                r.pop("norm", None)
-            # A group is "ranked" only once EVERY team has played >=1 game.
-            # Until then we don't highlight leaders/third or lock bracket
-            # slots for this group.
-            ranked = len(table) > 0 and all(r["played"] >= 1 for r in table)
-            groups.append({"group": gname, "table": table, "ranked": ranked})
-    groups.sort(key=lambda g: g["group"])
-    if raw_standings and not groups:
-        s0 = raw_standings[0]
-        print(f"Note: {len(raw_standings)} standings entries received but none "
-              f"parsed as group tables. First entry: stage={s0.get('stage')!r} "
-              f"type={s0.get('type')!r} group={s0.get('group')!r} "
-              f"keys={sorted(s0.keys())}")
-    elif not raw_standings:
-        print("Note: standings endpoint returned no entries "
-              "(rate limit or data not yet published).")
+        # Full FIFA tiebreaker ordering (head-to-head, then overall).
+        table = rank_group(table, ghead.get(letter, []))
+        for i, r in enumerate(table, start=1):
+            r["pos"] = i
+            r.pop("norm", None)
+        # A group is "ranked" only once EVERY team has played >=1 game.
+        # Until then we don't highlight leaders/third or lock bracket slots.
+        ranked = all(r["played"] >= 1 for r in table)
+        groups.append({"group": "Group " + letter, "table": table, "ranked": ranked})
 
     thirds = []
     for g in groups:
@@ -474,11 +447,13 @@ def main():
     # ---- Standings-based eliminations & leaderboard --------------------
     # A team is out when: it loses a knockout match (marked in the match
     # loop), it finishes 4th in a COMPLETED group, or — once ALL groups are
-    # complete — it's a third-placed team outside the best-8 cut. This is
-    # driven purely by the standings, never by which knockout fixtures the
-    # API happens to have published yet.
-    group_done = {letter: (c[1] > 0 and c[0] == c[1])
-                  for letter, c in group_counts.items()}
+    # complete — it's a third-placed team outside the best-8 cut. A group is
+    # complete when every one of its four teams has played its three games.
+    def _group_played(letter):
+        return [gstats.get(normalize(t), {}).get("played", 0)
+                for t in groups_def[letter]]
+    group_done = {letter: all(p >= 3 for p in _group_played(letter))
+                  for letter in groups_def}
     all_groups_done = len(group_done) == 12 and all(group_done.values())
 
     qualified_third_names = {normalize(t["team"]) for t in thirds
