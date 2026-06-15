@@ -376,7 +376,28 @@
       "utcDate": "2026-06-15T02:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-15T22:00:00Z",
+      "home": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": 0,
+        "fifaRank": 61
+      },
+      "away": {
+        "name": "Uruguay",
+        "owner": "Iva",
+        "goals": 0,
+        "fifaRank": 16
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -480,26 +501,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-15T22:00:00Z",
-      "home": {
-        "name": "Saudi Arabia",
-        "owner": "Charlie",
-        "goals": null,
-        "fifaRank": 61
-      },
-      "away": {
-        "name": "Uruguay",
-        "owner": "Iva",
-        "goals": null,
-        "fifaRank": 16
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -676,6 +677,26 @@
         "owner": "Charlie",
         "goals": null,
         "fifaRank": 13
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-18T16:00:00Z",
+      "home": {
+        "name": "Czechia",
+        "owner": "Nik",
+        "goals": null,
+        "fifaRank": 39
+      },
+      "away": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": null,
+        "fifaRank": 60
       },
       "penalties": false,
       "winner": null
@@ -3223,5 +3244,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T21:58:05Z"
+  "generated": "2026-06-15T22:08:08Z"
 }
