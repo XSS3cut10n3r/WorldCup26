@@ -2,7 +2,7 @@
   "leaderboard": [
     {
       "name": "Tomi",
-      "points": 2.5,
+      "points": 2.0,
       "teams": [
         {
           "name": "Germany",
@@ -16,7 +16,7 @@
         },
         {
           "name": "Bosnia and Herzegovina",
-          "points": 0.5,
+          "points": 0,
           "eliminated": false
         },
         {
@@ -224,28 +224,6 @@
       "rank": 8
     },
     {
-      "name": "Kelly",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0.5,
-          "eliminated": false
-        }
-      ],
-      "rank": 8
-    },
-    {
       "name": "Mat",
       "points": 0.5,
       "teams": [
@@ -290,6 +268,28 @@
       "rank": 8
     },
     {
+      "name": "Kelly",
+      "points": 0.0,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 12
+    },
+    {
       "name": "Ondine",
       "points": 0.0,
       "teams": [
@@ -314,7 +314,7 @@
           "eliminated": false
         }
       ],
-      "rank": 13
+      "rank": 12
     },
     {
       "name": "Tom",
@@ -336,7 +336,7 @@
           "eliminated": false
         }
       ],
-      "rank": 13
+      "rank": 12
     }
   ],
   "events": [
@@ -701,12 +701,12 @@
             "resolved": true
           },
           "away": {
-            "name": "Canada",
-            "owner": "Kelly",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group B",
-            "resolved": true
+            "resolved": false
           },
           "penalties": false,
           "winner": null
@@ -801,12 +801,12 @@
             "resolved": false
           },
           "away": {
-            "name": "Netherlands",
-            "owner": "Charlotte",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "3rd place C/D/F/G/H",
-            "resolved": true
+            "resolved": false
           },
           "penalties": false,
           "winner": null
@@ -901,8 +901,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Qatar",
-            "owner": "Iva",
+            "name": "Netherlands",
+            "owner": "Charlotte",
             "goals": null,
             "projected": true,
             "slot": "3rd place B/E/F/I/J",
@@ -993,12 +993,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "Switzerland",
-            "owner": "Mat",
+            "name": "TBD",
+            "owner": null,
             "goals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group B",
-            "resolved": true
+            "resolved": false
           },
           "away": {
             "name": "Ecuador",
@@ -1606,21 +1606,6 @@
         },
         {
           "pos": 2,
-          "team": "Canada",
-          "owner": "Kelly",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 1,
-          "gd": 0,
-          "points": 1,
-          "conduct": -2,
-          "fifaRank": 30
-        },
-        {
-          "pos": 3,
           "team": "Qatar",
           "owner": "Iva",
           "played": 1,
@@ -1635,22 +1620,37 @@
           "fifaRank": 57
         },
         {
+          "pos": 3,
+          "team": "Canada",
+          "owner": "Kelly",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -2,
+          "fifaRank": 30
+        },
+        {
           "pos": 4,
           "team": "Bosnia-Herzegovina",
           "owner": "Tomi",
-          "played": 1,
+          "played": 0,
           "won": 0,
-          "draw": 1,
+          "draw": 0,
           "lost": 0,
-          "gf": 1,
-          "ga": 1,
+          "gf": 0,
+          "ga": 0,
           "gd": 0,
-          "points": 1,
+          "points": 0,
           "conduct": -3,
           "fifaRank": 64
         }
       ],
-      "ranked": true
+      "ranked": false
     },
     {
       "group": "Group C",
@@ -2356,26 +2356,6 @@
     },
     {
       "pos": 3,
-      "team": "Qatar",
-      "owner": "Iva",
-      "played": 1,
-      "won": 0,
-      "draw": 1,
-      "lost": 0,
-      "gf": 1,
-      "ga": 1,
-      "gd": 0,
-      "points": 1,
-      "conduct": -2,
-      "fifaRank": 57,
-      "group": "Group B",
-      "ranked": true,
-      "rank": 3,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Czechia",
       "owner": "Nik",
       "played": 1,
@@ -2390,7 +2370,7 @@
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
-      "rank": 4,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     },
@@ -2410,7 +2390,7 @@
       "fifaRank": 23,
       "group": "Group E",
       "ranked": true,
-      "rank": 5,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2430,7 +2410,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 6,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     }
@@ -3223,5 +3203,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T08:06:14Z"
+  "generated": "2026-06-15T08:11:16Z"
 }
