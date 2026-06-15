@@ -380,7 +380,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-15T16:00:00Z",
       "home": {
         "name": "Spain",
@@ -3244,5 +3244,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T16:19:48Z"
+  "generated": "2026-06-15T16:55:00Z"
 }
