@@ -1,50 +1,71 @@
-name: Update scores
+name: Update scores (live loop)
 
+# Fire this by hand from the Actions tab before a block of matches. ONE run
+# keeps polling football-data.org on an interval and commits data.json whenever
+# the scores change, for up to "minutes" minutes. This does not rely on the
+# GitHub scheduled-cron queue (which is best-effort and deprioritizes
+# low-traffic repos, so runs arrive late or get skipped).
 on:
-  schedule:
-    # GitHub may start this late or skip slots entirely — that's fine,
-    # because each run loops internally for ~55 minutes, updating scores
-    # every 5 minutes. Any single run starting per hour keeps the site
-    # fresh. Offset minutes avoid the congested :00/:05/:10 grid.
-    - cron: "4-59/15 * * * *"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      minutes:
+        description: "How long to keep polling, in minutes (max 350)"
+        required: false
+        default: "240"
+      interval:
+        description: "Seconds to wait between polls"
+        required: false
+        default: "90"
 
+# Only one live loop at a time; firing it again cancels the running one and
+# takes over (handy if you want to extend or restart a window).
+concurrency:
+  group: update-scores-live
+  cancel-in-progress: true
+
+# Allow the job to push the updated data.json back to the repo.
 permissions:
   contents: write
 
-concurrency:
-  group: update-scores
-  cancel-in-progress: true   # a newly started run replaces the old loop
-
 jobs:
-  update:
+  loop:
     runs-on: ubuntu-latest
-    timeout-minutes: 70
+    timeout-minutes: 355   # backstop, safely under GitHub's 6-hour hard cap
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Update loop — fetch, commit, sleep, repeat (~55 min)
+      - name: Poll and commit on change
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          RUN_MINUTES: ${{ github.event.inputs.minutes }}
+          POLL_SECONDS: ${{ github.event.inputs.interval }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          for i in $(seq 1 11); do
-            echo "--- iteration $i of 11 ---"
-            git pull --rebase origin main || true
-            python scripts/update_scores.py
-            git add data.json
-            if git diff --staged --quiet; then
-              echo "No score changes."
+          set -u
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          mins="${RUN_MINUTES:-240}"
+          case "$mins" in (*[!0-9]*|"") mins=240 ;; esac
+          [ "$mins" -gt 350 ] && mins=350
+          poll="${POLL_SECONDS:-90}"
+          case "$poll" in (*[!0-9]*|""|0) poll=90 ;; esac
+
+          deadline=$(( $(date +%s) + mins * 60 ))
+          echo "Polling every ${poll}s until ~$(date -u -d "@$deadline" '+%H:%M:%SZ') UTC (${mins} min window)."
+
+          while [ "$(date +%s)" -lt "$deadline" ]; do
+            if python3 scripts/update_scores.py; then
+              if ! git diff --quiet -- data.json; then
+                git add data.json
+                git commit -m "Live scores: $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+                git push || { git pull --rebase --autostash && git push; }
+                echo "Pushed an update."
+              else
+                echo "$(date -u '+%H:%M:%SZ') — no change."
+              fi
             else
-              git commit -m "Update scores"
-              git push || { git pull --rebase origin main && git push; }
+              echo "Update script failed this cycle (transient API issue?); retrying next poll."
             fi
-            if [ "$i" -lt 11 ]; then sleep 300; fi
+            sleep "$poll"
           done
+          echo "Live window finished."
