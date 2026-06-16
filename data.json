@@ -28,6 +28,33 @@
       "rank": 1
     },
     {
+      "name": "Darcy",
+      "points": 2.0,
+      "teams": [
+        {
+          "name": "France",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "United States",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Tunisia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Haiti",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Paul",
       "points": 2.0,
       "teams": [
@@ -74,7 +101,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Charlie",
@@ -101,7 +128,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Sydney",
@@ -128,34 +155,7 @@
           "eliminated": false
         }
       ],
-      "rank": 3
-    },
-    {
-      "name": "Darcy",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "France",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "United States",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Tunisia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Haiti",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 6
+      "rank": 4
     },
     {
       "name": "Iva",
@@ -177,7 +177,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Nik",
@@ -199,7 +199,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Pete",
@@ -221,7 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Charlotte",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Darcy",
+      "team": "France",
+      "points": 1,
+      "label": "France won (Group stage)",
+      "utcDate": "2026-06-16T19:00:00Z"
+    },
+    {
       "owner": "Tomi",
       "team": "New Zealand",
       "points": 0.5,
@@ -367,20 +374,14 @@
       "points": 0.5,
       "label": "Saudi Arabia drew (Group stage)",
       "utcDate": "2026-06-15T22:00:00Z"
-    },
-    {
-      "owner": "Tom",
-      "team": "Egypt",
-      "points": 0.5,
-      "label": "Egypt drew (Group stage)",
-      "utcDate": "2026-06-15T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-16T19:00:00Z",
       "home": {
         "name": "France",
@@ -396,9 +397,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -478,26 +477,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-15T02:00:00Z",
-      "home": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": 5,
-        "fifaRank": 38
-      },
-      "away": {
-        "name": "Tunisia",
-        "owner": "Darcy",
-        "goals": 1,
-        "fifaRank": 46
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -2076,34 +2055,19 @@
           "pos": 1,
           "team": "France",
           "owner": "Darcy",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gf": 3,
+          "ga": 1,
+          "gd": 2,
+          "points": 3,
           "conduct": 0,
           "fifaRank": 3
         },
         {
           "pos": 2,
-          "team": "Senegal",
-          "owner": "Ondine",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 15
-        },
-        {
-          "pos": 3,
           "team": "Norway",
           "owner": "Charlotte",
           "played": 0,
@@ -2118,7 +2082,7 @@
           "fifaRank": 31
         },
         {
-          "pos": 4,
+          "pos": 3,
           "team": "Iraq",
           "owner": "Agatha",
           "played": 0,
@@ -2131,6 +2095,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 56
+        },
+        {
+          "pos": 4,
+          "team": "Senegal",
+          "owner": "Ondine",
+          "played": 1,
+          "won": 0,
+          "draw": 0,
+          "lost": 1,
+          "gf": 1,
+          "ga": 3,
+          "gd": -2,
+          "points": 0,
+          "conduct": 0,
+          "fifaRank": 15
         }
       ],
       "ranked": false
@@ -3284,5 +3263,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-16T21:10:12Z"
+  "generated": "2026-06-16T21:11:44Z"
 }
