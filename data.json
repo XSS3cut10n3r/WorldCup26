@@ -376,7 +376,28 @@
       "utcDate": "2026-06-15T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-16T19:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 0,
+        "fifaRank": 3
+      },
+      "away": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": 0,
+        "fifaRank": 15
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -480,26 +501,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-16T19:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Senegal",
-        "owner": "Ondine",
-        "goals": null,
-        "fifaRank": 15
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -676,6 +677,26 @@
         "owner": "Tomi",
         "goals": null,
         "fifaRank": 64
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-18T22:00:00Z",
+      "home": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": null,
+        "fifaRank": 30
+      },
+      "away": {
+        "name": "Qatar",
+        "owner": "Iva",
+        "goals": null,
+        "fifaRank": 57
       },
       "penalties": false,
       "winner": null
@@ -3263,5 +3284,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-16T18:48:58Z"
+  "generated": "2026-06-16T19:16:23Z"
 }
