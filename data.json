@@ -77,6 +77,33 @@
       "rank": 3
     },
     {
+      "name": "Charlie",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Colombia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "South Korea",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Saudi Arabia",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Jordan",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 3
+    },
+    {
       "name": "Sydney",
       "points": 1.5,
       "teams": [
@@ -104,33 +131,6 @@
       "rank": 3
     },
     {
-      "name": "Charlie",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "Colombia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "South Korea",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Saudi Arabia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Jordan",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 5
-    },
-    {
       "name": "Darcy",
       "points": 1.0,
       "teams": [
@@ -155,7 +155,29 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
+    },
+    {
+      "name": "Iva",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "Uruguay",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Türkiye",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Qatar",
+          "points": 0.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 6
     },
     {
       "name": "Nik",
@@ -177,7 +199,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Pete",
@@ -199,7 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -221,29 +243,7 @@
           "eliminated": false
         }
       ],
-      "rank": 9
-    },
-    {
-      "name": "Iva",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Uruguay",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Türkiye",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Qatar",
-          "points": 0.5,
-          "eliminated": false
-        }
-      ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Kelly",
@@ -265,7 +265,7 @@
           "eliminated": false
         }
       ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Mat",
@@ -287,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Tom",
@@ -309,7 +309,7 @@
           "eliminated": false
         }
       ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Ondine",
@@ -341,6 +341,20 @@
   ],
   "events": [
     {
+      "owner": "Iva",
+      "team": "Uruguay",
+      "points": 0.5,
+      "label": "Uruguay drew (Group stage)",
+      "utcDate": "2026-06-15T22:00:00Z"
+    },
+    {
+      "owner": "Charlie",
+      "team": "Saudi Arabia",
+      "points": 0.5,
+      "label": "Saudi Arabia drew (Group stage)",
+      "utcDate": "2026-06-15T22:00:00Z"
+    },
+    {
       "owner": "Tom",
       "team": "Egypt",
       "points": 0.5,
@@ -360,27 +374,14 @@
       "points": 0.5,
       "label": "Cabo Verde drew (Group stage)",
       "utcDate": "2026-06-15T16:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Spain",
-      "points": 0.5,
-      "label": "Spain drew (Group stage)",
-      "utcDate": "2026-06-15T16:00:00Z"
-    },
-    {
-      "owner": "Tomi",
-      "team": "Sweden",
-      "points": 1,
-      "label": "Sweden won (Group stage)",
-      "utcDate": "2026-06-15T02:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-15T22:00:00Z",
       "home": {
         "name": "Saudi Arabia",
@@ -396,9 +397,7 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -478,26 +477,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-14T20:00:00Z",
-      "home": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": 2,
-        "fifaRank": 8
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": 2,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -897,12 +876,12 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Spain",
+            "owner": "Pete",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "3rd place E/H/I/J/K",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -989,12 +968,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-02T23:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Uruguay",
+            "owner": "Iva",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group H",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -1047,12 +1026,12 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Saudi Arabia",
+            "owner": "Charlie",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group H",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -2008,6 +1987,36 @@
       "table": [
         {
           "pos": 1,
+          "team": "Uruguay",
+          "owner": "Iva",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": 0,
+          "fifaRank": 16
+        },
+        {
+          "pos": 2,
+          "team": "Saudi Arabia",
+          "owner": "Charlie",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": 0,
+          "fifaRank": 61
+        },
+        {
+          "pos": 3,
           "team": "Spain",
           "owner": "Pete",
           "played": 1,
@@ -2022,7 +2031,7 @@
           "fifaRank": 2
         },
         {
-          "pos": 2,
+          "pos": 4,
           "team": "Cabo Verde",
           "owner": "Paul",
           "played": 1,
@@ -2035,39 +2044,9 @@
           "points": 1,
           "conduct": -1,
           "fifaRank": 67
-        },
-        {
-          "pos": 3,
-          "team": "Uruguay",
-          "owner": "Iva",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 16
-        },
-        {
-          "pos": 4,
-          "team": "Saudi Arabia",
-          "owner": "Charlie",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 61
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group I",
@@ -2397,6 +2376,26 @@
     },
     {
       "pos": 3,
+      "team": "Spain",
+      "owner": "Pete",
+      "played": 1,
+      "won": 0,
+      "draw": 1,
+      "lost": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "points": 1,
+      "conduct": -1,
+      "fifaRank": 2,
+      "group": "Group H",
+      "ranked": true,
+      "rank": 4,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Czechia",
       "owner": "Nik",
       "played": 1,
@@ -2411,7 +2410,7 @@
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2431,7 +2430,7 @@
       "fifaRank": 23,
       "group": "Group E",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2451,7 +2450,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     }
@@ -3244,5 +3243,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-15T23:55:55Z"
+  "generated": "2026-06-16T00:10:59Z"
 }
