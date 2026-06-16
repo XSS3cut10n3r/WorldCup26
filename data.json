@@ -1972,21 +1972,6 @@
         },
         {
           "pos": 3,
-          "team": "Iran",
-          "owner": "Ondine",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 21
-        },
-        {
-          "pos": 4,
           "team": "New Zealand",
           "owner": "Tomi",
           "played": 0,
@@ -1999,6 +1984,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 85
+        },
+        {
+          "pos": 4,
+          "team": "Iran",
+          "owner": "Ondine",
+          "played": 0,
+          "won": 0,
+          "draw": 0,
+          "lost": 0,
+          "gf": 0,
+          "ga": 0,
+          "gd": 0,
+          "points": 0,
+          "conduct": -1,
+          "fifaRank": 21
         }
       ],
       "ranked": false
@@ -2609,16 +2609,6 @@
         "rank": 1
       },
       {
-        "team": "Iran",
-        "owner": "Ondine",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Iraq",
         "owner": "Agatha",
         "yellow": 0,
@@ -2756,7 +2746,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Ecuador",
@@ -2766,7 +2756,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Haiti",
@@ -2776,7 +2766,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
+      },
+      {
+        "team": "Iran",
+        "owner": "Ondine",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 27
       },
       {
         "team": "South Korea",
@@ -2786,7 +2786,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Spain",
@@ -2796,7 +2796,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Switzerland",
@@ -2806,7 +2806,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Tunisia",
@@ -2816,7 +2816,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Türkiye",
@@ -2826,7 +2826,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "United States",
@@ -2836,7 +2836,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Belgium",
@@ -3209,6 +3209,29 @@
         "rank": 11
       },
       {
+        "name": "Ondine",
+        "score": -1,
+        "teams": [
+          {
+            "name": "Senegal",
+            "score": 0
+          },
+          {
+            "name": "Iran",
+            "score": -1
+          },
+          {
+            "name": "Uzbekistan",
+            "score": 0
+          },
+          {
+            "name": "Curaçao",
+            "score": 0
+          }
+        ],
+        "rank": 11
+      },
+      {
         "name": "Agatha",
         "score": 0,
         "teams": [
@@ -3225,30 +3248,7 @@
             "score": 0
           }
         ],
-        "rank": 13
-      },
-      {
-        "name": "Ondine",
-        "score": 0,
-        "teams": [
-          {
-            "name": "Senegal",
-            "score": 0
-          },
-          {
-            "name": "Iran",
-            "score": 0
-          },
-          {
-            "name": "Uzbekistan",
-            "score": 0
-          },
-          {
-            "name": "Curaçao",
-            "score": 0
-          }
-        ],
-        "rank": 13
+        "rank": 14
       }
     ],
     "hasData": true
@@ -3264,5 +3264,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-16T02:40:38Z"
+  "generated": "2026-06-16T02:58:03Z"
 }
