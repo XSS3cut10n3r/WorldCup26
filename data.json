@@ -376,7 +376,28 @@
       "utcDate": "2026-06-15T22:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-16T22:00:00Z",
+      "home": {
+        "name": "Iraq",
+        "owner": "Agatha",
+        "goals": 0,
+        "fifaRank": 56
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 0,
+        "fifaRank": 31
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -480,26 +501,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-16T22:00:00Z",
-      "home": {
-        "name": "Iraq",
-        "owner": "Agatha",
-        "goals": null,
-        "fifaRank": 56
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -676,6 +677,26 @@
         "owner": "Iva",
         "goals": null,
         "fifaRank": 57
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-19T01:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": null,
+        "fifaRank": 14
+      },
+      "away": {
+        "name": "South Korea",
+        "owner": "Charlie",
+        "goals": null,
+        "fifaRank": 25
       },
       "penalties": false,
       "winner": null
@@ -3263,5 +3284,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-16T21:40:33Z"
+  "generated": "2026-06-16T22:06:18Z"
 }
