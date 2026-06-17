@@ -2,7 +2,7 @@
   "leaderboard": [
     {
       "name": "Tomi",
-      "points": 2.5,
+      "points": 3.0,
       "teams": [
         {
           "name": "Germany",
@@ -16,7 +16,7 @@
         },
         {
           "name": "Bosnia and Herzegovina",
-          "points": 0,
+          "points": 0.5,
           "eliminated": false
         },
         {
@@ -246,6 +246,28 @@
       "rank": 8
     },
     {
+      "name": "Kelly",
+      "points": 0.5,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 0.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 11
+    },
+    {
       "name": "Mat",
       "points": 0.5,
       "teams": [
@@ -315,28 +337,6 @@
         }
       ],
       "rank": 11
-    },
-    {
-      "name": "Kelly",
-      "points": 0.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 14
     }
   ],
   "events": [
@@ -722,12 +722,12 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Canada",
+            "owner": "Kelly",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group B",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -922,8 +922,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Ecuador",
-            "owner": "Sydney",
+            "name": "Qatar",
+            "owner": "Iva",
             "goals": null,
             "projected": true,
             "slot": "3rd place B/E/F/I/J",
@@ -1014,12 +1014,12 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Switzerland",
+            "owner": "Mat",
             "goals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group B",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Belgium",
@@ -1072,8 +1072,8 @@
             "resolved": false
           },
           "away": {
-            "name": "Türkiye",
-            "owner": "Iva",
+            "name": "Ecuador",
+            "owner": "Sydney",
             "goals": null,
             "projected": true,
             "slot": "3rd place D/E/I/J/L",
@@ -1627,6 +1627,21 @@
         },
         {
           "pos": 2,
+          "team": "Canada",
+          "owner": "Kelly",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": -2,
+          "fifaRank": 30
+        },
+        {
+          "pos": 3,
           "team": "Qatar",
           "owner": "Iva",
           "played": 1,
@@ -1641,37 +1656,22 @@
           "fifaRank": 57
         },
         {
-          "pos": 3,
-          "team": "Canada",
-          "owner": "Kelly",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -2,
-          "fifaRank": 30
-        },
-        {
           "pos": 4,
           "team": "Bosnia and Herzegovina",
           "owner": "Tomi",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
+          "gf": 1,
+          "ga": 1,
           "gd": 0,
-          "points": 0,
+          "points": 1,
           "conduct": -3,
           "fifaRank": 64
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group C",
@@ -2397,6 +2397,26 @@
     },
     {
       "pos": 3,
+      "team": "Qatar",
+      "owner": "Iva",
+      "played": 1,
+      "won": 0,
+      "draw": 1,
+      "lost": 0,
+      "gf": 1,
+      "ga": 1,
+      "gd": 0,
+      "points": 1,
+      "conduct": -2,
+      "fifaRank": 57,
+      "group": "Group B",
+      "ranked": true,
+      "rank": 4,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Spain",
       "owner": "Pete",
       "played": 1,
@@ -2411,7 +2431,7 @@
       "fifaRank": 2,
       "group": "Group H",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2431,7 +2451,7 @@
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2451,7 +2471,7 @@
       "fifaRank": 23,
       "group": "Group E",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2471,7 +2491,7 @@
       "fifaRank": 15,
       "group": "Group I",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2491,8 +2511,8 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     }
   ],
@@ -3284,5 +3304,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-17T01:39:17Z"
+  "generated": "2026-06-17T01:40:49Z"
 }
