@@ -175,6 +175,28 @@
       "rank": 5
     },
     {
+      "name": "Kelly",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 0.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 5
+    },
+    {
       "name": "Sydney",
       "points": 1.5,
       "teams": [
@@ -221,7 +243,7 @@
           "eliminated": false
         }
       ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Pete",
@@ -243,29 +265,7 @@
           "eliminated": false
         }
       ],
-      "rank": 9
-    },
-    {
-      "name": "Kelly",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0.5,
-          "eliminated": false
-        }
-      ],
-      "rank": 11
+      "rank": 10
     },
     {
       "name": "Mat",
@@ -287,7 +287,7 @@
           "eliminated": false
         }
       ],
-      "rank": 11
+      "rank": 12
     },
     {
       "name": "Ondine",
@@ -314,7 +314,7 @@
           "eliminated": false
         }
       ],
-      "rank": 11
+      "rank": 12
     },
     {
       "name": "Tom",
@@ -336,10 +336,17 @@
           "eliminated": false
         }
       ],
-      "rank": 11
+      "rank": 12
     }
   ],
   "events": [
+    {
+      "owner": "Kelly",
+      "team": "Austria",
+      "points": 1,
+      "label": "Austria won (Group stage)",
+      "utcDate": "2026-06-17T04:00:00Z"
+    },
     {
       "owner": "Nik",
       "team": "Argentina",
@@ -367,38 +374,32 @@
       "points": 0.5,
       "label": "New Zealand drew (Group stage)",
       "utcDate": "2026-06-16T01:00:00Z"
-    },
-    {
-      "owner": "Ondine",
-      "team": "Iran",
-      "points": 0.5,
-      "label": "Iran drew (Group stage)",
-      "utcDate": "2026-06-16T01:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-17T04:00:00Z",
       "home": {
         "name": "Austria",
         "owner": "Kelly",
-        "goals": 2,
+        "goals": 3,
+        "penGoals": null,
         "fifaRank": 24
       },
       "away": {
         "name": "Jordan",
         "owner": "Charlie",
         "goals": 1,
+        "penGoals": null,
         "fifaRank": 63
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -408,12 +409,14 @@
         "name": "Argentina",
         "owner": "Nik",
         "goals": 3,
+        "penGoals": null,
         "fifaRank": 1
       },
       "away": {
         "name": "Algeria",
         "owner": "Mat",
         "goals": 0,
+        "penGoals": null,
         "fifaRank": 28
       },
       "penalties": false,
@@ -428,12 +431,14 @@
         "name": "Iraq",
         "owner": "Agatha",
         "goals": 1,
+        "penGoals": null,
         "fifaRank": 56
       },
       "away": {
         "name": "Norway",
         "owner": "Charlotte",
         "goals": 4,
+        "penGoals": null,
         "fifaRank": 31
       },
       "penalties": false,
@@ -448,12 +453,14 @@
         "name": "France",
         "owner": "Darcy",
         "goals": 3,
+        "penGoals": null,
         "fifaRank": 3
       },
       "away": {
         "name": "Senegal",
         "owner": "Ondine",
         "goals": 1,
+        "penGoals": null,
         "fifaRank": 15
       },
       "penalties": false,
@@ -468,33 +475,15 @@
         "name": "Iran",
         "owner": "Ondine",
         "goals": 2,
+        "penGoals": null,
         "fifaRank": 21
       },
       "away": {
         "name": "New Zealand",
         "owner": "Tomi",
         "goals": 2,
+        "penGoals": null,
         "fifaRank": 85
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-15T22:00:00Z",
-      "home": {
-        "name": "Saudi Arabia",
-        "owner": "Charlie",
-        "goals": 1,
-        "fifaRank": 61
-      },
-      "away": {
-        "name": "Uruguay",
-        "owner": "Iva",
-        "goals": 1,
-        "fifaRank": 16
       },
       "penalties": false,
       "winner": "DRAW"
@@ -510,12 +499,14 @@
         "name": "Portugal",
         "owner": "Kelly",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 5
       },
       "away": {
         "name": "Congo DR",
         "owner": "Tom",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 45
       },
       "penalties": false,
@@ -530,12 +521,14 @@
         "name": "England",
         "owner": "Mat",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 4
       },
       "away": {
         "name": "Croatia",
         "owner": "Tom",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 11
       },
       "penalties": false,
@@ -550,12 +543,14 @@
         "name": "Ghana",
         "owner": "Charlotte",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 73
       },
       "away": {
         "name": "Panama",
         "owner": "Paul",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 34
       },
       "penalties": false,
@@ -570,12 +565,14 @@
         "name": "Uzbekistan",
         "owner": "Ondine",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 50
       },
       "away": {
         "name": "Colombia",
         "owner": "Charlie",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 13
       },
       "penalties": false,
@@ -590,12 +587,14 @@
         "name": "Czechia",
         "owner": "Nik",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 39
       },
       "away": {
         "name": "South Africa",
         "owner": "Sydney",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 60
       },
       "penalties": false,
@@ -610,12 +609,14 @@
         "name": "Switzerland",
         "owner": "Mat",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 19
       },
       "away": {
         "name": "Bosnia-Herzegovina",
         "owner": "Tomi",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 64
       },
       "penalties": false,
@@ -630,12 +631,14 @@
         "name": "Canada",
         "owner": "Kelly",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 30
       },
       "away": {
         "name": "Qatar",
         "owner": "Iva",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 57
       },
       "penalties": false,
@@ -650,12 +653,14 @@
         "name": "Mexico",
         "owner": "Nik",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 14
       },
       "away": {
         "name": "South Korea",
         "owner": "Charlie",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 25
       },
       "penalties": false,
@@ -670,12 +675,14 @@
         "name": "United States",
         "owner": "Darcy",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 17
       },
       "away": {
         "name": "Australia",
         "owner": "Agatha",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 27
       },
       "penalties": false,
@@ -690,12 +697,14 @@
         "name": "Scotland",
         "owner": "Sydney",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 42
       },
       "away": {
         "name": "Morocco",
         "owner": "Agatha",
         "goals": null,
+        "penGoals": null,
         "fifaRank": 7
       },
       "penalties": false,
@@ -717,6 +726,7 @@
             "name": "South Korea",
             "owner": "Charlie",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group A",
             "resolved": true
@@ -725,6 +735,7 @@
             "name": "Canada",
             "owner": "Kelly",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group B",
             "resolved": true
@@ -742,6 +753,7 @@
             "name": "Germany",
             "owner": "Tomi",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group E",
             "resolved": true
@@ -750,6 +762,7 @@
             "name": "Brazil",
             "owner": "Sydney",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place A/B/C/D/F",
             "resolved": true
@@ -767,6 +780,7 @@
             "name": "Sweden",
             "owner": "Tomi",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group F",
             "resolved": true
@@ -775,6 +789,7 @@
             "name": "Morocco",
             "owner": "Agatha",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group C",
             "resolved": true
@@ -792,6 +807,7 @@
             "name": "Scotland",
             "owner": "Sydney",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group C",
             "resolved": true
@@ -800,6 +816,7 @@
             "name": "Japan",
             "owner": "Pete",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group F",
             "resolved": true
@@ -817,6 +834,7 @@
             "name": "Norway",
             "owner": "Charlotte",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group I",
             "resolved": true
@@ -825,6 +843,7 @@
             "name": "Netherlands",
             "owner": "Charlotte",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place C/D/F/G/H",
             "resolved": true
@@ -842,6 +861,7 @@
             "name": "Côte d'Ivoire",
             "owner": "Paul",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group E",
             "resolved": true
@@ -850,6 +870,7 @@
             "name": "France",
             "owner": "Darcy",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group I",
             "resolved": true
@@ -867,6 +888,7 @@
             "name": "Mexico",
             "owner": "Nik",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group A",
             "resolved": true
@@ -875,6 +897,7 @@
             "name": "Spain",
             "owner": "Pete",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place C/E/F/H/I",
             "resolved": true
@@ -892,6 +915,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner Group L",
             "resolved": false
@@ -900,6 +924,7 @@
             "name": "Senegal",
             "owner": "Ondine",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place E/H/I/J/K",
             "resolved": true
@@ -917,6 +942,7 @@
             "name": "United States",
             "owner": "Darcy",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group D",
             "resolved": true
@@ -925,6 +951,7 @@
             "name": "Qatar",
             "owner": "Iva",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place B/E/F/I/J",
             "resolved": true
@@ -942,6 +969,7 @@
             "name": "New Zealand",
             "owner": "Tomi",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group G",
             "resolved": true
@@ -950,6 +978,7 @@
             "name": "Czechia",
             "owner": "Nik",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place A/E/H/I/J",
             "resolved": true
@@ -967,6 +996,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group K",
             "resolved": false
@@ -975,6 +1005,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group L",
             "resolved": false
@@ -992,17 +1023,19 @@
             "name": "Uruguay",
             "owner": "Iva",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group H",
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Austria",
+            "owner": "Kelly",
             "goals": null,
-            "projected": false,
+            "penGoals": null,
+            "projected": true,
             "slot": "Runner-up Group J",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -1017,6 +1050,7 @@
             "name": "Switzerland",
             "owner": "Mat",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Winner Group B",
             "resolved": true
@@ -1025,6 +1059,7 @@
             "name": "Belgium",
             "owner": "Paul",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place E/F/G/I/J",
             "resolved": true
@@ -1039,17 +1074,19 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T18:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Argentina",
+            "owner": "Nik",
             "goals": null,
-            "projected": false,
+            "penGoals": null,
+            "projected": true,
             "slot": "Winner Group J",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Saudi Arabia",
             "owner": "Charlie",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group H",
             "resolved": true
@@ -1067,6 +1104,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner Group K",
             "resolved": false
@@ -1075,6 +1113,7 @@
             "name": "Ecuador",
             "owner": "Sydney",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "3rd place D/E/I/J/L",
             "resolved": true
@@ -1092,6 +1131,7 @@
             "name": "Australia",
             "owner": "Agatha",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group D",
             "resolved": true
@@ -1100,6 +1140,7 @@
             "name": "Iran",
             "owner": "Ondine",
             "goals": null,
+            "penGoals": null,
             "projected": true,
             "slot": "Runner-up Group G",
             "resolved": true
@@ -1123,6 +1164,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 74",
             "resolved": false
@@ -1131,6 +1173,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 77",
             "resolved": false
@@ -1148,6 +1191,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 73",
             "resolved": false
@@ -1156,6 +1200,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 75",
             "resolved": false
@@ -1173,6 +1218,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 76",
             "resolved": false
@@ -1181,6 +1227,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 78",
             "resolved": false
@@ -1198,6 +1245,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 79",
             "resolved": false
@@ -1206,6 +1254,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 80",
             "resolved": false
@@ -1223,6 +1272,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 83",
             "resolved": false
@@ -1231,6 +1281,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 84",
             "resolved": false
@@ -1248,6 +1299,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 81",
             "resolved": false
@@ -1256,6 +1308,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 82",
             "resolved": false
@@ -1273,6 +1326,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 86",
             "resolved": false
@@ -1281,6 +1335,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 88",
             "resolved": false
@@ -1298,6 +1353,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 85",
             "resolved": false
@@ -1306,6 +1362,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 87",
             "resolved": false
@@ -1329,6 +1386,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 89",
             "resolved": false
@@ -1337,6 +1395,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 90",
             "resolved": false
@@ -1354,6 +1413,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 93",
             "resolved": false
@@ -1362,6 +1422,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 94",
             "resolved": false
@@ -1379,6 +1440,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 91",
             "resolved": false
@@ -1387,6 +1449,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 92",
             "resolved": false
@@ -1404,6 +1467,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 95",
             "resolved": false
@@ -1412,6 +1476,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 96",
             "resolved": false
@@ -1435,6 +1500,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 97",
             "resolved": false
@@ -1443,6 +1509,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 98",
             "resolved": false
@@ -1460,6 +1527,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 99",
             "resolved": false
@@ -1468,6 +1536,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 100",
             "resolved": false
@@ -1491,6 +1560,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 101",
             "resolved": false
@@ -1499,6 +1569,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Winner match 102",
             "resolved": false
@@ -1522,6 +1593,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Loser match 101",
             "resolved": false
@@ -1530,6 +1602,7 @@
             "name": "TBD",
             "owner": null,
             "goals": null,
+            "penGoals": null,
             "projected": false,
             "slot": "Loser match 102",
             "resolved": false
@@ -2157,14 +2230,14 @@
           "pos": 2,
           "team": "Austria",
           "owner": "Kelly",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gf": 3,
+          "ga": 1,
+          "gd": 2,
+          "points": 3,
           "conduct": 0,
           "fifaRank": 24
         },
@@ -2172,13 +2245,13 @@
           "pos": 3,
           "team": "Jordan",
           "owner": "Charlie",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "lost": 1,
+          "gf": 1,
+          "ga": 3,
+          "gd": -2,
           "points": 0,
           "conduct": 0,
           "fifaRank": 63
@@ -2199,7 +2272,7 @@
           "fifaRank": 28
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group K",
@@ -2497,6 +2570,26 @@
     },
     {
       "pos": 3,
+      "team": "Jordan",
+      "owner": "Charlie",
+      "played": 1,
+      "won": 0,
+      "draw": 0,
+      "lost": 1,
+      "gf": 1,
+      "ga": 3,
+      "gd": -2,
+      "points": 0,
+      "conduct": 0,
+      "fifaRank": 63,
+      "group": "Group J",
+      "ranked": true,
+      "rank": 9,
+      "qualifies": false,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Türkiye",
       "owner": "Iva",
       "played": 1,
@@ -2511,7 +2604,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 9,
+      "rank": 10,
       "qualifies": false,
       "manualTie": false
     }
@@ -3304,5 +3397,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-17T06:04:25Z"
+  "generated": "2026-06-17T06:53:30Z"
 }
