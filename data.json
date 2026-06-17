@@ -2,7 +2,7 @@
   "leaderboard": [
     {
       "name": "Tomi",
-      "points": 2.5,
+      "points": 3.0,
       "teams": [
         {
           "name": "Germany",
@@ -16,7 +16,7 @@
         },
         {
           "name": "Bosnia and Herzegovina",
-          "points": 0,
+          "points": 0.5,
           "eliminated": false
         },
         {
@@ -49,6 +49,28 @@
         {
           "name": "Haiti",
           "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "name": "Kelly",
+      "points": 2.0,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 0.5,
           "eliminated": false
         }
       ],
@@ -123,7 +145,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlie",
@@ -150,7 +172,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -172,29 +194,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
-    },
-    {
-      "name": "Kelly",
-      "points": 1.5,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Sydney",
@@ -221,7 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Iva",
@@ -755,13 +755,13 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Canada",
+            "owner": "Kelly",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group B",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -971,8 +971,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Jordan",
-            "owner": "Charlie",
+            "name": "Qatar",
+            "owner": "Iva",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1070,13 +1070,13 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Switzerland",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group B",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Belgium",
@@ -1723,6 +1723,21 @@
         },
         {
           "pos": 2,
+          "team": "Canada",
+          "owner": "Kelly",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": -2,
+          "fifaRank": 30
+        },
+        {
+          "pos": 3,
           "team": "Qatar",
           "owner": "Iva",
           "played": 1,
@@ -1737,37 +1752,22 @@
           "fifaRank": 57
         },
         {
-          "pos": 3,
-          "team": "Canada",
-          "owner": "Kelly",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": -2,
-          "fifaRank": 30
-        },
-        {
           "pos": 4,
           "team": "Bosnia and Herzegovina",
           "owner": "Tomi",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
+          "gf": 1,
+          "ga": 1,
           "gd": 0,
-          "points": 0,
+          "points": 1,
           "conduct": -3,
           "fifaRank": 64
         }
       ],
-      "ranked": false
+      "ranked": true
     },
     {
       "group": "Group C",
@@ -2493,6 +2493,26 @@
     },
     {
       "pos": 3,
+      "team": "Qatar",
+      "owner": "Iva",
+      "played": 1,
+      "won": 0,
+      "draw": 1,
+      "lost": 0,
+      "gf": 1,
+      "ga": 1,
+      "gd": 0,
+      "points": 1,
+      "conduct": -2,
+      "fifaRank": 57,
+      "group": "Group B",
+      "ranked": true,
+      "rank": 4,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Spain",
       "owner": "Pete",
       "played": 1,
@@ -2507,7 +2527,7 @@
       "fifaRank": 2,
       "group": "Group H",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2527,7 +2547,7 @@
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2547,7 +2567,7 @@
       "fifaRank": 23,
       "group": "Group E",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2567,7 +2587,7 @@
       "fifaRank": 15,
       "group": "Group I",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2587,8 +2607,8 @@
       "fifaRank": 63,
       "group": "Group J",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     },
     {
@@ -2607,7 +2627,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 9,
+      "rank": 10,
       "qualifies": false,
       "manualTie": false
     }
@@ -3400,5 +3420,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-17T20:30:28Z"
+  "generated": "2026-06-17T20:32:02Z"
 }
