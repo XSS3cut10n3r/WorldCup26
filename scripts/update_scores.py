@@ -169,6 +169,20 @@ def main():
         status = m.get("status", "")
         score = m.get("score", {}) or {}
         full_time = score.get("fullTime", {}) or {}
+        # football-data.org reports a shootout via duration == PENALTY_SHOOTOUT
+        # and ADDS the shootout tally onto the 120' score in fullTime (e.g. a
+        # 1-1 that ends 6-5 on penalties shows fullTime 7-6, penalties 6-5). So
+        # the tied scoreline we display is fullTime minus the penalties, and the
+        # shootout score itself comes from the penalties node.
+        is_pens = (score.get("duration") == "PENALTY_SHOOTOUT")
+        pens = (score.get("penalties") or {}) if is_pens else {}
+        pen_home, pen_away = pens.get("home"), pens.get("away")
+        home_goals, away_goals = full_time.get("home"), full_time.get("away")
+        if is_pens:
+            if home_goals is not None and pen_home is not None:
+                home_goals -= pen_home
+            if away_goals is not None and pen_away is not None:
+                away_goals -= pen_away
         home, away = m.get("homeTeam", {}) or {}, m.get("awayTeam", {}) or {}
         home_hit, away_hit = match_team(home, lookup), match_team(away, lookup)
 
@@ -180,14 +194,16 @@ def main():
             "home": {
                 "name": home.get("name") or "TBD",
                 "owner": home_hit[0] if home_hit else None,
-                "goals": full_time.get("home"),
+                "goals": home_goals,
+                "penGoals": pen_home,
             },
             "away": {
                 "name": away.get("name") or "TBD",
                 "owner": away_hit[0] if away_hit else None,
-                "goals": full_time.get("away"),
+                "goals": away_goals,
+                "penGoals": pen_away,
             },
-            "penalties": (score.get("duration") == "PENALTY_SHOOTOUT"),
+            "penalties": is_pens,
             "winner": score.get("winner"),
         }
         display_matches.append(entry)
@@ -593,9 +609,10 @@ def main():
                 "winner" if code[0] == "W" else "loser")
         if r:
             return {"name": r["name"], "owner": r.get("owner"),
-                    "goals": None, "projected": bool(r.get("projected")),
+                    "goals": None, "penGoals": None,
+                    "projected": bool(r.get("projected")),
                     "slot": label, "resolved": True}
-        return {"name": "TBD", "owner": None, "goals": None,
+        return {"name": "TBD", "owner": None, "goals": None, "penGoals": None,
                 "projected": False, "slot": label, "resolved": False}
 
     def build_round(stage_code, defs):
@@ -639,8 +656,8 @@ def main():
                     fh, fa = fa, fh
                 for side, f_side in ((home, fh), (away, fa)):
                     side.update(name=f_side["name"], owner=f_side["owner"],
-                                goals=f_side["goals"], projected=False,
-                                resolved=True)
+                                goals=f_side["goals"], penGoals=f_side.get("penGoals"),
+                                projected=False, resolved=True)
                 entry["status"] = fixture["status"]
                 entry["utcDate"] = fixture["utcDate"]
                 entry["penalties"] = fixture["penalties"]
