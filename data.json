@@ -55,6 +55,28 @@
       "rank": 2
     },
     {
+      "name": "Nik",
+      "points": 2.0,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Mexico",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Czechia",
+          "points": 0,
+          "eliminated": false
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Paul",
       "points": 2.0,
       "teams": [
@@ -101,7 +123,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Charlie",
@@ -128,7 +150,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Charlotte",
@@ -150,7 +172,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Sydney",
@@ -177,7 +199,7 @@
           "eliminated": false
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Iva",
@@ -199,29 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 8
-    },
-    {
-      "name": "Nik",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Mexico",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Czechia",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 8
+      "rank": 9
     },
     {
       "name": "Pete",
@@ -243,7 +243,7 @@
           "eliminated": false
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
       "name": "Kelly",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Argentina",
+      "points": 1,
+      "label": "Argentina won (Group stage)",
+      "utcDate": "2026-06-17T01:00:00Z"
+    },
+    {
       "owner": "Charlotte",
       "team": "Norway",
       "points": 1,
@@ -367,20 +374,14 @@
       "points": 0.5,
       "label": "Iran drew (Group stage)",
       "utcDate": "2026-06-16T01:00:00Z"
-    },
-    {
-      "owner": "Iva",
-      "team": "Uruguay",
-      "points": 0.5,
-      "label": "Uruguay drew (Group stage)",
-      "utcDate": "2026-06-15T22:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-17T01:00:00Z",
       "home": {
         "name": "Argentina",
@@ -396,9 +397,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -475,26 +474,6 @@
         "owner": "Iva",
         "goals": 1,
         "fifaRank": 16
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-15T19:00:00Z",
-      "home": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": 1,
-        "fifaRank": 9
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": 1,
-        "fifaRank": 29
       },
       "penalties": false,
       "winner": "DRAW"
@@ -2142,14 +2121,14 @@
           "pos": 1,
           "team": "Argentina",
           "owner": "Nik",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
+          "gf": 3,
           "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gd": 3,
+          "points": 3,
           "conduct": 0,
           "fifaRank": 1
         },
@@ -2170,21 +2149,6 @@
         },
         {
           "pos": 3,
-          "team": "Algeria",
-          "owner": "Mat",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 28
-        },
-        {
-          "pos": 4,
           "team": "Jordan",
           "owner": "Charlie",
           "played": 0,
@@ -2197,6 +2161,21 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 63
+        },
+        {
+          "pos": 4,
+          "team": "Algeria",
+          "owner": "Mat",
+          "played": 1,
+          "won": 0,
+          "draw": 0,
+          "lost": 1,
+          "gf": 0,
+          "ga": 3,
+          "gd": -3,
+          "points": 0,
+          "conduct": 0,
+          "fifaRank": 28
         }
       ],
       "ranked": false
@@ -3304,5 +3283,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-17T02:46:09Z"
+  "generated": "2026-06-17T03:07:23Z"
 }
