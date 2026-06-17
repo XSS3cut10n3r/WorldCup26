@@ -55,6 +55,28 @@
       "rank": 2
     },
     {
+      "name": "Kelly",
+      "points": 2.0,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 0.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Nik",
       "points": 2.0,
       "teams": [
@@ -123,7 +145,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlie",
@@ -150,7 +172,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -172,29 +194,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
-    },
-    {
-      "name": "Kelly",
-      "points": 1.5,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0.5,
-          "eliminated": false
-        }
-      ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Sydney",
@@ -221,7 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Iva",
@@ -268,6 +268,28 @@
       "rank": 10
     },
     {
+      "name": "Tom",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "Croatia",
+          "points": 0,
+          "eliminated": false
+        },
+        {
+          "name": "Egypt",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "DR Congo",
+          "points": 0.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 10
+    },
+    {
       "name": "Mat",
       "points": 0.5,
       "teams": [
@@ -287,7 +309,7 @@
           "eliminated": false
         }
       ],
-      "rank": 12
+      "rank": 13
     },
     {
       "name": "Ondine",
@@ -314,32 +336,24 @@
           "eliminated": false
         }
       ],
-      "rank": 12
-    },
-    {
-      "name": "Tom",
-      "points": 0.5,
-      "teams": [
-        {
-          "name": "Croatia",
-          "points": 0,
-          "eliminated": false
-        },
-        {
-          "name": "Egypt",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "DR Congo",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 12
+      "rank": 13
     }
   ],
   "events": [
+    {
+      "owner": "Tom",
+      "team": "DR Congo",
+      "points": 0.5,
+      "label": "DR Congo drew (Group stage)",
+      "utcDate": "2026-06-17T17:00:00Z"
+    },
+    {
+      "owner": "Kelly",
+      "team": "Portugal",
+      "points": 0.5,
+      "label": "Portugal drew (Group stage)",
+      "utcDate": "2026-06-17T17:00:00Z"
+    },
     {
       "owner": "Kelly",
       "team": "Austria",
@@ -360,27 +374,14 @@
       "points": 1,
       "label": "Norway won (Group stage)",
       "utcDate": "2026-06-16T22:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "France",
-      "points": 1,
-      "label": "France won (Group stage)",
-      "utcDate": "2026-06-16T19:00:00Z"
-    },
-    {
-      "owner": "Tomi",
-      "team": "New Zealand",
-      "points": 0.5,
-      "label": "New Zealand drew (Group stage)",
-      "utcDate": "2026-06-16T01:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-17T17:00:00Z",
       "home": {
         "name": "Portugal",
@@ -398,9 +399,7 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -488,28 +487,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-16T01:00:00Z",
-      "home": {
-        "name": "Iran",
-        "owner": "Ondine",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 21
-      },
-      "away": {
-        "name": "New Zealand",
-        "owner": "Tomi",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 85
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -2304,19 +2281,34 @@
           "pos": 1,
           "team": "Portugal",
           "owner": "Kelly",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
-          "gf": 0,
-          "ga": 0,
+          "gf": 1,
+          "ga": 1,
           "gd": 0,
-          "points": 0,
+          "points": 1,
           "conduct": 0,
           "fifaRank": 5
         },
         {
           "pos": 2,
+          "team": "DR Congo",
+          "owner": "Tom",
+          "played": 1,
+          "won": 0,
+          "draw": 1,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 1,
+          "conduct": 0,
+          "fifaRank": 45
+        },
+        {
+          "pos": 3,
           "team": "Colombia",
           "owner": "Charlie",
           "played": 0,
@@ -2329,21 +2321,6 @@
           "points": 0,
           "conduct": 0,
           "fifaRank": 13
-        },
-        {
-          "pos": 3,
-          "team": "DR Congo",
-          "owner": "Tom",
-          "played": 0,
-          "won": 0,
-          "draw": 0,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 0,
-          "conduct": 0,
-          "fifaRank": 45
         },
         {
           "pos": 4,
@@ -3420,5 +3397,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-17T19:04:04Z"
+  "generated": "2026-06-17T19:05:36Z"
 }
