@@ -21,6 +21,8 @@
     --live: #FF5A45;
     --up: #57C97A;
     --held: #FF5147;
+    --ice: #6FD8EC;
+    --ink: #0B0E12;
     --display: "Oswald", sans-serif;
     --body: "Barlow", sans-serif;
   }
@@ -273,6 +275,39 @@
   .match.is-live { border-color: rgba(255,90,69,0.55); }
   .match.is-live .meta { color: var(--live); }
 
+  /* Penalty shootout — Option A pill on an icy Option B rim. A finished
+     shootout takes precedence over the gold UPSET pill (see matchCard). */
+  .match.pens {
+    position: relative;
+    margin-top: 10px;
+    border-color: var(--ice);
+    box-shadow: inset 0 0 0 1px rgba(228,248,254,0.5), 0 0 22px rgba(111,216,236,0.30);
+  }
+  .pens-badge {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 4;
+    background: var(--ice);
+    color: var(--ink);
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    padding: 2px 10px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+  .pens-badge .spot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    display: inline-block;
+  }
+
   /* Upset — lower-ranked team beat a higher-ranked one. Gold outline, a
      corner "UPSET" pill, and a slow gold shimmer sweeping across the card. */
   /* The UPSET pill pokes 10px above the card (top:-10px); add that much top
@@ -483,6 +518,7 @@
     text-overflow: ellipsis; font-size: 0.8em; }
   .bline .bsc { font-family: var(--display); font-weight: 600; font-variant-numeric: tabular-nums;
     margin-left: auto; flex: 0 0 auto; }
+  .bline .bsc .bpen { font-family: var(--body); font-weight: 600; margin-left: 1px; }
   .bline.winner .bn { color: var(--gold); }
   .bline.loser { opacity: 0.42; }
   .bline.loser .bn { text-decoration: line-through; text-decoration-color: var(--live); text-decoration-thickness: 1.5px; }
@@ -851,13 +887,23 @@
       const hr = m.home.fifaRank, ar = m.away.fifaRank;
       if (hr != null && ar != null && Math.abs(hr - ar) >= 25) held = true;
     }
+    // A finished shootout flies the PENS flag, which takes precedence over the
+    // UPSET pill (a shootout can also be an upset; PENS wins). Held only fires
+    // on draws, so it can never coincide with a shootout.
+    const pens = done && m.penalties === true;
+    const showUpset = upset && !pens;
+    // Shootout: show the penalty score in brackets, in the same .score block
+    // as the regulation scoreline (which is fullTime minus penalties).
+    const penStr = (m.penalties && m.home.penGoals != null && m.away.penGoals != null)
+      ? ` <span class="pen">(${m.home.penGoals}-${m.away.penGoals})</span>` : "";
     const mid = (live || done) && hasScore
-      ? `<div class="score">${m.home.goals}&ndash;${m.away.goals}</div>
+      ? `<div class="score">${m.home.goals}&ndash;${m.away.goals}${penStr}</div>
          <div class="meta">${live ? '<span class="live-dot"></span> Live' : (m.penalties ? "FT &middot; pens" : "FT")} &middot; ${esc(m.stage)}</div>`
       : `<div class="score" style="font-size:15px;font-weight:500;color:var(--chalk-dim)">${esc(fmtKick(m.utcDate))}</div>
          <div class="meta">${esc(m.stage)}</div>`;
-    return `<div class="match ${live ? "is-live" : ""} ${upset ? "upset" : ""} ${held ? "held" : ""}">
-      ${upset ? '<div class="upset-badge">UPSET</div>' : ""}
+    return `<div class="match ${live ? "is-live" : ""} ${pens ? "pens" : ""} ${showUpset ? "upset" : ""} ${held ? "held" : ""}">
+      ${pens ? '<div class="pens-badge"><span class="spot"></span>PENS</div>'
+             : (showUpset ? '<div class="upset-badge">UPSET</div>' : "")}
       ${held ? '<div class="held-badge">Held</div>' : ""}
       ${teamCell(m.home, "home")}
       <div class="mid">${mid}</div>
@@ -1203,8 +1249,11 @@
       const won = (m.winner === "HOME_TEAM") === (sideKey === "home");
       cls = won ? "winner" : "loser";
     }
+    // On the bracket each team is on its own line, so the shootout score sits
+    // right beside that team's regulation goals, e.g. 1(3).
+    const showPen = m.penalties && t.penGoals !== null && t.penGoals !== undefined;
     const goals = (done || live) && t.goals !== null && t.goals !== undefined
-      ? `<span class="bsc">${t.goals}</span>` : "";
+      ? `<span class="bsc">${t.goals}${showPen ? ` <span class="bpen">(${t.penGoals})</span>` : ""}</span>` : "";
     const name = t.resolved ? esc(t.name) : esc(t.slot);
     let sub = "";
     if (full) {
@@ -1220,7 +1269,7 @@
     const live = m.status === "IN_PLAY" || m.status === "PAUSED";
     const done = m.status === "FINISHED" || m.status === "AWARDED";
     const meta = live ? '<span class="live-dot"></span> Live'
-      : done ? (m.penalties ? "FT &middot; pens" : "FT")
+      : done ? (m.penalties ? "FT &middot; Pens" : "FT")
       : (m.utcDate ? esc(fmtKick(m.utcDate)) : "Date TBC");
     return `M${m.matchNo ?? ""} &middot; ${meta}`;
   }
