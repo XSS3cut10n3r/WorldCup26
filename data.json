@@ -376,28 +376,7 @@
       "utcDate": "2026-06-15T22:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-17T01:00:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": 0,
-        "fifaRank": 1
-      },
-      "away": {
-        "name": "Algeria",
-        "owner": "Mat",
-        "goals": 0,
-        "fifaRank": 28
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -501,6 +480,26 @@
     }
   ],
   "upcoming": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-17T01:00:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": null,
+        "fifaRank": 1
+      },
+      "away": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": null,
+        "fifaRank": 28
+      },
+      "penalties": false,
+      "winner": null
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -677,26 +676,6 @@
         "owner": "Charlie",
         "goals": null,
         "fifaRank": 25
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-19T19:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": null,
-        "fifaRank": 17
-      },
-      "away": {
-        "name": "Australia",
-        "owner": "Agatha",
-        "goals": null,
-        "fifaRank": 27
       },
       "penalties": false,
       "winner": null
@@ -3304,5 +3283,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-17T01:10:23Z"
+  "generated": "2026-06-17T01:13:25Z"
 }
