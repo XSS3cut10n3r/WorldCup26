@@ -1748,7 +1748,7 @@
           "ga": 5,
           "gd": -3,
           "points": 1,
-          "conduct": -5,
+          "conduct": -9,
           "fifaRank": 64
         },
         {
@@ -2563,7 +2563,7 @@
       "ga": 5,
       "gd": -3,
       "points": 1,
-      "conduct": -5,
+      "conduct": -9,
       "fifaRank": 64,
       "group": "Group B",
       "ranked": true,
@@ -3115,16 +3115,6 @@
         "rank": 41
       },
       {
-        "team": "Bosnia and Herzegovina",
-        "owner": "Tomi",
-        "yellow": 5,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -5,
-        "rank": 45
-      },
-      {
         "team": "Mexico",
         "owner": "Nik",
         "yellow": 1,
@@ -3143,6 +3133,16 @@
         "yellow_direct_red": 0,
         "score": -5,
         "rank": 45
+      },
+      {
+        "team": "Bosnia and Herzegovina",
+        "owner": "Tomi",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -9,
+        "rank": 47
       },
       {
         "team": "South Africa",
@@ -3180,6 +3180,29 @@
         "rank": 1
       },
       {
+        "name": "Tomi",
+        "score": -9,
+        "teams": [
+          {
+            "name": "Germany",
+            "score": 0
+          },
+          {
+            "name": "Sweden",
+            "score": 0
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "score": -9
+          },
+          {
+            "name": "New Zealand",
+            "score": 0
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Paul",
         "score": -8,
         "teams": [
@@ -3200,7 +3223,7 @@
             "score": -1
           }
         ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Kelly",
@@ -3219,7 +3242,7 @@
             "score": -2
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Nik",
@@ -3238,7 +3261,7 @@
             "score": -1
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Pete",
@@ -3257,30 +3280,7 @@
             "score": -5
           }
         ],
-        "rank": 3
-      },
-      {
-        "name": "Tomi",
-        "score": -5,
-        "teams": [
-          {
-            "name": "Germany",
-            "score": 0
-          },
-          {
-            "name": "Sweden",
-            "score": 0
-          },
-          {
-            "name": "Bosnia and Herzegovina",
-            "score": -5
-          },
-          {
-            "name": "New Zealand",
-            "score": 0
-          }
-        ],
-        "rank": 6
+        "rank": 4
       },
       {
         "name": "Charlotte",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:11:46Z"
+  "generated": "2026-06-18T23:12:21Z"
 }
