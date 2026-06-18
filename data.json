@@ -1763,7 +1763,7 @@
           "ga": 1,
           "gd": 0,
           "points": 1,
-          "conduct": -10,
+          "conduct": -11,
           "fifaRank": 57
         }
       ],
@@ -3137,11 +3137,11 @@
       {
         "team": "Qatar",
         "owner": "Iva",
-        "yellow": 2,
+        "yellow": 3,
         "indirect_red": 0,
         "direct_red": 2,
         "yellow_direct_red": 0,
-        "score": -10,
+        "score": -11,
         "rank": 47
       },
       {
@@ -3181,7 +3181,7 @@
       },
       {
         "name": "Iva",
-        "score": -11,
+        "score": -12,
         "teams": [
           {
             "name": "Uruguay",
@@ -3193,7 +3193,7 @@
           },
           {
             "name": "Qatar",
-            "score": -10
+            "score": -11
           }
         ],
         "rank": 2
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:20:54Z"
+  "generated": "2026-06-18T23:26:09Z"
 }
