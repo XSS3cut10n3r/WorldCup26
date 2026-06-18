@@ -1697,7 +1697,7 @@
           "ga": 2,
           "gd": -2,
           "points": 0,
-          "conduct": -10,
+          "conduct": -11,
           "fifaRank": 60
         }
       ],
@@ -3147,18 +3147,18 @@
       {
         "team": "South Africa",
         "owner": "Sydney",
-        "yellow": 2,
+        "yellow": 3,
         "indirect_red": 0,
         "direct_red": 2,
         "yellow_direct_red": 0,
-        "score": -10,
+        "score": -11,
         "rank": 48
       }
     ],
     "people": [
       {
         "name": "Sydney",
-        "score": -16,
+        "score": -17,
         "teams": [
           {
             "name": "Brazil",
@@ -3170,7 +3170,7 @@
           },
           {
             "name": "South Africa",
-            "score": -10
+            "score": -11
           },
           {
             "name": "Scotland",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T16:25:13Z"
+  "generated": "2026-06-18T16:35:37Z"
 }
