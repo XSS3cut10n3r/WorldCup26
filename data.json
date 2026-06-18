@@ -1682,7 +1682,7 @@
           "ga": 3,
           "gd": -1,
           "points": 1,
-          "conduct": 0,
+          "conduct": -1,
           "fifaRank": 39
         },
         {
@@ -2543,7 +2543,7 @@
       "ga": 3,
       "gd": -1,
       "points": 1,
-      "conduct": 0,
+      "conduct": -1,
       "fifaRank": 39,
       "group": "Group A",
       "ranked": true,
@@ -2725,16 +2725,6 @@
         "rank": 1
       },
       {
-        "team": "Czechia",
-        "owner": "Nik",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "England",
         "owner": "Mat",
         "yellow": 0,
@@ -2852,7 +2842,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Cabo Verde",
@@ -2862,7 +2852,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Colombia",
@@ -2872,7 +2862,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
+      },
+      {
+        "team": "Czechia",
+        "owner": "Nik",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 17
       },
       {
         "team": "DR Congo",
@@ -2882,7 +2882,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Ecuador",
@@ -2892,7 +2892,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Ghana",
@@ -2902,7 +2902,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Haiti",
@@ -2912,7 +2912,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Iran",
@@ -2922,7 +2922,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Iraq",
@@ -2932,7 +2932,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Saudi Arabia",
@@ -2942,7 +2942,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "South Korea",
@@ -2952,7 +2952,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Spain",
@@ -2962,7 +2962,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Switzerland",
@@ -2972,7 +2972,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Tunisia",
@@ -2982,7 +2982,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Türkiye",
@@ -2992,7 +2992,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "United States",
@@ -3002,7 +3002,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Uzbekistan",
@@ -3012,7 +3012,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Belgium",
@@ -3222,6 +3222,25 @@
         "rank": 3
       },
       {
+        "name": "Nik",
+        "score": -6,
+        "teams": [
+          {
+            "name": "Argentina",
+            "score": 0
+          },
+          {
+            "name": "Mexico",
+            "score": -5
+          },
+          {
+            "name": "Czechia",
+            "score": -1
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Pete",
         "score": -6,
         "teams": [
@@ -3239,25 +3258,6 @@
           }
         ],
         "rank": 3
-      },
-      {
-        "name": "Nik",
-        "score": -5,
-        "teams": [
-          {
-            "name": "Argentina",
-            "score": 0
-          },
-          {
-            "name": "Mexico",
-            "score": -5
-          },
-          {
-            "name": "Czechia",
-            "score": 0
-          }
-        ],
-        "rank": 5
       },
       {
         "name": "Charlotte",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:08:46Z"
+  "generated": "2026-06-18T23:09:30Z"
 }
