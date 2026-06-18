@@ -1763,7 +1763,7 @@
           "ga": 1,
           "gd": 0,
           "points": 1,
-          "conduct": -2,
+          "conduct": -10,
           "fifaRank": 57
         }
       ],
@@ -3045,16 +3045,6 @@
         "rank": 34
       },
       {
-        "team": "Qatar",
-        "owner": "Iva",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 34
-      },
-      {
         "team": "Switzerland",
         "owner": "Mat",
         "yellow": 2,
@@ -3072,7 +3062,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Côte d'Ivoire",
@@ -3082,7 +3072,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Netherlands",
@@ -3092,7 +3082,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Portugal",
@@ -3102,7 +3092,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Scotland",
@@ -3112,7 +3102,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Mexico",
@@ -3122,7 +3112,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 45
+        "rank": 44
       },
       {
         "team": "Paraguay",
@@ -3132,7 +3122,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 45
+        "rank": 44
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3142,6 +3132,16 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -9,
+        "rank": 46
+      },
+      {
+        "team": "Qatar",
+        "owner": "Iva",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 2,
+        "yellow_direct_red": 0,
+        "score": -10,
         "rank": 47
       },
       {
@@ -3180,6 +3180,25 @@
         "rank": 1
       },
       {
+        "name": "Iva",
+        "score": -11,
+        "teams": [
+          {
+            "name": "Uruguay",
+            "score": 0
+          },
+          {
+            "name": "Türkiye",
+            "score": -1
+          },
+          {
+            "name": "Qatar",
+            "score": -10
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Tomi",
         "score": -9,
         "teams": [
@@ -3200,7 +3219,7 @@
             "score": 0
           }
         ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Paul",
@@ -3223,7 +3242,7 @@
             "score": -1
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Kelly",
@@ -3242,7 +3261,7 @@
             "score": -3
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Nik",
@@ -3261,7 +3280,7 @@
             "score": -1
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Pete",
@@ -3280,7 +3299,7 @@
             "score": -5
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Charlotte",
@@ -3299,7 +3318,7 @@
             "score": -1
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Charlie",
@@ -3322,7 +3341,7 @@
             "score": 0
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Darcy",
@@ -3345,26 +3364,7 @@
             "score": -1
           }
         ],
-        "rank": 8
-      },
-      {
-        "name": "Iva",
-        "score": -3,
-        "teams": [
-          {
-            "name": "Uruguay",
-            "score": 0
-          },
-          {
-            "name": "Türkiye",
-            "score": -1
-          },
-          {
-            "name": "Qatar",
-            "score": -2
-          }
-        ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Tom",
@@ -3383,7 +3383,7 @@
             "score": -1
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Mat",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:20:16Z"
+  "generated": "2026-06-18T23:20:54Z"
 }
