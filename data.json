@@ -376,7 +376,30 @@
       "utcDate": "2026-06-17T17:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-18T16:00:00Z",
+      "home": {
+        "name": "Czechia",
+        "owner": "Nik",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 39
+      },
+      "away": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 60
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -490,28 +513,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-18T16:00:00Z",
-      "home": {
-        "name": "Czechia",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 39
-      },
-      "away": {
-        "name": "South Africa",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 60
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -706,6 +707,28 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 33
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-21T00:00:00Z",
+      "home": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 23
+      },
+      "away": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 82
       },
       "penalties": false,
       "winner": null
@@ -3437,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T11:04:07Z"
+  "generated": "2026-06-18T16:25:13Z"
 }
