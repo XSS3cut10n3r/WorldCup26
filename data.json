@@ -1748,7 +1748,7 @@
           "ga": 5,
           "gd": -3,
           "points": 1,
-          "conduct": -3,
+          "conduct": -5,
           "fifaRank": 64
         },
         {
@@ -2563,7 +2563,7 @@
       "ga": 5,
       "gd": -3,
       "points": 1,
-      "conduct": -3,
+      "conduct": -5,
       "fifaRank": 64,
       "group": "Group B",
       "ranked": true,
@@ -3075,16 +3075,6 @@
         "rank": 35
       },
       {
-        "team": "Bosnia and Herzegovina",
-        "owner": "Tomi",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 41
-      },
-      {
         "team": "Côte d'Ivoire",
         "owner": "Paul",
         "yellow": 3,
@@ -3125,6 +3115,16 @@
         "rank": 41
       },
       {
+        "team": "Bosnia and Herzegovina",
+        "owner": "Tomi",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 45
+      },
+      {
         "team": "Mexico",
         "owner": "Nik",
         "yellow": 1,
@@ -3132,7 +3132,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 46
+        "rank": 45
       },
       {
         "team": "Paraguay",
@@ -3142,7 +3142,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 46
+        "rank": 45
       },
       {
         "team": "South Africa",
@@ -3260,6 +3260,29 @@
         "rank": 3
       },
       {
+        "name": "Tomi",
+        "score": -5,
+        "teams": [
+          {
+            "name": "Germany",
+            "score": 0
+          },
+          {
+            "name": "Sweden",
+            "score": 0
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "score": -5
+          },
+          {
+            "name": "New Zealand",
+            "score": 0
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Charlotte",
         "score": -4,
         "teams": [
@@ -3276,7 +3299,7 @@
             "score": -1
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Charlie",
@@ -3299,7 +3322,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Darcy",
@@ -3322,7 +3345,7 @@
             "score": -1
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Iva",
@@ -3341,7 +3364,7 @@
             "score": -2
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Tom",
@@ -3360,30 +3383,7 @@
             "score": -1
           }
         ],
-        "rank": 7
-      },
-      {
-        "name": "Tomi",
-        "score": -3,
-        "teams": [
-          {
-            "name": "Germany",
-            "score": 0
-          },
-          {
-            "name": "Sweden",
-            "score": 0
-          },
-          {
-            "name": "Bosnia and Herzegovina",
-            "score": -3
-          },
-          {
-            "name": "New Zealand",
-            "score": 0
-          }
-        ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Ondine",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:09:30Z"
+  "generated": "2026-06-18T23:11:46Z"
 }
