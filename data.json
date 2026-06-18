@@ -376,7 +376,30 @@
       "utcDate": "2026-06-17T20:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-18T19:00:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 19
+      },
+      "away": {
+        "name": "Bosnia-Herzegovina",
+        "owner": "Tomi",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 64
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -490,28 +513,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-18T19:00:00Z",
-      "home": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 19
-      },
-      "away": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 64
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -706,6 +707,28 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 82
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-21T04:00:00Z",
+      "home": {
+        "name": "Tunisia",
+        "owner": "Darcy",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 46
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 18
       },
       "penalties": false,
       "winner": null
@@ -3437,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T19:26:54Z"
+  "generated": "2026-06-18T20:12:03Z"
 }
