@@ -6,6 +6,45 @@ A GitHub Action checks live scores every 20 minutes via the
 scoring rules, and updates the site — no server, no cost, runs by itself for
 the whole tournament.
 
+## A look at the site
+
+The leaderboard — every person's points, with their teams as chips:
+
+![The Family Cup leaderboard, showing the family standings with each person's teams](screenshots/01-leaderboard.png)
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/02-results.png" alt="Recent results feed with UPSET and HELD tags"><br>
+      <sub><b>Recent results</b> — finished games with automatic <b>UPSET</b> (a low-ranked team beats a high one) and <b>HELD</b> (a big draw against the odds) tags, plus a live points feed.</sub>
+    </td>
+    <td width="50%">
+      <img src="screenshots/03-groups.png" alt="Group tables A through F"><br>
+      <sub><b>Group tables</b> — all twelve groups, ordered by the full FIFA tiebreaker chain, with each team's owner underneath.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/04-bracket.png" alt="Projected knockout bracket"><br>
+      <sub><b>Knockout bracket</b> — projected from the live standings (italic = not yet locked), third-place slots placed by FIFA's official Annex C table.</sub>
+    </td>
+    <td width="50%">
+      <img src="screenshots/05-coming-up.png" alt="Upcoming fixtures list"><br>
+      <sub><b>Coming up</b> — the next fixtures with kickoff times, FIFA ranks, and which family member owns each side.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="screenshots/06-odds.png" alt="Odds to win the cup, per person"><br>
+      <sub><b>Odds to win</b> — live championship odds, combined per person, with each team's share and the move since the last update.</sub>
+    </td>
+    <td width="50%">
+      <img src="screenshots/07-conduct.png" alt="Worst conduct table"><br>
+      <sub><b>Worst conduct</b> — every card your teams pick up counts against you; rank 1 owns the dirtiest squad list.</sub>
+    </td>
+  </tr>
+</table>
+
 ## Scoring rules (current settings)
 
 | Result | Points |
