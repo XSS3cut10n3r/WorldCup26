@@ -28,6 +28,28 @@
       "rank": 1
     },
     {
+      "name": "Charlotte",
+      "points": 2.5,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Norway",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Ghana",
+          "points": 1,
+          "eliminated": false
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Darcy",
       "points": 2.0,
       "teams": [
@@ -52,7 +74,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Kelly",
@@ -74,7 +96,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Nik",
@@ -96,7 +118,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Paul",
@@ -123,7 +145,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Agatha",
@@ -145,7 +167,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Charlie",
@@ -172,29 +194,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
-    },
-    {
-      "name": "Charlotte",
-      "points": 1.5,
-      "teams": [
-        {
-          "name": "Netherlands",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "Norway",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Ghana",
-          "points": 0,
-          "eliminated": false
-        }
-      ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Mat",
@@ -216,7 +216,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Sydney",
@@ -243,7 +243,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Iva",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Charlotte",
+      "team": "Ghana",
+      "points": 1,
+      "label": "Ghana won (Group stage)",
+      "utcDate": "2026-06-17T23:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "England",
       "points": 1,
@@ -367,38 +374,9 @@
       "points": 1,
       "label": "Austria won (Group stage)",
       "utcDate": "2026-06-17T04:00:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Argentina",
-      "points": 1,
-      "label": "Argentina won (Group stage)",
-      "utcDate": "2026-06-17T01:00:00Z"
     }
   ],
   "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-17T23:00:00Z",
-      "home": {
-        "name": "Ghana",
-        "owner": "Charlotte",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 73
-      },
-      "away": {
-        "name": "Panama",
-        "owner": "Paul",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 34
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -423,6 +401,28 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-17T23:00:00Z",
+      "home": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 73
+      },
+      "away": {
+        "name": "Panama",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 34
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -510,28 +510,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-16T22:00:00Z",
-      "home": {
-        "name": "Iraq",
-        "owner": "Agatha",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 56
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 4,
-        "penGoals": null,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -957,17 +935,17 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-01T16:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "England",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group L",
-            "resolved": false
+            "resolved": true
           },
           "away": {
-            "name": "Senegal",
-            "owner": "Ondine",
+            "name": "Ecuador",
+            "owner": "Sydney",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1047,13 +1025,13 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Ghana",
+            "owner": "Charlotte",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group L",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -1155,8 +1133,8 @@
             "resolved": false
           },
           "away": {
-            "name": "Ecuador",
-            "owner": "Sydney",
+            "name": "Panama",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2407,14 +2385,14 @@
           "pos": 2,
           "team": "Ghana",
           "owner": "Charlotte",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "draw": 0,
           "lost": 0,
-          "gf": 0,
+          "gf": 1,
           "ga": 0,
-          "gd": 0,
-          "points": 0,
+          "gd": 1,
+          "points": 3,
           "conduct": -1,
           "fifaRank": 73
         },
@@ -2422,13 +2400,13 @@
           "pos": 3,
           "team": "Panama",
           "owner": "Paul",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "draw": 0,
-          "lost": 0,
+          "lost": 1,
           "gf": 0,
-          "ga": 0,
-          "gd": 0,
+          "ga": 1,
+          "gd": -1,
           "points": 0,
           "conduct": -2,
           "fifaRank": 34
@@ -2449,7 +2427,7 @@
           "fifaRank": 11
         }
       ],
-      "ranked": false
+      "ranked": true
     }
   ],
   "thirdPlace": [
@@ -2595,6 +2573,26 @@
     },
     {
       "pos": 3,
+      "team": "Panama",
+      "owner": "Paul",
+      "played": 1,
+      "won": 0,
+      "draw": 0,
+      "lost": 1,
+      "gf": 0,
+      "ga": 1,
+      "gd": -1,
+      "points": 0,
+      "conduct": -2,
+      "fifaRank": 34,
+      "group": "Group L",
+      "ranked": true,
+      "rank": 8,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Senegal",
       "owner": "Ondine",
       "played": 1,
@@ -2609,8 +2607,8 @@
       "fifaRank": 15,
       "group": "Group I",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     },
     {
@@ -2629,7 +2627,7 @@
       "fifaRank": 63,
       "group": "Group J",
       "ranked": true,
-      "rank": 9,
+      "rank": 10,
       "qualifies": false,
       "manualTie": false
     },
@@ -2649,7 +2647,7 @@
       "fifaRank": 22,
       "group": "Group D",
       "ranked": true,
-      "rank": 10,
+      "rank": 11,
       "qualifies": false,
       "manualTie": false
     }
@@ -3442,5 +3440,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T02:08:46Z"
+  "generated": "2026-06-18T02:10:26Z"
 }
