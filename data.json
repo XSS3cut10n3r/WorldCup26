@@ -1718,7 +1718,7 @@
           "ga": 2,
           "gd": 3,
           "points": 4,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 19
         },
         {
@@ -2965,16 +2965,6 @@
         "rank": 17
       },
       {
-        "team": "Switzerland",
-        "owner": "Mat",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 17
-      },
-      {
         "team": "Tunisia",
         "owner": "Darcy",
         "yellow": 1,
@@ -3022,7 +3012,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Brazil",
@@ -3032,7 +3022,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Canada",
@@ -3042,7 +3032,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Egypt",
@@ -3052,7 +3042,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Panama",
@@ -3062,7 +3052,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Qatar",
@@ -3072,7 +3062,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 35
+        "rank": 34
+      },
+      {
+        "team": "Switzerland",
+        "owner": "Mat",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 34
       },
       {
         "team": "Côte d'Ivoire",
@@ -3386,6 +3386,25 @@
         "rank": 8
       },
       {
+        "name": "Mat",
+        "score": -2,
+        "teams": [
+          {
+            "name": "England",
+            "score": 0
+          },
+          {
+            "name": "Switzerland",
+            "score": -2
+          },
+          {
+            "name": "Algeria",
+            "score": 0
+          }
+        ],
+        "rank": 12
+      },
+      {
         "name": "Ondine",
         "score": -2,
         "teams": [
@@ -3425,26 +3444,7 @@
             "score": -1
           }
         ],
-        "rank": 13
-      },
-      {
-        "name": "Mat",
-        "score": -1,
-        "teams": [
-          {
-            "name": "England",
-            "score": 0
-          },
-          {
-            "name": "Switzerland",
-            "score": -1
-          },
-          {
-            "name": "Algeria",
-            "score": 0
-          }
-        ],
-        "rank": 13
+        "rank": 14
       }
     ],
     "hasData": true
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:12:21Z"
+  "generated": "2026-06-18T23:13:07Z"
 }
