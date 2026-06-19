@@ -794,19 +794,6 @@
   #simbtn.on { color: var(--chalk); border-color: var(--chalk); }
   #simbtn.on:hover { background: var(--chalk); color: var(--pitch-deep); }
   #simbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-  .simbar {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    flex-wrap: wrap; margin: 0 0 14px; padding: 8px 14px;
-    border: 1px dashed var(--gold); border-radius: 10px;
-    background: rgba(232, 195, 74, 0.08); color: var(--gold);
-    font-size: 13.5px; font-weight: 500;
-  }
-  .simbar-x {
-    font: inherit; color: var(--chalk); background: transparent;
-    border: 1px solid var(--pitch-line); border-radius: 999px;
-    padding: 3px 10px; cursor: pointer;
-  }
-  .simbar-x:hover { border-color: var(--chalk); }
 
   /* "Winner clinches" pills on upcoming group games (home feed + countdown).
      Match-level lines (group/advance + the draw line) stack in a centered,
@@ -856,10 +843,134 @@
   .match .tname.through, .cd-name.through { color: var(--gold); }
   .cd-stake { display: flex; flex-direction: column; align-items: center;
     gap: 7px; margin-top: 12px; }
+
+  /* ===== Simulation ("what-if") theme ==========================================
+     A cool slate palette applied to <html> while simulating, so it's unmistakable
+     you're looking at a what-if and not the live table. The live green theme is
+     untouched — this only adds overrides under html.sim. ========================= */
+  html.sim {
+    --pitch: #3A4653;
+    --pitch-deep: #2E3A46;
+    --pitch-line: rgba(233, 237, 242, 0.22);
+    --chalk: #E9EDF2;
+    --chalk-dim: rgba(233, 237, 242, 0.62);
+    --chalk-faint: rgba(233, 237, 242, 0.35);
+    --gold: #9CB1C6;                 /* the accent becomes slate-blue in sim */
+    --ink: #181E25;
+  }
+  html.sim #simbtn { background: rgba(46, 58, 70, 0.92); }
+  /* the "See live results" exit gets a red outline + glow so it stands out */
+  html.sim #simbtn.on {
+    border-color: var(--live); color: var(--live);
+    box-shadow: 0 0 12px 2px rgba(255, 90, 69, 0.5);
+    animation: simExitGlow 1.8s ease-in-out infinite;
+  }
+  html.sim #simbtn.on:hover {
+    background: var(--live); color: #fff;
+    box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.7);
+  }
+  @keyframes simExitGlow {
+    0%, 100% { box-shadow: 0 0 9px 1px rgba(255, 90, 69, 0.40); }
+    50%      { box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.70); }
+  }
+  /* gold glows & shimmers -> white in sim */
+  html.sim .chip.clinched:not(.out) {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.5);
+  }
+  html.sim .chip.clinched:not(.out) b { color: #FFFFFF; }
+  html.sim .match.upset::after {
+    background-image: linear-gradient(100deg, transparent 32%,
+      rgba(255, 255, 255, 0.18) 50%, transparent 68%);
+  }
+  html.sim .gtable td.gteam.clinched {
+    color: #FFFFFF;
+    text-shadow: 0 0 9px rgba(255, 255, 255, 0.55), 0 0 2px rgba(255, 255, 255, 0.70);
+  }
+  /* bracket outlines + connectors white */
+  html.sim .bkt-box.on { border-color: rgba(255, 255, 255, 0.6); }
+  html.sim #bkt-hot { stroke: #FFFFFF; }
+  html.sim #bkt-base { stroke: rgba(255, 255, 255, 0.28); }
+  /* legibility on slate: brighter country names in the bracket and on the chips */
+  html.sim .bline.winner .bn { color: #FFFFFF; }
+  html.sim .bline.loser { opacity: 0.6; }
+  html.sim .chip { color: var(--chalk); }
+  /* the what-if banner: lighter-blue card, dark-blue text */
+  html.sim .updated { background: #9CB1C6; color: #2E3A46; border-color: #9CB1C6; font-weight: 600; }
+  @media (prefers-reduced-motion: reduce) { html.sim #simbtn.on { animation: none; } }
+
+  /* Custom "Play out the rest?" confirm modal (replaces the native window.confirm) */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 200; padding: 20px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(8, 12, 10, 0.62);
+    -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  }
+  .modal-backdrop[hidden] { display: none; }
+  .modal-card {
+    width: 100%; max-width: 320px; text-align: center;
+    background: var(--pitch-deep); color: var(--chalk);
+    border: 1px solid var(--gold); border-radius: 18px;
+    padding: 24px 22px 18px; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+    animation: modalPop 0.18s ease-out;
+  }
+  @keyframes modalPop { from { transform: scale(0.94); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .modal-ic {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: rgba(232, 195, 74, 0.16); color: var(--gold);
+    display: inline-flex; align-items: center; justify-content: center; margin-bottom: 14px;
+  }
+  html.sim .modal-ic { background: rgba(156, 177, 198, 0.18); }
+  .modal-card h2 {
+    font-family: var(--display); font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; font-size: 21px; margin: 0 0 10px; color: var(--chalk);
+  }
+  .modal-card p { font-size: 14px; line-height: 1.55; color: var(--chalk-dim); margin: 0 0 16px; }
+  .modal-ask {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px;
+    color: var(--chalk-dim); margin: 0 0 16px; cursor: pointer;
+    -webkit-user-select: none; user-select: none;
+  }
+  .modal-ask input { accent-color: var(--gold); width: 15px; height: 15px; cursor: pointer; }
+  .modal-btns { display: flex; gap: 9px; }
+  .modal-btn {
+    flex: 1; font-family: var(--display); font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; font-size: 13px; padding: 11px; border-radius: 999px;
+    cursor: pointer; border: 1px solid var(--pitch-line); background: transparent; color: var(--chalk);
+  }
+  .modal-btn:hover { border-color: var(--chalk); }
+  .modal-btn.go { background: var(--gold); border-color: var(--gold); color: var(--pitch-deep); }
+  .modal-btn.go:hover { filter: brightness(1.08); }
+
+  /* one-time "tap to go back" hint: a finger that taps just under the See live results button */
+  .sim-hint {
+    position: fixed; z-index: 150; pointer-events: none;
+    font-size: 34px; line-height: 1;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+    animation: simHintFade 4s ease-in-out forwards;
+  }
+  .sim-hint .move { display: inline-block; animation: simHintTap 0.9s ease-in-out infinite; }
+  @keyframes simHintFade { 0% { opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+  @keyframes simHintTap { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(9px); } }
+  @media (prefers-reduced-motion: reduce) { .sim-hint .move { animation: none; } }
 </style>
 </head>
 <body>
 <button id="simbtn" type="button" aria-label="Simulate the remaining games">Simulate</button>
+<div class="modal-backdrop" id="sim-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="sim-modal-title">
+    <div class="modal-ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M4 5l8 7-8 7V5zm9 0l8 7-8 7V5z"/></svg>
+    </div>
+    <h2 id="sim-modal-title">Play out the rest?</h2>
+    <p>We'll play every remaining match once to show a possible outcome. It's a pretend what&#8209;if. Your real standings won't change.</p>
+    <label class="modal-ask"><input type="checkbox" id="sim-dontask"> Don't ask me again</label>
+    <div class="modal-btns">
+      <button type="button" class="modal-btn" id="sim-cancel">Cancel</button>
+      <button type="button" class="modal-btn go" id="sim-go">Yes, simulate</button>
+    </div>
+  </div>
+</div>
 <div class="wrap">
 
   <header>
@@ -1204,7 +1315,7 @@
 
   function render(data) {
     if (data.simulated) {
-      updatedEl.innerHTML = "Simulated results &middot; not live";
+      updatedEl.innerHTML = "Simulated Results &middot; Not Live";
     } else if (view === "odds") {
       const ow = oddsData && oddsData.generated
         ? new Date(oddsData.generated).toLocaleString() : null;
@@ -1220,13 +1331,6 @@
                   : view === "conduct" ? renderConduct(data)
                   : view === "odds" ? renderOdds(data)
                   : renderHome(data);
-    if (data.simulated) {
-      app.insertAdjacentHTML("afterbegin",
-        '<div class="simbar">Simulated results — one random what-if. ' +
-        '<button type="button" class="simbar-x" id="simexit">Back to live</button></div>');
-      const x = document.getElementById("simexit");
-      if (x) x.addEventListener("click", () => simBtn.click());
-    }
     tickCountdown();
     if (view === "bracket") mountBracket(data);
     if(!lbAnimated && !["groups","bracket","conduct","odds"].includes(view)
@@ -2102,11 +2206,41 @@
   }
 
   const simBtn = document.getElementById("simbtn");
+  const simModal = document.getElementById("sim-modal");
+  const closeSimModal = () => { simModal.hidden = true; };
+  function enterSim() {
+    try { simData = buildSimData(lastData); }
+    catch (e) { console.error(e); window.alert("Sorry, the simulation hit a snag."); return; }
+    simMode = true; simBtn.textContent = "See live results"; simBtn.classList.add("on");
+    document.documentElement.classList.add("sim");
+    const y = window.scrollY;
+    render(simData);
+    requestAnimationFrame(() => window.scrollTo(0, y));
+    showSimHint();
+  }
+  function showSimHint() {
+    let done = false; try { done = localStorage.getItem("famcup-sim-hinted") === "1"; } catch (e) {}
+    if (done) return;
+    try { localStorage.setItem("famcup-sim-hinted", "1"); } catch (e) {}
+    const hint = document.createElement("div");
+    hint.className = "sim-hint";
+    hint.innerHTML = '<span class="move">\u{1F446}</span>';
+    const r = simBtn.getBoundingClientRect();
+    hint.style.left = (r.left + r.width / 2) + "px";
+    hint.style.top = (r.bottom + 8) + "px";
+    hint.style.transform = "translateX(-50%)";
+    document.body.appendChild(hint);
+    setTimeout(() => { hint.remove(); }, 4200);
+  }
   simBtn.addEventListener("click", () => {
     if (simMode) {
       simMode = false; simData = null;
       simBtn.textContent = "Simulate"; simBtn.classList.remove("on");
-      if (lastData) render(lastData); window.scrollTo({top: 0}); return;
+      document.documentElement.classList.remove("sim");
+      const y = window.scrollY;
+      if (lastData) render(lastData);
+      requestAnimationFrame(() => window.scrollTo(0, y));
+      return;
     }
     if (!lastData) return;
     if (!lastData.sim) {
@@ -2114,14 +2248,19 @@
         "“Update scores” workflow once, then refresh the page.");
       return;
     }
-    if (!window.confirm(
-      "Simulate all the remaining games with random results?\n\n" +
-      "This is just a what-if — your live standings stay untouched.")) return;
-    try { simData = buildSimData(lastData); }
-    catch (e) { console.error(e); window.alert("Sorry — the simulation hit a snag."); return; }
-    simMode = true; simBtn.textContent = "See live results"; simBtn.classList.add("on");
-    render(simData); window.scrollTo({top: 0});
+    let skip = false; try { skip = localStorage.getItem("famcup-sim-noask") === "1"; } catch (e) {}
+    if (skip) { enterSim(); return; }
+    simModal.hidden = false;
   });
+  document.getElementById("sim-go").addEventListener("click", () => {
+    if (document.getElementById("sim-dontask").checked) {
+      try { localStorage.setItem("famcup-sim-noask", "1"); } catch (e) {}
+    }
+    closeSimModal(); enterSim();
+  });
+  document.getElementById("sim-cancel").addEventListener("click", closeSimModal);
+  simModal.addEventListener("click", (e) => { if (e.target === simModal) closeSimModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !simModal.hidden) closeSimModal(); });
 
   function setView(v) {
     view = v;
