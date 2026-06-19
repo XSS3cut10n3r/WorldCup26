@@ -29,6 +29,41 @@
       "rank": 1
     },
     {
+      "name": "Darcy",
+      "points": 3.0,
+      "teams": [
+        {
+          "name": "France",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "United States",
+          "points": 2,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Tunisia",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Haiti",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Kelly",
       "points": 3.0,
       "teams": [
@@ -124,7 +159,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Charlotte",
@@ -152,7 +187,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Mat",
@@ -180,42 +215,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
-    },
-    {
-      "name": "Darcy",
-      "points": 2.0,
-      "teams": [
-        {
-          "name": "France",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "United States",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Tunisia",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Haiti",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 7
+      "rank": 5
     },
     {
       "name": "Paul",
@@ -250,7 +250,7 @@
           "clinchType": null
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Sydney",
@@ -285,7 +285,7 @@
           "clinchType": null
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Agatha",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Darcy",
+      "team": "United States",
+      "points": 1,
+      "label": "United States won (Group stage)",
+      "utcDate": "2026-06-19T19:00:00Z"
+    },
+    {
       "owner": "Nik",
       "team": "Mexico",
       "points": 1,
@@ -463,20 +470,14 @@
       "points": 0.5,
       "label": "South Africa drew (Group stage)",
       "utcDate": "2026-06-18T16:00:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Czechia",
-      "points": 0.5,
-      "label": "Czechia drew (Group stage)",
-      "utcDate": "2026-06-18T16:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-19T19:00:00Z",
       "home": {
         "name": "United States",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-18T02:00:00Z",
-      "home": {
-        "name": "Uzbekistan",
-        "owner": "Ondine",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 50
-      },
-      "away": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 13
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -2006,14 +1983,14 @@
           "pos": 1,
           "team": "United States",
           "owner": "Darcy",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "draw": 0,
           "lost": 0,
-          "gf": 4,
+          "gf": 6,
           "ga": 1,
-          "gd": 3,
-          "points": 3,
+          "gd": 5,
+          "points": 6,
           "conduct": -1,
           "fifaRank": 17,
           "clinched": false,
@@ -2023,13 +2000,13 @@
           "pos": 2,
           "team": "Australia",
           "owner": "Agatha",
-          "played": 1,
+          "played": 2,
           "won": 1,
           "draw": 0,
-          "lost": 0,
+          "lost": 1,
           "gf": 2,
-          "ga": 0,
-          "gd": 2,
+          "ga": 2,
+          "gd": 0,
           "points": 3,
           "conduct": 0,
           "fifaRank": 27,
@@ -9020,6 +8997,12 @@
           "a": "Türkiye",
           "hg": 2,
           "ag": 0
+        },
+        {
+          "h": "United States",
+          "a": "Australia",
+          "hg": 2,
+          "ag": 0
         }
       ],
       "E": [
@@ -9175,10 +9158,6 @@
         }
       ],
       "D": [
-        {
-          "h": "United States",
-          "a": "Australia"
-        },
         {
           "h": "Türkiye",
           "a": "Paraguay"
@@ -9677,5 +9656,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-19T21:02:47Z"
+  "generated": "2026-06-19T21:10:25Z"
 }
