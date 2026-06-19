@@ -55,8 +55,17 @@ PARAMS = {
     "rankCoefGroup": 0.15,  # FIFA rank counts for much more in the group stage
     "pensHangover": 0.06,   # xG haircut next match for a team that just won on penalties
     "finalScoreBoost": 1.20,  # baseline goals are 20% higher in the final
-    "etTotal": 1.30,  # expected goals in extra time; higher -> fewer shootouts
-                      #   (~3/tournament at 1.30; raise for fewer, lower for more)
+    "koTotalMul": 0.85,  # knockout regulation scoring vs the group stage. 0.85 keeps it
+                         #   realistic (~2.3 goals/game, a touch below the tournament average).
+                         #   On its own this gives only ~4 shootouts because independent Poisson
+                         #   under-draws; the dcRho correction below makes up the difference.
+    "etTotal": 0.75,  # expected goals in extra time (~1/3 of a ~2.3-goal regulation); higher
+                      #   -> more games settled in ET -> fewer shootouts.
+    "dcRho": -0.30,   # Dixon-Coles low-score draw correction. Inflates 0-0 and 1-1 (real
+                      #   football draws more than two independent Poissons) WITHOUT changing
+                      #   total goals or who is favoured. ~ -0.13 is textbook; -0.30 lifts the
+                      #   knockout shootout rate to the historical ~19%/match (~6/tournament).
+                      #   Front-end only, like the other tilts; the calibrator ignores it.
     "nudgeK":   0.55,  # update_odds.py: rating move per unit log-odds drift
 }
 
