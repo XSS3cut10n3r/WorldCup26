@@ -971,6 +971,20 @@
     </div>
   </div>
 </div>
+<div class="modal-backdrop" id="exit-modal" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title">
+    <div class="modal-ic" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 5V2L7 7l5 5V8c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5H5c0 3.87 3.13 7 7 7s7-3.13 7-7-3.13-7-7-7z"/></svg>
+    </div>
+    <h2 id="exit-modal-title">Back to live scores?</h2>
+    <p>This clears your what&#8209;if and shows the real standings again. Nothing was saved, so you can simulate a fresh one any time.</p>
+    <label class="modal-ask"><input type="checkbox" id="exit-dontask"> Don't ask me again</label>
+    <div class="modal-btns">
+      <button type="button" class="modal-btn" id="exit-cancel">Cancel</button>
+      <button type="button" class="modal-btn go" id="exit-go">Yes, go live</button>
+    </div>
+  </div>
+</div>
 <div class="wrap">
 
   <header>
@@ -2208,6 +2222,8 @@
   const simBtn = document.getElementById("simbtn");
   const simModal = document.getElementById("sim-modal");
   const closeSimModal = () => { simModal.hidden = true; };
+  const exitModal = document.getElementById("exit-modal");
+  const closeExitModal = () => { exitModal.hidden = true; };
   function enterSim() {
     try { simData = buildSimData(lastData); }
     catch (e) { console.error(e); window.alert("Sorry, the simulation hit a snag."); return; }
@@ -2232,14 +2248,19 @@
     document.body.appendChild(hint);
     setTimeout(() => { hint.remove(); }, 4200);
   }
+  function exitSim() {
+    simMode = false; simData = null;
+    simBtn.textContent = "Simulate"; simBtn.classList.remove("on");
+    document.documentElement.classList.remove("sim");
+    const y = window.scrollY;
+    if (lastData) render(lastData);
+    requestAnimationFrame(() => window.scrollTo(0, y));
+  }
   simBtn.addEventListener("click", () => {
     if (simMode) {
-      simMode = false; simData = null;
-      simBtn.textContent = "Simulate"; simBtn.classList.remove("on");
-      document.documentElement.classList.remove("sim");
-      const y = window.scrollY;
-      if (lastData) render(lastData);
-      requestAnimationFrame(() => window.scrollTo(0, y));
+      let skipExit = false; try { skipExit = localStorage.getItem("famcup-exit-noask") === "1"; } catch (e) {}
+      if (skipExit) { exitSim(); return; }
+      exitModal.hidden = false;
       return;
     }
     if (!lastData) return;
@@ -2261,6 +2282,15 @@
   document.getElementById("sim-cancel").addEventListener("click", closeSimModal);
   simModal.addEventListener("click", (e) => { if (e.target === simModal) closeSimModal(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !simModal.hidden) closeSimModal(); });
+  document.getElementById("exit-go").addEventListener("click", () => {
+    if (document.getElementById("exit-dontask").checked) {
+      try { localStorage.setItem("famcup-exit-noask", "1"); } catch (e) {}
+    }
+    closeExitModal(); exitSim();
+  });
+  document.getElementById("exit-cancel").addEventListener("click", closeExitModal);
+  exitModal.addEventListener("click", (e) => { if (e.target === exitModal) closeExitModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !exitModal.hidden) closeExitModal(); });
 
   function setView(v) {
     view = v;
