@@ -1,4 +1,125 @@
 name: Add card
+on:
+  workflow_dispatch:
+    inputs:
+      team:
+        description: "Team that received the card(s)"
+        required: true
+        type: choice
+        options:
+          - Algeria
+          - Argentina
+          - Australia
+          - Austria
+          - Belgium
+          - Bosnia and Herzegovina
+          - Brazil
+          - Cabo Verde
+          - Canada
+          - Colombia
+          - Croatia
+          - Curaçao
+          - Czechia
+          - Côte d'Ivoire
+          - DR Congo
+          - Ecuador
+          - Egypt
+          - England
+          - France
+          - Germany
+          - Ghana
+          - Haiti
+          - Iran
+          - Iraq
+          - Japan
+          - Jordan
+          - Mexico
+          - Morocco
+          - Netherlands
+          - New Zealand
+          - Norway
+          - Panama
+          - Paraguay
+          - Portugal
+          - Qatar
+          - Saudi Arabia
+          - Scotland
+          - Senegal
+          - South Africa
+          - South Korea
+          - Spain
+          - Sweden
+          - Switzerland
+          - Tunisia
+          - Türkiye
+          - United States
+          - Uruguay
+          - Uzbekistan
+      card:
+        description: "Card type (FIFA conduct categories)"
+        required: true
+        type: choice
+        options:
+          - yellow
+          - indirect_red (second yellow -> sent off)
+          - direct_red (straight red, no prior yellow)
+          - yellow_direct_red (yellow, then straight red, same player)
+      count:
+        description: "How many (use -1 to undo a mistake)"
+        required: true
+        default: "1"
+        type: string
+permissions:
+  contents: write
+# Add-card runs queue rather than cancel each other, so two quick cards in a
+# row can't clobber one another; each re-applies against the latest remote.
+concurrency:
+  group: add-card
+  cancel-in-progress: false
+jobs:
+  add-card:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Apply card, regenerate data.json, and push
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          TEAM: ${{ inputs.team }}
+          CARD: ${{ inputs.card }}
+          COUNT: ${{ inputs.count }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -u
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Each attempt syncs to the live remote tip, re-applies the card to the
+          # CURRENT cards-manual.json, regenerates data.json on top of whatever
+          # scores just landed, then pushes. So a collision with the live loop
+          # never double-counts the card and never reverts a score update.
+          ok=no
+          for attempt in 1 2 3 4 5; do
+            git rebase --abort 2>/dev/null || true
+            rm -rf .git/rebase-merge .git/rebase-apply 2>/dev/null || true
+            git fetch -q origin "$BRANCH" || true
+            git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
+            python3 -c "import json,os,sys; t=os.environ['TEAM']; c=os.environ['CARD'].split()[0]; n=int(os.environ['COUNT']); d=json.load(open('cards-manual.json',encoding='utf-8')); (t in d) or sys.exit('Team '+t+' not in cards-manual.json'); (c in d[t]) or sys.exit('Unknown card type '+c); d[t][c]=max(0,d[t][c]+n); json.dump(d,open('cards-manual.json','w',encoding='utf-8'),indent=2,ensure_ascii=False); print(t,c,'is now',d[t][c])" || exit 1
+            python3 scripts/update_scores.py || true
+            git add cards-manual.json data.json
+            if git diff --staged --quiet; then echo "Nothing changed."; ok=skip; break; fi
+            git commit -q -m "Card: $TEAM +$COUNT $CARD"
+            if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
+            echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)…"
+            sleep 2
+          done
+          [ "$ok" = no ] && { echo "Could not push after retries."; exit 1; }
+          echo "Done ($ok)."
+name: Add card
 
 on:
   workflow_dispatch:
