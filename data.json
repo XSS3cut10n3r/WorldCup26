@@ -596,14 +596,16 @@
         "owner": "Darcy",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 17
+        "fifaRank": 17,
+        "clinched": false
       },
       "away": {
         "name": "Australia",
         "owner": "Agatha",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 27
+        "fifaRank": 27,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -618,17 +620,31 @@
         "owner": "Sydney",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 42
+        "fifaRank": 42,
+        "clinched": false
       },
       "away": {
         "name": "Morocco",
         "owner": "Agatha",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 7
+        "fifaRank": 7,
+        "clinched": false
       },
       "penalties": false,
-      "winner": null
+      "winner": null,
+      "clinch": {
+        "group": "C",
+        "winnerWinsGroup": false,
+        "winnerAdvances": false,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": true
+        },
+        "away": {
+          "winAdvances": false
+        }
+      }
     },
     {
       "stage": "Group stage",
@@ -640,14 +656,16 @@
         "owner": "Sydney",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 6
+        "fifaRank": 6,
+        "clinched": false
       },
       "away": {
         "name": "Haiti",
         "owner": "Darcy",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 83
+        "fifaRank": 83,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -662,14 +680,16 @@
         "owner": "Iva",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 22
+        "fifaRank": 22,
+        "clinched": false
       },
       "away": {
         "name": "Paraguay",
         "owner": "Pete",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 40
+        "fifaRank": 40,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -684,17 +704,31 @@
         "owner": "Charlotte",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 8
+        "fifaRank": 8,
+        "clinched": false
       },
       "away": {
         "name": "Sweden",
         "owner": "Tomi",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 38
+        "fifaRank": 38,
+        "clinched": false
       },
       "penalties": false,
-      "winner": null
+      "winner": null,
+      "clinch": {
+        "group": "F",
+        "winnerWinsGroup": false,
+        "winnerAdvances": false,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": true
+        }
+      }
     },
     {
       "stage": "Group stage",
@@ -706,14 +740,16 @@
         "owner": "Tomi",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 10
+        "fifaRank": 10,
+        "clinched": false
       },
       "away": {
         "name": "Ivory Coast",
         "owner": "Paul",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 33
+        "fifaRank": 33,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -728,14 +764,16 @@
         "owner": "Sydney",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 23
+        "fifaRank": 23,
+        "clinched": false
       },
       "away": {
         "name": "Curaçao",
         "owner": "Ondine",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 82
+        "fifaRank": 82,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -750,14 +788,16 @@
         "owner": "Darcy",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 46
+        "fifaRank": 46,
+        "clinched": false
       },
       "away": {
         "name": "Japan",
         "owner": "Pete",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 18
+        "fifaRank": 18,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -772,14 +812,16 @@
         "owner": "Pete",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 2
+        "fifaRank": 2,
+        "clinched": false
       },
       "away": {
         "name": "Saudi Arabia",
         "owner": "Charlie",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 61
+        "fifaRank": 61,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -794,14 +836,16 @@
         "owner": "Paul",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 9
+        "fifaRank": 9,
+        "clinched": false
       },
       "away": {
         "name": "Iran",
         "owner": "Ondine",
         "goals": null,
         "penGoals": null,
-        "fifaRank": 21
+        "fifaRank": 21,
+        "clinched": false
       },
       "penalties": false,
       "winner": null
@@ -9610,5 +9654,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-19T08:54:18Z"
+  "generated": "2026-06-19T11:38:34Z"
 }
