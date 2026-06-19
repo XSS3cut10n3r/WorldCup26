@@ -1791,6 +1791,7 @@
     // uniform draw so the button still works.
     const R = (eloData && eloData.ratings) || null;
     const P = (eloData && eloData.params) || {};
+    const DC = P.dcRho != null ? P.dcRho : -0.30;   // Dixon-Coles draw correction
     const rs  = t => { const fr = info(t).fifa; return -Math.log(fr || 40); };
 
     // Every completed real game (group + knockout) feeds live form.
@@ -1862,7 +1863,23 @@
       const fatigue = P.pensHangover || 0;
       if (opts.hangA) lamA *= Math.exp(-fatigue);
       if (opts.hangB) lamB *= Math.exp(-fatigue);
-      return [simPoisson(lamA), simPoisson(lamB)];
+      // Dixon-Coles low-score draw correction: independent Poisson under-counts
+      // draws, so we redistribute probability mass within the {0,1}x{0,1} score
+      // block toward 0-0 and 1-1. The adjustment is mass-preserving (it doesn't
+      // change total goals or who is favoured), so we sample both Poissons and,
+      // when both land at 0 or 1, re-pick that 2x2 block from the corrected
+      // weights. rho < 0 inflates draws; ~ -0.13 is textbook, larger draws more.
+      const rho = opts.dc || 0;
+      let ga = simPoisson(lamA), gb = simPoisson(lamB);
+      if (rho && ga <= 1 && gb <= 1) {
+        const w = [1 - lamA*lamB*rho, lamB*(1 + lamA*rho),
+                   lamA*(1 + lamB*rho), lamA*lamB*(1 - rho)].map(v => v > 0 ? v : 0);
+        const cells = [[0,0],[0,1],[1,0],[1,1]];
+        let r = Math.random() * (w[0]+w[1]+w[2]+w[3]), k = 0;
+        while (k < 3 && (r -= w[k]) >= 0) k++;
+        ga = cells[k][0]; gb = cells[k][1];
+      }
+      return [ga, gb];
     }
     const eloShootWin = (a, b) => (!R || R[a] == null || R[b] == null)
       ? 0.5 : 1 / (1 + Math.exp(-(P.pensK || 0.9) * (R[a] - R[b])));
@@ -1972,13 +1989,17 @@
             : (sameHome ? real.winner
                : (real.winner === "HOME_TEAM" ? "AWAY_TEAM" : "HOME_TEAM"));
         } else {
-          const ko = {hangA: !!wonOnPens[home.name], hangB: !!wonOnPens[away.name],
-            totalMul: stageCode === "FINAL" ? (P.finalScoreBoost || 1) : 1};
-          const sc2 = eloScore(home.name, away.name, ko);
+          const finMul = stageCode === "FINAL" ? (P.finalScoreBoost || 1) : 1;
+          const hang = {hangA: !!wonOnPens[home.name], hangB: !!wonOnPens[away.name]};
+          // Knockout regulation is lower-scoring than the group stage (cagier,
+          // higher-stakes games), which lifts the 90-min draw rate and so feeds
+          // more games into extra time and shootouts. koTotalMul is that dial.
+          const koMul = (P.koTotalMul != null ? P.koTotalMul : 0.85) * finMul;
+          const sc2 = eloScore(home.name, away.name, Object.assign({}, hang, {totalMul: koMul, dc: DC}));
           hg = sc2[0]; ag = sc2[1];
-          if (hg === ag) {   // level after 90 -> extra time (lower scoring rate)
-            const et = eloScore(home.name, away.name,
-              Object.assign({}, ko, {totalAbs: P.etTotal != null ? P.etTotal : 1.3}));
+          if (hg === ag) {   // level after 90 -> extra time (its own scoring rate)
+            const et = eloScore(home.name, away.name, Object.assign({}, hang,
+              {totalAbs: P.etTotal != null ? P.etTotal : 0.75, totalMul: finMul, dc: DC}));
             hg += et[0]; ag += et[1];
           }
           if (hg === ag) {   // still level after ET -> penalty shootout
