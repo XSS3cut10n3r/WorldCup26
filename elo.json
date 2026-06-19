@@ -9,10 +9,15 @@
     "pensK": 0.9,
     "atkCoef": 0.05,
     "defCoef": 0.05,
+    "formOppCoef": 0.4,
+    "formCap": 0.4,
+    "formAtkFloor": 1.0,
+    "formDefFloor": 0.0,
     "rankCoef": 0.04,
     "rankCoefGroup": 0.15,
     "pensHangover": 0.06,
     "finalScoreBoost": 1.2,
+    "etTotal": 1.3,
     "nudgeK": 0.55
   },
   "ratings": {
