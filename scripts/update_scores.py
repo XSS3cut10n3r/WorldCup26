@@ -930,6 +930,64 @@ def main():
                 side["fifaRank"] = fifa_ranks.get(normalize(side["name"]))
 
 
+    # ---- Raw ingredients for the in-browser "simulate remaining games" ----
+    # The page is otherwise a dumb renderer of computed data; to let it roll
+    # random what-if results client-side it needs the inputs this script keeps
+    # to itself: the fixtures still to play, who's in each group, the bracket
+    # template (including FIFA's Annex C third-place map), the scoring table,
+    # and per-team owner/conduct/FIFA. Everything is keyed by the canonical
+    # groups.json name so the browser never has to re-normalize.
+    norm2disp = {}
+    for _letter, _tnames in groups_def.items():
+        for _t in _tnames:
+            norm2disp[normalize(_t)] = _t
+
+    def _disp(nm):
+        return norm2disp.get(nm)
+
+    sim_group_results = {}
+    sim_group_remaining = {}
+    for letter in groups_def:
+        sim_group_results[letter] = [
+            {"h": _disp(hn), "a": _disp(an), "hg": gh, "ag": ga}
+            for (hn, an, gh, ga) in ghead.get(letter, [])
+            if _disp(hn) and _disp(an)
+        ]
+        sim_group_remaining[letter] = [
+            {"h": _disp(hn), "a": _disp(an)}
+            for (hn, an) in group_remaining.get(letter, [])
+            if _disp(hn) and _disp(an)
+        ]
+
+    sim_teams = {}
+    for letter, tnames in groups_def.items():
+        for t in tnames:
+            nm = normalize(t)
+            hit = lookup.get(nm)
+            sim_teams[t] = {
+                "owner": hit[0] if hit else None,
+                "canon": hit[1] if hit else None,   # name as shown on leaderboard chips
+                "conduct": conduct_scores.get(nm, 0),
+                "fifa": fifa_ranks.get(nm),
+                "group": letter,
+            }
+
+    sim_ko_played = []
+    for m in display_matches:
+        if m["stageCode"] == "GROUP_STAGE" or m["status"] not in FINISHED:
+            continue
+        hd = _disp(normalize(m["home"]["name"] or ""))
+        ad = _disp(normalize(m["away"]["name"] or ""))
+        if not hd or not ad:
+            continue
+        sim_ko_played.append({
+            "stageCode": m["stageCode"], "home": hd, "away": ad,
+            "homeGoals": m["home"]["goals"], "awayGoals": m["away"]["goals"],
+            "penalties": m["penalties"],
+            "penHome": m["home"]["penGoals"], "penAway": m["away"]["penGoals"],
+            "winner": m["winner"],
+        })
+
     payload = {
         "leaderboard": rows,
         "events": events[-5:][::-1],
@@ -946,6 +1004,15 @@ def main():
         },
         "scoring": scoring,
         "tournamentStarted": any(m["status"] in FINISHED | LIVE for m in display_matches),
+        "sim": {
+            "scoring": scoring,
+            "template": template,
+            "groupsDef": {letter: list(groups_def[letter]) for letter in groups_def},
+            "groupResults": sim_group_results,
+            "groupRemaining": sim_group_remaining,
+            "teams": sim_teams,
+            "knockoutPlayed": sim_ko_played,
+        },
     }
 
     out_path = ROOT / "data.json"
