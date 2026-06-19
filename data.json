@@ -472,7 +472,30 @@
       "utcDate": "2026-06-18T16:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-19T22:00:00Z",
+      "home": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 42
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 7
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,42 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-19T22:00:00Z",
-      "home": {
-        "name": "Scotland",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 42,
-        "clinched": false
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 7,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "C",
-        "winnerWinsGroup": false,
-        "winnerAdvances": false,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": true
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -845,6 +832,30 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 67,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-22T01:00:00Z",
+      "home": {
+        "name": "New Zealand",
+        "owner": "Tomi",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 85,
+        "clinched": false
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 29,
         "clinched": false
       },
       "penalties": false,
@@ -9656,5 +9667,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-19T21:46:52Z"
+  "generated": "2026-06-19T22:06:40Z"
 }
