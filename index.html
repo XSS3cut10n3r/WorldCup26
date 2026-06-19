@@ -775,9 +775,37 @@
     .match .tname { font-size: 13.5px; }
     .match .towner { font-size: 12px; }
   }
+
+  /* "Simulate remaining games" control (fixed, top-right) + the what-if banner */
+  #simbtn {
+    position: fixed; top: 12px; right: 12px; z-index: 60;
+    font-family: var(--display); font-weight: 600; font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--gold); background: rgba(14, 48, 20, 0.92);
+    border: 1px solid var(--gold); border-radius: 999px;
+    padding: 7px 14px; cursor: pointer; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  }
+  #simbtn:hover { background: var(--gold); color: var(--pitch-deep); }
+  #simbtn.on { color: var(--chalk); border-color: var(--chalk); }
+  #simbtn.on:hover { background: var(--chalk); color: var(--pitch-deep); }
+  #simbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .simbar {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    flex-wrap: wrap; margin: 0 0 14px; padding: 8px 14px;
+    border: 1px dashed var(--gold); border-radius: 10px;
+    background: rgba(232, 195, 74, 0.08); color: var(--gold);
+    font-size: 13.5px; font-weight: 500;
+  }
+  .simbar-x {
+    font: inherit; color: var(--chalk); background: transparent;
+    border: 1px solid var(--pitch-line); border-radius: 999px;
+    padding: 3px 10px; cursor: pointer;
+  }
+  .simbar-x:hover { border-color: var(--chalk); }
 </style>
 </head>
 <body>
+<button id="simbtn" type="button" aria-label="Simulate the remaining games">Simulate</button>
 <div class="wrap">
 
   <header>
@@ -1062,7 +1090,9 @@
   }
 
   function render(data) {
-    if (view === "odds") {
+    if (data.simulated) {
+      updatedEl.innerHTML = "Simulated results &middot; not live";
+    } else if (view === "odds") {
       const ow = oddsData && oddsData.generated
         ? new Date(oddsData.generated).toLocaleString() : null;
       updatedEl.innerHTML = ow ? "Odds as of " + esc(ow) : "Odds not loaded yet";
@@ -1077,6 +1107,13 @@
                   : view === "conduct" ? renderConduct(data)
                   : view === "odds" ? renderOdds(data)
                   : renderHome(data);
+    if (data.simulated) {
+      app.insertAdjacentHTML("afterbegin",
+        '<div class="simbar">Simulated results — one random what-if. ' +
+        '<button type="button" class="simbar-x" id="simexit">Back to live</button></div>');
+      const x = document.getElementById("simexit");
+      if (x) x.addEventListener("click", () => simBtn.click());
+    }
     tickCountdown();
     if (view === "bracket") mountBracket(data);
     if(!lbAnimated && !["groups","bracket","conduct","odds"].includes(view)
@@ -1571,12 +1608,289 @@
   let lastData = null;
   let oddsData = null;
 
+  // ---------- Simulate remaining games (client-side what-if) ----------
+  let simMode = false, simData = null;
+  const currentData = () => (simMode && simData) ? simData : lastData;
+
+  const SIM_STAGE_LABEL = {GROUP_STAGE:"Group stage", LAST_32:"Round of 32",
+    LAST_16:"Round of 16", QUARTER_FINALS:"Quarter-final", SEMI_FINALS:"Semi-final",
+    THIRD_PLACE:"Third-place match", FINAL:"Final"};
+  const SIM_ROUND_STAGE = {r32:"LAST_32", r16:"LAST_16", qf:"QUARTER_FINALS",
+    sf:"SEMI_FINALS", final:"FINAL", third:"THIRD_PLACE"};
+
+  function simGoals() {
+    const r = Math.random();
+    return r < 0.20 ? 0 : r < 0.48 ? 1 : r < 0.73 ? 2 : r < 0.89 ? 3 : r < 0.97 ? 4 : 5;
+  }
+  function simStagePts(scoring, stageCode, isDraw) {
+    if (stageCode === "GROUP_STAGE")
+      return isDraw ? (scoring.GROUP_STAGE_DRAW || 0) : (scoring.GROUP_STAGE_WIN || 0);
+    return scoring[stageCode] || 0;
+  }
+
+  // Recursive 2026 group ranking (mirrors the Python rank_group): head-to-head
+  // points/GD/goals among the tied teams first (re-applied to each still-tied
+  // subgroup), then overall GD, goals, conduct, FIFA rank.
+  function simRankGroup(teams, results) {
+    const cmp = (a, b) => { for (let i = 0; i < a.length; i++) {
+      if (a[i] < b[i]) return -1; if (a[i] > b[i]) return 1; } return 0; };
+    const overallKey = r => [-r.gd, -r.gf, -(r.conduct || 0),
+      (r.fifa == null ? 999 : r.fifa), r.team];
+    function resolve(group) {
+      if (group.length === 1) return group.slice();
+      const names = new Set(group.map(r => r.team));
+      const h = {}; group.forEach(r => h[r.team] = {pts: 0, gf: 0, ga: 0});
+      results.forEach(m => { if (names.has(m.h) && names.has(m.a)) {
+        h[m.h].gf += m.hg; h[m.h].ga += m.ag; h[m.a].gf += m.ag; h[m.a].ga += m.hg;
+        if (m.hg > m.ag) h[m.h].pts += 3; else if (m.hg < m.ag) h[m.a].pts += 3;
+        else { h[m.h].pts++; h[m.a].pts++; } } });
+      const hk = r => [-h[r.team].pts, -(h[r.team].gf - h[r.team].ga), -h[r.team].gf];
+      const ordered = group.slice().sort((x, y) => cmp(hk(x), hk(y)));
+      const blocks = [];
+      ordered.forEach(r => { if (blocks.length &&
+        cmp(hk(r), hk(blocks[blocks.length - 1][0])) === 0)
+        blocks[blocks.length - 1].push(r); else blocks.push([r]); });
+      if (blocks.length === 1)
+        return group.slice().sort((x, y) => cmp(overallKey(x), overallKey(y)));
+      let out = []; blocks.forEach(b => out = out.concat(resolve(b))); return out;
+    }
+    const byPts = teams.slice().sort((a, b) => b.points - a.points);
+    let ranked = [], i = 0;
+    while (i < byPts.length) { let j = i;
+      while (j < byPts.length && byPts[j].points === byPts[i].points) j++;
+      ranked = ranked.concat(resolve(byPts.slice(i, j))); i = j; }
+    return ranked;
+  }
+
+  function buildSimData(data) {
+    const sim = data.sim, sc = sim.scoring, T = sim.teams;
+    const info = nm => T[nm] || {owner: null, canon: null, conduct: 0, fifa: null};
+    const round1 = n => Math.round(n * 10) / 10;
+
+    // 1) Group tables (current results + random scorelines for what's left).
+    const simGroupGames = [];
+    const groupTables = [];
+    Object.keys(sim.groupsDef).forEach(letter => {
+      const names = sim.groupsDef[letter];
+      const rec = {}; names.forEach(t => rec[t] = {p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0});
+      const allRes = [];
+      const apply = (hn, an, hg, ag) => { allRes.push({h:hn,a:an,hg,ag});
+        [[hn,hg,ag],[an,ag,hg]].forEach(([t,gf,ga]) => { const r = rec[t];
+          r.p++; r.gf += gf; r.ga += ga;
+          if (gf > ga) { r.w++; r.pts += 3; } else if (gf === ga) { r.d++; r.pts++; } else r.l++; }); };
+      (sim.groupResults[letter] || []).forEach(m => apply(m.h, m.a, m.hg, m.ag));
+      (sim.groupRemaining[letter] || []).forEach(m => {
+        const hg = simGoals(), ag = simGoals();
+        apply(m.h, m.a, hg, ag); simGroupGames.push({h:m.h, a:m.a, hg, ag}); });
+      const rows = names.map(t => ({team:t, owner:info(t).owner,
+        played:rec[t].p, won:rec[t].w, draw:rec[t].d, lost:rec[t].l,
+        gf:rec[t].gf, ga:rec[t].ga, gd:rec[t].gf - rec[t].ga, points:rec[t].pts,
+        conduct:info(t).conduct, fifa:info(t).fifa}));
+      const ranked = simRankGroup(rows, allRes);
+      ranked.forEach((r, i) => { r.pos = i + 1; r.clinched = false; r.clinchType = null;
+        if (r.pos === 1) { r.clinched = true; r.clinchType = "winner"; }
+        else if (r.pos === 2) { r.clinched = true; r.clinchType = "second"; } });
+      groupTables.push({letter, rows: ranked});
+    });
+
+    // 2) Best third-place race (top eight qualify).
+    const thirds = groupTables.map(g => {
+      const t = Object.assign({}, g.rows.find(r => r.pos === 3));
+      t.group = "Group " + g.letter; return t; });
+    thirds.sort((a, b) => {
+      const ka = [-a.points, -a.gd, -a.gf, -(a.conduct||0), (a.fifa==null?999:a.fifa)];
+      const kb = [-b.points, -b.gd, -b.gf, -(b.conduct||0), (b.fifa==null?999:b.fifa)];
+      for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i];
+      return a.team < b.team ? -1 : (a.team > b.team ? 1 : 0); });
+    thirds.forEach((t, i) => { t.rank = i + 1; t.qualifies = i < 8; });
+    thirds.forEach(t => { if (!t.qualifies) return;
+      const letter = t.group.split(" ").pop();
+      const row = groupTables.find(g => g.letter === letter).rows.find(r => r.pos === 3);
+      row.clinched = true; row.clinchType = "third"; });
+
+    // 3) Knockout bracket, simulated forward (real results kept where played).
+    const winners = {}, runners = {};
+    groupTables.forEach(g => { winners[g.letter] = g.rows.find(r => r.pos === 1);
+      runners[g.letter] = g.rows.find(r => r.pos === 2); });
+    const qual = thirds.filter(t => t.qualifies);
+    const combo = qual.map(t => t.group.split(" ").pop()).sort().join("");
+    const tmpl = sim.template;
+    const assignment = (tmpl.thirdAllocation || {})[combo];
+    const thirdBySlot = {};
+    if (assignment && tmpl.thirdSlots) {
+      const byG = {}; qual.forEach(t => byG[t.group.split(" ").pop()] = t);
+      tmpl.thirdSlots.forEach((slot, i) => thirdBySlot[slot] = byG[assignment[i]]);
+    } else { (tmpl.thirdSlots || []).forEach((slot, i) => thirdBySlot[slot] = qual[i]); }
+
+    const results = {}, simKOGames = [], eliminated = new Set(), bracketByStage = {};
+    const sideFromCode = (code, md) => {
+      if (code[0] === "1" || code[0] === "2") {
+        const w = code[0] === "1" ? winners[code[1]] : runners[code[1]];
+        const label = (code[0] === "1" ? "Winner Group " : "Runner-up Group ") + code[1];
+        return w ? {name:w.team, owner:w.owner, fifa:w.fifa, slot:label} : null;
+      }
+      if (code.slice(0, 2) === "T:") {
+        const w = thirdBySlot[md.home[1]];
+        const label = "3rd place " + code.slice(2).split("").join("/");
+        return w ? {name:w.team, owner:w.owner, fifa:w.fifa, slot:label} : null;
+      }
+      const ref = parseInt(code.slice(1), 10), res = results[ref];
+      const label = (code[0] === "W" ? "Winner" : "Loser") + " match " + ref;
+      if (res) { const s = code[0] === "W" ? res.winner : res.loser;
+        return {name:s.name, owner:s.owner, fifa:s.fifa, slot:label}; }
+      return null;
+    };
+    const findReal = (hn, an, stageCode) => (sim.knockoutPlayed || []).find(k =>
+      k.stageCode === stageCode &&
+      ((k.home === hn && k.away === an) || (k.home === an && k.away === hn)));
+
+    const defs = [];
+    Object.keys(SIM_ROUND_STAGE).forEach(key =>
+      (tmpl[key] || []).forEach(md => defs.push({md, stageCode: SIM_ROUND_STAGE[key]})));
+    defs.sort((a, b) => a.md.match - b.md.match);
+
+    defs.forEach(({md, stageCode}) => {
+      bracketByStage[stageCode] = bracketByStage[stageCode] || [];
+      const home = sideFromCode(md.home, md), away = sideFromCode(md.away, md);
+      let entry;
+      if (home && away) {
+        let hg, ag, pens = false, ph = null, pa = null, winSide;
+        const real = findReal(home.name, away.name, stageCode);
+        if (real && real.winner) {
+          const sameHome = real.home === home.name;
+          hg = sameHome ? real.homeGoals : real.awayGoals;
+          ag = sameHome ? real.awayGoals : real.homeGoals;
+          ph = sameHome ? real.penHome : real.penAway;
+          pa = sameHome ? real.penAway : real.penHome;
+          pens = real.penalties;
+          winSide = real.winner === "DRAW" ? null
+            : (sameHome ? real.winner
+               : (real.winner === "HOME_TEAM" ? "AWAY_TEAM" : "HOME_TEAM"));
+        } else {
+          hg = simGoals(); ag = simGoals();
+          if (hg === ag) { pens = true; const hw = Math.random() < 0.5;
+            ph = hw ? 5 : 4; pa = hw ? 4 : 5; winSide = hw ? "HOME_TEAM" : "AWAY_TEAM"; }
+          else winSide = hg > ag ? "HOME_TEAM" : "AWAY_TEAM";
+          simKOGames.push({stageCode, winnerName: (winSide === "HOME_TEAM" ? home : away).name});
+        }
+        const win = winSide === "HOME_TEAM" ? home : away;
+        const lose = winSide === "HOME_TEAM" ? away : home;
+        results[md.match] = {
+          winner: {name:win.name, owner:win.owner, fifa:win.fifa},
+          loser: {name:lose.name, owner:lose.owner, fifa:lose.fifa}};
+        if (stageCode !== "THIRD_PLACE") eliminated.add(lose.name);
+        entry = {matchNo: md.match, stage: SIM_STAGE_LABEL[stageCode], stageCode,
+          status: "FINISHED", utcDate: null, penalties: pens, winner: winSide,
+          home: {name:home.name, owner:home.owner, goals:hg, penGoals:ph,
+                 projected:false, slot:home.slot, resolved:true, fifaRank:home.fifa ?? null},
+          away: {name:away.name, owner:away.owner, goals:ag, penGoals:pa,
+                 projected:false, slot:away.slot, resolved:true, fifaRank:away.fifa ?? null}};
+      } else {
+        const blank = s => ({name:"TBD", owner:null, goals:null, penGoals:null,
+          projected:false, slot:(s && s.slot) || "TBD", resolved:false, fifaRank:null});
+        entry = {matchNo: md.match, stage: SIM_STAGE_LABEL[stageCode], stageCode,
+          status: "SCHEDULED", utcDate: null, penalties: false, winner: null,
+          home: blank(home), away: blank(away)};
+      }
+      bracketByStage[stageCode].push(entry);
+    });
+
+    const order = ["LAST_32","LAST_16","QUARTER_FINALS","SEMI_FINALS","FINAL","THIRD_PLACE"];
+    const bracketOut = order.filter(s => (bracketByStage[s] || []).length).map(s => ({
+      stage: SIM_STAGE_LABEL[s], stageCode: s,
+      matches: bracketByStage[s].sort((a, b) => a.matchNo - b.matchNo)}));
+
+    // 4) Leaderboard: live points as a baseline, plus the simulated deltas.
+    const personPts = {}, teamPts = {};
+    data.leaderboard.forEach(p => { personPts[p.name] = p.points;
+      p.teams.forEach(t => teamPts[t.name] = t.points); });
+    const award = (canon, owner, pts) => { if (!pts) return;
+      if (owner != null) personPts[owner] = (personPts[owner] || 0) + pts;
+      if (canon != null) teamPts[canon] = (teamPts[canon] || 0) + pts; };
+    simGroupGames.forEach(g => { const hi = info(g.h), ai = info(g.a);
+      if (g.hg > g.ag) award(hi.canon, hi.owner, simStagePts(sc, "GROUP_STAGE", false));
+      else if (g.hg < g.ag) award(ai.canon, ai.owner, simStagePts(sc, "GROUP_STAGE", false));
+      else { award(hi.canon, hi.owner, simStagePts(sc, "GROUP_STAGE", true));
+             award(ai.canon, ai.owner, simStagePts(sc, "GROUP_STAGE", true)); } });
+    simKOGames.forEach(g => { const wi = info(g.winnerName);
+      award(wi.canon, wi.owner, simStagePts(sc, g.stageCode, false)); });
+
+    const elimCanon = new Set(), clinchCanon = {};
+    groupTables.forEach(g => g.rows.forEach(r => { const ci = info(r.team).canon;
+      if (!ci) return;
+      if (r.pos === 4 || (r.pos === 3 && !r.clinched)) elimCanon.add(ci);
+      if (r.clinched) clinchCanon[ci] = r.clinchType; }));
+    eliminated.forEach(nm => { const ci = info(nm).canon; if (ci) elimCanon.add(ci); });
+
+    const lb = data.leaderboard.map(p => ({
+      name: p.name, points: round1(personPts[p.name] ?? p.points),
+      teams: p.teams.map(t => ({
+        name: t.name, points: round1(teamPts[t.name] ?? t.points),
+        eliminated: elimCanon.has(t.name),
+        clinched: Object.prototype.hasOwnProperty.call(clinchCanon, t.name),
+        clinchType: clinchCanon[t.name] ?? null}))}));
+    lb.sort((a, b) => b.points - a.points ||
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    let rk = 0, prev = null;
+    lb.forEach((row, i) => { if (row.points !== prev) { rk = i + 1; prev = row.points; }
+      row.rank = rk; });
+
+    // 5) Group + third-place output shapes the renderers expect.
+    const groupsOut = groupTables.map(g => ({
+      group: "Group " + g.letter, ranked: true,
+      table: g.rows.map(r => ({pos:r.pos, team:r.team, owner:r.owner,
+        played:r.played, won:r.won, draw:r.draw, lost:r.lost, gf:r.gf, ga:r.ga,
+        gd:r.gd, points:r.points, conduct:r.conduct, fifaRank:r.fifa,
+        clinched:!!r.clinched, clinchType:r.clinchType || null}))}));
+    const thirdOut = thirds.map(t => ({rank:t.rank, team:t.team, group:t.group,
+      owner:t.owner, played:t.played, points:t.points, gd:t.gd, gf:t.gf,
+      conduct:t.conduct, fifaRank:t.fifa, qualifies:t.qualifies,
+      clinched:t.qualifies, clinchType: t.qualifies ? "third" : null}));
+
+    // 6) Home-page extras kept coherent (no live games, nothing upcoming).
+    const recent = (bracketByStage.FINAL || [])
+      .concat(bracketByStage.THIRD_PLACE || [], bracketByStage.SEMI_FINALS || [])
+      .slice(0, 5);
+    const events = simKOGames.map(g => { const wi = info(g.winnerName);
+      return {owner: wi.owner || "—", team: g.winnerName,
+        points: simStagePts(sc, g.stageCode, false),
+        label: g.winnerName + " won (" + SIM_STAGE_LABEL[g.stageCode] + ")"}; })
+      .filter(e => e.points > 0).slice(-5).reverse();
+
+    return {generated: data.generated, simulated: true, leaderboard: lb,
+      events, live: [], recent, upcoming: [], bracket: bracketOut,
+      groups: groupsOut, thirdPlace: thirdOut, conduct: data.conduct,
+      scoring: data.scoring, tournamentStarted: true};
+  }
+
+  const simBtn = document.getElementById("simbtn");
+  simBtn.addEventListener("click", () => {
+    if (simMode) {
+      simMode = false; simData = null;
+      simBtn.textContent = "Simulate"; simBtn.classList.remove("on");
+      if (lastData) render(lastData); window.scrollTo({top: 0}); return;
+    }
+    if (!lastData) return;
+    if (!lastData.sim) {
+      window.alert("The simulator needs the latest score data. Run the " +
+        "“Update scores” workflow once, then refresh the page.");
+      return;
+    }
+    if (!window.confirm(
+      "Simulate all the remaining games with random results?\n\n" +
+      "This is just a what-if — your live standings stay untouched.")) return;
+    try { simData = buildSimData(lastData); }
+    catch (e) { console.error(e); window.alert("Sorry — the simulation hit a snag."); return; }
+    simMode = true; simBtn.textContent = "See live results"; simBtn.classList.add("on");
+    render(simData); window.scrollTo({top: 0});
+  });
+
   function setView(v) {
     view = v;
     history.replaceState(null, "", v === "home" ? location.pathname : "#" + v);
     document.querySelectorAll(".tab").forEach(b =>
       b.classList.toggle("active", b.dataset.view === v));
-    if (lastData) render(lastData);
+    const cd = currentData(); if (cd) render(cd);
     window.scrollTo({ top: 0 });
   }
   document.querySelectorAll(".tab").forEach(b =>
@@ -1595,13 +1909,13 @@
   function load() {
     fetch("data.json?t=" + Date.now())
       .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(d => { lastData = d; render(d); })
+      .then(d => { lastData = d; if (!simMode) render(d); })
       .catch(fail);
     // Odds live in their own file, written by the separate "Update odds"
     // workflow. Missing/!ok is fine: the Odds tab just shows its empty state.
     fetch("odds.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d) { oddsData = d; if (view === "odds") render(lastData); } })
+      .then(d => { if (d) { oddsData = d; if (view === "odds") render(currentData()); } })
       .catch(() => {});
   }
 
