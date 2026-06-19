@@ -4,7 +4,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚽</text></svg>">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#15431C">
+<meta name="theme-color" id="theme-color" content="#15431C">
 <title>Family World Cup 2026: Leaderboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2224,11 +2224,14 @@
   const closeSimModal = () => { simModal.hidden = true; };
   const exitModal = document.getElementById("exit-modal");
   const closeExitModal = () => { exitModal.hidden = true; };
+  const themeMeta = document.getElementById("theme-color");
+  const themeLive = themeMeta ? themeMeta.getAttribute("content") : "#15431C";
   function enterSim() {
     try { simData = buildSimData(lastData); }
     catch (e) { console.error(e); window.alert("Sorry, the simulation hit a snag."); return; }
     simMode = true; simBtn.textContent = "See live results"; simBtn.classList.add("on");
     document.documentElement.classList.add("sim");
+    if (themeMeta) themeMeta.setAttribute("content", "#2E3A46");
     const y = window.scrollY;
     render(simData);
     requestAnimationFrame(() => window.scrollTo(0, y));
@@ -2252,6 +2255,7 @@
     simMode = false; simData = null;
     simBtn.textContent = "Simulate"; simBtn.classList.remove("on");
     document.documentElement.classList.remove("sim");
+    if (themeMeta) themeMeta.setAttribute("content", themeLive);
     const y = window.scrollY;
     if (lastData) render(lastData);
     requestAnimationFrame(() => window.scrollTo(0, y));
