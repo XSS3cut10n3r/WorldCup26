@@ -802,6 +802,38 @@
     padding: 3px 10px; cursor: pointer;
   }
   .simbar-x:hover { border-color: var(--chalk); }
+
+  /* "Winner clinches" pills on upcoming group games (home feed + countdown).
+     Match-level lines stack in a full-width footer; per-team tags ("Through",
+     "Win to advance") sit under the owner; an already-qualified team's name
+     glows gold like the leaderboard/group treatments. */
+  .match .cstake {
+    grid-column: 1 / -1;
+    border-top: 1px dashed rgba(232, 195, 74, 0.22);
+    margin-top: 11px; padding-top: 11px;
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+  }
+  .cpill {
+    font-family: var(--display); font-weight: 600; font-size: 11.5px;
+    letter-spacing: 0.07em; text-transform: uppercase; border-radius: 999px;
+    padding: 5px 13px; display: inline-flex; align-items: center; gap: 7px;
+    white-space: nowrap;
+  }
+  .cpill.grp { background: var(--gold); color: #3F2D04; }
+  .cpill.adv { background: rgba(232, 195, 74, 0.12); color: var(--gold);
+    border: 1px solid rgba(232, 195, 74, 0.7); }
+  .cpill.draw { background: rgba(143, 185, 173, 0.10); color: #AFD6CB;
+    border: 1px solid rgba(143, 185, 173, 0.5); }
+  .ctag, .cd-ctag {
+    display: inline-block; margin-top: 4px;
+    font-family: var(--display); font-weight: 600; font-size: 11px;
+    letter-spacing: 0.04em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(232, 195, 74, 0.55); border-radius: 999px;
+    padding: 1px 8px;
+  }
+  .match .tname.through, .cd-name.through { color: var(--gold); }
+  .cd-stake { display: flex; flex-direction: column; align-items: center;
+    gap: 7px; margin-top: 12px; }
 </style>
 </head>
 <body>
@@ -849,23 +881,51 @@
     });
   };
 
-  function teamCell(t, side) {
+  function teamCell(t, side, tagHTML) {
     const unres = t.resolved === false;
     const proj = t.projected === true;
+    const through = t.clinched === true && !unres;
     const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
     const hasRank = !unres && t.fifaRank !== null && t.fifaRank !== undefined;
     const rankEl = `<div class="trank">${hasRank ? "#" + t.fifaRank : ""}</div>`;
     const sub = t.owner ? esc(t.owner)
       : (proj && t.slot ? esc(t.slot) : "&mdash;");
     const info = `<div class="tinfo">
-      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""}">${nm}</div>
+      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""} ${through ? "through" : ""}">${nm}</div>
       <div class="towner">${sub}</div>
+      ${tagHTML || ""}
     </div>`;
     // Big rank sits right beside the team name (inner side), vertically
     // centered: after the info for home, before it for the away team.
     return `<div class="team ${side}">
       ${side === "away" ? rankEl + info : info + rankEl}
     </div>`;
+  }
+
+  // Build the stacked match-level footer (winner line, then draw line) and the
+  // per-team tag ("Through" if already qualified, else "Win to advance").
+  function clinchFooter(c) {
+    if (!c) return "";
+    let h = "";
+    if (c.winnerWinsGroup)
+      h += `<span class="cpill grp">Winner wins ${esc(c.group ? "Group " + c.group : "the group")}</span>`;
+    else if (c.winnerAdvances)
+      h += `<span class="cpill adv">Winner advances</span>`;
+    if (c.drawBoth)
+      h += `<span class="cpill draw">A draw: both go through</span>`;
+    return h;
+  }
+  function clinchTag(side, cside, cls) {
+    if (side && side.clinched) return `<div class="${cls}">Through</div>`;
+    if (cside && cside.winAdvances) return `<div class="${cls}">Win to advance</div>`;
+    return "";
+  }
+  function teamCellW(m, side) {
+    // teamCell variant for upcoming games: passes the per-team clinch tag.
+    const t = side === "home" ? m.home : m.away;
+    const c = m.clinch;
+    const cside = c ? (side === "home" ? c.home : c.away) : null;
+    return teamCell(t, side, clinchTag(t, cside, "ctag"));
   }
 
   function fmtCountdown(ms) {
@@ -894,22 +954,30 @@
   }
 
   function countdownCard(m) {
+    const c = m.clinch;
     const rank = t => (t.fifaRank !== null && t.fifaRank !== undefined)
       ? `<div class="cd-rank">#${t.fifaRank}</div>` : "";
-    const info = t => `<div class="cd-tinfo">
-      <div class="cd-name">${esc(t.name)}</div>
-      <div class="cd-owner">${t.owner ? esc(t.owner) : "&mdash;"}</div></div>`;
+    const info = (t, side) => {
+      const through = t.clinched === true;
+      const cside = c ? (side === "home" ? c.home : c.away) : null;
+      return `<div class="cd-tinfo">
+        <div class="cd-name ${through ? "through" : ""}">${esc(t.name)}</div>
+        <div class="cd-owner">${t.owner ? esc(t.owner) : "&mdash;"}</div>
+        ${clinchTag(t, cside, "cd-ctag")}</div>`;
+    };
     const initial = fmtCountdown(new Date(m.utcDate).getTime() - Date.now()) || "";
+    const footer = clinchFooter(c);
     return `<div class="countdown" id="countdown" data-kickoff="${esc(m.utcDate)}">
       <div class="cd-label">Next match</div>
       <div class="cd-row">
-        <div class="cd-team home">${info(m.home)}${rank(m.home)}</div>
+        <div class="cd-team home">${info(m.home, "home")}${rank(m.home)}</div>
         <div class="cd-center">
           <div class="cd-timer">${initial}</div>
           <div class="cd-stage">${esc(m.stage)}</div>
         </div>
-        <div class="cd-team away">${rank(m.away)}${info(m.away)}</div>
+        <div class="cd-team away">${rank(m.away)}${info(m.away, "away")}</div>
       </div>
+      ${footer ? `<div class="cd-stake">${footer}</div>` : ""}
     </div>`;
   }
 
@@ -949,13 +1017,19 @@
          <div class="meta">${live ? '<span class="live-dot"></span> Live' : (m.penalties ? "FT &middot; pens" : "FT")} &middot; ${esc(m.stage)}</div>`
       : `<div class="score" style="font-size:15px;font-weight:500;color:var(--chalk-dim)">${esc(fmtKick(m.utcDate))}</div>
          <div class="meta">${esc(m.stage)}</div>`;
+    // Clinch pills/tags show only on upcoming (not-yet-started) games.
+    const showClinch = !live && !done;
+    const footer = showClinch ? clinchFooter(m.clinch) : "";
+    const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home");
+    const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away");
     return `<div class="match ${live ? "is-live" : ""} ${pens ? "pens" : ""} ${showUpset ? "upset" : ""} ${held ? "held" : ""}">
       ${pens ? '<div class="pens-badge"><span class="spot"></span>PENS</div>'
              : (showUpset ? '<div class="upset-badge">UPSET</div>' : "")}
       ${held ? '<div class="held-badge">Held</div>' : ""}
-      ${teamCell(m.home, "home")}
+      ${homeCell}
       <div class="mid">${mid}</div>
-      ${teamCell(m.away, "away")}
+      ${awayCell}
+      ${footer ? `<div class="cstake">${footer}</div>` : ""}
     </div>`;
   }
 
@@ -1498,8 +1572,8 @@
     }
     const anyProjected = rounds.some(r => r.matches.some(m => m.home.projected || m.away.projected));
     const note = anyProjected
-      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i>.
-         They update after every group game and lock in as groups finish. Third-place slots
+      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i> —
+         they update after every group game and lock in as groups finish. Third-place slots
          follow FIFA's official allocation table (Annex C), so this is the real bracket if the
          groups ended today.</p>`
       : "";
