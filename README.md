@@ -3,8 +3,9 @@
 A self-updating GitHub Pages site that tracks your family's World Cup 2026 pool.
 A GitHub Action checks live scores every 20 minutes via the
 [football-data.org](https://www.football-data.org/) API, applies your family
-scoring rules, and updates the site — no server, no cost, runs by itself for
-the whole tournament.
+scoring rules, and updates the site. It also pulls live championship odds from
+the betting market and runs a strength-rated tournament **simulator** right in
+the browser — no server, no cost, runs by itself for the whole tournament.
 
 ## A look at the site
 
@@ -45,6 +46,59 @@ The leaderboard — every person's points, with their teams as chips:
   </tr>
 </table>
 
+## Live championship odds
+
+The **Odds** tab shows each person's live chance of owning the eventual winner.
+`scripts/update_odds.py` pulls the "who wins the World Cup" market from
+[Kalshi](https://kalshi.com/) — public market data, **no API key needed** —
+strips the bookmaker margin so every team's implied probability sums to 100%,
+and rolls each person's teams up into their combined odds. The tab shows each
+team's individual share and the move since the last refresh. Run it any time
+from the **Actions** tab (**Update odds → Run workflow**).
+
+## The simulator
+
+Every tab has a **Simulate** button. It plays the *rest* of the tournament
+forward — the remaining group games, the full Annex C knockout bracket, extra
+time and shootouts — instantly in your browser, and shows who lifts the trophy.
+Hit it again and again to get a feel for how the draw tends to break.
+
+It's strength-weighted, not a coin toss. Each team carries a rating in
+**`elo.json`**, produced by `scripts/build_elos.py`: a 100,000-tournament Monte
+Carlo that tunes every rating until the simulated champions line up with the
+live Kalshi odds. So the simulator's baseline **matches the market**.
+
+On top of that baseline it leans on what has actually happened so far — the
+things a betting line is slow to price:
+
+- **Form, weighted by who you played.** Goals scored and conceded versus the
+  tournament's running average, scaled by the quality of the opponent. A 7–0
+  over a top-ranked side moves a team far more than the same score over a
+  minnow — and leaking goals to a minnow hurts more than leaking to a giant.
+  Both group and knockout games count.
+- **FIFA rank.** A small edge to the higher-ranked side, leaned on more heavily
+  in the group stage than the knockouts.
+- **Penalty hangover.** A team that just survived a shootout is a touch flatter
+  in its next match.
+- **Bigger finals.** Roughly 20% more goals are expected in the final than in a
+  normal match.
+- **Realistic shootouts.** Level knockout games go to extra time first, tuned so
+  penalty shootouts happen about as often as in past World Cups (~three a
+  tournament).
+
+Every one of these is a small, labelled dial in `elo.json`'s `params` block, so
+you can nudge the model's personality without touching code.
+
+**Keeping the ratings fresh.** The **Rebuild Elo ratings** workflow re-runs the
+full calibration after each scores update (and on demand), re-anchoring every
+rating to the latest results and odds — a couple of CI minutes per run. Between
+those rebuilds, each **Update odds** run also gives the ratings a light nudge as
+the market drifts (via `scripts/elo_nudge.py`), so the simulator always reflects
+the current picture without waiting for a full rebuild.
+
+If `elo.json` is ever missing, the Simulate button still works — it just falls
+back to even, unweighted scorelines until the ratings are rebuilt.
+
 ## Scoring rules (current settings)
 
 | Result | Points |
@@ -69,21 +123,22 @@ the next scheduled run picks it up automatically.
 
 1. **Get a free API key.** Register at
    [football-data.org/client/register](https://www.football-data.org/client/register)
-   — the free tier covers the World Cup. The key arrives by email.
+   — the free tier covers the World Cup. The key arrives by email. (This is for
+   scores only; the odds feed needs no key.)
 
 2. **Create the repository.** On GitHub, create a new **public** repo (public
    is required for free GitHub Pages), e.g. `family-world-cup`. Upload all the
    files in this folder, keeping the folder structure (the
-   `.github/workflows/update-scores.yml` path matters). Easiest ways: drag the
-   files into the GitHub web uploader, or `git push` from a Codespace/your
-   machine.
+   `.github/workflows/` paths matter). Easiest ways: drag the files into the
+   GitHub web uploader, or `git push` from a Codespace/your machine.
 
 3. **Add the API key as a secret.** In the repo:
    **Settings → Secrets and variables → Actions → New repository secret**.
    Name it exactly `FOOTBALL_DATA_TOKEN` and paste your API key as the value.
 
-4. **Allow the workflow to push.** **Settings → Actions → General →
+4. **Allow the workflows to push.** **Settings → Actions → General →
    Workflow permissions** → select **Read and write permissions** → Save.
+   (All three workflows commit back to the repo, so this covers them all.)
 
 5. **Turn on GitHub Pages.** **Settings → Pages** → under *Build and
    deployment*, set Source to **Deploy from a branch**, branch **main**,
@@ -92,37 +147,66 @@ the next scheduled run picks it up automatically.
 
 6. **Run it once manually.** Go to the **Actions** tab → **Update scores** →
    **Run workflow**. When it finishes green, refresh your site — real fixture
-   data should appear. From then on it runs itself every 20 minutes (Ideally it would do this, but Github Cron jobs aren't very reliable so it runs every few hours. You can do frequent manual runs!).
+   data should appear. From then on it runs itself every 20 minutes (ideally —
+   GitHub's cron is unreliable, so in practice it's every few hours. Frequent
+   manual runs are fine!).
+
+7. **Light up the odds and the simulator.** Still on the **Actions** tab, run
+   **Update odds** once (fills in `odds.json` → the Odds tab), then **Rebuild
+   Elo ratings** once (fills in `elo.json` → the strength-weighted Simulate
+   button). No extra keys are needed. After this, **Rebuild Elo ratings**
+   re-runs itself after every scores update; refresh the market whenever you
+   like by running **Update odds** again.
 
 ## How it works
 
 ```
-.github/workflows/update-scores.yml   schedule: fetch + commit every 20 min
+.github/workflows/update-scores.yml   schedule: fetch scores + commit (every ~20 min)
+.github/workflows/update-odds.yml     manual: fetch Kalshi odds (+ nudge ratings) + commit
+.github/workflows/build-elos.yml      recalibrate elo.json after each scores update + commit
 scripts/update_scores.py              calls the API, applies scoring, writes data.json
+scripts/update_odds.py                Kalshi championship odds -> odds.json (+ nudges elo.json)
+scripts/build_elos.py                 Monte Carlo: calibrate team ratings to the odds -> elo.json
+scripts/elo_nudge.py                  cheap rating nudge as odds drift (used by update_odds.py)
 assignments.json                      who owns which teams
 config.json                           points per round
-data.json                             generated output (don't edit by hand)
-index.html                            the website — reads data.json
+bracket-template.json                 FIFA bracket structure + Annex C third-place map
+data.json                             generated — scores, tables, bracket, simulator inputs
+odds.json                             generated — championship odds per person and team
+elo.json                              generated — team ratings + simulator parameters
+index.html                            the website — reads data.json, odds.json, elo.json
 ```
 
-The script only commits when something actually changed, so the repo history
-stays clean between match days. During live matches, scores on the site move
-as the Action runs (and the page also re-checks itself every 5 minutes while
-open).
+Each script only commits when something actually changed, so the repo history
+stays clean between match days. During live matches, scores on the site move as
+the scores Action runs (and the page also re-checks itself every 5 minutes while
+open). **Rebuild Elo ratings** is chained to fire right after **Update scores**,
+so the moment results change, the simulator re-anchors to them.
+
+Want the full reasoning behind the rating model — the market calibration, the
+opponent-weighted form, the shootout tuning? It's all in the comments at the top
+of `scripts/build_elos.py` and the `params` block of `elo.json`.
 
 ## Troubleshooting
 
-- **Site shows "No score data yet"** — run the workflow once from the Actions
-  tab (step 6), and check it succeeded.
+- **Site shows "No score data yet"** — run the **Update scores** workflow once
+  from the Actions tab (step 6), and check it succeeded.
 - **Workflow fails with HTTP 403/401** — the `FOOTBALL_DATA_TOKEN` secret is
-  missing or mistyped (step 3).
+  missing or mistyped (step 3). (The odds and Elo workflows don't use it.)
 - **Workflow fails on the push step** — workflow permissions aren't set to
   read/write (step 4).
-- **A team isn't getting points** — the API may spell it differently than
+- **Odds tab is empty** — run **Update odds** once (step 7). If a team shows 0%,
+  Kalshi spelled its name differently than `assignments.json`; add a line to the
+  `ALIASES` dict near the top of `scripts/update_odds.py`.
+- **Simulate button does nothing or says it needs data** — it needs a recent
+  `data.json` (run **Update scores**). For strength weighting it also needs
+  `elo.json` (run **Rebuild Elo ratings**); without it the sim still runs but
+  treats every team as even.
+- **A team isn't getting points** — the scores API may spell it differently than
   `assignments.json`. Common spellings are already handled (USA, Türkiye,
   Korea Republic, Ivory Coast, Cabo Verde, DR Congo, Czechia, …). If one slips
   through, add a line to the `ALIASES` dict near the top of
   `scripts/update_scores.py`.
 - **Scheduled runs stop after the tournament** — GitHub disables schedules
   after 60 days without repo activity, which is fine; you can also delete or
-  disable the workflow once the final is played.
+  disable the workflows once the final is played.
