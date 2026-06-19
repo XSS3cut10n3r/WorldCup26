@@ -1720,6 +1720,7 @@
     ? location.hash.slice(1) : "home";
   let lastData = null;
   let oddsData = null;
+  let eloData = null;
 
   // ---------- Simulate remaining games (client-side what-if) ----------
   let simMode = false, simData = null;
@@ -1780,6 +1781,55 @@
     const info = nm => T[nm] || {owner: null, canon: null, conduct: 0, fifa: null};
     const round1 = n => Math.round(n * 10) / 10;
 
+    // ---- Strength-weighted scorelines ------------------------------------
+    // Base intrinsic ratings come from build_elos.py (calibrated to the market
+    // championship odds). On top we layer three small *live* tilts read from
+    // the real results so a hot-scoring / well-defending / higher-ranked side
+    // beats its market line by a hair: own attack raises own xG, the
+    // opponent's defence shifts your xG (leaky -> up, stingy -> down), and the
+    // FIFA-rank gap nudges both. Absent elo.json, we fall back to the old
+    // uniform draw so the button still works.
+    const R = (eloData && eloData.ratings) || null;
+    const P = (eloData && eloData.params) || {};
+    const form = {};
+    let totG = 0, totGames = 0;
+    Object.keys(sim.groupResults || {}).forEach(L =>
+      (sim.groupResults[L] || []).forEach(m => {
+        form[m.h] = form[m.h] || {gf:0, ga:0, g:0};
+        form[m.a] = form[m.a] || {gf:0, ga:0, g:0};
+        form[m.h].gf += m.hg; form[m.h].ga += m.ag; form[m.h].g++;
+        form[m.a].gf += m.ag; form[m.a].ga += m.hg; form[m.a].g++;
+        totG += m.hg + m.ag; totGames += 2; }));
+    const avgGpg = totGames ? totG / totGames : 1.3;
+    const atk = t => { const f = form[t]; return (f && f.g) ? f.gf / f.g - avgGpg : 0; };
+    const def = t => { const f = form[t]; return (f && f.g) ? f.ga / f.g - avgGpg : 0; };
+    const rs  = t => { const fr = info(t).fifa; return -Math.log(fr || 40); };
+    const simPoisson = lam => { const L = Math.exp(-lam); let k = 0, p = 1;
+      do { k++; p *= Math.random(); } while (p > L); return k - 1; };
+    // opts: {group, hangA, hangB, totalMul}. group -> heavier FIFA-rank tilt;
+    // totalMul -> scale baseline goals (used to lift scoring in the final);
+    // hangA/hangB -> that side won its previous match on penalties, so it's
+    // very slightly flatter (small xG haircut) in this one.
+    function eloScore(a, b, opts) {
+      opts = opts || {};
+      if (!R || R[a] == null || R[b] == null) return [simGoals(), simGoals()];
+      const s = (P.suprK || 0.42) * (R[a] - R[b]);
+      const total = (P.total || 2.6) * (opts.totalMul || 1);
+      let lamA = Math.max(P.floor || 0.18, total / 2 + s / 2);
+      let lamB = Math.max(P.floor || 0.18, total / 2 - s / 2);
+      const ac = P.atkCoef || 0, dc = P.defCoef || 0;
+      // FIFA rank counts for more in the group stage (heavier coefficient there)
+      const rc = (opts.group && P.rankCoefGroup != null) ? P.rankCoefGroup : (P.rankCoef || 0);
+      lamA *= Math.exp(ac * atk(a) + dc * def(b) + rc * (rs(a) - rs(b)));
+      lamB *= Math.exp(ac * atk(b) + dc * def(a) + rc * (rs(b) - rs(a)));
+      const fatigue = P.pensHangover || 0;
+      if (opts.hangA) lamA *= Math.exp(-fatigue);
+      if (opts.hangB) lamB *= Math.exp(-fatigue);
+      return [simPoisson(lamA), simPoisson(lamB)];
+    }
+    const eloShootWin = (a, b) => (!R || R[a] == null || R[b] == null)
+      ? 0.5 : 1 / (1 + Math.exp(-(P.pensK || 0.9) * (R[a] - R[b])));
+
     // 1) Group tables (current results + random scorelines for what's left).
     const simGroupGames = [];
     const groupTables = [];
@@ -1793,7 +1843,7 @@
           if (gf > ga) { r.w++; r.pts += 3; } else if (gf === ga) { r.d++; r.pts++; } else r.l++; }); };
       (sim.groupResults[letter] || []).forEach(m => apply(m.h, m.a, m.hg, m.ag));
       (sim.groupRemaining[letter] || []).forEach(m => {
-        const hg = simGoals(), ag = simGoals();
+        const [hg, ag] = eloScore(m.h, m.a, {group: true});
         apply(m.h, m.a, hg, ag); simGroupGames.push({h:m.h, a:m.a, hg, ag}); });
       const rows = names.map(t => ({team:t, owner:info(t).owner,
         played:rec[t].p, won:rec[t].w, draw:rec[t].d, lost:rec[t].l,
@@ -1862,6 +1912,11 @@
       (tmpl[key] || []).forEach(md => defs.push({md, stageCode: SIM_ROUND_STAGE[key]})));
     defs.sort((a, b) => a.md.match - b.md.match);
 
+    // Track who won their previous knockout match on penalties, so we can give
+    // them a small fatigue haircut in the next one. Flag is consumed (and reset)
+    // each time a team plays again.
+    const wonOnPens = {};
+
     defs.forEach(({md, stageCode}) => {
       bracketByStage[stageCode] = bracketByStage[stageCode] || [];
       const home = sideFromCode(md.home, md), away = sideFromCode(md.away, md);
@@ -1880,14 +1935,20 @@
             : (sameHome ? real.winner
                : (real.winner === "HOME_TEAM" ? "AWAY_TEAM" : "HOME_TEAM"));
         } else {
-          hg = simGoals(); ag = simGoals();
-          if (hg === ag) { pens = true; const hw = Math.random() < 0.5;
+          const sc2 = eloScore(home.name, away.name, {
+            hangA: !!wonOnPens[home.name], hangB: !!wonOnPens[away.name],
+            totalMul: stageCode === "FINAL" ? (P.finalScoreBoost || 1) : 1});
+          hg = sc2[0]; ag = sc2[1];
+          if (hg === ag) { pens = true;
+            const hw = Math.random() < eloShootWin(home.name, away.name);
             ph = hw ? 5 : 4; pa = hw ? 4 : 5; winSide = hw ? "HOME_TEAM" : "AWAY_TEAM"; }
           else winSide = hg > ag ? "HOME_TEAM" : "AWAY_TEAM";
           simKOGames.push({stageCode, winnerName: (winSide === "HOME_TEAM" ? home : away).name});
         }
         const win = winSide === "HOME_TEAM" ? home : away;
         const lose = winSide === "HOME_TEAM" ? away : home;
+        // winner carries a pens-hangover into their next game iff this was a shootout
+        wonOnPens[win.name] = pens;
         results[md.match] = {
           winner: {name:win.name, owner:win.owner, fifa:win.fifa},
           loser: {name:lose.name, owner:lose.owner, fifa:lose.fifa}};
@@ -2029,6 +2090,12 @@
     fetch("odds.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) { oddsData = d; if (view === "odds") render(currentData()); } })
+      .catch(() => {});
+    // Calibrated team ratings, written by build_elos.py. Missing/!ok is fine:
+    // buildSimData falls back to uniform random scorelines without it.
+    fetch("elo.json?t=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) eloData = d; })
       .catch(() => {});
   }
 
