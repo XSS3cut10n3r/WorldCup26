@@ -1,46 +1,43 @@
 name: Update odds
-
-# Kalshi market data is public, so this needs no secrets. Run it by hand from
-# the Actions tab whenever you want fresh odds (Actions -> Update odds -> Run
-# workflow). Unlike scores there's no internal loop — one run = one snapshot.
 on:
   workflow_dispatch: {}
-  # Optional: uncomment to also refresh on a schedule. GitHub cron is
-  # best-effort (it may start late or skip), but odds drift slowly so a
-  # couple of times a day is plenty.
-  # schedule:
-  #   - cron: "17 */6 * * *"   # every ~6 hours, off the congested :00 grid
-
 permissions:
   contents: write
-
 concurrency:
   group: update-odds
   cancel-in-progress: true
-
 jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Fetch Kalshi odds and write odds.json
+      - name: Fetch Kalshi odds and push
+        env:
+          BRANCH: ${{ github.ref_name }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main || true
-          python scripts/update_odds.py
-          git add odds.json
-          if git diff --staged --quiet; then
-            echo "No odds changes."
-          else
-            git commit -m "Update odds"
-            git push || { git pull --rebase origin main && git push; }
-          fi
+          set -u
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          ok=no
+          for attempt in 1 2 3 4 5; do
+            git rebase --abort 2>/dev/null || true
+            rm -rf .git/rebase-merge .git/rebase-apply 2>/dev/null || true
+            git fetch -q origin "$BRANCH" || true
+            git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
+            python3 scripts/update_odds.py
+            git add odds.json
+            if git diff --staged --quiet; then echo "No odds changes."; ok=skip; break; fi
+            git commit -q -m "Update odds"
+            if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
+            echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)…"
+            sleep 2
+          done
+          [ "$ok" = no ] && { echo "Could not push after retries."; exit 1; }
+          echo "Done ($ok)."
