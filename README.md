@@ -82,9 +82,16 @@ things a betting line is slow to price:
   in its next match.
 - **Bigger finals.** Roughly 20% more goals are expected in the final than in a
   normal match.
-- **Realistic shootouts.** Level knockout games go to extra time first, tuned so
-  penalty shootouts happen about as often as in past World Cups (~three a
-  tournament).
+- **Realistic knockout scoring.** Knockout games stay lively, around 2.3 goals a
+  game in regulation, in line with recent World Cups, rather than cagey 0–0s.
+- **True-to-life shootouts.** Level games go to extra time, then penalties. A
+  small *Dixon-Coles* correction (the `dcRho` dial) fixes a known quirk of the
+  usual scoring model, which slightly under-counts low-scoring draws: it nudges
+  the 0–0, 1–1, 1–0 and 0–1 outcomes so games finish level at the real-world rate,
+  without changing the total goals or who is favoured. That lifts shootouts to
+  about **six a tournament**, roughly one in five knockout games, which is the
+  World Cup's historical rate. With 2026's 32 knockout matches (double the old
+  format), that is more shootouts in absolute terms than past editions.
 
 Every one of these is a small, labelled dial in `elo.json`'s `params` block, so
 you can nudge the model's personality without touching code.
@@ -98,6 +105,15 @@ the current picture without waiting for a full rebuild.
 
 If `elo.json` is ever missing, the Simulate button still works — it just falls
 back to even, unweighted scorelines until the ratings are rebuilt.
+
+**A what-if, never the real thing.** A simulation never touches the live
+standings, and the site makes that unmistakable. Sim mode repaints the whole
+page in a cool slate-blue theme (the live pages stay green), the status pill
+reads "Simulated Results · Not Live", and on phones the browser bar tints to
+match. A quick popup confirms before you start, and again before you head back
+to the live scores, and the first time you ever simulate, a small pointer shows
+you the way back. Nothing is saved: leave the what-if and the real results are
+exactly as you left them.
 
 ## Scoring rules (current settings)
 
