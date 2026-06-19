@@ -17,6 +17,7 @@ Only match results come from the API. This means an unreliable standings feed
 can no longer reshape, rename, or break the group tables.
 """
 
+import itertools
 import json
 import os
 import sys
@@ -163,6 +164,9 @@ def main():
     # home_goals, away_goals) — used for head-to-head tiebreaks. The group
     # letter is resolved from the hardcoded mapping, not the API's label.
     ghead = {}
+    # Unplayed group fixtures per group letter, as (home_norm, away_norm) —
+    # pairings only (no scoreline). Drives the group-winner clinch math.
+    group_remaining = {}
 
     for m in matches:
         stage = m.get("stage", "")
@@ -237,6 +241,15 @@ def main():
                         rec["points"] += 1
                     else:
                         rec["lost"] += 1
+
+        # Record still-unplayed group fixtures (pairings only) for clinch math.
+        # A live match counts as unplayed: its outcome isn't settled yet.
+        if stage == "GROUP_STAGE" and status not in FINISHED:
+            hn = normalize(home.get("name") or "")
+            an = normalize(away.get("name") or "")
+            letter = team2group.get(hn) or team2group.get(an)
+            if hn and an and letter:
+                group_remaining.setdefault(letter, []).append((hn, an))
 
         if status not in FINISHED:
             continue
@@ -346,48 +359,184 @@ def main():
                   for k, v in (config.get("fifaRanking") or {}).items()}
 
     def rank_group(rows, finished):
-        """Order one group's rows by the full FIFA tiebreaker hierarchy.
+        """Order one group by the official 2026 hierarchy, applied recursively.
 
-        Primary: total points. Among teams level on points, a head-to-head
-        mini-table decides (points, then GD, then goals in matches between
-        the tied teams only). Teams still level fall to overall criteria:
-        goal difference, goals scored, conduct score (higher is better),
-        then FIFA world ranking."""
-        def overall_only(r):
-            return (-r["points"], -r["gd"], -r["gf"],
-                    -conduct_scores.get(r["norm"], 0),
+        Head-to-head (points, GD, goals among the tied teams) is tried first;
+        the instant it splits the tied set, each still-level subgroup is
+        re-resolved FROM THE TOP using only the matches between its own
+        members — so goals run up against a team that's already been separated
+        out no longer count. Only when head-to-head can't separate a subgroup
+        does it fall to overall GD, goals, conduct score, then FIFA ranking."""
+
+        def overall_key(r):
+            return (-r["gd"], -r["gf"], -conduct_scores.get(r["norm"], 0),
                     fifa_ranks.get(r["norm"]) or 999, r["team"])
-        ordered = []
+
+        def resolve(teams):
+            if len(teams) == 1:
+                return list(teams)
+            names = {r["norm"] for r in teams}
+            h2h = {nm: {"pts": 0, "gf": 0, "ga": 0} for nm in names}
+            for (hn, an, gh, ga) in finished:
+                if hn in names and an in names:
+                    h2h[hn]["gf"] += gh; h2h[hn]["ga"] += ga
+                    h2h[an]["gf"] += ga; h2h[an]["ga"] += gh
+                    if gh > ga:
+                        h2h[hn]["pts"] += 3
+                    elif gh < ga:
+                        h2h[an]["pts"] += 3
+                    else:
+                        h2h[hn]["pts"] += 1; h2h[an]["pts"] += 1
+
+            def h2h_key(r):
+                hh = h2h[r["norm"]]
+                return (-hh["pts"], -(hh["gf"] - hh["ga"]), -hh["gf"])
+
+            ordered = sorted(teams, key=h2h_key)
+            blocks = []
+            for r in ordered:
+                if blocks and h2h_key(r) == h2h_key(blocks[-1][0]):
+                    blocks[-1].append(r)
+                else:
+                    blocks.append([r])
+            if len(blocks) == 1:           # head-to-head separated nobody
+                return sorted(teams, key=overall_key)
+            out = []
+            for b in blocks:               # re-resolve each still-tied subgroup
+                out.extend(resolve(b))
+            return out
+
+        ranked = []
         by_points = sorted(rows, key=lambda r: -r["points"])
         i = 0
         while i < len(by_points):
             j = i
             while j < len(by_points) and by_points[j]["points"] == by_points[i]["points"]:
                 j += 1
-            block = by_points[i:j]
-            if len(block) == 1:
-                ordered.extend(block)
-            else:
-                names = {r["norm"] for r in block}
-                h2h = {nm: {"pts": 0, "gf": 0, "ga": 0} for nm in names}
-                for (hn, an, gh, ga) in finished:
-                    if hn in names and an in names:
-                        h2h[hn]["gf"] += gh; h2h[hn]["ga"] += ga
-                        h2h[an]["gf"] += ga; h2h[an]["ga"] += gh
-                        if gh > ga:
-                            h2h[hn]["pts"] += 3
-                        elif gh < ga:
-                            h2h[an]["pts"] += 3
-                        else:
-                            h2h[hn]["pts"] += 1; h2h[an]["pts"] += 1
-
-                def key(r):
-                    hh = h2h[r["norm"]]
-                    hgd = hh["gf"] - hh["ga"]
-                    return (-hh["pts"], -hgd, -hh["gf"]) + overall_only(r)
-                ordered.extend(sorted(block, key=key))
+            ranked.extend(resolve(by_points[i:j]))
             i = j
-        return ordered
+        return ranked
+
+    # ---- Mathematical group-winner clinch detection --------------------
+    # Returns the normalized name of the team that has WON its group, or None.
+    # "Won" means guaranteed 1st place no matter how the remaining group games
+    # go — across every possible scoreline, not just every win/draw/loss.
+    #
+    # We enumerate each win/draw/loss combination of the group's unplayed
+    # matches (3**n, n<=6) and require the candidate to finish 1st in all of
+    # them. Within a combination, a clinch is only credited to information that
+    # future scorelines CANNOT change: points and head-to-head RESULTS are
+    # fixed by the win/draw/loss pattern; conduct and FIFA rank are fixed
+    # outright; but a goal-difference or goals-scored separation is trusted
+    # only when every match feeding it is already finished (head-to-head GD/GF
+    # needs the matches among the tied teams played; overall GD/GF needs those
+    # teams to have completed all three games). Any tie that still hinges on a
+    # mutable GD is treated as unsecured — which is correct, because the
+    # trailing team could always erase that gap by winning its last game big.
+    # Result: sound (never a false clinch) and complete (fires the moment a
+    # clinch becomes real, e.g. a leader whose only possible points-rival has
+    # already lost to it head-to-head).
+    def group_winner(letter):
+        teams = [normalize(t) for t in groups_def[letter]]
+        rec = lambda t: gstats.get(t, {"played": 0, "gf": 0, "ga": 0, "points": 0})
+        pts0 = {t: rec(t)["points"] for t in teams}
+        gd0 = {t: rec(t)["gf"] - rec(t)["ga"] for t in teams}
+        gf0 = {t: rec(t)["gf"] for t in teams}
+        pl = {t: rec(t)["played"] for t in teams}
+        fin = ghead.get(letter, [])
+        rem = group_remaining.get(letter, [])
+        has_rem = {t: False for t in teams}
+        for (hn, an) in rem:
+            if hn in has_rem:
+                has_rem[hn] = True
+            if an in has_rem:
+                has_rem[an] = True
+        cond = {t: conduct_scores.get(t, 0) for t in teams}
+        fifa = {t: fifa_ranks.get(t) for t in teams}
+
+        def h2h(subgroup, assigned):
+            names = set(subgroup)
+            hp = {t: 0 for t in subgroup}
+            hgd = {t: 0 for t in subgroup}
+            hgf = {t: 0 for t in subgroup}
+            for (hn, an, gh, ga) in fin:          # finished: full scoreline known
+                if hn in names and an in names:
+                    hgf[hn] += gh; hgf[an] += ga
+                    hgd[hn] += gh - ga; hgd[an] += ga - gh
+                    if gh > ga:
+                        hp[hn] += 3
+                    elif gh < ga:
+                        hp[an] += 3
+                    else:
+                        hp[hn] += 1; hp[an] += 1
+            for (hn, an, o) in assigned:          # assumed: result only, no score
+                if hn in names and an in names:
+                    if o == "H":
+                        hp[hn] += 3
+                    elif o == "A":
+                        hp[an] += 3
+                    else:
+                        hp[hn] += 1; hp[an] += 1
+            return hp, hgd, hgf
+
+        def secured_first(x, subgroup, assigned):
+            """True iff x is guaranteed strictly 1st within this tied set,
+            using only separations future scorelines can't overturn."""
+            if len(subgroup) == 1:
+                return True
+            names = set(subgroup)
+            hp, hgd, hgf = h2h(subgroup, assigned)
+            # Head-to-head GD/GF are usable only if no match among these teams
+            # is still to be played in this scenario.
+            intra_open = any(h in names and a in names for (h, a, _) in assigned)
+            hkey = (lambda t: (hp[t],)) if intra_open else \
+                   (lambda t: (hp[t], hgd[t], hgf[t]))
+            best = max(hkey(t) for t in subgroup)
+            top = [t for t in subgroup if hkey(t) == best]
+            if x not in top:
+                return False
+            if len(top) == 1:
+                return True
+            if len(top) < len(subgroup):
+                return secured_first(x, top, assigned)   # re-apply to reduced set
+            # Head-to-head can't separate this set. Overall criteria are only
+            # trustworthy once every team here has played all three games.
+            if all((not has_rem[t]) and pl[t] >= 3 for t in subgroup):
+                okey = lambda t: (gd0[t], gf0[t], cond[t], -(fifa[t] or 999))
+                return all(okey(x) > okey(t) for t in subgroup if t != x)
+            return False
+
+        def guaranteed_first(x, pts, assigned):
+            xp = pts[x]
+            if any(pts[t] > xp for t in teams if t != x):
+                return False
+            tie = [t for t in teams if pts[t] == xp]
+            if len(tie) == 1:
+                return True
+            return secured_first(x, tie, assigned)
+
+        for x in teams:
+            clinched = True
+            for combo in itertools.product("HDA", repeat=len(rem)):
+                pts = dict(pts0)
+                assigned = []
+                for (hn, an), o in zip(rem, combo):
+                    if o == "H":
+                        pts[hn] += 3
+                    elif o == "A":
+                        pts[an] += 3
+                    else:
+                        pts[hn] += 1; pts[an] += 1
+                    assigned.append((hn, an, o))
+                if not guaranteed_first(x, pts, assigned):
+                    clinched = False
+                    break
+            if clinched:
+                return x        # at most one team can clinch 1st place
+        return None
+
+    clinched_by_letter = {letter: ({w} if (w := group_winner(letter)) else set())
+                          for letter in groups_def}
 
     # ---- Group tables & best third-place race -------------------------
     # Built from the HARDCODED groups.json (membership, names, letters) plus
@@ -420,8 +569,14 @@ def main():
             })
         # Full FIFA tiebreaker ordering (head-to-head, then overall).
         table = rank_group(table, ghead.get(letter, []))
+        winners = clinched_by_letter.get(letter, set())
         for i, r in enumerate(table, start=1):
             r["pos"] = i
+            # Group winners are locked here (possibly mid-group, via the
+            # head-to-head math). Runner-up / third-place locks are filled in
+            # later, once group_done and the best-thirds ranking are known.
+            r["clinched"] = r["norm"] in winners
+            r["clinchType"] = "winner" if r["clinched"] else None
             r.pop("norm", None)
         # A group is "ranked" only once EVERY team has played >=1 game.
         # Until then we don't highlight leaders/third or lock bracket slots.
@@ -474,6 +629,12 @@ def main():
 
     qualified_third_names = {normalize(t["team"]) for t in thirds
                              if t.get("qualifies")}
+    # A third-placed team is only locked into the Round of 32 once EVERY group
+    # is complete and the best-eight ranking is final (matching the group-row
+    # logic below); until then its top-8 slot is just a live projection.
+    for t in thirds:
+        t["clinched"] = all_groups_done and bool(t.get("qualifies"))
+        t["clinchType"] = "third" if t["clinched"] else None
     for g in groups:
         letter = g["group"].split()[-1]
         if not group_done.get(letter, False):
@@ -487,6 +648,36 @@ def main():
                 if hit:
                     eliminated.add(hit[1])
 
+    # ---- Runner-up & third-place qualification locks -------------------
+    # Unlike a group winner (which the head-to-head math can lock mid-group),
+    # these are only certain once the games are in:
+    #   * a RUNNER-UP is through the instant its own group is complete, since
+    #     the top two of every group advance automatically; and
+    #   * a THIRD-PLACED team is through only once EVERY group is complete and
+    #     the best-eight-of-twelve ranking is final — until then a third still
+    #     sitting in the cut could be bumped by a third from an unfinished
+    #     group. So third-place locks all light up together at group-stage end.
+    for g in groups:
+        letter = g["group"].split()[-1]
+        for r in g["table"]:
+            if r.get("clinched"):
+                continue
+            if r["pos"] == 2 and group_done.get(letter, False):
+                r["clinched"] = True
+                r["clinchType"] = "second"
+            elif (r["pos"] == 3 and all_groups_done
+                  and normalize(r["team"]) in qualified_third_names):
+                r["clinched"] = True
+                r["clinchType"] = "third"
+
+    # Per-team advancement, derived from the group tables above, for reuse on
+    # the leaderboard chips.
+    advanced_norms = {normalize(r["team"]) for g in groups for r in g["table"]
+                      if r.get("clinched")}
+    clinch_type_by_norm = {normalize(r["team"]): r.get("clinchType")
+                           for g in groups for r in g["table"]
+                           if r.get("clinched")}
+
     # Leaderboard with shared ranks for ties.
     rows = []
     for owner, teams in assignments["participants"].items():
@@ -498,6 +689,10 @@ def main():
                     "name": t,
                     "points": round(team_points.get(t, 0), 1),
                     "eliminated": t in eliminated,
+                    # True once this team is guaranteed into the Round of 32
+                    # (won its group, or locked as a runner-up / top-8 third).
+                    "clinched": normalize(t) in advanced_norms,
+                    "clinchType": clinch_type_by_norm.get(normalize(t)),
                 }
                 for t in teams
             ],
@@ -515,8 +710,8 @@ def main():
     # table (all 495 combinations) deciding which qualified third-placed
     # team faces which group winner. During the group stage the bracket is
     # filled with PROJECTED teams from the current standings; slots harden
-    # into confirmed teams as groups finish, and real results attach from
-    # the API by team identity.
+    # into confirmed teams as groups finish (or as a winner clinches), and
+    # real results attach from the API by team identity.
     template = load_json(ROOT / "bracket-template.json")
 
     slot_resolved = {}  # "1A"/"2A" -> {"name", "owner", "projected"}
@@ -529,9 +724,13 @@ def main():
         for pos, prefix in ((1, "1"), (2, "2")):
             row = next((r for r in g["table"] if r["pos"] == pos), None)
             if row:
+                # A clinched group winner is locked in even before the group
+                # finishes, so its slot counts as confirmed (not projected).
+                clinched = (prefix == "1"
+                            and normalize(row["team"]) in clinched_by_letter.get(letter, set()))
                 slot_resolved[prefix + letter] = {
                     "name": row["team"], "owner": row["owner"],
-                    "projected": not group_done.get(letter, False),
+                    "projected": not (group_done.get(letter, False) or clinched),
                 }
 
     third_assign = {}  # winner-slot letter -> third-placed side dict
