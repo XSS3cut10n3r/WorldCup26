@@ -1667,7 +1667,7 @@
           "ga": 1,
           "gd": 1,
           "points": 3,
-          "conduct": -2,
+          "conduct": -3,
           "fifaRank": 25
         },
         {
@@ -3035,16 +3035,6 @@
         "rank": 33
       },
       {
-        "team": "South Korea",
-        "owner": "Charlie",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 33
-      },
-      {
         "team": "Switzerland",
         "owner": "Mat",
         "yellow": 2,
@@ -3062,7 +3052,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Côte d'Ivoire",
@@ -3072,7 +3062,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Netherlands",
@@ -3082,7 +3072,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Portugal",
@@ -3092,7 +3082,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Scotland",
@@ -3102,7 +3092,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 39
+        "rank": 38
+      },
+      {
+        "team": "South Korea",
+        "owner": "Charlie",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 38
       },
       {
         "team": "Mexico",
@@ -3303,7 +3303,7 @@
       },
       {
         "name": "Charlie",
-        "score": -4,
+        "score": -5,
         "teams": [
           {
             "name": "Colombia",
@@ -3311,7 +3311,7 @@
           },
           {
             "name": "South Korea",
-            "score": -2
+            "score": -3
           },
           {
             "name": "Saudi Arabia",
@@ -3341,7 +3341,7 @@
             "score": -1
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Darcy",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-19T02:17:46Z"
+  "generated": "2026-06-19T02:59:38Z"
 }
