@@ -32,9 +32,8 @@ jobs:
             git fetch -q origin "$BRANCH" || true
             git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
             python3 scripts/update_odds.py
-            git add odds.json
-            if git diff --staged --quiet; then echo "No odds changes."; ok=skip; break; fi
-            git commit -q -m "Update odds"
+            git add odds.json; [ -f elo.json ] && git add elo.json
+            if git diff --staged --quiet; then echo "No changes."; ok=skip; break; fi            git commit -q -m "Update odds"
             if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
             echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)…"
             sleep 2
