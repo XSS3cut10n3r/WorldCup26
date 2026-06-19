@@ -1153,7 +1153,7 @@
             <tbody>${trs}</tbody></table></div>`;
       }).join("");
       html += section("Group tables", `<div class="ggrid">${cards}</div>
-        <p class="gnote">Highlighted rows are in the automatic qualification places (top two). Ties are broken by head-to-head record first, then overall goal difference, goals scored, conduct score, and FIFA ranking. Groups are only ranked once every team has played at least one game.</p>`);
+        <p class="gnote">Highlighted rows are in the automatic qualification places (top two). Ties are broken by the head-to-head record between the level teams first, then overall goal difference, goals scored, conduct score, and FIFA ranking &mdash; see <b>Group tiebreakers</b> below for the full order. Groups are only ranked once every team has played at least one game.</p>`);
     } else {
       html += section("Group tables",
         `<div class="empty">Group tables appear here once the tournament data is available.</div>`);
@@ -1178,6 +1178,41 @@
           <thead><tr><th></th><th class="l">Team</th><th>P</th><th>Pts</th><th>GD</th><th>GF</th><th>Con</th><th>FIFA</th></tr></thead>
           <tbody>${trs}</tbody></table></div>`);
     }
+
+    // Group-stage tiebreaker rulebook — same styling as the third-place rules
+    html += section("Group tiebreakers", `<div class="rulebook">
+      <h3>How are teams ranked within a group?</h3>
+      <p>Teams are ordered first by total <mark>points</mark>: 3 for a win,
+         1 for a draw, 0 for a loss. When two or more teams finish the group level
+         on points, the tiebreakers below are applied <mark>in order</mark> to
+         separate them.</p>
+
+      <h3>Step one: results between the tied teams</h3>
+      <p>First, look only at the matches played <mark>between the teams that are
+         level</mark> on points:</p>
+      <ol class="criteria">
+        <li>Most points in the matches between the tied teams</li>
+        <li>Superior goal difference in those matches</li>
+        <li>Most goals scored in those matches</li>
+      </ol>
+      <p>So if two teams tie on 6 points but one beat the other head-to-head, the
+         winner of that meeting is placed above &mdash; regardless of overall goal
+         difference.</p>
+
+      <h3>Step two: overall group record</h3>
+      <p>If some teams are <mark>still</mark> level after step one, the ones that
+         remain tied are separated by their record across <mark>all</mark> of their
+         group matches:</p>
+      <ol class="criteria">
+        <li>Superior goal difference in all group matches</li>
+        <li>Most goals scored in all group matches</li>
+        <li>Highest team conduct score (see below)</li>
+      </ol>
+
+      <h3>Step three: world ranking</h3>
+      <p>If teams cannot be separated by steps one and two, they are ranked by the
+         most recent published <mark>FIFA/Coca&#8209;Cola Men's World Ranking</mark>.</p>
+    </div>`);
 
     // Qualification & tiebreak rulebook — large, clear, highlighted
     html += section("How third place is decided", `<div class="rulebook">
@@ -1403,8 +1438,8 @@
     }
     const anyProjected = rounds.some(r => r.matches.some(m => m.home.projected || m.away.projected));
     const note = anyProjected
-      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i> —
-         they update after every group game and lock in as groups finish. Third-place slots
+      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i>.
+         They update after every group game and lock in as groups finish. Third-place slots
          follow FIFA's official allocation table (Annex C), so this is the real bracket if the
          groups ended today.</p>`
       : "";
@@ -1446,7 +1481,7 @@
     }).join("");
     html += section("Worst conduct", `
       <p class="gnote">Every card your teams collect counts against you.
-      Rank 1 holds the family's dirtiest squad list &mdash; wear it proudly.</p>
+      Rank 1 holds the family's dirtiest squad list. Wear it proudly.</p>
       <div class="board">${rows}</div>`);
 
     // Full team table
@@ -1459,7 +1494,7 @@
           <td>${t.yellow_direct_red}</td><td class="gpts">${t.score}</td>
         </tr>`).join("");
       html += section("Team conduct score", `
-        <p class="gnote">Best-behaved teams first &mdash; this is tiebreaker #4 in the
+        <p class="gnote">Best-behaved teams first. This is tiebreaker #4 in the
         best-third-place race on the Groups page. Yellow &minus;1 &middot;
         second-yellow red &minus;3 &middot; straight red &minus;4 &middot;
         yellow then straight red &minus;5. Cards issued to players and team
