@@ -3653,5 +3653,5962 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-19T08:40:42Z"
+  "sim": {
+    "scoring": {
+      "GROUP_STAGE_WIN": 1,
+      "GROUP_STAGE_DRAW": 0.5,
+      "LAST_32": 2,
+      "LAST_16": 3,
+      "QUARTER_FINALS": 4,
+      "SEMI_FINALS": 5,
+      "THIRD_PLACE": 3,
+      "FINAL": 6
+    },
+    "template": {
+      "thirdSlots": [
+        "A",
+        "B",
+        "D",
+        "E",
+        "G",
+        "I",
+        "K",
+        "L"
+      ],
+      "r32": [
+        {
+          "match": 73,
+          "home": "2A",
+          "away": "2B"
+        },
+        {
+          "match": 74,
+          "home": "1E",
+          "away": "T:ABCDF"
+        },
+        {
+          "match": 75,
+          "home": "1F",
+          "away": "2C"
+        },
+        {
+          "match": 76,
+          "home": "1C",
+          "away": "2F"
+        },
+        {
+          "match": 77,
+          "home": "1I",
+          "away": "T:CDFGH"
+        },
+        {
+          "match": 78,
+          "home": "2E",
+          "away": "2I"
+        },
+        {
+          "match": 79,
+          "home": "1A",
+          "away": "T:CEFHI"
+        },
+        {
+          "match": 80,
+          "home": "1L",
+          "away": "T:EHIJK"
+        },
+        {
+          "match": 81,
+          "home": "1D",
+          "away": "T:BEFIJ"
+        },
+        {
+          "match": 82,
+          "home": "1G",
+          "away": "T:AEHIJ"
+        },
+        {
+          "match": 83,
+          "home": "2K",
+          "away": "2L"
+        },
+        {
+          "match": 84,
+          "home": "1H",
+          "away": "2J"
+        },
+        {
+          "match": 85,
+          "home": "1B",
+          "away": "T:EFGIJ"
+        },
+        {
+          "match": 86,
+          "home": "1J",
+          "away": "2H"
+        },
+        {
+          "match": 87,
+          "home": "1K",
+          "away": "T:DEIJL"
+        },
+        {
+          "match": 88,
+          "home": "2D",
+          "away": "2G"
+        }
+      ],
+      "r16": [
+        {
+          "match": 89,
+          "home": "W74",
+          "away": "W77"
+        },
+        {
+          "match": 90,
+          "home": "W73",
+          "away": "W75"
+        },
+        {
+          "match": 91,
+          "home": "W76",
+          "away": "W78"
+        },
+        {
+          "match": 92,
+          "home": "W79",
+          "away": "W80"
+        },
+        {
+          "match": 93,
+          "home": "W83",
+          "away": "W84"
+        },
+        {
+          "match": 94,
+          "home": "W81",
+          "away": "W82"
+        },
+        {
+          "match": 95,
+          "home": "W86",
+          "away": "W88"
+        },
+        {
+          "match": 96,
+          "home": "W85",
+          "away": "W87"
+        }
+      ],
+      "qf": [
+        {
+          "match": 97,
+          "home": "W89",
+          "away": "W90"
+        },
+        {
+          "match": 98,
+          "home": "W93",
+          "away": "W94"
+        },
+        {
+          "match": 99,
+          "home": "W91",
+          "away": "W92"
+        },
+        {
+          "match": 100,
+          "home": "W95",
+          "away": "W96"
+        }
+      ],
+      "sf": [
+        {
+          "match": 101,
+          "home": "W97",
+          "away": "W98"
+        },
+        {
+          "match": 102,
+          "home": "W99",
+          "away": "W100"
+        }
+      ],
+      "third": [
+        {
+          "match": 103,
+          "home": "L101",
+          "away": "L102"
+        }
+      ],
+      "final": [
+        {
+          "match": 104,
+          "home": "W101",
+          "away": "W102"
+        }
+      ],
+      "thirdAllocation": {
+        "EFGHIJKL": [
+          "E",
+          "J",
+          "I",
+          "F",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "DFGHIJKL": [
+          "H",
+          "G",
+          "I",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "DEGHIJKL": [
+          "E",
+          "J",
+          "I",
+          "D",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "DEFHIJKL": [
+          "E",
+          "J",
+          "I",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "DEFGIJKL": [
+          "E",
+          "G",
+          "I",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "DEFGHJKL": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "DEFGHIKL": [
+          "E",
+          "G",
+          "I",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "DEFGHIJL": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "DEFGHIJK": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "CFGHIJKL": [
+          "H",
+          "G",
+          "I",
+          "C",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "CEGHIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "CEFHIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CEFGIJKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "CEFGHJKL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CEFGHIKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CEFGHIJL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "CEFGHIJK": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "CDGHIJKL": [
+          "H",
+          "G",
+          "I",
+          "C",
+          "J",
+          "D",
+          "L",
+          "K"
+        ],
+        "CDFHIJKL": [
+          "C",
+          "J",
+          "I",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDFGIJKL": [
+          "C",
+          "G",
+          "I",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDFGHJKL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDFGHIKL": [
+          "C",
+          "G",
+          "I",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDFGHIJL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "CDFGHIJK": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "CDEHIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "H",
+          "D",
+          "L",
+          "K"
+        ],
+        "CDEGIJKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "J",
+          "D",
+          "L",
+          "K"
+        ],
+        "CDEGHJKL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "H",
+          "D",
+          "L",
+          "K"
+        ],
+        "CDEGHIKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "H",
+          "D",
+          "L",
+          "K"
+        ],
+        "CDEGHIJL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "H",
+          "D",
+          "L",
+          "I"
+        ],
+        "CDEGHIJK": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "H",
+          "D",
+          "I",
+          "K"
+        ],
+        "CDEFIJKL": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDEFHJKL": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDEFHIKL": [
+          "C",
+          "E",
+          "I",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDEFHIJL": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "CDEFHIJK": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "CDEFGJKL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDEFGIKL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDEFGIJL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "J",
+          "F",
+          "L",
+          "I"
+        ],
+        "CDEFGIJK": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "J",
+          "F",
+          "I",
+          "K"
+        ],
+        "CDEFGHKL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "CDEFGHJL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "L",
+          "E"
+        ],
+        "CDEFGHJK": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "E",
+          "K"
+        ],
+        "CDEFGHIL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "CDEFGHIK": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "CDEFGHIJ": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "H",
+          "F",
+          "E",
+          "I"
+        ],
+        "BFGHIJKL": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "BEGHIJKL": [
+          "E",
+          "J",
+          "I",
+          "B",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "BEFHIJKL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "BEFGIJKL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "BEFGHJKL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "BEFGHIKL": [
+          "E",
+          "G",
+          "B",
+          "F",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "BEFGHIJL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "H",
+          "G",
+          "L",
+          "I"
+        ],
+        "BEFGHIJK": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "H",
+          "G",
+          "I",
+          "K"
+        ],
+        "BDGHIJKL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "BDFHIJKL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDFGIJKL": [
+          "I",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDFGHJKL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDFGHIKL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDFGHIJL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "I"
+        ],
+        "BDFGHIJK": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "I",
+          "K"
+        ],
+        "BDEHIJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "BDEGIJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "BDEGHJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "BDEGHIKL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "BDEGHIJL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "H",
+          "G",
+          "L",
+          "I"
+        ],
+        "BDEGHIJK": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "H",
+          "G",
+          "I",
+          "K"
+        ],
+        "BDEFIJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDEFHJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDEFHIKL": [
+          "E",
+          "I",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDEFHIJL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BDEFHIJK": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BDEFGJKL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDEFGIKL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDEFGIJL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "I"
+        ],
+        "BDEFGIJK": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "I",
+          "K"
+        ],
+        "BDEFGHKL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BDEFGHJL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "E"
+        ],
+        "BDEFGHJK": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "E",
+          "K"
+        ],
+        "BDEFGHIL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BDEFGHIK": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BDEFGHIJ": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "E",
+          "I"
+        ],
+        "BCGHIJKL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "BCFHIJKL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCFGIJKL": [
+          "I",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCFGHJKL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCFGHIKL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCFGHIJL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCFGHIJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCEHIJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "BCEGIJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "BCEGHJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "BCEGHIKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "BCEGHIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "G",
+          "L",
+          "I"
+        ],
+        "BCEGHIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "G",
+          "I",
+          "K"
+        ],
+        "BCEFIJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCEFHJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCEFHIKL": [
+          "E",
+          "I",
+          "B",
+          "C",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCEFHIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCEFHIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCEFGJKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCEFGIKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCEFGIJL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCEFGIJK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCEFGHKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCEFGHJL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "L",
+          "E"
+        ],
+        "BCEFGHJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "E",
+          "K"
+        ],
+        "BCEFGHIL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCEFGHIK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCEFGHIJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "E",
+          "I"
+        ],
+        "BCDHIJKL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "I",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDGIJKL": [
+          "I",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDGHJKL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDGHIKL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "I",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDGHIJL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "L",
+          "I"
+        ],
+        "BCDGHIJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "I",
+          "K"
+        ],
+        "BCDFIJKL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDFHJKL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDFHIKL": [
+          "C",
+          "I",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDFHIJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCDFHIJK": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCDFGJKL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDFGIKL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDFGIJL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCDFGIJK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCDFGHKL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDFGHJL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "J"
+        ],
+        "BCDFGHJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "D",
+          "K"
+        ],
+        "BCDFGHIL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCDFGHIK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCDFGHIJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "D",
+          "I"
+        ],
+        "BCDEIJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "I",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDEHJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDEHIKL": [
+          "E",
+          "I",
+          "B",
+          "C",
+          "H",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDEHIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "D",
+          "L",
+          "I"
+        ],
+        "BCDEHIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "H",
+          "D",
+          "I",
+          "K"
+        ],
+        "BCDEGJKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDEGIKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "I",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDEGIJL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "L",
+          "I"
+        ],
+        "BCDEGIJK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "I",
+          "K"
+        ],
+        "BCDEGHKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "H",
+          "D",
+          "L",
+          "K"
+        ],
+        "BCDEGHJL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "L",
+          "E"
+        ],
+        "BCDEGHJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "E",
+          "K"
+        ],
+        "BCDEGHIL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "H",
+          "D",
+          "L",
+          "I"
+        ],
+        "BCDEGHIK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "H",
+          "D",
+          "I",
+          "K"
+        ],
+        "BCDEGHIJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "D",
+          "E",
+          "I"
+        ],
+        "BCDEFJKL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "E",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDEFIKL": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDEFIJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "E",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCDEFIJK": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "E",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCDEFHKL": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDEFHJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "E"
+        ],
+        "BCDEFHJK": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "E",
+          "K"
+        ],
+        "BCDEFHIL": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCDEFHIK": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "H",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCDEFHIJ": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "H",
+          "F",
+          "E",
+          "I"
+        ],
+        "BCDEFGKL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "E",
+          "F",
+          "L",
+          "K"
+        ],
+        "BCDEFGJL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "L",
+          "E"
+        ],
+        "BCDEFGJK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "E",
+          "K"
+        ],
+        "BCDEFGIL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "E",
+          "F",
+          "L",
+          "I"
+        ],
+        "BCDEFGIK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "E",
+          "F",
+          "I",
+          "K"
+        ],
+        "BCDEFGIJ": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "J",
+          "F",
+          "E",
+          "I"
+        ],
+        "BCDEFGHL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "L",
+          "E"
+        ],
+        "BCDEFGHK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "E",
+          "K"
+        ],
+        "BCDEFGHJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "J",
+          "F",
+          "D",
+          "E"
+        ],
+        "BCDEFGHI": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "H",
+          "F",
+          "E",
+          "I"
+        ],
+        "AFGHIJKL": [
+          "H",
+          "J",
+          "I",
+          "F",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "AEGHIJKL": [
+          "E",
+          "J",
+          "I",
+          "A",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "AEFHIJKL": [
+          "E",
+          "J",
+          "I",
+          "F",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "AEFGIJKL": [
+          "E",
+          "J",
+          "I",
+          "F",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "AEFGHJKL": [
+          "E",
+          "G",
+          "J",
+          "F",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "AEFGHIKL": [
+          "E",
+          "G",
+          "I",
+          "F",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "AEFGHIJL": [
+          "E",
+          "G",
+          "J",
+          "F",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "AEFGHIJK": [
+          "E",
+          "G",
+          "J",
+          "F",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ADGHIJKL": [
+          "H",
+          "J",
+          "I",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ADFHIJKL": [
+          "H",
+          "J",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADFGIJKL": [
+          "I",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADFGHJKL": [
+          "H",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADFGHIKL": [
+          "H",
+          "G",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADFGHIJL": [
+          "H",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ADFGHIJK": [
+          "H",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ADEHIJKL": [
+          "E",
+          "J",
+          "I",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ADEGIJKL": [
+          "E",
+          "J",
+          "I",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ADEGHJKL": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ADEGHIKL": [
+          "E",
+          "G",
+          "I",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ADEGHIJL": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ADEGHIJK": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ADEFIJKL": [
+          "E",
+          "J",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADEFHJKL": [
+          "H",
+          "J",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADEFHIKL": [
+          "H",
+          "E",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADEFHIJL": [
+          "H",
+          "J",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ADEFHIJK": [
+          "H",
+          "J",
+          "E",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ADEFGJKL": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADEFGIKL": [
+          "E",
+          "G",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADEFGIJL": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ADEFGIJK": [
+          "E",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ADEFGHKL": [
+          "H",
+          "G",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ADEFGHJL": [
+          "H",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ADEFGHJK": [
+          "H",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ADEFGHIL": [
+          "H",
+          "G",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ADEFGHIK": [
+          "H",
+          "G",
+          "E",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ADEFGHIJ": [
+          "H",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ACGHIJKL": [
+          "H",
+          "J",
+          "I",
+          "C",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ACFHIJKL": [
+          "H",
+          "J",
+          "I",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACFGIJKL": [
+          "I",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACFGHJKL": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACFGHIKL": [
+          "H",
+          "G",
+          "I",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACFGHIJL": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACFGHIJK": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACEHIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ACEGIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ACEGHJKL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ACEGHIKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ACEGHIJL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ACEGHIJK": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ACEFIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACEFHJKL": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACEFHIKL": [
+          "H",
+          "E",
+          "I",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACEFHIJL": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACEFHIJK": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACEFGJKL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACEFGIKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACEFGIJL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACEFGIJK": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACEFGHKL": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACEFGHJL": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ACEFGHJK": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ACEFGHIL": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACEFGHIK": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACEFGHIJ": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ACDHIJKL": [
+          "H",
+          "J",
+          "I",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDGIJKL": [
+          "I",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDGHJKL": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDGHIKL": [
+          "H",
+          "G",
+          "I",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDGHIJL": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDGHIJK": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDFIJKL": [
+          "C",
+          "J",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACDFHJKL": [
+          "H",
+          "J",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDFHIKL": [
+          "H",
+          "F",
+          "I",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDFHIJL": [
+          "H",
+          "J",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDFHIJK": [
+          "H",
+          "J",
+          "F",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDFGJKL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACDFGIKL": [
+          "C",
+          "G",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACDFGIJL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACDFGIJK": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACDFGHKL": [
+          "H",
+          "G",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDFGHJL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "H"
+        ],
+        "ACDFGHJK": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "D",
+          "K"
+        ],
+        "ACDFGHIL": [
+          "H",
+          "G",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDFGHIK": [
+          "H",
+          "G",
+          "F",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDFGHIJ": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "D",
+          "I"
+        ],
+        "ACDEIJKL": [
+          "E",
+          "J",
+          "I",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEHJKL": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEHIKL": [
+          "H",
+          "E",
+          "I",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEHIJL": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDEHIJK": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDEGJKL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEGIKL": [
+          "E",
+          "G",
+          "I",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEGIJL": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDEGIJK": [
+          "E",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDEGHKL": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEGHJL": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "L",
+          "E"
+        ],
+        "ACDEGHJK": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "E",
+          "K"
+        ],
+        "ACDEGHIL": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDEGHIK": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDEGHIJ": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "D",
+          "E",
+          "I"
+        ],
+        "ACDEFJKL": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACDEFIKL": [
+          "C",
+          "E",
+          "I",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACDEFIJL": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACDEFIJK": [
+          "C",
+          "J",
+          "E",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACDEFHKL": [
+          "H",
+          "E",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ACDEFHJL": [
+          "H",
+          "J",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "E"
+        ],
+        "ACDEFHJK": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "F",
+          "D",
+          "K"
+        ],
+        "ACDEFHIL": [
+          "H",
+          "E",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ACDEFHIK": [
+          "H",
+          "E",
+          "F",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ACDEFHIJ": [
+          "H",
+          "J",
+          "E",
+          "C",
+          "A",
+          "F",
+          "D",
+          "I"
+        ],
+        "ACDEFGKL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ACDEFGJL": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ACDEFGJK": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ACDEFGIL": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ACDEFGIK": [
+          "C",
+          "G",
+          "E",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ACDEFGIJ": [
+          "C",
+          "G",
+          "J",
+          "D",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ACDEFGHL": [
+          "H",
+          "G",
+          "F",
+          "C",
+          "A",
+          "D",
+          "L",
+          "E"
+        ],
+        "ACDEFGHK": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "F",
+          "D",
+          "K"
+        ],
+        "ACDEFGHJ": [
+          "H",
+          "G",
+          "J",
+          "C",
+          "A",
+          "F",
+          "D",
+          "E"
+        ],
+        "ACDEFGHI": [
+          "H",
+          "G",
+          "E",
+          "C",
+          "A",
+          "F",
+          "D",
+          "I"
+        ],
+        "ABGHIJKL": [
+          "H",
+          "J",
+          "B",
+          "A",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABFHIJKL": [
+          "H",
+          "J",
+          "B",
+          "A",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABFGIJKL": [
+          "I",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABFGHJKL": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABFGHIKL": [
+          "H",
+          "G",
+          "B",
+          "A",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABFGHIJL": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABFGHIJK": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABEHIJKL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABEGIJKL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "I",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABEGHJKL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "H",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABEGHIKL": [
+          "E",
+          "G",
+          "B",
+          "A",
+          "I",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABEGHIJL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "H",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABEGHIJK": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "H",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABEFIJKL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABEFHJKL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABEFHIKL": [
+          "E",
+          "I",
+          "B",
+          "F",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABEFHIJL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ABEFHIJK": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ABEFGJKL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABEFGIKL": [
+          "E",
+          "G",
+          "B",
+          "A",
+          "I",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABEFGIJL": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABEFGIJK": [
+          "E",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABEFGHKL": [
+          "E",
+          "G",
+          "B",
+          "F",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABEFGHJL": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "E"
+        ],
+        "ABEFGHJK": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "E",
+          "K"
+        ],
+        "ABEFGHIL": [
+          "E",
+          "G",
+          "B",
+          "F",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ABEFGHIK": [
+          "E",
+          "G",
+          "B",
+          "F",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ABEFGHIJ": [
+          "H",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "E",
+          "I"
+        ],
+        "ABDHIJKL": [
+          "I",
+          "J",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABDGIJKL": [
+          "I",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABDGHJKL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABDGHIKL": [
+          "I",
+          "G",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABDGHIJL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABDGHIJK": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABDFIJKL": [
+          "I",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDFHJKL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDFHIKL": [
+          "H",
+          "I",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDFHIJL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABDFHIJK": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABDFGJKL": [
+          "F",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABDFGIKL": [
+          "I",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDFGIJL": [
+          "F",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABDFGIJK": [
+          "F",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABDFGHKL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDFGHJL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "J"
+        ],
+        "ABDFGHJK": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "J",
+          "K"
+        ],
+        "ABDFGHIL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABDFGHIK": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABDFGHIJ": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "J"
+        ],
+        "ABDEIJKL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "I",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABDEHJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABDEHIKL": [
+          "E",
+          "I",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABDEHIJL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ABDEHIJK": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ABDEGJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABDEGIKL": [
+          "E",
+          "G",
+          "B",
+          "A",
+          "I",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABDEGIJL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABDEGIJK": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABDEGHKL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABDEGHJL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "E"
+        ],
+        "ABDEGHJK": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "E",
+          "K"
+        ],
+        "ABDEGHIL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ABDEGHIK": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ABDEGHIJ": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "E",
+          "I"
+        ],
+        "ABDEFJKL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDEFIKL": [
+          "E",
+          "I",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDEFIJL": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABDEFIJK": [
+          "E",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABDEFHKL": [
+          "H",
+          "E",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDEFHJL": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ABDEFHJK": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ABDEFHIL": [
+          "H",
+          "E",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABDEFHIK": [
+          "H",
+          "E",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABDEFHIJ": [
+          "H",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ABDEFGKL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABDEFGJL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "J"
+        ],
+        "ABDEFGJK": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "J",
+          "K"
+        ],
+        "ABDEFGIL": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABDEFGIK": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABDEFGIJ": [
+          "E",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "J"
+        ],
+        "ABDEFGHL": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ABDEFGHK": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ABDEFGHJ": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "J"
+        ],
+        "ABDEFGHI": [
+          "H",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ABCHIJKL": [
+          "I",
+          "J",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABCGIJKL": [
+          "I",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABCGHJKL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABCGHIKL": [
+          "I",
+          "G",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABCGHIJL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABCGHIJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABCFIJKL": [
+          "I",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCFHJKL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCFHIKL": [
+          "H",
+          "I",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCFHIJL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCFHIJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCFGJKL": [
+          "C",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABCFGIKL": [
+          "I",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCFGIJL": [
+          "C",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABCFGIJK": [
+          "C",
+          "J",
+          "B",
+          "F",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABCFGHKL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCFGHJL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "J"
+        ],
+        "ABCFGHJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "J",
+          "K"
+        ],
+        "ABCFGHIL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCFGHIK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCFGHIJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "J"
+        ],
+        "ABCEIJKL": [
+          "E",
+          "J",
+          "B",
+          "A",
+          "I",
+          "C",
+          "L",
+          "K"
+        ],
+        "ABCEHJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABCEHIKL": [
+          "E",
+          "I",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABCEHIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ABCEHIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ABCEGJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABCEGIKL": [
+          "E",
+          "G",
+          "B",
+          "A",
+          "I",
+          "C",
+          "L",
+          "K"
+        ],
+        "ABCEGIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABCEGIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABCEGHKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "K"
+        ],
+        "ABCEGHJL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "L",
+          "E"
+        ],
+        "ABCEGHJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "E",
+          "K"
+        ],
+        "ABCEGHIL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "H",
+          "L",
+          "I"
+        ],
+        "ABCEGHIK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "H",
+          "I",
+          "K"
+        ],
+        "ABCEGHIJ": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "G",
+          "E",
+          "I"
+        ],
+        "ABCEFJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCEFIKL": [
+          "E",
+          "I",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCEFIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCEFIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCEFHKL": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCEFHJL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ABCEFHJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ABCEFHIL": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCEFHIK": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCEFHIJ": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ABCEFGKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCEFGJL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "J"
+        ],
+        "ABCEFGJK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "J",
+          "K"
+        ],
+        "ABCEFGIL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCEFGIK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCEFGIJ": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "I",
+          "J"
+        ],
+        "ABCEFGHL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ABCEFGHK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ABCEFGHJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "E",
+          "J"
+        ],
+        "ABCEFGHI": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ABCDIJKL": [
+          "I",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDHJKL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDHIKL": [
+          "H",
+          "I",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDHIJL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ABCDHIJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ABCDGJKL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "K"
+        ],
+        "ABCDGIKL": [
+          "I",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDGIJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "L",
+          "I"
+        ],
+        "ABCDGIJK": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "G",
+          "I",
+          "K"
+        ],
+        "ABCDGHKL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDGHJL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "J"
+        ],
+        "ABCDGHJK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "J",
+          "K"
+        ],
+        "ABCDGHIL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ABCDGHIK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ABCDGHIJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "J"
+        ],
+        "ABCDFJKL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCDFIKL": [
+          "C",
+          "I",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCDFIJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCDFIJK": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCDFHKL": [
+          "H",
+          "F",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDFHJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "H"
+        ],
+        "ABCDFHJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "K"
+        ],
+        "ABCDFHIL": [
+          "H",
+          "F",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ABCDFHIK": [
+          "H",
+          "F",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ABCDFHIJ": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "I"
+        ],
+        "ABCDFGKL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCDFGJL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "J"
+        ],
+        "ABCDFGJK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "J",
+          "K"
+        ],
+        "ABCDFGIL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCDFGIK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCDFGIJ": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "J"
+        ],
+        "ABCDFGHL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "H"
+        ],
+        "ABCDFGHK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "K"
+        ],
+        "ABCDFGHJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "J"
+        ],
+        "ABCDFGHI": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "I"
+        ],
+        "ABCDEJKL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDEIKL": [
+          "E",
+          "I",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDEIJL": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ABCDEIJK": [
+          "E",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ABCDEHKL": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDEHJL": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "E"
+        ],
+        "ABCDEHJK": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "E",
+          "K"
+        ],
+        "ABCDEHIL": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ABCDEHIK": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ABCDEHIJ": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "D",
+          "E",
+          "I"
+        ],
+        "ABCDEGKL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "K"
+        ],
+        "ABCDEGJL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "J"
+        ],
+        "ABCDEGJK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "J",
+          "K"
+        ],
+        "ABCDEGIL": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "I"
+        ],
+        "ABCDEGIK": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "K"
+        ],
+        "ABCDEGIJ": [
+          "E",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "I",
+          "J"
+        ],
+        "ABCDEGHL": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "E"
+        ],
+        "ABCDEGHK": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "E",
+          "K"
+        ],
+        "ABCDEGHJ": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "E",
+          "J"
+        ],
+        "ABCDEGHI": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "D",
+          "E",
+          "I"
+        ],
+        "ABCDEFKL": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "K"
+        ],
+        "ABCDEFJL": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ABCDEFJK": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ABCDEFIL": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "I"
+        ],
+        "ABCDEFIK": [
+          "C",
+          "E",
+          "B",
+          "D",
+          "A",
+          "F",
+          "I",
+          "K"
+        ],
+        "ABCDEFIJ": [
+          "C",
+          "J",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ABCDEFHL": [
+          "H",
+          "F",
+          "B",
+          "C",
+          "A",
+          "D",
+          "L",
+          "E"
+        ],
+        "ABCDEFHK": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "K"
+        ],
+        "ABCDEFHJ": [
+          "H",
+          "J",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "E"
+        ],
+        "ABCDEFHI": [
+          "H",
+          "E",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "I"
+        ],
+        "ABCDEFGL": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "L",
+          "E"
+        ],
+        "ABCDEFGK": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "K"
+        ],
+        "ABCDEFGJ": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "J"
+        ],
+        "ABCDEFGI": [
+          "C",
+          "G",
+          "B",
+          "D",
+          "A",
+          "F",
+          "E",
+          "I"
+        ],
+        "ABCDEFGH": [
+          "H",
+          "G",
+          "B",
+          "C",
+          "A",
+          "F",
+          "D",
+          "E"
+        ]
+      }
+    },
+    "groupsDef": {
+      "A": [
+        "Mexico",
+        "South Korea",
+        "South Africa",
+        "Czechia"
+      ],
+      "B": [
+        "Canada",
+        "Switzerland",
+        "Qatar",
+        "Bosnia and Herzegovina"
+      ],
+      "C": [
+        "Brazil",
+        "Morocco",
+        "Haiti",
+        "Scotland"
+      ],
+      "D": [
+        "United States",
+        "Paraguay",
+        "Australia",
+        "Türkiye"
+      ],
+      "E": [
+        "Germany",
+        "Curaçao",
+        "Côte d'Ivoire",
+        "Ecuador"
+      ],
+      "F": [
+        "Netherlands",
+        "Japan",
+        "Sweden",
+        "Tunisia"
+      ],
+      "G": [
+        "Belgium",
+        "Egypt",
+        "Iran",
+        "New Zealand"
+      ],
+      "H": [
+        "Spain",
+        "Cabo Verde",
+        "Saudi Arabia",
+        "Uruguay"
+      ],
+      "I": [
+        "France",
+        "Senegal",
+        "Norway",
+        "Iraq"
+      ],
+      "J": [
+        "Argentina",
+        "Algeria",
+        "Austria",
+        "Jordan"
+      ],
+      "K": [
+        "Portugal",
+        "Colombia",
+        "DR Congo",
+        "Uzbekistan"
+      ],
+      "L": [
+        "England",
+        "Croatia",
+        "Panama",
+        "Ghana"
+      ]
+    },
+    "groupResults": {
+      "A": [
+        {
+          "h": "Mexico",
+          "a": "South Africa",
+          "hg": 2,
+          "ag": 0
+        },
+        {
+          "h": "South Korea",
+          "a": "Czechia",
+          "hg": 2,
+          "ag": 1
+        },
+        {
+          "h": "Czechia",
+          "a": "South Africa",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "h": "Mexico",
+          "a": "South Korea",
+          "hg": 1,
+          "ag": 0
+        }
+      ],
+      "B": [
+        {
+          "h": "Canada",
+          "a": "Bosnia and Herzegovina",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "h": "Qatar",
+          "a": "Switzerland",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "h": "Switzerland",
+          "a": "Bosnia and Herzegovina",
+          "hg": 4,
+          "ag": 1
+        },
+        {
+          "h": "Canada",
+          "a": "Qatar",
+          "hg": 6,
+          "ag": 0
+        }
+      ],
+      "C": [
+        {
+          "h": "Brazil",
+          "a": "Morocco",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "h": "Haiti",
+          "a": "Scotland",
+          "hg": 0,
+          "ag": 1
+        }
+      ],
+      "D": [
+        {
+          "h": "United States",
+          "a": "Paraguay",
+          "hg": 4,
+          "ag": 1
+        },
+        {
+          "h": "Australia",
+          "a": "Türkiye",
+          "hg": 2,
+          "ag": 0
+        }
+      ],
+      "E": [
+        {
+          "h": "Germany",
+          "a": "Curaçao",
+          "hg": 7,
+          "ag": 1
+        },
+        {
+          "h": "Côte d'Ivoire",
+          "a": "Ecuador",
+          "hg": 1,
+          "ag": 0
+        }
+      ],
+      "F": [
+        {
+          "h": "Netherlands",
+          "a": "Japan",
+          "hg": 2,
+          "ag": 2
+        },
+        {
+          "h": "Sweden",
+          "a": "Tunisia",
+          "hg": 5,
+          "ag": 1
+        }
+      ],
+      "G": [
+        {
+          "h": "Belgium",
+          "a": "Egypt",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "h": "Iran",
+          "a": "New Zealand",
+          "hg": 2,
+          "ag": 2
+        }
+      ],
+      "H": [
+        {
+          "h": "Spain",
+          "a": "Cabo Verde",
+          "hg": 0,
+          "ag": 0
+        },
+        {
+          "h": "Saudi Arabia",
+          "a": "Uruguay",
+          "hg": 1,
+          "ag": 1
+        }
+      ],
+      "I": [
+        {
+          "h": "France",
+          "a": "Senegal",
+          "hg": 3,
+          "ag": 1
+        },
+        {
+          "h": "Iraq",
+          "a": "Norway",
+          "hg": 1,
+          "ag": 4
+        }
+      ],
+      "J": [
+        {
+          "h": "Argentina",
+          "a": "Algeria",
+          "hg": 3,
+          "ag": 0
+        },
+        {
+          "h": "Austria",
+          "a": "Jordan",
+          "hg": 3,
+          "ag": 1
+        }
+      ],
+      "K": [
+        {
+          "h": "Portugal",
+          "a": "DR Congo",
+          "hg": 1,
+          "ag": 1
+        },
+        {
+          "h": "Uzbekistan",
+          "a": "Colombia",
+          "hg": 1,
+          "ag": 3
+        }
+      ],
+      "L": [
+        {
+          "h": "England",
+          "a": "Croatia",
+          "hg": 4,
+          "ag": 2
+        },
+        {
+          "h": "Ghana",
+          "a": "Panama",
+          "hg": 1,
+          "ag": 0
+        }
+      ]
+    },
+    "groupRemaining": {
+      "A": [
+        {
+          "h": "Czechia",
+          "a": "Mexico"
+        },
+        {
+          "h": "South Africa",
+          "a": "South Korea"
+        }
+      ],
+      "B": [
+        {
+          "h": "Switzerland",
+          "a": "Canada"
+        },
+        {
+          "h": "Bosnia and Herzegovina",
+          "a": "Qatar"
+        }
+      ],
+      "C": [
+        {
+          "h": "Scotland",
+          "a": "Morocco"
+        },
+        {
+          "h": "Brazil",
+          "a": "Haiti"
+        },
+        {
+          "h": "Morocco",
+          "a": "Haiti"
+        },
+        {
+          "h": "Scotland",
+          "a": "Brazil"
+        }
+      ],
+      "D": [
+        {
+          "h": "United States",
+          "a": "Australia"
+        },
+        {
+          "h": "Türkiye",
+          "a": "Paraguay"
+        },
+        {
+          "h": "Türkiye",
+          "a": "United States"
+        },
+        {
+          "h": "Paraguay",
+          "a": "Australia"
+        }
+      ],
+      "E": [
+        {
+          "h": "Germany",
+          "a": "Côte d'Ivoire"
+        },
+        {
+          "h": "Ecuador",
+          "a": "Curaçao"
+        },
+        {
+          "h": "Ecuador",
+          "a": "Germany"
+        },
+        {
+          "h": "Curaçao",
+          "a": "Côte d'Ivoire"
+        }
+      ],
+      "F": [
+        {
+          "h": "Netherlands",
+          "a": "Sweden"
+        },
+        {
+          "h": "Tunisia",
+          "a": "Japan"
+        },
+        {
+          "h": "Tunisia",
+          "a": "Netherlands"
+        },
+        {
+          "h": "Japan",
+          "a": "Sweden"
+        }
+      ],
+      "G": [
+        {
+          "h": "Belgium",
+          "a": "Iran"
+        },
+        {
+          "h": "New Zealand",
+          "a": "Egypt"
+        },
+        {
+          "h": "New Zealand",
+          "a": "Belgium"
+        },
+        {
+          "h": "Egypt",
+          "a": "Iran"
+        }
+      ],
+      "H": [
+        {
+          "h": "Spain",
+          "a": "Saudi Arabia"
+        },
+        {
+          "h": "Uruguay",
+          "a": "Cabo Verde"
+        },
+        {
+          "h": "Uruguay",
+          "a": "Spain"
+        },
+        {
+          "h": "Cabo Verde",
+          "a": "Saudi Arabia"
+        }
+      ],
+      "I": [
+        {
+          "h": "France",
+          "a": "Iraq"
+        },
+        {
+          "h": "Norway",
+          "a": "Senegal"
+        },
+        {
+          "h": "Norway",
+          "a": "France"
+        },
+        {
+          "h": "Senegal",
+          "a": "Iraq"
+        }
+      ],
+      "J": [
+        {
+          "h": "Argentina",
+          "a": "Austria"
+        },
+        {
+          "h": "Jordan",
+          "a": "Algeria"
+        },
+        {
+          "h": "Jordan",
+          "a": "Argentina"
+        },
+        {
+          "h": "Algeria",
+          "a": "Austria"
+        }
+      ],
+      "K": [
+        {
+          "h": "Portugal",
+          "a": "Uzbekistan"
+        },
+        {
+          "h": "Colombia",
+          "a": "DR Congo"
+        },
+        {
+          "h": "Colombia",
+          "a": "Portugal"
+        },
+        {
+          "h": "DR Congo",
+          "a": "Uzbekistan"
+        }
+      ],
+      "L": [
+        {
+          "h": "England",
+          "a": "Ghana"
+        },
+        {
+          "h": "Panama",
+          "a": "Croatia"
+        },
+        {
+          "h": "Panama",
+          "a": "England"
+        },
+        {
+          "h": "Croatia",
+          "a": "Ghana"
+        }
+      ]
+    },
+    "teams": {
+      "Mexico": {
+        "owner": "Nik",
+        "canon": "Mexico",
+        "conduct": -5,
+        "fifa": 14,
+        "group": "A"
+      },
+      "South Korea": {
+        "owner": "Charlie",
+        "canon": "South Korea",
+        "conduct": -3,
+        "fifa": 25,
+        "group": "A"
+      },
+      "South Africa": {
+        "owner": "Sydney",
+        "canon": "South Africa",
+        "conduct": -12,
+        "fifa": 60,
+        "group": "A"
+      },
+      "Czechia": {
+        "owner": "Nik",
+        "canon": "Czechia",
+        "conduct": -1,
+        "fifa": 39,
+        "group": "A"
+      },
+      "Canada": {
+        "owner": "Kelly",
+        "canon": "Canada",
+        "conduct": -3,
+        "fifa": 30,
+        "group": "B"
+      },
+      "Switzerland": {
+        "owner": "Mat",
+        "canon": "Switzerland",
+        "conduct": -2,
+        "fifa": 19,
+        "group": "B"
+      },
+      "Qatar": {
+        "owner": "Iva",
+        "canon": "Qatar",
+        "conduct": -11,
+        "fifa": 57,
+        "group": "B"
+      },
+      "Bosnia and Herzegovina": {
+        "owner": "Tomi",
+        "canon": "Bosnia and Herzegovina",
+        "conduct": -9,
+        "fifa": 64,
+        "group": "B"
+      },
+      "Brazil": {
+        "owner": "Sydney",
+        "canon": "Brazil",
+        "conduct": -2,
+        "fifa": 6,
+        "group": "C"
+      },
+      "Morocco": {
+        "owner": "Agatha",
+        "canon": "Morocco",
+        "conduct": 0,
+        "fifa": 7,
+        "group": "C"
+      },
+      "Haiti": {
+        "owner": "Darcy",
+        "canon": "Haiti",
+        "conduct": -1,
+        "fifa": 83,
+        "group": "C"
+      },
+      "Scotland": {
+        "owner": "Sydney",
+        "canon": "Scotland",
+        "conduct": -3,
+        "fifa": 42,
+        "group": "C"
+      },
+      "United States": {
+        "owner": "Darcy",
+        "canon": "United States",
+        "conduct": -1,
+        "fifa": 17,
+        "group": "D"
+      },
+      "Paraguay": {
+        "owner": "Pete",
+        "canon": "Paraguay",
+        "conduct": -5,
+        "fifa": 40,
+        "group": "D"
+      },
+      "Australia": {
+        "owner": "Agatha",
+        "canon": "Australia",
+        "conduct": 0,
+        "fifa": 27,
+        "group": "D"
+      },
+      "Türkiye": {
+        "owner": "Iva",
+        "canon": "Türkiye",
+        "conduct": -1,
+        "fifa": 22,
+        "group": "D"
+      },
+      "Germany": {
+        "owner": "Tomi",
+        "canon": "Germany",
+        "conduct": 0,
+        "fifa": 10,
+        "group": "E"
+      },
+      "Curaçao": {
+        "owner": "Ondine",
+        "canon": "Curaçao",
+        "conduct": 0,
+        "fifa": 82,
+        "group": "E"
+      },
+      "Côte d'Ivoire": {
+        "owner": "Paul",
+        "canon": "Côte d'Ivoire",
+        "conduct": -3,
+        "fifa": 33,
+        "group": "E"
+      },
+      "Ecuador": {
+        "owner": "Sydney",
+        "canon": "Ecuador",
+        "conduct": -1,
+        "fifa": 23,
+        "group": "E"
+      },
+      "Netherlands": {
+        "owner": "Charlotte",
+        "canon": "Netherlands",
+        "conduct": -3,
+        "fifa": 8,
+        "group": "F"
+      },
+      "Japan": {
+        "owner": "Pete",
+        "canon": "Japan",
+        "conduct": 0,
+        "fifa": 18,
+        "group": "F"
+      },
+      "Sweden": {
+        "owner": "Tomi",
+        "canon": "Sweden",
+        "conduct": 0,
+        "fifa": 38,
+        "group": "F"
+      },
+      "Tunisia": {
+        "owner": "Darcy",
+        "canon": "Tunisia",
+        "conduct": -1,
+        "fifa": 46,
+        "group": "F"
+      },
+      "Belgium": {
+        "owner": "Paul",
+        "canon": "Belgium",
+        "conduct": -2,
+        "fifa": 9,
+        "group": "G"
+      },
+      "Egypt": {
+        "owner": "Tom",
+        "canon": "Egypt",
+        "conduct": -2,
+        "fifa": 29,
+        "group": "G"
+      },
+      "Iran": {
+        "owner": "Ondine",
+        "canon": "Iran",
+        "conduct": -1,
+        "fifa": 21,
+        "group": "G"
+      },
+      "New Zealand": {
+        "owner": "Tomi",
+        "canon": "New Zealand",
+        "conduct": 0,
+        "fifa": 85,
+        "group": "G"
+      },
+      "Spain": {
+        "owner": "Pete",
+        "canon": "Spain",
+        "conduct": -1,
+        "fifa": 2,
+        "group": "H"
+      },
+      "Cabo Verde": {
+        "owner": "Paul",
+        "canon": "Cabo Verde",
+        "conduct": -1,
+        "fifa": 67,
+        "group": "H"
+      },
+      "Saudi Arabia": {
+        "owner": "Charlie",
+        "canon": "Saudi Arabia",
+        "conduct": -1,
+        "fifa": 61,
+        "group": "H"
+      },
+      "Uruguay": {
+        "owner": "Iva",
+        "canon": "Uruguay",
+        "conduct": 0,
+        "fifa": 16,
+        "group": "H"
+      },
+      "France": {
+        "owner": "Darcy",
+        "canon": "France",
+        "conduct": 0,
+        "fifa": 3,
+        "group": "I"
+      },
+      "Senegal": {
+        "owner": "Ondine",
+        "canon": "Senegal",
+        "conduct": 0,
+        "fifa": 15,
+        "group": "I"
+      },
+      "Norway": {
+        "owner": "Charlotte",
+        "canon": "Norway",
+        "conduct": 0,
+        "fifa": 31,
+        "group": "I"
+      },
+      "Iraq": {
+        "owner": "Agatha",
+        "canon": "Iraq",
+        "conduct": -1,
+        "fifa": 56,
+        "group": "I"
+      },
+      "Argentina": {
+        "owner": "Nik",
+        "canon": "Argentina",
+        "conduct": 0,
+        "fifa": 1,
+        "group": "J"
+      },
+      "Algeria": {
+        "owner": "Mat",
+        "canon": "Algeria",
+        "conduct": 0,
+        "fifa": 28,
+        "group": "J"
+      },
+      "Austria": {
+        "owner": "Kelly",
+        "canon": "Austria",
+        "conduct": -1,
+        "fifa": 24,
+        "group": "J"
+      },
+      "Jordan": {
+        "owner": "Charlie",
+        "canon": "Jordan",
+        "conduct": 0,
+        "fifa": 63,
+        "group": "J"
+      },
+      "Portugal": {
+        "owner": "Kelly",
+        "canon": "Portugal",
+        "conduct": -3,
+        "fifa": 5,
+        "group": "K"
+      },
+      "Colombia": {
+        "owner": "Charlie",
+        "canon": "Colombia",
+        "conduct": -1,
+        "fifa": 13,
+        "group": "K"
+      },
+      "DR Congo": {
+        "owner": "Tom",
+        "canon": "DR Congo",
+        "conduct": -1,
+        "fifa": 45,
+        "group": "K"
+      },
+      "Uzbekistan": {
+        "owner": "Ondine",
+        "canon": "Uzbekistan",
+        "conduct": -1,
+        "fifa": 50,
+        "group": "K"
+      },
+      "England": {
+        "owner": "Mat",
+        "canon": "England",
+        "conduct": 0,
+        "fifa": 4,
+        "group": "L"
+      },
+      "Croatia": {
+        "owner": "Tom",
+        "canon": "Croatia",
+        "conduct": 0,
+        "fifa": 11,
+        "group": "L"
+      },
+      "Panama": {
+        "owner": "Paul",
+        "canon": "Panama",
+        "conduct": -2,
+        "fifa": 34,
+        "group": "L"
+      },
+      "Ghana": {
+        "owner": "Charlotte",
+        "canon": "Ghana",
+        "conduct": -1,
+        "fifa": 73,
+        "group": "L"
+      }
+    },
+    "knockoutPlayed": []
+  },
+  "generated": "2026-06-19T08:54:18Z"
 }
