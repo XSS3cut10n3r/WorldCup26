@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#15431C">
-<title>Family World Cup 2026 — Leaderboard</title>
+<title>Family World Cup 2026: Leaderboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -181,6 +181,15 @@
     text-decoration-color: var(--live);
     text-decoration-thickness: 1.5px;
   }
+  /* Teams guaranteed into the Round of 32 (data.json "clinched"): a light,
+     constant golden glow plus a gold rim and gold points figure. Scoped to
+     :not(.out) so the glow drops away the instant a team is knocked out and
+     the chip falls back to the crossed-out treatment above. */
+  .chip.clinched:not(.out) {
+    border-color: var(--gold);
+    box-shadow: 0 0 8px 1px rgba(232, 195, 74, 0.45);
+  }
+  .chip.clinched:not(.out) b { color: var(--gold); }
   .pts {
     font-family: var(--display);
     font-weight: 700;
@@ -199,7 +208,7 @@
     text-transform: uppercase;
   }
 
-  /* Leader treatment — the one gold thing on the page */
+  /* Leader treatment: the one gold thing on the page */
   .row.leader {
     background: linear-gradient(90deg, rgba(232,195,74,0.10), transparent 70%);
     border-left: 3px solid var(--gold);
@@ -275,7 +284,7 @@
   .match.is-live { border-color: rgba(255,90,69,0.55); }
   .match.is-live .meta { color: var(--live); }
 
-  /* Penalty shootout — Option A pill on an icy Option B rim. A finished
+  /* Penalty shootout: Option A pill on an icy Option B rim. A finished
      shootout takes precedence over the gold UPSET pill (see matchCard). */
   .match.pens {
     position: relative;
@@ -308,7 +317,7 @@
     display: inline-block;
   }
 
-  /* Upset — lower-ranked team beat a higher-ranked one. Gold outline, a
+  /* Upset: lower-ranked team beat a higher-ranked one. Gold outline, a
      corner "UPSET" pill, and a slow gold shimmer sweeping across the card. */
   /* The UPSET pill pokes 10px above the card (top:-10px); add that much top
      spacing so the pill doesn't crowd the card above it (e.g. two upsets in a row). */
@@ -345,7 +354,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
 
-  /* Held — a big underdog (25+ FIFA places below) drew a much stronger side.
+  /* Held: a big underdog (25+ FIFA places below) drew a much stronger side.
      Red outline + corner "HELD" pill, with a bright red glow that breathes
      around the whole card, plus a glowing heartbeat on the pill itself. */
   .match.held {
@@ -625,6 +634,17 @@
   .gowner { display: block; font-size: 10.5px; color: var(--chalk-faint); }
   .gtable tr.adv td { background: rgba(242, 240, 228, 0.06); }
   .gtable tr.adv td.gteam, .gtable tr.adv td.gpts { font-weight: 600; }
+  /* Clinched a Round-of-32 place (data.json "clinched" on group rows and on
+     thirdPlace entries): the team NAME glows gold. The owner/group subtext
+     below keeps its plain faint styling. */
+  .gtable td.gteam.clinched {
+    color: var(--gold);
+    text-shadow: 0 0 9px rgba(232, 195, 74, 0.55), 0 0 2px rgba(232, 195, 74, 0.65);
+  }
+  .gtable td.gteam.clinched .gowner {
+    color: var(--chalk-faint);
+    text-shadow: none;
+  }
   .gtable-wrap {
     border: 1px solid var(--pitch-line);
     background: var(--pitch-deep);
@@ -879,7 +899,7 @@
       const lr = m.winner === "HOME_TEAM" ? m.away.fifaRank : m.home.fifaRank;
       if (wr != null && lr != null && wr - lr >= 5) upset = true;
     }
-    // Held: a finished draw in which one side is a big underdog — its FIFA rank
+    // Held: a finished draw in which one side is a big underdog: its FIFA rank
     // number is at least 25 higher (lower-ranked) than its opponent's. Mutually
     // exclusive with upset (which requires a winner). Both ranks must be known.
     let held = false;
@@ -918,7 +938,7 @@
   // ---- Animated standings: rows start shuffled at 0 points and race up into
   // their final order, counting in 0.5s with an exponentially accelerating pace
   // (350ms between steps at the start, easing to 100ms by the end). Only the
-  // row positions and the points numbers move — the card markup is untouched. ----
+  // row positions and the points numbers move: the card markup is untouched. ----
   let lbAnimated = false;
   let oddsAnimated = false;
   const lbReduceMotion = () =>
@@ -1078,7 +1098,7 @@
       html += section('<span class="live-dot"></span>&nbsp;Live now',
         `<div class="matches">${data.live.map(matchCard).join("")}</div>`);
     } else {
-      // No live game — count down to the first upcoming fixture, but only
+      // No live game: count down to the first upcoming fixture, but only
       // while it's genuinely still in the future.
       const next = (data.upcoming || [])[0];
       if (next && next.utcDate &&
@@ -1090,7 +1110,9 @@
     // Leaderboard
     const rows = (data.leaderboard || []).map(r => {
       const chips = r.teams.map(t =>
-        `<span class="chip ${t.eliminated ? "out" : ""}">${esc(t.name)} <b>${fmtPts(t.points)}</b></span>`
+        `<span class="chip ${t.eliminated ? "out" : ""} ${t.clinched ? "clinched" : ""}"${
+          t.clinched && !t.eliminated ? ' title="Through to the knockouts"' : ""
+        }>${esc(t.name)} <b>${fmtPts(t.points)}</b></span>`
       ).join("");
       return `<div class="row ${r.rank === 1 && r.points > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
@@ -1106,7 +1128,7 @@
        <span class="gain">+${fmtPts(e.points)}</span></li>`).join("");
     html += section("Latest points",
       ev ? `<ul class="events">${ev}</ul>`
-         : `<div class="empty">No points scored yet — they'll appear here once the tournament kicks off.</div>`);
+         : `<div class="empty">No points scored yet: they'll appear here once the tournament kicks off.</div>`);
 
     // Recent results
     const rec = (data.recent || []).map(matchCard).join("");
@@ -1143,7 +1165,7 @@
         const trs = g.table.map(r =>
           `<tr class="${g.ranked && r.pos <= 2 ? "adv" : ""}">
             <td class="gpos">${r.pos}</td>
-            <td class="gteam">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
+            <td class="gteam ${r.clinched ? "clinched" : ""}">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
             <td>${r.played}</td><td class="gpts">${r.points}</td><td>${signedGD(r.gd)}</td>
             <td>${r.gf}</td><td>${r.conduct ?? 0}</td><td>${r.fifaRank ?? "&mdash;"}</td>
           </tr>`).join("");
@@ -1153,7 +1175,7 @@
             <tbody>${trs}</tbody></table></div>`;
       }).join("");
       html += section("Group tables", `<div class="ggrid">${cards}</div>
-        <p class="gnote">Highlighted rows are in the automatic qualification places (top two). Ties are broken by the head-to-head record between the level teams first, then overall goal difference, goals scored, conduct score, and FIFA ranking &mdash; see <b>Group tiebreakers</b> below for the full order. Groups are only ranked once every team has played at least one game.</p>`);
+        <p class="gnote">Highlighted rows are in the automatic qualification places (top two). Ties are broken by the head-to-head record between the level teams first, then overall goal difference, goals scored, conduct score, and FIFA ranking: see <b>Group tiebreakers</b> below for the full order. Groups are only ranked once every team has played at least one game.</p>`);
     } else {
       html += section("Group tables",
         `<div class="empty">Group tables appear here once the tournament data is available.</div>`);
@@ -1165,7 +1187,7 @@
       const trs = th.map(t =>
         `<tr class="${t.qualifies ? "adv" : ""}">
           <td class="gpos">${t.rank}</td>
-          <td class="gteam">${esc(t.team)}
+          <td class="gteam ${t.clinched ? "clinched" : ""}">${esc(t.team)}
             <span class="gowner">${esc(t.group)}${t.owner ? " &middot; " + esc(t.owner) : ""}</span></td>
           <td>${t.played}</td><td>${t.points}</td><td>${signedGD(t.gd)}</td><td>${t.gf}</td>
           <td>${t.conduct ?? 0}</td><td>${t.fifaRank ?? "&mdash;"}</td>
@@ -1179,7 +1201,7 @@
           <tbody>${trs}</tbody></table></div>`);
     }
 
-    // Group-stage tiebreaker rulebook — same styling as the third-place rules
+    // Group-stage tiebreaker rulebook: same styling as the third-place rules
     html += section("Group tiebreakers", `<div class="rulebook">
       <h3>How are teams ranked within a group?</h3>
       <p>Teams are ordered first by total <mark>points</mark>: 3 for a win,
@@ -1196,7 +1218,7 @@
         <li>Most goals scored in those matches</li>
       </ol>
       <p>So if two teams tie on 6 points but one beat the other head-to-head, the
-         winner of that meeting is placed above &mdash; regardless of overall goal
+         winner of that meeting is placed above: regardless of overall goal
          difference.</p>
 
       <h3>Step two: overall group record</h3>
@@ -1206,7 +1228,8 @@
       <ol class="criteria">
         <li>Superior goal difference in all group matches</li>
         <li>Most goals scored in all group matches</li>
-        <li>Highest team conduct score (see below)</li>
+        <li>Highest team conduct score (yellow and red cards for players and team
+            officials: see below)</li>
       </ol>
 
       <h3>Step three: world ranking</h3>
@@ -1214,7 +1237,7 @@
          most recent published <mark>FIFA/Coca&#8209;Cola Men's World Ranking</mark>.</p>
     </div>`);
 
-    // Qualification & tiebreak rulebook — large, clear, highlighted
+    // Qualification & tiebreak rulebook: large, clear, highlighted
     html += section("How third place is decided", `<div class="rulebook">
       <h3>How will the best third-place teams be determined?</h3>
       <p>Similar to the group tiebreakers, the third-placed teams in the group stage
@@ -1438,8 +1461,8 @@
     }
     const anyProjected = rounds.some(r => r.matches.some(m => m.home.projected || m.away.projected));
     const note = anyProjected
-      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i>.
-         They update after every group game and lock in as groups finish. Third-place slots
+      ? `<p class="gnote"><i>Italic teams are projected from the current standings</i> —
+         they update after every group game and lock in as groups finish. Third-place slots
          follow FIFA's official allocation table (Annex C), so this is the real bracket if the
          groups ended today.</p>`
       : "";
@@ -1469,7 +1492,7 @@
     }
     let html = "";
 
-    // Worst conduct — same look as the main standings, inverted honor
+    // Worst conduct: same look as the main standings, inverted honor
     const rows = people.map(p => {
       const chips = p.teams.map(t =>
         `<span class="chip">${esc(t.name)} <b>${t.score}</b></span>`).join("");
@@ -1481,7 +1504,7 @@
     }).join("");
     html += section("Worst conduct", `
       <p class="gnote">Every card your teams collect counts against you.
-      Rank 1 holds the family's dirtiest squad list. Wear it proudly.</p>
+      Rank 1 holds the family's dirtiest squad list: wear it proudly.</p>
       <div class="board">${rows}</div>`);
 
     // Full team table
@@ -1494,7 +1517,7 @@
           <td>${t.yellow_direct_red}</td><td class="gpts">${t.score}</td>
         </tr>`).join("");
       html += section("Team conduct score", `
-        <p class="gnote">Best-behaved teams first. This is tiebreaker #4 in the
+        <p class="gnote">Best-behaved teams first: this is tiebreaker #4 in the
         best-third-place race on the Groups page. Yellow &minus;1 &middot;
         second-yellow red &minus;3 &middot; straight red &minus;4 &middot;
         yellow then straight red &minus;5. Cards issued to players and team
@@ -1503,7 +1526,7 @@
           <thead><tr><th></th><th class="l">Team</th><th>Y</th><th>2Y&rarr;R</th><th>R</th><th>Y+R</th><th>Score</th></tr></thead>
           <tbody>${ctrs}</tbody></table></div>
         ${cd.hasData ? "" :
-          `<p class="gnote">No cards entered yet &mdash; totals update when
+          `<p class="gnote">No cards entered yet: totals update when
            <b>cards-manual.json</b> in the repository is edited.</p>`}`);
     }
     return html;
@@ -1515,7 +1538,7 @@
         appear here once the <b>Update odds</b> workflow has run. Trigger it from
         the repository's Actions tab, then refresh.</div>`);
     }
-    // Reuse the battle-tested elimination flags from data.json — both files
+    // Reuse the battle-tested elimination flags from data.json: both files
     // key teams by the exact assignments.json spelling, so names line up.
     const elim = new Set();
     ((data && data.leaderboard) || []).forEach(p =>
@@ -1536,7 +1559,7 @@
     const note = `<p class="gnote">Live championship odds from <b>Kalshi</b>,
       normalized to 100% (the market's built-in margin removed). Each person's
       figure is the combined chance that <i>one of their teams</i> lifts the
-      trophy &mdash; the chips show each team's individual odds, and the
+      trophy: the chips show each team's individual odds, and the
       <span style="color:var(--up)">▲</span>/<span style="color:var(--live)">▼</span>
       is their change since the last update. Knocked-out teams are struck through.</p>`;
     return section("Odds to win the Cup", note + `<div class="board">${rows}</div>`);
@@ -1575,7 +1598,7 @@
       .then(d => { lastData = d; render(d); })
       .catch(fail);
     // Odds live in their own file, written by the separate "Update odds"
-    // workflow. Missing/!ok is fine — the Odds tab just shows its empty state.
+    // workflow. Missing/!ok is fine: the Odds tab just shows its empty state.
     fetch("odds.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) { oddsData = d; if (view === "odds") render(lastData); } })
