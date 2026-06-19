@@ -929,6 +929,164 @@ def main():
             if side and side.get("name") and side["name"] != "TBD":
                 side["fifaRank"] = fifa_ranks.get(normalize(side["name"]))
 
+    # ---- "Winner clinches" pills for upcoming group games ---------------
+    # For each upcoming group fixture we ask, rigorously: if THIS game ends a
+    # particular way, is a given team then guaranteed a top-2 finish (or the
+    # group outright) no matter how every other unplayed group game goes? The
+    # same conservative, scoreline-agnostic enumeration the group-winner clinch
+    # uses is generalized here to "guaranteed top-k": points and head-to-head
+    # RESULTS are fixed by each win/draw/loss pattern, conduct and FIFA are
+    # fixed, and goal-difference separations are trusted only once the matches
+    # feeding them are actually played. Because group order depends solely on
+    # intra-group results, this is exact — and it stays silent unless the
+    # guarantee genuinely holds (so a marquee game can correctly show nothing).
+    def group_analyzer(letter):
+        teams = [normalize(t) for t in groups_def[letter]]
+        rec = lambda t: gstats.get(t, {"played": 0, "gf": 0, "ga": 0, "points": 0})
+        pts0 = {t: rec(t)["points"] for t in teams}
+        gd0 = {t: rec(t)["gf"] - rec(t)["ga"] for t in teams}
+        gf0 = {t: rec(t)["gf"] for t in teams}
+        pl = {t: rec(t)["played"] for t in teams}
+        fin = ghead.get(letter, [])
+        rem = group_remaining.get(letter, [])
+        has_rem = {t: False for t in teams}
+        for (hn, an) in rem:
+            if hn in has_rem:
+                has_rem[hn] = True
+            if an in has_rem:
+                has_rem[an] = True
+        cond = {t: conduct_scores.get(t, 0) for t in teams}
+        fifa = {t: fifa_ranks.get(t) for t in teams}
+
+        def h2h(subgroup, assigned):
+            names = set(subgroup)
+            hp = {t: 0 for t in subgroup}
+            hgd = {t: 0 for t in subgroup}
+            hgf = {t: 0 for t in subgroup}
+            for (hn, an, gh, ga) in fin:
+                if hn in names and an in names:
+                    hgf[hn] += gh; hgf[an] += ga
+                    hgd[hn] += gh - ga; hgd[an] += ga - gh
+                    if gh > ga:
+                        hp[hn] += 3
+                    elif gh < ga:
+                        hp[an] += 3
+                    else:
+                        hp[hn] += 1; hp[an] += 1
+            for (hn, an, o) in assigned:
+                if hn in names and an in names:
+                    if o == "H":
+                        hp[hn] += 3
+                    elif o == "A":
+                        hp[an] += 3
+                    else:
+                        hp[hn] += 1; hp[an] += 1
+            return hp, hgd, hgf
+
+        def max_above(x, subgroup, assigned):
+            """Greatest number of subgroup teams that could finish strictly
+            above x, treating any still-mutable goal difference adversarially.
+            (Mirrors the group-winner soundness, generalized from 1st to top-k.)"""
+            if len(subgroup) <= 1:
+                return 0
+            names = set(subgroup)
+            hp, hgd, hgf = h2h(subgroup, assigned)
+            intra_open = any(h in names and a in names for (h, a, _) in assigned)
+            hkey = (lambda t: (hp[t],)) if intra_open else \
+                   (lambda t: (hp[t], hgd[t], hgf[t]))
+            kx = hkey(x)
+            above = sum(1 for t in subgroup if t != x and hkey(t) > kx)
+            eqx = [t for t in subgroup if t != x and hkey(t) == kx]
+            if not eqx:
+                return above
+            tied = [x] + eqx
+            if len(tied) < len(subgroup):
+                return above + max_above(x, tied, assigned)   # re-apply to tied set
+            if intra_open:                                    # margins free -> all could pass x
+                return above + len(eqx)
+            if all((not has_rem[t]) and pl[t] >= 3 for t in subgroup):
+                okey = lambda t: (gd0[t], gf0[t], cond[t], -(fifa[t] or 999))
+                kx2 = okey(x)
+                return above + sum(1 for t in eqx if okey(t) > kx2)
+            return above + len(eqx)
+
+        def guaranteed_topk(x, pts, assigned, k):
+            a = sum(1 for t in teams if t != x and pts[t] > pts[x])
+            if a >= k:
+                return False
+            tied = [x] + [t for t in teams if t != x and pts[t] == pts[x]]
+            return a + max_above(x, tied, assigned) <= k - 1
+
+        def enumerate_guaranteed(forced, team, k):
+            others = [i for i in range(len(rem)) if i not in forced]
+            for combo in itertools.product("HDA", repeat=len(others)):
+                pts = dict(pts0)
+                assigned = []
+                for i, o in list(forced.items()) + list(zip(others, combo)):
+                    hn, an = rem[i]
+                    if o == "H":
+                        pts[hn] += 3
+                    elif o == "A":
+                        pts[an] += 3
+                    else:
+                        pts[hn] += 1; pts[an] += 1
+                    assigned.append((hn, an, o))
+                if not guaranteed_topk(team, pts, assigned, k):
+                    return False
+            return True
+
+        return teams, rem, enumerate_guaranteed
+
+    _analyzers = {}
+    for entry in upcoming:
+        if entry["stageCode"] != "GROUP_STAGE" or entry["status"] not in UPCOMING:
+            continue
+        hn = normalize(entry["home"]["name"] or "")
+        an = normalize(entry["away"]["name"] or "")
+        letter = team2group.get(hn) or team2group.get(an)
+        if not (hn and an and letter):
+            continue
+        if letter not in _analyzers:
+            _analyzers[letter] = group_analyzer(letter)
+        _teams, rem, eg = _analyzers[letter]
+        idx = next((i for i, (rh, ra) in enumerate(rem) if {rh, ra} == {hn, an}), None)
+        if idx is None:
+            continue
+        rh, _ra = rem[idx]
+        home_win = "H" if rh == hn else "A"
+        away_win = "H" if rh == an else "A"
+        home_clinched = hn in advanced_norms
+        away_clinched = an in advanced_norms
+
+        h_adv = eg({idx: home_win}, hn, 2)
+        a_adv = eg({idx: away_win}, an, 2)
+        h_grp = eg({idx: home_win}, hn, 1)
+        a_grp = eg({idx: away_win}, an, 1)
+        draw_both = eg({idx: "D"}, hn, 2) and eg({idx: "D"}, an, 2)
+
+        either_in = home_clinched or away_clinched
+        winner_group = h_grp and a_grp and not either_in
+        winner_adv = h_adv and a_adv and not winner_group and not either_in
+        show_symmetric = winner_group or winner_adv
+        # Directional "win to advance" only when the symmetric pill doesn't
+        # already cover that side, and that side isn't already through.
+        home_tag = h_adv and not show_symmetric and not home_clinched
+        away_tag = a_adv and not show_symmetric and not away_clinched
+
+        # Mark already-qualified sides so the page can gold the name + "Through".
+        entry["home"]["clinched"] = home_clinched
+        entry["away"]["clinched"] = away_clinched
+
+        if (winner_group or winner_adv or draw_both or home_tag or away_tag):
+            entry["clinch"] = {
+                "group": letter,
+                "winnerWinsGroup": bool(winner_group),
+                "winnerAdvances": bool(winner_adv),
+                "drawBoth": bool(draw_both and not either_in),
+                "home": {"winAdvances": bool(home_tag)},
+                "away": {"winAdvances": bool(away_tag)},
+            }
+
 
     # ---- Raw ingredients for the in-browser "simulate remaining games" ----
     # The page is otherwise a dumb renderer of computed data; to let it roll
