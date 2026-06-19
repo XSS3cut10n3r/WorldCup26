@@ -472,7 +472,30 @@
       "utcDate": "2026-06-18T16:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "PAUSED",
+      "utcDate": "2026-06-19T19:00:00Z",
+      "home": {
+        "name": "United States",
+        "owner": "Darcy",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 17
+      },
+      "away": {
+        "name": "Australia",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 27
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-19T19:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 17,
-        "clinched": false
-      },
-      "away": {
-        "name": "Australia",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 27,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -845,6 +844,30 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 21,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-21T22:00:00Z",
+      "home": {
+        "name": "Uruguay",
+        "owner": "Iva",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 16,
+        "clinched": false
+      },
+      "away": {
+        "name": "Cape Verde Islands",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 67,
         "clinched": false
       },
       "penalties": false,
@@ -9654,5 +9677,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-19T11:38:34Z"
+  "generated": "2026-06-19T20:10:48Z"
 }
