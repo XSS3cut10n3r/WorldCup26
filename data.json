@@ -1,6 +1,28 @@
 {
   "leaderboard": [
     {
+      "name": "Kelly",
+      "points": 3.0,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 0.5,
+          "eliminated": false
+        },
+        {
+          "name": "Austria",
+          "points": 1,
+          "eliminated": false
+        },
+        {
+          "name": "Canada",
+          "points": 1.5,
+          "eliminated": false
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Tomi",
       "points": 3.0,
       "teams": [
@@ -52,7 +74,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Charlotte",
@@ -74,7 +96,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Mat",
@@ -96,7 +118,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Nik",
@@ -118,7 +140,7 @@
           "eliminated": false
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -145,29 +167,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
-    },
-    {
-      "name": "Kelly",
-      "points": 2.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 0.5,
-          "eliminated": false
-        },
-        {
-          "name": "Austria",
-          "points": 1,
-          "eliminated": false
-        },
-        {
-          "name": "Canada",
-          "points": 0.5,
-          "eliminated": false
-        }
-      ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Paul",
@@ -194,7 +194,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Sydney",
@@ -221,7 +221,7 @@
           "eliminated": false
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Agatha",
@@ -341,6 +341,13 @@
   ],
   "events": [
     {
+      "owner": "Kelly",
+      "team": "Canada",
+      "points": 1,
+      "label": "Canada won (Group stage)",
+      "utcDate": "2026-06-18T22:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "Switzerland",
       "points": 1,
@@ -367,13 +374,6 @@
       "points": 1,
       "label": "Colombia won (Group stage)",
       "utcDate": "2026-06-18T02:00:00Z"
-    },
-    {
-      "owner": "Charlotte",
-      "team": "Ghana",
-      "points": 1,
-      "label": "Ghana won (Group stage)",
-      "utcDate": "2026-06-17T23:00:00Z"
     }
   ],
   "live": [
@@ -381,11 +381,35 @@
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
       "status": "IN_PLAY",
+      "utcDate": "2026-06-19T01:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 14
+      },
+      "away": {
+        "name": "South Korea",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 25
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
+  "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
       "utcDate": "2026-06-18T22:00:00Z",
       "home": {
         "name": "Canada",
         "owner": "Kelly",
-        "goals": 3,
+        "goals": 6,
         "penGoals": null,
         "fifaRank": 30
       },
@@ -398,9 +422,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -488,53 +510,9 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-17T20:00:00Z",
-      "home": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 4,
-        "penGoals": null,
-        "fifaRank": 4
-      },
-      "away": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 11
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-19T01:00:00Z",
-      "home": {
-        "name": "Mexico",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 14
-      },
-      "away": {
-        "name": "South Korea",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 25
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -732,6 +710,28 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-21T19:00:00Z",
+      "home": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 9
+      },
+      "away": {
+        "name": "Iran",
+        "owner": "Ondine",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 21
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -755,8 +755,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Canada",
-            "owner": "Kelly",
+            "name": "Switzerland",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1070,8 +1070,8 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "Switzerland",
-            "owner": "Mat",
+            "name": "Canada",
+            "owner": "Kelly",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1667,7 +1667,7 @@
           "ga": 1,
           "gd": 1,
           "points": 3,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 25
         },
         {
@@ -1708,6 +1708,21 @@
       "table": [
         {
           "pos": 1,
+          "team": "Canada",
+          "owner": "Kelly",
+          "played": 2,
+          "won": 1,
+          "draw": 1,
+          "lost": 0,
+          "gf": 7,
+          "ga": 1,
+          "gd": 6,
+          "points": 4,
+          "conduct": -3,
+          "fifaRank": 30
+        },
+        {
+          "pos": 2,
           "team": "Switzerland",
           "owner": "Mat",
           "played": 2,
@@ -1720,21 +1735,6 @@
           "points": 4,
           "conduct": -2,
           "fifaRank": 19
-        },
-        {
-          "pos": 2,
-          "team": "Canada",
-          "owner": "Kelly",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 1,
-          "gd": 0,
-          "points": 1,
-          "conduct": -3,
-          "fifaRank": 30
         },
         {
           "pos": 3,
@@ -1755,13 +1755,13 @@
           "pos": 4,
           "team": "Qatar",
           "owner": "Iva",
-          "played": 1,
+          "played": 2,
           "won": 0,
           "draw": 1,
-          "lost": 0,
+          "lost": 1,
           "gf": 1,
-          "ga": 1,
-          "gd": 0,
+          "ga": 7,
+          "gd": -6,
           "points": 1,
           "conduct": -11,
           "fifaRank": 57
@@ -2945,16 +2945,6 @@
         "rank": 17
       },
       {
-        "team": "South Korea",
-        "owner": "Charlie",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 17
-      },
-      {
         "team": "Spain",
         "owner": "Pete",
         "yellow": 1,
@@ -3012,7 +3002,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Brazil",
@@ -3022,7 +3012,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Egypt",
@@ -3032,7 +3022,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Panama",
@@ -3042,7 +3032,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 34
+        "rank": 33
+      },
+      {
+        "team": "South Korea",
+        "owner": "Charlie",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 33
       },
       {
         "team": "Switzerland",
@@ -3052,7 +3052,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Canada",
@@ -3302,6 +3302,29 @@
         "rank": 6
       },
       {
+        "name": "Charlie",
+        "score": -4,
+        "teams": [
+          {
+            "name": "Colombia",
+            "score": -1
+          },
+          {
+            "name": "South Korea",
+            "score": -2
+          },
+          {
+            "name": "Saudi Arabia",
+            "score": -1
+          },
+          {
+            "name": "Jordan",
+            "score": 0
+          }
+        ],
+        "rank": 8
+      },
+      {
         "name": "Charlotte",
         "score": -4,
         "teams": [
@@ -3319,29 +3342,6 @@
           }
         ],
         "rank": 8
-      },
-      {
-        "name": "Charlie",
-        "score": -3,
-        "teams": [
-          {
-            "name": "Colombia",
-            "score": -1
-          },
-          {
-            "name": "South Korea",
-            "score": -1
-          },
-          {
-            "name": "Saudi Arabia",
-            "score": -1
-          },
-          {
-            "name": "Jordan",
-            "score": 0
-          }
-        ],
-        "rank": 9
       },
       {
         "name": "Darcy",
@@ -3364,7 +3364,7 @@
             "score": -1
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Tom",
@@ -3383,7 +3383,7 @@
             "score": -1
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Mat",
@@ -3460,5 +3460,5 @@
     "FINAL": 6
   },
   "tournamentStarted": true,
-  "generated": "2026-06-18T23:26:09Z"
+  "generated": "2026-06-19T01:36:45Z"
 }
