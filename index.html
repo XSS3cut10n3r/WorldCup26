@@ -1791,19 +1791,52 @@
     // uniform draw so the button still works.
     const R = (eloData && eloData.ratings) || null;
     const P = (eloData && eloData.params) || {};
-    const form = {};
-    let totG = 0, totGames = 0;
-    Object.keys(sim.groupResults || {}).forEach(L =>
-      (sim.groupResults[L] || []).forEach(m => {
-        form[m.h] = form[m.h] || {gf:0, ga:0, g:0};
-        form[m.a] = form[m.a] || {gf:0, ga:0, g:0};
-        form[m.h].gf += m.hg; form[m.h].ga += m.ag; form[m.h].g++;
-        form[m.a].gf += m.ag; form[m.a].ga += m.hg; form[m.a].g++;
-        totG += m.hg + m.ag; totGames += 2; }));
-    const avgGpg = totGames ? totG / totGames : 1.3;
-    const atk = t => { const f = form[t]; return (f && f.g) ? f.gf / f.g - avgGpg : 0; };
-    const def = t => { const f = form[t]; return (f && f.g) ? f.ga / f.g - avgGpg : 0; };
     const rs  = t => { const fr = info(t).fifa; return -Math.log(fr || 40); };
+
+    // Every completed real game (group + knockout) feeds live form.
+    const playedGames = [];
+    Object.keys(sim.groupResults || {}).forEach(L =>
+      (sim.groupResults[L] || []).forEach(m =>
+        playedGames.push({h: m.h, a: m.a, hg: m.hg, ag: m.ag})));
+    (sim.knockoutPlayed || []).forEach(k => {
+      if (k.home && k.away && k.homeGoals != null && k.awayGoals != null)
+        playedGames.push({h: k.home, a: k.away, hg: k.homeGoals, ag: k.awayGoals}); });
+
+    // Field-average goals per team-game — the baseline a result is judged against.
+    let totG = 0, totGames = 0;
+    playedGames.forEach(m => { totG += m.hg + m.ag; totGames += 2; });
+    const avgGpg = totGames ? totG / totGames : 1.3;
+
+    // Opponent-quality weight: a result counts for more against a strong side
+    // (low FIFA rank) and less against a minnow, centred on 1 for an average
+    // opponent so an average schedule behaves like the old unweighted form.
+    const rsVals = Object.keys(T).map(rs);
+    const rsBar = rsVals.length ? rsVals.reduce((x, y) => x + y, 0) / rsVals.length : 0;
+    const qCoef = P.formOppCoef != null ? P.formOppCoef : 0.4;
+    const oppW = opp => Math.exp(qCoef * (rs(opp) - rsBar));
+
+    // Opponent-weighted form, averaged over a team's games, judged by how
+    // informative the result is. GOOD output (scored a lot / conceded few) is
+    // weighted by opponent STRENGTH — impressive against a giant, expected vs a
+    // minnow. BAD output (scored few / conceded a lot) is weighted by opponent
+    // WEAKNESS — failing/leaking against a minnow stings, against a giant is
+    // forgiven. The forgiveness is floored so it's partial, not total:
+    // formAtkFloor (default 1) keeps a normal penalty for failing to score vs a
+    // giant; formDefFloor (default 0) lets leaking to a giant be fully forgiven.
+    const fa = {};
+    const bump = (t, opp, gf, ga) => {
+      const wStrong = oppW(opp), wInv = 1 / wStrong;
+      const atkFloor = P.formAtkFloor != null ? P.formAtkFloor : 1.0;
+      const defFloor = P.formDefFloor != null ? P.formDefFloor : 0.0;
+      const f = (fa[t] = fa[t] || {an: 0, dn: 0, n: 0});
+      const devA = gf - avgGpg;
+      f.an += (devA >= 0 ? wStrong : Math.max(atkFloor, wInv)) * devA;
+      const devD = ga - avgGpg;
+      f.dn += (devD > 0 ? Math.max(defFloor, wInv) : wStrong) * devD;
+      f.n++; };
+    playedGames.forEach(m => { bump(m.h, m.a, m.hg, m.ag); bump(m.a, m.h, m.ag, m.hg); });
+    const atk = t => { const f = fa[t]; return (f && f.n) ? f.an / f.n : 0; };
+    const def = t => { const f = fa[t]; return (f && f.n) ? f.dn / f.n : 0; };
     const simPoisson = lam => { const L = Math.exp(-lam); let k = 0, p = 1;
       do { k++; p *= Math.random(); } while (p > L); return k - 1; };
     // opts: {group, hangA, hangB, totalMul}. group -> heavier FIFA-rank tilt;
@@ -1814,14 +1847,18 @@
       opts = opts || {};
       if (!R || R[a] == null || R[b] == null) return [simGoals(), simGoals()];
       const s = (P.suprK || 0.42) * (R[a] - R[b]);
-      const total = (P.total || 2.6) * (opts.totalMul || 1);
+      const total = (opts.totalAbs != null ? opts.totalAbs : (P.total || 2.6)) * (opts.totalMul || 1);
       let lamA = Math.max(P.floor || 0.18, total / 2 + s / 2);
       let lamB = Math.max(P.floor || 0.18, total / 2 - s / 2);
       const ac = P.atkCoef || 0, dc = P.defCoef || 0;
       // FIFA rank counts for more in the group stage (heavier coefficient there)
       const rc = (opts.group && P.rankCoefGroup != null) ? P.rankCoefGroup : (P.rankCoef || 0);
-      lamA *= Math.exp(ac * atk(a) + dc * def(b) + rc * (rs(a) - rs(b)));
-      lamB *= Math.exp(ac * atk(b) + dc * def(a) + rc * (rs(b) - rs(a)));
+      // Bound the combined GF/GA form swing so a lone monster result (e.g. 7-0
+      // over a top side) is sizeable but not runaway; the rank term is separate.
+      const cap = P.formCap != null ? P.formCap : 0.4;
+      const clamp = x => Math.max(-cap, Math.min(cap, x));
+      lamA *= Math.exp(clamp(ac * atk(a) + dc * def(b)) + rc * (rs(a) - rs(b)));
+      lamB *= Math.exp(clamp(ac * atk(b) + dc * def(a)) + rc * (rs(b) - rs(a)));
       const fatigue = P.pensHangover || 0;
       if (opts.hangA) lamA *= Math.exp(-fatigue);
       if (opts.hangB) lamB *= Math.exp(-fatigue);
@@ -1935,11 +1972,17 @@
             : (sameHome ? real.winner
                : (real.winner === "HOME_TEAM" ? "AWAY_TEAM" : "HOME_TEAM"));
         } else {
-          const sc2 = eloScore(home.name, away.name, {
-            hangA: !!wonOnPens[home.name], hangB: !!wonOnPens[away.name],
-            totalMul: stageCode === "FINAL" ? (P.finalScoreBoost || 1) : 1});
+          const ko = {hangA: !!wonOnPens[home.name], hangB: !!wonOnPens[away.name],
+            totalMul: stageCode === "FINAL" ? (P.finalScoreBoost || 1) : 1};
+          const sc2 = eloScore(home.name, away.name, ko);
           hg = sc2[0]; ag = sc2[1];
-          if (hg === ag) { pens = true;
+          if (hg === ag) {   // level after 90 -> extra time (lower scoring rate)
+            const et = eloScore(home.name, away.name,
+              Object.assign({}, ko, {totalAbs: P.etTotal != null ? P.etTotal : 1.3}));
+            hg += et[0]; ag += et[1];
+          }
+          if (hg === ag) {   // still level after ET -> penalty shootout
+            pens = true;
             const hw = Math.random() < eloShootWin(home.name, away.name);
             ph = hw ? 5 : 4; pa = hw ? 4 : 5; winSide = hw ? "HOME_TEAM" : "AWAY_TEAM"; }
           else winSide = hg > ag ? "HOME_TEAM" : "AWAY_TEAM";
