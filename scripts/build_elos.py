@@ -45,10 +45,18 @@ PARAMS = {
     # live tilt coefficients (applied in the browser, not in calibration):
     "atkCoef":  0.05,  # +xG for a side scoring above the field average (GF)
     "defCoef":  0.05,  # opponent's xG shifts with how leaky a side is (GA)
+    "formOppCoef": 0.4,  # how hard GF/GA form is weighted by opponent quality
+                         #   (0 = ignore opponent; higher = beating strong teams counts much more)
+    "formCap": 0.4,      # ceiling on the combined GF/GA form tilt (exp(0.4) ~ +/-49% xG max)
+    "formAtkFloor": 1.0, # failing to score vs a giant is only partly forgiven (1 = normal
+                         #   penalty, no giant bonus; lower forgives more, higher punishes more)
+    "formDefFloor": 0.0, # leaking to a giant is fully forgiven (0); raise to forgive less
     "rankCoef": 0.04,  # small extra nudge from the FIFA-rank difference (knockouts)
     "rankCoefGroup": 0.15,  # FIFA rank counts for much more in the group stage
     "pensHangover": 0.06,   # xG haircut next match for a team that just won on penalties
     "finalScoreBoost": 1.20,  # baseline goals are 20% higher in the final
+    "etTotal": 1.30,  # expected goals in extra time; higher -> fewer shootouts
+                      #   (~3/tournament at 1.30; raise for fewer, lower for more)
     "nudgeK":   0.55,  # update_odds.py: rating move per unit log-odds drift
 }
 
