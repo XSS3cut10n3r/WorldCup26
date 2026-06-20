@@ -535,6 +535,120 @@ def main():
                 return x        # at most one team can clinch 1st place
         return None
 
+    # ---- Mathematical group-stage elimination --------------------------
+    # The dual of the clinch above: returns the normalized name of the team
+    # that can NO LONGER reach its group's top three, or None. In a four-team
+    # group "top three" == "not last", so this fires exactly when a team is
+    # guaranteed to finish 4th across every remaining win/draw/loss pattern.
+    # Only the top three of a group can ever qualify (two automatic places plus
+    # the best-third race), so a team locked into last is mathematically out
+    # even with games still to play — the case the standings block below would
+    # otherwise miss until the group is complete.
+    #
+    # Soundness mirrors the clinch (never a false elimination): a rival is
+    # credited as ABOVE the team only via separations the team cannot overturn
+    # — points and head-to-head RESULTS are fixed by the win/draw/loss pattern,
+    # but any tie still hinging on a mutable goal difference is left open,
+    # because the trailing team could always erase it by winning big. At most
+    # one team per group can be guaranteed last.
+    def group_last(letter):
+        teams = [normalize(t) for t in groups_def[letter]]
+        rec = lambda t: gstats.get(t, {"played": 0, "gf": 0, "ga": 0, "points": 0})
+        pts0 = {t: rec(t)["points"] for t in teams}
+        gd0 = {t: rec(t)["gf"] - rec(t)["ga"] for t in teams}
+        gf0 = {t: rec(t)["gf"] for t in teams}
+        pl = {t: rec(t)["played"] for t in teams}
+        fin = ghead.get(letter, [])
+        rem = group_remaining.get(letter, [])
+        has_rem = {t: False for t in teams}
+        for (hn, an) in rem:
+            if hn in has_rem:
+                has_rem[hn] = True
+            if an in has_rem:
+                has_rem[an] = True
+        cond = {t: conduct_scores.get(t, 0) for t in teams}
+        fifa = {t: fifa_ranks.get(t) for t in teams}
+
+        def h2h(subgroup, assigned):
+            names = set(subgroup)
+            hp = {t: 0 for t in subgroup}
+            hgd = {t: 0 for t in subgroup}
+            hgf = {t: 0 for t in subgroup}
+            for (hn, an, gh, ga) in fin:
+                if hn in names and an in names:
+                    hgf[hn] += gh; hgf[an] += ga
+                    hgd[hn] += gh - ga; hgd[an] += ga - gh
+                    if gh > ga:
+                        hp[hn] += 3
+                    elif gh < ga:
+                        hp[an] += 3
+                    else:
+                        hp[hn] += 1; hp[an] += 1
+            for (hn, an, o) in assigned:
+                if hn in names and an in names:
+                    if o == "H":
+                        hp[hn] += 3
+                    elif o == "A":
+                        hp[an] += 3
+                    else:
+                        hp[hn] += 1; hp[an] += 1
+            return hp, hgd, hgf
+
+        def secured_last(x, subgroup, assigned):
+            """True iff x is guaranteed strictly LAST within this tied set,
+            using only separations future scorelines can't overturn for x."""
+            if len(subgroup) == 1:
+                return True
+            names = set(subgroup)
+            hp, hgd, hgf = h2h(subgroup, assigned)
+            intra_open = any(h in names and a in names for (h, a, _) in assigned)
+            hkey = (lambda t: (hp[t],)) if intra_open else \
+                   (lambda t: (hp[t], hgd[t], hgf[t]))
+            worst = min(hkey(t) for t in subgroup)
+            bottom = [t for t in subgroup if hkey(t) == worst]
+            if x not in bottom:
+                return False
+            if len(bottom) == 1:
+                return True
+            if len(bottom) < len(subgroup):
+                return secured_last(x, bottom, assigned)
+            # Head-to-head can't separate this set. Overall criteria are only
+            # trustworthy once every team here has played all three games (no
+            # mutable goal difference left for x to exploit).
+            if all((not has_rem[t]) and pl[t] >= 3 for t in subgroup):
+                okey = lambda t: (gd0[t], gf0[t], cond[t], -(fifa[t] or 999))
+                return all(okey(x) < okey(t) for t in subgroup if t != x)
+            return False
+
+        def guaranteed_last(x, pts, assigned):
+            xp = pts[x]
+            if any(pts[t] < xp for t in teams if t != x):
+                return False            # someone is below x on points
+            tie = [t for t in teams if pts[t] == xp]
+            if len(tie) == 1:
+                return True             # x uniquely lowest on points
+            return secured_last(x, tie, assigned)
+
+        for x in teams:
+            doomed = True
+            for combo in itertools.product("HDA", repeat=len(rem)):
+                pts = dict(pts0)
+                assigned = []
+                for (hn, an), o in zip(rem, combo):
+                    if o == "H":
+                        pts[hn] += 3
+                    elif o == "A":
+                        pts[an] += 3
+                    else:
+                        pts[hn] += 1; pts[an] += 1
+                    assigned.append((hn, an, o))
+                if not guaranteed_last(x, pts, assigned):
+                    doomed = False
+                    break
+            if doomed:
+                return x        # at most one team can be guaranteed last
+        return None
+
     clinched_by_letter = {letter: ({w} if (w := group_winner(letter)) else set())
                           for letter in groups_def}
 
@@ -647,6 +761,18 @@ def main():
                 hit = lookup.get(normalize(r["team"]))
                 if hit:
                     eliminated.add(hit[1])
+
+    # Mathematical elimination for groups still in progress: a team that can no
+    # longer reach its group's top three is out now, not only once the group
+    # finishes. (Completed groups are covered by the pos==4 rule above.)
+    for letter in groups_def:
+        if group_done.get(letter, False):
+            continue
+        dead = group_last(letter)
+        if dead:
+            hit = lookup.get(dead)
+            if hit:
+                eliminated.add(hit[1])
 
     # ---- Runner-up & third-place qualification locks -------------------
     # Unlike a group winner (which the head-to-head math can lock mid-group),
