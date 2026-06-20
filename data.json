@@ -476,12 +476,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-20T17:00:00Z",
       "home": {
         "name": "Netherlands",
         "owner": "Charlotte",
-        "goals": 2,
+        "goals": 3,
         "penGoals": null,
         "fifaRank": 8
       },
@@ -9661,5 +9661,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T17:59:22Z"
+  "generated": "2026-06-20T18:13:37Z"
 }
