@@ -472,7 +472,30 @@
       "utcDate": "2026-06-19T01:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-20T17:00:00Z",
+      "home": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 8
+      },
+      "away": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 38
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,42 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-20T17:00:00Z",
-      "home": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 8,
-        "clinched": false
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 38,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "F",
-        "winnerWinsGroup": false,
-        "winnerAdvances": false,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": true
-        }
-      }
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -833,6 +820,30 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 56,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-23T00:00:00Z",
+      "home": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 31,
+        "clinched": false
+      },
+      "away": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 15,
         "clinched": false
       },
       "penalties": false,
@@ -9650,5 +9661,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T05:28:09Z"
+  "generated": "2026-06-20T17:06:40Z"
 }
