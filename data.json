@@ -43,8 +43,8 @@
           "name": "United States",
           "points": 2,
           "eliminated": false,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "name": "Tunisia",
@@ -316,36 +316,8 @@
       "rank": 10
     },
     {
-      "name": "Iva",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "Uruguay",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Türkiye",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Qatar",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 11
-    },
-    {
       "name": "Pete",
-      "points": 1.0,
+      "points": 2.0,
       "teams": [
         {
           "name": "Spain",
@@ -363,13 +335,41 @@
         },
         {
           "name": "Paraguay",
-          "points": 0,
+          "points": 1,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         }
       ],
-      "rank": 11
+      "rank": 10
+    },
+    {
+      "name": "Iva",
+      "points": 1.0,
+      "teams": [
+        {
+          "name": "Uruguay",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Türkiye",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Qatar",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 12
     },
     {
       "name": "Tom",
@@ -397,7 +397,7 @@
           "clinchType": null
         }
       ],
-      "rank": 11
+      "rank": 12
     },
     {
       "name": "Ondine",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Pete",
+      "team": "Paraguay",
+      "points": 1,
+      "label": "Paraguay won (Group stage)",
+      "utcDate": "2026-06-20T03:00:00Z"
+    },
+    {
       "owner": "Sydney",
       "team": "Brazil",
       "points": 1,
@@ -463,20 +470,14 @@
       "points": 1,
       "label": "Mexico won (Group stage)",
       "utcDate": "2026-06-19T01:00:00Z"
-    },
-    {
-      "owner": "Kelly",
-      "team": "Canada",
-      "points": 1,
-      "label": "Canada won (Group stage)",
-      "utcDate": "2026-06-18T22:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-20T03:00:00Z",
       "home": {
         "name": "Turkey",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -581,28 +580,6 @@
         "goals": 0,
         "penGoals": null,
         "fifaRank": 25
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-18T22:00:00Z",
-      "home": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": 6,
-        "penGoals": null,
-        "fifaRank": 30
-      },
-      "away": {
-        "name": "Qatar",
-        "owner": "Iva",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 57
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -1094,7 +1071,7 @@
             "owner": "Darcy",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group D",
             "resolved": true
           },
@@ -1261,8 +1238,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Ecuador",
-            "owner": "Sydney",
+            "name": "Paraguay",
+            "owner": "Pete",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2004,8 +1981,8 @@
           "points": 6,
           "conduct": -4,
           "fifaRank": 17,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "pos": 2,
@@ -2026,35 +2003,35 @@
         },
         {
           "pos": 3,
-          "team": "Türkiye",
-          "owner": "Iva",
-          "played": 1,
-          "won": 0,
+          "team": "Paraguay",
+          "owner": "Pete",
+          "played": 2,
+          "won": 1,
           "draw": 0,
           "lost": 1,
-          "gf": 0,
-          "ga": 2,
+          "gf": 2,
+          "ga": 4,
           "gd": -2,
-          "points": 0,
-          "conduct": -1,
-          "fifaRank": 22,
+          "points": 3,
+          "conduct": -10,
+          "fifaRank": 40,
           "clinched": false,
           "clinchType": null
         },
         {
           "pos": 4,
-          "team": "Paraguay",
-          "owner": "Pete",
-          "played": 1,
+          "team": "Türkiye",
+          "owner": "Iva",
+          "played": 2,
           "won": 0,
           "draw": 0,
-          "lost": 1,
-          "gf": 1,
-          "ga": 4,
+          "lost": 2,
+          "gf": 0,
+          "ga": 3,
           "gd": -3,
           "points": 0,
-          "conduct": -10,
-          "fifaRank": 40,
+          "conduct": -1,
+          "fifaRank": 22,
           "clinched": false,
           "clinchType": null
         }
@@ -2679,6 +2656,28 @@
     },
     {
       "pos": 3,
+      "team": "Paraguay",
+      "owner": "Pete",
+      "played": 2,
+      "won": 1,
+      "draw": 0,
+      "lost": 1,
+      "gf": 2,
+      "ga": 4,
+      "gd": -2,
+      "points": 3,
+      "conduct": -10,
+      "fifaRank": 40,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group D",
+      "ranked": true,
+      "rank": 2,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Netherlands",
       "owner": "Charlotte",
       "played": 1,
@@ -2695,7 +2694,7 @@
       "clinchType": null,
       "group": "Group F",
       "ranked": true,
-      "rank": 2,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     },
@@ -2717,7 +2716,7 @@
       "clinchType": null,
       "group": "Group G",
       "ranked": true,
-      "rank": 3,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2739,7 +2738,7 @@
       "clinchType": null,
       "group": "Group K",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2761,7 +2760,7 @@
       "clinchType": null,
       "group": "Group H",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2783,7 +2782,7 @@
       "clinchType": null,
       "group": "Group A",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2805,7 +2804,7 @@
       "clinchType": null,
       "group": "Group B",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2827,8 +2826,8 @@
       "clinchType": null,
       "group": "Group E",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     },
     {
@@ -2849,7 +2848,7 @@
       "clinchType": null,
       "group": "Group L",
       "ranked": true,
-      "rank": 9,
+      "rank": 10,
       "qualifies": false,
       "manualTie": false
     },
@@ -2871,7 +2870,7 @@
       "clinchType": null,
       "group": "Group I",
       "ranked": true,
-      "rank": 10,
+      "rank": 11,
       "qualifies": false,
       "manualTie": false
     },
@@ -2892,28 +2891,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group J",
-      "ranked": true,
-      "rank": 11,
-      "qualifies": false,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Türkiye",
-      "owner": "Iva",
-      "played": 1,
-      "won": 0,
-      "draw": 0,
-      "lost": 1,
-      "gf": 0,
-      "ga": 2,
-      "gd": -2,
-      "points": 0,
-      "conduct": -1,
-      "fifaRank": 22,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group D",
       "ranked": true,
       "rank": 12,
       "qualifies": false,
@@ -9026,6 +9003,12 @@
           "a": "Australia",
           "hg": 2,
           "ag": 0
+        },
+        {
+          "h": "Türkiye",
+          "a": "Paraguay",
+          "hg": 0,
+          "ag": 1
         }
       ],
       "E": [
@@ -9173,10 +9156,6 @@
         }
       ],
       "D": [
-        {
-          "h": "Türkiye",
-          "a": "Paraguay"
-        },
         {
           "h": "Türkiye",
           "a": "United States"
@@ -9671,5 +9650,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T05:06:11Z"
+  "generated": "2026-06-20T05:14:25Z"
 }
