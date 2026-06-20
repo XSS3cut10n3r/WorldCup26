@@ -1272,7 +1272,7 @@
     const board = app.querySelector(".board");
     if(!board) return;
     const els = [...board.querySelectorAll(".row")];
-    const st = (oddsData && oddsData.standings) || [];
+    const st = oddsView();
     if(els.length < 2 || els.length !== st.length) return;
     const n = els.length;
     const rows = els.map((el,i)=>({ el, target: (st[i].odds||0)*100, current:0, deltaHTML:"",
@@ -1800,23 +1800,50 @@
     return html;
   }
 
+  // Championship odds adjusted for eliminations: a knocked-out team contributes
+  // 0 to its owner's combined figure (its Kalshi price is stale the moment it's
+  // mathematically out), so the chips and the headline total agree. Re-sorts and
+  // re-ranks by the adjusted totals, with shared ranks for ties. Both renderOdds
+  // and animateOdds read this, so the DOM rows and the count-up stay in step.
+  function oddsView(){
+    const st = (oddsData && oddsData.standings) || [];
+    const d = (typeof currentData === "function") ? currentData() : lastData;
+    const elim = new Set();
+    ((d && d.leaderboard) || []).forEach(p =>
+      (p.teams || []).forEach(t => { if (t.eliminated) elim.add(t.name); }));
+    const view = st.map(r => {
+      let odds = 0, delta = 0;
+      const teams = (r.teams || []).map(t => {
+        const out = elim.has(t.name);
+        if (!out){ odds += (t.odds || 0); delta += (t.delta || 0); }
+        return { name: t.name, odds: t.odds, delta: t.delta, out };
+      });
+      return { name: r.name, odds, delta, teams };
+    });
+    view.sort((a,b) => (b.odds - a.odds) ||
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    let rank = 0, prev = null;
+    view.forEach((r,i) => {
+      if (prev === null || Math.abs(r.odds - prev) > 1e-9){ rank = i + 1; prev = r.odds; }
+      r.rank = rank;
+    });
+    return view;
+  }
+
   function renderOdds(data) {
     if (!oddsData || !(oddsData.standings || []).length) {
       return section("Odds to win the Cup", `<div class="empty">Championship odds
         appear here once the <b>Update odds</b> workflow has run. Trigger it from
         the repository's Actions tab, then refresh.</div>`);
     }
-    // Reuse the battle-tested elimination flags from data.json: both files
-    // key teams by the exact assignments.json spelling, so names line up.
-    const elim = new Set();
-    ((data && data.leaderboard) || []).forEach(p =>
-      (p.teams || []).forEach(t => { if (t.eliminated) elim.add(t.name); }));
-
-    const rows = (oddsData.standings || []).map(r => {
-      const chips = r.teams.map(t => {
-        const out = elim.has(t.name);
-        return `<span class="chip ${out ? "out" : ""}">${esc(t.name)} <b>${fmtPct(out ? 0 : t.odds)}</b></span>`;
-      }).join("");
+    // Eliminated teams contribute 0 to their owner's headline figure (so the
+    // chips and the total agree); oddsView() does the zeroing, re-summing and
+    // re-ranking, and animateOdds() reads the same view so the count-up lines up.
+    const view = oddsView();
+    const rows = view.map(r => {
+      const chips = r.teams.map(t =>
+        `<span class="chip ${t.out ? "out" : ""}">${esc(t.name)} <b>${fmtPct(t.out ? 0 : t.odds)}</b></span>`
+      ).join("");
       return `<div class="row ${r.rank === 1 && r.odds > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
         <div class="who"><div class="name">${esc(r.name)}</div><div class="teams">${chips}</div></div>
