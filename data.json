@@ -2053,7 +2053,7 @@
           "ga": 4,
           "gd": -3,
           "points": 0,
-          "conduct": -6,
+          "conduct": -10,
           "fifaRank": 40,
           "clinched": false,
           "clinchType": null
@@ -3363,16 +3363,6 @@
         "rank": 44
       },
       {
-        "team": "Paraguay",
-        "owner": "Pete",
-        "yellow": 6,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -6,
-        "rank": 45
-      },
-      {
         "team": "Bosnia and Herzegovina",
         "owner": "Tomi",
         "yellow": 5,
@@ -3380,6 +3370,16 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -9,
+        "rank": 45
+      },
+      {
+        "team": "Paraguay",
+        "owner": "Pete",
+        "yellow": 6,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -10,
         "rank": 46
       },
       {
@@ -3447,6 +3447,25 @@
         "rank": 2
       },
       {
+        "name": "Pete",
+        "score": -11,
+        "teams": [
+          {
+            "name": "Spain",
+            "score": -1
+          },
+          {
+            "name": "Japan",
+            "score": 0
+          },
+          {
+            "name": "Paraguay",
+            "score": -10
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Darcy",
         "score": -9,
         "teams": [
@@ -3467,7 +3486,7 @@
             "score": -4
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Tomi",
@@ -3490,7 +3509,7 @@
             "score": 0
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Paul",
@@ -3513,7 +3532,7 @@
             "score": -1
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Kelly",
@@ -3532,26 +3551,7 @@
             "score": -3
           }
         ],
-        "rank": 6
-      },
-      {
-        "name": "Pete",
-        "score": -7,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": -1
-          },
-          {
-            "name": "Japan",
-            "score": 0
-          },
-          {
-            "name": "Paraguay",
-            "score": -6
-          }
-        ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Agatha",
@@ -9426,7 +9426,7 @@
       "Paraguay": {
         "owner": "Pete",
         "canon": "Paraguay",
-        "conduct": -6,
+        "conduct": -10,
         "fifa": 40,
         "group": "D"
       },
@@ -9671,5 +9671,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T04:15:37Z"
+  "generated": "2026-06-20T04:16:08Z"
 }
