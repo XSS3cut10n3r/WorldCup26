@@ -529,37 +529,51 @@ def main():
     print()
 
     if args.json:
-        # Deltas vs the previously published run, if present.
-        prev_person, prev_team = {}, {}
+        # Persistent trend: each value keeps a `base` (its value as of the last
+        # actual change); delta = odds - base. A no-op re-run leaves base alone,
+        # so the arrow shows the last real movement and never collapses to "no
+        # change". base only moves when the value moves.
+        prev = None
+        prev_p, prev_t = {}, {}
         try:
             with open(args.json, encoding="utf-8") as f:
                 prev = json.load(f)
             for s in prev.get("standings", []):
-                prev_person[s["name"]] = s.get("odds")
+                prev_p[s["name"]] = s
                 for t in s.get("teams", []):
-                    prev_team[t["name"]] = t.get("odds")
+                    prev_t[t["name"]] = t
         except Exception:
-            pass
+            prev = None
 
         teams_of = {p["name"]: [t["name"] for t in p["teams"]]
                     for p in data["leaderboard"]}
         d5 = lambda x: round(x, 5)
+        EPS = 5e-7
 
-        def delta(now, prev):
-            return None if prev is None else d5(now - prev)
+        def trend(new, prv):
+            if not prv or prv.get("odds") is None:
+                return new, None
+            o = prv["odds"]
+            b = prv.get("base")
+            if b is None:
+                d = prv.get("delta")
+                b = (o - d) if d is not None else o
+            base = o if abs(new - o) > EPS else b
+            d = d5(new - base)
+            return base, (d if d != 0 else None)
 
         standings = []
         for nm in people:
-            odds = wins[nm] / N
+            odds = d5(wins[nm] / N)
             tlist = []
             for tn in teams_of.get(nm, []):
-                todds = champ.get(tn, 0.0) / N
-                tlist.append({"name": tn, "odds": d5(todds),
-                              "delta": delta(todds, prev_team.get(tn))})
+                todds = d5(champ.get(tn, 0.0) / N)
+                tb, td = trend(todds, prev_t.get(tn))
+                tlist.append({"name": tn, "odds": todds, "base": d5(tb), "delta": td})
             tlist.sort(key=lambda t: -t["odds"])
-            standings.append({"name": nm, "odds": d5(odds),
-                              "delta": delta(odds, prev_person.get(nm)),
-                              "teams": tlist})
+            pb, pd = trend(odds, prev_p.get(nm))
+            standings.append({"name": nm, "odds": d5(odds), "base": d5(pb),
+                              "delta": pd, "teams": tlist})
         standings.sort(key=lambda s: (-s["odds"], s["name"].lower()))
         rk, prev_o = 0, None
         for i, s in enumerate(standings):
@@ -567,11 +581,14 @@ def main():
                 rk, prev_o = i + 1, s["odds"]
             s["rank"] = rk
 
-        out = {"generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-               "sims": N, "standings": standings}
-        with open(args.json, "w", encoding="utf-8") as f:
-            json.dump(out, f, ensure_ascii=False, indent=2)
-        print(f"Wrote {args.json} ({N:,} sims).")
+        if prev is not None and prev.get("standings") == standings:
+            print(f"No simulation changes since last run; {args.json} left untouched.")
+        else:
+            out = {"generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                   "sims": N, "standings": standings}
+            with open(args.json, "w", encoding="utf-8") as f:
+                json.dump(out, f, ensure_ascii=False, indent=2)
+            print(f"Wrote {args.json} ({N:,} sims).")
 
 
 if __name__ == "__main__":
