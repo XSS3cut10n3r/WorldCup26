@@ -92,6 +92,41 @@
       "rank": 2
     },
     {
+      "name": "Sydney",
+      "points": 3.0,
+      "teams": [
+        {
+          "name": "Brazil",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Ecuador",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "South Africa",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Scotland",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Tomi",
       "points": 3.0,
       "teams": [
@@ -127,6 +162,34 @@
       "rank": 2
     },
     {
+      "name": "Agatha",
+      "points": 2.5,
+      "teams": [
+        {
+          "name": "Morocco",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Australia",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Iraq",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 6
+    },
+    {
       "name": "Charlie",
       "points": 2.5,
       "teams": [
@@ -159,7 +222,7 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -187,7 +250,7 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Mat",
@@ -215,7 +278,7 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Paul",
@@ -245,69 +308,6 @@
         {
           "name": "Cabo Verde",
           "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 8
-    },
-    {
-      "name": "Sydney",
-      "points": 2.0,
-      "teams": [
-        {
-          "name": "Brazil",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Ecuador",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "South Africa",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Scotland",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 8
-    },
-    {
-      "name": "Agatha",
-      "points": 1.5,
-      "teams": [
-        {
-          "name": "Morocco",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Australia",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Iraq",
-          "points": 0,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -437,6 +437,20 @@
   ],
   "events": [
     {
+      "owner": "Sydney",
+      "team": "Brazil",
+      "points": 1,
+      "label": "Brazil won (Group stage)",
+      "utcDate": "2026-06-20T00:30:00Z"
+    },
+    {
+      "owner": "Agatha",
+      "team": "Morocco",
+      "points": 1,
+      "label": "Morocco won (Group stage)",
+      "utcDate": "2026-06-19T22:00:00Z"
+    },
+    {
       "owner": "Darcy",
       "team": "United States",
       "points": 1,
@@ -456,27 +470,59 @@
       "points": 1,
       "label": "Canada won (Group stage)",
       "utcDate": "2026-06-18T22:00:00Z"
-    },
-    {
-      "owner": "Mat",
-      "team": "Switzerland",
-      "points": 1,
-      "label": "Switzerland won (Group stage)",
-      "utcDate": "2026-06-18T19:00:00Z"
-    },
-    {
-      "owner": "Sydney",
-      "team": "South Africa",
-      "points": 0.5,
-      "label": "South Africa drew (Group stage)",
-      "utcDate": "2026-06-18T16:00:00Z"
     }
   ],
   "live": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
+      "utcDate": "2026-06-20T03:00:00Z",
+      "home": {
+        "name": "Turkey",
+        "owner": "Iva",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 22
+      },
+      "away": {
+        "name": "Paraguay",
+        "owner": "Pete",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 40
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    }
+  ],
+  "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-20T00:30:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 6
+      },
+      "away": {
+        "name": "Haiti",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 83
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
       "utcDate": "2026-06-19T22:00:00Z",
       "home": {
         "name": "Scotland",
@@ -494,9 +540,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -562,101 +606,9 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-18T19:00:00Z",
-      "home": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": 4,
-        "penGoals": null,
-        "fifaRank": 19
-      },
-      "away": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 64
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-18T16:00:00Z",
-      "home": {
-        "name": "Czechia",
-        "owner": "Nik",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 39
-      },
-      "away": {
-        "name": "South Africa",
-        "owner": "Sydney",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 60
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-20T00:30:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 6,
-        "clinched": false
-      },
-      "away": {
-        "name": "Haiti",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 83,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-20T03:00:00Z",
-      "home": {
-        "name": "Turkey",
-        "owner": "Iva",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 22,
-        "clinched": false
-      },
-      "away": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 40,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -860,6 +812,54 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-22T17:00:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 1,
+        "clinched": false
+      },
+      "away": {
+        "name": "Austria",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 24,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-22T21:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 3,
+        "clinched": false
+      },
+      "away": {
+        "name": "Iraq",
+        "owner": "Agatha",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 56,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -910,7 +910,7 @@
             "resolved": true
           },
           "away": {
-            "name": "Brazil",
+            "name": "Scotland",
             "owner": "Sydney",
             "goals": null,
             "penGoals": null,
@@ -955,7 +955,7 @@
           "status": "SCHEDULED",
           "utcDate": "2026-06-30T01:00:00Z",
           "home": {
-            "name": "Scotland",
+            "name": "Brazil",
             "owner": "Sydney",
             "goals": null,
             "penGoals": null,
@@ -1918,18 +1918,18 @@
       "table": [
         {
           "pos": 1,
-          "team": "Scotland",
+          "team": "Brazil",
           "owner": "Sydney",
-          "played": 1,
+          "played": 2,
           "won": 1,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
-          "gf": 1,
-          "ga": 0,
-          "gd": 1,
-          "points": 3,
-          "conduct": -3,
-          "fifaRank": 42,
+          "gf": 4,
+          "ga": 1,
+          "gd": 3,
+          "points": 4,
+          "conduct": -2,
+          "fifaRank": 6,
           "clinched": false,
           "clinchType": null
         },
@@ -1937,33 +1937,33 @@
           "pos": 2,
           "team": "Morocco",
           "owner": "Agatha",
-          "played": 1,
-          "won": 0,
+          "played": 2,
+          "won": 1,
           "draw": 1,
           "lost": 0,
-          "gf": 1,
+          "gf": 2,
           "ga": 1,
-          "gd": 0,
-          "points": 1,
-          "conduct": 0,
+          "gd": 1,
+          "points": 4,
+          "conduct": -1,
           "fifaRank": 7,
           "clinched": false,
           "clinchType": null
         },
         {
           "pos": 3,
-          "team": "Brazil",
+          "team": "Scotland",
           "owner": "Sydney",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
+          "played": 2,
+          "won": 1,
+          "draw": 0,
+          "lost": 1,
           "gf": 1,
           "ga": 1,
           "gd": 0,
-          "points": 1,
-          "conduct": -2,
-          "fifaRank": 6,
+          "points": 3,
+          "conduct": -3,
+          "fifaRank": 42,
           "clinched": false,
           "clinchType": null
         },
@@ -1971,13 +1971,13 @@
           "pos": 4,
           "team": "Haiti",
           "owner": "Darcy",
-          "played": 1,
+          "played": 2,
           "won": 0,
           "draw": 0,
-          "lost": 1,
+          "lost": 2,
           "gf": 0,
-          "ga": 1,
-          "gd": -1,
+          "ga": 4,
+          "gd": -4,
           "points": 0,
           "conduct": -1,
           "fifaRank": 83,
@@ -2657,6 +2657,28 @@
   "thirdPlace": [
     {
       "pos": 3,
+      "team": "Scotland",
+      "owner": "Sydney",
+      "played": 2,
+      "won": 1,
+      "draw": 0,
+      "lost": 1,
+      "gf": 1,
+      "ga": 1,
+      "gd": 0,
+      "points": 3,
+      "conduct": -3,
+      "fifaRank": 42,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group C",
+      "ranked": true,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Netherlands",
       "owner": "Charlotte",
       "played": 1,
@@ -2672,28 +2694,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group F",
-      "ranked": true,
-      "rank": 1,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Brazil",
-      "owner": "Sydney",
-      "played": 1,
-      "won": 0,
-      "draw": 1,
-      "lost": 0,
-      "gf": 1,
-      "ga": 1,
-      "gd": 0,
-      "points": 1,
-      "conduct": -2,
-      "fifaRank": 6,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group C",
       "ranked": true,
       "rank": 2,
       "qualifies": true,
@@ -3013,16 +3013,6 @@
         "rank": 1
       },
       {
-        "team": "Morocco",
-        "owner": "Agatha",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "New Zealand",
         "owner": "Tomi",
         "yellow": 0,
@@ -3080,7 +3070,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Cabo Verde",
@@ -3090,7 +3080,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Colombia",
@@ -3100,7 +3090,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Czechia",
@@ -3110,7 +3100,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "DR Congo",
@@ -3120,7 +3110,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Ecuador",
@@ -3130,7 +3120,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Ghana",
@@ -3140,7 +3130,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Haiti",
@@ -3150,7 +3140,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Iran",
@@ -3160,7 +3150,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Iraq",
@@ -3170,7 +3160,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
+      },
+      {
+        "team": "Morocco",
+        "owner": "Agatha",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 15
       },
       {
         "team": "Saudi Arabia",
@@ -3180,7 +3180,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Spain",
@@ -3190,7 +3190,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Tunisia",
@@ -3200,7 +3200,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Türkiye",
@@ -3210,7 +3210,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Uzbekistan",
@@ -3220,7 +3220,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 16
+        "rank": 15
       },
       {
         "team": "Belgium",
@@ -3512,6 +3512,25 @@
         "rank": 5
       },
       {
+        "name": "Agatha",
+        "score": -6,
+        "teams": [
+          {
+            "name": "Morocco",
+            "score": -1
+          },
+          {
+            "name": "Australia",
+            "score": -4
+          },
+          {
+            "name": "Iraq",
+            "score": -1
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Darcy",
         "score": -6,
         "teams": [
@@ -3573,25 +3592,6 @@
         "rank": 6
       },
       {
-        "name": "Agatha",
-        "score": -5,
-        "teams": [
-          {
-            "name": "Morocco",
-            "score": 0
-          },
-          {
-            "name": "Australia",
-            "score": -4
-          },
-          {
-            "name": "Iraq",
-            "score": -1
-          }
-        ],
-        "rank": 9
-      },
-      {
         "name": "Charlie",
         "score": -5,
         "teams": [
@@ -3612,7 +3612,7 @@
             "score": 0
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Charlotte",
@@ -8994,6 +8994,18 @@
           "a": "Scotland",
           "hg": 0,
           "ag": 1
+        },
+        {
+          "h": "Scotland",
+          "a": "Morocco",
+          "hg": 0,
+          "ag": 1
+        },
+        {
+          "h": "Brazil",
+          "a": "Haiti",
+          "hg": 3,
+          "ag": 0
         }
       ],
       "D": [
@@ -9151,14 +9163,6 @@
         }
       ],
       "C": [
-        {
-          "h": "Scotland",
-          "a": "Morocco"
-        },
-        {
-          "h": "Brazil",
-          "a": "Haiti"
-        },
         {
           "h": "Morocco",
           "a": "Haiti"
@@ -9394,7 +9398,7 @@
       "Morocco": {
         "owner": "Agatha",
         "canon": "Morocco",
-        "conduct": 0,
+        "conduct": -1,
         "fifa": 7,
         "group": "C"
       },
@@ -9667,5 +9671,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T00:04:03Z"
+  "generated": "2026-06-20T04:12:39Z"
 }
