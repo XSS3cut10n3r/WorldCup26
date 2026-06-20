@@ -254,26 +254,55 @@ def main():
     }
 
     out_path = ROOT / "odds.json"
-    # Load the previous snapshot for two purposes: change-detection (skip a
-    # no-op run) and per-person deltas (how much each member moved since the
-    # last time the file actually changed).
-    prev_odds = {}
+    # Persistent trend deltas. Each value carries a `base` = what it was as of the
+    # last time it actually changed; delta = odds - base. A no-op re-run leaves
+    # `base` (and so the arrow) untouched — the baseline only moves when the value
+    # moves — so the trend survives quiet markets and double-runs instead of
+    # collapsing to "no change, no arrow". Per-TEAM deltas are written too: the
+    # page sums a person's team deltas (excluding eliminated teams) for their
+    # headline arrow, so without per-team deltas no arrow ever shows.
+    existing = None
+    prev_p, prev_t = {}, {}
     if out_path.exists():
         try:
             existing = load_json(out_path)
-            prev_odds = {s["name"]: s.get("odds", 0.0)
-                         for s in existing.get("standings", [])}
-            if _core(existing) == _core(payload):
-                print("No odds changes since last run; odds.json left untouched.")
-                return
+            for s in existing.get("standings", []):
+                prev_p[s["name"]] = s
+                for t in s.get("teams", []):
+                    prev_t[t["name"]] = t
         except (json.JSONDecodeError, OSError):
-            pass
+            existing = None
 
-    # Odds moved (or first ever run): record each person's change. A member
-    # with no previous figure (first run) gets null -> the page shows no arrow.
+    EPS = 5e-7
+
+    def trend(new, prev):
+        """Return (base, delta) with a baseline that only moves when the value
+        does, so the arrow reflects the last real change and persists."""
+        if not prev or prev.get("odds") is None:
+            return new, None                      # first ever: nothing to show yet
+        o = prev["odds"]
+        b = prev.get("base")
+        if b is None:                             # migrate an old file lacking base
+            d = prev.get("delta")
+            b = (o - d) if d is not None else o
+        base = o if abs(new - o) > EPS else b     # moved -> new baseline is prev value
+        return base, round(new - base, 6) or None
+
     for s in standings:
-        s["delta"] = (round(s["odds"] - prev_odds[s["name"]], 6)
-                      if s["name"] in prev_odds else None)
+        for t in s["teams"]:
+            b, d = trend(t["odds"], prev_t.get(t["name"]))
+            t["base"], t["delta"] = round(b, 6), d
+        b, d = trend(s["odds"], prev_p.get(s["name"]))
+        s["base"], s["delta"] = round(b, 6), d
+
+    # Skip rewriting only when nothing moved at all (same odds AND same trend), so
+    # a no-op re-run neither churns the file nor resets the arrows.
+    if existing is not None:
+        same = (existing.get("standings") == payload["standings"]
+                and existing.get("overround") == payload.get("overround"))
+        if same:
+            print("No odds changes since last run; odds.json left untouched.")
+            return
 
     payload["generated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with open(out_path, "w", encoding="utf-8") as f:
