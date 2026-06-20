@@ -1979,7 +1979,7 @@
           "ga": 4,
           "gd": -4,
           "points": 0,
-          "conduct": -1,
+          "conduct": -4,
           "fifaRank": 83,
           "clinched": false,
           "clinchType": null
@@ -3133,16 +3133,6 @@
         "rank": 15
       },
       {
-        "team": "Haiti",
-        "owner": "Darcy",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 15
-      },
-      {
         "team": "Iran",
         "owner": "Ondine",
         "yellow": 1,
@@ -3230,7 +3220,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Brazil",
@@ -3240,7 +3230,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Egypt",
@@ -3250,7 +3240,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Panama",
@@ -3260,7 +3250,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Switzerland",
@@ -3270,7 +3260,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Canada",
@@ -3280,7 +3270,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Côte d'Ivoire",
@@ -3290,7 +3280,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Netherlands",
@@ -3300,7 +3290,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Portugal",
@@ -3310,7 +3300,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "South Korea",
@@ -3320,7 +3310,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Australia",
@@ -3330,7 +3320,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 41
+        "rank": 40
+      },
+      {
+        "team": "Haiti",
+        "owner": "Darcy",
+        "yellow": 4,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -4,
+        "rank": 40
       },
       {
         "team": "Scotland",
@@ -3340,7 +3340,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 41
+        "rank": 40
       },
       {
         "team": "United States",
@@ -3350,7 +3350,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 41
+        "rank": 40
       },
       {
         "team": "Mexico",
@@ -3447,6 +3447,29 @@
         "rank": 2
       },
       {
+        "name": "Darcy",
+        "score": -9,
+        "teams": [
+          {
+            "name": "France",
+            "score": 0
+          },
+          {
+            "name": "United States",
+            "score": -4
+          },
+          {
+            "name": "Tunisia",
+            "score": -1
+          },
+          {
+            "name": "Haiti",
+            "score": -4
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Tomi",
         "score": -9,
         "teams": [
@@ -3490,7 +3513,7 @@
             "score": -1
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Kelly",
@@ -3509,7 +3532,7 @@
             "score": -3
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Agatha",
@@ -3528,30 +3551,7 @@
             "score": -1
           }
         ],
-        "rank": 6
-      },
-      {
-        "name": "Darcy",
-        "score": -6,
-        "teams": [
-          {
-            "name": "France",
-            "score": 0
-          },
-          {
-            "name": "United States",
-            "score": -4
-          },
-          {
-            "name": "Tunisia",
-            "score": -1
-          },
-          {
-            "name": "Haiti",
-            "score": -1
-          }
-        ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Nik",
@@ -3570,7 +3570,7 @@
             "score": -1
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Pete",
@@ -3589,7 +3589,7 @@
             "score": -5
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Charlie",
@@ -9405,7 +9405,7 @@
       "Haiti": {
         "owner": "Darcy",
         "canon": "Haiti",
-        "conduct": -1,
+        "conduct": -4,
         "fifa": 83,
         "group": "C"
       },
@@ -9671,5 +9671,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T04:13:05Z"
+  "generated": "2026-06-20T04:14:08Z"
 }
