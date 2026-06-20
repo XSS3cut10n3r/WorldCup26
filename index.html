@@ -1281,10 +1281,12 @@
   function oddsSetVal(r, vPct){ r.ptsEl.innerHTML = vPct.toFixed(1) + "%<small>to win</small>" + (r.deltaHTML || ""); }
 
   function animateOdds(){
-    const board = app.querySelector(".board");
+    animateOddsBoard(app.querySelector(".board-sim"), simView());
+    animateOddsBoard(app.querySelector(".board-kalshi"), oddsView());
+  }
+  function animateOddsBoard(board, st){
     if(!board) return;
     const els = [...board.querySelectorAll(".row")];
-    const st = oddsView();
     if(els.length < 2 || els.length !== st.length) return;
     const n = els.length;
     const rows = els.map((el,i)=>({ el, target: (st[i].odds||0)*100, current:0, deltaHTML:"",
@@ -1343,9 +1345,9 @@
     if (data.simulated) {
       updatedEl.innerHTML = "Simulated Results &middot; Not Live";
     } else if (view === "odds") {
-      const ow = oddsData && oddsData.generated
-        ? new Date(oddsData.generated).toLocaleString() : null;
-      updatedEl.innerHTML = ow ? "Odds as of " + esc(ow) : "Odds not loaded yet";
+      const src = (simOddsData && simOddsData.generated) || (oddsData && oddsData.generated);
+      updatedEl.innerHTML = src ? "Odds as of " + esc(new Date(src).toLocaleString())
+                                : "Odds not loaded yet";
     } else {
       const when = data.generated ? new Date(data.generated).toLocaleString() : "—";
       const anyLive = (data.live || []).length > 0;
@@ -1364,8 +1366,9 @@
       lbAnimated = true;
       animateLeaderboard(data);
     }
-    if(!oddsAnimated && view === "odds" && oddsData
-       && (oddsData.standings||[]).length > 1 && !lbReduceMotion()){
+    if(!oddsAnimated && view === "odds" && !lbReduceMotion()
+       && ((simOddsData && (simOddsData.standings||[]).length > 1)
+        || (oddsData && (oddsData.standings||[]).length > 1))){
       oddsAnimated = true;
       animateOdds();
     }
@@ -1849,17 +1852,35 @@
     return view;
   }
 
-  function renderOdds(data) {
-    if (!oddsData || !(oddsData.standings || []).length) {
-      return section("Odds to win the Cup", `<div class="empty">Championship odds
-        appear here once the <b>Update odds</b> workflow has run. Trigger it from
-        the repository's Actions tab, then refresh.</div>`);
-    }
-    // Eliminated teams contribute 0 to their owner's headline figure (so the
-    // chips and the total agree); oddsView() does the zeroing, re-summing and
-    // re-ranking, and animateOdds() reads the same view so the count-up lines up.
-    const view = oddsView();
-    const rows = view.map(r => {
+  // Pool-winner odds from the Monte Carlo worker (sim_odds.json). The person
+  // figure is their chance of finishing top of the standings (NOT a sum of the
+  // chips); the chips show each team's chance of winning the World Cup. We only
+  // strike eliminated teams' chips here, since the headline already reflects
+  // eliminations (the simulation cannot crown a knocked-out side).
+  function simView(){
+    const st = (simOddsData && simOddsData.standings) || [];
+    const d = (typeof currentData === "function") ? currentData() : lastData;
+    const elim = new Set();
+    ((d && d.leaderboard) || []).forEach(p =>
+      (p.teams || []).forEach(t => { if (t.eliminated) elim.add(t.name); }));
+    const view = st.map(r => ({
+      name: r.name, odds: r.odds || 0, delta: r.delta,
+      teams: (r.teams || []).map(t => ({
+        name: t.name, odds: t.odds, delta: t.delta, out: elim.has(t.name) }))
+    }));
+    view.sort((a,b) => (b.odds - a.odds) ||
+      a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    let rank = 0, prev = null;
+    view.forEach((r,i) => {
+      if (prev === null || Math.abs(r.odds - prev) > 1e-9){ rank = i + 1; prev = r.odds; }
+      r.rank = rank;
+    });
+    return view;
+  }
+
+  // Shared row markup for both odds boards (identical formatting).
+  function oddsBoardRows(view){
+    return view.map(r => {
       const chips = r.teams.map(t =>
         `<span class="chip ${t.out ? "out" : ""}">${esc(t.name)} <b>${fmtPct(t.out ? 0 : t.odds)}</b></span>`
       ).join("");
@@ -1869,14 +1890,41 @@
         <div class="pts">${(r.odds * 100).toFixed(1)}%<small>to win</small>${fmtDelta(r.delta)}</div>
       </div>`;
     }).join("");
+  }
 
-    const note = `<p class="gnote">Live championship odds from <b>Kalshi</b>,
+  function renderOdds(data) {
+    let html = "";
+
+    // 1) Pool-winner odds: 100,000 Monte Carlo tournaments (the Simulate engine).
+    const simNote = `<p class="gnote">Live model odds from <b>100,000 simulated
+      tournaments</b> off the current results and calibrated team strength (the
+      same engine as the <b>Simulate</b> button). Each person's figure is how
+      often they finish <i>top of the standings</i>; the chips show each of their
+      teams' chance of winning the World Cup, and the
+      <span style="color:var(--up)">▲</span>/<span style="color:var(--live)">▼</span>
+      is the change since the last run. Knocked-out teams are struck through.</p>`;
+    if (simOddsData && (simOddsData.standings || []).length) {
+      html += section("Odds to win the Cup",
+        simNote + `<div class="board board-sim">${oddsBoardRows(simView())}</div>`);
+    } else {
+      html += section("Odds to win the Cup", `<div class="empty">Pool-winner odds
+        appear here once the <b>Simulate pool</b> workflow has run. Trigger it from
+        the repository's Actions tab, then refresh.</div>`);
+    }
+
+    // 2) Kalshi market odds to win the tournament (the championship market).
+    const kalshiNote = `<p class="gnote">Live championship odds from <b>Kalshi</b>,
       normalized to 100% (the market's built-in margin removed). Each person's
       figure is the combined chance that <i>one of their teams</i> lifts the
       trophy: the chips show each team's individual odds, and the
       <span style="color:var(--up)">▲</span>/<span style="color:var(--live)">▼</span>
       is their change since the last update. Knocked-out teams are struck through.</p>`;
-    return section("Odds to win the Cup", note + `<div class="board">${rows}</div>`);
+    if (oddsData && (oddsData.standings || []).length) {
+      html += section("Kalshi Odds to Win the Tournament",
+        kalshiNote + `<div class="board board-kalshi">${oddsBoardRows(oddsView())}</div>`);
+    }
+
+    return html;
   }
 
   // ---------- Tab switching with hash routing ----------
@@ -1884,6 +1932,7 @@
     ? location.hash.slice(1) : "home";
   let lastData = null;
   let oddsData = null;
+  let simOddsData = null;
   let eloData = null;
 
   // ---------- Simulate remaining games (client-side what-if) ----------
@@ -2373,6 +2422,12 @@
     fetch("odds.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) { oddsData = d; if (view === "odds") render(currentData()); } })
+      .catch(() => {});
+    // Pool-winner odds from the "Simulate pool" workflow (Monte Carlo). Missing/
+    // !ok is fine: that section just shows its empty state until the worker runs.
+    fetch("sim_odds.json?t=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) { simOddsData = d; if (view === "odds") render(currentData()); } })
       .catch(() => {});
     // Calibrated team ratings, written by build_elos.py. Missing/!ok is fine:
     // buildSimData falls back to uniform random scorelines without it.
