@@ -841,6 +841,13 @@
   .cd-row.tagged { align-items: flex-start; }
   .cd-row.tagged .cd-center { align-self: center; }
   .match .tname.through, .cd-name.through { color: var(--gold); }
+  /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
+     the gold "Through" treatment. --live is red in both the live and sim themes,
+     so a knocked-out team always reads as a danger state. */
+  .ctag.out, .cd-ctag.out {
+    color: var(--live); border-color: rgba(255, 90, 69, 0.55);
+  }
+  .match .tname.elim, .cd-name.elim { color: var(--live); }
   .cd-stake { display: flex; flex-direction: column; align-items: center;
     gap: 7px; margin-top: 12px; }
 
@@ -1028,17 +1035,18 @@
     });
   };
 
-  function teamCell(t, side, tagHTML) {
+  function teamCell(t, side, tagHTML, isOut) {
     const unres = t.resolved === false;
     const proj = t.projected === true;
-    const through = t.clinched === true && !unres;
+    const out = isOut === true && !unres;
+    const through = t.clinched === true && !unres && !out;
     const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
     const hasRank = !unres && t.fifaRank !== null && t.fifaRank !== undefined;
     const rankEl = `<div class="trank">${hasRank ? "#" + t.fifaRank : ""}</div>`;
     const sub = t.owner ? esc(t.owner)
       : (proj && t.slot ? esc(t.slot) : "&mdash;");
     const info = `<div class="tinfo">
-      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""} ${through ? "through" : ""}">${nm}</div>
+      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""} ${through ? "through" : ""} ${out ? "elim" : ""}">${nm}</div>
       <div class="towner">${sub}</div>
       ${tagHTML || ""}
     </div>`;
@@ -1066,7 +1074,8 @@
   // Per-team tag under the owner: "Through" for an already-qualified side
   // (its name also glows gold), otherwise "Win to advance" when winning this
   // game alone clinches a top-two place. Returns "" when neither applies.
-  function clinchTag(side, cside, cls) {
+  function clinchTag(side, cside, cls, isOut) {
+    if (isOut) return `<div class="${cls} out">Eliminated</div>`;
     if (side && side.clinched) return `<div class="${cls}">Through</div>`;
     if (cside && cside.winAdvances) return `<div class="${cls}">Win to advance</div>`;
     return "";
@@ -1076,14 +1085,16 @@
   function hasClinchTag(m) {
     const c = m.clinch;
     return !!(m.home.clinched || m.away.clinched ||
+      upElimNames.has(m.home.name) || upElimNames.has(m.away.name) ||
       (c && ((c.home && c.home.winAdvances) || (c.away && c.away.winAdvances))));
   }
   function teamCellW(m, side) {
-    // teamCell variant for upcoming games: passes the per-team clinch tag.
+    // teamCell variant for upcoming games: passes the per-team clinch/elim tag.
     const t = side === "home" ? m.home : m.away;
     const c = m.clinch;
     const cside = c ? (side === "home" ? c.home : c.away) : null;
-    return teamCell(t, side, clinchTag(t, cside, "ctag"));
+    const isOut = upElimNames.has(t.name);
+    return teamCell(t, side, clinchTag(t, cside, "ctag", isOut), isOut);
   }
 
   function fmtCountdown(ms) {
@@ -1116,12 +1127,13 @@
     const rank = t => (t.fifaRank !== null && t.fifaRank !== undefined)
       ? `<div class="cd-rank">#${t.fifaRank}</div>` : "";
     const info = (t, side) => {
-      const through = t.clinched === true;
+      const isOut = upElimNames.has(t.name);
+      const through = t.clinched === true && !isOut;
       const cside = c ? (side === "home" ? c.home : c.away) : null;
       return `<div class="cd-tinfo">
-        <div class="cd-name ${through ? "through" : ""}">${esc(t.name)}</div>
+        <div class="cd-name ${through ? "through" : ""} ${isOut ? "elim" : ""}">${esc(t.name)}</div>
         <div class="cd-owner">${t.owner ? esc(t.owner) : "&mdash;"}</div>
-        ${clinchTag(t, cside, "cd-ctag")}</div>`;
+        ${clinchTag(t, cside, "cd-ctag", isOut)}</div>`;
     };
     const initial = fmtCountdown(new Date(m.utcDate).getTime() - Date.now()) || "";
     const footer = clinchFooter(c);
@@ -1359,7 +1371,14 @@
     }
   }
 
+  // Names of teams flagged eliminated, read off the leaderboard and consulted by
+  // the upcoming cards / countdown to red-name + tag the knocked-out side.
+  let upElimNames = new Set();
+
   function renderHome(data) {
+    upElimNames = new Set();
+    (data.leaderboard || []).forEach(p =>
+      (p.teams || []).forEach(t => { if (t.eliminated) upElimNames.add(t.name); }));
     let html = "";
 
     if ((data.live || []).length) {
