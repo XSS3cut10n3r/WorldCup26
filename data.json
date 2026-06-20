@@ -1928,7 +1928,7 @@
           "ga": 1,
           "gd": 3,
           "points": 4,
-          "conduct": -2,
+          "conduct": -3,
           "fifaRank": 6,
           "clinched": false,
           "clinchType": null
@@ -3223,16 +3223,6 @@
         "rank": 30
       },
       {
-        "team": "Brazil",
-        "owner": "Sydney",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 30
-      },
-      {
         "team": "Egypt",
         "owner": "Tom",
         "yellow": 2,
@@ -3263,6 +3253,16 @@
         "rank": 30
       },
       {
+        "team": "Brazil",
+        "owner": "Sydney",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 34
+      },
+      {
         "team": "Canada",
         "owner": "Kelly",
         "yellow": 3,
@@ -3270,7 +3270,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Côte d'Ivoire",
@@ -3280,7 +3280,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Netherlands",
@@ -3290,7 +3290,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Portugal",
@@ -3300,7 +3300,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "South Korea",
@@ -3310,7 +3310,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Australia",
@@ -3406,11 +3406,11 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -19,
+        "score": -20,
         "teams": [
           {
             "name": "Brazil",
-            "score": -2
+            "score": -3
           },
           {
             "name": "Ecuador",
@@ -9391,7 +9391,7 @@
       "Brazil": {
         "owner": "Sydney",
         "canon": "Brazil",
-        "conduct": -2,
+        "conduct": -3,
         "fifa": 6,
         "group": "C"
       },
@@ -9671,5 +9671,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T04:14:08Z"
+  "generated": "2026-06-20T04:14:26Z"
 }
