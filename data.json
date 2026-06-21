@@ -310,11 +310,11 @@
     },
     {
       "name": "Paul",
-      "points": 2.0,
+      "points": 2.5,
       "teams": [
         {
           "name": "Belgium",
-          "points": 0.5,
+          "points": 1.0,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -341,7 +341,42 @@
           "clinchType": null
         }
       ],
-      "rank": 11
+      "rank": 8
+    },
+    {
+      "name": "Ondine",
+      "points": 1.5,
+      "teams": [
+        {
+          "name": "Senegal",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Iran",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Uzbekistan",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Curaçao",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 12
     },
     {
       "name": "Iva",
@@ -369,42 +404,7 @@
           "clinchType": null
         }
       ],
-      "rank": 12
-    },
-    {
-      "name": "Ondine",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "Senegal",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Iran",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Uzbekistan",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Curaçao",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 12
+      "rank": 13
     },
     {
       "name": "Tom",
@@ -432,10 +432,24 @@
           "clinchType": null
         }
       ],
-      "rank": 12
+      "rank": 13
     }
   ],
   "events": [
+    {
+      "owner": "Ondine",
+      "team": "Iran",
+      "points": 0.5,
+      "label": "Iran drew (Group stage)",
+      "utcDate": "2026-06-21T19:00:00Z"
+    },
+    {
+      "owner": "Paul",
+      "team": "Belgium",
+      "points": 0.5,
+      "label": "Belgium drew (Group stage)",
+      "utcDate": "2026-06-21T19:00:00Z"
+    },
     {
       "owner": "Pete",
       "team": "Spain",
@@ -456,27 +470,14 @@
       "points": 0.5,
       "label": "Curaçao drew (Group stage)",
       "utcDate": "2026-06-21T00:00:00Z"
-    },
-    {
-      "owner": "Sydney",
-      "team": "Ecuador",
-      "points": 0.5,
-      "label": "Ecuador drew (Group stage)",
-      "utcDate": "2026-06-21T00:00:00Z"
-    },
-    {
-      "owner": "Tomi",
-      "team": "Germany",
-      "points": 1,
-      "label": "Germany won (Group stage)",
-      "utcDate": "2026-06-20T20:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-21T19:00:00Z",
       "home": {
         "name": "Belgium",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -581,28 +580,6 @@
         "goals": 1,
         "penGoals": null,
         "fifaRank": 33
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-20T17:00:00Z",
-      "home": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": 5,
-        "penGoals": null,
-        "fifaRank": 8
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 38
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -1117,8 +1094,8 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-02T00:00:00Z",
           "home": {
-            "name": "New Zealand",
-            "owner": "Tomi",
+            "name": "Iran",
+            "owner": "Ondine",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1207,8 +1184,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Belgium",
-            "owner": "Paul",
+            "name": "New Zealand",
+            "owner": "Tomi",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1288,8 +1265,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Iran",
-            "owner": "Ondine",
+            "name": "Belgium",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2214,6 +2191,40 @@
       "table": [
         {
           "pos": 1,
+          "team": "Iran",
+          "owner": "Ondine",
+          "played": 2,
+          "won": 0,
+          "draw": 2,
+          "lost": 0,
+          "gf": 2,
+          "ga": 2,
+          "gd": 0,
+          "points": 2,
+          "conduct": -1,
+          "fifaRank": 21,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "pos": 2,
+          "team": "Belgium",
+          "owner": "Paul",
+          "played": 2,
+          "won": 0,
+          "draw": 2,
+          "lost": 0,
+          "gf": 1,
+          "ga": 1,
+          "gd": 0,
+          "points": 2,
+          "conduct": -2,
+          "fifaRank": 9,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "pos": 3,
           "team": "New Zealand",
           "owner": "Tomi",
           "played": 1,
@@ -2226,40 +2237,6 @@
           "points": 1,
           "conduct": 0,
           "fifaRank": 85,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "pos": 2,
-          "team": "Iran",
-          "owner": "Ondine",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 2,
-          "ga": 2,
-          "gd": 0,
-          "points": 1,
-          "conduct": -1,
-          "fifaRank": 21,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "pos": 3,
-          "team": "Belgium",
-          "owner": "Paul",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 1,
-          "gd": 0,
-          "points": 1,
-          "conduct": -2,
-          "fifaRank": 9,
           "clinched": false,
           "clinchType": null
         },
@@ -2723,18 +2700,18 @@
     },
     {
       "pos": 3,
-      "team": "Belgium",
-      "owner": "Paul",
+      "team": "New Zealand",
+      "owner": "Tomi",
       "played": 1,
       "won": 0,
       "draw": 1,
       "lost": 0,
-      "gf": 1,
-      "ga": 1,
+      "gf": 2,
+      "ga": 2,
       "gd": 0,
       "points": 1,
-      "conduct": -2,
-      "fifaRank": 9,
+      "conduct": 0,
+      "fifaRank": 85,
       "clinched": false,
       "clinchType": null,
       "group": "Group G",
@@ -9098,6 +9075,12 @@
           "a": "New Zealand",
           "hg": 2,
           "ag": 2
+        },
+        {
+          "h": "Belgium",
+          "a": "Iran",
+          "hg": 0,
+          "ag": 0
         }
       ],
       "H": [
@@ -9239,10 +9222,6 @@
         }
       ],
       "G": [
-        {
-          "h": "Belgium",
-          "a": "Iran"
-        },
         {
           "h": "New Zealand",
           "a": "Egypt"
@@ -9683,5 +9662,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T20:46:23Z"
+  "generated": "2026-06-21T21:08:36Z"
 }
