@@ -2361,7 +2361,7 @@
           "ga": 0,
           "gd": 0,
           "points": 1,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 67,
           "clinched": false,
           "clinchType": null
@@ -3055,16 +3055,6 @@
         "rank": 12
       },
       {
-        "team": "Cabo Verde",
-        "owner": "Paul",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 12
-      },
-      {
         "team": "Colombia",
         "owner": "Charlie",
         "yellow": 1,
@@ -3175,6 +3165,16 @@
         "rank": 12
       },
       {
+        "team": "Cabo Verde",
+        "owner": "Paul",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 24
+      },
+      {
         "team": "Ecuador",
         "owner": "Sydney",
         "yellow": 2,
@@ -3182,7 +3182,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Egypt",
@@ -3192,7 +3192,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Iran",
@@ -3202,7 +3202,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Panama",
@@ -3212,7 +3212,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Switzerland",
@@ -3222,7 +3222,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Brazil",
@@ -3440,6 +3440,29 @@
         "rank": 1
       },
       {
+        "name": "Paul",
+        "score": -14,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": -7
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -3
+          },
+          {
+            "name": "Panama",
+            "score": -2
+          },
+          {
+            "name": "Cabo Verde",
+            "score": -2
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Iva",
         "score": -13,
         "teams": [
@@ -3456,30 +3479,7 @@
             "score": -11
           }
         ],
-        "rank": 2
-      },
-      {
-        "name": "Paul",
-        "score": -13,
-        "teams": [
-          {
-            "name": "Belgium",
-            "score": -7
-          },
-          {
-            "name": "Côte d'Ivoire",
-            "score": -3
-          },
-          {
-            "name": "Panama",
-            "score": -2
-          },
-          {
-            "name": "Cabo Verde",
-            "score": -1
-          }
-        ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Tomi",
@@ -9564,7 +9564,7 @@
       "Cabo Verde": {
         "owner": "Paul",
         "canon": "Cabo Verde",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 67,
         "group": "H"
       },
@@ -9697,5 +9697,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T22:48:25Z"
+  "generated": "2026-06-21T22:48:49Z"
 }
