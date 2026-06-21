@@ -476,12 +476,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-21T22:00:00Z",
       "home": {
         "name": "Uruguay",
         "owner": "Iva",
-        "goals": 1,
+        "goals": 2,
         "penGoals": null,
         "fifaRank": 16
       },
@@ -493,7 +493,7 @@
         "fifaRank": 67
       },
       "penalties": false,
-      "winner": "DRAW"
+      "winner": "HOME_TEAM"
     }
   ],
   "recent": [
@@ -9697,5 +9697,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T22:55:27Z"
+  "generated": "2026-06-21T23:07:39Z"
 }
