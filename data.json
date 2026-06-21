@@ -472,7 +472,30 @@
       "utcDate": "2026-06-19T22:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-21T00:00:00Z",
+      "home": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 23
+      },
+      "away": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 82
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-21T00:00:00Z",
-      "home": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 23,
-        "clinched": false
-      },
-      "away": {
-        "name": "Curaçao",
-        "owner": "Ondine",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 82,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -821,6 +820,30 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 28,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-23T17:00:00Z",
+      "home": {
+        "name": "Portugal",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 5,
+        "clinched": false
+      },
+      "away": {
+        "name": "Uzbekistan",
+        "owner": "Ondine",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 50,
         "clinched": false
       },
       "penalties": false,
@@ -9642,5 +9665,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-20T23:18:16Z"
+  "generated": "2026-06-21T00:06:46Z"
 }
