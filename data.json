@@ -481,7 +481,7 @@
       "home": {
         "name": "Spain",
         "owner": "Pete",
-        "goals": 4,
+        "goals": 5,
         "penGoals": null,
         "fifaRank": 2
       },
@@ -2303,7 +2303,7 @@
           "ga": 1,
           "gd": 0,
           "points": 1,
-          "conduct": -1,
+          "conduct": -3,
           "fifaRank": 61,
           "clinched": false,
           "clinchType": null
@@ -3121,16 +3121,6 @@
         "rank": 13
       },
       {
-        "team": "Saudi Arabia",
-        "owner": "Charlie",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 13
-      },
-      {
         "team": "Spain",
         "owner": "Pete",
         "yellow": 1,
@@ -3178,7 +3168,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Ecuador",
@@ -3188,7 +3178,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Egypt",
@@ -3198,7 +3188,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Panama",
@@ -3208,7 +3198,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Switzerland",
@@ -3218,7 +3208,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Brazil",
@@ -3228,7 +3218,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Canada",
@@ -3238,7 +3228,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Côte d'Ivoire",
@@ -3248,7 +3238,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Netherlands",
@@ -3258,7 +3248,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Portugal",
@@ -3268,7 +3258,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
+      },
+      {
+        "team": "Saudi Arabia",
+        "owner": "Charlie",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 31
       },
       {
         "team": "South Korea",
@@ -3278,7 +3278,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Sweden",
@@ -3288,7 +3288,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Australia",
@@ -3523,6 +3523,29 @@
         "rank": 6
       },
       {
+        "name": "Charlie",
+        "score": -7,
+        "teams": [
+          {
+            "name": "Colombia",
+            "score": -1
+          },
+          {
+            "name": "South Korea",
+            "score": -3
+          },
+          {
+            "name": "Saudi Arabia",
+            "score": -3
+          },
+          {
+            "name": "Jordan",
+            "score": 0
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Kelly",
         "score": -7,
         "teams": [
@@ -3581,7 +3604,7 @@
             "score": -1
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Nik",
@@ -3600,30 +3623,7 @@
             "score": -1
           }
         ],
-        "rank": 9
-      },
-      {
-        "name": "Charlie",
-        "score": -5,
-        "teams": [
-          {
-            "name": "Colombia",
-            "score": -1
-          },
-          {
-            "name": "South Korea",
-            "score": -3
-          },
-          {
-            "name": "Saudi Arabia",
-            "score": -1
-          },
-          {
-            "name": "Jordan",
-            "score": 0
-          }
-        ],
-        "rank": 11
+        "rank": 10
       },
       {
         "name": "Charlotte",
@@ -9543,7 +9543,7 @@
       "Saudi Arabia": {
         "owner": "Charlie",
         "canon": "Saudi Arabia",
-        "conduct": -1,
+        "conduct": -3,
         "fifa": 61,
         "group": "H"
       },
@@ -9669,5 +9669,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T17:20:15Z"
+  "generated": "2026-06-21T18:02:04Z"
 }
