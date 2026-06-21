@@ -472,7 +472,30 @@
       "utcDate": "2026-06-21T00:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-21T22:00:00Z",
+      "home": {
+        "name": "Uruguay",
+        "owner": "Iva",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 16
+      },
+      "away": {
+        "name": "Cape Verde Islands",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 67
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-21T22:00:00Z",
-      "home": {
-        "name": "Uruguay",
-        "owner": "Iva",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 16,
-        "clinched": false
-      },
-      "away": {
-        "name": "Cape Verde Islands",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 67,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -832,6 +831,42 @@
         "drawBoth": false,
         "home": {
           "winAdvances": true
+        },
+        "away": {
+          "winAdvances": false
+        }
+      }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-24T19:00:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 19,
+        "clinched": false
+      },
+      "away": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 30,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "B",
+        "winnerWinsGroup": true,
+        "winnerAdvances": false,
+        "drawBoth": true,
+        "home": {
+          "winAdvances": false
         },
         "away": {
           "winAdvances": false
@@ -9662,5 +9697,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T21:53:03Z"
+  "generated": "2026-06-21T22:03:10Z"
 }
