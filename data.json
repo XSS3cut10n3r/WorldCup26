@@ -2253,7 +2253,7 @@
           "ga": 1,
           "gd": 0,
           "points": 2,
-          "conduct": -2,
+          "conduct": -6,
           "fifaRank": 9,
           "clinched": false,
           "clinchType": null
@@ -3185,16 +3185,6 @@
         "rank": 13
       },
       {
-        "team": "Belgium",
-        "owner": "Paul",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 26
-      },
-      {
         "team": "Ecuador",
         "owner": "Sydney",
         "yellow": 2,
@@ -3242,7 +3232,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Canada",
@@ -3252,7 +3242,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Côte d'Ivoire",
@@ -3262,7 +3252,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Netherlands",
@@ -3272,7 +3262,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Portugal",
@@ -3282,7 +3272,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Saudi Arabia",
@@ -3292,7 +3282,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "South Korea",
@@ -3302,7 +3292,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Sweden",
@@ -3312,7 +3302,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Australia",
@@ -3322,7 +3312,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Haiti",
@@ -3332,7 +3322,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Scotland",
@@ -3342,7 +3332,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "United States",
@@ -3352,7 +3342,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Curaçao",
@@ -3362,7 +3352,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Mexico",
@@ -3372,7 +3362,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 43
+        "rank": 42
+      },
+      {
+        "team": "Belgium",
+        "owner": "Paul",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -6,
+        "rank": 44
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3459,6 +3459,29 @@
         "rank": 2
       },
       {
+        "name": "Paul",
+        "score": -12,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": -6
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -3
+          },
+          {
+            "name": "Panama",
+            "score": -2
+          },
+          {
+            "name": "Cabo Verde",
+            "score": -1
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Tomi",
         "score": -12,
         "teams": [
@@ -3498,7 +3521,7 @@
             "score": -10
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Darcy",
@@ -3519,29 +3542,6 @@
           {
             "name": "Haiti",
             "score": -4
-          }
-        ],
-        "rank": 5
-      },
-      {
-        "name": "Paul",
-        "score": -8,
-        "teams": [
-          {
-            "name": "Belgium",
-            "score": -2
-          },
-          {
-            "name": "Côte d'Ivoire",
-            "score": -3
-          },
-          {
-            "name": "Panama",
-            "score": -2
-          },
-          {
-            "name": "Cabo Verde",
-            "score": -1
           }
         ],
         "rank": 6
@@ -9529,7 +9529,7 @@
       "Belgium": {
         "owner": "Paul",
         "canon": "Belgium",
-        "conduct": -2,
+        "conduct": -6,
         "fifa": 9,
         "group": "G"
       },
@@ -9697,5 +9697,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T22:29:32Z"
+  "generated": "2026-06-21T22:40:39Z"
 }
