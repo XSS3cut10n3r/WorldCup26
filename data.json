@@ -472,7 +472,30 @@
       "utcDate": "2026-06-20T03:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-21T04:00:00Z",
+      "home": {
+        "name": "Tunisia",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 46
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 18
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-21T04:00:00Z",
-      "home": {
-        "name": "Tunisia",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 46,
-        "clinched": false
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 18,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -821,6 +820,30 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 50,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-23T20:00:00Z",
+      "home": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 4,
+        "clinched": false
+      },
+      "away": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 73,
         "clinched": false
       },
       "penalties": false,
@@ -9644,5 +9667,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T02:58:27Z"
+  "generated": "2026-06-21T04:13:49Z"
 }
