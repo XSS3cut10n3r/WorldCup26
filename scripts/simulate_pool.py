@@ -474,7 +474,7 @@ def make_runner(model):
 # ----------------------------------------------------------------------------
 def main():
     ap = argparse.ArgumentParser(description="Monte Carlo pool-winner odds.")
-    ap.add_argument("--sims", type=int, default=100_000)
+    ap.add_argument("--sims", type=int, default=1_000_000)
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--data", default="data.json")
     ap.add_argument("--elo", default="elo.json")
