@@ -2253,7 +2253,7 @@
           "ga": 1,
           "gd": 0,
           "points": 2,
-          "conduct": -6,
+          "conduct": -7,
           "fifaRank": 9,
           "clinched": false,
           "clinchType": null
@@ -3367,11 +3367,11 @@
       {
         "team": "Belgium",
         "owner": "Paul",
-        "yellow": 2,
+        "yellow": 3,
         "indirect_red": 0,
         "direct_red": 1,
         "yellow_direct_red": 0,
-        "score": -6,
+        "score": -7,
         "rank": 44
       },
       {
@@ -3440,6 +3440,29 @@
         "rank": 1
       },
       {
+        "name": "Paul",
+        "score": -13,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": -7
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -3
+          },
+          {
+            "name": "Panama",
+            "score": -2
+          },
+          {
+            "name": "Cabo Verde",
+            "score": -1
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Iva",
         "score": -12,
         "teams": [
@@ -3456,30 +3479,7 @@
             "score": -11
           }
         ],
-        "rank": 2
-      },
-      {
-        "name": "Paul",
-        "score": -12,
-        "teams": [
-          {
-            "name": "Belgium",
-            "score": -6
-          },
-          {
-            "name": "Côte d'Ivoire",
-            "score": -3
-          },
-          {
-            "name": "Panama",
-            "score": -2
-          },
-          {
-            "name": "Cabo Verde",
-            "score": -1
-          }
-        ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Tomi",
@@ -3502,7 +3502,7 @@
             "score": 0
           }
         ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Pete",
@@ -9529,7 +9529,7 @@
       "Belgium": {
         "owner": "Paul",
         "canon": "Belgium",
-        "conduct": -6,
+        "conduct": -7,
         "fifa": 9,
         "group": "G"
       },
@@ -9697,5 +9697,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T22:40:39Z"
+  "generated": "2026-06-21T22:45:21Z"
 }
