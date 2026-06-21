@@ -14,10 +14,6 @@ Companion to update_scores.py and uses the SAME team-name matching
 Kalshi market data is public — NO API key or auth is required.
 
 No third-party dependencies — standard library only.
-
-OPTIONAL: if elo_nudge.py and a previously-built elo.json are present, this
-also slides the calibrated Elo ratings a little to track the new market
-(no re-simulation). It's fully guarded: missing either file just skips it.
 """
 
 import json
@@ -27,13 +23,6 @@ import urllib.request
 import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
-
-# Optional companion: cheap odds-drift nudge for elo.json. If it isn't next
-# to this script (or elo.json hasn't been built yet) we simply skip nudging.
-try:
-    import elo_nudge
-except ImportError:
-    elo_nudge = None
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -307,19 +296,6 @@ def main():
     payload["generated"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
-
-    # ---- Optional: nudge the Elo ratings to follow the new market -------
-    # Cheap (no re-simulation): each team's rating slides off its calibrated
-    # anchor by how far its odds drifted. Skipped silently if elo_nudge.py or
-    # elo.json is absent. Re-run build_elos.py after each matchday to re-anchor.
-    elo_path = ROOT / "elo.json"
-    if elo_nudge is not None and elo_path.exists():
-        odds_by_team = {t["name"]: t["odds"] for s in standings for t in s["teams"]}
-        try:
-            moved = elo_nudge.apply_odds_drift(elo_path, odds_by_team)
-            print(f"Nudged Elo ratings for {moved} team(s) in elo.json.")
-        except Exception as e:  # never let a nudge problem fail the odds run
-            print(f"Note: skipped elo.json nudge ({e}).")
 
     leader = standings[0] if standings else None
     print(f"Wrote odds.json — {len(price_by_team)} priced markets, "
