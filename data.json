@@ -472,7 +472,30 @@
       "utcDate": "2026-06-20T17:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-21T16:00:00Z",
+      "home": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 2
+      },
+      "away": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 61
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-21T16:00:00Z",
-      "home": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 2,
-        "clinched": false
-      },
-      "away": {
-        "name": "Saudi Arabia",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 61,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -821,6 +820,30 @@
         "goals": null,
         "penGoals": null,
         "fifaRank": 73,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-23T23:00:00Z",
+      "home": {
+        "name": "Panama",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 34,
+        "clinched": false
+      },
+      "away": {
+        "name": "Croatia",
+        "owner": "Tom",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 11,
         "clinched": false
       },
       "penalties": false,
@@ -9646,5 +9669,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T06:04:26Z"
+  "generated": "2026-06-21T16:09:54Z"
 }
