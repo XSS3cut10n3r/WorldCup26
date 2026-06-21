@@ -476,7 +476,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-21T19:00:00Z",
       "home": {
         "name": "Belgium",
@@ -488,12 +488,12 @@
       "away": {
         "name": "Iran",
         "owner": "Ondine",
-        "goals": 1,
+        "goals": 0,
         "penGoals": null,
         "fifaRank": 21
       },
       "penalties": false,
-      "winner": "AWAY_TEAM"
+      "winner": "DRAW"
     }
   ],
   "recent": [
@@ -9683,5 +9683,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T19:35:43Z"
+  "generated": "2026-06-21T20:05:59Z"
 }
