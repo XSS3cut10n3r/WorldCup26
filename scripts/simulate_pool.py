@@ -20,23 +20,32 @@ state, adds the points each country earns to its owner, and the person with the
 most total points wins that run. Probabilities are the share of runs each person
 wins (ties split the win evenly).
 
-    python3 simulate_pool.py                 # 100,000 runs
+    python3 simulate_pool.py                 # 1,000,000 runs, all CPU cores
     python3 simulate_pool.py --sims 20000
     python3 simulate_pool.py --seed 1 --sims 5000
+    python3 simulate_pool.py --workers 1     # original single-process behaviour
 
 This is the aggregate of the site's "Simulate" button: at the start of the
 tournament it is a clean from-scratch projection off the Elos and weights; once
 games are played it conditions on the real results, exactly like the page.
+
+Speed: the work is split across CPU cores (multiprocessing). Each worker runs an
+independent slice of the sims with its own seeded RNG and the SAME model, and the
+per-person win/points/title tallies are summed at the end — statistically
+identical to running every sim in one process, just much faster. Runs faster
+still under PyPy with no code change.
 """
 
 import argparse
 import json
 import math
+import os
 import random
 import sys
 import unicodedata
 from collections import defaultdict
 from datetime import datetime, timezone
+from multiprocessing import Pool
 
 
 # ----------------------------------------------------------------------------
@@ -470,39 +479,20 @@ def make_runner(model):
 
 
 # ----------------------------------------------------------------------------
-# Main
+# Worker: run a slice of the sims in its own process with its own seeded RNG.
+# Rebuilds the SAME model from the same files, so every worker is identical
+# except for its independent random stream. Returns plain dicts to sum up.
 # ----------------------------------------------------------------------------
-def main():
-    ap = argparse.ArgumentParser(description="Monte Carlo pool-winner odds.")
-    ap.add_argument("--sims", type=int, default=1_000_000)
-    ap.add_argument("--seed", type=int, default=None)
-    ap.add_argument("--data", default="data.json")
-    ap.add_argument("--elo", default="elo.json")
-    ap.add_argument("--json", default=None,
-                    help="also write a sim_odds.json (same shape as odds.json) "
-                         "with per-person pool-win odds and per-team title odds.")
-    args = ap.parse_args()
-
-    if args.seed is not None:
-        random.seed(args.seed)
-
-    data = load(args.data)
-    elo = load(args.elo)
-    model = build_model(elo, data)
+def _run_chunk(task):
+    n, seed, data_path, elo_path = task
+    random.seed(seed)
+    model = build_model(load(elo_path), load(data_path))
     run = make_runner(model)
 
-    if model["R"] is None:
-        print("WARNING: elo.json has no ratings; scorelines fall back to uniform "
-              "random (the same graceful fallback the page uses).", file=sys.stderr)
-
-    people = list(model["baseline"].keys())
     wins = defaultdict(float)
     pts_sum = defaultdict(float)
     champ = defaultdict(float)
-    N = args.sims
-    step = max(1, N // 10)
-
-    for i in range(N):
+    for _ in range(n):
         person, champion = run()
         if champion is not None:
             champ[champion] += 1
@@ -513,8 +503,76 @@ def main():
             wins[nm] += share
         for nm, v in person.items():
             pts_sum[nm] += v
-        if (i + 1) % step == 0:
-            print(f"  ...{i + 1:,}/{N:,}", file=sys.stderr)
+    return dict(wins), dict(pts_sum), dict(champ)
+
+
+# ----------------------------------------------------------------------------
+# Main
+# ----------------------------------------------------------------------------
+def main():
+    ap = argparse.ArgumentParser(description="Monte Carlo pool-winner odds.")
+    ap.add_argument("--sims", type=int, default=1_000_000)
+    ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--workers", type=int, default=None,
+                    help="parallel worker processes (default: all CPU cores). "
+                         "Use 1 for the original single-process behaviour.")
+    ap.add_argument("--data", default="data.json")
+    ap.add_argument("--elo", default="elo.json")
+    ap.add_argument("--json", default=None,
+                    help="also write a sim_odds.json (same shape as odds.json) "
+                         "with per-person pool-win odds and per-team title odds.")
+    args = ap.parse_args()
+
+    data = load(args.data)
+    elo = load(args.elo)
+    # Built once in the parent for the warning, the people list, and the JSON
+    # section below. Workers rebuild their own identical copy.
+    model = build_model(elo, data)
+
+    if model["R"] is None:
+        print("WARNING: elo.json has no ratings; scorelines fall back to uniform "
+              "random (the same graceful fallback the page uses).", file=sys.stderr)
+
+    people = list(model["baseline"].keys())
+    N = args.sims
+
+    # How many processes, and how to split N so the slices sum to exactly N.
+    workers = args.workers if args.workers else (os.cpu_count() or 1)
+    workers = max(1, min(workers, N))
+    base, rem = divmod(N, workers)
+    counts = [base + (1 if i < rem else 0) for i in range(workers)]
+
+    # Deterministic, well-separated per-worker seeds: reproducible when --seed
+    # is given, independent across workers either way.
+    seeder = random.Random(args.seed)
+    tasks = [(counts[i], seeder.randrange(2 ** 31 - 1), args.data, args.elo)
+             for i in range(workers)]
+
+    print(f"Simulating {N:,} tournaments across {workers} worker(s) …",
+          file=sys.stderr)
+
+    wins = defaultdict(float)
+    pts_sum = defaultdict(float)
+    champ = defaultdict(float)
+
+    def merge(result):
+        w, p, c = result
+        for nm, v in w.items():
+            wins[nm] += v
+        for nm, v in p.items():
+            pts_sum[nm] += v
+        for nm, v in c.items():
+            champ[nm] += v
+
+    done = 0
+    if workers == 1:
+        merge(_run_chunk(tasks[0]))
+    else:
+        with Pool(processes=workers) as pool:
+            for i, result in enumerate(pool.imap_unordered(_run_chunk, tasks), 1):
+                merge(result)
+                done += 1
+                print(f"  …worker {done}/{workers} finished", file=sys.stderr)
 
     rows = sorted(people, key=lambda nm: -wins[nm])
     width = max(len(nm) for nm in people)
