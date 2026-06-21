@@ -2236,7 +2236,7 @@
           "ga": 2,
           "gd": 0,
           "points": 2,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 21,
           "clinched": false,
           "clinchType": null
@@ -3115,16 +3115,6 @@
         "rank": 13
       },
       {
-        "team": "Iran",
-        "owner": "Ondine",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 13
-      },
-      {
         "team": "Iraq",
         "owner": "Agatha",
         "yellow": 1,
@@ -3192,7 +3182,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Egypt",
@@ -3202,7 +3192,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 26
+        "rank": 25
+      },
+      {
+        "team": "Iran",
+        "owner": "Ondine",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 25
       },
       {
         "team": "Panama",
@@ -3212,7 +3212,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Switzerland",
@@ -3222,7 +3222,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Brazil",
@@ -3547,6 +3547,29 @@
         "rank": 6
       },
       {
+        "name": "Ondine",
+        "score": -8,
+        "teams": [
+          {
+            "name": "Senegal",
+            "score": 0
+          },
+          {
+            "name": "Iran",
+            "score": -2
+          },
+          {
+            "name": "Uzbekistan",
+            "score": -1
+          },
+          {
+            "name": "Curaçao",
+            "score": -5
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Charlie",
         "score": -7,
         "teams": [
@@ -3567,7 +3590,7 @@
             "score": 0
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Kelly",
@@ -3586,30 +3609,7 @@
             "score": -3
           }
         ],
-        "rank": 7
-      },
-      {
-        "name": "Ondine",
-        "score": -7,
-        "teams": [
-          {
-            "name": "Senegal",
-            "score": 0
-          },
-          {
-            "name": "Iran",
-            "score": -1
-          },
-          {
-            "name": "Uzbekistan",
-            "score": -1
-          },
-          {
-            "name": "Curaçao",
-            "score": -5
-          }
-        ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Agatha",
@@ -9543,7 +9543,7 @@
       "Iran": {
         "owner": "Ondine",
         "canon": "Iran",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 21,
         "group": "G"
       },
@@ -9697,5 +9697,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T22:45:21Z"
+  "generated": "2026-06-21T22:45:41Z"
 }
