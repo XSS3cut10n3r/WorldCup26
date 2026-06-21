@@ -2075,7 +2075,7 @@
           "ga": 1,
           "gd": -1,
           "points": 1,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 23,
           "clinched": false,
           "clinchType": null
@@ -2786,7 +2786,7 @@
       "ga": 1,
       "gd": -1,
       "points": 1,
-      "conduct": -1,
+      "conduct": -2,
       "fifaRank": 23,
       "clinched": false,
       "clinchType": null,
@@ -3058,16 +3058,6 @@
         "rank": 13
       },
       {
-        "team": "Ecuador",
-        "owner": "Sydney",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 13
-      },
-      {
         "team": "Ghana",
         "owner": "Charlotte",
         "yellow": 1,
@@ -3165,7 +3155,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 28
+        "rank": 27
+      },
+      {
+        "team": "Ecuador",
+        "owner": "Sydney",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 27
       },
       {
         "team": "Egypt",
@@ -3175,7 +3175,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Panama",
@@ -3185,7 +3185,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Switzerland",
@@ -3195,7 +3195,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Brazil",
@@ -3371,7 +3371,7 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -20,
+        "score": -21,
         "teams": [
           {
             "name": "Brazil",
@@ -3379,7 +3379,7 @@
           },
           {
             "name": "Ecuador",
-            "score": -1
+            "score": -2
           },
           {
             "name": "South Africa",
@@ -9441,7 +9441,7 @@
       "Ecuador": {
         "owner": "Sydney",
         "canon": "Ecuador",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 23,
         "group": "E"
       },
@@ -9644,5 +9644,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-21T02:18:51Z"
+  "generated": "2026-06-21T02:19:24Z"
 }
