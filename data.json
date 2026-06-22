@@ -218,6 +218,41 @@
       "rank": 6
     },
     {
+      "name": "Paul",
+      "points": 3.0,
+      "teams": [
+        {
+          "name": "Belgium",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Panama",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Cabo Verde",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 6
+    },
+    {
       "name": "Agatha",
       "points": 2.5,
       "teams": [
@@ -243,7 +278,7 @@
           "clinchType": null
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
       "name": "Charlie",
@@ -278,7 +313,7 @@
           "clinchType": null
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
       "name": "Mat",
@@ -306,42 +341,35 @@
           "clinchType": null
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
-      "name": "Paul",
-      "points": 2.5,
+      "name": "Iva",
+      "points": 1.5,
       "teams": [
         {
-          "name": "Belgium",
+          "name": "Uruguay",
           "points": 1.0,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         },
         {
-          "name": "Côte d'Ivoire",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Panama",
+          "name": "Türkiye",
           "points": 0,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": false,
           "clinchType": null
         },
         {
-          "name": "Cabo Verde",
+          "name": "Qatar",
           "points": 0.5,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         }
       ],
-      "rank": 8
+      "rank": 12
     },
     {
       "name": "Ondine",
@@ -379,34 +407,6 @@
       "rank": 12
     },
     {
-      "name": "Iva",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "Uruguay",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Türkiye",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Qatar",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 13
-    },
-    {
       "name": "Tom",
       "points": 1.0,
       "teams": [
@@ -432,10 +432,24 @@
           "clinchType": null
         }
       ],
-      "rank": 13
+      "rank": 14
     }
   ],
   "events": [
+    {
+      "owner": "Paul",
+      "team": "Cabo Verde",
+      "points": 0.5,
+      "label": "Cabo Verde drew (Group stage)",
+      "utcDate": "2026-06-21T22:00:00Z"
+    },
+    {
+      "owner": "Iva",
+      "team": "Uruguay",
+      "points": 0.5,
+      "label": "Uruguay drew (Group stage)",
+      "utcDate": "2026-06-21T22:00:00Z"
+    },
     {
       "owner": "Ondine",
       "team": "Iran",
@@ -456,27 +470,14 @@
       "points": 1,
       "label": "Spain won (Group stage)",
       "utcDate": "2026-06-21T16:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Japan",
-      "points": 1,
-      "label": "Japan won (Group stage)",
-      "utcDate": "2026-06-21T04:00:00Z"
-    },
-    {
-      "owner": "Ondine",
-      "team": "Curaçao",
-      "points": 0.5,
-      "label": "Curaçao drew (Group stage)",
-      "utcDate": "2026-06-21T00:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-21T22:00:00Z",
       "home": {
         "name": "Uruguay",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-20T20:00:00Z",
-      "home": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 10
-      },
-      "away": {
-        "name": "Ivory Coast",
-        "owner": "Paul",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 33
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -922,8 +899,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Paraguay",
-            "owner": "Pete",
+            "name": "Scotland",
+            "owner": "Sydney",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1057,8 +1034,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Scotland",
-            "owner": "Sydney",
+            "name": "Cabo Verde",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1111,8 +1088,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Bosnia and Herzegovina",
-            "owner": "Tomi",
+            "name": "Ecuador",
+            "owner": "Sydney",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1273,8 +1250,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Ecuador",
-            "owner": "Sydney",
+            "name": "Paraguay",
+            "owner": "Pete",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2319,14 +2296,14 @@
           "pos": 2,
           "team": "Uruguay",
           "owner": "Iva",
-          "played": 1,
+          "played": 2,
           "won": 0,
-          "draw": 1,
+          "draw": 2,
           "lost": 0,
-          "gf": 1,
-          "ga": 1,
+          "gf": 3,
+          "ga": 3,
           "gd": 0,
-          "points": 1,
+          "points": 2,
           "conduct": -1,
           "fifaRank": 16,
           "clinched": false,
@@ -2334,6 +2311,23 @@
         },
         {
           "pos": 3,
+          "team": "Cabo Verde",
+          "owner": "Paul",
+          "played": 2,
+          "won": 0,
+          "draw": 2,
+          "lost": 0,
+          "gf": 2,
+          "ga": 2,
+          "gd": 0,
+          "points": 2,
+          "conduct": -2,
+          "fifaRank": 67,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "pos": 4,
           "team": "Saudi Arabia",
           "owner": "Charlie",
           "played": 2,
@@ -2346,23 +2340,6 @@
           "points": 1,
           "conduct": -3,
           "fifaRank": 61,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "pos": 4,
-          "team": "Cabo Verde",
-          "owner": "Paul",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 0,
-          "ga": 0,
-          "gd": 0,
-          "points": 1,
-          "conduct": -2,
-          "fifaRank": 67,
           "clinched": false,
           "clinchType": null
         }
@@ -2735,6 +2712,28 @@
     },
     {
       "pos": 3,
+      "team": "Cabo Verde",
+      "owner": "Paul",
+      "played": 2,
+      "won": 0,
+      "draw": 2,
+      "lost": 0,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "points": 2,
+      "conduct": -2,
+      "fifaRank": 67,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group H",
+      "ranked": true,
+      "rank": 4,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "New Zealand",
       "owner": "Tomi",
       "played": 1,
@@ -2751,7 +2750,7 @@
       "clinchType": null,
       "group": "Group G",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2773,7 +2772,7 @@
       "clinchType": null,
       "group": "Group K",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2795,7 +2794,7 @@
       "clinchType": null,
       "group": "Group A",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2817,7 +2816,7 @@
       "clinchType": null,
       "group": "Group E",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2838,28 +2837,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group B",
-      "ranked": true,
-      "rank": 8,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Saudi Arabia",
-      "owner": "Charlie",
-      "played": 2,
-      "won": 0,
-      "draw": 1,
-      "lost": 1,
-      "gf": 1,
-      "ga": 5,
-      "gd": -4,
-      "points": 1,
-      "conduct": -3,
-      "fifaRank": 61,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group H",
       "ranked": true,
       "rank": 9,
       "qualifies": false,
@@ -9136,6 +9113,12 @@
           "a": "Saudi Arabia",
           "hg": 4,
           "ag": 0
+        },
+        {
+          "h": "Uruguay",
+          "a": "Cabo Verde",
+          "hg": 2,
+          "ag": 2
         }
       ],
       "I": [
@@ -9271,10 +9254,6 @@
         }
       ],
       "H": [
-        {
-          "h": "Uruguay",
-          "a": "Cabo Verde"
-        },
         {
           "h": "Uruguay",
           "a": "Spain"
@@ -9697,5 +9676,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T00:02:34Z"
+  "generated": "2026-06-22T00:11:44Z"
 }
