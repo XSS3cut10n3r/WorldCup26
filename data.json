@@ -2264,7 +2264,7 @@
           "ga": 5,
           "gd": -2,
           "points": 1,
-          "conduct": 0,
+          "conduct": -2,
           "fifaRank": 85,
           "clinched": false,
           "clinchType": null
@@ -2992,16 +2992,6 @@
         "rank": 1
       },
       {
-        "team": "New Zealand",
-        "owner": "Tomi",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Norway",
         "owner": "Charlotte",
         "yellow": 0,
@@ -3029,7 +3019,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Colombia",
@@ -3039,7 +3029,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Czechia",
@@ -3049,7 +3039,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "DR Congo",
@@ -3059,7 +3049,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Ghana",
@@ -3069,7 +3059,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Iraq",
@@ -3079,7 +3069,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Morocco",
@@ -3089,7 +3079,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Spain",
@@ -3099,7 +3089,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Tunisia",
@@ -3109,7 +3099,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Türkiye",
@@ -3119,7 +3109,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Uruguay",
@@ -3129,7 +3119,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Uzbekistan",
@@ -3139,7 +3129,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Cabo Verde",
@@ -3149,7 +3139,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Ecuador",
@@ -3159,7 +3149,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Egypt",
@@ -3169,7 +3159,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Iran",
@@ -3179,7 +3169,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 24
+        "rank": 23
+      },
+      {
+        "team": "New Zealand",
+        "owner": "Tomi",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 23
       },
       {
         "team": "Panama",
@@ -3189,7 +3189,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Switzerland",
@@ -3199,7 +3199,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Brazil",
@@ -3440,27 +3440,8 @@
         "rank": 2
       },
       {
-        "name": "Iva",
-        "score": -13,
-        "teams": [
-          {
-            "name": "Uruguay",
-            "score": -1
-          },
-          {
-            "name": "Türkiye",
-            "score": -1
-          },
-          {
-            "name": "Qatar",
-            "score": -11
-          }
-        ],
-        "rank": 3
-      },
-      {
         "name": "Tomi",
-        "score": -12,
+        "score": -14,
         "teams": [
           {
             "name": "Germany",
@@ -3476,7 +3457,26 @@
           },
           {
             "name": "New Zealand",
-            "score": 0
+            "score": -2
+          }
+        ],
+        "rank": 2
+      },
+      {
+        "name": "Iva",
+        "score": -13,
+        "teams": [
+          {
+            "name": "Uruguay",
+            "score": -1
+          },
+          {
+            "name": "Türkiye",
+            "score": -1
+          },
+          {
+            "name": "Qatar",
+            "score": -11
           }
         ],
         "rank": 4
@@ -9531,7 +9531,7 @@
       "New Zealand": {
         "owner": "Tomi",
         "canon": "New Zealand",
-        "conduct": 0,
+        "conduct": -2,
         "fifa": 85,
         "group": "G"
       },
@@ -9678,5 +9678,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T03:09:13Z"
+  "generated": "2026-06-22T08:21:42Z"
 }
