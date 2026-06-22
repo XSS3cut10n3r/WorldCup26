@@ -2016,13 +2016,20 @@
       group: g.group,
       teams: (g.table || []).map(r => {
         const out = elim.has(r.team);
-        const through = r.clinched === true && !out;
-        let odds, delta = null;
+        let through, odds, delta = null;
         if (sim) {
-          odds = through ? 1 : 0;                 // single what-if: in or out
+          // What-if: one simulated bracket, so a team is simply in (clinched in
+          // this run) or out — there's no aggregate probability to cross on.
+          through = r.clinched === true && !out;
+          odds = through ? 1 : 0;
         } else {
           const k = ko[r.team];
-          odds = out ? 0 : (through ? 1 : (k ? (k.odds || 0) : 0));
+          const modelOdds = out ? 0 : (k ? (k.odds || 0) : 0);
+          // Cross the line when officially clinched OR the model qualified the
+          // team in EVERY simulated tournament (odds of exactly 1.0). A team at
+          // 99.99% still stops just shy of the line.
+          through = !out && (r.clinched === true || modelOdds >= 1);
+          odds = through ? 1 : modelOdds;
           if (!out && !through && k) delta = k.delta;   // arrow only for live "in play"
         }
         const m = krMeta(r.team);
