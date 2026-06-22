@@ -2499,7 +2499,7 @@
           "ga": 3,
           "gd": 0,
           "points": 3,
-          "conduct": -1,
+          "conduct": -3,
           "fifaRank": 24,
           "clinched": false,
           "clinchType": null
@@ -3049,16 +3049,6 @@
         "rank": 1
       },
       {
-        "team": "Austria",
-        "owner": "Kelly",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 10
-      },
-      {
         "team": "Colombia",
         "owner": "Charlie",
         "yellow": 1,
@@ -3166,7 +3156,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
       },
       {
         "team": "Ecuador",
@@ -3176,7 +3166,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
       },
       {
         "team": "Iran",
@@ -3186,7 +3176,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
       },
       {
         "team": "New Zealand",
@@ -3196,7 +3186,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
       },
       {
         "team": "Panama",
@@ -3206,7 +3196,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
       },
       {
         "team": "Switzerland",
@@ -3216,7 +3206,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
       },
       {
         "team": "Uruguay",
@@ -3226,7 +3216,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 21
+        "rank": 20
+      },
+      {
+        "team": "Austria",
+        "owner": "Kelly",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 27
       },
       {
         "team": "Brazil",
@@ -3236,7 +3236,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Cabo Verde",
@@ -3246,7 +3246,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Canada",
@@ -3256,7 +3256,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Côte d'Ivoire",
@@ -3266,7 +3266,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Egypt",
@@ -3276,7 +3276,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Netherlands",
@@ -3286,7 +3286,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Portugal",
@@ -3296,7 +3296,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Saudi Arabia",
@@ -3306,7 +3306,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "South Korea",
@@ -3316,7 +3316,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Sweden",
@@ -3326,7 +3326,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 28
+        "rank": 27
       },
       {
         "team": "Australia",
@@ -3571,6 +3571,25 @@
         "rank": 6
       },
       {
+        "name": "Kelly",
+        "score": -9,
+        "teams": [
+          {
+            "name": "Portugal",
+            "score": -3
+          },
+          {
+            "name": "Austria",
+            "score": -3
+          },
+          {
+            "name": "Canada",
+            "score": -3
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Nik",
         "score": -8,
         "teams": [
@@ -3587,7 +3606,7 @@
             "score": -1
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Ondine",
@@ -3610,7 +3629,7 @@
             "score": -5
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Charlie",
@@ -3633,26 +3652,7 @@
             "score": 0
           }
         ],
-        "rank": 9
-      },
-      {
-        "name": "Kelly",
-        "score": -7,
-        "teams": [
-          {
-            "name": "Portugal",
-            "score": -3
-          },
-          {
-            "name": "Austria",
-            "score": -1
-          },
-          {
-            "name": "Canada",
-            "score": -3
-          }
-        ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Agatha",
@@ -9657,7 +9657,7 @@
       "Austria": {
         "owner": "Kelly",
         "canon": "Austria",
-        "conduct": -1,
+        "conduct": -3,
         "fifa": 24,
         "group": "J"
       },
@@ -9727,5 +9727,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T22:09:53Z"
+  "generated": "2026-06-22T22:13:04Z"
 }
