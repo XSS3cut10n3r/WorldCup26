@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Nik",
+      "points": 4.5,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 2,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Mexico",
+          "points": 2,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Czechia",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Pete",
       "points": 4.0,
       "teams": [
@@ -26,7 +54,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Tomi",
@@ -61,7 +89,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Charlotte",
@@ -89,35 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
-    },
-    {
-      "name": "Nik",
-      "points": 3.5,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Mexico",
-          "points": 2,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Czechia",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Sydney",
@@ -152,7 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Darcy",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Argentina",
+      "points": 1,
+      "label": "Argentina won (Group stage)",
+      "utcDate": "2026-06-22T17:00:00Z"
+    },
+    {
       "owner": "Tom",
       "team": "Egypt",
       "points": 1,
@@ -463,20 +470,14 @@
       "points": 0.5,
       "label": "Iran drew (Group stage)",
       "utcDate": "2026-06-21T19:00:00Z"
-    },
-    {
-      "owner": "Paul",
-      "team": "Belgium",
-      "points": 0.5,
-      "label": "Belgium drew (Group stage)",
-      "utcDate": "2026-06-21T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-22T17:00:00Z",
       "home": {
         "name": "Argentina",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-21T04:00:00Z",
-      "home": {
-        "name": "Tunisia",
-        "owner": "Darcy",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 46
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": 4,
-        "penGoals": null,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -2462,14 +2439,14 @@
           "pos": 1,
           "team": "Argentina",
           "owner": "Nik",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "draw": 0,
           "lost": 0,
-          "gf": 3,
+          "gf": 5,
           "ga": 0,
-          "gd": 3,
-          "points": 3,
+          "gd": 5,
+          "points": 6,
           "conduct": 0,
           "fifaRank": 1,
           "clinched": false,
@@ -2479,13 +2456,13 @@
           "pos": 2,
           "team": "Austria",
           "owner": "Kelly",
-          "played": 1,
+          "played": 2,
           "won": 1,
           "draw": 0,
-          "lost": 0,
+          "lost": 1,
           "gf": 3,
-          "ga": 1,
-          "gd": 2,
+          "ga": 3,
+          "gd": 0,
           "points": 3,
           "conduct": -1,
           "fifaRank": 24,
@@ -9188,6 +9165,12 @@
           "a": "Jordan",
           "hg": 3,
           "ag": 1
+        },
+        {
+          "h": "Argentina",
+          "a": "Austria",
+          "hg": 2,
+          "ag": 0
         }
       ],
       "K": [
@@ -9319,10 +9302,6 @@
         }
       ],
       "J": [
-        {
-          "h": "Argentina",
-          "a": "Austria"
-        },
         {
           "h": "Jordan",
           "a": "Algeria"
@@ -9713,5 +9692,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T19:04:34Z"
+  "generated": "2026-06-22T19:07:38Z"
 }
