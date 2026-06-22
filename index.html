@@ -1101,7 +1101,7 @@
     const unres = t.resolved === false;
     const proj = t.projected === true;
     const out = isOut === true && !unres;
-    const through = t.clinched === true && !unres && !out;
+    const through = sideThrough(t) && !unres && !out;
     const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
     const hasRank = !unres && t.fifaRank !== null && t.fifaRank !== undefined;
     const rankEl = `<div class="trank">${hasRank ? "#" + t.fifaRank : ""}</div>`;
@@ -1122,14 +1122,18 @@
   // Match-level footer lines (centered, full width): the strongest line first
   // ("Winner wins Group X" or "Winner advances"), then the draw line. Per-team
   // outcomes are shown as tags under each name instead (see clinchTag).
-  function clinchFooter(c) {
+  function clinchFooter(c, m) {
     if (!c) return "";
     let h = "";
     if (c.winnerWinsGroup)
       h += `<span class="cpill grp">Winner wins ${esc(c.group ? "Group " + c.group : "the group")}</span>`;
     else if (c.winnerAdvances)
       h += `<span class="cpill adv">Winner advances</span>`;
-    if (c.drawBoth)
+    // Drop "a draw: both go through" once both sides are ALREADY through
+    // (officially clinched or model-certain) — it's redundant then. The
+    // group-winner line above stays, since who finishes first is still live.
+    const bothThrough = m && sideThrough(m.home) && sideThrough(m.away);
+    if (c.drawBoth && !bothThrough)
       h += `<span class="cpill draw">A draw: both go through</span>`;
     return h;
   }
@@ -1138,7 +1142,7 @@
   // game alone clinches a top-two place. Returns "" when neither applies.
   function clinchTag(side, cside, cls, isOut) {
     if (isOut) return `<div class="${cls} out">Eliminated</div>`;
-    if (side && side.clinched) return `<div class="${cls}">Through</div>`;
+    if (sideThrough(side)) return `<div class="${cls}">Through</div>`;
     if (cside && cside.winAdvances) return `<div class="${cls}">Win to advance</div>`;
     return "";
   }
@@ -1146,7 +1150,7 @@
   // its row and keep both country names level).
   function hasClinchTag(m) {
     const c = m.clinch;
-    return !!(m.home.clinched || m.away.clinched ||
+    return !!(sideThrough(m.home) || sideThrough(m.away) ||
       upElimNames.has(m.home.name) || upElimNames.has(m.away.name) ||
       (c && ((c.home && c.home.winAdvances) || (c.away && c.away.winAdvances))));
   }
@@ -1190,7 +1194,7 @@
       ? `<div class="cd-rank">#${t.fifaRank}</div>` : "";
     const info = (t, side) => {
       const isOut = upElimNames.has(t.name);
-      const through = t.clinched === true && !isOut;
+      const through = sideThrough(t) && !isOut;
       const cside = c ? (side === "home" ? c.home : c.away) : null;
       return `<div class="cd-tinfo">
         <div class="cd-name ${through ? "through" : ""} ${isOut ? "elim" : ""}">${esc(t.name)}</div>
@@ -1198,7 +1202,7 @@
         ${clinchTag(t, cside, "cd-ctag", isOut)}</div>`;
     };
     const initial = fmtCountdown(new Date(m.utcDate).getTime() - Date.now()) || "";
-    const footer = clinchFooter(c);
+    const footer = clinchFooter(c, m);
     const tagged = hasClinchTag(m) ? " tagged" : "";
     return `<div class="countdown" id="countdown" data-kickoff="${esc(m.utcDate)}">
       <div class="cd-label">Next match</div>
@@ -1254,7 +1258,7 @@
     // tags under each name, plus the centered match-level footer. `tagged`
     // top-aligns the row so both names stay level when one carries a tag.
     const showClinch = !live && !done;
-    const footer = showClinch ? clinchFooter(m.clinch) : "";
+    const footer = showClinch ? clinchFooter(m.clinch, m) : "";
     const tagged = showClinch && hasClinchTag(m) ? " tagged" : "";
     const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home");
     const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away");
@@ -1448,11 +1452,19 @@
   // Names of teams flagged eliminated, read off the leaderboard and consulted by
   // the upcoming cards / countdown to red-name + tag the knocked-out side.
   let upElimNames = new Set();
+  // Names the Monte-Carlo model qualifies in every tournament (odds 1.0). Live
+  // mode only; consulted by the match cards so an effectively-through side gets
+  // the gold name + "Through" tag, and the now-redundant draw badge is dropped.
+  let upThroughNames = new Set();
+  function sideThrough(t) {
+    return !!(t && (t.clinched === true || upThroughNames.has(t.name)));
+  }
 
   function renderHome(data) {
     upElimNames = new Set();
     (data.leaderboard || []).forEach(p =>
       (p.teams || []).forEach(t => { if (t.eliminated) upElimNames.add(t.name); }));
+    upThroughNames = koCertainNames(data);
     let html = "";
 
     if ((data.live || []).length) {
@@ -1469,12 +1481,14 @@
     }
 
     // Leaderboard
+    const koThrough = koCertainNames(data);
     const rows = (data.leaderboard || []).map(r => {
-      const chips = r.teams.map(t =>
-        `<span class="chip ${t.eliminated ? "out" : ""} ${t.clinched ? "clinched" : ""}"${
-          t.clinched && !t.eliminated ? ' title="Through to the knockouts"' : ""
-        }>${esc(t.name)} <b>${fmtPts(t.points)}</b></span>`
-      ).join("");
+      const chips = r.teams.map(t => {
+        const clinch = (t.clinched || koThrough.has(t.name)) && !t.eliminated;
+        return `<span class="chip ${t.eliminated ? "out" : ""} ${clinch ? "clinched" : ""}"${
+          clinch ? ' title="Through to the knockouts"' : ""
+        }>${esc(t.name)} <b>${fmtPts(t.points)}</b></span>`;
+      }).join("");
       return `<div class="row ${r.rank === 1 && r.points > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
         <div class="who"><div class="name">${esc(r.name)}</div><div class="teams">${chips}</div></div>
@@ -1515,9 +1529,22 @@
     return html;
   }
 
+  // Teams the Monte-Carlo model qualifies in EVERY simulated tournament (odds
+  // exactly 1.0 in knockout_odds.json). These get the same gold "through" styling
+  // as an official data.json clinch on the leaderboard and group tables. It is
+  // purely presentational and live-mode only: it is deliberately NOT written into
+  // data.json and NOT consulted by the bracket or any scoring/elimination logic.
+  function koCertainNames(data) {
+    const s = new Set();
+    if (!data.simulated && koData)
+      (koData.teams || []).forEach(t => { if ((t.odds || 0) >= 1) s.add(t.name); });
+    return s;
+  }
+
   function renderGroups(data) {
     let html = "";
     const signedGD = n => (n > 0 ? "+" + n : String(n));
+    const koThrough = koCertainNames(data);
 
     // The 12 group tables
     const gs = data.groups || [];
@@ -1526,7 +1553,7 @@
         const trs = g.table.map(r =>
           `<tr class="${g.ranked && r.pos <= 2 ? "adv" : ""}">
             <td class="gpos">${r.pos}</td>
-            <td class="gteam ${r.clinched ? "clinched" : ""}">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
+            <td class="gteam ${(r.clinched || koThrough.has(r.team)) ? "clinched" : ""}">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
             <td>${r.played}</td><td class="gpts">${r.points}</td><td>${signedGD(r.gd)}</td>
             <td>${r.gf}</td><td>${r.conduct ?? 0}</td><td>${r.fifaRank ?? "&mdash;"}</td>
           </tr>`).join("");
@@ -1548,7 +1575,7 @@
       const trs = th.map(t =>
         `<tr class="${t.qualifies ? "adv" : ""}">
           <td class="gpos">${t.rank}</td>
-          <td class="gteam ${t.clinched ? "clinched" : ""}">${esc(t.team)}
+          <td class="gteam ${(t.clinched || koThrough.has(t.team)) ? "clinched" : ""}">${esc(t.team)}
             <span class="gowner">${esc(t.group)}${t.owner ? " &middot; " + esc(t.owner) : ""}</span></td>
           <td>${t.played}</td><td>${t.points}</td><td>${signedGD(t.gd)}</td><td>${t.gf}</td>
           <td>${t.conduct ?? 0}</td><td>${t.fifaRank ?? "&mdash;"}</td>
@@ -2682,9 +2709,12 @@
       .catch(() => {});
     // Per-team Round-of-32 odds from the same "Simulate pool" worker
     // (knockout_odds.json). Missing/!ok is fine: the race shows its empty state.
+    // Re-render the current view on arrival regardless of which tab is open — the
+    // model-certain styling now touches the home cards, leaderboard, and groups,
+    // not just the odds race.
     fetch("knockout_odds.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d) { koData = d; if (view === "odds") render(currentData()); } })
+      .then(d => { if (d) { koData = d; render(currentData()); } })
       .catch(() => {});
     // Calibrated team ratings, written by build_elos.py. Missing/!ok is fine:
     // buildSimData falls back to uniform random scorelines without it.
