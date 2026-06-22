@@ -2459,7 +2459,7 @@
           "ga": 4,
           "gd": -3,
           "points": 0,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 56,
           "clinched": false,
           "clinchType": null
@@ -3089,16 +3089,6 @@
         "rank": 10
       },
       {
-        "team": "Iraq",
-        "owner": "Agatha",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 10
-      },
-      {
         "team": "Morocco",
         "owner": "Agatha",
         "yellow": 1,
@@ -3156,7 +3146,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Ecuador",
@@ -3166,7 +3156,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Iran",
@@ -3176,7 +3166,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
+      },
+      {
+        "team": "Iraq",
+        "owner": "Agatha",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 19
       },
       {
         "team": "New Zealand",
@@ -3186,7 +3186,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Panama",
@@ -3196,7 +3196,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Switzerland",
@@ -3206,7 +3206,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Uruguay",
@@ -3216,7 +3216,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Austria",
@@ -3632,6 +3632,25 @@
         "rank": 8
       },
       {
+        "name": "Agatha",
+        "score": -7,
+        "teams": [
+          {
+            "name": "Morocco",
+            "score": -1
+          },
+          {
+            "name": "Australia",
+            "score": -4
+          },
+          {
+            "name": "Iraq",
+            "score": -2
+          }
+        ],
+        "rank": 10
+      },
+      {
         "name": "Charlie",
         "score": -7,
         "teams": [
@@ -3653,25 +3672,6 @@
           }
         ],
         "rank": 10
-      },
-      {
-        "name": "Agatha",
-        "score": -6,
-        "teams": [
-          {
-            "name": "Morocco",
-            "score": -1
-          },
-          {
-            "name": "Australia",
-            "score": -4
-          },
-          {
-            "name": "Iraq",
-            "score": -1
-          }
-        ],
-        "rank": 11
       },
       {
         "name": "Charlotte",
@@ -9636,7 +9636,7 @@
       "Iraq": {
         "owner": "Agatha",
         "canon": "Iraq",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 56,
         "group": "I"
       },
@@ -9727,5 +9727,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T22:13:04Z"
+  "generated": "2026-06-22T22:14:39Z"
 }
