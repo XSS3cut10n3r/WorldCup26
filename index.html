@@ -1040,9 +1040,95 @@
   html.sim .kr-runner.through .kr-flag { outline-color: #FFFFFF; }
   html.sim .kr-runner.through .kr-pct { color: #FFFFFF; }
   @media (max-width: 560px) { .kr-gate { flex-basis: 46px; } }
+  /* ===== No-gambling entry gate ===== */
+  html.ng-lock, html.ng-lock body { overflow: hidden; }
+  .ng-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center;
+    justify-content: center; padding: 18px; overflow-y: auto;
+    background: rgba(20, 2, 4, 0.74); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    animation: ngFade .3s ease both; }
+  .ng-overlay.hidden { display: none; }
+  @keyframes ngFade { from { opacity: 0 } to { opacity: 1 } }
+  .ng-modal { position: relative; width: min(380px, 100%); border-radius: 16px; overflow: hidden;
+    color: #fff; font-family: var(--body);
+    background: linear-gradient(160deg, #e21f2d 0%, #b3121d 48%, #7e0a12 100%);
+    box-shadow: 0 22px 54px rgba(0,0,0,.55), 0 0 0 2px rgba(255,255,255,.12) inset;
+    animation: ngPop .4s cubic-bezier(.2,.9,.25,1.15) both; }
+  @keyframes ngPop { from { opacity: 0; transform: translateY(14px) scale(.94) } to { opacity: 1; transform: none } }
+  .ng-modal::before { content: ""; position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
+    box-shadow: 0 0 0 0 rgba(255,60,60,.7); animation: ngRing 1.8s ease-out infinite; }
+  @keyframes ngRing { 0% { box-shadow: 0 0 0 0 rgba(255,70,70,.55) } 70% { box-shadow: 0 0 0 13px rgba(255,70,70,0) } 100% { box-shadow: 0 0 0 0 rgba(255,70,70,0) } }
+  .ng-top { display: flex; align-items: center; gap: 11px; padding: 13px 18px; background: rgba(0,0,0,.18);
+    border-bottom: 1px solid rgba(255,255,255,.18); }
+  .ng-sign { flex: 0 0 auto; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
+    background: #fff; color: #c01020; font-size: 18px; font-weight: 900; line-height: 1;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.25); animation: ngBeat 1.2s ease-in-out infinite; }
+  @keyframes ngBeat { 0%,100% { transform: scale(1) } 50% { transform: scale(1.12) } }
+  .ng-top h2 { margin: 0; font-family: var(--display); font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; font-size: 19px; }
+  .ng-body { padding: 16px 18px 6px; }
+  .ng-lede { font-size: 13.5px; line-height: 1.5; margin: 0 0 12px; }
+  .ng-shout { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+    font-size: 17px; margin: 0 0 14px; }
+  .ng-stat { display: flex; align-items: center; gap: 13px; background: rgba(0,0,0,.26);
+    border: 1px solid rgba(255,255,255,.22); border-radius: 11px; padding: 11px 13px; margin: 0 0 14px; }
+  .ng-big { font-family: var(--display); font-weight: 700; font-size: 38px; line-height: .95; white-space: nowrap; }
+  .ng-txt { font-size: 12.5px; line-height: 1.4; color: #ffe3e3; }
+  .ng-src { display: block; margin-top: 3px; font-size: 11px; color: #ffc9c9; font-style: italic; }
+  .ng-agree { display: flex; gap: 10px; align-items: flex-start; background: rgba(255,255,255,.10);
+    border-radius: 9px; padding: 10px 12px; cursor: pointer; }
+  .ng-agree input { margin: 1px 0 0; width: 18px; height: 18px; flex: 0 0 auto; accent-color: #fff; cursor: pointer; }
+  .ng-agree span { font-size: 12.5px; line-height: 1.4; }
+  .ng-actions { padding: 13px 18px 16px; display: flex; flex-direction: column; gap: 8px; }
+  .ng-enter { width: 100%; border: 0; border-radius: 9px; padding: 12px; cursor: pointer;
+    font-family: var(--display); font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    font-size: 14px; color: #7e0a12; background: #fff; transition: opacity .15s, transform .05s; }
+  .ng-enter:hover { opacity: .92 } .ng-enter:active { transform: translateY(1px) }
+  .ng-enter:disabled { opacity: .45; cursor: not-allowed; color: #7a3b3f; background: #f3d9da; }
+  .ng-help { text-align: center; font-size: 11px; color: #ffd4d4; margin: 0; line-height: 1.4; }
+  .ng-help b { color: #fff; }
 </style>
 </head>
 <body>
+<!-- No-gambling entry gate: shown on load, remembered after the visitor agrees. -->
+<div class="ng-overlay" id="ngOverlay" role="dialog" aria-modal="true" aria-labelledby="ngTitle">
+  <div class="ng-modal">
+    <div class="ng-top"><div class="ng-sign" aria-hidden="true">&#10005;</div><h2 id="ngTitle">Not a gambling tool</h2></div>
+    <div class="ng-body">
+      <p class="ng-lede">This site is for fun, not betting. Don't use its odds or projections to place a wager.</p>
+      <p class="ng-shout">Bet on sports and you will lose money.</p>
+      <div class="ng-stat">
+        <div class="ng-big">95-97%</div>
+        <div class="ng-txt">of sports gamblers <b>lose money long term.</b><span class="ng-src">University of Nebraska-Lincoln</span></div>
+      </div>
+      <label class="ng-agree" for="ngOk"><input type="checkbox" id="ngOk"><span>I agree not to use this site to inform any gambling.</span></label>
+    </div>
+    <div class="ng-actions">
+      <button class="ng-enter" id="ngEnter" disabled>I agree, enter</button>
+      <p class="ng-help">Gambling problem? Call <b>1-800-GAMBLER</b>.</p>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'fc-no-gamble-ok';
+  var ov = document.getElementById('ngOverlay');
+  var ok = document.getElementById('ngOk');
+  var enter = document.getElementById('ngEnter');
+  // Runs during parse (before paint): returning visitors who already agreed never
+  // see a flash. Storage is guarded so it can never throw if unavailable.
+  var agreed = false;
+  try { agreed = localStorage.getItem(KEY) === '1'; } catch (e) {}
+  if (agreed) { ov.classList.add('hidden'); }
+  else { document.documentElement.classList.add('ng-lock'); }
+  ok.addEventListener('change', function () { enter.disabled = !ok.checked; });
+  enter.addEventListener('click', function () {
+    if (!ok.checked) return;
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    ov.classList.add('hidden');
+    document.documentElement.classList.remove('ng-lock');
+  });
+})();
+</script>
 <button id="simbtn" type="button" aria-label="Simulate the remaining games">Simulate</button>
 <div class="modal-backdrop" id="sim-modal" hidden>
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="sim-modal-title">
