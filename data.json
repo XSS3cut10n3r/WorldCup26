@@ -472,7 +472,30 @@
       "utcDate": "2026-06-21T16:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-22T01:00:00Z",
+      "home": {
+        "name": "New Zealand",
+        "owner": "Tomi",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 85
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 29
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-22T01:00:00Z",
-      "home": {
-        "name": "New Zealand",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 85,
-        "clinched": false
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 29,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -849,6 +848,30 @@
           "winAdvances": false
         }
       }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-24T19:00:00Z",
+      "home": {
+        "name": "Bosnia-Herzegovina",
+        "owner": "Tomi",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 64,
+        "clinched": false
+      },
+      "away": {
+        "name": "Qatar",
+        "owner": "Iva",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 57,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -9676,5 +9699,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T00:45:19Z"
+  "generated": "2026-06-22T01:06:40Z"
 }
