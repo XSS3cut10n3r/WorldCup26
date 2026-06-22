@@ -24,16 +24,27 @@ wins (ties split the win evenly).
     python3 simulate_pool.py --sims 20000
     python3 simulate_pool.py --seed 1 --sims 5000
     python3 simulate_pool.py --workers 1     # original single-process behaviour
+    python3 simulate_pool.py --json sim_odds.json --knockout-json knockout_odds.json
 
 This is the aggregate of the site's "Simulate" button: at the start of the
 tournament it is a clean from-scratch projection off the Elos and weights; once
 games are played it conditions on the real results, exactly like the page.
 
+Alongside the pool-winner odds (--json), the same run can emit per-team odds of
+reaching the Round of 32 (--knockout-json). Those come for free: every simulated
+tournament already decides the 12 group winners, 12 runners-up, and 8 best
+thirds — that set IS the 32 teams that made the knockouts — so a team's odds are
+just the share of runs it lands in that set. A clinched team comes out at ~1.0,
+an eliminated team at ~0.0, everyone else in between. The file mirrors the
+sim_odds.json shape (per-row base/delta trend), and carries ONLY the model
+output (name + odds); the page joins group / owner / clinched / eliminated /
+FIFA rank from data.json.
+
 Speed: the work is split across CPU cores (multiprocessing). Each worker runs an
 independent slice of the sims with its own seeded RNG and the SAME model, and the
-per-person win/points/title tallies are summed at the end — statistically
-identical to running every sim in one process, just much faster. Runs faster
-still under PyPy with no code change.
+per-person win/points/title and per-team knockout tallies are summed at the end —
+statistically identical to running every sim in one process, just much faster.
+Runs faster still under PyPy with no code change.
 """
 
 import argparse
@@ -278,7 +289,7 @@ def rank_group(rows, results):
 
 
 # ----------------------------------------------------------------------------
-# One simulated tournament -> {person: total points}
+# One simulated tournament -> ({person: total points}, champion, {qualified teams})
 # ----------------------------------------------------------------------------
 def make_runner(model):
     sim = model["sim"]
@@ -373,6 +384,17 @@ def make_runner(model):
                                    (999 if t["fifa"] is None else t["fifa"]),
                                    t["team"]))
         qual = thirds[:8]
+
+        # The 32 teams through to the Round of 32: the 12 group winners, the 12
+        # runners-up, and the 8 best thirds. (Captured here for the knockout-odds
+        # tally; this set is fully determined by the group stage, independent of
+        # the knockout simulation below.)
+        qualified = set()
+        for L in winners:
+            qualified.add(winners[L]["team"])
+            qualified.add(runners[L]["team"])
+        for t in qual:
+            qualified.add(t["team"])
 
         # 3) Allocate qualifying thirds to bracket slots (Annex-C table, else order).
         third_by_slot = {}
@@ -473,7 +495,7 @@ def make_runner(model):
             res = results.get(final_match)
             if res:
                 champ = res["winner"]["name"]
-        return person, champ
+        return person, champ, qualified
 
     return run
 
@@ -492,10 +514,13 @@ def _run_chunk(task):
     wins = defaultdict(float)
     pts_sum = defaultdict(float)
     champ = defaultdict(float)
+    ko = defaultdict(float)        # per-team count of "made the Round of 32"
     for _ in range(n):
-        person, champion = run()
+        person, champion, qualified = run()
         if champion is not None:
             champ[champion] += 1
+        for nm in qualified:
+            ko[nm] += 1
         best = max(person.values())
         leaders = [nm for nm, v in person.items() if abs(v - best) < 1e-9]
         share = 1.0 / len(leaders)
@@ -503,7 +528,7 @@ def _run_chunk(task):
             wins[nm] += share
         for nm, v in person.items():
             pts_sum[nm] += v
-    return dict(wins), dict(pts_sum), dict(champ)
+    return dict(wins), dict(pts_sum), dict(champ), dict(ko)
 
 
 # ----------------------------------------------------------------------------
@@ -521,6 +546,12 @@ def main():
     ap.add_argument("--json", default=None,
                     help="also write a sim_odds.json (same shape as odds.json) "
                          "with per-person pool-win odds and per-team title odds.")
+    ap.add_argument("--knockout-json", default=None,
+                    help="also write a knockout_odds.json with each team's odds "
+                         "of reaching the Round of 32 (top two, or one of the 8 "
+                         "best thirds). Same base/delta trend structure as "
+                         "sim_odds.json; carries only name + odds, so the page "
+                         "joins group/owner/clinched/eliminated from data.json.")
     args = ap.parse_args()
 
     data = load(args.data)
@@ -554,15 +585,18 @@ def main():
     wins = defaultdict(float)
     pts_sum = defaultdict(float)
     champ = defaultdict(float)
+    ko = defaultdict(float)
 
     def merge(result):
-        w, p, c = result
+        w, p, c, k = result
         for nm, v in w.items():
             wins[nm] += v
         for nm, v in p.items():
             pts_sum[nm] += v
         for nm, v in c.items():
             champ[nm] += v
+        for nm, v in k.items():
+            ko[nm] += v
 
     done = 0
     if workers == 1:
@@ -647,6 +681,56 @@ def main():
             with open(args.json, "w", encoding="utf-8") as f:
                 json.dump(out, f, ensure_ascii=False, indent=2)
             print(f"Wrote {args.json} ({N:,} sims).")
+
+    if args.knockout_json:
+        # Per-team odds of reaching the Round of 32. Same persistent-trend scheme
+        # as the pool-winner file: `base` is the value as of the last real change,
+        # `delta = odds - base`, and a no-op re-run leaves the file untouched (so
+        # the `generated` stamp doesn't churn and the pipeline's no-change check
+        # still fires). Output carries only name + odds + trend; the page joins
+        # group / owner / clinched / eliminated / FIFA rank from data.json.
+        prev = None
+        prev_t = {}
+        try:
+            with open(args.knockout_json, encoding="utf-8") as f:
+                prev = json.load(f)
+            for t in prev.get("teams", []):
+                prev_t[t["name"]] = t
+        except Exception:
+            prev = None
+
+        d5 = lambda x: round(x, 5)
+        EPS = 5e-7
+
+        def ktrend(new, prv):
+            if not prv or prv.get("odds") is None:
+                return new, None
+            o = prv["odds"]
+            b = prv.get("base")
+            if b is None:
+                d = prv.get("delta")
+                b = (o - d) if d is not None else o
+            base = o if abs(new - o) > EPS else b
+            d = d5(new - base)
+            return base, (d if d != 0 else None)
+
+        # Every team in the tournament gets a row (so eliminated sides show 0.0),
+        # keyed on the canonical names the sim block already uses.
+        teams = []
+        for nm in model["T"]:
+            odds = d5(ko.get(nm, 0.0) / N)
+            kb, kd = ktrend(odds, prev_t.get(nm))
+            teams.append({"name": nm, "odds": odds, "base": d5(kb), "delta": kd})
+        teams.sort(key=lambda t: (-t["odds"], t["name"].lower()))
+
+        if prev is not None and prev.get("teams") == teams:
+            print(f"No knockout-odds changes since last run; {args.knockout_json} left untouched.")
+        else:
+            out = {"generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                   "sims": N, "teams": teams}
+            with open(args.knockout_json, "w", encoding="utf-8") as f:
+                json.dump(out, f, ensure_ascii=False, indent=2)
+            print(f"Wrote {args.knockout_json} ({N:,} sims).")
 
 
 if __name__ == "__main__":
