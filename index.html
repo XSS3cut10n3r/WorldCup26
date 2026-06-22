@@ -38,6 +38,7 @@
     font-size: 16px;
     line-height: 1.5;
     min-height: 100vh;
+    overflow-x: hidden;   /* keep the fixed Simulate button pinned even if something overflows */
   }
 
   .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px 64px; }
@@ -960,6 +961,67 @@
   @keyframes simHintFade { 0% { opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
   @keyframes simHintTap { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(9px); } }
   @media (prefers-reduced-motion: reduce) { .sim-hint .move { animation: none; } }
+
+  /* ---------- Race to the Round of 32 (top of #odds) ----------
+     Same surface/typography as the group cards; each flag's distance is its odds
+     of reaching the R32. Gold finish line + clinched glow reuse --gold, so the
+     html.sim overrides at the bottom flip them to slate/white automatically. */
+  .kr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr)); gap: 12px; }
+  .kr-card { border: 1px solid var(--pitch-line); background: var(--pitch-deep); border-radius: 10px; padding: 12px 14px; }
+  .kr-gname {
+    font-family: var(--display); font-weight: 600; font-size: 15px;
+    letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .kr-lane { position: relative; display: flex; align-items: stretch; height: 46px; }
+  .kr-gate {
+    flex: 0 0 52px; min-width: 0; padding-right: 6px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .kr-code {
+    font-family: var(--display); font-weight: 600; font-size: 14px;
+    letter-spacing: 0.04em; line-height: 1.1; text-align: right;
+  }
+  .kr-owner {
+    font-size: 10px; color: var(--chalk-faint); line-height: 1.15; text-align: right;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .kr-track {
+    position: relative; flex: 1 1 auto; min-width: 0;
+    background: rgba(0, 0, 0, 0.16); border-top: 1px solid var(--pitch-line);
+  }
+  .kr-lane:last-child .kr-track { border-bottom: 1px solid var(--pitch-line); }
+  .kr-start { position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-left: 2px solid var(--chalk-faint); }
+  .kr-qual { position: absolute; top: 0; bottom: 0; right: 0; background: rgba(232, 195, 74, 0.10); border-left: 1px dashed rgba(232, 195, 74, 0.45); }
+  .kr-tape { position: absolute; top: 0; bottom: 0; width: 0; border-left: 2px dashed var(--gold); }
+  .kr-runner { position: absolute; bottom: 6px; left: 0; }
+  .kr-runner.anim { transition: left 1.05s cubic-bezier(.3, .85, .3, 1); }
+  @media (prefers-reduced-motion: reduce) { .kr-runner.anim { transition: none; } }
+  .kr-flag { display: block; line-height: 1; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.35)); }
+  .kr-pct {
+    position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
+    margin-bottom: 2px; font-family: var(--display); font-weight: 600;
+    font-size: 10px; line-height: 1; white-space: nowrap; color: var(--chalk-dim);
+  }
+  .kr-arrow { position: absolute; top: 50%; transform: translateY(-50%); display: flex; align-items: center; pointer-events: none; }
+  .kr-arrow.up { right: 100%; margin-right: 3px; }
+  .kr-arrow.down { left: 100%; margin-left: 3px; }
+  .kr-arrow .shaft { height: 2px; border-radius: 1px; }
+  .kr-arrow.up .shaft { background: var(--up); }
+  .kr-arrow.down .shaft { background: var(--live); }
+  .kr-arrow .head { width: 0; height: 0; border-top: 4px solid transparent; border-bottom: 4px solid transparent; }
+  .kr-arrow.up .head { border-left: 6px solid var(--up); }
+  .kr-arrow.down .head { border-right: 6px solid var(--live); }
+  .kr-runner.through .kr-flag { outline: 2px solid var(--gold); outline-offset: 1px; border-radius: 3px; }
+  .kr-runner.through .kr-pct { color: var(--gold); }
+  .kr-gate.through .kr-code { color: var(--gold); text-shadow: 0 0 9px rgba(232, 195, 74, 0.55), 0 0 2px rgba(232, 195, 74, 0.65); }
+  .kr-runner.out .kr-flag { filter: grayscale(1) opacity(0.45); }
+  .kr-runner.out .kr-pct { color: var(--chalk-faint); }
+  .kr-gate.out .kr-code { color: var(--chalk-faint); text-decoration: line-through; text-decoration-color: var(--live); text-decoration-thickness: 1.5px; }
+  html.sim .kr-qual { background: rgba(156, 177, 198, 0.12); border-left-color: rgba(156, 177, 198, 0.5); }
+  html.sim .kr-gate.through .kr-code { color: #FFFFFF; text-shadow: 0 0 9px rgba(255, 255, 255, 0.55), 0 0 2px rgba(255, 255, 255, 0.7); }
+  html.sim .kr-runner.through .kr-flag { outline-color: #FFFFFF; }
+  html.sim .kr-runner.through .kr-pct { color: #FFFFFF; }
+  @media (max-width: 560px) { .kr-gate { flex-basis: 46px; } }
 </style>
 </head>
 <body>
@@ -1219,6 +1281,7 @@
   // row positions and the points numbers move: the card markup is untouched. ----
   let lbAnimated = false;
   let oddsAnimated = false;
+  let koAnimated = false;   // knockout race re-runs its entrance each time #odds is shown
   const lbReduceMotion = () =>
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function lbShuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
@@ -1361,6 +1424,14 @@
                   : renderHome(data);
     tickCountdown();
     if (view === "bracket") mountBracket(data);
+    if (view === "odds") {
+      // Lay out the race after the new DOM is in place. First time the odds view
+      // appears (koAnimated false) the flags race in from the start; later
+      // background refreshes just reposition without re-running the animation.
+      const doAnim = !koAnimated;
+      koAnimated = true;
+      requestAnimationFrame(() => krLayout(doAnim));
+    }
     if(!lbAnimated && !["groups","bracket","conduct","odds"].includes(view)
        && (data.leaderboard||[]).length > 1 && !lbReduceMotion()){
       lbAnimated = true;
@@ -1892,8 +1963,177 @@
     }).join("");
   }
 
+  // ===== Race to the Round of 32 ==============================================
+  // A flag per team races toward the line; distance = odds of reaching the R32
+  // (top two, or one of the 8 best thirds). In live mode the position comes from
+  // knockout_odds.json (Monte Carlo); clinched teams are pinned across the line
+  // and eliminated teams to the start, off data.json's authoritative flags. In a
+  // what-if (Simulate) each team is simply across (1) or short (0) for that one
+  // simulated bracket, so the race "finishes" on screen.
+
+  // Canonical name -> [3-letter code, flag emoji]. Keyed on the names the sim
+  // block / leaderboard already use (the feed's aliases never reach here).
+  const KR_TEAM = {
+    "Mexico": ["MEX", "🇲🇽"], "South Korea": ["KOR", "🇰🇷"], "South Africa": ["RSA", "🇿🇦"],
+    "Czechia": ["CZE", "🇨🇿"], "Canada": ["CAN", "🇨🇦"], "Switzerland": ["SUI", "🇨🇭"],
+    "Qatar": ["QAT", "🇶🇦"], "Bosnia and Herzegovina": ["BIH", "🇧🇦"], "Brazil": ["BRA", "🇧🇷"],
+    "Morocco": ["MAR", "🇲🇦"], "Haiti": ["HAI", "🇭🇹"], "Scotland": ["SCO", "🏴󠁧󠁢󠁳󠁣󠁴󠁿"],
+    "United States": ["USA", "🇺🇸"], "Paraguay": ["PAR", "🇵🇾"], "Australia": ["AUS", "🇦🇺"],
+    "Türkiye": ["TUR", "🇹🇷"], "Germany": ["GER", "🇩🇪"], "Curaçao": ["CUW", "🇨🇼"],
+    "Côte d'Ivoire": ["CIV", "🇨🇮"], "Ecuador": ["ECU", "🇪🇨"], "Netherlands": ["NED", "🇳🇱"],
+    "Japan": ["JPN", "🇯🇵"], "Sweden": ["SWE", "🇸🇪"], "Tunisia": ["TUN", "🇹🇳"],
+    "Belgium": ["BEL", "🇧🇪"], "Egypt": ["EGY", "🇪🇬"], "Iran": ["IRN", "🇮🇷"],
+    "New Zealand": ["NZL", "🇳🇿"], "Spain": ["ESP", "🇪🇸"], "Cabo Verde": ["CPV", "🇨🇻"],
+    "Saudi Arabia": ["KSA", "🇸🇦"], "Uruguay": ["URU", "🇺🇾"], "France": ["FRA", "🇫🇷"],
+    "Senegal": ["SEN", "🇸🇳"], "Norway": ["NOR", "🇳🇴"], "Iraq": ["IRQ", "🇮🇶"],
+    "Argentina": ["ARG", "🇦🇷"], "Algeria": ["ALG", "🇩🇿"], "Austria": ["AUT", "🇦🇹"],
+    "Jordan": ["JOR", "🇯🇴"], "Portugal": ["POR", "🇵🇹"], "Colombia": ["COL", "🇨🇴"],
+    "DR Congo": ["COD", "🇨🇩"], "Uzbekistan": ["UZB", "🇺🇿"], "England": ["ENG", "🏴󠁧󠁢󠁥󠁮󠁧󠁿"],
+    "Croatia": ["CRO", "🇭🇷"], "Panama": ["PAN", "🇵🇦"], "Ghana": ["GHA", "🇬🇭"]
+  };
+  const krMeta = nm => KR_TEAM[nm] || [String(nm || "").slice(0, 3).toUpperCase(), "🏳️"];
+
+  // Small % readout under each flag. Clinched shows ✓, out shows 0%, and a
+  // not-quite-certain team is capped at 99% so only a genuinely clinched flag
+  // ever reads 100% (and only it is drawn across the line).
+  function krPct(o) {
+    const v = (o || 0) * 100;
+    if (v <= 0) return "0%";
+    if (v < 0.5) return "&lt;1%";
+    return Math.min(99, Math.round(v)) + "%";
+  }
+
+  // Per-group lanes. Group membership / owner / clinched come from data.groups
+  // (present in both live data and the what-if); elimination from the leaderboard.
+  function krRows(data) {
+    const sim = data.simulated === true;
+    const elim = new Set();
+    (data.leaderboard || []).forEach(p =>
+      (p.teams || []).forEach(t => { if (t.eliminated) elim.add(t.name); }));
+    const ko = {};
+    if (koData) (koData.teams || []).forEach(t => { ko[t.name] = t; });
+    return (data.groups || []).map(g => ({
+      group: g.group,
+      teams: (g.table || []).map(r => {
+        const out = elim.has(r.team);
+        const through = r.clinched === true && !out;
+        let odds, delta = null;
+        if (sim) {
+          odds = through ? 1 : 0;                 // single what-if: in or out
+        } else {
+          const k = ko[r.team];
+          odds = out ? 0 : (through ? 1 : (k ? (k.odds || 0) : 0));
+          if (!out && !through && k) delta = k.delta;   // arrow only for live "in play"
+        }
+        const m = krMeta(r.team);
+        return { name: r.team, code: m[0], flag: m[1], owner: r.owner || "",
+                 odds, delta, through, out };
+      })
+    }));
+  }
+
+  function renderKnockoutRace(data) {
+    const sim = data.simulated === true;
+    const intro = `<p class="gnote">Each flag's distance is its chance of reaching the
+      Round of 32. Finishing top two in the group, or grabbing one of the eight best
+      third-place spots. Flags across the line have clinched; greyed flags at the start
+      are eliminated.</p>`;
+    if (!sim && !(koData && (koData.teams || []).length)) {
+      return section("Knockout Odds",
+        intro + `<div class="empty">The race appears here once the <b>Simulate pool</b>
+          workflow has written <b>knockout_odds.json</b>. Trigger it from the repository's
+          Actions tab, then refresh.</div>`);
+    }
+    const cards = krRows(data).map(g => {
+      const lanes = g.teams.map(t => {
+        const gateCls = "kr-gate" + (t.through ? " through" : "") + (t.out ? " out" : "");
+        const runCls = "kr-runner" + (t.through ? " through" : "") + (t.out ? " out" : "");
+        const pct = t.through ? "✓" : krPct(t.odds);
+        const posOdds = t.through ? 1 : (t.out ? 0 : t.odds);
+        return `<div class="kr-lane">
+          <div class="${gateCls}">
+            <div class="kr-code" title="${esc(t.name)}">${esc(t.code)}</div>
+            <div class="kr-owner">${t.owner ? esc(t.owner) : "&mdash;"}</div>
+          </div>
+          <div class="kr-track">
+            <div class="kr-start"></div>
+            <div class="kr-qual"></div>
+            <div class="kr-tape"></div>
+            <div class="${runCls}" data-odds="${posOdds}" data-through="${t.through ? 1 : 0}"
+                 data-out="${t.out ? 1 : 0}" data-delta="${t.delta == null ? "" : t.delta}">
+              <span class="kr-pct">${pct}</span><span class="kr-flag">${t.flag}</span>
+            </div>
+          </div>
+        </div>`;
+      }).join("");
+      return `<div class="kr-card"><div class="kr-gname">${esc(g.group)}</div>${lanes}</div>`;
+    }).join("");
+    return section("Knockout Odds", intro + `<div class="kr-grid">${cards}</div>`);
+  }
+
+  // Pixel-accurate layout (recomputed on resize). The finish line sits at KR_LINE
+  // of the track; a clinched flag is centred in the zone past it, a 99% flag's
+  // nose sits KR_NEAR px short, a 0% flag's left edge is at the start. Flags shrink
+  // to fit the zone past the line on narrow tracks. With `animate`, every flag is
+  // parked at the start then transitioned to its spot — the race-in.
+  const KR_LINE = 0.85, KR_NEAR = 2, KR_FMIN = 13, KR_FMAX = 20;
+  function krLayout(animate) {
+    const reduce = lbReduceMotion();
+    document.querySelectorAll(".kr-track").forEach(track => {
+      const W = track.clientWidth;
+      if (!W) return;
+      const lineX = W * KR_LINE, far = W - lineX;
+      const tape = track.querySelector(".kr-tape");
+      if (tape) tape.style.left = lineX + "px";
+      const zone = track.querySelector(".kr-qual");
+      if (zone) zone.style.left = lineX + "px";
+      const fpx = Math.max(KR_FMIN, Math.min(KR_FMAX, (far - 8) / 1.15));
+      const runners = track.querySelectorAll(".kr-runner");
+      runners.forEach(r => { r.querySelector(".kr-flag").style.fontSize = fpx + "px"; });
+      const probe = track.querySelector(".kr-flag");
+      const fw = probe ? probe.getBoundingClientRect().width : fpx * 1.15;
+      runners.forEach(r => {
+        const through = r.dataset.through === "1", out = r.dataset.out === "1";
+        const o = parseFloat(r.dataset.odds) || 0;
+        let target;
+        if (through) {
+          target = lineX + far / 2 - fw / 2;                 // centred past the line
+        } else {
+          const nose = fw + (Math.min(o, 0.99) / 0.99) * (lineX - KR_NEAR - fw);
+          target = Math.max(0, nose - fw);                   // anchor by left edge
+        }
+        // momentum arrow (live only; data-delta blank otherwise)
+        const old = r.querySelector(".kr-arrow");
+        if (old) old.remove();
+        const dv = parseFloat(r.dataset.delta);
+        if (!isNaN(dv) && Math.abs(dv) >= 0.005 && !through && !out) {
+          const w = Math.min(Math.max(Math.abs(dv) * 100 * 1.4, 3), 40);
+          const a = document.createElement("div");
+          a.className = "kr-arrow " + (dv > 0 ? "up" : "down");
+          a.innerHTML = dv > 0
+            ? `<span class="shaft" style="width:${w}px"></span><span class="head"></span>`
+            : `<span class="head"></span><span class="shaft" style="width:${w}px"></span>`;
+          r.appendChild(a);
+        }
+        if (animate && !reduce) {
+          r.classList.remove("anim");
+          r.style.left = "0px";
+          void r.offsetWidth;            // reflow so the start position takes hold
+          r.classList.add("anim");
+          r.style.left = target + "px";
+        } else {
+          r.classList.remove("anim");
+          r.style.left = target + "px";
+        }
+      });
+    });
+  }
+
   function renderOdds(data) {
     let html = "";
+
+    // 0) Race to the Round of 32 (sits at the top of the odds page).
+    html += renderKnockoutRace(data);
 
     // 1) Pool-winner odds: 100,000 Monte Carlo tournaments (the Simulate engine).
     const simNote = `<p class="gnote">Live model odds from <b>1,000,000 simulated
@@ -1933,6 +2173,7 @@
   let lastData = null;
   let oddsData = null;
   let simOddsData = null;
+  let koData = null;
   let eloData = null;
 
   // ---------- Simulate remaining games (client-side what-if) ----------
@@ -2328,6 +2569,7 @@
     document.documentElement.classList.add("sim");
     if (themeMeta) themeMeta.setAttribute("content", "#2E3A46");
     const y = window.scrollY;
+    koAnimated = false;          // let the race run again, to the what-if result
     render(simData);
     requestAnimationFrame(() => window.scrollTo(0, y));
     showSimHint();
@@ -2352,6 +2594,7 @@
     document.documentElement.classList.remove("sim");
     if (themeMeta) themeMeta.setAttribute("content", themeLive);
     const y = window.scrollY;
+    koAnimated = false;          // race back to the live odds
     if (lastData) render(lastData);
     requestAnimationFrame(() => window.scrollTo(0, y));
   }
@@ -2393,6 +2636,7 @@
 
   function setView(v) {
     view = v;
+    koAnimated = false;          // re-run the race entrance whenever #odds is opened
     history.replaceState(null, "", v === "home" ? location.pathname : "#" + v);
     document.querySelectorAll(".tab").forEach(b =>
       b.classList.toggle("active", b.dataset.view === v));
@@ -2429,6 +2673,12 @@
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) { simOddsData = d; if (view === "odds") render(currentData()); } })
       .catch(() => {});
+    // Per-team Round-of-32 odds from the same "Simulate pool" worker
+    // (knockout_odds.json). Missing/!ok is fine: the race shows its empty state.
+    fetch("knockout_odds.json?t=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) { koData = d; if (view === "odds") render(currentData()); } })
+      .catch(() => {});
     // Calibrated team ratings, written by build_elos.py. Missing/!ok is fine:
     // buildSimData falls back to uniform random scorelines without it.
     fetch("elo.json?t=" + Date.now())
@@ -2438,6 +2688,7 @@
   }
 
   load();
+  window.addEventListener("resize", () => { if (view === "odds") krLayout(false); });
   setInterval(load, 5 * 60 * 1000); // re-check every 5 minutes while the page is open
   setInterval(tickCountdown, 1000); // smooth per-second countdown
 })();
