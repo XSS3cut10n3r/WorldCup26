@@ -149,11 +149,23 @@ def build_model(elo, data):
         f = fa.get(t)
         return (f["dn"] / f["n"]) if (f and f["n"]) else 0.0
 
+    # Flat, deterministically-ordered list of the remaining GROUP fixtures, shared
+    # by the runner (which tallies each game's outcome as it plays it) and the
+    # upcoming-odds writer (which maps those tallies back to games). The order is
+    # groupsDef order, then each group's remaining games — the exact order run()
+    # plays them in, so a positional tally lines up index-for-index.
+    groups_def = sim["groupsDef"]
+    group_remaining = sim.get("groupRemaining") or {}
+    flat_upcoming = [(letter, m["h"], m["a"])
+                     for letter in groups_def
+                     for m in (group_remaining.get(letter) or [])]
+
     return {
         "R": R, "p": p, "sim": sim, "sc": sc, "T": T,
         "owner_of": owner_of, "canon_of": canon_of,
         "fifa_of": fifa_of, "conduct_of": conduct_of,
         "rs": rs, "atk": atk, "deff": deff,
+        "flat_upcoming": flat_upcoming,
         "baseline": {row["name"]: row["points"] for row in data["leaderboard"]},
     }
 
@@ -303,6 +315,10 @@ def make_runner(model):
     groups_def = sim["groupsDef"]
     group_results = sim.get("groupResults") or {}
     group_remaining = sim.get("groupRemaining") or {}
+    flat_upcoming = model["flat_upcoming"]
+    # Shared [home-win, draw, away-win] tally per remaining group game, summed
+    # across all of this worker's runs (no per-run allocation).
+    upc = [[0, 0, 0] for _ in flat_upcoming]
     tmpl = sim["template"]
     knockout_played = sim.get("knockoutPlayed") or []
     third_alloc = tmpl.get("thirdAllocation") or {}
@@ -330,6 +346,7 @@ def make_runner(model):
 
         # 1) Group tables: real results + simulated remaining fixtures.
         winners, runners, thirds = {}, {}, []
+        gi = 0  # index into flat_upcoming, advanced per remaining group game played
         for letter in groups_def:
             names = groups_def[letter]
             rec = {t: {"p": 0, "w": 0, "d": 0, "l": 0, "gf": 0, "ga": 0, "pts": 0}
@@ -353,20 +370,26 @@ def make_runner(model):
             for m in (group_remaining.get(letter) or []):
                 hg, ag = elo_score(m["h"], m["a"], group=True)
                 apply(m["h"], m["a"], hg, ag)
-                # award the simulated group game (points not yet in baseline)
+                # award the simulated group game (points not yet in baseline) and
+                # tally the outcome for the per-game upcoming odds (0=home, 1=draw,
+                # 2=away), in lock-step with flat_upcoming via gi.
                 if hg > ag:
+                    upc[gi][0] += 1
                     o = owner_of.get(m["h"])
                     if o is not None:
                         person[o] = person.get(o, 0) + GW
                 elif hg < ag:
+                    upc[gi][2] += 1
                     o = owner_of.get(m["a"])
                     if o is not None:
                         person[o] = person.get(o, 0) + GW
                 else:
+                    upc[gi][1] += 1
                     for nm in (m["h"], m["a"]):
                         o = owner_of.get(nm)
                         if o is not None:
                             person[o] = person.get(o, 0) + GD
+                gi += 1
 
             rows = [{"team": t, "points": rec[t]["pts"],
                      "gd": rec[t]["gf"] - rec[t]["ga"], "gf": rec[t]["gf"],
@@ -497,7 +520,7 @@ def make_runner(model):
                 champ = res["winner"]["name"]
         return person, champ, qualified
 
-    return run
+    return run, upc
 
 
 # ----------------------------------------------------------------------------
@@ -509,7 +532,7 @@ def _run_chunk(task):
     n, seed, data_path, elo_path = task
     random.seed(seed)
     model = build_model(load(elo_path), load(data_path))
-    run = make_runner(model)
+    run, upc = make_runner(model)
 
     wins = defaultdict(float)
     pts_sum = defaultdict(float)
@@ -528,7 +551,7 @@ def _run_chunk(task):
             wins[nm] += share
         for nm, v in person.items():
             pts_sum[nm] += v
-    return dict(wins), dict(pts_sum), dict(champ), dict(ko)
+    return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc
 
 
 # ----------------------------------------------------------------------------
@@ -552,6 +575,12 @@ def main():
                          "best thirds). Same base/delta trend structure as "
                          "sim_odds.json; carries only name + odds, so the page "
                          "joins group/owner/clinched/eliminated from data.json.")
+    ap.add_argument("--upcoming-json", default=None,
+                    help="also write an upcoming_odds.json with win/draw/loss odds "
+                         "for every remaining GROUP game, tallied from the same "
+                         "simulated group stage (so they agree exactly with the "
+                         "pool/knockout odds). Same base/delta trend per outcome; "
+                         "keyed on the home/away pair for the page to join.")
     args = ap.parse_args()
 
     data = load(args.data)
@@ -586,9 +615,12 @@ def main():
     pts_sum = defaultdict(float)
     champ = defaultdict(float)
     ko = defaultdict(float)
+    # Per-game [home-win, draw, away-win] counts, summed across workers by the
+    # shared flat_upcoming index order.
+    upc_total = [[0, 0, 0] for _ in model["flat_upcoming"]]
 
     def merge(result):
-        w, p, c, k = result
+        w, p, c, k, u = result
         for nm, v in w.items():
             wins[nm] += v
         for nm, v in p.items():
@@ -597,6 +629,9 @@ def main():
             champ[nm] += v
         for nm, v in k.items():
             ko[nm] += v
+        for i, x in enumerate(u):
+            t = upc_total[i]
+            t[0] += x[0]; t[1] += x[1]; t[2] += x[2]
 
     done = 0
     if workers == 1:
@@ -731,6 +766,65 @@ def main():
             with open(args.knockout_json, "w", encoding="utf-8") as f:
                 json.dump(out, f, ensure_ascii=False, indent=2)
             print(f"Wrote {args.knockout_json} ({N:,} sims).")
+
+    if args.upcoming_json:
+        # Per-game win/draw/loss odds for every remaining GROUP game, read off the
+        # same simulated group stage as the pool/knockout odds (so the three files
+        # agree exactly). Each of the three outcomes carries its own persistent
+        # trend: `base` is its value as of the last real change, `delta = odds -
+        # base`, and a no-op re-run leaves the file untouched. Keyed on the
+        # home/away pair (unique in a group round-robin); the page joins to its
+        # upcoming cards by that pair.
+        prev = None
+        prev_g = {}
+        try:
+            with open(args.upcoming_json, encoding="utf-8") as f:
+                prev = json.load(f)
+            for g in prev.get("games", []):
+                prev_g[(g["home"], g["away"])] = g
+        except Exception:
+            prev = None
+
+        d5 = lambda x: round(x, 5)
+        EPS = 5e-7
+
+        def utrend(new, po, pb, pd):
+            # po/pb/pd = previous odds / base / delta for this one outcome.
+            if po is None:
+                return new, None
+            b = pb if pb is not None else ((po - pd) if pd is not None else po)
+            base = po if abs(new - po) > EPS else b
+            d = d5(new - base)
+            return base, (d if d != 0 else None)
+
+        games = []
+        for i, (letter, h, a) in enumerate(model["flat_upcoming"]):
+            c = upc_total[i]
+            tot = c[0] + c[1] + c[2]
+            if tot == 0:
+                continue
+            ph, pdr, pa = d5(c[0] / tot), d5(c[1] / tot), d5(c[2] / tot)
+            pg = prev_g.get((h, a)) or {}
+            po, pb, pdl = pg.get("odds") or {}, pg.get("base") or {}, pg.get("delta") or {}
+            bh, dh = utrend(ph, po.get("home"), pb.get("home"), pdl.get("home"))
+            bd, dd = utrend(pdr, po.get("draw"), pb.get("draw"), pdl.get("draw"))
+            ba, da = utrend(pa, po.get("away"), pb.get("away"), pdl.get("away"))
+            games.append({
+                "group": letter, "home": h, "away": a,
+                "odds": {"home": ph, "draw": pdr, "away": pa},
+                "base": {"home": d5(bh), "draw": d5(bd), "away": d5(ba)},
+                "delta": {"home": dh, "draw": dd, "away": da},
+            })
+        games.sort(key=lambda g: (g["group"], g["home"].lower(), g["away"].lower()))
+
+        if prev is not None and prev.get("games") == games:
+            print(f"No upcoming-odds changes since last run; {args.upcoming_json} left untouched.")
+        else:
+            out = {"generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                   "sims": N, "games": games}
+            with open(args.upcoming_json, "w", encoding="utf-8") as f:
+                json.dump(out, f, ensure_ascii=False, indent=2)
+            print(f"Wrote {args.upcoming_json} ({N:,} sims, {len(games)} games).")
 
 
 if __name__ == "__main__":
