@@ -842,6 +842,18 @@
   .cd-row.tagged { align-items: flex-start; }
   .cd-row.tagged .cd-center { align-self: center; }
   .match .tname.through, .cd-name.through { color: var(--gold); }
+
+  /* Win/Draw/Loss bar on upcoming cards: home colour | grey draw | away colour,
+     segment widths = simulated odds, each with a white %-circle (black text).
+     The centre column is shorter than the team columns, so the taller bar still
+     doesn't grow the card. Width scales up on wider screens, never on mobile. */
+  .wdl { display: flex; width: 100%; height: 18px; border-radius: 9px; overflow: hidden;
+         margin: 9px auto 0; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28); }
+  .wseg { display: flex; align-items: center; justify-content: center; height: 100%; min-width: 0;
+          font-family: var(--display); font-weight: 700; font-size: 9.5px; line-height: 1;
+          letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .match .mid .wdl { width: clamp(150px, 30vw, 230px); }
+  .cd-center .wdl { max-width: 230px; margin-top: 9px; }
   /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
      the gold "Through" treatment. --live is red in both the live and sim themes,
      so a knocked-out team always reads as a danger state. */
@@ -1188,6 +1200,64 @@
     if (t) t.textContent = txt;
   }
 
+  // ---- Win/Draw/Loss bar on upcoming GROUP cards -----------------------------
+  // A thin three-segment bar (home colour | grey draw | away colour) sized by the
+  // simulated W/D/L odds from upcoming_odds.json. Each nation's colour is drawn
+  // from its flag; within a group the four are kept clearly distinct (a bar only
+  // ever pairs two same-group teams), deviating from the flag where flags collide.
+  // The live feed spells two nations differently from the canonical sim/odds
+  // names; normalise so colours and odds join for every card.
+  const NAME_ALIAS = { "Congo DR": "DR Congo", "Bosnia-Herzegovina": "Bosnia and Herzegovina" };
+  const canonName = n => NAME_ALIAS[n] || n;
+  const COUNTRY_COLOR = {
+    "Mexico": "#157F43", "South Korea": "#3060B0", "South Africa": "#F2A900", "Czechia": "#D62828",
+    "Canada": "#E23B4E", "Switzerland": "#E6E6E6", "Qatar": "#6E1B3D", "Bosnia and Herzegovina": "#243F9E",
+    "Brazil": "#16B04A", "Morocco": "#8E1B2E", "Haiti": "#16234F", "Scotland": "#4F8BD0",
+    "United States": "#1E50C0", "Paraguay": "#C94F8E", "Australia": "#0B2447", "Türkiye": "#E83A2A",
+    "Germany": "#222222", "Curaçao": "#1670C8", "Côte d'Ivoire": "#ED7B1F", "Ecuador": "#F4C400",
+    "Netherlands": "#F26C00", "Japan": "#F4F4F4", "Sweden": "#FFCD00", "Tunisia": "#DA2630",
+    "Belgium": "#E0A82E", "Egypt": "#C01028", "Iran": "#1B9E55", "New Zealand": "#6A4FB0",
+    "Spain": "#E0382B", "Cabo Verde": "#1E5BA8", "Saudi Arabia": "#0E7A40", "Uruguay": "#79B6E8",
+    "France": "#2348C0", "Senegal": "#19A152", "Norway": "#C82A45", "Iraq": "#2C2C2C",
+    "Argentina": "#74B2E6", "Algeria": "#0E7C44", "Austria": "#D11F36", "Jordan": "#1FA39A",
+    "Portugal": "#C21030", "Colombia": "#FBD000", "DR Congo": "#2EA0DC", "Uzbekistan": "#17A06A",
+    "England": "#FFFFFF", "Croatia": "#C01E2E", "Panama": "#1C3F94", "Ghana": "#0E8A3C",
+  };
+  // Find this match in upcoming_odds.json (keyed by the home/away pair) and orient
+  // the odds to the card's home/away. Returns null when there's no row (e.g. odds
+  // not loaded yet, or a non-group game), so the bar simply doesn't render.
+  function wdlGame(m) {
+    if (!upcData || !m || !m.home || !m.away) return null;
+    const h = canonName(m.home.name), a = canonName(m.away.name);
+    for (const g of (upcData.games || [])) {
+      const o = g.odds || {};
+      if (g.home === h && g.away === a) return { home: o.home, draw: o.draw, away: o.away };
+      if (g.home === a && g.away === h) return { home: o.away, draw: o.draw, away: o.home };
+    }
+    return null;
+  }
+  // Black or white text depending on how light a segment colour is, so the number
+  // reads on every flag colour (white-flag sides get dark text, dark sides white).
+  function wdlInk(hex) {
+    if (typeof hex !== "string" || hex[0] !== "#" || hex.length < 7) return "#fff";
+    const r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) > 150 ? "#111" : "#fff";
+  }
+  const WDL_DRAW = "#6d7378";   // draw segment grey
+  function wdlBar(m) {
+    const g = wdlGame(m);
+    if (!g) return "";
+    const hc = COUNTRY_COLOR[canonName(m.home.name)] || "#888";
+    const ac = COUNTRY_COLOR[canonName(m.away.name)] || "#888";
+    const hw = Math.round((g.home || 0) * 100);
+    const aw = Math.round((g.away || 0) * 100);
+    const dw = Math.max(0, 100 - hw - aw);           // draw takes the remainder so it sums to 100
+    // number printed straight on the colour, hidden on a too-thin segment so it can't clip
+    const seg = (w, bg) => `<div class="wseg" style="width:${w}%;background:${bg};color:${wdlInk(bg)}">${w >= 12 ? w + "%" : ""}</div>`;
+    return `<div class="wdl" title="${esc(m.home.name)} ${hw}% &middot; Draw ${dw}% &middot; ${esc(m.away.name)} ${aw}%">`
+      + seg(hw, hc) + seg(dw, WDL_DRAW) + seg(aw, ac) + `</div>`;
+  }
+
   function countdownCard(m) {
     const c = m.clinch;
     const rank = t => (t.fifaRank !== null && t.fifaRank !== undefined)
@@ -1211,6 +1281,7 @@
         <div class="cd-center">
           <div class="cd-timer">${initial}</div>
           <div class="cd-stage">${esc(m.stage)}</div>
+          ${wdlBar(m)}
         </div>
         <div class="cd-team away">${rank(m.away)}${info(m.away, "away")}</div>
       </div>
@@ -1253,7 +1324,7 @@
       ? `<div class="score">${m.home.goals}&ndash;${m.away.goals}${penStr}</div>
          <div class="meta">${live ? '<span class="live-dot"></span> Live' : (m.penalties ? "FT &middot; pens" : "FT")} &middot; ${esc(m.stage)}</div>`
       : `<div class="score" style="font-size:15px;font-weight:500;color:var(--chalk-dim)">${esc(fmtKick(m.utcDate))}</div>
-         <div class="meta">${esc(m.stage)}</div>`;
+         <div class="meta">${esc(m.stage)}</div>${wdlBar(m)}`;
     // Clinch lines show only on upcoming (not-yet-started) games: per-team
     // tags under each name, plus the centered match-level footer. `tagged`
     // top-aligns the row so both names stay level when one carries a tag.
@@ -1457,7 +1528,7 @@
   // the gold name + "Through" tag, and the now-redundant draw badge is dropped.
   let upThroughNames = new Set();
   function sideThrough(t) {
-    return !!(t && (t.clinched === true || upThroughNames.has(t.name)));
+    return !!(t && (t.clinched === true || upThroughNames.has(canonName(t.name))));
   }
 
   function renderHome(data) {
@@ -2208,6 +2279,7 @@
   let oddsData = null;
   let simOddsData = null;
   let koData = null;
+  let upcData = null;
   let eloData = null;
 
   // ---------- Simulate remaining games (client-side what-if) ----------
@@ -2715,6 +2787,12 @@
     fetch("knockout_odds.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) { koData = d; render(currentData()); } })
+      .catch(() => {});
+    // Per-game win/draw/loss odds for the upcoming GROUP cards (upcoming_odds.json,
+    // same worker). Re-render on arrival regardless of view, like the knockout odds.
+    fetch("upcoming_odds.json?t=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) { upcData = d; render(currentData()); } })
       .catch(() => {});
     // Calibrated team ratings, written by build_elos.py. Missing/!ok is fine:
     // buildSimData falls back to uniform random scorelines without it.
