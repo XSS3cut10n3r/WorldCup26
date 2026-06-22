@@ -344,6 +344,34 @@
       "rank": 9
     },
     {
+      "name": "Tom",
+      "points": 2.0,
+      "teams": [
+        {
+          "name": "Croatia",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Egypt",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "DR Congo",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 12
+    },
+    {
       "name": "Iva",
       "points": 1.5,
       "teams": [
@@ -369,7 +397,7 @@
           "clinchType": null
         }
       ],
-      "rank": 12
+      "rank": 13
     },
     {
       "name": "Ondine",
@@ -404,38 +432,17 @@
           "clinchType": null
         }
       ],
-      "rank": 12
-    },
-    {
-      "name": "Tom",
-      "points": 1.0,
-      "teams": [
-        {
-          "name": "Croatia",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Egypt",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "DR Congo",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 14
+      "rank": 13
     }
   ],
   "events": [
+    {
+      "owner": "Tom",
+      "team": "Egypt",
+      "points": 1,
+      "label": "Egypt won (Group stage)",
+      "utcDate": "2026-06-22T01:00:00Z"
+    },
     {
       "owner": "Paul",
       "team": "Cabo Verde",
@@ -463,20 +470,14 @@
       "points": 0.5,
       "label": "Belgium drew (Group stage)",
       "utcDate": "2026-06-21T19:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Spain",
-      "points": 1,
-      "label": "Spain won (Group stage)",
-      "utcDate": "2026-06-21T16:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-22T01:00:00Z",
       "home": {
         "name": "New Zealand",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-21T00:00:00Z",
-      "home": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 23
-      },
-      "away": {
-        "name": "Curaçao",
-        "owner": "Ondine",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 82
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -1129,8 +1106,8 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-02T00:00:00Z",
           "home": {
-            "name": "Iran",
-            "owner": "Ondine",
+            "name": "Egypt",
+            "owner": "Tom",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1219,8 +1196,8 @@
             "resolved": true
           },
           "away": {
-            "name": "New Zealand",
-            "owner": "Tomi",
+            "name": "Belgium",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1300,8 +1277,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Belgium",
-            "owner": "Paul",
+            "name": "Iran",
+            "owner": "Ondine",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2226,6 +2203,23 @@
       "table": [
         {
           "pos": 1,
+          "team": "Egypt",
+          "owner": "Tom",
+          "played": 2,
+          "won": 1,
+          "draw": 1,
+          "lost": 0,
+          "gf": 4,
+          "ga": 2,
+          "gd": 2,
+          "points": 4,
+          "conduct": -2,
+          "fifaRank": 29,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "pos": 2,
           "team": "Iran",
           "owner": "Ondine",
           "played": 2,
@@ -2242,7 +2236,7 @@
           "clinchType": null
         },
         {
-          "pos": 2,
+          "pos": 3,
           "team": "Belgium",
           "owner": "Paul",
           "played": 2,
@@ -2259,36 +2253,19 @@
           "clinchType": null
         },
         {
-          "pos": 3,
+          "pos": 4,
           "team": "New Zealand",
           "owner": "Tomi",
-          "played": 1,
+          "played": 2,
           "won": 0,
           "draw": 1,
-          "lost": 0,
-          "gf": 2,
-          "ga": 2,
-          "gd": 0,
+          "lost": 1,
+          "gf": 3,
+          "ga": 5,
+          "gd": -2,
           "points": 1,
           "conduct": 0,
           "fifaRank": 85,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "pos": 4,
-          "team": "Egypt",
-          "owner": "Tom",
-          "played": 1,
-          "won": 0,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 1,
-          "gd": 0,
-          "points": 1,
-          "conduct": -2,
-          "fifaRank": 29,
           "clinched": false,
           "clinchType": null
         }
@@ -2757,18 +2734,18 @@
     },
     {
       "pos": 3,
-      "team": "New Zealand",
-      "owner": "Tomi",
-      "played": 1,
+      "team": "Belgium",
+      "owner": "Paul",
+      "played": 2,
       "won": 0,
-      "draw": 1,
+      "draw": 2,
       "lost": 0,
-      "gf": 2,
-      "ga": 2,
+      "gf": 1,
+      "ga": 1,
       "gd": 0,
-      "points": 1,
-      "conduct": 0,
-      "fifaRank": 85,
+      "points": 2,
+      "conduct": -7,
+      "fifaRank": 9,
       "clinched": false,
       "clinchType": null,
       "group": "Group G",
@@ -9116,6 +9093,12 @@
           "a": "Iran",
           "hg": 0,
           "ag": 0
+        },
+        {
+          "h": "New Zealand",
+          "a": "Egypt",
+          "hg": 1,
+          "ag": 3
         }
       ],
       "H": [
@@ -9263,10 +9246,6 @@
         }
       ],
       "G": [
-        {
-          "h": "New Zealand",
-          "a": "Egypt"
-        },
         {
           "h": "New Zealand",
           "a": "Belgium"
@@ -9699,5 +9678,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T02:49:20Z"
+  "generated": "2026-06-22T03:09:13Z"
 }
