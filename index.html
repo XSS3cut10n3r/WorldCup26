@@ -1076,7 +1076,13 @@
   .ng-src { display: block; margin-top: 3px; font-size: 11px; color: #ffc9c9; font-style: italic; }
   .ng-agree { display: flex; gap: 10px; align-items: flex-start; background: rgba(255,255,255,.10);
     border-radius: 9px; padding: 10px 12px; cursor: pointer; }
-  .ng-agree input { margin: 1px 0 0; width: 18px; height: 18px; flex: 0 0 auto; accent-color: #fff; cursor: pointer; }
+  .ng-agree input { appearance: none; -webkit-appearance: none; margin: 1px 0 0; flex: 0 0 auto;
+    width: 19px; height: 19px; border: 2px solid #fff; border-radius: 5px; background: transparent;
+    cursor: pointer; position: relative; transition: background .12s ease; }
+  .ng-agree input:checked { background: #fff; }
+  .ng-agree input:checked::after { content: ""; position: absolute; left: 5px; top: 2px;
+    width: 5px; height: 9px; border: solid #c01020; border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg); }
   .ng-agree span { font-size: 12.5px; line-height: 1.4; }
   .ng-actions { padding: 13px 18px 16px; display: flex; flex-direction: column; gap: 8px; }
   .ng-enter { width: 100%; border: 0; border-radius: 9px; padding: 12px; cursor: pointer;
