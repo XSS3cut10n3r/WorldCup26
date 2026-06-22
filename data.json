@@ -472,7 +472,30 @@
       "utcDate": "2026-06-21T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-22T21:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 3
+      },
+      "away": {
+        "name": "Iraq",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 56
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-22T21:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 3,
-        "clinched": false
-      },
-      "away": {
-        "name": "Iraq",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 56,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -856,6 +855,42 @@
         "drawBoth": false,
         "home": {
           "winAdvances": true
+        },
+        "away": {
+          "winAdvances": false
+        }
+      }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-24T22:00:00Z",
+      "home": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 42,
+        "clinched": false
+      },
+      "away": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 6,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "C",
+        "winnerWinsGroup": false,
+        "winnerAdvances": true,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
         },
         "away": {
           "winAdvances": false
@@ -9692,5 +9727,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T19:07:38Z"
+  "generated": "2026-06-22T21:32:05Z"
 }
