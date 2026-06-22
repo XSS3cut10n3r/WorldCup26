@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Run odds → elos → sim and push
+      - name: Run odds -> elos -> sim and push
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
@@ -33,12 +33,12 @@ jobs:
             git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
             python3 scripts/update_odds.py
             python3 scripts/build_elos.py
-            python3 scripts/simulate_pool.py --json sim_odds.json --knockout-json knockout_odds.json --sims 1000000 --seed 1
-            git add odds.json elo.json sim_odds.json knockout_odds.json
+            python3 scripts/simulate_pool.py --json sim_odds.json --knockout-json knockout_odds.json --upcoming-json upcoming_odds.json --sims 1000000 --seed 1
+            git add odds.json elo.json sim_odds.json knockout_odds.json upcoming_odds.json
             if git diff --staged --quiet; then echo "No changes."; ok=skip; break; fi
-            git commit -q -m "Post-game update: odds, elo, pool sim, knockout odds"
+            git commit -q -m "Post-game update: odds, elo, pool sim, knockout + upcoming odds"
             if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
-            echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)…"
+            echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)..."
             sleep 2
           done
           [ "$ok" = no ] && { echo "Could not push after retries."; exit 1; }
