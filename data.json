@@ -2304,7 +2304,7 @@
           "ga": 3,
           "gd": 0,
           "points": 2,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 16,
           "clinched": false,
           "clinchType": null
@@ -3112,16 +3112,6 @@
         "rank": 11
       },
       {
-        "team": "Uruguay",
-        "owner": "Iva",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 11
-      },
-      {
         "team": "Uzbekistan",
         "owner": "Ondine",
         "yellow": 1,
@@ -3139,7 +3129,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 23
+        "rank": 22
       },
       {
         "team": "Ecuador",
@@ -3149,7 +3139,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 23
+        "rank": 22
       },
       {
         "team": "Iran",
@@ -3159,7 +3149,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 23
+        "rank": 22
       },
       {
         "team": "New Zealand",
@@ -3169,7 +3159,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 23
+        "rank": 22
       },
       {
         "team": "Panama",
@@ -3179,7 +3169,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 23
+        "rank": 22
       },
       {
         "team": "Switzerland",
@@ -3189,7 +3179,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 23
+        "rank": 22
+      },
+      {
+        "team": "Uruguay",
+        "owner": "Iva",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 22
       },
       {
         "team": "Brazil",
@@ -3417,6 +3417,25 @@
         "rank": 1
       },
       {
+        "name": "Iva",
+        "score": -14,
+        "teams": [
+          {
+            "name": "Uruguay",
+            "score": -2
+          },
+          {
+            "name": "Türkiye",
+            "score": -1
+          },
+          {
+            "name": "Qatar",
+            "score": -11
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Paul",
         "score": -14,
         "teams": [
@@ -3461,25 +3480,6 @@
           }
         ],
         "rank": 2
-      },
-      {
-        "name": "Iva",
-        "score": -13,
-        "teams": [
-          {
-            "name": "Uruguay",
-            "score": -1
-          },
-          {
-            "name": "Türkiye",
-            "score": -1
-          },
-          {
-            "name": "Qatar",
-            "score": -11
-          }
-        ],
-        "rank": 4
       },
       {
         "name": "Pete",
@@ -9559,7 +9559,7 @@
       "Uruguay": {
         "owner": "Iva",
         "canon": "Uruguay",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 16,
         "group": "H"
       },
@@ -9678,5 +9678,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T08:22:38Z"
+  "generated": "2026-06-22T08:25:30Z"
 }
