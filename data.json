@@ -2,7 +2,7 @@
   "leaderboard": [
     {
       "name": "Charlotte",
-      "points": 4.5,
+      "points": 5.0,
       "teams": [
         {
           "name": "Netherlands",
@@ -20,7 +20,7 @@
         },
         {
           "name": "Ghana",
-          "points": 1,
+          "points": 1.5,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -54,7 +54,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Darcy",
@@ -112,6 +112,34 @@
         {
           "name": "Canada",
           "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "name": "Mat",
+      "points": 4.0,
+      "teams": [
+        {
+          "name": "England",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Switzerland",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Algeria",
+          "points": 1,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -183,34 +211,6 @@
       "rank": 3
     },
     {
-      "name": "Mat",
-      "points": 3.5,
-      "teams": [
-        {
-          "name": "England",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Switzerland",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Algeria",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 7
-    },
-    {
       "name": "Sydney",
       "points": 3.5,
       "teams": [
@@ -243,7 +243,7 @@
           "clinchType": null
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Paul",
@@ -437,6 +437,20 @@
   ],
   "events": [
     {
+      "owner": "Charlotte",
+      "team": "Ghana",
+      "points": 0.5,
+      "label": "Ghana drew (Group stage)",
+      "utcDate": "2026-06-23T20:00:00Z"
+    },
+    {
+      "owner": "Mat",
+      "team": "England",
+      "points": 0.5,
+      "label": "England drew (Group stage)",
+      "utcDate": "2026-06-23T20:00:00Z"
+    },
+    {
       "owner": "Kelly",
       "team": "Portugal",
       "points": 1,
@@ -456,24 +470,32 @@
       "points": 1,
       "label": "Norway won (Group stage)",
       "utcDate": "2026-06-23T00:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "France",
-      "points": 1,
-      "label": "France won (Group stage)",
-      "utcDate": "2026-06-22T21:00:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Argentina",
-      "points": 1,
-      "label": "Argentina won (Group stage)",
-      "utcDate": "2026-06-22T17:00:00Z"
     }
   ],
   "live": [],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-23T20:00:00Z",
+      "home": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 4
+      },
+      "away": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 73
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -558,28 +580,6 @@
         "goals": 0,
         "penGoals": null,
         "fifaRank": 56
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-22T17:00:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 1
-      },
-      "away": {
-        "name": "Austria",
-        "owner": "Kelly",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 24
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -2623,14 +2623,14 @@
           "pos": 1,
           "team": "England",
           "owner": "Mat",
-          "played": 1,
+          "played": 2,
           "won": 1,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
           "gf": 4,
           "ga": 2,
           "gd": 2,
-          "points": 3,
+          "points": 4,
           "conduct": 0,
           "fifaRank": 4,
           "clinched": false,
@@ -2640,14 +2640,14 @@
           "pos": 2,
           "team": "Ghana",
           "owner": "Charlotte",
-          "played": 1,
+          "played": 2,
           "won": 1,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
           "gf": 1,
           "ga": 0,
           "gd": 1,
-          "points": 3,
+          "points": 4,
           "conduct": -1,
           "fifaRank": 73,
           "clinched": false,
@@ -9259,6 +9259,12 @@
           "a": "Panama",
           "hg": 1,
           "ag": 0
+        },
+        {
+          "h": "England",
+          "a": "Ghana",
+          "hg": 0,
+          "ag": 0
         }
       ]
     },
@@ -9378,10 +9384,6 @@
         }
       ],
       "L": [
-        {
-          "h": "England",
-          "a": "Ghana"
-        },
         {
           "h": "Panama",
           "a": "Croatia"
@@ -9736,5 +9738,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T21:52:16Z"
+  "generated": "2026-06-23T22:07:30Z"
 }
