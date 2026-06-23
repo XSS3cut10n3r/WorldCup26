@@ -590,30 +590,6 @@
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
       "status": "TIMED",
-      "utcDate": "2026-06-23T23:00:00Z",
-      "home": {
-        "name": "Panama",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 34,
-        "clinched": false
-      },
-      "away": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 11,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
       "utcDate": "2026-06-24T02:00:00Z",
       "home": {
         "name": "Colombia",
@@ -887,6 +863,42 @@
       "winner": null,
       "clinch": {
         "group": "E",
+        "winnerWinsGroup": false,
+        "winnerAdvances": false,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": true
+        }
+      }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T23:00:00Z",
+      "home": {
+        "name": "Tunisia",
+        "owner": "Darcy",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 46,
+        "clinched": false
+      },
+      "away": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 8,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "F",
         "winnerWinsGroup": false,
         "winnerAdvances": false,
         "drawBoth": false,
@@ -9738,5 +9750,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T22:50:08Z"
+  "generated": "2026-06-23T23:05:22Z"
 }
