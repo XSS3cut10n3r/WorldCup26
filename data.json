@@ -2557,7 +2557,7 @@
           "ga": 1,
           "gd": 5,
           "points": 4,
-          "conduct": -3,
+          "conduct": -4,
           "fifaRank": 5,
           "clinched": false,
           "clinchType": null
@@ -2608,7 +2608,7 @@
           "ga": 8,
           "gd": -7,
           "points": 0,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 50,
           "clinched": false,
           "clinchType": null
@@ -3120,16 +3120,6 @@
         "rank": 8
       },
       {
-        "team": "Uzbekistan",
-        "owner": "Ondine",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 8
-      },
-      {
         "team": "Argentina",
         "owner": "Nik",
         "yellow": 2,
@@ -3137,7 +3127,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Ecuador",
@@ -3147,7 +3137,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Iran",
@@ -3157,7 +3147,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Iraq",
@@ -3167,7 +3157,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "New Zealand",
@@ -3177,7 +3167,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Panama",
@@ -3187,7 +3177,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Switzerland",
@@ -3197,7 +3187,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Türkiye",
@@ -3207,7 +3197,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Uruguay",
@@ -3217,7 +3207,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 18
+        "rank": 17
+      },
+      {
+        "team": "Uzbekistan",
+        "owner": "Ondine",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 17
       },
       {
         "team": "Austria",
@@ -3290,16 +3290,6 @@
         "rank": 27
       },
       {
-        "team": "Portugal",
-        "owner": "Kelly",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 27
-      },
-      {
         "team": "Saudi Arabia",
         "owner": "Charlie",
         "yellow": 3,
@@ -3337,7 +3327,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Haiti",
@@ -3347,7 +3337,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 38
+        "rank": 37
+      },
+      {
+        "team": "Portugal",
+        "owner": "Kelly",
+        "yellow": 4,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -4,
+        "rank": 37
       },
       {
         "team": "Scotland",
@@ -3357,7 +3357,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "United States",
@@ -3367,7 +3367,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Curaçao",
@@ -3549,6 +3549,25 @@
         "rank": 5
       },
       {
+        "name": "Kelly",
+        "score": -10,
+        "teams": [
+          {
+            "name": "Portugal",
+            "score": -4
+          },
+          {
+            "name": "Austria",
+            "score": -3
+          },
+          {
+            "name": "Canada",
+            "score": -3
+          }
+        ],
+        "rank": 6
+      },
+      {
         "name": "Darcy",
         "score": -9,
         "teams": [
@@ -3569,26 +3588,30 @@
             "score": -4
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
-        "name": "Kelly",
+        "name": "Ondine",
         "score": -9,
         "teams": [
           {
-            "name": "Portugal",
-            "score": -3
+            "name": "Senegal",
+            "score": 0
           },
           {
-            "name": "Austria",
-            "score": -3
+            "name": "Iran",
+            "score": -2
           },
           {
-            "name": "Canada",
-            "score": -3
+            "name": "Uzbekistan",
+            "score": -2
+          },
+          {
+            "name": "Curaçao",
+            "score": -5
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Charlie",
@@ -3611,7 +3634,7 @@
             "score": -1
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Nik",
@@ -3630,30 +3653,7 @@
             "score": -1
           }
         ],
-        "rank": 8
-      },
-      {
-        "name": "Ondine",
-        "score": -8,
-        "teams": [
-          {
-            "name": "Senegal",
-            "score": 0
-          },
-          {
-            "name": "Iran",
-            "score": -2
-          },
-          {
-            "name": "Uzbekistan",
-            "score": -1
-          },
-          {
-            "name": "Curaçao",
-            "score": -5
-          }
-        ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Agatha",
@@ -9680,7 +9680,7 @@
       "Portugal": {
         "owner": "Kelly",
         "canon": "Portugal",
-        "conduct": -3,
+        "conduct": -4,
         "fifa": 5,
         "group": "K"
       },
@@ -9701,7 +9701,7 @@
       "Uzbekistan": {
         "owner": "Ondine",
         "canon": "Uzbekistan",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 50,
         "group": "K"
       },
@@ -9736,5 +9736,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T21:14:09Z"
+  "generated": "2026-06-23T21:52:16Z"
 }
