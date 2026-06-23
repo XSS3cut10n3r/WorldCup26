@@ -472,7 +472,30 @@
       "utcDate": "2026-06-23T00:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "PAUSED",
+      "utcDate": "2026-06-23T23:00:00Z",
+      "home": {
+        "name": "Panama",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 34
+      },
+      "away": {
+        "name": "Croatia",
+        "owner": "Tom",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 11
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -9750,5 +9773,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T23:33:45Z"
+  "generated": "2026-06-23T23:53:29Z"
 }
