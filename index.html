@@ -1234,16 +1234,25 @@
   // outcomes are shown as tags under each name instead (see clinchTag).
   function clinchFooter(c, m) {
     if (!c) return "";
+    const ht = sideThrough(m && m.home), at = sideThrough(m && m.away);
     let h = "";
-    if (c.winnerWinsGroup)
+    if (c.winnerWinsGroup) {
       h += `<span class="cpill grp">Winner wins ${esc(c.group ? "Group " + c.group : "the group")}</span>`;
-    else if (c.winnerAdvances)
-      h += `<span class="cpill adv">Winner advances</span>`;
+    } else if (c.winnerAdvances) {
+      if (ht && at) {
+        // both already through: "winner advances" is moot, show nothing
+      } else if (ht || at) {
+        // exactly one is through, so only the OTHER side advances, and only by winning
+        const team = ht ? (m.away && m.away.name) : (m.home && m.home.name);
+        if (team) h += `<span class="cpill adv">${esc(team)} win to advance</span>`;
+      } else {
+        h += `<span class="cpill adv">Winner advances</span>`;
+      }
+    }
     // Drop "a draw: both go through" once both sides are ALREADY through
     // (officially clinched or model-certain) — it's redundant then. The
     // group-winner line above stays, since who finishes first is still live.
-    const bothThrough = m && sideThrough(m.home) && sideThrough(m.away);
-    if (c.drawBoth && !bothThrough)
+    if (c.drawBoth && !(ht && at))
       h += `<span class="cpill draw">A draw: both go through</span>`;
     return h;
   }
