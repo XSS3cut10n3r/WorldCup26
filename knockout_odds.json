@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-23T01:04:47.671998Z",
+  "generated": "2026-06-23T02:18:29.937570Z",
   "sims": 1000000,
   "teams": [
     {
@@ -63,6 +63,12 @@
       "delta": null
     },
     {
+      "name": "Norway",
+      "odds": 1.0,
+      "base": 0.98513,
+      "delta": 0.01487
+    },
+    {
       "name": "Spain",
       "odds": 1.0,
       "base": 1.0,
@@ -82,195 +88,189 @@
     },
     {
       "name": "England",
-      "odds": 0.99945,
-      "base": 0.99942,
-      "delta": 3e-05
+      "odds": 0.99938,
+      "base": 0.99945,
+      "delta": -7e-05
     },
     {
       "name": "Colombia",
-      "odds": 0.98542,
-      "base": 0.98474,
-      "delta": 0.00068
-    },
-    {
-      "name": "Norway",
-      "odds": 0.98513,
-      "base": 0.97396,
-      "delta": 0.01117
+      "odds": 0.98532,
+      "base": 0.98542,
+      "delta": -0.0001
     },
     {
       "name": "Australia",
-      "odds": 0.97436,
-      "base": 0.97185,
-      "delta": 0.00251
+      "odds": 0.97901,
+      "base": 0.97436,
+      "delta": 0.00465
     },
     {
       "name": "Austria",
-      "odds": 0.96893,
-      "base": 0.96718,
-      "delta": 0.00175
+      "odds": 0.9695,
+      "base": 0.96893,
+      "delta": 0.00057
     },
     {
       "name": "Sweden",
-      "odds": 0.96036,
-      "base": 0.95526,
-      "delta": 0.0051
+      "odds": 0.96058,
+      "base": 0.96036,
+      "delta": 0.00022
     },
     {
       "name": "Côte d'Ivoire",
-      "odds": 0.95227,
-      "base": 0.94551,
-      "delta": 0.00676
+      "odds": 0.95362,
+      "base": 0.95227,
+      "delta": 0.00135
     },
     {
       "name": "Portugal",
-      "odds": 0.94857,
-      "base": 0.94552,
-      "delta": 0.00305
+      "odds": 0.94612,
+      "base": 0.94857,
+      "delta": -0.00245
     },
     {
       "name": "South Korea",
-      "odds": 0.92929,
-      "base": 0.92157,
-      "delta": 0.00772
+      "odds": 0.92639,
+      "base": 0.92929,
+      "delta": -0.0029
     },
     {
       "name": "Belgium",
-      "odds": 0.88538,
-      "base": 0.8992,
-      "delta": -0.01382
+      "odds": 0.88743,
+      "base": 0.88538,
+      "delta": 0.00205
     },
     {
       "name": "Scotland",
-      "odds": 0.86295,
-      "base": 0.85232,
-      "delta": 0.01063
+      "odds": 0.87737,
+      "base": 0.86295,
+      "delta": 0.01442
     },
     {
       "name": "Paraguay",
-      "odds": 0.86217,
-      "base": 0.84658,
-      "delta": 0.01559
+      "odds": 0.8602,
+      "base": 0.86217,
+      "delta": -0.00197
     },
     {
       "name": "Croatia",
-      "odds": 0.8317,
-      "base": 0.82154,
-      "delta": 0.01016
-    },
-    {
-      "name": "Cabo Verde",
-      "odds": 0.71058,
-      "base": 0.67315,
-      "delta": 0.03743
+      "odds": 0.8195,
+      "base": 0.8317,
+      "delta": -0.0122
     },
     {
       "name": "Ghana",
-      "odds": 0.70805,
-      "base": 0.67755,
-      "delta": 0.0305
+      "odds": 0.73872,
+      "base": 0.70805,
+      "delta": 0.03067
+    },
+    {
+      "name": "Cabo Verde",
+      "odds": 0.67785,
+      "base": 0.71058,
+      "delta": -0.03273
     },
     {
       "name": "DR Congo",
-      "odds": 0.66295,
-      "base": 0.65818,
-      "delta": 0.00477
+      "odds": 0.6759,
+      "base": 0.66295,
+      "delta": 0.01295
     },
     {
       "name": "Iran",
-      "odds": 0.64728,
-      "base": 0.66622,
-      "delta": -0.01894
-    },
-    {
-      "name": "Senegal",
-      "odds": 0.55073,
-      "base": 0.61866,
-      "delta": -0.06793
+      "odds": 0.64264,
+      "base": 0.64728,
+      "delta": -0.00464
     },
     {
       "name": "Algeria",
-      "odds": 0.51867,
-      "base": 0.52697,
-      "delta": -0.0083
+      "odds": 0.55293,
+      "base": 0.51867,
+      "delta": 0.03426
     },
     {
       "name": "Bosnia and Herzegovina",
-      "odds": 0.48713,
-      "base": 0.46181,
-      "delta": 0.02532
+      "odds": 0.47157,
+      "base": 0.48713,
+      "delta": -0.01556
+    },
+    {
+      "name": "Senegal",
+      "odds": 0.4052,
+      "base": 0.55073,
+      "delta": -0.14553
     },
     {
       "name": "Saudi Arabia",
-      "odds": 0.30113,
-      "base": 0.33866,
-      "delta": -0.03753
+      "odds": 0.33807,
+      "base": 0.30113,
+      "delta": 0.03694
     },
     {
       "name": "Uruguay",
-      "odds": 0.28826,
-      "base": 0.27168,
-      "delta": 0.01658
+      "odds": 0.28653,
+      "base": 0.28826,
+      "delta": -0.00173
     },
     {
       "name": "Qatar",
-      "odds": 0.27028,
-      "base": 0.29169,
-      "delta": -0.02141
+      "odds": 0.28416,
+      "base": 0.27028,
+      "delta": 0.01388
     },
     {
       "name": "Czechia",
-      "odds": 0.26663,
-      "base": 0.26307,
-      "delta": 0.00356
+      "odds": 0.2685,
+      "base": 0.26663,
+      "delta": 0.00187
     },
     {
       "name": "South Africa",
-      "odds": 0.24214,
-      "base": 0.26157,
-      "delta": -0.01943
+      "odds": 0.25961,
+      "base": 0.24214,
+      "delta": 0.01747
     },
     {
       "name": "Uzbekistan",
-      "odds": 0.21733,
-      "base": 0.21838,
-      "delta": -0.00105
+      "odds": 0.21728,
+      "base": 0.21733,
+      "delta": -5e-05
     },
     {
       "name": "Curaçao",
-      "odds": 0.20959,
-      "base": 0.2267,
-      "delta": -0.01711
-    },
-    {
-      "name": "Jordan",
-      "odds": 0.18223,
-      "base": 0.17247,
-      "delta": 0.00976
-    },
-    {
-      "name": "Ecuador",
-      "odds": 0.16394,
-      "base": 0.16368,
-      "delta": 0.00026
-    },
-    {
-      "name": "Panama",
-      "odds": 0.15495,
-      "base": 0.17695,
-      "delta": -0.022
+      "odds": 0.21048,
+      "base": 0.20959,
+      "delta": 0.00089
     },
     {
       "name": "Iraq",
-      "odds": 0.15304,
-      "base": 0.14482,
-      "delta": 0.00822
+      "odds": 0.18784,
+      "base": 0.15304,
+      "delta": 0.0348
+    },
+    {
+      "name": "Jordan",
+      "odds": 0.17148,
+      "base": 0.18223,
+      "delta": -0.01075
+    },
+    {
+      "name": "Ecuador",
+      "odds": 0.16612,
+      "base": 0.16394,
+      "delta": 0.00218
+    },
+    {
+      "name": "Panama",
+      "odds": 0.16244,
+      "base": 0.15495,
+      "delta": 0.00749
     },
     {
       "name": "New Zealand",
-      "odds": 0.1191,
-      "base": 0.10418,
-      "delta": 0.01492
+      "odds": 0.11822,
+      "base": 0.1191,
+      "delta": -0.00088
     },
     {
       "name": "Haiti",
