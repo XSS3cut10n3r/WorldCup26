@@ -472,30 +472,7 @@
       "utcDate": "2026-06-22T17:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
-      "utcDate": "2026-06-23T20:00:00Z",
-      "home": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 4
-      },
-      "away": {
-        "name": "Ghana",
-        "owner": "Charlotte",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 73
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -9759,5 +9736,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T20:57:22Z"
+  "generated": "2026-06-23T21:14:09Z"
 }
