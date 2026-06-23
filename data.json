@@ -476,12 +476,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-23T00:00:00Z",
       "home": {
         "name": "Norway",
         "owner": "Charlotte",
-        "goals": 1,
+        "goals": 2,
         "penGoals": null,
         "fifaRank": 31
       },
@@ -9729,5 +9729,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T00:57:03Z"
+  "generated": "2026-06-23T01:13:51Z"
 }
