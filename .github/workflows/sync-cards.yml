@@ -1,0 +1,59 @@
+name: Sync cards (ESPN)
+on:
+  schedule:
+    - cron: "15 */4 * * *"   # 00:15, 04:15, 08:15 … UTC; offset from the live loop (:00) and post-game (:30)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+# Idempotent (recomputes the whole file from ESPN each run), so a queued run
+# can safely follow another; no need to cancel in-progress.
+concurrency:
+  group: sync-cards
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Sync cards-manual.json from ESPN and push
+        env:
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -u
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Each attempt syncs to the live remote tip, regenerates the file from
+          # ESPN (deterministic), then pushes. A collision with the live loop
+          # just means a resync + recompute, never a corrupt or doubled file.
+          ok=no
+          for attempt in 1 2 3 4 5; do
+            git rebase --abort 2>/dev/null || true
+            rm -rf .git/rebase-merge .git/rebase-apply 2>/dev/null || true
+            git fetch -q origin "$BRANCH" || true
+            git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
+
+            python3 scripts/sync_cards.py; rc=$?
+            if [ "$rc" -eq 2 ]; then
+              echo "Unmapped team — add it to NAME_MAP/CANONICAL in scripts/sync_cards.py."
+              exit 1                      # real data problem: fail loudly
+            elif [ "$rc" -ne 0 ]; then
+              echo "ESPN fetch failed this run (transient); skipping, will retry on next schedule."
+              exit 0                      # transient: don't redden the run
+            fi
+
+            git add cards-manual.json
+            if git diff --staged --quiet; then echo "No card changes."; ok=skip; break; fi
+            git commit -q -m "Cards: sync from ESPN $(date -u '+%Y-%m-%dT%H:%M:%SZ')"
+            if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
+            echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)…"
+            sleep 2
+          done
+          [ "$ok" = no ] && { echo "Could not push after retries."; exit 1; }
+          echo "Done ($ok)."
