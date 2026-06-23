@@ -476,12 +476,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-22T21:00:00Z",
       "home": {
         "name": "France",
         "owner": "Darcy",
-        "goals": 1,
+        "goals": 3,
         "penGoals": null,
         "fifaRank": 3
       },
@@ -494,6 +494,28 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-23T00:00:00Z",
+      "home": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 31
+      },
+      "away": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 15
+      },
+      "penalties": false,
+      "winner": "DRAW"
     }
   ],
   "recent": [
@@ -609,30 +631,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-23T00:00:00Z",
-      "home": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 31,
-        "clinched": false
-      },
-      "away": {
-        "name": "Senegal",
-        "owner": "Ondine",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 15,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -896,6 +894,30 @@
           "winAdvances": false
         }
       }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T01:00:00Z",
+      "home": {
+        "name": "Czechia",
+        "owner": "Nik",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 39,
+        "clinched": false
+      },
+      "away": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 14,
+        "clinched": true
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -9727,5 +9749,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-22T23:44:49Z"
+  "generated": "2026-06-23T00:37:12Z"
 }
