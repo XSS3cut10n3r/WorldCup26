@@ -2522,7 +2522,7 @@
           "ga": 5,
           "gd": -3,
           "points": 0,
-          "conduct": 0,
+          "conduct": -1,
           "fifaRank": 63,
           "clinched": false,
           "clinchType": null
@@ -2998,16 +2998,6 @@
         "rank": 1
       },
       {
-        "team": "Jordan",
-        "owner": "Charlie",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Norway",
         "owner": "Charlotte",
         "yellow": 0,
@@ -3035,7 +3025,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Colombia",
@@ -3045,7 +3035,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Czechia",
@@ -3055,7 +3045,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "DR Congo",
@@ -3065,7 +3055,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Ghana",
@@ -3075,7 +3065,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
+      },
+      {
+        "team": "Jordan",
+        "owner": "Charlie",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 8
       },
       {
         "team": "Morocco",
@@ -3085,7 +3085,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Spain",
@@ -3095,7 +3095,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Tunisia",
@@ -3105,7 +3105,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Türkiye",
@@ -3115,7 +3115,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Uzbekistan",
@@ -3125,7 +3125,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Argentina",
@@ -3579,6 +3579,29 @@
         "rank": 6
       },
       {
+        "name": "Charlie",
+        "score": -8,
+        "teams": [
+          {
+            "name": "Colombia",
+            "score": -1
+          },
+          {
+            "name": "South Korea",
+            "score": -3
+          },
+          {
+            "name": "Saudi Arabia",
+            "score": -3
+          },
+          {
+            "name": "Jordan",
+            "score": -1
+          }
+        ],
+        "rank": 8
+      },
+      {
         "name": "Nik",
         "score": -8,
         "teams": [
@@ -3637,30 +3660,7 @@
             "score": -2
           }
         ],
-        "rank": 10
-      },
-      {
-        "name": "Charlie",
-        "score": -7,
-        "teams": [
-          {
-            "name": "Colombia",
-            "score": -1
-          },
-          {
-            "name": "South Korea",
-            "score": -3
-          },
-          {
-            "name": "Saudi Arabia",
-            "score": -3
-          },
-          {
-            "name": "Jordan",
-            "score": 0
-          }
-        ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Charlotte",
@@ -9659,7 +9659,7 @@
       "Jordan": {
         "owner": "Charlie",
         "canon": "Jordan",
-        "conduct": 0,
+        "conduct": -1,
         "fifa": 63,
         "group": "J"
       },
@@ -9722,5 +9722,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T05:16:20Z"
+  "generated": "2026-06-23T05:16:49Z"
 }
