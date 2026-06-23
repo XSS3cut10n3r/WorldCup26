@@ -472,7 +472,30 @@
       "utcDate": "2026-06-21T22:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-23T03:00:00Z",
+      "home": {
+        "name": "Jordan",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 63
+      },
+      "away": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 28
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,30 +609,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-23T03:00:00Z",
-      "home": {
-        "name": "Jordan",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 63,
-        "clinched": false
-      },
-      "away": {
-        "name": "Algeria",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 28,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -873,6 +872,42 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T01:00:00Z",
+      "home": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 60,
+        "clinched": false
+      },
+      "away": {
+        "name": "South Korea",
+        "owner": "Charlie",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 25,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "A",
+        "winnerWinsGroup": false,
+        "winnerAdvances": false,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": true
+        }
+      }
     }
   ],
   "bracket": [
@@ -9708,5 +9743,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T02:42:19Z"
+  "generated": "2026-06-23T03:06:42Z"
 }
