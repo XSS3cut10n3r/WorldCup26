@@ -2505,7 +2505,7 @@
           "ga": 4,
           "gd": -2,
           "points": 3,
-          "conduct": 0,
+          "conduct": -1,
           "fifaRank": 28,
           "clinched": false,
           "clinchType": null
@@ -2736,7 +2736,7 @@
       "ga": 4,
       "gd": -2,
       "points": 3,
-      "conduct": 0,
+      "conduct": -1,
       "fifaRank": 28,
       "clinched": false,
       "clinchType": null,
@@ -2948,16 +2948,6 @@
   "conduct": {
     "teams": [
       {
-        "team": "Algeria",
-        "owner": "Mat",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Croatia",
         "owner": "Tom",
         "yellow": 0,
@@ -3038,6 +3028,16 @@
         "rank": 1
       },
       {
+        "team": "Algeria",
+        "owner": "Mat",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 9
+      },
+      {
         "team": "Colombia",
         "owner": "Charlie",
         "yellow": 1,
@@ -3045,7 +3045,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Czechia",
@@ -3055,7 +3055,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "DR Congo",
@@ -3065,7 +3065,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Ghana",
@@ -3075,7 +3075,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Morocco",
@@ -3085,7 +3085,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Spain",
@@ -3095,7 +3095,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Tunisia",
@@ -3105,7 +3105,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Türkiye",
@@ -3115,7 +3115,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Uzbekistan",
@@ -3125,7 +3125,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Argentina",
@@ -3702,7 +3702,7 @@
       },
       {
         "name": "Mat",
-        "score": -2,
+        "score": -3,
         "teams": [
           {
             "name": "England",
@@ -3714,7 +3714,7 @@
           },
           {
             "name": "Algeria",
-            "score": 0
+            "score": -1
           }
         ],
         "rank": 14
@@ -9645,7 +9645,7 @@
       "Algeria": {
         "owner": "Mat",
         "canon": "Algeria",
-        "conduct": 0,
+        "conduct": -1,
         "fifa": 28,
         "group": "J"
       },
@@ -9722,5 +9722,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T05:07:04Z"
+  "generated": "2026-06-23T05:16:20Z"
 }
