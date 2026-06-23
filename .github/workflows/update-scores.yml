@@ -1,5 +1,7 @@
 name: Update scores (live loop)
 on:
+  schedule:
+    - cron: "0 */2 * * *"
   workflow_dispatch:
     inputs:
       minutes:
@@ -27,8 +29,8 @@ jobs:
       - name: Poll and commit on change
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-          RUN_MINUTES: ${{ github.event.inputs.minutes }}
-          POLL_SECONDS: ${{ github.event.inputs.interval }}
+          RUN_MINUTES: ${{ github.event.inputs.minutes || '240' }}
+          POLL_SECONDS: ${{ github.event.inputs.interval || '90' }}
           BRANCH: ${{ github.ref_name }}
         run: |
           set -u
