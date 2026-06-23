@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Charlotte",
+      "points": 4.5,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Norway",
+          "points": 2,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Ghana",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Nik",
       "points": 4.5,
       "teams": [
@@ -61,7 +89,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Pete",
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Tomi",
@@ -124,35 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
-    },
-    {
-      "name": "Charlotte",
-      "points": 3.5,
-      "teams": [
-        {
-          "name": "Netherlands",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Norway",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Ghana",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 5
+      "rank": 3
     },
     {
       "name": "Sydney",
@@ -187,7 +187,7 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Kelly",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Charlotte",
+      "team": "Norway",
+      "points": 1,
+      "label": "Norway won (Group stage)",
+      "utcDate": "2026-06-23T00:00:00Z"
+    },
+    {
       "owner": "Darcy",
       "team": "France",
       "points": 1,
@@ -463,20 +470,14 @@
       "points": 0.5,
       "label": "Cabo Verde drew (Group stage)",
       "utcDate": "2026-06-21T22:00:00Z"
-    },
-    {
-      "owner": "Iva",
-      "team": "Uruguay",
-      "points": 0.5,
-      "label": "Uruguay drew (Group stage)",
-      "utcDate": "2026-06-21T22:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-23T00:00:00Z",
       "home": {
         "name": "Norway",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -581,28 +580,6 @@
         "goals": 2,
         "penGoals": null,
         "fifaRank": 67
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-21T19:00:00Z",
-      "home": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 9
-      },
-      "away": {
-        "name": "Iran",
-        "owner": "Ondine",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 21
       },
       "penalties": false,
       "winner": "DRAW"
@@ -2417,14 +2394,14 @@
           "pos": 2,
           "team": "Norway",
           "owner": "Charlotte",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "draw": 0,
           "lost": 0,
-          "gf": 4,
-          "ga": 1,
-          "gd": 3,
-          "points": 3,
+          "gf": 7,
+          "ga": 3,
+          "gd": 4,
+          "points": 6,
           "conduct": 0,
           "fifaRank": 31,
           "clinched": false,
@@ -2434,13 +2411,13 @@
           "pos": 3,
           "team": "Senegal",
           "owner": "Ondine",
-          "played": 1,
+          "played": 2,
           "won": 0,
           "draw": 0,
-          "lost": 1,
-          "gf": 1,
-          "ga": 3,
-          "gd": -2,
+          "lost": 2,
+          "gf": 3,
+          "ga": 6,
+          "gd": -3,
           "points": 0,
           "conduct": 0,
           "fifaRank": 15,
@@ -2913,28 +2890,6 @@
     },
     {
       "pos": 3,
-      "team": "Senegal",
-      "owner": "Ondine",
-      "played": 1,
-      "won": 0,
-      "draw": 0,
-      "lost": 1,
-      "gf": 1,
-      "ga": 3,
-      "gd": -2,
-      "points": 0,
-      "conduct": 0,
-      "fifaRank": 15,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group I",
-      "ranked": true,
-      "rank": 11,
-      "qualifies": false,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Jordan",
       "owner": "Charlie",
       "played": 1,
@@ -2950,6 +2905,28 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group J",
+      "ranked": true,
+      "rank": 11,
+      "qualifies": false,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Senegal",
+      "owner": "Ondine",
+      "played": 2,
+      "won": 0,
+      "draw": 0,
+      "lost": 2,
+      "gf": 3,
+      "ga": 6,
+      "gd": -3,
+      "points": 0,
+      "conduct": 0,
+      "fifaRank": 15,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group I",
       "ranked": true,
       "rank": 12,
       "qualifies": false,
@@ -9192,6 +9169,12 @@
           "a": "Iraq",
           "hg": 3,
           "ag": 0
+        },
+        {
+          "h": "Norway",
+          "a": "Senegal",
+          "hg": 3,
+          "ag": 2
         }
       ],
       "J": [
@@ -9325,10 +9308,6 @@
         }
       ],
       "I": [
-        {
-          "h": "Norway",
-          "a": "Senegal"
-        },
         {
           "h": "Norway",
           "a": "France"
@@ -9729,5 +9708,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-23T01:59:38Z"
+  "generated": "2026-06-23T02:07:16Z"
 }
