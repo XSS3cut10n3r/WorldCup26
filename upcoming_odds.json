@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-24T12:38:36.373537Z",
+  "generated": "2026-06-24T16:41:04.019778Z",
   "sims": 1000000,
   "games": [
     {
@@ -7,19 +7,19 @@
       "home": "Czechia",
       "away": "Mexico",
       "odds": {
+        "home": 0.23654,
+        "draw": 0.25015,
+        "away": 0.51331
+      },
+      "base": {
         "home": 0.23902,
         "draw": 0.2501,
         "away": 0.51088
       },
-      "base": {
-        "home": 0.24003,
-        "draw": 0.25016,
-        "away": 0.50981
-      },
       "delta": {
-        "home": -0.00101,
-        "draw": -6e-05,
-        "away": 0.00107
+        "home": -0.00248,
+        "draw": 5e-05,
+        "away": 0.00243
       }
     },
     {
@@ -27,19 +27,19 @@
       "home": "South Africa",
       "away": "South Korea",
       "odds": {
+        "home": 0.25875,
+        "draw": 0.2566,
+        "away": 0.48465
+      },
+      "base": {
         "home": 0.2426,
         "draw": 0.25241,
         "away": 0.50499
       },
-      "base": {
-        "home": 0.27844,
-        "draw": 0.26044,
-        "away": 0.46112
-      },
       "delta": {
-        "home": -0.03584,
-        "draw": -0.00803,
-        "away": 0.04387
+        "home": 0.01615,
+        "draw": 0.00419,
+        "away": -0.02034
       }
     },
     {
@@ -47,19 +47,19 @@
       "home": "Bosnia and Herzegovina",
       "away": "Qatar",
       "odds": {
+        "home": 0.48199,
+        "draw": 0.24573,
+        "away": 0.27228
+      },
+      "base": {
         "home": 0.48821,
         "draw": 0.24566,
         "away": 0.26613
       },
-      "base": {
-        "home": 0.45719,
-        "draw": 0.24952,
-        "away": 0.29329
-      },
       "delta": {
-        "home": 0.03102,
-        "draw": -0.00386,
-        "away": -0.02716
+        "home": -0.00622,
+        "draw": 7e-05,
+        "away": 0.00615
       }
     },
     {
@@ -67,19 +67,19 @@
       "home": "Switzerland",
       "away": "Canada",
       "odds": {
+        "home": 0.4543,
+        "draw": 0.25349,
+        "away": 0.29222
+      },
+      "base": {
         "home": 0.44687,
         "draw": 0.25384,
         "away": 0.29929
       },
-      "base": {
-        "home": 0.44889,
-        "draw": 0.25309,
-        "away": 0.29802
-      },
       "delta": {
-        "home": -0.00202,
-        "draw": 0.00075,
-        "away": 0.00127
+        "home": 0.00743,
+        "draw": -0.00035,
+        "away": -0.00707
       }
     },
     {
@@ -87,19 +87,19 @@
       "home": "Morocco",
       "away": "Haiti",
       "odds": {
+        "home": 0.812,
+        "draw": 0.1319,
+        "away": 0.05611
+      },
+      "base": {
         "home": 0.7667,
         "draw": 0.15654,
         "away": 0.07676
       },
-      "base": {
-        "home": 0.75799,
-        "draw": 0.16022,
-        "away": 0.08179
-      },
       "delta": {
-        "home": 0.00871,
-        "draw": -0.00368,
-        "away": -0.00503
+        "home": 0.0453,
+        "draw": -0.02464,
+        "away": -0.02065
       }
     },
     {
@@ -107,19 +107,19 @@
       "home": "Scotland",
       "away": "Brazil",
       "odds": {
+        "home": 0.0937,
+        "draw": 0.17451,
+        "away": 0.73179
+      },
+      "base": {
         "home": 0.09299,
         "draw": 0.17266,
         "away": 0.73436
       },
-      "base": {
-        "home": 0.09314,
-        "draw": 0.17388,
-        "away": 0.73298
-      },
       "delta": {
-        "home": -0.00015,
-        "draw": -0.00122,
-        "away": 0.00138
+        "home": 0.00071,
+        "draw": 0.00185,
+        "away": -0.00257
       }
     },
     {
@@ -127,19 +127,19 @@
       "home": "Paraguay",
       "away": "Australia",
       "odds": {
+        "home": 0.28965,
+        "draw": 0.25924,
+        "away": 0.45111
+      },
+      "base": {
         "home": 0.2747,
         "draw": 0.25673,
         "away": 0.46857
       },
-      "base": {
-        "home": 0.29563,
-        "draw": 0.26028,
-        "away": 0.44409
-      },
       "delta": {
-        "home": -0.02093,
-        "draw": -0.00355,
-        "away": 0.02448
+        "home": 0.01495,
+        "draw": 0.00251,
+        "away": -0.01746
       }
     },
     {
@@ -147,19 +147,19 @@
       "home": "Türkiye",
       "away": "United States",
       "odds": {
+        "home": 0.19143,
+        "draw": 0.23349,
+        "away": 0.57508
+      },
+      "base": {
         "home": 0.14427,
         "draw": 0.21226,
         "away": 0.64346
       },
-      "base": {
-        "home": 0.1481,
-        "draw": 0.21499,
-        "away": 0.63691
-      },
       "delta": {
-        "home": -0.00383,
-        "draw": -0.00273,
-        "away": 0.00655
+        "home": 0.04716,
+        "draw": 0.02123,
+        "away": -0.06838
       }
     },
     {
@@ -167,19 +167,19 @@
       "home": "Curaçao",
       "away": "Côte d'Ivoire",
       "odds": {
+        "home": 0.22307,
+        "draw": 0.24097,
+        "away": 0.53595
+      },
+      "base": {
         "home": 0.21113,
         "draw": 0.23701,
         "away": 0.55186
       },
-      "base": {
-        "home": 0.23207,
-        "draw": 0.24398,
-        "away": 0.52395
-      },
       "delta": {
-        "home": -0.02094,
-        "draw": -0.00697,
-        "away": 0.02791
+        "home": 0.01194,
+        "draw": 0.00396,
+        "away": -0.01591
       }
     },
     {
@@ -187,19 +187,19 @@
       "home": "Ecuador",
       "away": "Germany",
       "odds": {
+        "home": 0.15473,
+        "draw": 0.21405,
+        "away": 0.63121
+      },
+      "base": {
         "home": 0.15857,
         "draw": 0.21743,
         "away": 0.624
       },
-      "base": {
-        "home": 0.15372,
-        "draw": 0.21325,
-        "away": 0.63304
-      },
       "delta": {
-        "home": 0.00485,
-        "draw": 0.00418,
-        "away": -0.00904
+        "home": -0.00384,
+        "draw": -0.00338,
+        "away": 0.00721
       }
     },
     {
@@ -207,19 +207,19 @@
       "home": "Japan",
       "away": "Sweden",
       "odds": {
+        "home": 0.61047,
+        "draw": 0.21113,
+        "away": 0.1784
+      },
+      "base": {
         "home": 0.59286,
         "draw": 0.21635,
         "away": 0.19078
       },
-      "base": {
-        "home": 0.59558,
-        "draw": 0.21548,
-        "away": 0.18894
-      },
       "delta": {
-        "home": -0.00272,
-        "draw": 0.00087,
-        "away": 0.00184
+        "home": 0.01761,
+        "draw": -0.00522,
+        "away": -0.01238
       }
     },
     {
@@ -227,19 +227,19 @@
       "home": "Tunisia",
       "away": "Netherlands",
       "odds": {
+        "home": 0.04529,
+        "draw": 0.10081,
+        "away": 0.8539
+      },
+      "base": {
         "home": 0.04589,
         "draw": 0.10205,
         "away": 0.85206
       },
-      "base": {
-        "home": 0.04913,
-        "draw": 0.10471,
-        "away": 0.84616
-      },
       "delta": {
-        "home": -0.00324,
-        "draw": -0.00266,
-        "away": 0.0059
+        "home": -0.0006,
+        "draw": -0.00124,
+        "away": 0.00184
       }
     },
     {
@@ -247,19 +247,19 @@
       "home": "Egypt",
       "away": "Iran",
       "odds": {
+        "home": 0.3923,
+        "draw": 0.26594,
+        "away": 0.34176
+      },
+      "base": {
         "home": 0.38283,
         "draw": 0.26653,
         "away": 0.35064
       },
-      "base": {
-        "home": 0.38342,
-        "draw": 0.26669,
-        "away": 0.34989
-      },
       "delta": {
-        "home": -0.00059,
-        "draw": -0.00016,
-        "away": 0.00075
+        "home": 0.00947,
+        "draw": -0.00059,
+        "away": -0.00888
       }
     },
     {
@@ -267,19 +267,19 @@
       "home": "New Zealand",
       "away": "Belgium",
       "odds": {
+        "home": 0.11508,
+        "draw": 0.18391,
+        "away": 0.70101
+      },
+      "base": {
         "home": 0.11161,
         "draw": 0.18183,
         "away": 0.70656
       },
-      "base": {
-        "home": 0.11973,
-        "draw": 0.18715,
-        "away": 0.69312
-      },
       "delta": {
-        "home": -0.00812,
-        "draw": -0.00532,
-        "away": 0.01344
+        "home": 0.00347,
+        "draw": 0.00208,
+        "away": -0.00555
       }
     },
     {
@@ -287,19 +287,19 @@
       "home": "Cabo Verde",
       "away": "Saudi Arabia",
       "odds": {
+        "home": 0.356,
+        "draw": 0.27237,
+        "away": 0.37164
+      },
+      "base": {
         "home": 0.3967,
         "draw": 0.27127,
         "away": 0.33203
       },
-      "base": {
-        "home": 0.41362,
-        "draw": 0.2696,
-        "away": 0.31678
-      },
       "delta": {
-        "home": -0.01692,
-        "draw": 0.00167,
-        "away": 0.01525
+        "home": -0.0407,
+        "draw": 0.0011,
+        "away": 0.03961
       }
     },
     {
@@ -307,19 +307,19 @@
       "home": "Uruguay",
       "away": "Spain",
       "odds": {
+        "home": 0.08178,
+        "draw": 0.1582,
+        "away": 0.76002
+      },
+      "base": {
         "home": 0.07981,
         "draw": 0.1551,
         "away": 0.76509
       },
-      "base": {
-        "home": 0.07778,
-        "draw": 0.15376,
-        "away": 0.76846
-      },
       "delta": {
-        "home": 0.00203,
-        "draw": 0.00134,
-        "away": -0.00337
+        "home": 0.00197,
+        "draw": 0.0031,
+        "away": -0.00507
       }
     },
     {
@@ -327,19 +327,19 @@
       "home": "Norway",
       "away": "France",
       "odds": {
+        "home": 0.08842,
+        "draw": 0.15107,
+        "away": 0.76052
+      },
+      "base": {
         "home": 0.09157,
         "draw": 0.15291,
         "away": 0.75552
       },
-      "base": {
-        "home": 0.08771,
-        "draw": 0.15044,
-        "away": 0.76185
-      },
       "delta": {
-        "home": 0.00386,
-        "draw": 0.00247,
-        "away": -0.00633
+        "home": -0.00315,
+        "draw": -0.00184,
+        "away": 0.005
       }
     },
     {
@@ -347,19 +347,19 @@
       "home": "Senegal",
       "away": "Iraq",
       "odds": {
+        "home": 0.46941,
+        "draw": 0.24595,
+        "away": 0.28464
+      },
+      "base": {
         "home": 0.45705,
         "draw": 0.24857,
         "away": 0.29438
       },
-      "base": {
-        "home": 0.45404,
-        "draw": 0.2485,
-        "away": 0.29747
-      },
       "delta": {
-        "home": 0.00301,
-        "draw": 7e-05,
-        "away": -0.00309
+        "home": 0.01236,
+        "draw": -0.00262,
+        "away": -0.00974
       }
     },
     {
@@ -367,19 +367,19 @@
       "home": "Algeria",
       "away": "Austria",
       "odds": {
+        "home": 0.27321,
+        "draw": 0.25566,
+        "away": 0.47114
+      },
+      "base": {
         "home": 0.30616,
         "draw": 0.26065,
         "away": 0.4332
       },
-      "base": {
-        "home": 0.31113,
-        "draw": 0.26185,
-        "away": 0.42702
-      },
       "delta": {
-        "home": -0.00497,
-        "draw": -0.0012,
-        "away": 0.00618
+        "home": -0.03295,
+        "draw": -0.00499,
+        "away": 0.03794
       }
     },
     {
@@ -387,19 +387,19 @@
       "home": "Jordan",
       "away": "Argentina",
       "odds": {
+        "home": 0.00928,
+        "draw": 0.03647,
+        "away": 0.95424
+      },
+      "base": {
         "home": 0.01174,
         "draw": 0.04277,
         "away": 0.94549
       },
-      "base": {
-        "home": 0.01252,
-        "draw": 0.04528,
-        "away": 0.9422
-      },
       "delta": {
-        "home": -0.00078,
-        "draw": -0.00251,
-        "away": 0.00329
+        "home": -0.00246,
+        "draw": -0.0063,
+        "away": 0.00875
       }
     },
     {
@@ -407,19 +407,19 @@
       "home": "Colombia",
       "away": "Portugal",
       "odds": {
+        "home": 0.18899,
+        "draw": 0.22784,
+        "away": 0.58317
+      },
+      "base": {
         "home": 0.18096,
         "draw": 0.22434,
         "away": 0.5947
       },
-      "base": {
-        "home": 0.18128,
-        "draw": 0.22448,
-        "away": 0.59424
-      },
       "delta": {
-        "home": -0.00032,
-        "draw": -0.00014,
-        "away": 0.00046
+        "home": 0.00803,
+        "draw": 0.0035,
+        "away": -0.01153
       }
     },
     {
@@ -427,19 +427,19 @@
       "home": "DR Congo",
       "away": "Uzbekistan",
       "odds": {
+        "home": 0.44716,
+        "draw": 0.26021,
+        "away": 0.29263
+      },
+      "base": {
         "home": 0.47014,
         "draw": 0.25714,
         "away": 0.27272
       },
-      "base": {
-        "home": 0.44479,
-        "draw": 0.26038,
-        "away": 0.29484
-      },
       "delta": {
-        "home": 0.02535,
-        "draw": -0.00324,
-        "away": -0.02212
+        "home": -0.02298,
+        "draw": 0.00307,
+        "away": 0.01991
       }
     },
     {
@@ -447,19 +447,19 @@
       "home": "Croatia",
       "away": "Ghana",
       "odds": {
+        "home": 0.58427,
+        "draw": 0.2329,
+        "away": 0.18283
+      },
+      "base": {
         "home": 0.58078,
         "draw": 0.23412,
         "away": 0.1851
       },
-      "base": {
-        "home": 0.59353,
-        "draw": 0.23051,
-        "away": 0.17596
-      },
       "delta": {
-        "home": -0.01275,
-        "draw": 0.00361,
-        "away": 0.00914
+        "home": 0.00349,
+        "draw": -0.00122,
+        "away": -0.00227
       }
     },
     {
@@ -467,19 +467,19 @@
       "home": "Panama",
       "away": "England",
       "odds": {
+        "home": 0.05642,
+        "draw": 0.13292,
+        "away": 0.81066
+      },
+      "base": {
         "home": 0.04956,
         "draw": 0.12388,
         "away": 0.82656
       },
-      "base": {
-        "home": 0.05277,
-        "draw": 0.12842,
-        "away": 0.81881
-      },
       "delta": {
-        "home": -0.00321,
-        "draw": -0.00454,
-        "away": 0.00775
+        "home": 0.00686,
+        "draw": 0.00904,
+        "away": -0.0159
       }
     }
   ]
