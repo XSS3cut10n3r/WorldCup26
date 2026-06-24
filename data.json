@@ -481,7 +481,7 @@
       "home": {
         "name": "Morocco",
         "owner": "Agatha",
-        "goals": 2,
+        "goals": 3,
         "penGoals": null,
         "fifaRank": 7
       },
@@ -493,12 +493,12 @@
         "fifaRank": 83
       },
       "penalties": false,
-      "winner": "DRAW"
+      "winner": "HOME_TEAM"
     },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-24T22:00:00Z",
       "home": {
         "name": "Scotland",
@@ -9790,5 +9790,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T23:30:34Z"
+  "generated": "2026-06-24T23:45:49Z"
 }
