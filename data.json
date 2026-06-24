@@ -476,7 +476,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-24T22:00:00Z",
       "home": {
         "name": "Morocco",
@@ -498,7 +498,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-24T22:00:00Z",
       "home": {
         "name": "Scotland",
@@ -9790,5 +9790,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T22:59:22Z"
+  "generated": "2026-06-24T23:16:50Z"
 }
