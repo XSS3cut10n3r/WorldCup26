@@ -29,6 +29,34 @@
       "rank": 1
     },
     {
+      "name": "Mat",
+      "points": 5.0,
+      "teams": [
+        {
+          "name": "England",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Switzerland",
+          "points": 2.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Algeria",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Nik",
       "points": 4.5,
       "teams": [
@@ -54,7 +82,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Kelly",
@@ -117,35 +145,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
-    },
-    {
-      "name": "Mat",
-      "points": 4.0,
-      "teams": [
-        {
-          "name": "England",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Switzerland",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Algeria",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Pete",
@@ -173,7 +173,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Tomi",
@@ -208,7 +208,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Charlie",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Mat",
+      "team": "Switzerland",
+      "points": 1,
+      "label": "Switzerland won (Group stage)",
+      "utcDate": "2026-06-24T19:00:00Z"
+    },
+    {
       "owner": "Charlie",
       "team": "Colombia",
       "points": 1,
@@ -463,38 +470,9 @@
       "points": 0.5,
       "label": "England drew (Group stage)",
       "utcDate": "2026-06-23T20:00:00Z"
-    },
-    {
-      "owner": "Kelly",
-      "team": "Portugal",
-      "points": 1,
-      "label": "Portugal won (Group stage)",
-      "utcDate": "2026-06-23T17:00:00Z"
     }
   ],
   "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-24T19:00:00Z",
-      "home": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 19
-      },
-      "away": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 30
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -519,6 +497,28 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-24T19:00:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 19
+      },
+      "away": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 30
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -606,28 +606,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-23T03:00:00Z",
-      "home": {
-        "name": "Jordan",
-        "owner": "Charlie",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 63
-      },
-      "away": {
-        "name": "Algeria",
-        "owner": "Mat",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 28
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -977,8 +955,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Switzerland",
-            "owner": "Mat",
+            "name": "Canada",
+            "owner": "Kelly",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1292,11 +1270,11 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
-            "name": "Canada",
-            "owner": "Kelly",
+            "name": "Switzerland",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group B",
             "resolved": true
           },
@@ -1938,35 +1916,35 @@
       "table": [
         {
           "pos": 1,
-          "team": "Canada",
-          "owner": "Kelly",
-          "played": 2,
-          "won": 1,
+          "team": "Switzerland",
+          "owner": "Mat",
+          "played": 3,
+          "won": 2,
           "draw": 1,
           "lost": 0,
           "gf": 7,
-          "ga": 1,
-          "gd": 6,
-          "points": 4,
-          "conduct": -3,
-          "fifaRank": 30,
-          "clinched": false,
-          "clinchType": null
+          "ga": 3,
+          "gd": 4,
+          "points": 7,
+          "conduct": -2,
+          "fifaRank": 19,
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "pos": 2,
-          "team": "Switzerland",
-          "owner": "Mat",
-          "played": 2,
+          "team": "Canada",
+          "owner": "Kelly",
+          "played": 3,
           "won": 1,
           "draw": 1,
-          "lost": 0,
-          "gf": 5,
-          "ga": 2,
-          "gd": 3,
+          "lost": 1,
+          "gf": 8,
+          "ga": 3,
+          "gd": 5,
           "points": 4,
-          "conduct": -2,
-          "fifaRank": 19,
+          "conduct": -3,
+          "fifaRank": 30,
           "clinched": false,
           "clinchType": null
         },
@@ -9074,6 +9052,12 @@
           "a": "Qatar",
           "hg": 6,
           "ag": 0
+        },
+        {
+          "h": "Switzerland",
+          "a": "Canada",
+          "hg": 2,
+          "ag": 1
         }
       ],
       "C": [
@@ -9349,10 +9333,6 @@
         }
       ],
       "B": [
-        {
-          "h": "Switzerland",
-          "a": "Canada"
-        },
         {
           "h": "Bosnia and Herzegovina",
           "a": "Qatar"
@@ -9799,5 +9779,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T20:58:48Z"
+  "generated": "2026-06-24T21:01:52Z"
 }
