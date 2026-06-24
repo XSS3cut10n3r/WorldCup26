@@ -476,7 +476,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-24T19:00:00Z",
       "home": {
         "name": "Switzerland",
@@ -498,7 +498,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-24T19:00:00Z",
       "home": {
         "name": "Bosnia-Herzegovina",
@@ -9799,5 +9799,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T19:48:40Z"
+  "generated": "2026-06-24T19:58:00Z"
 }
