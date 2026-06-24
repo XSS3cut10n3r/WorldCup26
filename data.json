@@ -476,12 +476,12 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-24T19:00:00Z",
       "home": {
         "name": "Switzerland",
         "owner": "Mat",
-        "goals": 0,
+        "goals": 1,
         "penGoals": null,
         "fifaRank": 19
       },
@@ -493,12 +493,12 @@
         "fifaRank": 30
       },
       "penalties": false,
-      "winner": "DRAW"
+      "winner": "HOME_TEAM"
     },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "utcDate": "2026-06-24T19:00:00Z",
       "home": {
         "name": "Bosnia-Herzegovina",
@@ -9799,5 +9799,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T19:58:00Z"
+  "generated": "2026-06-24T20:14:44Z"
 }
