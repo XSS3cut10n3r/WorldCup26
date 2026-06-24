@@ -472,30 +472,7 @@
       "utcDate": "2026-06-23T03:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "PAUSED",
-      "utcDate": "2026-06-24T02:00:00Z",
-      "home": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 13
-      },
-      "away": {
-        "name": "Congo DR",
-        "owner": "Tom",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 45
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -9775,5 +9752,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T02:55:35Z"
+  "generated": "2026-06-24T03:12:18Z"
 }
