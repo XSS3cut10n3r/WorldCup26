@@ -472,7 +472,30 @@
       "utcDate": "2026-06-23T20:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "PAUSED",
+      "utcDate": "2026-06-24T22:00:00Z",
+      "home": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 7
+      },
+      "away": {
+        "name": "Haiti",
+        "owner": "Darcy",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 83
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -9745,5 +9768,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T22:09:05Z"
+  "generated": "2026-06-24T22:56:18Z"
 }
