@@ -57,6 +57,41 @@
       "rank": 1
     },
     {
+      "name": "Tomi",
+      "points": 5.0,
+      "teams": [
+        {
+          "name": "Germany",
+          "points": 2,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Sweden",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Bosnia and Herzegovina",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "New Zealand",
+          "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Nik",
       "points": 4.5,
       "teams": [
@@ -82,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Darcy",
@@ -117,7 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Kelly",
@@ -141,11 +176,11 @@
           "name": "Canada",
           "points": 1.5,
           "eliminated": false,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "second"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Pete",
@@ -173,42 +208,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
-    },
-    {
-      "name": "Tomi",
-      "points": 4.0,
-      "teams": [
-        {
-          "name": "Germany",
-          "points": 2,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Sweden",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Bosnia and Herzegovina",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "New Zealand",
-          "points": 0.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Charlie",
@@ -392,7 +392,7 @@
         {
           "name": "Qatar",
           "points": 0.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": false,
           "clinchType": null
         }
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Tomi",
+      "team": "Bosnia and Herzegovina",
+      "points": 1,
+      "label": "Bosnia and Herzegovina won (Group stage)",
+      "utcDate": "2026-06-24T19:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "Switzerland",
       "points": 1,
@@ -463,20 +470,14 @@
       "points": 0.5,
       "label": "Ghana drew (Group stage)",
       "utcDate": "2026-06-23T20:00:00Z"
-    },
-    {
-      "owner": "Mat",
-      "team": "England",
-      "points": 0.5,
-      "label": "England drew (Group stage)",
-      "utcDate": "2026-06-23T20:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-24T19:00:00Z",
       "home": {
         "name": "Bosnia-Herzegovina",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-23T17:00:00Z",
-      "home": {
-        "name": "Portugal",
-        "owner": "Kelly",
-        "goals": 5,
-        "penGoals": null,
-        "fifaRank": 5
-      },
-      "away": {
-        "name": "Uzbekistan",
-        "owner": "Ondine",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 50
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -959,7 +936,7 @@
             "owner": "Kelly",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group B",
             "resolved": true
           },
@@ -1144,8 +1121,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Cabo Verde",
-            "owner": "Paul",
+            "name": "Algeria",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1171,8 +1148,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Algeria",
-            "owner": "Mat",
+            "name": "Bosnia and Herzegovina",
+            "owner": "Tomi",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1198,8 +1175,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Czechia",
-            "owner": "Nik",
+            "name": "Cabo Verde",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1945,21 +1922,21 @@
           "points": 4,
           "conduct": -3,
           "fifaRank": 30,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "second"
         },
         {
           "pos": 3,
           "team": "Bosnia and Herzegovina",
           "owner": "Tomi",
-          "played": 2,
-          "won": 0,
+          "played": 3,
+          "won": 1,
           "draw": 1,
           "lost": 1,
-          "gf": 2,
-          "ga": 5,
-          "gd": -3,
-          "points": 1,
+          "gf": 5,
+          "ga": 6,
+          "gd": -1,
+          "points": 4,
           "conduct": -9,
           "fifaRank": 64,
           "clinched": false,
@@ -1969,13 +1946,13 @@
           "pos": 4,
           "team": "Qatar",
           "owner": "Iva",
-          "played": 2,
+          "played": 3,
           "won": 0,
           "draw": 1,
-          "lost": 1,
-          "gf": 1,
-          "ga": 7,
-          "gd": -6,
+          "lost": 2,
+          "gf": 2,
+          "ga": 10,
+          "gd": -8,
           "points": 1,
           "conduct": -11,
           "fifaRank": 57,
@@ -2729,6 +2706,28 @@
   "thirdPlace": [
     {
       "pos": 3,
+      "team": "Bosnia and Herzegovina",
+      "owner": "Tomi",
+      "played": 3,
+      "won": 1,
+      "draw": 1,
+      "lost": 1,
+      "gf": 5,
+      "ga": 6,
+      "gd": -1,
+      "points": 4,
+      "conduct": -9,
+      "fifaRank": 64,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group B",
+      "ranked": true,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Sweden",
       "owner": "Tomi",
       "played": 2,
@@ -2745,7 +2744,7 @@
       "clinchType": null,
       "group": "Group F",
       "ranked": true,
-      "rank": 1,
+      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2767,7 +2766,7 @@
       "clinchType": null,
       "group": "Group C",
       "ranked": true,
-      "rank": 2,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     },
@@ -2789,7 +2788,7 @@
       "clinchType": null,
       "group": "Group L",
       "ranked": true,
-      "rank": 3,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2811,7 +2810,7 @@
       "clinchType": null,
       "group": "Group J",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2833,7 +2832,7 @@
       "clinchType": null,
       "group": "Group D",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2855,7 +2854,7 @@
       "clinchType": null,
       "group": "Group H",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2877,7 +2876,7 @@
       "clinchType": null,
       "group": "Group G",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2899,8 +2898,8 @@
       "clinchType": null,
       "group": "Group A",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     },
     {
@@ -2921,7 +2920,7 @@
       "clinchType": null,
       "group": "Group K",
       "ranked": true,
-      "rank": 9,
+      "rank": 10,
       "qualifies": false,
       "manualTie": false
     },
@@ -2942,28 +2941,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group E",
-      "ranked": true,
-      "rank": 10,
-      "qualifies": false,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Bosnia and Herzegovina",
-      "owner": "Tomi",
-      "played": 2,
-      "won": 0,
-      "draw": 1,
-      "lost": 1,
-      "gf": 2,
-      "ga": 5,
-      "gd": -3,
-      "points": 1,
-      "conduct": -9,
-      "fifaRank": 64,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group B",
       "ranked": true,
       "rank": 11,
       "qualifies": false,
@@ -9058,6 +9035,12 @@
           "a": "Canada",
           "hg": 2,
           "ag": 1
+        },
+        {
+          "h": "Bosnia and Herzegovina",
+          "a": "Qatar",
+          "hg": 3,
+          "ag": 1
         }
       ],
       "C": [
@@ -9332,12 +9315,7 @@
           "a": "South Korea"
         }
       ],
-      "B": [
-        {
-          "h": "Bosnia and Herzegovina",
-          "a": "Qatar"
-        }
-      ],
+      "B": [],
       "C": [
         {
           "h": "Morocco",
@@ -9779,5 +9757,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T21:01:52Z"
+  "generated": "2026-06-24T21:04:55Z"
 }
