@@ -1314,8 +1314,25 @@
   // ever pairs two same-group teams), deviating from the flag where flags collide.
   // The live feed spells two nations differently from the canonical sim/odds
   // names; normalise so colours and odds join for every card.
-  const NAME_ALIAS = { "Congo DR": "DR Congo", "Bosnia-Herzegovina": "Bosnia and Herzegovina" };
-  const canonName = n => NAME_ALIAS[n] || n;
+  const NAME_ALIAS = {
+    "Congo DR": "DR Congo",
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina",
+    "Ivory Coast": "Côte d'Ivoire", // safety: some feeds use the English name
+  };
+  // Normalised match key: fold accents, unify apostrophe variants (’ ‘ ` ´ → '),
+  // lowercase, and collapse whitespace. Lets the live-feed name join the odds /
+  // colour name even when they differ only by a curly-vs-straight apostrophe or a
+  // decomposed accent (e.g. "Côte d'Ivoire", "Curaçao") — that mismatch silently
+  // dropped that one upcoming card.
+  const normKey = s => (s || "")
+    .normalize("NFKD").replace(/[\u0300-\u036f]/g, "")   // strip diacritics
+    .replace(/[\u2018\u2019\u02BC\u0060\u00B4]/g, "'")   // apostrophe variants -> '
+    .toLowerCase().replace(/\s+/g, " ").trim();
+  // Resolve aliases by normalised key so feed spelling variants still map to the
+  // canonical sim name.
+  const ALIAS_BY_KEY = {};
+  for (const k in NAME_ALIAS) ALIAS_BY_KEY[normKey(k)] = NAME_ALIAS[k];
+  const canonName = n => ALIAS_BY_KEY[normKey(n)] || n;
   const COUNTRY_COLOR = {
     "Mexico": "#157F43", "South Korea": "#3060B0", "South Africa": "#F2A900", "Czechia": "#D62828",
     "Canada": "#E23B4E", "Switzerland": "#E6E6E6", "Qatar": "#6E1B3D", "Bosnia and Herzegovina": "#243F9E",
@@ -1330,16 +1347,21 @@
     "Portugal": "#C21030", "Colombia": "#FBD000", "DR Congo": "#2EA0DC", "Uzbekistan": "#17A06A",
     "England": "#FFFFFF", "Croatia": "#C01E2E", "Panama": "#1C3F94", "Ghana": "#0E8A3C",
   };
+  // Colours indexed by normalised key so the lookup tolerates accent / apostrophe
+  // differences between the live feed and this table.
+  const COLOR_BY_KEY = {};
+  for (const k in COUNTRY_COLOR) COLOR_BY_KEY[normKey(k)] = COUNTRY_COLOR[k];
   // Find this match in upcoming_odds.json (keyed by the home/away pair) and orient
   // the odds to the card's home/away. Returns null when there's no row (e.g. odds
   // not loaded yet, or a non-group game), so the bar simply doesn't render.
   function wdlGame(m) {
     if (!upcData || !m || !m.home || !m.away) return null;
-    const h = canonName(m.home.name), a = canonName(m.away.name);
+    const h = normKey(canonName(m.home.name)), a = normKey(canonName(m.away.name));
     for (const g of (upcData.games || [])) {
       const o = g.odds || {};
-      if (g.home === h && g.away === a) return { home: o.home, draw: o.draw, away: o.away };
-      if (g.home === a && g.away === h) return { home: o.away, draw: o.draw, away: o.home };
+      const gh = normKey(g.home), ga = normKey(g.away);
+      if (gh === h && ga === a) return { home: o.home, draw: o.draw, away: o.away };
+      if (gh === a && ga === h) return { home: o.away, draw: o.draw, away: o.home };
     }
     return null;
   }
@@ -1347,8 +1369,8 @@
   function wdlBar(m) {
     const g = wdlGame(m);
     if (!g) return "";
-    const hc = COUNTRY_COLOR[canonName(m.home.name)] || "#888";
-    const ac = COUNTRY_COLOR[canonName(m.away.name)] || "#888";
+    const hc = COLOR_BY_KEY[normKey(canonName(m.home.name))] || "#888";
+    const ac = COLOR_BY_KEY[normKey(canonName(m.away.name))] || "#888";
     const hw = Math.round((g.home || 0) * 100);
     const aw = Math.round((g.away || 0) * 100);
     const dw = Math.max(0, 100 - hw - aw);           // draw takes the remainder so it sums to 100
