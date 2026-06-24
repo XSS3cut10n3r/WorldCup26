@@ -494,6 +494,28 @@
       },
       "penalties": false,
       "winner": "DRAW"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "PAUSED",
+      "utcDate": "2026-06-24T22:00:00Z",
+      "home": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 42
+      },
+      "away": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 6
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
     }
   ],
   "recent": [
@@ -9768,5 +9790,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-24T22:56:18Z"
+  "generated": "2026-06-24T22:59:22Z"
 }
