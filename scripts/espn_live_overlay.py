@@ -211,6 +211,7 @@ def main():
     except Exception as e:
         print(f"NOTE: ESPN unreachable ({e}); leaving {DATA_FILE} untouched.",
               file=sys.stderr)
+        print("LIVE_COUNT=-1")  # unknown; the loop treats this as "no change in state"
         return 0  # never break the scores pipeline over the live overlay
 
     meta, by_norm = build_team_lookup(data)
@@ -276,6 +277,7 @@ def main():
                   f"its live game was skipped.", file=sys.stderr)
 
     # 6) Write only if something actually changed (keeps the no-change check happy).
+    print(f"LIVE_COUNT={len(live_cards)}")
     if data == original:
         print("No live changes; data.json left untouched.")
         return 0
