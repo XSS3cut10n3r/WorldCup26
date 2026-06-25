@@ -472,7 +472,52 @@
       "utcDate": "2026-06-24T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "PAUSED",
+      "utcDate": "2026-06-25T20:00:00Z",
+      "home": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 23
+      },
+      "away": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 10
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "PAUSED",
+      "utcDate": "2026-06-25T20:00:00Z",
+      "home": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 82
+      },
+      "away": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 33
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -9775,5 +9820,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-25T20:51:35Z"
+  "generated": "2026-06-25T20:56:10Z"
 }
