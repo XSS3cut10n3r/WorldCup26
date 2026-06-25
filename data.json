@@ -476,7 +476,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-25T01:00:00Z",
       "home": {
         "name": "Czechia",
@@ -498,7 +498,7 @@
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "utcDate": "2026-06-25T01:00:00Z",
       "home": {
         "name": "South Africa",
@@ -9805,5 +9805,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-25T01:38:36Z"
+  "generated": "2026-06-25T01:55:22Z"
 }
