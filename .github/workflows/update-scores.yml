@@ -10,6 +10,7 @@ on:
       post_seconds:      { description: "Seconds between football-data catch-up polls", required: false, default: "60" }
       lookahead_minutes: { description: "Stay alive if a kickoff is within this many minutes", required: false, default: "20" }
       run_minutes:       { description: "Hard cap on a single run, minutes", required: false, default: "150" }
+      heartbeat_seconds: { description: "Throttle the 'watching' status line to at most this often", required: false, default: "300" }
 concurrency:
   group: update-scores-live
   cancel-in-progress: false     # never cancel a live watcher or its catch-up; ticks queue behind
@@ -32,6 +33,7 @@ jobs:
           POST_SECONDS:      ${{ github.event.inputs.post_seconds      || '60' }}
           LOOKAHEAD_MINUTES: ${{ github.event.inputs.lookahead_minutes || '20' }}
           RUN_MINUTES:       ${{ github.event.inputs.run_minutes       || '150' }}
+          HEARTBEAT_SECONDS: ${{ github.event.inputs.heartbeat_seconds || '300' }}
           BRANCH: ${{ github.ref_name }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -45,9 +47,21 @@ jobs:
           post_s="${POST_SECONDS:-60}";        case "$post_s"     in (*[!0-9]*|""|0) post_s=60 ;; esac
           look_m="${LOOKAHEAD_MINUTES:-20}";   case "$look_m"     in (*[!0-9]*|"")  look_m=20 ;; esac
           run_m="${RUN_MINUTES:-150}";         case "$run_m"      in (*[!0-9]*|""|0) run_m=150 ;; esac
+          hb_s="${HEARTBEAT_SECONDS:-300}";    case "$hb_s"       in (*[!0-9]*|""|0) hb_s=300 ;; esac
 
           ts() { date -u '+%Y-%m-%dT%H:%M:%SZ'; }
           hm() { date -u '+%H:%M:%SZ'; }
+
+          # Throttled status line: prints at most every hb_s seconds, or right away
+          # when forced (e.g. the live count changed). Keeps a 2-hour watch from
+          # flooding the Actions log past its display-truncation limit.
+          last_hb=0
+          maybe_echo() {  # $1 message, $2 force(0/1)
+            local now_s; now_s=$(date +%s)
+            if [ "${2:-0}" -eq 1 ] || [ $(( now_s - last_hb )) -ge "$hb_s" ]; then
+              echo "$(hm) — $1"; last_hb=$now_s
+            fi
+          }
 
           resync() {
             git rebase --abort 2>/dev/null || true
@@ -87,7 +101,7 @@ jobs:
           poll_overlay() {
             local out
             out="$(python3 scripts/espn_live_overlay.py 2>/dev/null || true)"
-            printf '%s\n' "$out" | grep -vE '^(LIVE_COUNT|FINISHED_COUNT|NEXT_KICKOFF_MINS)=' || true
+            printf '%s\n' "$out" | grep -vE '^(LIVE_COUNT|FINISHED_COUNT|NEXT_KICKOFF_MINS)=|^No live changes' || true
             live="$(printf '%s\n'  "$out" | sed -n 's/^LIVE_COUNT=//p' | tail -1)"
             fin="$(printf '%s\n'   "$out" | sed -n 's/^FINISHED_COUNT=//p' | tail -1)"
             nextk="$(printf '%s\n' "$out" | sed -n 's/^NEXT_KICKOFF_MINS=//p' | tail -1)"
@@ -156,13 +170,14 @@ jobs:
             #    live" case: we hold off dispatching until the slot fully clears).
             if [ "$live" -gt 0 ]; then
               watching=1
-              echo "$(hm) — ${live} live game(s); watching."
+              force=0; [ "$live" != "${last_live:-}" ] && force=1; last_live="$live"
+              maybe_echo "${live} live game(s); watching." "$force"
               sleep "$fast_s"; continue
             fi
 
             # 3) Kickoff imminent -> stay alive so a delayed cron can't miss it.
             if [ "$nextk" -ge 0 ] && [ "$nextk" -le "$look_m" ]; then
-              echo "$(hm) — next kickoff in ${nextk} min; waiting."
+              maybe_echo "next kickoff in ${nextk} min; waiting." 0
               sleep "$idle_s"; continue
             fi
 
