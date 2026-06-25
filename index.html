@@ -1312,12 +1312,14 @@
   // simulated W/D/L odds from upcoming_odds.json. Each nation's colour is drawn
   // from its flag; within a group the four are kept clearly distinct (a bar only
   // ever pairs two same-group teams), deviating from the flag where flags collide.
-  // The live feed spells two nations differently from the canonical sim/odds
+  // The live feed spells some nations differently from the canonical sim/odds
   // names; normalise so colours and odds join for every card.
   const NAME_ALIAS = {
     "Congo DR": "DR Congo",
     "Bosnia-Herzegovina": "Bosnia and Herzegovina",
     "Ivory Coast": "Côte d'Ivoire", // safety: some feeds use the English name
+    "Turkey": "Türkiye",                // feed uses the English name on upcoming cards
+    "Cape Verde Islands": "Cabo Verde", // feed's long-form name vs canonical "Cabo Verde"
   };
   // Normalised match key: fold accents, unify apostrophe variants (’ ‘ ` ´ → '),
   // lowercase, and collapse whitespace. Lets the live-feed name join the odds /
