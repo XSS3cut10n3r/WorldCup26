@@ -218,6 +218,41 @@
       "rank": 6
     },
     {
+      "name": "Paul",
+      "points": 4.0,
+      "teams": [
+        {
+          "name": "Belgium",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "points": 2,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Panama",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Cabo Verde",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 6
+    },
+    {
       "name": "Pete",
       "points": 4.0,
       "teams": [
@@ -271,7 +306,7 @@
           "clinchType": null
         }
       ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Charlie",
@@ -306,42 +341,7 @@
           "clinchType": null
         }
       ],
-      "rank": 9
-    },
-    {
-      "name": "Paul",
-      "points": 3.0,
-      "teams": [
-        {
-          "name": "Belgium",
-          "points": 1.0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Côte d'Ivoire",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Panama",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Cabo Verde",
-          "points": 1.0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 11
+      "rank": 10
     },
     {
       "name": "Tom",
@@ -369,7 +369,7 @@
           "clinchType": null
         }
       ],
-      "rank": 11
+      "rank": 12
     },
     {
       "name": "Iva",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Paul",
+      "team": "Côte d'Ivoire",
+      "points": 1,
+      "label": "Côte d'Ivoire won (Group stage)",
+      "utcDate": "2026-06-25T20:00:00Z"
+    },
+    {
       "owner": "Sydney",
       "team": "South Africa",
       "points": 1,
@@ -463,13 +470,6 @@
       "points": 1,
       "label": "Morocco won (Group stage)",
       "utcDate": "2026-06-24T22:00:00Z"
-    },
-    {
-      "owner": "Tomi",
-      "team": "Bosnia and Herzegovina",
-      "points": 1,
-      "label": "Bosnia and Herzegovina won (Group stage)",
-      "utcDate": "2026-06-24T19:00:00Z"
     }
   ],
   "live": [
@@ -494,11 +494,13 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
+    }
+  ],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-25T20:00:00Z",
       "home": {
         "name": "Curaçao",
@@ -516,9 +518,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -603,28 +603,6 @@
         "goals": 2,
         "penGoals": null,
         "fifaRank": 83
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-24T19:00:00Z",
-      "home": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 64
-      },
-      "away": {
-        "name": "Qatar",
-        "owner": "Iva",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 57
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -2191,14 +2169,14 @@
           "pos": 2,
           "team": "Côte d'Ivoire",
           "owner": "Paul",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "draw": 0,
           "lost": 1,
-          "gf": 2,
+          "gf": 4,
           "ga": 2,
-          "gd": 0,
-          "points": 3,
+          "gd": 2,
+          "points": 6,
           "conduct": -3,
           "fifaRank": 33,
           "clinched": false,
@@ -2225,13 +2203,13 @@
           "pos": 4,
           "team": "Curaçao",
           "owner": "Ondine",
-          "played": 2,
+          "played": 3,
           "won": 0,
           "draw": 1,
-          "lost": 1,
+          "lost": 2,
           "gf": 1,
-          "ga": 7,
-          "gd": -6,
+          "ga": 9,
+          "gd": -8,
           "points": 1,
           "conduct": -5,
           "fifaRank": 82,
@@ -9200,6 +9178,12 @@
           "a": "Curaçao",
           "hg": 0,
           "ag": 0
+        },
+        {
+          "h": "Curaçao",
+          "a": "Côte d'Ivoire",
+          "hg": 0,
+          "ag": 2
         }
       ],
       "F": [
@@ -9403,10 +9387,6 @@
         {
           "h": "Ecuador",
           "a": "Germany"
-        },
-        {
-          "h": "Curaçao",
-          "a": "Côte d'Ivoire"
         }
       ],
       "F": [
@@ -9820,5 +9800,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-25T21:58:48Z"
+  "generated": "2026-06-25T22:02:54Z"
 }
