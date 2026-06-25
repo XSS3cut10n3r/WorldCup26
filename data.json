@@ -479,29 +479,6 @@
       "status": "IN_PLAY",
       "utcDate": "2026-06-25T20:00Z",
       "home": {
-        "name": "Curaçao",
-        "owner": "Ondine",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 82
-      },
-      "away": {
-        "name": "Côte d'Ivoire",
-        "owner": "Paul",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 33
-      },
-      "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-25T20:00Z",
-      "home": {
         "name": "Ecuador",
         "owner": "Sydney",
         "goals": 2,
@@ -521,6 +498,29 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T20:00Z",
+      "home": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 82
+      },
+      "away": {
+        "name": "Côte d'Ivoire",
+        "owner": "Paul",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 33
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM",
+      "_src": "espn-final"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
