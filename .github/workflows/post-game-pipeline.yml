@@ -27,22 +27,49 @@ jobs:
           set -u
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          ok=no
-          for attempt in 1 2 3 4 5; do
+
+          # Files this pipeline OWNS and is the only writer of. The live-scores
+          # loop only ever touches data.json, so its commits never collide with
+          # these. That is the whole point: a rejected push means data.json moved,
+          # NOT that our outputs are stale — so we replay the already-computed
+          # outputs onto the new remote instead of recomputing (which is what made
+          # a 5-10 min pipeline restart from scratch on every intervening commit).
+          OUTFILES="odds.json elo.json sim_odds.json knockout_odds.json upcoming_odds.json bubble.svg"
+
+          resync() {
             git rebase --abort 2>/dev/null || true
             rm -rf .git/rebase-merge .git/rebase-apply 2>/dev/null || true
             git fetch -q origin "$BRANCH" || true
             git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
-            python3 scripts/update_odds.py
-            python3 scripts/build_elos.py
-            python3 scripts/simulate_pool.py --json sim_odds.json --knockout-json knockout_odds.json --upcoming-json upcoming_odds.json --sims 1000000 --seed 1
-            python3 scripts/simulate_group_maxmin.py --svg bubble.svg --sims 1000000 --seed 1
-            git add odds.json elo.json sim_odds.json knockout_odds.json upcoming_odds.json bubble.svg
-            if git diff --staged --quiet; then echo "No changes."; ok=skip; break; fi
+          }
+          add_outputs() { for f in $OUTFILES; do [ -f "$f" ] && git add "$f"; done; }
+
+          # --- Compute ONCE on top of the current remote --------------------
+          resync
+          python3 scripts/update_odds.py
+          python3 scripts/build_elos.py
+          python3 scripts/simulate_pool.py --json sim_odds.json --knockout-json knockout_odds.json --upcoming-json upcoming_odds.json --sims 1000000 --seed 1
+          python3 scripts/simulate_group_maxmin.py --svg bubble.svg --sims 1000000 --seed 1
+
+          add_outputs
+          if git diff --staged --quiet; then echo "No changes."; echo "Done (skip)."; exit 0; fi
+
+          # Snapshot the freshly computed outputs so push retries NEVER recompute.
+          tmp="$(mktemp -d)"
+          for f in $OUTFILES; do [ -f "$f" ] && cp "$f" "$tmp/"; done
+
+          # --- Reapply onto the latest remote and push, retrying cheaply ----
+          ok=no
+          for attempt in 1 2 3 4 5 6 7 8; do
+            resync                                    # pull in whatever moved (data.json, etc.)
+            for f in $OUTFILES; do [ -f "$tmp/$f" ] && cp "$tmp/$f" "$f"; done
+            add_outputs
+            if git diff --staged --quiet; then echo "Remote already current."; ok=skip; break; fi
             git commit -q -m "Post-game update: odds, elo, pool sim, knockout + upcoming odds, bubble graphic"
             if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
-            echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)..."
+            echo "push rejected (remote moved); replaying outputs WITHOUT recomputing (${attempt}/8)..."
             sleep 2
           done
+          rm -rf "$tmp"
           [ "$ok" = no ] && { echo "Could not push after retries."; exit 1; }
           echo "Done ($ok)."
