@@ -472,31 +472,7 @@
       "utcDate": "2026-06-24T19:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-25T20:00Z",
-      "home": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 23
-      },
-      "away": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 10
-      },
-      "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -519,6 +495,29 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM",
+      "_src": "espn-final"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T20:00Z",
+      "home": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 23
+      },
+      "away": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 10
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM",
       "_src": "espn-final"
     },
     {
