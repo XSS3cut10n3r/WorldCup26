@@ -1829,7 +1829,7 @@
           "ga": 0,
           "gd": 6,
           "points": 9,
-          "conduct": -5,
+          "conduct": -6,
           "fifaRank": 14,
           "clinched": true,
           "clinchType": "winner"
@@ -1846,7 +1846,7 @@
           "ga": 3,
           "gd": -1,
           "points": 4,
-          "conduct": -12,
+          "conduct": -13,
           "fifaRank": 60,
           "clinched": true,
           "clinchType": "second"
@@ -1863,7 +1863,7 @@
           "ga": 3,
           "gd": -1,
           "points": 3,
-          "conduct": -3,
+          "conduct": -4,
           "fifaRank": 25,
           "clinched": false,
           "clinchType": null
@@ -1977,7 +1977,7 @@
           "ga": 1,
           "gd": 6,
           "points": 7,
-          "conduct": -3,
+          "conduct": -5,
           "fifaRank": 6,
           "clinched": true,
           "clinchType": "winner"
@@ -2011,7 +2011,7 @@
           "ga": 4,
           "gd": -3,
           "points": 3,
-          "conduct": -4,
+          "conduct": -5,
           "fifaRank": 42,
           "clinched": false,
           "clinchType": null
@@ -2028,7 +2028,7 @@
           "ga": 8,
           "gd": -6,
           "points": 0,
-          "conduct": -4,
+          "conduct": -7,
           "fifaRank": 83,
           "clinched": false,
           "clinchType": null
@@ -2782,7 +2782,7 @@
       "ga": 3,
       "gd": -1,
       "points": 3,
-      "conduct": -3,
+      "conduct": -4,
       "fifaRank": 25,
       "clinched": false,
       "clinchType": null,
@@ -2848,7 +2848,7 @@
       "ga": 4,
       "gd": -3,
       "points": 3,
-      "conduct": -4,
+      "conduct": -5,
       "fifaRank": 42,
       "clinched": false,
       "clinchType": null,
@@ -3212,16 +3212,6 @@
         "rank": 24
       },
       {
-        "team": "Brazil",
-        "owner": "Sydney",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 24
-      },
-      {
         "team": "Cabo Verde",
         "owner": "Paul",
         "yellow": 3,
@@ -3292,16 +3282,6 @@
         "rank": 24
       },
       {
-        "team": "South Korea",
-        "owner": "Charlie",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 24
-      },
-      {
         "team": "Sweden",
         "owner": "Tomi",
         "yellow": 3,
@@ -3329,17 +3309,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 36
-      },
-      {
-        "team": "Haiti",
-        "owner": "Darcy",
-        "yellow": 4,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -4,
-        "rank": 36
+        "rank": 34
       },
       {
         "team": "Portugal",
@@ -3349,17 +3319,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 36
+        "rank": 34
       },
       {
-        "team": "Scotland",
-        "owner": "Sydney",
+        "team": "South Korea",
+        "owner": "Charlie",
         "yellow": 4,
         "indirect_red": 0,
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 36
+        "rank": 34
       },
       {
         "team": "United States",
@@ -3369,7 +3339,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 36
+        "rank": 34
+      },
+      {
+        "team": "Brazil",
+        "owner": "Sydney",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 38
       },
       {
         "team": "Canada",
@@ -3379,7 +3359,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 41
+        "rank": 38
       },
       {
         "team": "Curaçao",
@@ -3389,17 +3369,27 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 41
+        "rank": 38
+      },
+      {
+        "team": "Scotland",
+        "owner": "Sydney",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 38
       },
       {
         "team": "Mexico",
         "owner": "Nik",
-        "yellow": 1,
+        "yellow": 2,
         "indirect_red": 0,
         "direct_red": 1,
         "yellow_direct_red": 0,
-        "score": -5,
-        "rank": 41
+        "score": -6,
+        "rank": 42
       },
       {
         "team": "Belgium",
@@ -3409,7 +3399,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 44
+        "rank": 43
+      },
+      {
+        "team": "Haiti",
+        "owner": "Darcy",
+        "yellow": 7,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -7,
+        "rank": 43
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3444,22 +3444,22 @@
       {
         "team": "South Africa",
         "owner": "Sydney",
-        "yellow": 4,
+        "yellow": 5,
         "indirect_red": 0,
         "direct_red": 2,
         "yellow_direct_red": 0,
-        "score": -12,
-        "rank": 47
+        "score": -13,
+        "rank": 48
       }
     ],
     "people": [
       {
         "name": "Sydney",
-        "score": -21,
+        "score": -25,
         "teams": [
           {
             "name": "Brazil",
-            "score": -3
+            "score": -5
           },
           {
             "name": "Ecuador",
@@ -3467,11 +3467,11 @@
           },
           {
             "name": "South Africa",
-            "score": -12
+            "score": -13
           },
           {
             "name": "Scotland",
-            "score": -4
+            "score": -5
           }
         ],
         "rank": 1
@@ -3542,6 +3542,29 @@
         "rank": 4
       },
       {
+        "name": "Darcy",
+        "score": -12,
+        "teams": [
+          {
+            "name": "France",
+            "score": 0
+          },
+          {
+            "name": "United States",
+            "score": -4
+          },
+          {
+            "name": "Tunisia",
+            "score": -1
+          },
+          {
+            "name": "Haiti",
+            "score": -7
+          }
+        ],
+        "rank": 5
+      },
+      {
         "name": "Kelly",
         "score": -12,
         "teams": [
@@ -3561,6 +3584,29 @@
         "rank": 5
       },
       {
+        "name": "Charlie",
+        "score": -11,
+        "teams": [
+          {
+            "name": "Colombia",
+            "score": -3
+          },
+          {
+            "name": "South Korea",
+            "score": -4
+          },
+          {
+            "name": "Saudi Arabia",
+            "score": -3
+          },
+          {
+            "name": "Jordan",
+            "score": -1
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Pete",
         "score": -11,
         "teams": [
@@ -3577,53 +3623,26 @@
             "score": -10
           }
         ],
-        "rank": 6
-      },
-      {
-        "name": "Charlie",
-        "score": -10,
-        "teams": [
-          {
-            "name": "Colombia",
-            "score": -3
-          },
-          {
-            "name": "South Korea",
-            "score": -3
-          },
-          {
-            "name": "Saudi Arabia",
-            "score": -3
-          },
-          {
-            "name": "Jordan",
-            "score": -1
-          }
-        ],
         "rank": 7
       },
       {
-        "name": "Darcy",
+        "name": "Nik",
         "score": -9,
         "teams": [
           {
-            "name": "France",
-            "score": 0
+            "name": "Argentina",
+            "score": -2
           },
           {
-            "name": "United States",
-            "score": -4
+            "name": "Mexico",
+            "score": -6
           },
           {
-            "name": "Tunisia",
+            "name": "Czechia",
             "score": -1
-          },
-          {
-            "name": "Haiti",
-            "score": -4
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Ondine",
@@ -3646,26 +3665,7 @@
             "score": -5
           }
         ],
-        "rank": 8
-      },
-      {
-        "name": "Nik",
-        "score": -8,
-        "teams": [
-          {
-            "name": "Argentina",
-            "score": -2
-          },
-          {
-            "name": "Mexico",
-            "score": -5
-          },
-          {
-            "name": "Czechia",
-            "score": -1
-          }
-        ],
-        "rank": 10
+        "rank": 9
       },
       {
         "name": "Agatha",
@@ -9427,21 +9427,21 @@
       "Mexico": {
         "owner": "Nik",
         "canon": "Mexico",
-        "conduct": -5,
+        "conduct": -6,
         "fifa": 14,
         "group": "A"
       },
       "South Korea": {
         "owner": "Charlie",
         "canon": "South Korea",
-        "conduct": -3,
+        "conduct": -4,
         "fifa": 25,
         "group": "A"
       },
       "South Africa": {
         "owner": "Sydney",
         "canon": "South Africa",
-        "conduct": -12,
+        "conduct": -13,
         "fifa": 60,
         "group": "A"
       },
@@ -9483,7 +9483,7 @@
       "Brazil": {
         "owner": "Sydney",
         "canon": "Brazil",
-        "conduct": -3,
+        "conduct": -5,
         "fifa": 6,
         "group": "C"
       },
@@ -9497,14 +9497,14 @@
       "Haiti": {
         "owner": "Darcy",
         "canon": "Haiti",
-        "conduct": -4,
+        "conduct": -7,
         "fifa": 83,
         "group": "C"
       },
       "Scotland": {
         "owner": "Sydney",
         "canon": "Scotland",
-        "conduct": -4,
+        "conduct": -5,
         "fifa": 42,
         "group": "C"
       },
@@ -9763,5 +9763,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-25T03:02:24Z"
+  "generated": "2026-06-25T04:35:35Z"
 }
