@@ -2135,10 +2135,24 @@
       return elim.has(c) && (playedBy[c] || 0) >= 3;
     };
 
+    // Teams that have reached the knockouts get the leaderboard's gold glow:
+    // officially clinched, or model-certain (knockout_odds.json odds 1.0, via
+    // koCertainNames) — exactly the rule the standings chips use. `out` always
+    // wins over `through`, so a side that clinched and was then knocked out dims
+    // rather than glows.
+    const koThrough = koCertainNames(data);
+    const through = new Set();
+    (data.leaderboard || []).forEach(p =>
+      (p.teams || []).forEach(t => {
+        if ((t.clinched || koThrough.has(t.name)) && !t.eliminated)
+          through.add(canonName(t.name));
+      }));
+    const isThrough = nm => through.has(canonName(nm)) && !isOut(nm);
+
     // Worst conduct: same look as the main standings, inverted honor
     const rows = people.map(p => {
       const chips = p.teams.map(t =>
-        `<span class="chip ${isOut(t.name) ? "out" : ""}">${esc(t.name)} <b>${t.score}</b></span>`).join("");
+        `<span class="chip ${isOut(t.name) ? "out" : ""} ${isThrough(t.name) ? "clinched" : ""}">${esc(t.name)} <b>${t.score}</b></span>`).join("");
       return `<div class="row ${p.rank === 1 && p.score < 0 ? "leader" : ""}">
         <div class="rank">${p.rank}</div>
         <div class="who"><div class="name">${esc(p.name)}</div><div class="teams">${chips}</div></div>
@@ -2155,7 +2169,7 @@
       const ctrs = teams.map(t =>
         `<tr>
           <td class="gpos">${t.rank}</td>
-          <td class="gteam">${isOut(t.team) ? `<span class="tko">${esc(t.team)}</span>` : esc(t.team)}${t.owner ? `<span class="gowner">${esc(t.owner)}</span>` : ""}</td>
+          <td class="gteam ${isThrough(t.team) ? "clinched" : ""}">${isOut(t.team) ? `<span class="tko">${esc(t.team)}</span>` : esc(t.team)}${t.owner ? `<span class="gowner">${esc(t.owner)}</span>` : ""}</td>
           <td>${t.yellow}</td><td>${t.indirect_red}</td><td>${t.direct_red}</td>
           <td>${t.yellow_direct_red}</td><td class="gpts">${t.score}</td>
         </tr>`).join("");
