@@ -651,6 +651,16 @@
     color: var(--chalk-faint);
     text-shadow: none;
   }
+  /* Eliminated team in a table cell: strike just the NAME (wrapped in .tko) in
+     red, like the leaderboard chip's .out, while the owner/group subtext beside
+     it stays normal. Used on the Conduct team table for sides that played out
+     their group and missed, or were knocked out of the bracket. */
+  .gtable td.gteam .tko {
+    color: var(--chalk-faint);
+    text-decoration: line-through;
+    text-decoration-color: var(--live);
+    text-decoration-thickness: 1.5px;
+  }
   .gtable-wrap {
     border: 1px solid var(--pitch-line);
     background: var(--pitch-deep);
@@ -2107,10 +2117,28 @@
     }
     let html = "";
 
+    // Teams that are out: played their three group games and missed, or were
+    // knocked out of the bracket. The leaderboard's `eliminated` flag alone is
+    // too eager — a side can be mathematically out after just two games — so we
+    // also require its group to be complete (3 games played). A bracket knockout
+    // still qualifies, since those teams already have their three group games
+    // behind them. Group games-played is read from data.groups; both lookups go
+    // through canonName so spelling variants line up.
+    const playedBy = {};
+    (data.groups || []).forEach(g =>
+      (g.table || []).forEach(r => { playedBy[canonName(r.team)] = r.played; }));
+    const elim = new Set();
+    (data.leaderboard || []).forEach(p =>
+      (p.teams || []).forEach(t => { if (t.eliminated) elim.add(canonName(t.name)); }));
+    const isOut = nm => {
+      const c = canonName(nm);
+      return elim.has(c) && (playedBy[c] || 0) >= 3;
+    };
+
     // Worst conduct: same look as the main standings, inverted honor
     const rows = people.map(p => {
       const chips = p.teams.map(t =>
-        `<span class="chip">${esc(t.name)} <b>${t.score}</b></span>`).join("");
+        `<span class="chip ${isOut(t.name) ? "out" : ""}">${esc(t.name)} <b>${t.score}</b></span>`).join("");
       return `<div class="row ${p.rank === 1 && p.score < 0 ? "leader" : ""}">
         <div class="rank">${p.rank}</div>
         <div class="who"><div class="name">${esc(p.name)}</div><div class="teams">${chips}</div></div>
@@ -2127,7 +2155,7 @@
       const ctrs = teams.map(t =>
         `<tr>
           <td class="gpos">${t.rank}</td>
-          <td class="gteam">${esc(t.team)}${t.owner ? `<span class="gowner">${esc(t.owner)}</span>` : ""}</td>
+          <td class="gteam">${isOut(t.team) ? `<span class="tko">${esc(t.team)}</span>` : esc(t.team)}${t.owner ? `<span class="gowner">${esc(t.owner)}</span>` : ""}</td>
           <td>${t.yellow}</td><td>${t.indirect_red}</td><td>${t.direct_red}</td>
           <td>${t.yellow_direct_red}</td><td class="gpts">${t.score}</td>
         </tr>`).join("");
