@@ -27,6 +27,7 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: write
+  actions: write          # needed to dispatch the post-game pipeline on game end
 jobs:
   loop:
     runs-on: ubuntu-latest
@@ -44,6 +45,7 @@ jobs:
           POST_MINUTES: ${{ github.event.inputs.post_minutes || '10' }}
           POST_SECONDS: ${{ github.event.inputs.post_seconds || '60' }}
           BRANCH: ${{ github.ref_name }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # for `gh workflow run`
         run: |
           set -u
           git config user.name  "github-actions[bot]"
@@ -129,6 +131,16 @@ jobs:
               commit_push "Post-game scores: $(ts)" regen_full
               sleep "$post_s"
             done
+            # Finals are now in data.json — kick the post-game pipeline (odds, elo,
+            # pool sim) instead of waiting for its 2-hourly cron. workflow_dispatch
+            # is the documented exception that DOES fire under GITHUB_TOKEN (with
+            # actions: write). If your org blocks it, swap GH_TOKEN for a PAT.
+            echo "Game(s) ended — dispatching the post-game pipeline."
+            if gh workflow run post-game-pipeline.yml --ref "$BRANCH" -R "$GITHUB_REPOSITORY"; then
+              echo "  post-game pipeline dispatched."
+            else
+              echo "  could not dispatch post-game pipeline (check actions: write / token)."
+            fi
           fi
 
           echo "Run finished."
