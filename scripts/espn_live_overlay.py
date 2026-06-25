@@ -42,9 +42,16 @@ import os
 import sys
 import unicodedata
 import urllib.request
+from datetime import datetime, timezone
 
 DATA_FILE = os.environ.get("DATA_FILE", "data.json")
 ESPN_FIXTURE = os.environ.get("ESPN_FIXTURE")  # optional local file, for testing
+# How recently a game must have kicked off for the "just finished, football-data
+# hasn't posted it yet" filler to apply. This stops the filler from back-filling
+# the whole tournament: football-data keeps only a short rolling `recent` window,
+# so every older finished game would otherwise look "missing". A group game runs
+# well under 4h, so anything older than this is history, not a live-window gap.
+FINAL_GAP_HOURS = float(os.environ.get("FINAL_GAP_HOURS", "4"))
 SCOREBOARD = (
     "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/"
     "scoreboard?limit=300&dates=20260611-20260719"
@@ -146,6 +153,23 @@ def sides(comp):
     return h, a
 
 
+def _kickoff_dt(comp):
+    """ESPN kickoff time -> aware UTC datetime, or None. Handles the trailing 'Z'
+    and the seconds-optional formats ESPN uses (e.g. '2026-06-25T20:00Z')."""
+    s = comp.get("date") or comp.get("startDate")
+    if not s:
+        return None
+    s = s.strip()
+    if s.endswith("Z"):
+        s = s[:-1]
+    for fmt in ("%Y-%m-%dT%H:%M:%S", "%Y-%m-%dT%H:%M"):
+        try:
+            return datetime.strptime(s, fmt).replace(tzinfo=timezone.utc)
+        except ValueError:
+            pass
+    return None
+
+
 def goals_of(competitor):
     try:
         return int(competitor.get("score"))
@@ -226,6 +250,7 @@ def main():
     # 2) Walk ESPN group games: collect live cards, and final cards for games that
     #    football-data hasn't published anywhere yet (the disappearing-at-FT gap).
     live_cards, final_cards, unplaceable = [], [], set()
+    now = datetime.now(timezone.utc)
     for comp, state in espn_group_events(espn):
         if state == "in":
             card, key = make_card(comp, meta, by_norm, "IN_PLAY")
@@ -235,6 +260,13 @@ def main():
             elif key:
                 unplaceable.add(key)
         elif state == "post":
+            # Only fill the gap for a game that JUST finished (kickoff within the
+            # recency window). Older finished games are history that football-data
+            # has simply rotated out of its short `recent` list, not a live-window
+            # gap — back-filling them all is what flooded `recent`.
+            dt = _kickoff_dt(comp)
+            if dt is None or (now - dt).total_seconds() > FINAL_GAP_HOURS * 3600:
+                continue
             card, key = make_card(comp, meta, by_norm, "FINISHED")
             if card:
                 hg, ag = card["home"]["goals"], card["away"]["goals"]
