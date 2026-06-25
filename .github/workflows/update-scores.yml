@@ -1,61 +1,53 @@
 name: Update scores (live loop)
 on:
   schedule:
-    - cron: "*/5 * * * *"        # every 5 min (GitHub's minimum); exits in seconds when idle
+    - cron: "*/15 * * * *"      # polite cadence; the watcher + marker absorb cron jitter
   workflow_dispatch:
     inputs:
-      fast_seconds:
-        description: "Seconds between ESPN polls while a game is live"
-        required: false
-        default: "30"
-      post_minutes:
-        description: "Post-game football-data catch-up window, in minutes"
-        required: false
-        default: "10"
-      post_seconds:
-        description: "Seconds between post-game football-data polls"
-        required: false
-        default: "60"
-      max_watch_minutes:
-        description: "Safety cap on how long one run will watch a live game"
-        required: false
-        default: "140"
+      fast_seconds:      { description: "Seconds between ESPN polls while a game is live", required: false, default: "30" }
+      idle_seconds:      { description: "Seconds between polls while waiting for a kickoff", required: false, default: "120" }
+      post_minutes:      { description: "Football-data catch-up window after a finish, minutes", required: false, default: "10" }
+      post_seconds:      { description: "Seconds between football-data catch-up polls", required: false, default: "60" }
+      lookahead_minutes: { description: "Stay alive if a kickoff is within this many minutes", required: false, default: "20" }
+      run_minutes:       { description: "Hard cap on a single run, minutes", required: false, default: "150" }
 concurrency:
   group: update-scores-live
-  cancel-in-progress: false     # NEVER cancel a live watcher or its Phase B; the
-                                # next 5-min tick queues behind it (one pending max)
+  cancel-in-progress: false     # never cancel a live watcher or its catch-up; ticks queue behind
 permissions:
   contents: write
-  actions: write                # needed to dispatch the post-game pipeline on game end
+  actions: write                # needed to dispatch the post-game pipeline
 jobs:
   loop:
     runs-on: ubuntu-latest
-    timeout-minutes: 155
+    timeout-minutes: 160
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-          fetch-depth: 0
-      - name: Refresh, watch live only while a game is on, then catch up + dispatch
+        with: { ref: "${{ github.ref_name }}", fetch-depth: 0 }
+      - name: Adaptive watch — live scores, finish detection, pipeline dispatch
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
-          FAST_SECONDS: ${{ github.event.inputs.fast_seconds || '30' }}
-          POST_MINUTES: ${{ github.event.inputs.post_minutes || '10' }}
-          POST_SECONDS: ${{ github.event.inputs.post_seconds || '60' }}
-          MAX_WATCH_MINUTES: ${{ github.event.inputs.max_watch_minutes || '140' }}
+          FAST_SECONDS:      ${{ github.event.inputs.fast_seconds      || '30' }}
+          IDLE_SECONDS:      ${{ github.event.inputs.idle_seconds      || '120' }}
+          POST_MINUTES:      ${{ github.event.inputs.post_minutes      || '10' }}
+          POST_SECONDS:      ${{ github.event.inputs.post_seconds      || '60' }}
+          LOOKAHEAD_MINUTES: ${{ github.event.inputs.lookahead_minutes || '20' }}
+          RUN_MINUTES:       ${{ github.event.inputs.run_minutes       || '150' }}
           BRANCH: ${{ github.ref_name }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}   # for `gh workflow run`
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -u
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          fast_s="${FAST_SECONDS:-30}";        case "$fast_s"  in (*[!0-9]*|""|0) fast_s=30 ;; esac
-          post_m="${POST_MINUTES:-10}";        case "$post_m"  in (*[!0-9]*|"")  post_m=10 ;; esac
-          post_s="${POST_SECONDS:-60}";        case "$post_s"  in (*[!0-9]*|""|0) post_s=60 ;; esac
-          watch_m="${MAX_WATCH_MINUTES:-140}"; case "$watch_m" in (*[!0-9]*|""|0) watch_m=140;; esac
+          fast_s="${FAST_SECONDS:-30}";        case "$fast_s"     in (*[!0-9]*|""|0) fast_s=30 ;; esac
+          idle_s="${IDLE_SECONDS:-120}";       case "$idle_s"     in (*[!0-9]*|""|0) idle_s=120 ;; esac
+          post_m="${POST_MINUTES:-10}";        case "$post_m"     in (*[!0-9]*|"")  post_m=10 ;; esac
+          post_s="${POST_SECONDS:-60}";        case "$post_s"     in (*[!0-9]*|""|0) post_s=60 ;; esac
+          look_m="${LOOKAHEAD_MINUTES:-20}";   case "$look_m"     in (*[!0-9]*|"")  look_m=20 ;; esac
+          run_m="${RUN_MINUTES:-150}";         case "$run_m"      in (*[!0-9]*|""|0) run_m=150 ;; esac
 
           ts() { date -u '+%Y-%m-%dT%H:%M:%SZ'; }
+          hm() { date -u '+%H:%M:%SZ'; }
 
           resync() {
             git rebase --abort 2>/dev/null || true
@@ -66,88 +58,116 @@ jobs:
           regen_full() { python3 scripts/update_scores.py && python3 scripts/espn_live_overlay.py; }
           regen_espn() { python3 scripts/espn_live_overlay.py; }
 
+          # When WANT_MARKER is set, every commit ensures .scores_state holds it,
+          # re-applied after any resync so it survives push conflicts.
+          WANT_MARKER=""
+          stage_changes() {
+            [ -n "$WANT_MARKER" ] && printf '%s\n' "$WANT_MARKER" > .scores_state
+            git add data.json 2>/dev/null || true
+            [ -f .scores_state ] && git add .scores_state || true
+          }
           commit_push() {
             local msg="$1" regen="$2"
-            git add data.json
+            stage_changes
             if git diff --staged --quiet; then return 0; fi
             git commit -q -m "$msg"
             if git push -q origin HEAD:"$BRANCH"; then echo "  pushed."; return 0; fi
             for attempt in 1 2 3 4; do
               echo "  push rejected; resync + retry ($attempt/4)…"
-              resync
-              "$regen" || true
-              git add data.json
+              resync; "$regen" || true; stage_changes
               if git diff --staged --quiet; then echo "  remote already current."; return 0; fi
               git commit -q -m "$msg"
               if git push -q origin HEAD:"$BRANCH"; then echo "  pushed (after resync)."; return 0; fi
               sleep 2
             done
-            echo "  push failed after retries; will catch up next poll."
-            return 1
+            echo "  push failed after retries; will catch up next poll."; return 1
+          }
+
+          # Run the overlay; echo its notes; set globals live / fin / nextk.
+          poll_overlay() {
+            local out
+            out="$(python3 scripts/espn_live_overlay.py 2>/dev/null || true)"
+            printf '%s\n' "$out" | grep -vE '^(LIVE_COUNT|FINISHED_COUNT|NEXT_KICKOFF_MINS)=' || true
+            live="$(printf '%s\n'  "$out" | sed -n 's/^LIVE_COUNT=//p' | tail -1)"
+            fin="$(printf '%s\n'   "$out" | sed -n 's/^FINISHED_COUNT=//p' | tail -1)"
+            nextk="$(printf '%s\n' "$out" | sed -n 's/^NEXT_KICKOFF_MINS=//p' | tail -1)"
+            case "$live"  in (''|*[!0-9-]*) live=-1 ;; esac
+            case "$fin"   in (''|*[!0-9-]*) fin=-1 ;; esac
+            case "$nextk" in (''|*[!0-9-]*) nextk=-1 ;; esac
           }
 
           dispatch_pipeline() {
-            echo "Game(s) ended — dispatching the post-game pipeline."
+            echo "Dispatching the post-game pipeline."
             if gh workflow run post-game-pipeline.yml --ref "$BRANCH" -R "$GITHUB_REPOSITORY"; then
-              echo "  post-game pipeline dispatched."
+              echo "  dispatched."
             else
-              echo "  could not dispatch post-game pipeline (check actions: write / token)."
+              echo "  dispatch failed (check actions: write / token)."
             fi
           }
 
-          # --- Baseline: refresh football-data (posts any finals) + overlay -----
-          # Runs every tick, so finals still post promptly even on an idle check.
+          # --- Baseline: refresh football-data (+overlay), committed -----------
           resync
           regen_full || echo "baseline producer failed (transient?); continuing."
           commit_push "Scores baseline: $(ts)" regen_full
 
-          # --- Watch ONLY while a game is live ----------------------------------
-          # First check: nothing live -> terminate in seconds. A game live -> hold
-          # until it ends (this run owns the transition), then Phase B + dispatch.
-          watch_end=$(( $(date +%s) + watch_m * 60 ))
-          seen_live=0; ended=0
-          while [ "$(date +%s)" -lt "$watch_end" ]; do
+          # Marker = finished-game count we've already acted on (persisted in repo).
+          marker="$(cat .scores_state 2>/dev/null || true)"; case "$marker" in (''|*[!0-9]*) marker="" ;; esac
+
+          run_end=$(( $(date +%s) + run_m * 60 ))
+          watching=0
+          while [ "$(date +%s)" -lt "$run_end" ]; do
             resync
-            out="$(python3 scripts/espn_live_overlay.py 2>/dev/null || true)"
-            echo "$out" | sed '/^LIVE_COUNT=/d'
-            live="$(printf '%s\n' "$out" | sed -n 's/^LIVE_COUNT=//p' | tail -1)"
-            case "$live" in (''|*[!0-9-]*) live=-1 ;; esac
+            poll_overlay
             commit_push "Live scores (ESPN): $(ts)" regen_espn
-            if [ "$live" -gt 0 ]; then
-              seen_live=1
-              echo "$(date -u '+%H:%M:%SZ') — ${live} live game(s); watching."
-              sleep "$fast_s"
-            elif [ "$live" -eq 0 ]; then
-              if [ "$seen_live" -eq 1 ]; then
-                echo "$(date -u '+%H:%M:%SZ') — live game(s) ended; entering post-game catch-up."
-                ended=1
-              else
-                echo "$(date -u '+%H:%M:%SZ') — no live games; terminating run."
-              fi
-              break
-            else
-              # live == -1 (ESPN unknown / transient)
-              if [ "$seen_live" -eq 1 ]; then
-                echo "$(date -u '+%H:%M:%SZ') — ESPN blip; still watching."
-                sleep "$fast_s"
-              else
-                echo "$(date -u '+%H:%M:%SZ') — ESPN unavailable, nothing known live; terminating run."
-                break
-              fi
+
+            # 0) ESPN unknown: keep watching through a blip, else terminate.
+            if [ "$fin" -lt 0 ]; then
+              if [ "$watching" -eq 1 ]; then echo "$(hm) — ESPN blip; still watching."; sleep "$fast_s"; continue
+              else echo "$(hm) — ESPN unavailable; terminating run."; break; fi
             fi
+
+            # First sighting with ESPN up: adopt the current count, no dispatch.
+            if [ -z "$marker" ]; then
+              marker="$fin"
+              WANT_MARKER="$marker"; commit_push "Init finished-games marker: $marker" regen_espn; WANT_MARKER=""
+              echo "$(hm) — initialised finished-games marker at $marker."
+            fi
+
+            # 1) Slot fully ended (or an unwatched finish): finished count rose AND
+            #    nothing is live right now -> one football-data catch-up + one
+            #    dispatch covering every game that finished since the marker. If a
+            #    game finished but another is still live, this is skipped and we
+            #    keep watching (below), so a 2-game slot dispatches once, not twice.
+            if [ "$fin" -gt "$marker" ] && [ "$live" -le 0 ]; then
+              echo "$(hm) — finished games ${marker} -> ${fin}, none live; catch-up then dispatch."
+              WANT_MARKER="$fin"
+              post_end=$(( $(date +%s) + post_m * 60 )); [ "$post_end" -gt "$run_end" ] && post_end="$run_end"
+              while [ "$(date +%s)" -lt "$post_end" ]; do
+                resync; regen_full || echo "  catch-up producer failed (transient?)."
+                commit_push "Post-game scores: $(ts)" regen_full
+                sleep "$post_s"
+              done
+              dispatch_pipeline
+              marker="$fin"; WANT_MARKER=""; watching=0
+              continue
+            fi
+
+            # 2) A game is live -> keep watching (also the "one finished, slot still
+            #    live" case: we hold off dispatching until the slot fully clears).
+            if [ "$live" -gt 0 ]; then
+              watching=1
+              echo "$(hm) — ${live} live game(s); watching."
+              sleep "$fast_s"; continue
+            fi
+
+            # 3) Kickoff imminent -> stay alive so a delayed cron can't miss it.
+            if [ "$nextk" -ge 0 ] && [ "$nextk" -le "$look_m" ]; then
+              echo "$(hm) — next kickoff in ${nextk} min; waiting."
+              sleep "$idle_s"; continue
+            fi
+
+            # 4) Nothing live, nothing newly finished, nothing imminent -> done.
+            echo "$(hm) — idle (live=$live fin=$fin next=$nextk); terminating run."
+            break
           done
-
-          # --- Phase B + dispatch: only on a real live -> 0 transition ----------
-          if [ "$ended" -eq 1 ]; then
-            echo "Phase B: football-data poll every ${post_s}s for up to ${post_m} min."
-            post_end=$(( $(date +%s) + post_m * 60 ))
-            while [ "$(date +%s)" -lt "$post_end" ]; do
-              resync
-              regen_full || echo "  post-game producer failed (transient?)."
-              commit_push "Post-game scores: $(ts)" regen_full
-              sleep "$post_s"
-            done
-            dispatch_pipeline
-          fi
-
           echo "Run finished."
