@@ -60,6 +60,7 @@ SCOREBOARD = (
 # ESPN display names -> your canonical names (same direction as sync_cards.py).
 NAME_MAP = {
     "Cape Verde": "Cabo Verde",
+    "Cape Verde Islands": "Cabo Verde",   # football-data's long-form name
     "Ivory Coast": "Côte d'Ivoire",
     "Korea Republic": "South Korea",
     "Korea DPR": "North Korea",
@@ -277,20 +278,28 @@ def main():
 
     live_keys = {pair_key(c["home"]["name"], c["away"]["name"]) for c in live_cards}
 
+    # Identity key for a card ALREADY in data.json. Crucial: football-data's live
+    # feed may spell a team differently from the canonical name the overlay injects
+    # (e.g. "Ivory Coast" vs "Côte d'Ivoire"), so we canonicalize each side through
+    # the same name map before keying — otherwise the football-data copy wouldn't
+    # match the ESPN copy and both would show (the duplicate-live-game bug).
+    def existing_key(m):
+        h = (m.get("home") or {}).get("name")
+        a = (m.get("away") or {}).get("name")
+        return pair_key(canonicalize(h, meta, by_norm) or h,
+                        canonicalize(a, meta, by_norm) or a)
+
     # 3) A live game must not also sit in recent/upcoming (or a stale football-data
     #    live entry) — remove any matching pair so it shows once, as live.
     for key in ("live", "recent", "upcoming"):
-        data[key] = [m for m in data[key]
-                     if pair_key((m.get("home") or {}).get("name"),
-                                 (m.get("away") or {}).get("name")) not in live_keys]
+        data[key] = [m for m in data[key] if existing_key(m) not in live_keys]
 
     # 4) Existing fixtures across the file (after live removal), so final-gap cards
     #    only fill in when football-data truly hasn't published the game yet.
     present = set()
     for key in ("live", "recent", "upcoming"):
         for m in data[key]:
-            present.add(pair_key((m.get("home") or {}).get("name"),
-                                 (m.get("away") or {}).get("name")))
+            present.add(existing_key(m))
 
     # 5) Inject. Live games sorted by kickoff; final-gap fillers prepended to
     #    recent (newest first) only when otherwise absent.
