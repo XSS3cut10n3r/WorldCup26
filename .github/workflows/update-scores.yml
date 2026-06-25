@@ -1,6 +1,140 @@
 name: Update scores (live loop)
 on:
   schedule:
+    # Every 90 minutes: two offset crons give 00:00, 01:30, 03:00, 04:30, ... UTC.
+    - cron: "0 0,3,6,9,12,15,18,21 * * *"
+    - cron: "30 1,4,7,10,13,16,19,22 * * *"
+  workflow_dispatch:
+    inputs:
+      fast_minutes:
+        description: "ESPN live fast-poll window, in minutes"
+        required: false
+        default: "60"
+      fast_seconds:
+        description: "Seconds between ESPN live polls"
+        required: false
+        default: "30"
+      post_minutes:
+        description: "Post-game football-data catch-up window, in minutes"
+        required: false
+        default: "10"
+      post_seconds:
+        description: "Seconds between post-game football-data polls"
+        required: false
+        default: "60"
+concurrency:
+  group: update-scores-live
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  loop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: Live (ESPN 30s) then post-game (football-data 60s)
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          FAST_MINUTES: ${{ github.event.inputs.fast_minutes || '60' }}
+          FAST_SECONDS: ${{ github.event.inputs.fast_seconds || '30' }}
+          POST_MINUTES: ${{ github.event.inputs.post_minutes || '10' }}
+          POST_SECONDS: ${{ github.event.inputs.post_seconds || '60' }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          set -u
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # --- sanitise the four timing knobs to plain integers --------------
+          fast_m="${FAST_MINUTES:-60}"; case "$fast_m" in (*[!0-9]*|"") fast_m=60 ;; esac
+          fast_s="${FAST_SECONDS:-30}"; case "$fast_s" in (*[!0-9]*|""|0) fast_s=30 ;; esac
+          post_m="${POST_MINUTES:-10}"; case "$post_m" in (*[!0-9]*|"") post_m=10 ;; esac
+          post_s="${POST_SECONDS:-60}"; case "$post_s" in (*[!0-9]*|""|0) post_s=60 ;; esac
+
+          ts() { date -u '+%Y-%m-%dT%H:%M:%SZ'; }
+
+          resync() {
+            git rebase --abort 2>/dev/null || true
+            rm -rf .git/rebase-merge .git/rebase-apply 2>/dev/null || true
+            git fetch -q origin "$BRANCH" || true
+            git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
+          }
+
+          # Producers. regen_full = football-data then the ESPN live overlay;
+          # regen_espn = the overlay only (used during the live fast-poll, so we
+          # don't hammer football-data while a game is in play).
+          regen_full() { python3 scripts/update_scores.py && python3 scripts/espn_live_overlay.py; }
+          regen_espn() { python3 scripts/espn_live_overlay.py; }
+
+          # Commit data.json if it changed, pushing with resync+regenerate retries
+          # on a rejected push. $1 = commit message, $2 = regen function to re-run
+          # against the freshly-synced remote on conflict.
+          commit_push() {
+            local msg="$1" regen="$2"
+            git add data.json
+            if git diff --staged --quiet; then return 0; fi
+            git commit -q -m "$msg"
+            if git push -q origin HEAD:"$BRANCH"; then echo "  pushed."; return 0; fi
+            for attempt in 1 2 3 4; do
+              echo "  push rejected; resync + retry ($attempt/4)…"
+              resync
+              "$regen" || true
+              git add data.json
+              if git diff --staged --quiet; then echo "  remote already current."; return 0; fi
+              git commit -q -m "$msg"
+              if git push -q origin HEAD:"$BRANCH"; then echo "  pushed (after resync)."; return 0; fi
+              sleep 2
+            done
+            echo "  push failed after retries; will catch up next poll."
+            return 1
+          }
+
+          # --- 0) Fresh football-data baseline, with any live games overlaid ---
+          resync
+          regen_full || echo "baseline producer failed (transient?); continuing."
+          commit_push "Scores baseline: $(ts)" regen_full
+
+          # --- Phase A: ESPN live fast-poll (every ${fast_s}s, up to ${fast_m}m) ---
+          echo "Phase A: ESPN live poll every ${fast_s}s for up to ${fast_m} min."
+          fast_end=$(( $(date +%s) + fast_m * 60 ))
+          seen_live=0; ended=0
+          while [ "$(date +%s)" -lt "$fast_end" ]; do
+            resync
+            out="$(python3 scripts/espn_live_overlay.py 2>/dev/null || true)"
+            echo "$out" | sed '/^LIVE_COUNT=/d'                 # show overlay notes
+            live="$(printf '%s\n' "$out" | sed -n 's/^LIVE_COUNT=//p' | tail -1)"
+            case "$live" in (''|*[!0-9-]*) live=-1 ;; esac
+            commit_push "Live scores (ESPN): $(ts)" regen_espn
+            if [ "$live" -gt 0 ]; then
+              seen_live=1
+              echo "$(date -u '+%H:%M:%SZ') — ${live} live game(s)."
+            elif [ "$live" -eq 0 ] && [ "$seen_live" -eq 1 ]; then
+              echo "$(date -u '+%H:%M:%SZ') — live game(s) ended; entering post-game catch-up."
+              ended=1; break
+            fi
+            sleep "$fast_s"
+          done
+
+          # --- Phase B: football-data catch-up after the game ends -------------
+          if [ "$ended" -eq 1 ]; then
+            echo "Phase B: football-data poll every ${post_s}s for ${post_m} min."
+            post_end=$(( $(date +%s) + post_m * 60 ))
+            while [ "$(date +%s)" -lt "$post_end" ]; do
+              resync
+              regen_full || echo "  post-game producer failed (transient?)."
+              commit_push "Post-game scores: $(ts)" regen_full
+              sleep "$post_s"
+            done
+          fi
+
+          echo "Run finished."
+name: Update scores (live loop)
+on:
+  schedule:
     - cron: "0 */2 * * *"
   workflow_dispatch:
     inputs:
