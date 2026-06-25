@@ -237,6 +237,8 @@ def main():
         print(f"NOTE: ESPN unreachable ({e}); leaving {DATA_FILE} untouched.",
               file=sys.stderr)
         print("LIVE_COUNT=-1")  # unknown; the loop treats this as "no change in state"
+        print("FINISHED_COUNT=-1")
+        print("NEXT_KICKOFF_MINS=-1")
         return 0  # never break the scores pipeline over the live overlay
 
     meta, by_norm = build_team_lookup(data)
@@ -252,6 +254,8 @@ def main():
     #    football-data hasn't published anywhere yet (the disappearing-at-FT gap).
     live_cards, final_cards, unplaceable = [], [], set()
     now = datetime.now(timezone.utc)
+    finished_count = 0          # all finished group games (cumulative this tournament)
+    next_kick_mins = None       # minutes until the soonest not-yet-started group game
     for comp, state in espn_group_events(espn):
         if state == "in":
             card, key = make_card(comp, meta, by_norm, "IN_PLAY")
@@ -261,6 +265,7 @@ def main():
             elif key:
                 unplaceable.add(key)
         elif state == "post":
+            finished_count += 1
             # Only fill the gap for a game that JUST finished (kickoff within the
             # recency window). Older finished games are history that football-data
             # has simply rotated out of its short `recent` list, not a live-window
@@ -275,6 +280,12 @@ def main():
                                   "HOME_TEAM" if hg > ag else "AWAY_TEAM")
                 card[TAG] = TAG_FINAL
                 final_cards.append(card)
+        else:  # "pre" (scheduled): track the soonest kickoff for the watcher
+            dt = _kickoff_dt(comp)
+            if dt is not None:
+                mins = (dt - now).total_seconds() / 60.0
+                mins = mins if mins > 0 else 0.0
+                next_kick_mins = mins if next_kick_mins is None else min(next_kick_mins, mins)
 
     live_keys = {pair_key(c["home"]["name"], c["away"]["name"]) for c in live_cards}
 
@@ -310,7 +321,16 @@ def main():
                   if pair_key(c["home"]["name"], c["away"]["name"]) not in present
                   and pair_key(c["home"]["name"], c["away"]["name"]) not in live_keys]
     add_finals.sort(key=lambda c: c.get("utcDate") or "", reverse=True)
+
+    # football-data decides the recent window (normally 5). When we prepend a
+    # just-finished game it would otherwise become 6 (or 7 for two), so trim the
+    # oldest back to that window — the bridged games are newer and stay, the
+    # oldest football-data entries drop off. Once football-data posts the result
+    # itself, the game is "present", nothing is bridged, and recent is its own 5.
+    base_recent_len = len(data["recent"])
     data["recent"] = add_finals + data["recent"]
+    if add_finals and base_recent_len and len(data["recent"]) > base_recent_len:
+        data["recent"] = data["recent"][:base_recent_len]
 
     if unplaceable:
         for nm in sorted(unplaceable):
@@ -319,6 +339,8 @@ def main():
 
     # 6) Write only if something actually changed (keeps the no-change check happy).
     print(f"LIVE_COUNT={len(live_cards)}")
+    print(f"FINISHED_COUNT={finished_count}")
+    print(f"NEXT_KICKOFF_MINS={int(next_kick_mins) if next_kick_mins is not None else -1}")
     if data == original:
         print("No live changes; data.json left untouched.")
         return 0
