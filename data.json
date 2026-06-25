@@ -121,7 +121,7 @@
     },
     {
       "name": "Tomi",
-      "points": 5.0,
+      "points": 4.5,
       "teams": [
         {
           "name": "Germany",
@@ -139,7 +139,7 @@
         },
         {
           "name": "Bosnia and Herzegovina",
-          "points": 1.5,
+          "points": 1,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -152,7 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 5
     },
     {
       "name": "Darcy",
@@ -185,34 +185,6 @@
           "eliminated": true,
           "clinched": false,
           "clinchType": null
-        }
-      ],
-      "rank": 6
-    },
-    {
-      "name": "Kelly",
-      "points": 4.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Austria",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Canada",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
         }
       ],
       "rank": 6
@@ -306,7 +278,7 @@
           "clinchType": null
         }
       ],
-      "rank": 10
+      "rank": 9
     },
     {
       "name": "Charlie",
@@ -341,7 +313,35 @@
           "clinchType": null
         }
       ],
-      "rank": 10
+      "rank": 9
+    },
+    {
+      "name": "Kelly",
+      "points": 3.5,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Austria",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Canada",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 9
     },
     {
       "name": "Tom",
@@ -948,7 +948,7 @@
             "owner": "Kelly",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group B",
             "resolved": true
           },
@@ -1924,31 +1924,31 @@
           "pos": 2,
           "team": "Canada",
           "owner": "Kelly",
-          "played": 3,
+          "played": 2,
           "won": 1,
-          "draw": 1,
+          "draw": 0,
           "lost": 1,
-          "gf": 8,
-          "ga": 3,
+          "gf": 7,
+          "ga": 2,
           "gd": 5,
-          "points": 4,
+          "points": 3,
           "conduct": -5,
           "fifaRank": 30,
-          "clinched": true,
-          "clinchType": "second"
+          "clinched": false,
+          "clinchType": null
         },
         {
           "pos": 3,
           "team": "Bosnia and Herzegovina",
           "owner": "Tomi",
-          "played": 3,
+          "played": 2,
           "won": 1,
-          "draw": 1,
+          "draw": 0,
           "lost": 1,
-          "gf": 5,
-          "ga": 6,
+          "gf": 4,
+          "ga": 5,
           "gd": -1,
-          "points": 4,
+          "points": 3,
           "conduct": -10,
           "fifaRank": 64,
           "clinched": false,
@@ -2137,7 +2137,7 @@
           "ga": 4,
           "gd": 6,
           "points": 6,
-          "conduct": 0,
+          "conduct": -1,
           "fifaRank": 10,
           "clinched": true,
           "clinchType": "winner"
@@ -2154,7 +2154,7 @@
           "ga": 2,
           "gd": 2,
           "points": 6,
-          "conduct": -3,
+          "conduct": -4,
           "fifaRank": 33,
           "clinched": true,
           "clinchType": "second"
@@ -2171,7 +2171,7 @@
           "ga": 2,
           "gd": 0,
           "points": 4,
-          "conduct": -2,
+          "conduct": -5,
           "fifaRank": 23,
           "clinched": false,
           "clinchType": null
@@ -2188,7 +2188,7 @@
           "ga": 9,
           "gd": -8,
           "points": 1,
-          "conduct": -5,
+          "conduct": -7,
           "fifaRank": 82,
           "clinched": false,
           "clinchType": null
@@ -2728,35 +2728,13 @@
       "ga": 2,
       "gd": 0,
       "points": 4,
-      "conduct": -2,
+      "conduct": -5,
       "fifaRank": 23,
       "clinched": false,
       "clinchType": null,
       "group": "Group E",
       "ranked": true,
       "rank": 1,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Bosnia and Herzegovina",
-      "owner": "Tomi",
-      "played": 3,
-      "won": 1,
-      "draw": 1,
-      "lost": 1,
-      "gf": 5,
-      "ga": 6,
-      "gd": -1,
-      "points": 4,
-      "conduct": -10,
-      "fifaRank": 64,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group B",
-      "ranked": true,
-      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2777,6 +2755,28 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group F",
+      "ranked": true,
+      "rank": 2,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Bosnia and Herzegovina",
+      "owner": "Tomi",
+      "played": 2,
+      "won": 1,
+      "draw": 0,
+      "lost": 1,
+      "gf": 4,
+      "ga": 5,
+      "gd": -1,
+      "points": 3,
+      "conduct": -10,
+      "fifaRank": 64,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group B",
       "ranked": true,
       "rank": 3,
       "qualifies": true,
@@ -2994,16 +2994,6 @@
         "rank": 1
       },
       {
-        "team": "Germany",
-        "owner": "Tomi",
-        "yellow": 0,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": 0,
-        "rank": 1
-      },
-      {
         "team": "Japan",
         "owner": "Pete",
         "yellow": 0,
@@ -3041,7 +3031,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Croatia",
@@ -3051,7 +3041,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Czechia",
@@ -3061,7 +3051,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "England",
@@ -3071,7 +3061,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
+      },
+      {
+        "team": "Germany",
+        "owner": "Tomi",
+        "yellow": 1,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -1,
+        "rank": 5
       },
       {
         "team": "Jordan",
@@ -3081,7 +3081,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Morocco",
@@ -3091,7 +3091,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Spain",
@@ -3101,7 +3101,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Tunisia",
@@ -3111,7 +3111,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -1,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Argentina",
@@ -3126,16 +3126,6 @@
       {
         "team": "DR Congo",
         "owner": "Tom",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 14
-      },
-      {
-        "team": "Ecuador",
-        "owner": "Sydney",
         "yellow": 2,
         "indirect_red": 0,
         "direct_red": 0,
@@ -3221,7 +3211,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Cabo Verde",
@@ -3231,7 +3221,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Colombia",
@@ -3241,17 +3231,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
-      },
-      {
-        "team": "Côte d'Ivoire",
-        "owner": "Paul",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Egypt",
@@ -3261,7 +3241,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Netherlands",
@@ -3271,7 +3251,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Panama",
@@ -3281,7 +3261,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Saudi Arabia",
@@ -3291,7 +3271,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Sweden",
@@ -3301,7 +3281,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Switzerland",
@@ -3311,7 +3291,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 24
+        "rank": 23
       },
       {
         "team": "Australia",
@@ -3321,7 +3301,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 34
+        "rank": 32
+      },
+      {
+        "team": "Côte d'Ivoire",
+        "owner": "Paul",
+        "yellow": 4,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -4,
+        "rank": 32
       },
       {
         "team": "Portugal",
@@ -3331,7 +3321,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 34
+        "rank": 32
       },
       {
         "team": "South Korea",
@@ -3341,7 +3331,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 34
+        "rank": 32
       },
       {
         "team": "United States",
@@ -3351,7 +3341,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 34
+        "rank": 32
       },
       {
         "team": "Brazil",
@@ -3361,7 +3351,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Canada",
@@ -3371,17 +3361,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 38
+        "rank": 37
       },
       {
-        "team": "Curaçao",
-        "owner": "Ondine",
+        "team": "Ecuador",
+        "owner": "Sydney",
         "yellow": 5,
         "indirect_red": 0,
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Scotland",
@@ -3391,7 +3381,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Mexico",
@@ -3401,7 +3391,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Belgium",
@@ -3411,7 +3401,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 43
+        "rank": 42
+      },
+      {
+        "team": "Curaçao",
+        "owner": "Ondine",
+        "yellow": 7,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -7,
+        "rank": 42
       },
       {
         "team": "Haiti",
@@ -3421,7 +3421,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3467,7 +3467,7 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -25,
+        "score": -28,
         "teams": [
           {
             "name": "Brazil",
@@ -3475,7 +3475,7 @@
           },
           {
             "name": "Ecuador",
-            "score": -2
+            "score": -5
           },
           {
             "name": "South Africa",
@@ -3487,6 +3487,29 @@
           }
         ],
         "rank": 1
+      },
+      {
+        "name": "Paul",
+        "score": -17,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": -7
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -4
+          },
+          {
+            "name": "Panama",
+            "score": -3
+          },
+          {
+            "name": "Cabo Verde",
+            "score": -3
+          }
+        ],
+        "rank": 2
       },
       {
         "name": "Iva",
@@ -3505,38 +3528,15 @@
             "score": -12
           }
         ],
-        "rank": 2
-      },
-      {
-        "name": "Paul",
-        "score": -16,
-        "teams": [
-          {
-            "name": "Belgium",
-            "score": -7
-          },
-          {
-            "name": "Côte d'Ivoire",
-            "score": -3
-          },
-          {
-            "name": "Panama",
-            "score": -3
-          },
-          {
-            "name": "Cabo Verde",
-            "score": -3
-          }
-        ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Tomi",
-        "score": -15,
+        "score": -16,
         "teams": [
           {
             "name": "Germany",
-            "score": 0
+            "score": -1
           },
           {
             "name": "Sweden",
@@ -3551,7 +3551,7 @@
             "score": -2
           }
         ],
-        "rank": 4
+        "rank": 3
       },
       {
         "name": "Darcy",
@@ -3619,6 +3619,29 @@
         "rank": 7
       },
       {
+        "name": "Ondine",
+        "score": -11,
+        "teams": [
+          {
+            "name": "Senegal",
+            "score": 0
+          },
+          {
+            "name": "Iran",
+            "score": -2
+          },
+          {
+            "name": "Uzbekistan",
+            "score": -2
+          },
+          {
+            "name": "Curaçao",
+            "score": -7
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Pete",
         "score": -11,
         "teams": [
@@ -3654,30 +3677,7 @@
             "score": -1
           }
         ],
-        "rank": 9
-      },
-      {
-        "name": "Ondine",
-        "score": -9,
-        "teams": [
-          {
-            "name": "Senegal",
-            "score": 0
-          },
-          {
-            "name": "Iran",
-            "score": -2
-          },
-          {
-            "name": "Uzbekistan",
-            "score": -2
-          },
-          {
-            "name": "Curaçao",
-            "score": -5
-          }
-        ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Agatha",
@@ -9031,12 +9031,6 @@
       ],
       "B": [
         {
-          "h": "Canada",
-          "a": "Bosnia and Herzegovina",
-          "hg": 1,
-          "ag": 1
-        },
-        {
           "h": "Qatar",
           "a": "Switzerland",
           "hg": 1,
@@ -9554,28 +9548,28 @@
       "Germany": {
         "owner": "Tomi",
         "canon": "Germany",
-        "conduct": 0,
+        "conduct": -1,
         "fifa": 10,
         "group": "E"
       },
       "Curaçao": {
         "owner": "Ondine",
         "canon": "Curaçao",
-        "conduct": -5,
+        "conduct": -7,
         "fifa": 82,
         "group": "E"
       },
       "Côte d'Ivoire": {
         "owner": "Paul",
         "canon": "Côte d'Ivoire",
-        "conduct": -3,
+        "conduct": -4,
         "fifa": 33,
         "group": "E"
       },
       "Ecuador": {
         "owner": "Sydney",
         "canon": "Ecuador",
-        "conduct": -2,
+        "conduct": -5,
         "fifa": 23,
         "group": "E"
       },
@@ -9778,5 +9772,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-25T22:18:27Z"
+  "generated": "2026-06-25T22:51:21Z"
 }
