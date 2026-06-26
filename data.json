@@ -36,6 +36,34 @@
       "rank": 1
     },
     {
+      "name": "Charlotte",
+      "points": 6.0,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 2.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Norway",
+          "points": 2,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Ghana",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Nik",
       "points": 5.5,
       "teams": [
@@ -57,34 +85,6 @@
           "name": "Czechia",
           "points": 0.5,
           "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 2
-    },
-    {
-      "name": "Charlotte",
-      "points": 5.0,
-      "teams": [
-        {
-          "name": "Netherlands",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Norway",
-          "points": 2,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Ghana",
-          "points": 1.5,
-          "eliminated": false,
           "clinched": false,
           "clinchType": null
         }
@@ -117,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Tomi",
@@ -152,7 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Darcy",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Charlotte",
+      "team": "Netherlands",
+      "points": 1,
+      "label": "Netherlands won (Group stage)",
+      "utcDate": "2026-06-25T23:00:00Z"
+    },
+    {
       "owner": "Paul",
       "team": "Côte d'Ivoire",
       "points": 1,
@@ -463,38 +470,9 @@
       "points": 1,
       "label": "Mexico won (Group stage)",
       "utcDate": "2026-06-25T01:00:00Z"
-    },
-    {
-      "owner": "Sydney",
-      "team": "Brazil",
-      "points": 1,
-      "label": "Brazil won (Group stage)",
-      "utcDate": "2026-06-24T22:00:00Z"
     }
   ],
   "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-25T23:00:00Z",
-      "home": {
-        "name": "Tunisia",
-        "owner": "Darcy",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 46
-      },
-      "away": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 8
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -519,6 +497,28 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T23:00:00Z",
+      "home": {
+        "name": "Tunisia",
+        "owner": "Darcy",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 46
+      },
+      "away": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 8
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -603,28 +603,6 @@
         "goals": 3,
         "penGoals": null,
         "fifaRank": 14
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-24T22:00:00Z",
-      "home": {
-        "name": "Scotland",
-        "owner": "Sydney",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 42
-      },
-      "away": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 6
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
@@ -2248,14 +2226,14 @@
           "pos": 1,
           "team": "Netherlands",
           "owner": "Charlotte",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "draw": 1,
           "lost": 0,
-          "gf": 7,
-          "ga": 3,
-          "gd": 4,
-          "points": 4,
+          "gf": 10,
+          "ga": 4,
+          "gd": 6,
+          "points": 7,
           "conduct": -3,
           "fifaRank": 8,
           "clinched": false,
@@ -2299,13 +2277,13 @@
           "pos": 4,
           "team": "Tunisia",
           "owner": "Darcy",
-          "played": 2,
+          "played": 3,
           "won": 0,
           "draw": 0,
-          "lost": 2,
-          "gf": 1,
-          "ga": 9,
-          "gd": -8,
+          "lost": 3,
+          "gf": 2,
+          "ga": 12,
+          "gd": -10,
           "points": 0,
           "conduct": -1,
           "fifaRank": 46,
@@ -9238,6 +9216,12 @@
           "a": "Japan",
           "hg": 0,
           "ag": 4
+        },
+        {
+          "h": "Tunisia",
+          "a": "Netherlands",
+          "hg": 1,
+          "ag": 3
         }
       ],
       "G": [
@@ -9413,10 +9397,6 @@
       ],
       "E": [],
       "F": [
-        {
-          "h": "Tunisia",
-          "a": "Netherlands"
-        },
         {
           "h": "Japan",
           "a": "Sweden"
@@ -9823,5 +9803,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-26T00:58:40Z"
+  "generated": "2026-06-26T00:59:43Z"
 }
