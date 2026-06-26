@@ -472,7 +472,54 @@
       "utcDate": "2026-06-25T23:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-26T19:00Z",
+      "home": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 31
+      },
+      "away": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 3
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-26T19:00Z",
+      "home": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 15
+      },
+      "away": {
+        "name": "Iraq",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 56
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,66 +633,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-26T19:00:00Z",
-      "home": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 31,
-        "clinched": false
-      },
-      "away": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 3,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "I",
-        "winnerWinsGroup": true,
-        "winnerAdvances": false,
-        "drawBoth": true,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-26T19:00:00Z",
-      "home": {
-        "name": "Senegal",
-        "owner": "Ondine",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 15,
-        "clinched": false
-      },
-      "away": {
-        "name": "Iraq",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 56,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -921,6 +908,66 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-28T02:00:00Z",
+      "home": {
+        "name": "Jordan",
+        "owner": "Charlie",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 63,
+        "clinched": false
+      },
+      "away": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 1,
+        "clinched": true
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-28T02:00:00Z",
+      "home": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 28,
+        "clinched": false
+      },
+      "away": {
+        "name": "Austria",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 24,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "J",
+        "winnerWinsGroup": false,
+        "winnerAdvances": true,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": false
+        }
+      }
     }
   ],
   "bracket": [
@@ -9784,5 +9831,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-26T08:25:47Z"
+  "generated": "2026-06-26T19:14:26Z"
 }
