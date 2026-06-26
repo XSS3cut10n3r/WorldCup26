@@ -932,7 +932,7 @@
           "matchNo": 73,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-06-28T19:00:00Z",
           "home": {
             "name": "South Africa",
@@ -960,7 +960,7 @@
           "stage": "Round of 32",
           "stageCode": "LAST_32",
           "status": "SCHEDULED",
-          "utcDate": "2026-06-29T17:00:00Z",
+          "utcDate": "2026-06-29T20:30:00Z",
           "home": {
             "name": "Germany",
             "owner": "Tomi",
@@ -986,8 +986,8 @@
           "matchNo": 75,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-06-29T20:30:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-06-30T01:00:00Z",
           "home": {
             "name": "Netherlands",
             "owner": "Charlotte",
@@ -1013,8 +1013,8 @@
           "matchNo": 76,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-06-30T01:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-06-29T17:00:00Z",
           "home": {
             "name": "Brazil",
             "owner": "Sydney",
@@ -1148,8 +1148,8 @@
           "matchNo": 81,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-01T20:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-02T00:00:00Z",
           "home": {
             "name": "United States",
             "owner": "Darcy",
@@ -1160,11 +1160,11 @@
             "resolved": true
           },
           "away": {
-            "name": "Bosnia and Herzegovina",
+            "name": "Bosnia-Herzegovina",
             "owner": "Tomi",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "3rd place B/E/F/I/J",
             "resolved": true
           },
@@ -1176,7 +1176,7 @@
           "stage": "Round of 32",
           "stageCode": "LAST_32",
           "status": "SCHEDULED",
-          "utcDate": "2026-07-02T00:00:00Z",
+          "utcDate": "2026-07-01T20:00:00Z",
           "home": {
             "name": "Egypt",
             "owner": "Tom",
@@ -9784,5 +9784,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-26T04:55:13Z"
+  "generated": "2026-06-26T08:25:47Z"
 }
