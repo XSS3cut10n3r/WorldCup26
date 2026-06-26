@@ -50,8 +50,8 @@
           "name": "Norway",
           "points": 2,
           "eliminated": false,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "second"
         },
         {
           "name": "Ghana",
@@ -238,7 +238,7 @@
         {
           "name": "Iraq",
           "points": 0,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": false,
           "clinchType": null
         }
@@ -401,11 +401,11 @@
     },
     {
       "name": "Ondine",
-      "points": 1.5,
+      "points": 2.5,
       "teams": [
         {
           "name": "Senegal",
-          "points": 0,
+          "points": 1,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -432,10 +432,17 @@
           "clinchType": null
         }
       ],
-      "rank": 14
+      "rank": 13
     }
   ],
   "events": [
+    {
+      "owner": "Ondine",
+      "team": "Senegal",
+      "points": 1,
+      "label": "Senegal won (Group stage)",
+      "utcDate": "2026-06-26T19:00:00Z"
+    },
     {
       "owner": "Darcy",
       "team": "France",
@@ -463,20 +470,14 @@
       "points": 1,
       "label": "Türkiye won (Group stage)",
       "utcDate": "2026-06-26T02:00:00Z"
-    },
-    {
-      "owner": "Tomi",
-      "team": "Sweden",
-      "points": 0.5,
-      "label": "Sweden drew (Group stage)",
-      "utcDate": "2026-06-25T23:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-26T19:00:00Z",
       "home": {
         "name": "Senegal",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T23:00:00Z",
-      "home": {
-        "name": "Tunisia",
-        "owner": "Darcy",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 46
-      },
-      "away": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 8
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -1106,7 +1083,7 @@
             "owner": "Charlotte",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group I",
             "resolved": true
           },
@@ -1129,7 +1106,7 @@
             "resolved": true
           },
           "away": {
-            "name": "Scotland",
+            "name": "Ecuador",
             "owner": "Sydney",
             "goals": null,
             "penGoals": null,
@@ -1156,8 +1133,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Ecuador",
-            "owner": "Sydney",
+            "name": "Senegal",
+            "owner": "Ondine",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2475,21 +2452,21 @@
           "points": 6,
           "conduct": 0,
           "fifaRank": 31,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "second"
         },
         {
           "pos": 3,
           "team": "Senegal",
           "owner": "Ondine",
-          "played": 2,
-          "won": 0,
+          "played": 3,
+          "won": 1,
           "draw": 0,
           "lost": 2,
-          "gf": 3,
+          "gf": 8,
           "ga": 6,
-          "gd": -3,
-          "points": 0,
+          "gd": 2,
+          "points": 3,
           "conduct": 0,
           "fifaRank": 15,
           "clinched": false,
@@ -2499,13 +2476,13 @@
           "pos": 4,
           "team": "Iraq",
           "owner": "Agatha",
-          "played": 2,
+          "played": 3,
           "won": 0,
           "draw": 0,
-          "lost": 2,
+          "lost": 3,
           "gf": 1,
-          "ga": 7,
-          "gd": -6,
+          "ga": 12,
+          "gd": -11,
           "points": 0,
           "conduct": -2,
           "fifaRank": 56,
@@ -2829,6 +2806,28 @@
     },
     {
       "pos": 3,
+      "team": "Senegal",
+      "owner": "Ondine",
+      "played": 3,
+      "won": 1,
+      "draw": 0,
+      "lost": 2,
+      "gf": 8,
+      "ga": 6,
+      "gd": 2,
+      "points": 3,
+      "conduct": 0,
+      "fifaRank": 15,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group I",
+      "ranked": true,
+      "rank": 5,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Croatia",
       "owner": "Tom",
       "played": 2,
@@ -2845,7 +2844,7 @@
       "clinchType": null,
       "group": "Group L",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2867,7 +2866,7 @@
       "clinchType": null,
       "group": "Group A",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2889,7 +2888,7 @@
       "clinchType": null,
       "group": "Group J",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2911,8 +2910,8 @@
       "clinchType": null,
       "group": "Group C",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     },
     {
@@ -2933,7 +2932,7 @@
       "clinchType": null,
       "group": "Group H",
       "ranked": true,
-      "rank": 9,
+      "rank": 10,
       "qualifies": false,
       "manualTie": false
     },
@@ -2955,7 +2954,7 @@
       "clinchType": null,
       "group": "Group G",
       "ranked": true,
-      "rank": 10,
+      "rank": 11,
       "qualifies": false,
       "manualTie": false
     },
@@ -2976,28 +2975,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group K",
-      "ranked": true,
-      "rank": 11,
-      "qualifies": false,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Senegal",
-      "owner": "Ondine",
-      "played": 2,
-      "won": 0,
-      "draw": 0,
-      "lost": 2,
-      "gf": 3,
-      "ga": 6,
-      "gd": -3,
-      "points": 0,
-      "conduct": 0,
-      "fifaRank": 15,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group I",
       "ranked": true,
       "rank": 12,
       "qualifies": false,
@@ -9324,6 +9301,12 @@
           "a": "France",
           "hg": 1,
           "ag": 4
+        },
+        {
+          "h": "Senegal",
+          "a": "Iraq",
+          "hg": 5,
+          "ag": 0
         }
       ],
       "J": [
@@ -9432,12 +9415,7 @@
           "a": "Saudi Arabia"
         }
       ],
-      "I": [
-        {
-          "h": "Senegal",
-          "a": "Iraq"
-        }
-      ],
+      "I": [],
       "J": [
         {
           "h": "Jordan",
@@ -9809,5 +9787,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-26T21:05:13Z"
+  "generated": "2026-06-26T21:09:20Z"
 }
