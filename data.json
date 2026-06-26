@@ -472,36 +472,12 @@
       "utcDate": "2026-06-24T22:00:00Z"
     }
   ],
-  "live": [],
-  "recent": [
+  "live": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T23:00Z",
-      "home": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 18
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 38
-      },
-      "penalties": false,
-      "winner": "DRAW",
-      "_src": "espn-final"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T23:00Z",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-25T23:00:00Z",
       "home": {
         "name": "Tunisia",
         "owner": "Darcy",
@@ -517,8 +493,141 @@
         "fifaRank": 8
       },
       "penalties": false,
-      "winner": "AWAY_TEAM",
-      "_src": "espn-final"
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-25T23:00:00Z",
+      "home": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 18
+      },
+      "away": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 38
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    }
+  ],
+  "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T20:00:00Z",
+      "home": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 82
+      },
+      "away": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 33
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T20:00:00Z",
+      "home": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 23
+      },
+      "away": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 10
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T01:00:00Z",
+      "home": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 60
+      },
+      "away": {
+        "name": "South Korea",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 25
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T01:00:00Z",
+      "home": {
+        "name": "Czechia",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 39
+      },
+      "away": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 14
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-24T22:00:00Z",
+      "home": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 42
+      },
+      "away": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 6
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -9714,5 +9823,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-25T23:31:09Z"
+  "generated": "2026-06-26T00:58:40Z"
 }
