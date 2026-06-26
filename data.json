@@ -1,69 +1,6 @@
 {
   "leaderboard": [
     {
-      "name": "Sydney",
-      "points": 6.5,
-      "teams": [
-        {
-          "name": "Brazil",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Ecuador",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "South Africa",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Scotland",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 1
-    },
-    {
-      "name": "Charlotte",
-      "points": 6.0,
-      "teams": [
-        {
-          "name": "Netherlands",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Norway",
-          "points": 2,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Ghana",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Nik",
       "points": 5.5,
       "teams": [
@@ -89,36 +26,64 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 1
     },
     {
-      "name": "Tomi",
+      "name": "Sydney",
       "points": 5.5,
       "teams": [
         {
-          "name": "Germany",
-          "points": 2,
+          "name": "Brazil",
+          "points": 2.5,
           "eliminated": false,
           "clinched": true,
           "clinchType": "winner"
         },
         {
-          "name": "Sweden",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Bosnia and Herzegovina",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "New Zealand",
+          "name": "Ecuador",
           "points": 0.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "South Africa",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Scotland",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "name": "Charlotte",
+      "points": 5.0,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Norway",
+          "points": 2,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Ghana",
+          "points": 1.5,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
@@ -152,35 +117,42 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 3
     },
     {
-      "name": "Pete",
-      "points": 4.5,
+      "name": "Tomi",
+      "points": 5.0,
       "teams": [
         {
-          "name": "Spain",
+          "name": "Germany",
+          "points": 2,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Sweden",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Bosnia and Herzegovina",
           "points": 1.5,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         },
         {
-          "name": "Japan",
-          "points": 2.0,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Paraguay",
-          "points": 1,
+          "name": "New Zealand",
+          "points": 0.5,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         }
       ],
-      "rank": 6
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -215,7 +187,7 @@
           "clinchType": null
         }
       ],
-      "rank": 7
+      "rank": 6
     },
     {
       "name": "Kelly",
@@ -243,42 +215,35 @@
           "clinchType": "second"
         }
       ],
-      "rank": 7
+      "rank": 6
     },
     {
-      "name": "Paul",
+      "name": "Pete",
       "points": 4.0,
       "teams": [
         {
-          "name": "Belgium",
-          "points": 1.0,
+          "name": "Spain",
+          "points": 1.5,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         },
         {
-          "name": "Côte d'Ivoire",
-          "points": 2,
+          "name": "Japan",
+          "points": 1.5,
           "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Panama",
-          "points": 0,
-          "eliminated": true,
           "clinched": false,
           "clinchType": null
         },
         {
-          "name": "Cabo Verde",
-          "points": 1.0,
+          "name": "Paraguay",
+          "points": 1,
           "eliminated": false,
           "clinched": false,
           "clinchType": null
         }
       ],
-      "rank": 7
+      "rank": 6
     },
     {
       "name": "Agatha",
@@ -306,7 +271,7 @@
           "clinchType": null
         }
       ],
-      "rank": 10
+      "rank": 9
     },
     {
       "name": "Charlie",
@@ -341,7 +306,42 @@
           "clinchType": null
         }
       ],
-      "rank": 10
+      "rank": 9
+    },
+    {
+      "name": "Paul",
+      "points": 3.0,
+      "teams": [
+        {
+          "name": "Belgium",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Panama",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Cabo Verde",
+          "points": 1.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 11
     },
     {
       "name": "Tom",
@@ -369,7 +369,7 @@
           "clinchType": null
         }
       ],
-      "rank": 12
+      "rank": 11
     },
     {
       "name": "Iva",
@@ -427,7 +427,7 @@
         {
           "name": "Curaçao",
           "points": 0.5,
-          "eliminated": true,
+          "eliminated": false,
           "clinched": false,
           "clinchType": null
         }
@@ -437,131 +437,43 @@
   ],
   "events": [
     {
-      "owner": "Tomi",
-      "team": "Sweden",
-      "points": 0.5,
-      "label": "Sweden drew (Group stage)",
-      "utcDate": "2026-06-25T23:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Japan",
-      "points": 0.5,
-      "label": "Japan drew (Group stage)",
-      "utcDate": "2026-06-25T23:00:00Z"
-    },
-    {
-      "owner": "Charlotte",
-      "team": "Netherlands",
+      "owner": "Sydney",
+      "team": "South Africa",
       "points": 1,
-      "label": "Netherlands won (Group stage)",
-      "utcDate": "2026-06-25T23:00:00Z"
+      "label": "South Africa won (Group stage)",
+      "utcDate": "2026-06-25T01:00:00Z"
     },
     {
-      "owner": "Paul",
-      "team": "Côte d'Ivoire",
+      "owner": "Nik",
+      "team": "Mexico",
       "points": 1,
-      "label": "Côte d'Ivoire won (Group stage)",
-      "utcDate": "2026-06-25T20:00:00Z"
+      "label": "Mexico won (Group stage)",
+      "utcDate": "2026-06-25T01:00:00Z"
     },
     {
       "owner": "Sydney",
-      "team": "Ecuador",
+      "team": "Brazil",
       "points": 1,
-      "label": "Ecuador won (Group stage)",
-      "utcDate": "2026-06-25T20:00:00Z"
+      "label": "Brazil won (Group stage)",
+      "utcDate": "2026-06-24T22:00:00Z"
+    },
+    {
+      "owner": "Agatha",
+      "team": "Morocco",
+      "points": 1,
+      "label": "Morocco won (Group stage)",
+      "utcDate": "2026-06-24T22:00:00Z"
+    },
+    {
+      "owner": "Tomi",
+      "team": "Bosnia and Herzegovina",
+      "points": 1,
+      "label": "Bosnia and Herzegovina won (Group stage)",
+      "utcDate": "2026-06-24T19:00:00Z"
     }
   ],
   "live": [],
   "recent": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T23:00:00Z",
-      "home": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 18
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 38
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T23:00:00Z",
-      "home": {
-        "name": "Tunisia",
-        "owner": "Darcy",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 46
-      },
-      "away": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 8
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T20:00:00Z",
-      "home": {
-        "name": "Curaçao",
-        "owner": "Ondine",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 82
-      },
-      "away": {
-        "name": "Ivory Coast",
-        "owner": "Paul",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 33
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-25T20:00:00Z",
-      "home": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 23
-      },
-      "away": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 10
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -583,9 +495,229 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-25T01:00:00Z",
+      "home": {
+        "name": "Czechia",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 39
+      },
+      "away": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 14
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-24T22:00:00Z",
+      "home": {
+        "name": "Scotland",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 42
+      },
+      "away": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 6
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-24T22:00:00Z",
+      "home": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 4,
+        "penGoals": null,
+        "fifaRank": 7
+      },
+      "away": {
+        "name": "Haiti",
+        "owner": "Darcy",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 83
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-24T19:00:00Z",
+      "home": {
+        "name": "Bosnia-Herzegovina",
+        "owner": "Tomi",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 64
+      },
+      "away": {
+        "name": "Qatar",
+        "owner": "Iva",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 57
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T20:00:00Z",
+      "home": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 23,
+        "clinched": false
+      },
+      "away": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 10,
+        "clinched": true
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T20:00:00Z",
+      "home": {
+        "name": "Curaçao",
+        "owner": "Ondine",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 82,
+        "clinched": false
+      },
+      "away": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 33,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "E",
+        "winnerWinsGroup": false,
+        "winnerAdvances": false,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": true
+        }
+      }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T23:00:00Z",
+      "home": {
+        "name": "Tunisia",
+        "owner": "Darcy",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 46,
+        "clinched": false
+      },
+      "away": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 8,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "F",
+        "winnerWinsGroup": false,
+        "winnerAdvances": false,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": true
+        }
+      }
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "TIMED",
+      "utcDate": "2026-06-25T23:00:00Z",
+      "home": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 18,
+        "clinched": false
+      },
+      "away": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": null,
+        "penGoals": null,
+        "fifaRank": 38,
+        "clinched": false
+      },
+      "penalties": false,
+      "winner": null,
+      "clinch": {
+        "group": "F",
+        "winnerWinsGroup": false,
+        "winnerAdvances": true,
+        "drawBoth": false,
+        "home": {
+          "winAdvances": false
+        },
+        "away": {
+          "winAdvances": false
+        }
+      }
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -777,150 +909,6 @@
           "winAdvances": false
         }
       }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T03:00:00Z",
-      "home": {
-        "name": "New Zealand",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 85,
-        "clinched": false
-      },
-      "away": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 9,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "G",
-        "winnerWinsGroup": false,
-        "winnerAdvances": false,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": true
-        }
-      }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T03:00:00Z",
-      "home": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 29,
-        "clinched": false
-      },
-      "away": {
-        "name": "Iran",
-        "owner": "Ondine",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 21,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "G",
-        "winnerWinsGroup": false,
-        "winnerAdvances": true,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T21:00:00Z",
-      "home": {
-        "name": "Panama",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 34,
-        "clinched": false
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 4,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "L",
-        "winnerWinsGroup": false,
-        "winnerAdvances": false,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": true
-        }
-      }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T21:00:00Z",
-      "home": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 11,
-        "clinched": false
-      },
-      "away": {
-        "name": "Ghana",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 73,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "L",
-        "winnerWinsGroup": false,
-        "winnerAdvances": true,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
     }
   ],
   "bracket": [
@@ -993,7 +981,7 @@
             "owner": "Charlotte",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Winner Group F",
             "resolved": true
           },
@@ -1029,7 +1017,7 @@
             "owner": "Pete",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group F",
             "resolved": true
           },
@@ -1074,7 +1062,7 @@
             "owner": "Paul",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "Runner-up Group E",
             "resolved": true
           },
@@ -1133,8 +1121,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Ecuador",
-            "owner": "Sydney",
+            "name": "Cabo Verde",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2129,13 +2117,13 @@
           "pos": 1,
           "team": "Germany",
           "owner": "Tomi",
-          "played": 3,
+          "played": 2,
           "won": 2,
           "draw": 0,
-          "lost": 1,
-          "gf": 10,
-          "ga": 4,
-          "gd": 6,
+          "lost": 0,
+          "gf": 9,
+          "ga": 2,
+          "gd": 7,
           "points": 6,
           "conduct": -1,
           "fifaRank": 10,
@@ -2146,31 +2134,31 @@
           "pos": 2,
           "team": "Côte d'Ivoire",
           "owner": "Paul",
-          "played": 3,
-          "won": 2,
+          "played": 2,
+          "won": 1,
           "draw": 0,
           "lost": 1,
-          "gf": 4,
+          "gf": 2,
           "ga": 2,
-          "gd": 2,
-          "points": 6,
+          "gd": 0,
+          "points": 3,
           "conduct": -4,
           "fifaRank": 33,
-          "clinched": true,
-          "clinchType": "second"
+          "clinched": false,
+          "clinchType": null
         },
         {
           "pos": 3,
           "team": "Ecuador",
           "owner": "Sydney",
-          "played": 3,
-          "won": 1,
+          "played": 2,
+          "won": 0,
           "draw": 1,
           "lost": 1,
-          "gf": 2,
-          "ga": 2,
-          "gd": 0,
-          "points": 4,
+          "gf": 0,
+          "ga": 1,
+          "gd": -1,
+          "points": 1,
           "conduct": -5,
           "fifaRank": 23,
           "clinched": false,
@@ -2180,13 +2168,13 @@
           "pos": 4,
           "team": "Curaçao",
           "owner": "Ondine",
-          "played": 3,
+          "played": 2,
           "won": 0,
           "draw": 1,
-          "lost": 2,
+          "lost": 1,
           "gf": 1,
-          "ga": 9,
-          "gd": -8,
+          "ga": 7,
+          "gd": -6,
           "points": 1,
           "conduct": -7,
           "fifaRank": 82,
@@ -2203,48 +2191,48 @@
           "pos": 1,
           "team": "Netherlands",
           "owner": "Charlotte",
-          "played": 3,
-          "won": 2,
+          "played": 2,
+          "won": 1,
           "draw": 1,
           "lost": 0,
-          "gf": 10,
-          "ga": 4,
-          "gd": 6,
-          "points": 7,
+          "gf": 7,
+          "ga": 3,
+          "gd": 4,
+          "points": 4,
           "conduct": -3,
           "fifaRank": 8,
-          "clinched": true,
-          "clinchType": "winner"
+          "clinched": false,
+          "clinchType": null
         },
         {
           "pos": 2,
           "team": "Japan",
           "owner": "Pete",
-          "played": 3,
+          "played": 2,
           "won": 1,
-          "draw": 2,
+          "draw": 1,
           "lost": 0,
-          "gf": 7,
-          "ga": 3,
+          "gf": 6,
+          "ga": 2,
           "gd": 4,
-          "points": 5,
+          "points": 4,
           "conduct": 0,
           "fifaRank": 18,
-          "clinched": true,
-          "clinchType": "second"
+          "clinched": false,
+          "clinchType": null
         },
         {
           "pos": 3,
           "team": "Sweden",
           "owner": "Tomi",
-          "played": 3,
+          "played": 2,
           "won": 1,
-          "draw": 1,
+          "draw": 0,
           "lost": 1,
-          "gf": 7,
-          "ga": 7,
+          "gf": 6,
+          "ga": 6,
           "gd": 0,
-          "points": 4,
+          "points": 3,
           "conduct": -3,
           "fifaRank": 38,
           "clinched": false,
@@ -2254,13 +2242,13 @@
           "pos": 4,
           "team": "Tunisia",
           "owner": "Darcy",
-          "played": 3,
+          "played": 2,
           "won": 0,
           "draw": 0,
-          "lost": 3,
-          "gf": 2,
-          "ga": 12,
-          "gd": -10,
+          "lost": 2,
+          "gf": 1,
+          "ga": 9,
+          "gd": -8,
           "points": 0,
           "conduct": -1,
           "fifaRank": 46,
@@ -2718,50 +2706,6 @@
   "thirdPlace": [
     {
       "pos": 3,
-      "team": "Sweden",
-      "owner": "Tomi",
-      "played": 3,
-      "won": 1,
-      "draw": 1,
-      "lost": 1,
-      "gf": 7,
-      "ga": 7,
-      "gd": 0,
-      "points": 4,
-      "conduct": -3,
-      "fifaRank": 38,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group F",
-      "ranked": true,
-      "rank": 1,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Ecuador",
-      "owner": "Sydney",
-      "played": 3,
-      "won": 1,
-      "draw": 1,
-      "lost": 1,
-      "gf": 2,
-      "ga": 2,
-      "gd": 0,
-      "points": 4,
-      "conduct": -5,
-      "fifaRank": 23,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group E",
-      "ranked": true,
-      "rank": 2,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
       "team": "Bosnia and Herzegovina",
       "owner": "Tomi",
       "played": 3,
@@ -2778,7 +2722,29 @@
       "clinchType": null,
       "group": "Group B",
       "ranked": true,
-      "rank": 3,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Sweden",
+      "owner": "Tomi",
+      "played": 2,
+      "won": 1,
+      "draw": 0,
+      "lost": 1,
+      "gf": 6,
+      "ga": 6,
+      "gd": 0,
+      "points": 3,
+      "conduct": -3,
+      "fifaRank": 38,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group F",
+      "ranked": true,
+      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2800,7 +2766,7 @@
       "clinchType": null,
       "group": "Group L",
       "ranked": true,
-      "rank": 4,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     },
@@ -2822,7 +2788,7 @@
       "clinchType": null,
       "group": "Group A",
       "ranked": true,
-      "rank": 5,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2844,7 +2810,7 @@
       "clinchType": null,
       "group": "Group J",
       "ranked": true,
-      "rank": 6,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2866,7 +2832,7 @@
       "clinchType": null,
       "group": "Group D",
       "ranked": true,
-      "rank": 7,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2888,7 +2854,7 @@
       "clinchType": null,
       "group": "Group C",
       "ranked": true,
-      "rank": 8,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2910,8 +2876,8 @@
       "clinchType": null,
       "group": "Group H",
       "ranked": true,
-      "rank": 9,
-      "qualifies": false,
+      "rank": 8,
+      "qualifies": true,
       "manualTie": false
     },
     {
@@ -2932,7 +2898,7 @@
       "clinchType": null,
       "group": "Group G",
       "ranked": true,
-      "rank": 10,
+      "rank": 9,
       "qualifies": false,
       "manualTie": false
     },
@@ -2953,6 +2919,28 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group K",
+      "ranked": true,
+      "rank": 10,
+      "qualifies": false,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
+      "team": "Ecuador",
+      "owner": "Sydney",
+      "played": 2,
+      "won": 0,
+      "draw": 1,
+      "lost": 1,
+      "gf": 0,
+      "ga": 1,
+      "gd": -1,
+      "points": 1,
+      "conduct": -5,
+      "fifaRank": 23,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group E",
       "ranked": true,
       "rank": 11,
       "qualifies": false,
@@ -9155,18 +9143,6 @@
           "a": "Curaçao",
           "hg": 0,
           "ag": 0
-        },
-        {
-          "h": "Ecuador",
-          "a": "Germany",
-          "hg": 2,
-          "ag": 1
-        },
-        {
-          "h": "Curaçao",
-          "a": "Côte d'Ivoire",
-          "hg": 0,
-          "ag": 2
         }
       ],
       "F": [
@@ -9193,18 +9169,6 @@
           "a": "Japan",
           "hg": 0,
           "ag": 4
-        },
-        {
-          "h": "Tunisia",
-          "a": "Netherlands",
-          "hg": 1,
-          "ag": 3
-        },
-        {
-          "h": "Japan",
-          "a": "Sweden",
-          "hg": 1,
-          "ag": 1
         }
       ],
       "G": [
@@ -9378,8 +9342,26 @@
           "a": "Australia"
         }
       ],
-      "E": [],
-      "F": [],
+      "E": [
+        {
+          "h": "Ecuador",
+          "a": "Germany"
+        },
+        {
+          "h": "Curaçao",
+          "a": "Côte d'Ivoire"
+        }
+      ],
+      "F": [
+        {
+          "h": "Tunisia",
+          "a": "Netherlands"
+        },
+        {
+          "h": "Japan",
+          "a": "Sweden"
+        }
+      ],
       "G": [
         {
           "h": "New Zealand",
@@ -9781,5 +9763,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-26T01:04:54Z"
+  "generated": "2026-06-26T01:09:14Z"
 }
