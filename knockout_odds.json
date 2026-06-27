@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T05:18:58.485669Z",
+  "generated": "2026-06-27T08:34:58.852578Z",
   "sims": 1000000,
   "teams": [
     {
@@ -93,12 +93,6 @@
       "delta": 0.00012
     },
     {
-      "name": "Iran",
-      "odds": 1.0,
-      "base": 0.58851,
-      "delta": 0.41149
-    },
-    {
       "name": "Japan",
       "odds": 1.0,
       "base": 1.0,
@@ -141,6 +135,12 @@
       "delta": 0.04327
     },
     {
+      "name": "Senegal",
+      "odds": 1.0,
+      "base": 0.93761,
+      "delta": 0.06239
+    },
+    {
       "name": "South Africa",
       "odds": 1.0,
       "base": 0.24893,
@@ -171,52 +171,52 @@
       "delta": null
     },
     {
-      "name": "Senegal",
-      "odds": 0.93761,
-      "base": 0.97925,
-      "delta": -0.04164
+      "name": "Iran",
+      "odds": 0.93769,
+      "base": 1.0,
+      "delta": -0.06231
     },
     {
       "name": "Croatia",
-      "odds": 0.90588,
-      "base": 0.91321,
-      "delta": -0.00733
+      "odds": 0.90093,
+      "base": 0.90588,
+      "delta": -0.00495
     },
     {
       "name": "Austria",
-      "odds": 0.82587,
-      "base": 0.88236,
-      "delta": -0.05649
+      "odds": 0.8249,
+      "base": 0.82587,
+      "delta": -0.00097
     },
     {
       "name": "Algeria",
-      "odds": 0.58638,
-      "base": 0.61265,
-      "delta": -0.02627
+      "odds": 0.58823,
+      "base": 0.58638,
+      "delta": 0.00185
     },
     {
       "name": "South Korea",
-      "odds": 0.46485,
-      "base": 0.61528,
-      "delta": -0.15043
+      "odds": 0.46631,
+      "base": 0.46485,
+      "delta": 0.00146
     },
     {
       "name": "DR Congo",
-      "odds": 0.27599,
-      "base": 0.35164,
-      "delta": -0.07565
+      "odds": 0.27835,
+      "base": 0.27599,
+      "delta": 0.00236
     },
     {
       "name": "Uzbekistan",
-      "odds": 0.00211,
-      "base": 0.00466,
-      "delta": -0.00255
+      "odds": 0.00219,
+      "base": 0.00211,
+      "delta": 8e-05
     },
     {
       "name": "Scotland",
-      "odds": 0.0013,
-      "base": 0.06061,
-      "delta": -0.05931
+      "odds": 0.0014,
+      "base": 0.0013,
+      "delta": 0.0001
     },
     {
       "name": "Curaçao",
