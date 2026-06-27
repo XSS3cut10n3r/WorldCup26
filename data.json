@@ -472,11 +472,12 @@
       "utcDate": "2026-06-27T00:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-27T21:00Z",
       "home": {
         "name": "Croatia",
@@ -493,11 +494,9 @@
         "fifaRank": 73
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
