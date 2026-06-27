@@ -472,11 +472,12 @@
       "utcDate": "2026-06-26T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-27T03:00Z",
       "home": {
         "name": "Egypt",
@@ -493,11 +494,9 @@
         "fifaRank": 21
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "DRAW",
+      "_src": "espn-final"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
