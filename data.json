@@ -71,8 +71,8 @@
           "name": "England",
           "points": 2.5,
           "eliminated": false,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "name": "Switzerland",
@@ -345,14 +345,14 @@
     },
     {
       "name": "Tom",
-      "points": 3.0,
+      "points": 4.0,
       "teams": [
         {
           "name": "Croatia",
-          "points": 1,
+          "points": 2,
           "eliminated": false,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "second"
         },
         {
           "name": "Egypt",
@@ -369,7 +369,7 @@
           "clinchType": null
         }
       ],
-      "rank": 12
+      "rank": 8
     },
     {
       "name": "Iva",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Tom",
+      "team": "Croatia",
+      "points": 1,
+      "label": "Croatia won (Group stage)",
+      "utcDate": "2026-06-27T21:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "England",
       "points": 1,
@@ -463,20 +470,14 @@
       "points": 0.5,
       "label": "Saudi Arabia drew (Group stage)",
       "utcDate": "2026-06-27T00:00:00Z"
-    },
-    {
-      "owner": "Paul",
-      "team": "Cabo Verde",
-      "points": 0.5,
-      "label": "Cabo Verde drew (Group stage)",
-      "utcDate": "2026-06-27T00:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-27T21:00:00Z",
       "home": {
         "name": "Croatia",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T00:00:00Z",
-      "home": {
-        "name": "Uruguay",
-        "owner": "Iva",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 16
-      },
-      "away": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 2
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -1119,7 +1096,7 @@
             "owner": "Mat",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group L",
             "resolved": true
           },
@@ -1205,11 +1182,11 @@
             "resolved": true
           },
           "away": {
-            "name": "Ghana",
-            "owner": "Charlotte",
+            "name": "Croatia",
+            "owner": "Tom",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group L",
             "resolved": true
           },
@@ -1313,8 +1290,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Croatia",
-            "owner": "Tom",
+            "name": "Ghana",
+            "owner": "Charlotte",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -2648,40 +2625,40 @@
           "points": 7,
           "conduct": -1,
           "fifaRank": 4,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "pos": 2,
-          "team": "Ghana",
-          "owner": "Charlotte",
-          "played": 2,
-          "won": 1,
-          "draw": 1,
-          "lost": 0,
-          "gf": 1,
-          "ga": 0,
-          "gd": 1,
-          "points": 4,
-          "conduct": -2,
-          "fifaRank": 73,
-          "clinched": false,
-          "clinchType": null
+          "team": "Croatia",
+          "owner": "Tom",
+          "played": 3,
+          "won": 2,
+          "draw": 0,
+          "lost": 1,
+          "gf": 5,
+          "ga": 5,
+          "gd": 0,
+          "points": 6,
+          "conduct": -1,
+          "fifaRank": 11,
+          "clinched": true,
+          "clinchType": "second"
         },
         {
           "pos": 3,
-          "team": "Croatia",
-          "owner": "Tom",
-          "played": 2,
+          "team": "Ghana",
+          "owner": "Charlotte",
+          "played": 3,
           "won": 1,
-          "draw": 0,
+          "draw": 1,
           "lost": 1,
-          "gf": 3,
-          "ga": 4,
-          "gd": -1,
-          "points": 3,
-          "conduct": -1,
-          "fifaRank": 11,
+          "gf": 2,
+          "ga": 2,
+          "gd": 0,
+          "points": 4,
+          "conduct": -2,
+          "fifaRank": 73,
           "clinched": false,
           "clinchType": null
         },
@@ -2753,6 +2730,28 @@
     },
     {
       "pos": 3,
+      "team": "Ghana",
+      "owner": "Charlotte",
+      "played": 3,
+      "won": 1,
+      "draw": 1,
+      "lost": 1,
+      "gf": 2,
+      "ga": 2,
+      "gd": 0,
+      "points": 4,
+      "conduct": -2,
+      "fifaRank": 73,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group L",
+      "ranked": true,
+      "rank": 3,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Ecuador",
       "owner": "Sydney",
       "played": 3,
@@ -2769,7 +2768,7 @@
       "clinchType": null,
       "group": "Group E",
       "ranked": true,
-      "rank": 3,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2791,7 +2790,7 @@
       "clinchType": null,
       "group": "Group B",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2812,28 +2811,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group D",
-      "ranked": true,
-      "rank": 5,
-      "qualifies": true,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Croatia",
-      "owner": "Tom",
-      "played": 2,
-      "won": 1,
-      "draw": 0,
-      "lost": 1,
-      "gf": 3,
-      "ga": 4,
-      "gd": -1,
-      "points": 3,
-      "conduct": -1,
-      "fifaRank": 11,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group L",
       "ranked": true,
       "rank": 6,
       "qualifies": true,
@@ -9394,6 +9371,12 @@
           "a": "England",
           "hg": 0,
           "ag": 2
+        },
+        {
+          "h": "Croatia",
+          "a": "Ghana",
+          "hg": 2,
+          "ag": 1
         }
       ]
     },
@@ -9436,12 +9419,7 @@
           "a": "Uzbekistan"
         }
       ],
-      "L": [
-        {
-          "h": "Croatia",
-          "a": "Ghana"
-        }
-      ]
+      "L": []
     },
     "teams": {
       "Mexico": {
@@ -9783,5 +9761,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-27T23:03:03Z"
+  "generated": "2026-06-27T23:04:06Z"
 }
