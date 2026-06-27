@@ -472,7 +472,54 @@
       "utcDate": "2026-06-27T03:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T23:30Z",
+      "home": {
+        "name": "Colombia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 13
+      },
+      "away": {
+        "name": "Portugal",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 5
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T23:30Z",
+      "home": {
+        "name": "DR Congo",
+        "owner": "Tom",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 45
+      },
+      "away": {
+        "name": "Uzbekistan",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 50
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,66 +633,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T23:30:00Z",
-      "home": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 13,
-        "clinched": false
-      },
-      "away": {
-        "name": "Portugal",
-        "owner": "Kelly",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 5,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "K",
-        "winnerWinsGroup": true,
-        "winnerAdvances": false,
-        "drawBoth": true,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T23:30:00Z",
-      "home": {
-        "name": "Congo DR",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 45,
-        "clinched": false
-      },
-      "away": {
-        "name": "Uzbekistan",
-        "owner": "Ondine",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 50,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
