@@ -793,8 +793,11 @@
   }
 
   /* "Simulate remaining games" control (fixed, top-right) + the what-if banner */
-  #simbtn {
+  #topbtns {
     position: fixed; top: 12px; right: 12px; z-index: 60;
+    display: flex; gap: 8px; align-items: center;
+  }
+  #simbtn {
     font-family: var(--display); font-weight: 600; font-size: 12px;
     letter-spacing: 0.06em; text-transform: uppercase;
     color: var(--gold); background: rgba(14, 48, 20, 0.92);
@@ -805,6 +808,31 @@
   #simbtn.on { color: var(--chalk); border-color: var(--chalk); }
   #simbtn.on:hover { background: var(--chalk); color: var(--pitch-deep); }
   #simbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* "Bubble" control: a light-blue (bubble-coloured) pill sitting left of
+     Simulate. On the /#bubble page it flips to a red "Return Home", mirroring
+     the Simulate button's red exit, and Simulate itself is hidden there. */
+  #bubblebtn {
+    font-family: var(--display); font-weight: 600; font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--ice); background: rgba(14, 48, 20, 0.92);
+    border: 1px solid var(--ice); border-radius: 999px;
+    padding: 7px 14px; cursor: pointer; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  }
+  #bubblebtn:hover { background: var(--ice); color: var(--pitch-deep); }
+  #bubblebtn:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
+  #bubblebtn.on {
+    color: var(--live); border-color: var(--live);
+    box-shadow: 0 0 12px 2px rgba(255, 90, 69, 0.5);
+    animation: simExitGlow 1.8s ease-in-out infinite;
+  }
+  #bubblebtn.on:hover {
+    background: var(--live); color: #fff;
+    box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.7);
+  }
+  html.sim #bubblebtn { background: rgba(46, 58, 70, 0.92); }
+  body.bubble-mode #simbtn { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { #bubblebtn.on { animation: none; } }
 
   /* "Winner clinches" pills on upcoming group games (home feed + countdown).
      Match-level lines (group/advance + the draw line) stack in a centered,
@@ -1161,7 +1189,10 @@
   });
 })();
 </script>
-<button id="simbtn" type="button" aria-label="Simulate the remaining games">Simulate</button>
+<div id="topbtns">
+  <button id="bubblebtn" type="button" aria-label="View the third-place bubble">Bubble</button>
+  <button id="simbtn" type="button" aria-label="Simulate the remaining games">Simulate</button>
+</div>
 <div class="modal-backdrop" id="sim-modal" hidden>
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="sim-modal-title">
     <div class="modal-ic" aria-hidden="true">
@@ -2965,12 +2996,23 @@
   exitModal.addEventListener("click", (e) => { if (e.target === exitModal) closeExitModal(); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !exitModal.hidden) closeExitModal(); });
 
+  const bubbleBtn = document.getElementById("bubblebtn");
+  function updateBubbleBtn() {
+    const on = view === "bubble";
+    bubbleBtn.textContent = on ? "Return Home" : "Bubble";
+    bubbleBtn.classList.toggle("on", on);
+    bubbleBtn.setAttribute("aria-label", on ? "Return to the home page"
+                                            : "View the third-place bubble");
+  }
+  bubbleBtn.addEventListener("click", () => setView(view === "bubble" ? "home" : "bubble"));
+
   function setView(v) {
     view = v;
     koAnimated = false;          // re-run the race entrance whenever #odds is opened
     history.replaceState(null, "", v === "home" ? location.pathname : "#" + v);
     document.querySelectorAll(".tab").forEach(b =>
       b.classList.toggle("active", b.dataset.view === v));
+    updateBubbleBtn();
     const cd = currentData(); if (cd) render(cd);
     window.scrollTo({ top: 0 });
   }
@@ -2978,6 +3020,7 @@
     b.addEventListener("click", () => setView(b.dataset.view)));
   document.querySelectorAll(".tab").forEach(b =>
     b.classList.toggle("active", b.dataset.view === view));
+  updateBubbleBtn();
 
   function fail() {
     if (view === "bubble") { render(null); return; }
