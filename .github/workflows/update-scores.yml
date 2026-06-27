@@ -1,7 +1,7 @@
 name: Update scores (live loop)
 on:
   schedule:
-    - cron: "*/15 * * * *"      # polite cadence; the watcher + marker absorb cron jitter
+    - cron: "*/30 * * * *"      # polite cadence; the watcher + marker absorb cron jitter
   workflow_dispatch:
     inputs:
       fast_seconds:      { description: "Seconds between ESPN polls while a game is live", required: false, default: "30" }
