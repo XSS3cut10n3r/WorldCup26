@@ -1108,7 +1108,7 @@
      .bubble-mode class only while this view is open, hiding all site chrome
      (header, tabs, footer, and the disclaimer overlay) so the SVG sits alone,
      clean for embedding or screenshotting. */
-  body.bubble-mode { background: #FCFBF8; }
+  body.bubble-mode { background: var(--pitch-deep); }
   body.bubble-mode .wrap { max-width: 1080px; }
   body.bubble-mode .wrap > header,
   body.bubble-mode .wrap > nav.tabs,
@@ -1116,7 +1116,7 @@
   body.bubble-mode #ngOverlay { display: none !important; }
   .bubble-wrap { max-width: 1080px; margin: 0 auto; padding: 24px 0 40px; }
   .bubble-wrap svg { width: 100%; height: auto; display: block; }
-  .bubble-empty { text-align: center; color: #7C808A; font-size: 15px;
+  .bubble-empty { text-align: center; color: var(--chalk-dim); font-size: 15px;
     padding: 80px 16px; line-height: 1.5; }
 </style>
 </head>
