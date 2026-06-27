@@ -64,6 +64,34 @@
       "rank": 2
     },
     {
+      "name": "Mat",
+      "points": 6.0,
+      "teams": [
+        {
+          "name": "England",
+          "points": 2.5,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Switzerland",
+          "points": 2.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Algeria",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Pete",
       "points": 6.0,
       "teams": [
@@ -117,7 +145,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Paul",
@@ -152,7 +180,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Tomi",
@@ -187,7 +215,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Darcy",
@@ -222,35 +250,7 @@
           "clinchType": null
         }
       ],
-      "rank": 7
-    },
-    {
-      "name": "Mat",
-      "points": 5.0,
-      "teams": [
-        {
-          "name": "England",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Switzerland",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Algeria",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Agatha",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Mat",
+      "team": "England",
+      "points": 1,
+      "label": "England won (Group stage)",
+      "utcDate": "2026-06-27T21:00:00Z"
+    },
+    {
       "owner": "Ondine",
       "team": "Iran",
       "points": 0.5,
@@ -463,38 +470,9 @@
       "points": 0.5,
       "label": "Saudi Arabia drew (Group stage)",
       "utcDate": "2026-06-27T00:00:00Z"
-    },
-    {
-      "owner": "Paul",
-      "team": "Cabo Verde",
-      "points": 0.5,
-      "label": "Cabo Verde drew (Group stage)",
-      "utcDate": "2026-06-27T00:00:00Z"
     }
   ],
   "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-27T21:00:00Z",
-      "home": {
-        "name": "Panama",
-        "owner": "Paul",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 34
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -519,6 +497,28 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T21:00:00Z",
+      "home": {
+        "name": "Panama",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 34
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -606,28 +606,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-26T19:00:00Z",
-      "home": {
-        "name": "Senegal",
-        "owner": "Ondine",
-        "goals": 5,
-        "penGoals": null,
-        "fifaRank": 15
-      },
-      "away": {
-        "name": "Iraq",
-        "owner": "Agatha",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 56
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -755,7 +733,7 @@
       "matchNo": 73,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "TIMED",
+      "status": "SCHEDULED",
       "utcDate": "2026-06-28T19:00:00Z",
       "home": {
         "name": "South Africa",
@@ -781,40 +759,11 @@
       "winner": null
     },
     {
-      "matchNo": 76,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-29T17:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group C",
-        "resolved": true,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group F",
-        "resolved": true,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
       "matchNo": 74,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "SCHEDULED",
-      "utcDate": "2026-06-29T20:30:00Z",
+      "utcDate": "2026-06-29T17:00:00Z",
       "home": {
         "name": "Germany",
         "owner": "Tomi",
@@ -842,8 +791,8 @@
       "matchNo": 75,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-30T01:00:00Z",
+      "status": "SCHEDULED",
+      "utcDate": "2026-06-29T20:30:00Z",
       "home": {
         "name": "Netherlands",
         "owner": "Charlotte",
@@ -863,6 +812,35 @@
         "slot": "Runner-up Group C",
         "resolved": true,
         "fifaRank": 7
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 76,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "SCHEDULED",
+      "utcDate": "2026-06-30T01:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group C",
+        "resolved": true,
+        "fifaRank": 6
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group F",
+        "resolved": true,
+        "fifaRank": 18
       },
       "penalties": false,
       "winner": null
@@ -935,7 +913,7 @@
           "matchNo": 73,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "SCHEDULED",
           "utcDate": "2026-06-28T19:00:00Z",
           "home": {
             "name": "South Africa",
@@ -965,7 +943,7 @@
           "stage": "Round of 32",
           "stageCode": "LAST_32",
           "status": "SCHEDULED",
-          "utcDate": "2026-06-29T20:30:00Z",
+          "utcDate": "2026-06-29T17:00:00Z",
           "home": {
             "name": "Germany",
             "owner": "Tomi",
@@ -993,8 +971,8 @@
           "matchNo": 75,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
-          "utcDate": "2026-06-30T01:00:00Z",
+          "status": "SCHEDULED",
+          "utcDate": "2026-06-29T20:30:00Z",
           "home": {
             "name": "Netherlands",
             "owner": "Charlotte",
@@ -1022,8 +1000,8 @@
           "matchNo": 76,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
-          "utcDate": "2026-06-29T17:00:00Z",
+          "status": "SCHEDULED",
+          "utcDate": "2026-06-30T01:00:00Z",
           "home": {
             "name": "Brazil",
             "owner": "Sydney",
@@ -1163,8 +1141,8 @@
           "matchNo": 81,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
-          "utcDate": "2026-07-02T00:00:00Z",
+          "status": "SCHEDULED",
+          "utcDate": "2026-07-01T20:00:00Z",
           "home": {
             "name": "United States",
             "owner": "Darcy",
@@ -1175,11 +1153,11 @@
             "resolved": true
           },
           "away": {
-            "name": "Bosnia-Herzegovina",
+            "name": "Bosnia and Herzegovina",
             "owner": "Tomi",
             "goals": null,
             "penGoals": null,
-            "projected": false,
+            "projected": true,
             "slot": "3rd place B/E/F/I/J",
             "resolved": true
           },
@@ -1191,7 +1169,7 @@
           "stage": "Round of 32",
           "stageCode": "LAST_32",
           "status": "SCHEDULED",
-          "utcDate": "2026-07-01T20:00:00Z",
+          "utcDate": "2026-07-02T00:00:00Z",
           "home": {
             "name": "Belgium",
             "owner": "Paul",
@@ -2662,14 +2640,14 @@
           "pos": 1,
           "team": "England",
           "owner": "Mat",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "draw": 1,
           "lost": 0,
-          "gf": 4,
+          "gf": 6,
           "ga": 2,
-          "gd": 2,
-          "points": 4,
+          "gd": 4,
+          "points": 7,
           "conduct": -1,
           "fifaRank": 4,
           "clinched": false,
@@ -2713,13 +2691,13 @@
           "pos": 4,
           "team": "Panama",
           "owner": "Paul",
-          "played": 2,
+          "played": 3,
           "won": 0,
           "draw": 0,
-          "lost": 2,
+          "lost": 3,
           "gf": 0,
-          "ga": 2,
-          "gd": -2,
+          "ga": 4,
+          "gd": -4,
           "points": 0,
           "conduct": -3,
           "fifaRank": 34,
@@ -9424,6 +9402,12 @@
           "a": "Croatia",
           "hg": 0,
           "ag": 1
+        },
+        {
+          "h": "Panama",
+          "a": "England",
+          "hg": 0,
+          "ag": 2
         }
       ]
     },
@@ -9458,10 +9442,6 @@
         }
       ],
       "L": [
-        {
-          "h": "Panama",
-          "a": "England"
-        },
         {
           "h": "Croatia",
           "a": "Ghana"
@@ -9808,5 +9788,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-27T22:59:55Z"
+  "generated": "2026-06-27T23:00:58Z"
 }
