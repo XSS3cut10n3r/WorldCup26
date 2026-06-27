@@ -266,6 +266,14 @@ def analyze(model):
     thirds.sort(key=lambda r: (-r["points"], -r["gd"], -r["gf"], -(r["conduct"] or 0),
                                (999 if r["fifa"] is None else r["fifa"])))
 
+    # Bubble teams that are NOT a current third (sitting below 3rd in an open
+    # group but still able to climb into a qualifying third-place spot).
+    team_group = {t: L for L in letters for t in G[L]["names"]}
+    third_teams = {t["team"] for t in thirds}
+    off_table_bubble = sorted(
+        ({"team": t, "group": team_group.get(t)} for t in bubble if t not in third_teams),
+        key=lambda x: (x["group"] or "", x["team"]))
+
     return {
         "groups": letters,
         "highest_line": highest_line,
@@ -274,6 +282,7 @@ def analyze(model):
         "eliminated": eliminated,
         "bubble": bubble,
         "current_thirds": thirds,
+        "off_table_bubble": off_table_bubble,
         "games_remaining": sum(len(G[L]["rem"]) for L in letters),
         "open_groups": open_letters,
     }
@@ -340,175 +349,246 @@ def _gd(v):
     return f"+{v}" if v > 0 else (f"\u2212{-v}" if v < 0 else "0")
 
 
+def _serif_width(s, size):
+    """Approximate rendered width of a serif string, calibrated to err slightly
+    long so a strikethrough fully covers the name across fonts/renderers."""
+    w = 0.0
+    for ch in s:
+        if ch == " ":
+            w += 0.26
+        elif ch in "iIjl.,'!|":
+            w += 0.30
+        elif ch in "ft":
+            w += 0.34
+        elif ch in "mwMW":
+            w += 0.84
+        elif ch.isupper():
+            w += 0.64
+        else:
+            w += 0.50
+    return w * size * 1.18 + 3
+
+
+def _disp_width(s, size, ls):
+    """Approximate rendered width of an Oswald (condensed) string at the given
+    size and px letter-spacing; calibrated to err slightly long."""
+    return len(s) * (size * 0.47 + ls)
+
+
 def render_bubble_svg(A):
     hi, lo = A["highest_line"], A["lowest_line"]
     clinched, eliminated, bubble = A["clinched"], A["eliminated"], A["bubble"]
     thirds = A["current_thirds"]
+    off_table = A.get("off_table_bubble") or []
     rem_games = A["games_remaining"]
     n_bubble = len(bubble)
 
+    # ---- the site's "pitch" theme ----
+    BG, BG2 = "#15431C", "#0E3014"
+    CREAM = "#F2F0E4"
+    DIM = "rgba(242,240,228,0.66)"
+    FAINT = "rgba(242,240,228,0.38)"
+    LINE = "rgba(242,240,228,0.20)"
+    GOLD, UP, DOWN, ICE = "#E8C34A", "#5FD083", "#FF6B57", "#7FDCEF"
+    SHADOW = "rgba(0,0,0,0.30)"
+
+    def gdcol(v):
+        return UP if v > 0 else (DOWN if v < 0 else DIM)
+
     out = []
     a = out.append
-    W = 1080
+    W, LX, RX = 1080, 80, 1000
     row_h = 46
-    table_top = 812
+    band_h = 46
+    table_top = 760
     n_rows = len(thirds)
-    table_bottom = table_top + 32 + n_rows * row_h
-    H = table_bottom + 156
+    table_bottom = table_top + 32 + n_rows * row_h + band_h
+    note_h = 30 if off_table else 0
+    H = table_bottom + 158 + note_h
 
-    a(f'<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" '
-      'font-family="Helvetica Neue, Arial, sans-serif">')
-    a('<defs><style>'
-      '.serif{font-family:Georgia,"Times New Roman",serif;}'
-      '.sans{font-family:"Helvetica Neue",Arial,sans-serif;}'
-      '.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}'
-      '</style></defs>')
-    a(f'<rect x="0" y="0" width="{W}" height="{H}" fill="#FCFBF8"/>')
+    a(f'<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg">')
+    a('<defs>'
+      '<style>'
+      '.disp{font-family:Oswald,"Arial Narrow",Helvetica,Arial,sans-serif;}'
+      '.body{font-family:Barlow,"Helvetica Neue",Arial,sans-serif;}'
+      '</style>'
+      '<radialGradient id="glow" cx="50%" cy="0%" r="80%">'
+      '<stop offset="0%" stop-color="#F2F0E4" stop-opacity="0.07"/>'
+      '<stop offset="55%" stop-color="#F2F0E4" stop-opacity="0"/>'
+      '</radialGradient>'
+      '</defs>')
 
-    # masthead
-    a('<rect x="0" y="0" width="1080" height="64" fill="#15171C"/>')
-    a('<text class="sans" x="80" y="40" fill="#FCFBF8" font-size="14" font-weight="700" '
-      'letter-spacing="2.5">WORLD CUP 2026&#160;&#160;&#183;&#160;&#160;GROUP STAGE</text>')
-    a('<text class="sans" x="1000" y="40" fill="#FCFBF8" font-size="14" font-weight="700" '
-      'letter-spacing="2.5" text-anchor="end">QUALIFICATION BOUNDS</text>')
+    # pitch background: mown stripes + soft top glow
+    a(f'<rect x="0" y="0" width="{W}" height="{H}" fill="{BG}"/>')
+    k = 88
+    while k < H:
+        a(f'<rect x="0" y="{k}" width="{W}" height="88" fill="{BG2}"/>')
+        k += 176
+    a(f'<rect x="0" y="0" width="{W}" height="{H}" fill="url(#glow)"/>')
 
-    # headline + deck
-    a('<text class="serif" x="80" y="165" fill="#15171C" font-size="58" font-weight="700" '
-      'letter-spacing="-0.5">The race for the last</text>')
-    a('<text class="serif" x="80" y="227" fill="#15171C" font-size="58" font-weight="700" '
-      'letter-spacing="-0.5">third-place ticket</text>')
-    a('<text class="sans" x="80" y="286" fill="#4A4E57" font-size="20">Eight of the twelve '
+    def section(label, y, size=16, ls=2):
+        a(f'<text class="disp" x="{LX}" y="{y}" fill="{CREAM}" font-size="{size}" '
+          f'font-weight="600" letter-spacing="{ls}">{label}</text>')
+        rx0 = LX + _disp_width(label, size, ls) + 16
+        a(f'<line x1="{rx0:.0f}" y1="{y - 5}" x2="{RX}" y2="{y - 5}" stroke="{LINE}" '
+          'stroke-width="2"/>')
+
+    # eyebrow + masthead title (no bar; text on the pitch, with a drop shadow)
+    a(f'<text class="disp" x="{LX}" y="60" fill="{DIM}" font-size="13" font-weight="500" '
+      'letter-spacing="4">WORLD CUP 2026&#160;&#160;&#183;&#160;&#160;QUALIFICATION BOUNDS</text>')
+
+    def shadowed(label, y, size, ls=1):
+        a(f'<text class="disp" x="{LX}" y="{y + 2}" fill="{SHADOW}" font-size="{size}" '
+          f'font-weight="700" letter-spacing="{ls}">{label}</text>')
+        a(f'<text class="disp" x="{LX}" y="{y}" fill="{CREAM}" font-size="{size}" '
+          f'font-weight="700" letter-spacing="{ls}">{label}</text>')
+    shadowed("THE RACE FOR THE LAST", 132, 58)
+    shadowed("THIRD-PLACE TICKET", 196, 58)
+
+    a(f'<text class="body" x="{LX}" y="250" fill="{DIM}" font-size="20">Eight of the twelve '
       'third-placed teams advance. The contenders are level on points, so the</text>')
-    a('<text class="sans" x="80" y="316" fill="#4A4E57" font-size="20">last seat comes down to '
+    a(f'<text class="body" x="{LX}" y="280" fill="{DIM}" font-size="20">last seat comes down to '
       'goal difference, then goals scored. With games still to</text>')
-    a('<text class="sans" x="80" y="346" fill="#4A4E57" font-size="20">play, the exact cut-off '
+    a(f'<text class="body" x="{LX}" y="310" fill="{DIM}" font-size="20">play, the exact cut-off '
       'can only land between these two lines.</text>')
-    a('<line x1="80" y1="384" x2="1000" y2="384" stroke="#E2DFD7" stroke-width="1"/>')
 
-    # bounds heading
-    a('<text class="sans" x="80" y="432" fill="#15171C" font-size="15" font-weight="700" '
-      'letter-spacing="2.5">THE CUT-OFF LINE, BOUNDED</text>')
-    a('<rect x="80" y="442" width="46" height="3" fill="#15171C"/>')
-    a('<text class="sans" x="80" y="467" fill="#4A4E57" font-size="15">The 8th-best third: the '
+    # bounds section
+    section("THE CUT-OFF LINE, BOUNDED", 372)
+    a(f'<text class="body" x="{LX}" y="398" fill="{DIM}" font-size="15">The 8th-best third: the '
       'last side to qualify. GD and GF are what separate teams now.</text>')
 
     cards = [
-        ("LOWEST POSSIBLE", "the easiest the bar can get", "#2E6E66", lo),
-        ("HIGHEST POSSIBLE", "the hardest the bar can get", "#A23139", hi),
+        ("LOWEST POSSIBLE", "the easiest the bar can get", UP, lo),
+        ("HIGHEST POSSIBLE", "the hardest the bar can get", DOWN, hi),
     ]
-    cy = 502
-    cardw = 440
-    for i, (tier, sub, color, L) in enumerate(cards):
-        x = 80 + i * (cardw + 40)
-        a(f'<rect x="{x}" y="{cy}" width="{cardw}" height="208" rx="4" fill="#FFFFFF" '
-          'stroke="#E7E3DA" stroke-width="1"/>')
-        a(f'<rect x="{x}" y="{cy}" width="6" height="208" fill="{color}"/>')
-        a(f'<text class="sans" x="{x + 28}" y="{cy + 38}" fill="{color}" font-size="15" '
-          f'font-weight="700" letter-spacing="1">{tier}</text>')
-        a(f'<text class="sans" x="{x + 28}" y="{cy + 60}" fill="#7C808A" font-size="13">{sub}</text>')
+    cy, cardw = 430, 208
+    cw = 440
+    for i, (tier, sub, accent, L) in enumerate(cards):
+        x = LX + i * (cw + 40)
+        a(f'<rect x="{x}" y="{cy}" width="{cw}" height="{cardw}" rx="8" fill="{BG2}" '
+          f'stroke="{LINE}" stroke-width="1"/>')
+        a(f'<rect x="{x}" y="{cy}" width="6" height="{cardw}" fill="{accent}"/>')
+        a(f'<text class="disp" x="{x + 30}" y="{cy + 42}" fill="{accent}" font-size="18" '
+          f'font-weight="600" letter-spacing="1.5">{tier}</text>')
+        a(f'<text class="body" x="{x + 30}" y="{cy + 64}" fill="{DIM}" font-size="13">{sub}</text>')
         if L is None:
-            a(f'<text class="serif" x="{x + 28}" y="{cy + 120}" fill="#7C808A" font-size="22" '
+            a(f'<text class="body" x="{x + 30}" y="{cy + 124}" fill="{DIM}" font-size="22" '
               'font-style="italic">not yet defined</text>')
         else:
-            cols = [(x + 40, "PTS", str(L["points"]), "#15171C"),
-                    (x + 175, "GD", _gd(L["gd"]), color),
-                    (x + 320, "GF", str(L["gf"]), "#15171C")]
-            for cxp, lab, val, vc in cols:
-                a(f'<text class="sans" x="{cxp}" y="{cy + 96}" fill="#7C808A" font-size="12" '
-                  f'font-weight="700" letter-spacing="1.5">{lab}</text>')
-                a(f'<text class="mono" x="{cxp}" y="{cy + 150}" fill="{vc}" font-size="46" '
+            cols = [(x + 42, "PTS", str(L["points"])),
+                    (x + 178, "GD", _gd(L["gd"])),
+                    (x + 322, "GF", str(L["gf"]))]
+            for cxp, lab, val in cols:
+                a(f'<text class="disp" x="{cxp}" y="{cy + 100}" fill="{FAINT}" font-size="12" '
+                  f'font-weight="600" letter-spacing="2">{lab}</text>')
+                a(f'<text class="disp" x="{cxp}" y="{cy + 156}" fill="{CREAM}" font-size="52" '
                   f'font-weight="700">{val}</text>')
-            a(f'<text class="sans" x="{x + 28}" y="{cy + 188}" fill="#7C808A" font-size="13">'
-              f'set by <tspan fill="#15171C" font-weight="700">{_xesc(L["team"])}</tspan> '
+            a(f'<text class="body" x="{x + 30}" y="{cy + 192}" fill="{DIM}" font-size="13">'
+              f'set by <tspan fill="{GOLD}" font-weight="700">{_xesc(L["team"])}</tspan> '
               f'(Group {L["group"]})</text>')
 
-    # tally strip
-    a(f'<text class="sans" x="80" y="772" fill="#4A4E57" font-size="15">'
-      f'<tspan fill="#15171C" font-weight="700">{len(clinched)}</tspan> teams already through'
+    # tally
+    a(f'<text class="body" x="{LX}" y="700" fill="{DIM}" font-size="15">'
+      f'<tspan fill="{CREAM}" font-weight="700">{len(clinched)}</tspan> teams already through'
       f'&#160;&#160;&#183;&#160;&#160;'
-      f'<tspan fill="#15171C" font-weight="700">{len(eliminated)}</tspan> out'
+      f'<tspan fill="{CREAM}" font-weight="700">{len(eliminated)}</tspan> out'
       f'&#160;&#160;&#183;&#160;&#160;'
-      f'<tspan fill="#15171C" font-weight="700">{n_bubble}</tspan> still fighting for the seat'
+      f'<tspan fill="{CREAM}" font-weight="700">{n_bubble}</tspan> still fighting for the seat'
       f'&#160;&#160;&#183;&#160;&#160;'
-      f'<tspan fill="#15171C" font-weight="700">{rem_games}</tspan> games to play.</text>')
+      f'<tspan fill="{CREAM}" font-weight="700">{rem_games}</tspan> games to play.</text>')
 
-    # thirds table
-    a(f'<text class="sans" x="80" y="{table_top - 10}" fill="#15171C" font-size="15" '
-      'font-weight="700" letter-spacing="2.5">WHERE THE TWELVE THIRDS STAND</text>')
-    a(f'<rect x="80" y="{table_top}" width="46" height="3" fill="#15171C"/>')
+    # table
+    section("WHERE THE TWELVE THIRDS STAND", table_top - 10)
+    a(f'<rect x="72" y="{table_top + 18}" width="936" height="{table_bottom - table_top - 8}" '
+      f'rx="8" fill="rgba(10,38,18,0.55)" stroke="{LINE}" stroke-width="1"/>')
     hy = table_top + 24
     headers = [(132, "TEAM", "start"), (470, "GRP", "middle"), (548, "PTS", "middle"),
                (628, "GD", "middle"), (706, "GF", "middle"), (784, "LEFT", "middle")]
     for hx, lab, anch in headers:
-        a(f'<text class="sans" x="{hx}" y="{hy}" fill="#7C808A" font-size="12" font-weight="700" '
-          f'letter-spacing="1.5" text-anchor="{anch}">{lab}</text>')
-    a(f'<text class="sans" x="1000" y="{hy}" fill="#7C808A" font-size="12" font-weight="700" '
-      'letter-spacing="1.5" text-anchor="end">STATUS</text>')
-    a(f'<line x1="80" y1="{table_top + 32}" x2="1000" y2="{table_top + 32}" '
-      'stroke="#C9C5BA" stroke-width="1.5"/>')
+        a(f'<text class="disp" x="{hx}" y="{hy}" fill="{FAINT}" font-size="12" font-weight="600" '
+          f'letter-spacing="2" text-anchor="{anch}">{lab}</text>')
+    a(f'<text class="disp" x="{RX}" y="{hy}" fill="{FAINT}" font-size="12" font-weight="600" '
+      'letter-spacing="2" text-anchor="end">STATUS</text>')
+    a(f'<line x1="{LX}" y1="{table_top + 32}" x2="{RX}" y2="{table_top + 32}" '
+      f'stroke="{LINE}" stroke-width="1.5"/>')
+
+    def pill(cx_right, cyl, label, txt, bg, stroke=None):
+        pw = _disp_width(label, 12, 0.6) + 26
+        a(f'<rect x="{cx_right - pw:.0f}" y="{cyl - 14:.0f}" width="{pw:.0f}" height="26" '
+          f'rx="13" fill="{bg}"' + (f' stroke="{stroke}" stroke-opacity="0.55" stroke-width="1"' if stroke else "") + '/>')
+        a(f'<text class="disp" x="{cx_right - pw / 2:.0f}" y="{cyl + 4:.0f}" fill="{txt}" '
+          f'font-size="12" font-weight="600" letter-spacing="0.8" text-anchor="middle">{label}</text>')
 
     for i, t in enumerate(thirds):
-        top = table_top + 32 + i * row_h
+        offset = band_h if i >= 8 else 0
+        top = table_top + 32 + i * row_h + offset
         cyl = top + row_h / 2
         if i % 2 == 1:
-            a(f'<rect x="80" y="{top}" width="920" height="{row_h}" fill="#F4F2EC"/>')
-        if i == 8:
-            a(f'<line x1="80" y1="{top}" x2="1000" y2="{top}" stroke="#A23139" '
-              'stroke-width="1.5" stroke-dasharray="5 4"/>')
-            a(f'<text class="sans" x="84" y="{top - 6}" fill="#A23139" font-size="11" '
-              'font-weight="700" letter-spacing="1.5" text-anchor="start">QUALIFYING CUT-OFF</text>')
+            a(f'<rect x="{LX}" y="{top}" width="920" height="{row_h}" fill="rgba(242,240,228,0.05)"/>')
         nm = t["team"]
         out_ = t["status"] == "out"
-        name_fill = "#9A9EA6" if out_ else "#15171C"
-        a(f'<text class="serif" x="132" y="{cyl + 7}" fill="{name_fill}" font-size="21">'
-          f'{_xesc(nm)}</text>')
+        name_fill = FAINT if out_ else CREAM
+        a(f'<text class="body" x="132" y="{cyl + 7}" fill="{name_fill}" font-size="21" '
+          f'font-weight="600">{_xesc(nm)}</text>')
         if out_:
-            tw = 11 * len(nm) * 0.62
+            tw = _serif_width(nm, 21)
             a(f'<line x1="130" y1="{cyl + 1}" x2="{132 + tw:.0f}" y2="{cyl + 1}" '
-              'stroke="#A23139" stroke-width="2"/>')
-        a(f'<text class="mono" x="470" y="{cyl + 6}" fill="#4A4E57" font-size="18" '
+              f'stroke="{DOWN}" stroke-width="2"/>')
+        a(f'<text class="disp" x="470" y="{cyl + 7}" fill="{DIM}" font-size="20" '
           f'text-anchor="middle">{t["group"]}</text>')
-        a(f'<text class="mono" x="548" y="{cyl + 6}" fill="#15171C" font-size="20" '
+        a(f'<text class="disp" x="548" y="{cyl + 7}" fill="{CREAM}" font-size="22" '
           f'font-weight="700" text-anchor="middle">{t["points"]}</text>')
-        gdc = "#2E6E66" if t["gd"] > 0 else ("#A23139" if t["gd"] < 0 else "#4A4E57")
-        a(f'<text class="mono" x="628" y="{cyl + 6}" fill="{gdc}" font-size="20" '
+        a(f'<text class="disp" x="628" y="{cyl + 7}" fill="{gdcol(t["gd"])}" font-size="22" '
           f'font-weight="700" text-anchor="middle">{_gd(t["gd"])}</text>')
-        a(f'<text class="mono" x="706" y="{cyl + 6}" fill="#15171C" font-size="20" '
+        a(f'<text class="disp" x="706" y="{cyl + 7}" fill="{CREAM}" font-size="22" '
           f'text-anchor="middle">{t["gf"]}</text>')
         left = t["rem"]
-        a(f'<text class="mono" x="784" y="{cyl + 6}" fill="#7C808A" font-size="18" '
+        a(f'<text class="disp" x="784" y="{cyl + 7}" fill="{FAINT}" font-size="20" '
           f'text-anchor="middle">{left if left else "\u2212"}</text>')
         if t["status"] == "through":
-            label, col, bg = "THROUGH", "#8A6A12", "#FBF1D6"
+            pill(RX, cyl, "THROUGH", BG2, GOLD)
         elif out_:
-            label, col, bg = "OUT", "#A23139", "#F7E4E4"
+            pill(RX, cyl, "OUT", "#FF9485", "rgba(255,107,87,0.16)", stroke="#FF9485")
         else:
-            label, col, bg = "ON THE BUBBLE", "#2B3A55", "#E4E9F1"
-        pill_w = 8.6 * len(label) + 26
-        a(f'<rect x="{1000 - pill_w:.0f}" y="{cyl - 14:.0f}" width="{pill_w:.0f}" height="26" '
-          f'rx="13" fill="{bg}"/>')
-        a(f'<text class="sans" x="{1000 - pill_w / 2:.0f}" y="{cyl + 4:.0f}" fill="{col}" '
-          f'font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">{label}</text>')
+            pill(RX, cyl, "ON THE BUBBLE", "#9FE6F5", "rgba(127,220,239,0.13)", stroke="#9FE6F5")
 
-    a(f'<line x1="80" y1="{table_bottom}" x2="1000" y2="{table_bottom}" '
-      'stroke="#C9C5BA" stroke-width="1.5"/>')
+    # qualifying cut-off, in its own band between rows 8 and 9
+    band_top = table_top + 32 + 8 * row_h
+    bcy = band_top + band_h / 2
+    a(f'<line x1="92" y1="{bcy}" x2="988" y2="{bcy}" stroke="{GOLD}" stroke-width="2" '
+      'stroke-dasharray="6 5"/>')
+    plabel = "QUALIFYING CUT-OFF \u00b7 TOP 8 ADVANCE"
+    pw = _disp_width(plabel, 14, 2) + 40
+    a(f'<rect x="{540 - pw / 2:.0f}" y="{bcy - 15:.0f}" width="{pw:.0f}" height="30" rx="15" '
+      f'fill="{GOLD}"/>')
+    a(f'<text class="disp" x="540" y="{bcy + 6:.0f}" fill="{BG2}" font-size="14" '
+      f'font-weight="600" letter-spacing="2" text-anchor="middle">{plabel}</text>')
+
+    # off-table bubble note
+    if off_table:
+        items = ", ".join(f'{_xesc(o["team"])} (Group {o["group"]})' for o in off_table)
+        a(f'<text class="body" x="{LX}" y="{table_bottom + 28}" fill="{ICE}" font-size="13.5">'
+          f'<tspan fill="{CREAM}" font-weight="700">Also still alive for a third-place seat</tspan>, '
+          f'currently sitting below third in their group: {items}.</text>')
 
     # footer
-    fy = table_bottom + 28
-    a(f'<text class="sans" x="80" y="{fy}" fill="#7C808A" font-size="12.5">Thirds ranked by '
+    fy = table_bottom + 30 + note_h
+    a(f'<text class="body" x="{LX}" y="{fy}" fill="{FAINT}" font-size="12.5">Thirds ranked by '
       'points, then goal difference, then goals for.</text>')
-    a(f'<text class="sans" x="80" y="{fy + 18}" fill="#7C808A" font-size="12.5">PTS / GD / GF and '
+    a(f'<text class="body" x="{LX}" y="{fy + 18}" fill="{FAINT}" font-size="12.5">PTS / GD / GF and '
       'LEFT are current values and games still to play; open-group rows are provisional.</text>')
-    a(f'<text class="sans" x="80" y="{fy + 40}" fill="#7C808A" font-size="12.5">THROUGH and OUT '
+    a(f'<text class="body" x="{LX}" y="{fy + 40}" fill="{FAINT}" font-size="12.5">THROUGH and OUT '
       'are mathematical certainties; ON THE BUBBLE means the seat is still live for that side.</text>')
-    a(f'<rect x="80" y="{fy + 58}" width="11" height="11" fill="#A23139"/>')
-    a(f'<text class="sans" x="100" y="{fy + 68}" fill="#15171C" font-size="15" font-weight="700">'
+    a(f'<rect x="{LX}" y="{fy + 58}" width="11" height="11" fill="{GOLD}"/>')
+    a(f'<text class="body" x="100" y="{fy + 68}" fill="{CREAM}" font-size="15" font-weight="700">'
       'The bounds above are exact: every result of the remaining games has been enumerated.</text>')
-    a(f'<text class="sans" x="80" y="{fy + 94}" fill="#7C808A" font-size="12.5">Method&#160;&#160;'
+    a(f'<text class="body" x="{LX}" y="{fy + 94}" fill="{FAINT}" font-size="12.5">Method&#160;&#160;'
       '&#183;&#160;&#160;exact enumeration of every scoreline of the group games still to play. '
       'Conduct held at current values.</text>')
     a('</svg>')
     return "\n".join(out) + "\n"
+
+
 
 
 # ----------------------------------------------------------------------------
