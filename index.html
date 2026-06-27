@@ -1646,6 +1646,7 @@
       return;
     }
     document.body.classList.remove("bubble-mode");
+    reconcileMathFlags(data);
     if (data.simulated) {
       updatedEl.innerHTML = "Simulated Results &middot; Not Live";
     } else if (view === "odds") {
@@ -1776,6 +1777,31 @@
     if (!data.simulated && koData)
       (koData.teams || []).forEach(t => { if ((t.odds || 0) >= 1) s.add(t.name); });
     return s;
+  }
+
+  // Make the mathematically-exact knockout math the single source of truth for
+  // clinched / eliminated on the live data. simulate_group_maxmin.py clamps
+  // knockout_odds.json so a team's odds are EXACTLY 1.0 only when it is provably
+  // through in every remaining result, EXACTLY 0.0 only when it is provably out
+  // in all of them, and otherwise pinned to [0.01, 0.99]. Here we let those
+  // proven 1.0 / 0.0 values overwrite data.json's own clinched / eliminated
+  // flags on every leaderboard team and group-table row, so no team is ever
+  // shown clinched (gold) unless mathematically clinched, and a side the model
+  // has at 0 (e.g. a third now mathematically short of the cut) is correctly
+  // dimmed. Live mode only: the in-browser what-if keeps its own per-run flags.
+  function reconcileMathFlags(data) {
+    if (!data || data.simulated || !koData) return;
+    const odds = {};
+    (koData.teams || []).forEach(t => { odds[t.name] = t.odds; });
+    const apply = obj => {
+      const nm = (obj && obj.team !== undefined) ? obj.team : (obj && obj.name);
+      if (nm == null || !(nm in odds)) return;   // unknown to the model: leave as-is
+      const o = odds[nm] || 0;
+      obj.clinched = o >= 1;
+      obj.eliminated = o <= 0;
+    };
+    (data.leaderboard || []).forEach(p => (p.teams || []).forEach(apply));
+    (data.groups || []).forEach(g => (g.table || []).forEach(apply));
   }
 
   function renderGroups(data) {
