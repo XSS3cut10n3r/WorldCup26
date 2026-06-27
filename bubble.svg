@@ -1,127 +1,161 @@
-<svg viewBox="0 0 1080 1524" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Arial, sans-serif">
+<svg viewBox="0 0 1080 1552" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Arial, sans-serif">
 <defs><style>.serif{font-family:Georgia,"Times New Roman",serif;}.sans{font-family:"Helvetica Neue",Arial,sans-serif;}.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;}</style></defs>
-<rect x="0" y="0" width="1080" height="1524" fill="#FCFBF8"/>
+<rect x="0" y="0" width="1080" height="1552" fill="#FCFBF8"/>
 <rect x="0" y="0" width="1080" height="64" fill="#15171C"/>
 <text class="sans" x="80" y="40" fill="#FCFBF8" font-size="14" font-weight="700" letter-spacing="2.5">WORLD CUP 2026&#160;&#160;&#183;&#160;&#160;GROUP STAGE</text>
 <text class="sans" x="1000" y="40" fill="#FCFBF8" font-size="14" font-weight="700" letter-spacing="2.5" text-anchor="end">QUALIFICATION BOUNDS</text>
 <text class="serif" x="80" y="165" fill="#15171C" font-size="58" font-weight="700" letter-spacing="-0.5">The race for the last</text>
 <text class="serif" x="80" y="227" fill="#15171C" font-size="58" font-weight="700" letter-spacing="-0.5">third-place ticket</text>
-<text class="sans" x="80" y="286" fill="#4A4E57" font-size="20">Eight of the twelve third-placed teams advance to the Round of 32. With group games still</text>
-<text class="sans" x="80" y="316" fill="#4A4E57" font-size="20">to be played, the cut-off for that eighth and final seat is not yet fixed, but it can</text>
-<text class="sans" x="80" y="346" fill="#4A4E57" font-size="20">only land between these two bounds, computed exactly over every possible result.</text>
+<text class="sans" x="80" y="286" fill="#4A4E57" font-size="20">Eight of the twelve third-placed teams advance. The contenders are level on points, so the</text>
+<text class="sans" x="80" y="316" fill="#4A4E57" font-size="20">last seat comes down to goal difference, then goals scored. With games still to</text>
+<text class="sans" x="80" y="346" fill="#4A4E57" font-size="20">play, the exact cut-off can only land between these two lines.</text>
 <line x1="80" y1="384" x2="1000" y2="384" stroke="#E2DFD7" stroke-width="1"/>
-<text class="sans" x="80" y="432" fill="#15171C" font-size="15" font-weight="700" letter-spacing="2.5">THE CUT-OFF, BOUNDED</text>
+<text class="sans" x="80" y="432" fill="#15171C" font-size="15" font-weight="700" letter-spacing="2.5">THE CUT-OFF LINE, BOUNDED</text>
 <rect x="80" y="442" width="46" height="3" fill="#15171C"/>
-<text class="sans" x="80" y="467" fill="#4A4E57" font-size="15">Points only: with goal difference adversarial, a team level on points with the bar is not safe.</text>
-<rect x="80" y="502" width="440" height="150" rx="4" fill="#FFFFFF" stroke="#E7E3DA" stroke-width="1"/>
-<rect x="80" y="502" width="6" height="150" fill="#2E6E66"/>
+<text class="sans" x="80" y="467" fill="#4A4E57" font-size="15">The 8th-best third: the last side to qualify. GD and GF are what separate teams now.</text>
+<rect x="80" y="502" width="440" height="208" rx="4" fill="#FFFFFF" stroke="#E7E3DA" stroke-width="1"/>
+<rect x="80" y="502" width="6" height="208" fill="#2E6E66"/>
 <text class="sans" x="108" y="540" fill="#2E6E66" font-size="15" font-weight="700" letter-spacing="1">LOWEST POSSIBLE</text>
 <text class="sans" x="108" y="562" fill="#7C808A" font-size="13">the easiest the bar can get</text>
-<text class="mono" x="108" y="622" fill="#15171C" font-size="68" font-weight="700">3</text>
-<text class="sans" x="230" y="606" fill="#15171C" font-size="20">points</text>
-<text class="sans" x="230" y="628" fill="#7C808A" font-size="12.5">The weakest 8th-best third any</text>
-<text class="sans" x="230" y="644" fill="#7C808A" font-size="12.5">sequence of results can produce.</text>
-<rect x="560" y="502" width="440" height="150" rx="4" fill="#FFFFFF" stroke="#E7E3DA" stroke-width="1"/>
-<rect x="560" y="502" width="6" height="150" fill="#A23139"/>
+<text class="sans" x="120" y="598" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">PTS</text>
+<text class="mono" x="120" y="652" fill="#15171C" font-size="46" font-weight="700">3</text>
+<text class="sans" x="255" y="598" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">GD</text>
+<text class="mono" x="255" y="652" fill="#2E6E66" font-size="46" font-weight="700">−3</text>
+<text class="sans" x="400" y="598" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">GF</text>
+<text class="mono" x="400" y="652" fill="#15171C" font-size="46" font-weight="700">1</text>
+<text class="sans" x="108" y="690" fill="#7C808A" font-size="13">set by <tspan fill="#15171C" font-weight="700">Scotland</tspan> (Group C)</text>
+<rect x="560" y="502" width="440" height="208" rx="4" fill="#FFFFFF" stroke="#E7E3DA" stroke-width="1"/>
+<rect x="560" y="502" width="6" height="208" fill="#A23139"/>
 <text class="sans" x="588" y="540" fill="#A23139" font-size="15" font-weight="700" letter-spacing="1">HIGHEST POSSIBLE</text>
 <text class="sans" x="588" y="562" fill="#7C808A" font-size="13">the hardest the bar can get</text>
-<text class="mono" x="588" y="622" fill="#15171C" font-size="68" font-weight="700">3</text>
-<text class="sans" x="710" y="606" fill="#15171C" font-size="20">points</text>
-<text class="sans" x="710" y="628" fill="#7C808A" font-size="12.5">The strongest 8th-best third the</text>
-<text class="sans" x="710" y="644" fill="#7C808A" font-size="12.5">results can be forced to require.</text>
-<text class="sans" x="80" y="712" fill="#4A4E57" font-size="15"><tspan fill="#15171C" font-weight="700">27</tspan> teams are already mathematically through&#160;&#160;&#183;&#160;&#160;<tspan fill="#15171C" font-weight="700">10</tspan> are out&#160;&#160;&#183;&#160;&#160;<tspan fill="#15171C" font-weight="700">6</tspan> group games still to play.</text>
-<line x1="80" y1="740" x2="1000" y2="740" stroke="#E2DFD7" stroke-width="1"/>
-<text class="sans" x="80" y="772" fill="#15171C" font-size="15" font-weight="700" letter-spacing="2.5">WHERE THE TWELVE THIRDS STAND</text>
-<rect x="80" y="782" width="46" height="3" fill="#15171C"/>
-<text class="sans" x="120" y="814" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">TEAM</text>
-<text class="sans" x="560" y="814" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">GRP</text>
-<text class="sans" x="648" y="814" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">PTS</text>
-<text class="sans" x="744" y="814" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">LEFT</text>
-<text class="sans" x="1000" y="814" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="end">STATUS</text>
-<line x1="80" y1="822" x2="1000" y2="822" stroke="#C9C5BA" stroke-width="1.5"/>
-<text class="serif" x="120" y="852.0" fill="#15171C" font-size="21">Sweden</text>
-<text class="mono" x="560" y="851.0" fill="#4A4E57" font-size="18" text-anchor="middle">F</text>
-<text class="mono" x="648" y="851.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
-<text class="mono" x="744" y="851.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="908" y="831" width="92" height="26" rx="13" fill="#FBF1D6"/>
-<text class="sans" x="954" y="849" fill="#8A6A12" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">THROUGH</text>
-<rect x="80" y="868" width="920" height="46" fill="#F4F2EC"/>
-<text class="serif" x="120" y="898.0" fill="#15171C" font-size="21">Ecuador</text>
-<text class="mono" x="560" y="897.0" fill="#4A4E57" font-size="18" text-anchor="middle">E</text>
-<text class="mono" x="648" y="897.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
-<text class="mono" x="744" y="897.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="908" y="877" width="92" height="26" rx="13" fill="#FBF1D6"/>
-<text class="sans" x="954" y="895" fill="#8A6A12" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">THROUGH</text>
-<text class="serif" x="120" y="944.0" fill="#15171C" font-size="21">Bosnia and Herzegovina</text>
-<text class="mono" x="560" y="943.0" fill="#4A4E57" font-size="18" text-anchor="middle">B</text>
-<text class="mono" x="648" y="943.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
-<text class="mono" x="744" y="943.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="908" y="923" width="92" height="26" rx="13" fill="#FBF1D6"/>
-<text class="sans" x="954" y="941" fill="#8A6A12" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">THROUGH</text>
-<rect x="80" y="960" width="920" height="46" fill="#F4F2EC"/>
-<text class="serif" x="120" y="990.0" fill="#15171C" font-size="21">Paraguay</text>
-<text class="mono" x="560" y="989.0" fill="#4A4E57" font-size="18" text-anchor="middle">D</text>
-<text class="mono" x="648" y="989.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
-<text class="mono" x="744" y="989.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="908" y="969" width="92" height="26" rx="13" fill="#FBF1D6"/>
-<text class="sans" x="954" y="987" fill="#8A6A12" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">THROUGH</text>
-<text class="serif" x="120" y="1036.0" fill="#15171C" font-size="21">Senegal</text>
-<text class="mono" x="560" y="1035.0" fill="#4A4E57" font-size="18" text-anchor="middle">I</text>
-<text class="mono" x="648" y="1035.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
-<text class="mono" x="744" y="1035.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="871" y="1015" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1033" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<rect x="80" y="1052" width="920" height="46" fill="#F4F2EC"/>
-<text class="serif" x="120" y="1082.0" fill="#15171C" font-size="21">Iran</text>
-<text class="mono" x="560" y="1081.0" fill="#4A4E57" font-size="18" text-anchor="middle">G</text>
-<text class="mono" x="648" y="1081.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
-<text class="mono" x="744" y="1081.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="871" y="1061" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1079" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<text class="serif" x="120" y="1128.0" fill="#15171C" font-size="21">Croatia</text>
-<text class="mono" x="560" y="1127.0" fill="#4A4E57" font-size="18" text-anchor="middle">L</text>
-<text class="mono" x="648" y="1127.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
-<text class="mono" x="744" y="1127.0" fill="#7C808A" font-size="18" text-anchor="middle">2</text>
-<rect x="871" y="1107" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1125" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<rect x="80" y="1144" width="920" height="46" fill="#F4F2EC"/>
-<text class="serif" x="120" y="1174.0" fill="#15171C" font-size="21">South Korea</text>
-<text class="mono" x="560" y="1173.0" fill="#4A4E57" font-size="18" text-anchor="middle">A</text>
-<text class="mono" x="648" y="1173.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
-<text class="mono" x="744" y="1173.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="871" y="1153" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1171" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<text class="serif" x="120" y="1220.0" fill="#15171C" font-size="21">Algeria</text>
-<text class="mono" x="560" y="1219.0" fill="#4A4E57" font-size="18" text-anchor="middle">J</text>
-<text class="mono" x="648" y="1219.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
-<text class="mono" x="744" y="1219.0" fill="#7C808A" font-size="18" text-anchor="middle">2</text>
-<rect x="871" y="1199" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1217" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<rect x="80" y="1236" width="920" height="46" fill="#F4F2EC"/>
-<text class="serif" x="120" y="1266.0" fill="#15171C" font-size="21">Scotland</text>
-<text class="mono" x="560" y="1265.0" fill="#4A4E57" font-size="18" text-anchor="middle">C</text>
-<text class="mono" x="648" y="1265.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
-<text class="mono" x="744" y="1265.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="871" y="1245" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1263" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<text class="serif" x="120" y="1312.0" fill="#9A9EA6" font-size="21">Uruguay</text>
-<line x1="118" y1="1306.0" x2="168" y2="1306.0" stroke="#A23139" stroke-width="2"/>
-<text class="mono" x="560" y="1311.0" fill="#4A4E57" font-size="18" text-anchor="middle">H</text>
-<text class="mono" x="648" y="1311.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">2</text>
-<text class="mono" x="744" y="1311.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
-<rect x="944" y="1291" width="56" height="26" rx="13" fill="#F7E4E4"/>
-<text class="sans" x="972" y="1309" fill="#A23139" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">OUT</text>
-<rect x="80" y="1328" width="920" height="46" fill="#F4F2EC"/>
-<text class="serif" x="120" y="1358.0" fill="#15171C" font-size="21">DR Congo</text>
-<text class="mono" x="560" y="1357.0" fill="#4A4E57" font-size="18" text-anchor="middle">K</text>
-<text class="mono" x="648" y="1357.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">1</text>
-<text class="mono" x="744" y="1357.0" fill="#7C808A" font-size="18" text-anchor="middle">2</text>
-<rect x="871" y="1337" width="129" height="26" rx="13" fill="#ECEAE3"/>
-<text class="sans" x="935" y="1355" fill="#4A4E57" font-size="12.5" font-weight="700" letter-spacing="0.8" text-anchor="middle">IN THE HUNT</text>
-<line x1="80" y1="1374" x2="1000" y2="1374" stroke="#C9C5BA" stroke-width="1.5"/>
-<text class="sans" x="80" y="1402" fill="#7C808A" font-size="12.5">Thirds are ranked by points, goal difference, goals scored, conduct score, then FIFA ranking. PTS and LEFT are current points and group games left.</text>
-<text class="sans" x="80" y="1424" fill="#7C808A" font-size="12.5">THROUGH and OUT are mathematical certainties: a side is THROUGH only if it qualifies in every remaining result, OUT only if it qualifies in none.</text>
-<rect x="80" y="1448" width="11" height="11" fill="#A23139"/>
-<text class="sans" x="100" y="1458" fill="#15171C" font-size="15" font-weight="700">Provisional: the standings above shift as the remaining group fixtures are played.</text>
-<text class="sans" x="80" y="1484" fill="#7C808A" font-size="12.5">Method&#160;&#160;&#183;&#160;&#160;exact enumeration of every win / draw / loss outcome of the group games still to play. Goals are unbounded, so bounds are in points.</text>
+<text class="sans" x="600" y="598" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">PTS</text>
+<text class="mono" x="600" y="652" fill="#15171C" font-size="46" font-weight="700">3</text>
+<text class="sans" x="735" y="598" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">GD</text>
+<text class="mono" x="735" y="652" fill="#A23139" font-size="46" font-weight="700">+2</text>
+<text class="sans" x="880" y="598" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5">GF</text>
+<text class="mono" x="880" y="652" fill="#15171C" font-size="46" font-weight="700">8</text>
+<text class="sans" x="588" y="690" fill="#7C808A" font-size="13">set by <tspan fill="#15171C" font-weight="700">Senegal</tspan> (Group I)</text>
+<text class="sans" x="80" y="772" fill="#4A4E57" font-size="15"><tspan fill="#15171C" font-weight="700">28</tspan> teams already through&#160;&#160;&#183;&#160;&#160;<tspan fill="#15171C" font-weight="700">12</tspan> out&#160;&#160;&#183;&#160;&#160;<tspan fill="#15171C" font-weight="700">8</tspan> still fighting for the seat&#160;&#160;&#183;&#160;&#160;<tspan fill="#15171C" font-weight="700">6</tspan> games to play.</text>
+<text class="sans" x="80" y="802" fill="#15171C" font-size="15" font-weight="700" letter-spacing="2.5">WHERE THE TWELVE THIRDS STAND</text>
+<rect x="80" y="812" width="46" height="3" fill="#15171C"/>
+<text class="sans" x="132" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="start">TEAM</text>
+<text class="sans" x="470" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">GRP</text>
+<text class="sans" x="548" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">PTS</text>
+<text class="sans" x="628" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">GD</text>
+<text class="sans" x="706" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">GF</text>
+<text class="sans" x="784" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="middle">LEFT</text>
+<text class="sans" x="1000" y="836" fill="#7C808A" font-size="12" font-weight="700" letter-spacing="1.5" text-anchor="end">STATUS</text>
+<line x1="80" y1="844" x2="1000" y2="844" stroke="#C9C5BA" stroke-width="1.5"/>
+<text class="serif" x="132" y="874.0" fill="#15171C" font-size="21">Sweden</text>
+<text class="mono" x="470" y="873.0" fill="#4A4E57" font-size="18" text-anchor="middle">F</text>
+<text class="mono" x="548" y="873.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
+<text class="mono" x="628" y="873.0" fill="#4A4E57" font-size="20" font-weight="700" text-anchor="middle">0</text>
+<text class="mono" x="706" y="873.0" fill="#15171C" font-size="20" text-anchor="middle">7</text>
+<text class="mono" x="784" y="873.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="914" y="853" width="86" height="26" rx="13" fill="#FBF1D6"/>
+<text class="sans" x="957" y="871" fill="#8A6A12" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">THROUGH</text>
+<rect x="80" y="890" width="920" height="46" fill="#F4F2EC"/>
+<text class="serif" x="132" y="920.0" fill="#15171C" font-size="21">Ecuador</text>
+<text class="mono" x="470" y="919.0" fill="#4A4E57" font-size="18" text-anchor="middle">E</text>
+<text class="mono" x="548" y="919.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
+<text class="mono" x="628" y="919.0" fill="#4A4E57" font-size="20" font-weight="700" text-anchor="middle">0</text>
+<text class="mono" x="706" y="919.0" fill="#15171C" font-size="20" text-anchor="middle">2</text>
+<text class="mono" x="784" y="919.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="914" y="899" width="86" height="26" rx="13" fill="#FBF1D6"/>
+<text class="sans" x="957" y="917" fill="#8A6A12" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">THROUGH</text>
+<text class="serif" x="132" y="966.0" fill="#15171C" font-size="21">Bosnia and Herzegovina</text>
+<text class="mono" x="470" y="965.0" fill="#4A4E57" font-size="18" text-anchor="middle">B</text>
+<text class="mono" x="548" y="965.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
+<text class="mono" x="628" y="965.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−1</text>
+<text class="mono" x="706" y="965.0" fill="#15171C" font-size="20" text-anchor="middle">5</text>
+<text class="mono" x="784" y="965.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="914" y="945" width="86" height="26" rx="13" fill="#FBF1D6"/>
+<text class="sans" x="957" y="963" fill="#8A6A12" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">THROUGH</text>
+<rect x="80" y="982" width="920" height="46" fill="#F4F2EC"/>
+<text class="serif" x="132" y="1012.0" fill="#15171C" font-size="21">Paraguay</text>
+<text class="mono" x="470" y="1011.0" fill="#4A4E57" font-size="18" text-anchor="middle">D</text>
+<text class="mono" x="548" y="1011.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">4</text>
+<text class="mono" x="628" y="1011.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−2</text>
+<text class="mono" x="706" y="1011.0" fill="#15171C" font-size="20" text-anchor="middle">2</text>
+<text class="mono" x="784" y="1011.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="914" y="991" width="86" height="26" rx="13" fill="#FBF1D6"/>
+<text class="sans" x="957" y="1009" fill="#8A6A12" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">THROUGH</text>
+<text class="serif" x="132" y="1058.0" fill="#15171C" font-size="21">Senegal</text>
+<text class="mono" x="470" y="1057.0" fill="#4A4E57" font-size="18" text-anchor="middle">I</text>
+<text class="mono" x="548" y="1057.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text class="mono" x="628" y="1057.0" fill="#2E6E66" font-size="20" font-weight="700" text-anchor="middle">+2</text>
+<text class="mono" x="706" y="1057.0" fill="#15171C" font-size="20" text-anchor="middle">8</text>
+<text class="mono" x="784" y="1057.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="914" y="1037" width="86" height="26" rx="13" fill="#FBF1D6"/>
+<text class="sans" x="957" y="1055" fill="#8A6A12" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">THROUGH</text>
+<rect x="80" y="1074" width="920" height="46" fill="#F4F2EC"/>
+<text class="serif" x="132" y="1104.0" fill="#15171C" font-size="21">Iran</text>
+<text class="mono" x="470" y="1103.0" fill="#4A4E57" font-size="18" text-anchor="middle">G</text>
+<text class="mono" x="548" y="1103.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text class="mono" x="628" y="1103.0" fill="#4A4E57" font-size="20" font-weight="700" text-anchor="middle">0</text>
+<text class="mono" x="706" y="1103.0" fill="#15171C" font-size="20" text-anchor="middle">3</text>
+<text class="mono" x="784" y="1103.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="862" y="1083" width="138" height="26" rx="13" fill="#E4E9F1"/>
+<text class="sans" x="931" y="1101" fill="#2B3A55" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">ON THE BUBBLE</text>
+<text class="serif" x="132" y="1150.0" fill="#15171C" font-size="21">Croatia</text>
+<text class="mono" x="470" y="1149.0" fill="#4A4E57" font-size="18" text-anchor="middle">L</text>
+<text class="mono" x="548" y="1149.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text class="mono" x="628" y="1149.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−1</text>
+<text class="mono" x="706" y="1149.0" fill="#15171C" font-size="20" text-anchor="middle">3</text>
+<text class="mono" x="784" y="1149.0" fill="#7C808A" font-size="18" text-anchor="middle">2</text>
+<rect x="862" y="1129" width="138" height="26" rx="13" fill="#E4E9F1"/>
+<text class="sans" x="931" y="1147" fill="#2B3A55" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">ON THE BUBBLE</text>
+<rect x="80" y="1166" width="920" height="46" fill="#F4F2EC"/>
+<text class="serif" x="132" y="1196.0" fill="#15171C" font-size="21">South Korea</text>
+<text class="mono" x="470" y="1195.0" fill="#4A4E57" font-size="18" text-anchor="middle">A</text>
+<text class="mono" x="548" y="1195.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text class="mono" x="628" y="1195.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−1</text>
+<text class="mono" x="706" y="1195.0" fill="#15171C" font-size="20" text-anchor="middle">2</text>
+<text class="mono" x="784" y="1195.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="862" y="1175" width="138" height="26" rx="13" fill="#E4E9F1"/>
+<text class="sans" x="931" y="1193" fill="#2B3A55" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">ON THE BUBBLE</text>
+<line x1="80" y1="1212" x2="1000" y2="1212" stroke="#A23139" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text class="sans" x="84" y="1206" fill="#A23139" font-size="11" font-weight="700" letter-spacing="1.5" text-anchor="start">QUALIFYING CUT-OFF</text>
+<text class="serif" x="132" y="1242.0" fill="#15171C" font-size="21">Algeria</text>
+<text class="mono" x="470" y="1241.0" fill="#4A4E57" font-size="18" text-anchor="middle">J</text>
+<text class="mono" x="548" y="1241.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text class="mono" x="628" y="1241.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−2</text>
+<text class="mono" x="706" y="1241.0" fill="#15171C" font-size="20" text-anchor="middle">2</text>
+<text class="mono" x="784" y="1241.0" fill="#7C808A" font-size="18" text-anchor="middle">2</text>
+<rect x="862" y="1221" width="138" height="26" rx="13" fill="#E4E9F1"/>
+<text class="sans" x="931" y="1239" fill="#2B3A55" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">ON THE BUBBLE</text>
+<rect x="80" y="1258" width="920" height="46" fill="#F4F2EC"/>
+<text class="serif" x="132" y="1288.0" fill="#15171C" font-size="21">Scotland</text>
+<text class="mono" x="470" y="1287.0" fill="#4A4E57" font-size="18" text-anchor="middle">C</text>
+<text class="mono" x="548" y="1287.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">3</text>
+<text class="mono" x="628" y="1287.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−3</text>
+<text class="mono" x="706" y="1287.0" fill="#15171C" font-size="20" text-anchor="middle">1</text>
+<text class="mono" x="784" y="1287.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="862" y="1267" width="138" height="26" rx="13" fill="#E4E9F1"/>
+<text class="sans" x="931" y="1285" fill="#2B3A55" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">ON THE BUBBLE</text>
+<text class="serif" x="132" y="1334.0" fill="#9A9EA6" font-size="21">Uruguay</text>
+<line x1="130" y1="1328.0" x2="180" y2="1328.0" stroke="#A23139" stroke-width="2"/>
+<text class="mono" x="470" y="1333.0" fill="#4A4E57" font-size="18" text-anchor="middle">H</text>
+<text class="mono" x="548" y="1333.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">2</text>
+<text class="mono" x="628" y="1333.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−1</text>
+<text class="mono" x="706" y="1333.0" fill="#15171C" font-size="20" text-anchor="middle">3</text>
+<text class="mono" x="784" y="1333.0" fill="#7C808A" font-size="18" text-anchor="middle">−</text>
+<rect x="948" y="1313" width="52" height="26" rx="13" fill="#F7E4E4"/>
+<text class="sans" x="974" y="1331" fill="#A23139" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">OUT</text>
+<rect x="80" y="1350" width="920" height="46" fill="#F4F2EC"/>
+<text class="serif" x="132" y="1380.0" fill="#15171C" font-size="21">DR Congo</text>
+<text class="mono" x="470" y="1379.0" fill="#4A4E57" font-size="18" text-anchor="middle">K</text>
+<text class="mono" x="548" y="1379.0" fill="#15171C" font-size="20" font-weight="700" text-anchor="middle">1</text>
+<text class="mono" x="628" y="1379.0" fill="#A23139" font-size="20" font-weight="700" text-anchor="middle">−1</text>
+<text class="mono" x="706" y="1379.0" fill="#15171C" font-size="20" text-anchor="middle">1</text>
+<text class="mono" x="784" y="1379.0" fill="#7C808A" font-size="18" text-anchor="middle">2</text>
+<rect x="862" y="1359" width="138" height="26" rx="13" fill="#E4E9F1"/>
+<text class="sans" x="931" y="1377" fill="#2B3A55" font-size="12" font-weight="700" letter-spacing="0.6" text-anchor="middle">ON THE BUBBLE</text>
+<line x1="80" y1="1396" x2="1000" y2="1396" stroke="#C9C5BA" stroke-width="1.5"/>
+<text class="sans" x="80" y="1424" fill="#7C808A" font-size="12.5">Thirds ranked by points, then goal difference, then goals for.</text>
+<text class="sans" x="80" y="1442" fill="#7C808A" font-size="12.5">PTS / GD / GF and LEFT are current values and games still to play; open-group rows are provisional.</text>
+<text class="sans" x="80" y="1464" fill="#7C808A" font-size="12.5">THROUGH and OUT are mathematical certainties; ON THE BUBBLE means the seat is still live for that side.</text>
+<rect x="80" y="1482" width="11" height="11" fill="#A23139"/>
+<text class="sans" x="100" y="1492" fill="#15171C" font-size="15" font-weight="700">The bounds above are exact: every result of the remaining games has been enumerated.</text>
+<text class="sans" x="80" y="1518" fill="#7C808A" font-size="12.5">Method&#160;&#160;&#183;&#160;&#160;exact enumeration of every scoreline of the group games still to play. Conduct held at current values.</text>
 </svg>
