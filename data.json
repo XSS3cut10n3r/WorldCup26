@@ -472,7 +472,54 @@
       "utcDate": "2026-06-26T02:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T00:00Z",
+      "home": {
+        "name": "Cabo Verde",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 67
+      },
+      "away": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 61
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T00:00Z",
+      "home": {
+        "name": "Uruguay",
+        "owner": "Iva",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 16
+      },
+      "away": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 2
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,78 +633,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T00:00:00Z",
-      "home": {
-        "name": "Uruguay",
-        "owner": "Iva",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 16,
-        "clinched": false
-      },
-      "away": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 2,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "H",
-        "winnerWinsGroup": false,
-        "winnerAdvances": true,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-27T00:00:00Z",
-      "home": {
-        "name": "Cape Verde Islands",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 67,
-        "clinched": false
-      },
-      "away": {
-        "name": "Saudi Arabia",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 61,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "H",
-        "winnerWinsGroup": false,
-        "winnerAdvances": false,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": true
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -921,6 +896,64 @@
           "winAdvances": false
         }
       }
+    },
+    {
+      "matchNo": 73,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-06-28T19:00:00Z",
+      "home": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group A",
+        "resolved": true,
+        "fifaRank": 60
+      },
+      "away": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group B",
+        "resolved": true,
+        "fifaRank": 30
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 76,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-06-29T17:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group C",
+        "resolved": true,
+        "fifaRank": 6
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group F",
+        "resolved": true,
+        "fifaRank": 18
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -941,7 +974,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group A",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 60
           },
           "away": {
             "name": "Canada",
@@ -950,7 +984,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group B",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 30
           },
           "penalties": false,
           "winner": null
@@ -1022,7 +1057,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group C",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 6
           },
           "away": {
             "name": "Japan",
@@ -1031,7 +1067,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group F",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 18
           },
           "penalties": false,
           "winner": null
@@ -9787,5 +9824,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-26T22:04:48Z"
+  "generated": "2026-06-27T00:16:23Z"
 }
