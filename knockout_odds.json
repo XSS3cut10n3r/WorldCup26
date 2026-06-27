@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T21:41:51.575856Z",
+  "generated": "2026-06-27T23:14:00.271909Z",
   "sims": 1000000,
   "teams": [
     {
@@ -48,6 +48,12 @@
       "name": "Colombia",
       "odds": 1.0,
       "base": 0.98726,
+      "delta": null
+    },
+    {
+      "name": "Croatia",
+      "odds": 1.0,
+      "base": 0.885,
       "delta": null
     },
     {
@@ -172,45 +178,33 @@
     },
     {
       "name": "Iran",
-      "odds": 0.93954,
-      "base": 0.93816,
-      "delta": 0.00138
-    },
-    {
-      "name": "Croatia",
-      "odds": 0.885,
-      "base": 0.88211,
-      "delta": 0.00289
+      "odds": 0.86502,
+      "base": 0.93954,
+      "delta": -0.07452
     },
     {
       "name": "Austria",
-      "odds": 0.8428,
-      "base": 0.83107,
-      "delta": 0.01173
+      "odds": 0.7897,
+      "base": 0.8428,
+      "delta": -0.0531
     },
     {
       "name": "Algeria",
-      "odds": 0.56395,
-      "base": 0.58104,
-      "delta": -0.01709
-    },
-    {
-      "name": "South Korea",
-      "odds": 0.48495,
-      "base": 0.47789,
-      "delta": 0.00706
+      "odds": 0.55586,
+      "base": 0.56395,
+      "delta": -0.00809
     },
     {
       "name": "DR Congo",
-      "odds": 0.27935,
-      "base": 0.28563,
-      "delta": -0.00628
+      "odds": 0.52007,
+      "base": 0.27935,
+      "delta": 0.24072
     },
     {
-      "name": "Scotland",
-      "odds": 0.01,
-      "base": 0.01,
-      "delta": null
+      "name": "South Korea",
+      "odds": 0.26924,
+      "base": 0.48495,
+      "delta": -0.21571
     },
     {
       "name": "Uzbekistan",
@@ -270,6 +264,12 @@
       "name": "Saudi Arabia",
       "odds": 0.0,
       "base": 0.37388,
+      "delta": null
+    },
+    {
+      "name": "Scotland",
+      "odds": 0.0,
+      "base": 0.01,
       "delta": null
     },
     {
