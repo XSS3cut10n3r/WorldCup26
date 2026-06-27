@@ -472,36 +472,12 @@
       "utcDate": "2026-06-27T00:00:00Z"
     }
   ],
-  "live": [],
-  "recent": [
+  "live": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T21:00Z",
-      "home": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 11
-      },
-      "away": {
-        "name": "Ghana",
-        "owner": "Charlotte",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 73
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM",
-      "_src": "espn-final"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T21:00Z",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T21:00:00Z",
       "home": {
         "name": "Panama",
         "owner": "Paul",
@@ -517,8 +493,141 @@
         "fifaRank": 4
       },
       "penalties": false,
-      "winner": "AWAY_TEAM",
-      "_src": "espn-final"
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T21:00:00Z",
+      "home": {
+        "name": "Croatia",
+        "owner": "Tom",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 11
+      },
+      "away": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 73
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    }
+  ],
+  "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T03:00:00Z",
+      "home": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 29
+      },
+      "away": {
+        "name": "Iran",
+        "owner": "Ondine",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 21
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T03:00:00Z",
+      "home": {
+        "name": "New Zealand",
+        "owner": "Tomi",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 85
+      },
+      "away": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": 5,
+        "penGoals": null,
+        "fifaRank": 9
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T00:00:00Z",
+      "home": {
+        "name": "Cape Verde Islands",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 67
+      },
+      "away": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 61
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T00:00:00Z",
+      "home": {
+        "name": "Uruguay",
+        "owner": "Iva",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 16
+      },
+      "away": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 2
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-26T19:00:00Z",
+      "home": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": 5,
+        "penGoals": null,
+        "fifaRank": 15
+      },
+      "away": {
+        "name": "Iraq",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 56
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -757,6 +866,64 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 77,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "SCHEDULED",
+      "utcDate": "2026-06-30T17:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group I",
+        "resolved": true,
+        "fifaRank": 3
+      },
+      "away": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": null,
+        "penGoals": null,
+        "projected": true,
+        "slot": "3rd place C/D/F/G/H",
+        "resolved": true,
+        "fifaRank": 38
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 78,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "SCHEDULED",
+      "utcDate": "2026-06-30T21:00:00Z",
+      "home": {
+        "name": "Côte d'Ivoire",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group E",
+        "resolved": true,
+        "fifaRank": 33
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group I",
+        "resolved": true,
+        "fifaRank": 31
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -893,7 +1060,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group I",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 3
           },
           "away": {
             "name": "Sweden",
@@ -902,7 +1070,8 @@
             "penGoals": null,
             "projected": true,
             "slot": "3rd place C/D/F/G/H",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 38
           },
           "penalties": false,
           "winner": null
@@ -920,7 +1089,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group E",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 33
           },
           "away": {
             "name": "Norway",
@@ -929,7 +1099,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group I",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 31
           },
           "penalties": false,
           "winner": null
@@ -9637,5 +9808,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-27T21:02:12Z"
+  "generated": "2026-06-27T22:59:55Z"
 }
