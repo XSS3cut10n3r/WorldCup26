@@ -127,8 +127,8 @@
           "name": "Belgium",
           "points": 2.0,
           "eliminated": false,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "name": "Côte d'Ivoire",
@@ -344,6 +344,41 @@
       "rank": 9
     },
     {
+      "name": "Ondine",
+      "points": 3.5,
+      "teams": [
+        {
+          "name": "Senegal",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Iran",
+          "points": 2.0,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Uzbekistan",
+          "points": 0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Curaçao",
+          "points": 0.5,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 12
+    },
+    {
       "name": "Tom",
       "points": 3.0,
       "teams": [
@@ -369,7 +404,7 @@
           "clinchType": null
         }
       ],
-      "rank": 12
+      "rank": 13
     },
     {
       "name": "Iva",
@@ -397,45 +432,17 @@
           "clinchType": null
         }
       ],
-      "rank": 13
-    },
-    {
-      "name": "Ondine",
-      "points": 2.5,
-      "teams": [
-        {
-          "name": "Senegal",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Iran",
-          "points": 1.0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Uzbekistan",
-          "points": 0,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Curaçao",
-          "points": 0.5,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 13
+      "rank": 14
     }
   ],
   "events": [
+    {
+      "owner": "Ondine",
+      "team": "Iran",
+      "points": 1,
+      "label": "Iran won (Group stage)",
+      "utcDate": "2026-06-27T03:00:00Z"
+    },
     {
       "owner": "Paul",
       "team": "Belgium",
@@ -463,20 +470,14 @@
       "points": 1,
       "label": "Spain won (Group stage)",
       "utcDate": "2026-06-27T00:00:00Z"
-    },
-    {
-      "owner": "Ondine",
-      "team": "Senegal",
-      "points": 1,
-      "label": "Senegal won (Group stage)",
-      "utcDate": "2026-06-26T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-27T03:00:00Z",
       "home": {
         "name": "Egypt",
@@ -494,9 +495,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -584,28 +583,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-26T19:00:00Z",
-      "home": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 31
-      },
-      "away": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": 4,
-        "penGoals": null,
-        "fifaRank": 3
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -1185,7 +1162,7 @@
             "owner": "Paul",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group G",
             "resolved": true
           },
@@ -1271,8 +1248,8 @@
             "resolved": true
           },
           "away": {
-            "name": "Algeria",
-            "owner": "Mat",
+            "name": "Egypt",
+            "owner": "Tom",
             "goals": null,
             "penGoals": null,
             "projected": true,
@@ -1352,11 +1329,11 @@
             "resolved": true
           },
           "away": {
-            "name": "Egypt",
-            "owner": "Tom",
+            "name": "Iran",
+            "owner": "Ondine",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Runner-up Group G",
             "resolved": true
           },
@@ -2290,40 +2267,40 @@
           "points": 5,
           "conduct": -7,
           "fifaRank": 9,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "pos": 2,
-          "team": "Egypt",
-          "owner": "Tom",
-          "played": 2,
+          "team": "Iran",
+          "owner": "Ondine",
+          "played": 3,
           "won": 1,
-          "draw": 1,
+          "draw": 2,
           "lost": 0,
           "gf": 4,
-          "ga": 2,
-          "gd": 2,
-          "points": 4,
-          "conduct": -3,
-          "fifaRank": 29,
-          "clinched": false,
-          "clinchType": null
+          "ga": 3,
+          "gd": 1,
+          "points": 5,
+          "conduct": -2,
+          "fifaRank": 21,
+          "clinched": true,
+          "clinchType": "second"
         },
         {
           "pos": 3,
-          "team": "Iran",
-          "owner": "Ondine",
-          "played": 2,
-          "won": 0,
-          "draw": 2,
-          "lost": 0,
-          "gf": 2,
-          "ga": 2,
-          "gd": 0,
-          "points": 2,
-          "conduct": -2,
-          "fifaRank": 21,
+          "team": "Egypt",
+          "owner": "Tom",
+          "played": 3,
+          "won": 1,
+          "draw": 1,
+          "lost": 1,
+          "gf": 5,
+          "ga": 4,
+          "gd": 1,
+          "points": 4,
+          "conduct": -3,
+          "fifaRank": 29,
           "clinched": false,
           "clinchType": null
         },
@@ -2721,6 +2698,28 @@
   "thirdPlace": [
     {
       "pos": 3,
+      "team": "Egypt",
+      "owner": "Tom",
+      "played": 3,
+      "won": 1,
+      "draw": 1,
+      "lost": 1,
+      "gf": 5,
+      "ga": 4,
+      "gd": 1,
+      "points": 4,
+      "conduct": -3,
+      "fifaRank": 29,
+      "clinched": false,
+      "clinchType": null,
+      "group": "Group G",
+      "ranked": true,
+      "rank": 1,
+      "qualifies": true,
+      "manualTie": false
+    },
+    {
+      "pos": 3,
       "team": "Sweden",
       "owner": "Tomi",
       "played": 3,
@@ -2737,7 +2736,7 @@
       "clinchType": null,
       "group": "Group F",
       "ranked": true,
-      "rank": 1,
+      "rank": 2,
       "qualifies": true,
       "manualTie": false
     },
@@ -2759,7 +2758,7 @@
       "clinchType": null,
       "group": "Group E",
       "ranked": true,
-      "rank": 2,
+      "rank": 3,
       "qualifies": true,
       "manualTie": false
     },
@@ -2781,7 +2780,7 @@
       "clinchType": null,
       "group": "Group B",
       "ranked": true,
-      "rank": 3,
+      "rank": 4,
       "qualifies": true,
       "manualTie": false
     },
@@ -2803,7 +2802,7 @@
       "clinchType": null,
       "group": "Group D",
       "ranked": true,
-      "rank": 4,
+      "rank": 5,
       "qualifies": true,
       "manualTie": false
     },
@@ -2825,7 +2824,7 @@
       "clinchType": null,
       "group": "Group I",
       "ranked": true,
-      "rank": 5,
+      "rank": 6,
       "qualifies": true,
       "manualTie": false
     },
@@ -2847,7 +2846,7 @@
       "clinchType": null,
       "group": "Group L",
       "ranked": true,
-      "rank": 6,
+      "rank": 7,
       "qualifies": true,
       "manualTie": false
     },
@@ -2869,7 +2868,7 @@
       "clinchType": null,
       "group": "Group A",
       "ranked": true,
-      "rank": 7,
+      "rank": 8,
       "qualifies": true,
       "manualTie": false
     },
@@ -2891,8 +2890,8 @@
       "clinchType": null,
       "group": "Group J",
       "ranked": true,
-      "rank": 8,
-      "qualifies": true,
+      "rank": 9,
+      "qualifies": false,
       "manualTie": false
     },
     {
@@ -2912,28 +2911,6 @@
       "clinched": false,
       "clinchType": null,
       "group": "Group C",
-      "ranked": true,
-      "rank": 9,
-      "qualifies": false,
-      "manualTie": false
-    },
-    {
-      "pos": 3,
-      "team": "Iran",
-      "owner": "Ondine",
-      "played": 2,
-      "won": 0,
-      "draw": 2,
-      "lost": 0,
-      "gf": 2,
-      "ga": 2,
-      "gd": 0,
-      "points": 2,
-      "conduct": -2,
-      "fifaRank": 21,
-      "clinched": false,
-      "clinchType": null,
-      "group": "Group G",
       "ranked": true,
       "rank": 10,
       "qualifies": false,
@@ -9252,6 +9229,12 @@
           "a": "Belgium",
           "hg": 1,
           "ag": 5
+        },
+        {
+          "h": "Egypt",
+          "a": "Iran",
+          "hg": 1,
+          "ag": 2
         }
       ],
       "H": [
@@ -9416,12 +9399,7 @@
       "D": [],
       "E": [],
       "F": [],
-      "G": [
-        {
-          "h": "Egypt",
-          "a": "Iran"
-        }
-      ],
+      "G": [],
       "H": [],
       "I": [],
       "J": [
@@ -9795,5 +9773,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-27T05:05:31Z"
+  "generated": "2026-06-27T05:08:35Z"
 }
