@@ -877,7 +877,7 @@
       "matchNo": 73,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-28T19:00:00Z",
       "home": {
         "name": "South Africa",
@@ -903,30 +903,30 @@
       "winner": null
     },
     {
-      "matchNo": 74,
+      "matchNo": 76,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-29T17:00:00Z",
       "home": {
-        "name": "Germany",
-        "owner": "Tomi",
+        "name": "Brazil",
+        "owner": "Sydney",
         "goals": null,
         "penGoals": null,
         "projected": false,
-        "slot": "Winner Group E",
+        "slot": "Winner Group C",
         "resolved": true,
-        "fifaRank": 10
+        "fifaRank": 6
       },
       "away": {
-        "name": "Paraguay",
+        "name": "Japan",
         "owner": "Pete",
         "goals": null,
         "penGoals": null,
-        "projected": true,
-        "slot": "3rd place A/B/C/D/F",
+        "projected": false,
+        "slot": "Runner-up Group F",
         "resolved": true,
-        "fifaRank": 40
+        "fifaRank": 18
       },
       "penalties": false,
       "winner": null
@@ -941,7 +941,7 @@
           "matchNo": 73,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-06-28T19:00:00Z",
           "home": {
             "name": "South Africa",
@@ -971,7 +971,7 @@
           "stage": "Round of 32",
           "stageCode": "LAST_32",
           "status": "SCHEDULED",
-          "utcDate": "2026-06-29T17:00:00Z",
+          "utcDate": "2026-06-29T20:30:00Z",
           "home": {
             "name": "Germany",
             "owner": "Tomi",
@@ -979,8 +979,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group E",
-            "resolved": true,
-            "fifaRank": 10
+            "resolved": true
           },
           "away": {
             "name": "Paraguay",
@@ -989,8 +988,7 @@
             "penGoals": null,
             "projected": true,
             "slot": "3rd place A/B/C/D/F",
-            "resolved": true,
-            "fifaRank": 40
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -999,8 +997,8 @@
           "matchNo": 75,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-06-29T20:30:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-06-30T01:00:00Z",
           "home": {
             "name": "Netherlands",
             "owner": "Charlotte",
@@ -1026,8 +1024,8 @@
           "matchNo": 76,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-06-30T01:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-06-29T17:00:00Z",
           "home": {
             "name": "Brazil",
             "owner": "Sydney",
@@ -1035,7 +1033,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group C",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 6
           },
           "away": {
             "name": "Japan",
@@ -1044,7 +1043,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group F",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 18
           },
           "penalties": false,
           "winner": null
@@ -1161,8 +1161,8 @@
           "matchNo": 81,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-01T20:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-02T00:00:00Z",
           "home": {
             "name": "United States",
             "owner": "Darcy",
@@ -1173,11 +1173,11 @@
             "resolved": true
           },
           "away": {
-            "name": "Bosnia and Herzegovina",
+            "name": "Bosnia-Herzegovina",
             "owner": "Tomi",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "3rd place B/E/F/I/J",
             "resolved": true
           },
@@ -1189,7 +1189,7 @@
           "stage": "Round of 32",
           "stageCode": "LAST_32",
           "status": "SCHEDULED",
-          "utcDate": "2026-07-02T00:00:00Z",
+          "utcDate": "2026-07-01T20:00:00Z",
           "home": {
             "name": "Egypt",
             "owner": "Tom",
@@ -9802,5 +9802,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-27T02:04:38Z"
+  "generated": "2026-06-27T02:05:41Z"
 }
