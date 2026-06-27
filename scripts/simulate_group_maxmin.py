@@ -262,6 +262,7 @@ def analyze(model):
         status = "through" if team in clinched else ("out" if team in eliminated else "bubble")
         thirds.append({"group": L, "team": team, "points": r["points"], "gd": r["gd"],
                        "gf": r["gf"], "conduct": r["conduct"], "fifa": r["fifa"],
+                       "played": r.get("p", 0),
                        "rem": len(G[L]["rem"]), "status": status})
     thirds.sort(key=lambda r: (-r["points"], -r["gd"], -r["gf"], -(r["conduct"] or 0),
                                (999 if r["fifa"] is None else r["fifa"])))
@@ -274,6 +275,35 @@ def analyze(model):
         ({"team": t, "group": team_group.get(t)} for t in bubble if t not in third_teams),
         key=lambda x: (x["group"] or "", x["team"]))
 
+    # ---- Contenders for the table: every through third + every bubble team
+    # (eliminated sides are dropped). Bubble teams not currently 3rd get their
+    # current group record so they still appear. ----
+    def team_row(t):
+        L = team_group[t]
+        for r in current_standings(G[L], L):
+            if r["team"] == t:
+                st = "through" if t in clinched else ("out" if t in eliminated else "bubble")
+                return {"group": L, "team": t, "points": r["points"], "gd": r["gd"],
+                        "gf": r["gf"], "conduct": r["conduct"], "fifa": r["fifa"],
+                        "played": r.get("p", 0),
+                        "rem": len(G[L]["rem"]), "status": st}
+        return None
+
+    contenders = []
+    seen = set()
+    for r in thirds:
+        if r["status"] != "out":
+            contenders.append(r)
+            seen.add(r["team"])
+    for t in bubble:
+        if t not in seen:
+            row = team_row(t)
+            if row:
+                contenders.append(row)
+                seen.add(t)
+    contenders.sort(key=lambda r: (-r["points"], -r["gd"], -r["gf"], -(r["conduct"] or 0),
+                                   (999 if r["fifa"] is None else r["fifa"])))
+
     return {
         "groups": letters,
         "highest_line": highest_line,
@@ -282,9 +312,81 @@ def analyze(model):
         "eliminated": eliminated,
         "bubble": bubble,
         "current_thirds": thirds,
+        "contenders": contenders,
         "off_table_bubble": off_table_bubble,
         "games_remaining": sum(len(G[L]["rem"]) for L in letters),
         "open_groups": open_letters,
+    }
+
+
+# ----------------------------------------------------------------------------
+# Monte-Carlo over the remaining group games: per-team qualification odds and
+# the distribution of the cut-off line. Seeded, so output is deterministic.
+# ----------------------------------------------------------------------------
+def bubble_montecarlo(model, n_sims, seed=1):
+    import random
+    from simulate_pool import make_engine
+    random.seed(seed)
+    _, elo_score, _ = make_engine(model)
+    G = group_records(model)
+    letters = list(G.keys())
+    fifa, cond = model["fifa_of"], model["conduct_of"]
+
+    def key(L):
+        return (-L["points"], -L["gd"], -L["gf"], -(L["conduct"] or 0),
+                (999 if L["fifa"] is None else L["fifa"]), L["team"])
+
+    fixed = []
+    og = []
+    for L in letters:
+        if G[L]["rem"]:
+            og.append((L, G[L]["names"], G[L]["played"], G[L]["rem"]))
+        else:
+            r = current_standings(G[L], L)[2]
+            fixed.append({"team": r["team"], "points": r["points"], "gd": r["gd"],
+                          "gf": r["gf"], "conduct": r["conduct"], "fifa": r["fifa"]})
+
+    qual = {}
+    cut_gd, cut_pts = {}, {}
+    for _ in range(n_sims):
+        thirds = list(fixed)
+        qualified = set()
+        for (L, names, played, rem) in og:
+            rec = {t: [0, 0, 0] for t in names}      # pts, gf, ga
+            res = list(played)
+            for (h, a) in rem:
+                hg, ag = elo_score(h, a, group=True)
+                res.append({"h": h, "a": a, "hg": hg, "ag": ag})
+            for m in res:
+                for (t, gf, ga) in ((m["h"], m["hg"], m["ag"]), (m["a"], m["ag"], m["hg"])):
+                    rc = rec[t]
+                    rc[1] += gf
+                    rc[2] += ga
+                    if gf > ga:
+                        rc[0] += 3
+                    elif gf == ga:
+                        rc[0] += 1
+            rows = [{"team": t, "points": rec[t][0], "gd": rec[t][1] - rec[t][2],
+                     "gf": rec[t][1], "conduct": cond.get(t, 0), "fifa": fifa.get(t)}
+                    for t in names]
+            ranked = rank_group(rows, res)
+            qualified.add(ranked[0]["team"])
+            qualified.add(ranked[1]["team"])
+            thirds.append(ranked[2])
+        thirds.sort(key=key)
+        for t in thirds[:8]:
+            qualified.add(t["team"])
+        c = thirds[7]
+        cut_gd[c["gd"]] = cut_gd.get(c["gd"], 0) + 1
+        cut_pts[c["points"]] = cut_pts.get(c["points"], 0) + 1
+        for t in qualified:
+            qual[t] = qual.get(t, 0) + 1
+
+    return {
+        "n": n_sims,
+        "qualify": {t: qual.get(t, 0) / n_sims for t in qual},
+        "cut_gd": {g: c / n_sims for g, c in cut_gd.items()},
+        "cut_pts": {p: c / n_sims for p, c in cut_pts.items()},
     }
 
 
@@ -375,50 +477,98 @@ def _disp_width(s, size, ls):
     return len(s) * (size * 0.47 + ls)
 
 
-def render_bubble_svg(A):
-    hi, lo = A["highest_line"], A["lowest_line"]
-    clinched, eliminated, bubble = A["clinched"], A["eliminated"], A["bubble"]
-    thirds = A["current_thirds"]
-    off_table = A.get("off_table_bubble") or []
-    rem_games = A["games_remaining"]
-    n_bubble = len(bubble)
+def _catmull_rom(pts):
+    """Smooth path through points (list of (x,y)) using Catmull-Rom -> cubic
+    beziers; returns the 'd' segment after an initial move/line to pts[0]."""
+    if len(pts) < 2:
+        return ""
+    d = []
+    for i in range(len(pts) - 1):
+        p0 = pts[i - 1] if i > 0 else pts[i]
+        p1 = pts[i]
+        p2 = pts[i + 1]
+        p3 = pts[i + 2] if i + 2 < len(pts) else pts[i + 1]
+        c1x = p1[0] + (p2[0] - p0[0]) / 6.0
+        c1y = p1[1] + (p2[1] - p0[1]) / 6.0
+        c2x = p2[0] - (p3[0] - p1[0]) / 6.0
+        c2y = p2[1] - (p3[1] - p1[1]) / 6.0
+        d.append(f"C {c1x:.1f} {c1y:.1f} {c2x:.1f} {c2y:.1f} {p2[0]:.1f} {p2[1]:.1f}")
+    return " ".join(d)
 
-    # ---- the site's "pitch" theme ----
+
+_ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
+         "nine", "ten", "eleven", "twelve"]
+
+
+def _word(n):
+    return _ONES[n] if 0 <= n < len(_ONES) else str(n)
+
+
+def render_bubble_svg(A, MC=None):
+    hi, lo = A["highest_line"], A["lowest_line"]
+    contenders = A["contenders"]
+    rem_games = A["games_remaining"]
+    clinched, eliminated, bubble = A["clinched"], A["eliminated"], A["bubble"]
+    n_groups = len(A["groups"])
+
     BG, BG2 = "#15431C", "#0E3014"
     CREAM = "#F2F0E4"
-    DIM = "rgba(242,240,228,0.66)"
-    FAINT = "rgba(242,240,228,0.38)"
-    LINE = "rgba(242,240,228,0.20)"
+    DIM = "rgba(242,240,228,0.84)"
+    FAINT = "rgba(242,240,228,0.68)"
+    LINE = "rgba(242,240,228,0.22)"
     GOLD, UP, DOWN, ICE = "#E8C34A", "#5FD083", "#FF6B57", "#7FDCEF"
     SHADOW = "rgba(0,0,0,0.30)"
 
     def gdcol(v):
         return UP if v > 0 else (DOWN if v < 0 else DIM)
 
+    qual = (MC or {}).get("qualify", {})
+
+    def qof(t):
+        return qual.get(t, 1.0 if t in clinched else 0.0)
+
+    rows = sorted(contenders, key=lambda r: (-qof(r["team"]), -r["points"], -r["gd"],
+                                             -r["gf"], r["team"]))
+    n_in = sum(1 for t in A["current_thirds"] if t["status"] == "through")
+    has_curve = bool(MC and MC.get("cut_gd"))
+
     out = []
     a = out.append
     W, LX, RX = 1080, 80, 1000
-    row_h = 46
-    band_h = 46
-    table_top = 760
-    n_rows = len(thirds)
-    table_bottom = table_top + 32 + n_rows * row_h + band_h
-    note_h = 30 if off_table else 0
-    H = table_bottom + 158 + note_h
+
+    # ---- layout cursor (new order: bounds -> curve -> race) ----
+    bounds_head = 360
+    cards_y = bounds_head + 26
+    cards_h = 196
+    if has_curve:
+        curve_head = cards_y + cards_h + 62
+        curve_top = curve_head + 22
+        curve_h = 188
+        curve_bottom = curve_top + curve_h
+        race_head = curve_bottom + 86
+    else:
+        curve_head = curve_top = curve_bottom = None
+        race_head = cards_y + cards_h + 58
+    race_rowtop = race_head + 34
+    rh = 40
+    band_h = 42
+    band_after = 8
+    show_band = len(rows) > band_after
+    table_h = len(rows) * rh + (band_h if show_band else 0)
+    race_bottom = race_rowtop + table_h + 14
+    legend_y = race_bottom + 28
+    foot_y = legend_y + 50
+    H = foot_y + 38
 
     a(f'<svg viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg">')
-    a('<defs>'
-      '<style>'
+    a('<defs><style>'
       '.disp{font-family:Oswald,"Arial Narrow",Helvetica,Arial,sans-serif;}'
       '.body{font-family:Barlow,"Helvetica Neue",Arial,sans-serif;}'
       '</style>'
       '<radialGradient id="glow" cx="50%" cy="0%" r="80%">'
       '<stop offset="0%" stop-color="#F2F0E4" stop-opacity="0.07"/>'
       '<stop offset="55%" stop-color="#F2F0E4" stop-opacity="0"/>'
-      '</radialGradient>'
-      '</defs>')
-
-    # pitch background: mown stripes + soft top glow
+      '</radialGradient></defs>')
     a(f'<rect x="0" y="0" width="{W}" height="{H}" fill="{BG}"/>')
     k = 88
     while k < H:
@@ -433,9 +583,9 @@ def render_bubble_svg(A):
         a(f'<line x1="{rx0:.0f}" y1="{y - 5}" x2="{RX}" y2="{y - 5}" stroke="{LINE}" '
           'stroke-width="2"/>')
 
-    # eyebrow + masthead title (no bar; text on the pitch, with a drop shadow)
+    # ---- hero with DYNAMIC deck ----
     a(f'<text class="disp" x="{LX}" y="60" fill="{DIM}" font-size="13" font-weight="500" '
-      'letter-spacing="4">WORLD CUP 2026&#160;&#160;&#183;&#160;&#160;QUALIFICATION BOUNDS</text>')
+      'letter-spacing="4">WORLD CUP 2026&#160;&#160;&#183;&#160;&#160;THE THIRD-PLACE RACE</text>')
 
     def shadowed(label, y, size, ls=1):
         a(f'<text class="disp" x="{LX}" y="{y + 2}" fill="{SHADOW}" font-size="{size}" '
@@ -445,148 +595,162 @@ def render_bubble_svg(A):
     shadowed("THE RACE FOR THE LAST", 132, 58)
     shadowed("THIRD-PLACE TICKET", 196, 58)
 
-    a(f'<text class="body" x="{LX}" y="250" fill="{DIM}" font-size="20">Eight of the twelve '
-      'third-placed teams advance. The contenders are level on points, so the</text>')
-    a(f'<text class="body" x="{LX}" y="280" fill="{DIM}" font-size="20">last seat comes down to '
-      'goal difference, then goals scored. With games still to</text>')
-    a(f'<text class="body" x="{LX}" y="310" fill="{DIM}" font-size="20">play, the exact cut-off '
-      'can only land between these two lines.</text>')
+    spots, grps = "Eight", _word(n_groups)
+    if rem_games == 0:
+        deckA = f"{spots} of the {grps} third-placed teams advance. The group stage is"
+        deckB = "complete, so the eight qualifiers are now locked."
+    elif n_in >= 8:
+        g = "game" if rem_games == 1 else "games"
+        deckA = f"{spots} of the {grps} third-placed teams advance, and all eight places are"
+        deckB = f"already settled with {_word(rem_games)} {g} still to play."
+    else:
+        g = "game" if rem_games == 1 else "games"
+        deckA = (f"{spots} of the {grps} third-placed teams advance. "
+                 f"{_word(n_in).capitalize()} are already in; the rest is a")
+        deckB = (f"goal-difference scrap between the sides below, with "
+                 f"{_word(rem_games)} {g} left to play.")
+    a(f'<text class="body" x="{LX}" y="250" fill="{DIM}" font-size="20">{deckA}</text>')
+    a(f'<text class="body" x="{LX}" y="280" fill="{DIM}" font-size="20">{deckB}</text>')
 
-    # bounds section
-    section("THE CUT-OFF LINE, BOUNDED", 372)
-    a(f'<text class="body" x="{LX}" y="398" fill="{DIM}" font-size="15">The 8th-best third: the '
-      'last side to qualify. GD and GF are what separate teams now.</text>')
-
-    cards = [
-        ("LOWEST POSSIBLE", "the easiest the bar can get", UP, lo),
-        ("HIGHEST POSSIBLE", "the hardest the bar can get", DOWN, hi),
-    ]
-    cy, cardw = 430, 208
+    # ---- exact bounds cards ----
+    section("THE CUT-OFF LINE, BOUNDED", bounds_head)
+    cards = [("LOWEST POSSIBLE", "the easiest the bar can get", UP, lo),
+             ("HIGHEST POSSIBLE", "the hardest the bar can get", DOWN, hi)]
     cw = 440
     for i, (tier, sub, accent, L) in enumerate(cards):
         x = LX + i * (cw + 40)
-        a(f'<rect x="{x}" y="{cy}" width="{cw}" height="{cardw}" rx="8" fill="{BG2}" '
+        a(f'<rect x="{x}" y="{cards_y}" width="{cw}" height="{cards_h}" rx="8" fill="{BG2}" '
           f'stroke="{LINE}" stroke-width="1"/>')
-        a(f'<rect x="{x}" y="{cy}" width="6" height="{cardw}" fill="{accent}"/>')
-        a(f'<text class="disp" x="{x + 30}" y="{cy + 42}" fill="{accent}" font-size="18" '
+        a(f'<rect x="{x}" y="{cards_y}" width="6" height="{cards_h}" fill="{accent}"/>')
+        a(f'<text class="disp" x="{x + 30}" y="{cards_y + 40}" fill="{accent}" font-size="18" '
           f'font-weight="600" letter-spacing="1.5">{tier}</text>')
-        a(f'<text class="body" x="{x + 30}" y="{cy + 64}" fill="{DIM}" font-size="13">{sub}</text>')
+        a(f'<text class="body" x="{x + 30}" y="{cards_y + 62}" fill="{DIM}" font-size="13">{sub}</text>')
         if L is None:
-            a(f'<text class="body" x="{x + 30}" y="{cy + 124}" fill="{DIM}" font-size="22" '
+            a(f'<text class="body" x="{x + 30}" y="{cards_y + 120}" fill="{DIM}" font-size="22" '
               'font-style="italic">not yet defined</text>')
         else:
-            cols = [(x + 42, "PTS", str(L["points"])),
-                    (x + 178, "GD", _gd(L["gd"])),
-                    (x + 322, "GF", str(L["gf"]))]
-            for cxp, lab, val in cols:
-                a(f'<text class="disp" x="{cxp}" y="{cy + 100}" fill="{FAINT}" font-size="12" '
+            for cxp, lab, val in [(x + 42, "PTS", str(L["points"])), (x + 178, "GD", _gd(L["gd"])),
+                                  (x + 322, "GF", str(L["gf"]))]:
+                a(f'<text class="disp" x="{cxp}" y="{cards_y + 96}" fill="{DIM}" font-size="12" '
                   f'font-weight="600" letter-spacing="2">{lab}</text>')
-                a(f'<text class="disp" x="{cxp}" y="{cy + 156}" fill="{CREAM}" font-size="52" '
+                a(f'<text class="disp" x="{cxp}" y="{cards_y + 148}" fill="{CREAM}" font-size="50" '
                   f'font-weight="700">{val}</text>')
-            a(f'<text class="body" x="{x + 30}" y="{cy + 192}" fill="{DIM}" font-size="13">'
+            a(f'<text class="body" x="{x + 30}" y="{cards_y + 182}" fill="{DIM}" font-size="13">'
               f'set by <tspan fill="{GOLD}" font-weight="700">{_xesc(L["team"])}</tspan> '
               f'(Group {L["group"]})</text>')
 
-    # tally
-    a(f'<text class="body" x="{LX}" y="700" fill="{DIM}" font-size="15">'
-      f'<tspan fill="{CREAM}" font-weight="700">{len(clinched)}</tspan> teams already through'
-      f'&#160;&#160;&#183;&#160;&#160;'
-      f'<tspan fill="{CREAM}" font-weight="700">{len(eliminated)}</tspan> out'
-      f'&#160;&#160;&#183;&#160;&#160;'
-      f'<tspan fill="{CREAM}" font-weight="700">{n_bubble}</tspan> still fighting for the seat'
-      f'&#160;&#160;&#183;&#160;&#160;'
-      f'<tspan fill="{CREAM}" font-weight="700">{rem_games}</tspan> games to play.</text>')
+    # ---- cut-off distribution curve ----
+    if has_curve:
+        section("WHERE THE CUT-OFF LANDS", curve_head)
+        dist = MC["cut_gd"]
+        gmin, gmax = min(dist), max(dist)
+        xs = list(range(gmin - 1, gmax + 2))
+        ymax = max(dist.values())
+        px0, px1 = LX + 30, RX - 30
+        baseline = curve_bottom
+        sx = (px1 - px0) / (len(xs) - 1)
+        sy = (curve_h - 26) / ymax
 
-    # table
-    section("WHERE THE TWELVE THIRDS STAND", table_top - 10)
-    a(f'<rect x="72" y="{table_top + 18}" width="936" height="{table_bottom - table_top - 8}" '
+        def X(g):
+            return px0 + (g - xs[0]) * sx
+
+        pts = [(X(g), baseline - dist.get(g, 0.0) * sy) for g in xs]
+        area = (f'M {pts[0][0]:.1f} {baseline} L {pts[0][0]:.1f} {pts[0][1]:.1f} '
+                + _catmull_rom(pts) + f' L {pts[-1][0]:.1f} {baseline} Z')
+        a(f'<path d="{area}" fill="{ICE}" fill-opacity="0.16"/>')
+        a(f'<path d="M {pts[0][0]:.1f} {pts[0][1]:.1f} ' + _catmull_rom(pts)
+          + f'" fill="none" stroke="{ICE}" stroke-width="2.5"/>')
+        a(f'<line x1="{px0}" y1="{baseline}" x2="{px1}" y2="{baseline}" stroke="{LINE}" '
+          'stroke-width="1"/>')
+        for g in range(gmin, gmax + 1):
+            pr = dist.get(g, 0.0)
+            xg = X(g)
+            if pr > 0:
+                yg = baseline - pr * sy
+                a(f'<circle cx="{xg:.1f}" cy="{yg:.1f}" r="3.5" fill="{ICE}"/>')
+                a(f'<text class="disp" x="{xg:.1f}" y="{yg - 12:.1f}" fill="{CREAM}" '
+                  f'font-size="14" font-weight="700" text-anchor="middle">{round(pr * 100)}%</text>')
+            a(f'<text class="disp" x="{xg:.1f}" y="{baseline + 22:.1f}" fill="{DIM}" '
+              f'font-size="15" font-weight="600" text-anchor="middle">{_gd(g)}</text>')
+        a(f'<text class="body" x="{(px0 + px1) / 2:.0f}" y="{baseline + 44:.0f}" fill="{FAINT}" '
+          'font-size="12.5" text-anchor="middle">Goal difference of the last qualifying third '
+          'across every simulated finish (it is 3 points in every run).</text>')
+        for L, lab, col in [(lo, "LOWEST", UP), (hi, "HIGHEST", DOWN)]:
+            if L and gmin <= L["gd"] <= gmax:
+                xg = X(L["gd"])
+                a(f'<line x1="{xg:.1f}" y1="{baseline}" x2="{xg:.1f}" y2="{curve_top + 8}" '
+                  f'stroke="{col}" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.85"/>')
+                a(f'<text class="disp" x="{xg:.1f}" y="{curve_top}" fill="{col}" font-size="11" '
+                  f'font-weight="600" letter-spacing="1" text-anchor="middle">{lab}</text>')
+
+    # ---- contenders table with qualify bars + gold cut-off band ----
+    section("THE RACE FOR THE LAST SPOTS", race_head)
+    a(f'<rect x="72" y="{race_rowtop - 22}" width="936" height="{race_bottom - race_rowtop + 12}" '
       f'rx="8" fill="rgba(10,38,18,0.55)" stroke="{LINE}" stroke-width="1"/>')
-    hy = table_top + 24
-    headers = [(132, "TEAM", "start"), (470, "GRP", "middle"), (548, "PTS", "middle"),
-               (628, "GD", "middle"), (706, "GF", "middle"), (784, "LEFT", "middle")]
-    for hx, lab, anch in headers:
-        a(f'<text class="disp" x="{hx}" y="{hy}" fill="{FAINT}" font-size="12" font-weight="600" '
+    hy = race_rowtop - 4
+    for hx, lab, anch in [(132, "TEAM", "start"), (372, "PL", "middle"), (430, "PTS", "middle"),
+                          (486, "GD", "middle"), (542, "GF", "middle")]:
+        a(f'<text class="disp" x="{hx}" y="{hy}" fill="{DIM}" font-size="11.5" font-weight="600" '
           f'letter-spacing="2" text-anchor="{anch}">{lab}</text>')
-    a(f'<text class="disp" x="{RX}" y="{hy}" fill="{FAINT}" font-size="12" font-weight="600" '
-      'letter-spacing="2" text-anchor="end">STATUS</text>')
-    a(f'<line x1="{LX}" y1="{table_top + 32}" x2="{RX}" y2="{table_top + 32}" '
-      f'stroke="{LINE}" stroke-width="1.5"/>')
+    a(f'<text class="disp" x="600" y="{hy}" fill="{DIM}" font-size="11.5" font-weight="600" '
+      'letter-spacing="2">CHANCE TO QUALIFY&#160;&#160;(share of simulations)</text>')
 
-    def pill(cx_right, cyl, label, txt, bg, stroke=None):
-        pw = _disp_width(label, 12, 0.6) + 26
-        a(f'<rect x="{cx_right - pw:.0f}" y="{cyl - 14:.0f}" width="{pw:.0f}" height="26" '
-          f'rx="13" fill="{bg}"' + (f' stroke="{stroke}" stroke-opacity="0.55" stroke-width="1"' if stroke else "") + '/>')
-        a(f'<text class="disp" x="{cx_right - pw / 2:.0f}" y="{cyl + 4:.0f}" fill="{txt}" '
-          f'font-size="12" font-weight="600" letter-spacing="0.8" text-anchor="middle">{label}</text>')
-
-    for i, t in enumerate(thirds):
-        offset = band_h if i >= 8 else 0
-        top = table_top + 32 + i * row_h + offset
-        cyl = top + row_h / 2
+    bar_x0, bar_x1 = 600, 940
+    for i, r in enumerate(rows):
+        offset = band_h if (show_band and i >= band_after) else 0
+        top = race_rowtop + i * rh + offset
+        cyl = top + rh / 2
         if i % 2 == 1:
-            a(f'<rect x="{LX}" y="{top}" width="920" height="{row_h}" fill="rgba(242,240,228,0.05)"/>')
-        nm = t["team"]
-        out_ = t["status"] == "out"
-        name_fill = FAINT if out_ else CREAM
-        a(f'<text class="body" x="132" y="{cyl + 7}" fill="{name_fill}" font-size="21" '
+            a(f'<rect x="{LX}" y="{top}" width="920" height="{rh}" fill="rgba(242,240,228,0.05)"/>')
+        nm = r["team"]
+        a(f'<text class="body" x="132" y="{cyl + 6}" fill="{CREAM}" font-size="19.5" '
           f'font-weight="600">{_xesc(nm)}</text>')
-        if out_:
-            tw = _serif_width(nm, 21)
-            a(f'<line x1="130" y1="{cyl + 1}" x2="{132 + tw:.0f}" y2="{cyl + 1}" '
-              f'stroke="{DOWN}" stroke-width="2"/>')
-        a(f'<text class="disp" x="470" y="{cyl + 7}" fill="{DIM}" font-size="20" '
-          f'text-anchor="middle">{t["group"]}</text>')
-        a(f'<text class="disp" x="548" y="{cyl + 7}" fill="{CREAM}" font-size="22" '
-          f'font-weight="700" text-anchor="middle">{t["points"]}</text>')
-        a(f'<text class="disp" x="628" y="{cyl + 7}" fill="{gdcol(t["gd"])}" font-size="22" '
-          f'font-weight="700" text-anchor="middle">{_gd(t["gd"])}</text>')
-        a(f'<text class="disp" x="706" y="{cyl + 7}" fill="{CREAM}" font-size="22" '
-          f'text-anchor="middle">{t["gf"]}</text>')
-        left = t["rem"]
-        a(f'<text class="disp" x="784" y="{cyl + 7}" fill="{FAINT}" font-size="20" '
-          f'text-anchor="middle">{left if left else "\u2212"}</text>')
-        if t["status"] == "through":
-            pill(RX, cyl, "THROUGH", BG2, GOLD)
-        elif out_:
-            pill(RX, cyl, "OUT", "#FF9485", "rgba(255,107,87,0.16)", stroke="#FF9485")
-        else:
-            pill(RX, cyl, "ON THE BUBBLE", "#9FE6F5", "rgba(127,220,239,0.13)", stroke="#9FE6F5")
+        a(f'<text class="disp" x="372" y="{cyl + 6}" fill="{DIM}" font-size="18" '
+          f'text-anchor="middle">{r["played"]}</text>')
+        a(f'<text class="disp" x="430" y="{cyl + 6}" fill="{CREAM}" font-size="20" '
+          f'font-weight="700" text-anchor="middle">{r["points"]}</text>')
+        a(f'<text class="disp" x="486" y="{cyl + 6}" fill="{gdcol(r["gd"])}" font-size="20" '
+          f'font-weight="700" text-anchor="middle">{_gd(r["gd"])}</text>')
+        a(f'<text class="disp" x="542" y="{cyl + 6}" fill="{CREAM}" font-size="20" '
+          f'text-anchor="middle">{r["gf"]}</text>')
+        p = qof(nm)
+        through = nm in clinched
+        a(f'<rect x="{bar_x0}" y="{cyl - 8:.0f}" width="{bar_x1 - bar_x0}" height="16" rx="8" '
+          f'fill="rgba(242,240,228,0.10)"/>')
+        w = max(2, (bar_x1 - bar_x0) * p)
+        col = GOLD if through else ICE
+        a(f'<rect x="{bar_x0}" y="{cyl - 8:.0f}" width="{w:.1f}" height="16" rx="8" fill="{col}"/>')
+        pct = "100%" if p >= 0.9995 else ("&lt;1%" if 0 < p < 0.005 else f"{round(p * 100)}%")
+        a(f'<text class="disp" x="{RX}" y="{cyl + 6}" fill="{CREAM}" font-size="17" '
+          f'font-weight="700" text-anchor="end">{pct}</text>')
 
-    # qualifying cut-off, in its own band between rows 8 and 9
-    band_top = table_top + 32 + 8 * row_h
-    bcy = band_top + band_h / 2
-    a(f'<line x1="92" y1="{bcy}" x2="988" y2="{bcy}" stroke="{GOLD}" stroke-width="2" '
-      'stroke-dasharray="6 5"/>')
-    plabel = "QUALIFYING CUT-OFF \u00b7 TOP 8 ADVANCE"
-    pw = _disp_width(plabel, 14, 2) + 40
-    a(f'<rect x="{540 - pw / 2:.0f}" y="{bcy - 15:.0f}" width="{pw:.0f}" height="30" rx="15" '
-      f'fill="{GOLD}"/>')
-    a(f'<text class="disp" x="540" y="{bcy + 6:.0f}" fill="{BG2}" font-size="14" '
-      f'font-weight="600" letter-spacing="2" text-anchor="middle">{plabel}</text>')
+    if show_band:
+        band_top = race_rowtop + band_after * rh
+        bcy = band_top + band_h / 2
+        a(f'<line x1="92" y1="{bcy}" x2="988" y2="{bcy}" stroke="{GOLD}" stroke-width="2" '
+          'stroke-dasharray="6 5"/>')
+        plabel = "TOP 8 ADVANCE"
+        pw = _disp_width(plabel, 14, 2) + 40
+        a(f'<rect x="{540 - pw / 2:.0f}" y="{bcy - 15:.0f}" width="{pw:.0f}" height="30" rx="15" '
+          f'fill="{GOLD}"/>')
+        a(f'<text class="disp" x="540" y="{bcy + 6:.0f}" fill="{BG2}" font-size="14" '
+          f'font-weight="600" letter-spacing="2" text-anchor="middle">{plabel}</text>')
 
-    # off-table bubble note
-    if off_table:
-        items = ", ".join(f'{_xesc(o["team"])} (Group {o["group"]})' for o in off_table)
-        a(f'<text class="body" x="{LX}" y="{table_bottom + 28}" fill="{ICE}" font-size="13.5">'
-          f'<tspan fill="{CREAM}" font-weight="700">Also still alive for a third-place seat</tspan>, '
-          f'currently sitting below third in their group: {items}.</text>')
-
-    # footer
-    fy = table_bottom + 30 + note_h
-    a(f'<text class="body" x="{LX}" y="{fy}" fill="{FAINT}" font-size="12.5">Thirds ranked by '
-      'points, then goal difference, then goals for.</text>')
-    a(f'<text class="body" x="{LX}" y="{fy + 18}" fill="{FAINT}" font-size="12.5">PTS / GD / GF and '
-      'LEFT are current values and games still to play; open-group rows are provisional.</text>')
-    a(f'<text class="body" x="{LX}" y="{fy + 40}" fill="{FAINT}" font-size="12.5">THROUGH and OUT '
-      'are mathematical certainties; ON THE BUBBLE means the seat is still live for that side.</text>')
-    a(f'<rect x="{LX}" y="{fy + 58}" width="11" height="11" fill="{GOLD}"/>')
-    a(f'<text class="body" x="100" y="{fy + 68}" fill="{CREAM}" font-size="15" font-weight="700">'
-      'The bounds above are exact: every result of the remaining games has been enumerated.</text>')
-    a(f'<text class="body" x="{LX}" y="{fy + 94}" fill="{FAINT}" font-size="12.5">Method&#160;&#160;'
-      '&#183;&#160;&#160;exact enumeration of every scoreline of the group games still to play. '
-      'Conduct held at current values.</text>')
+    # ---- legend + footer ----
+    nstr = f"{MC['n']:,}" if MC else ""
+    a(f'<text class="body" x="{LX}" y="{legend_y}" fill="{FAINT}" font-size="12.5">'
+      'Gold = already through as a top-eight third. Teal = on the bubble: chance to qualify'
+      + (f' across {nstr} simulated finishes,' if MC else ',') + ' sorted most to least likely.</text>')
+    a(f'<text class="body" x="{LX}" y="{legend_y + 18}" fill="{FAINT}" font-size="12.5">'
+      'Rows above the gold line are the projected top eight. Eliminated sides are not shown.</text>')
+    a(f'<rect x="{LX}" y="{foot_y - 12}" width="11" height="11" fill="{GOLD}"/>')
+    a(f'<text class="body" x="100" y="{foot_y - 2}" fill="{CREAM}" font-size="15" '
+      'font-weight="700">The bounds are exact; the chances and the curve are from the '
+      'simulations.</text>')
     a('</svg>')
     return "\n".join(out) + "\n"
+
+
 
 
 
@@ -600,10 +764,12 @@ def main():
     ap.add_argument("--svg", default=None)
     ap.add_argument("--knockout-json", default=None)
     ap.add_argument("--json", default=None)
-    ap.add_argument("--sims", type=int, default=None)      # accepted + ignored
-    ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--sims", type=int, default=None)      # also used for the bubble MC
+    ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--workers", type=int, default=None)
     ap.add_argument("--top", type=int, default=8)
+    ap.add_argument("--bubble-sims", type=int, default=None,
+                    help="sims for the qualify-odds/cut-off curve (default: --sims, else 200000)")
     args = ap.parse_args()
 
     data = load(args.data)
@@ -622,8 +788,16 @@ def main():
     print(f"Clinched ({len(A['clinched'])}), Eliminated ({len(A['eliminated'])}), "
           f"Bubble ({len(A['bubble'])}): {', '.join(sorted(A['bubble']))}")
 
+    MC = None
+    if A["open_groups"]:
+        n = args.bubble_sims or args.sims or 200000
+        MC = bubble_montecarlo(model, n, seed=args.seed or 1)
+        cg = ", ".join(f"GD {_gd(g)}: {round(p * 100)}%"
+                       for g, p in sorted(MC["cut_gd"].items()))
+        print(f"Cut-off GD distribution ({MC['n']:,} sims): {cg}")
+
     if args.svg:
-        svg = render_bubble_svg(A)
+        svg = render_bubble_svg(A, MC)
         if os.path.exists(args.svg):
             try:
                 with open(args.svg, encoding="utf-8") as f:
@@ -649,6 +823,9 @@ def main():
             "eliminated": sorted(A["eliminated"]),
             "bubble": sorted(A["bubble"]),
             "current_thirds": A["current_thirds"],
+            "qualify_odds": (MC["qualify"] if MC else None),
+            "cut_gd_distribution": (MC["cut_gd"] if MC else None),
+            "sims": (MC["n"] if MC else None),
         }
         with open(args.json, "w", encoding="utf-8") as f:
             json.dump(summary, f, ensure_ascii=False, indent=2)
