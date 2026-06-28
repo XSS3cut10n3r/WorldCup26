@@ -1488,6 +1488,7 @@
     "Algeria":       "linear-gradient(180deg,#006233 0 50%,#fff 50%)", // green/white, rotated 90deg, emblem ignored
     "Sweden":        "#006AA7", // blue field; yellow Nordic cross via FLAG_OVERLAY
     "Paraguay":      "linear-gradient(180deg,#D52B1E 0 33.333%,#fff 33.333% 66.667%,#0038A8 66.667%)", // red/white/blue; coat of arms via FLAG_EMBLEM
+    "Mexico":        "linear-gradient(180deg,#006847 0 33.333%,#fff 33.333% 66.667%,#CE1126 66.667%)", // green/white/red (rotated 90deg), emblem ignored
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
@@ -1547,6 +1548,7 @@
     "Algeria":       ["#006233", "#ffffff"],
     "Sweden":        ["#006AA7", "#FECC00"],
     "Paraguay":      ["#D52B1E", "#ffffff", "#0038A8"],
+    "Mexico":        ["#006847", "#ffffff", "#CE1126"],
   };
   const FLAG_COLORS = {};
   for (const k in FLAG_COLORS_RAW) FLAG_COLORS[normKey(k)] = FLAG_COLORS_RAW[k];
