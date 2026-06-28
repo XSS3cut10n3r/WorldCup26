@@ -1470,7 +1470,7 @@
     "United States": "repeating-linear-gradient(180deg,#B22234 0 11.1111%,#fff 11.1111% 22.2222%)",  // 9 stripes
     "Germany":       "linear-gradient(180deg,#000 0 33.333%,#DD0000 33.333% 66.667%,#FFCE00 66.667% 100%)", // black/red/gold
     "Croatia":       "conic-gradient(#D81E2E 90deg,#fff 90deg 180deg,#D81E2E 180deg 270deg,#fff 270deg) 0 0 / 6px 6px", // red/white checkerboard
-    "Japan":         "radial-gradient(circle at 50% 50%,#BC002D 3.2px,transparent 3.7px) 0 0 / 13px 13px,radial-gradient(circle at 50% 50%,#BC002D 2px,transparent 2.5px) 6.5px 6.5px / 13px 13px,#fff", // clean red polka dots (two sizes, offset)
+    "Japan":         "radial-gradient(circle at 50% 50%,#BC002D 3.2px,transparent 3.8px) 0 0 / 12px 100%,#fff", // uniform red dots, single centred row
     "England":       "linear-gradient(180deg,#fff 0 34%,#CE1124 34% 66%,#fff 66%)", // St George cross — horizontal arm (vertical arm drawn via .koxline)
     "Norway":        "#BA0C2F", // red field; the Nordic cross is drawn via FLAG_OVERLAY
     "South Africa":  "#007A4D", // placeholder field — the full flag is drawn via FLAG_OVERLAY
@@ -1553,7 +1553,7 @@
   // last, so the blocks read as distinct and deepen toward the centre of the bar.
   function koFill(name, hex, level) {
     if (level === "reg") return FLAG_PATTERN[normKey(canonName(name))] || hex;
-    return koDark(koBlend(name, hex), level === "et" ? 0.33 : 0.58);
+    return koDark(koBlend(name, hex), level === "et" ? 0.15 : 0.34);
   }
   const WDL_DRAW = "#6d7378";   // draw segment grey
   function wdlBar(m) {
@@ -1571,39 +1571,33 @@
       const hTot = P((g.hReg || 0) + (g.hET || 0) + (g.hPen || 0)), aTot = 100 - hTot;
       const lab = (w, cls) => `<span class="wlab ${cls}">${w}%</span>`;
       const nh = esc(m.home.name), na = esc(m.away.name);
-      // Vertical arm for cross flags, centered on the team's region (exact widths).
+      // Geometry: the flag and its overlays live in each side's REGULATION block only,
+      // so nothing bleeds into the ET / penalty blocks.
       const hExact = W(g.hReg) + W(g.hET) + W(g.hPen);
-      const isCross = n => FLAG_CROSS.has(normKey(canonName(n)));
+      const hRegW = W(g.hReg);                               // home reg block: [0, hRegW]
+      const aRegW = W(g.aReg);                               // away reg block: [aRegL, 100]
+      const aRegL = hExact + W(g.aPen) + W(g.aET);
+      const hRegC = hRegW / 2, aRegC = aRegL + aRegW / 2;    // reg-block centres
       let xl = "";
-      if (isCross(m.home.name)) xl += `<div class="koxline" style="left:${(hExact / 2).toFixed(2)}%"></div>`;
-      if (isCross(m.away.name)) xl += `<div class="koxline" style="left:${(hExact + (100 - hExact) / 2).toFixed(2)}%"></div>`;
-      // Full-flag overlays (Nordic crosses) drawn over the team's whole region.
+      // England's vertical cross arm, centred on the flag (reg block).
+      const isCross = n => FLAG_CROSS.has(normKey(canonName(n)));
+      if (isCross(m.home.name)) xl += `<div class="koxline" style="left:${hRegC.toFixed(2)}%"></div>`;
+      if (isCross(m.away.name)) xl += `<div class="koxline" style="left:${aRegC.toFixed(2)}%"></div>`;
+      // Full-flag overlays (Nordic cross, stretched SA flag, Swiss plusses) confined to the
+      // reg block. Away flags are mirrored so a hoist-side element (the cross) sits on the
+      // outer (right) edge, symmetric with the home flag.
       const ovl = n => FLAG_OVERLAY[normKey(canonName(n))];
       const tiled = n => FLAG_TILED.has(normKey(canonName(n)));
       const ho = ovl(m.home.name), ao = ovl(m.away.name);
-      if (ho && !(tiled(m.home.name) && hExact < TILE_MIN))
-        xl += `<div class="koflag" style="left:0;width:${hExact.toFixed(2)}%;background:${ho}"></div>`;
-      if (ao && !(tiled(m.away.name) && (100 - hExact) < TILE_MIN))
-        xl += `<div class="koflag" style="left:${hExact.toFixed(2)}%;width:${(100 - hExact).toFixed(2)}%;background:${ao}"></div>`;
-      // For opaque full-flag overlays the fade can't come from the segment beneath, so
-      // paint the ET/penalty wash on top of the flag over those slivers.
-      // Opaque full-flag overlays can't darken from the segment beneath, so paint the
-      // same solid ET / penalty blocks on top of the flag over those slivers.
-      const topFade = n => FLAG_TOPFADE.has(normKey(canonName(n)));
-      const block = (l, w, col) => `<div class="kowash" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%;background:${col}"></div>`;
-      if (topFade(m.home.name)) {       // home order L→R: reg, et, pen
-        const r = W(g.hReg), e = W(g.hET), bl = koBlend(m.home.name, hc);
-        xl += block(r, e, koDark(bl, 0.33)) + block(r + e, W(g.hPen), koDark(bl, 0.58));
-      }
-      if (topFade(m.away.name)) {       // away order from boundary: pen, et, reg
-        const bl = koBlend(m.away.name, ac);
-        xl += block(hExact, W(g.aPen), koDark(bl, 0.58)) + block(hExact + W(g.aPen), W(g.aET), koDark(bl, 0.33));
-      }
-      // Central emblems (Sol de Mayo, etc.), centered on the team's region.
+      if (ho && !(tiled(m.home.name) && hRegW < TILE_MIN))
+        xl += `<div class="koflag" style="left:0;width:${hRegW.toFixed(2)}%;background:${ho}"></div>`;
+      if (ao && !(tiled(m.away.name) && aRegW < TILE_MIN))
+        xl += `<div class="koflag" style="left:${aRegL.toFixed(2)}%;width:${aRegW.toFixed(2)}%;background:${ao};transform:scaleX(-1)"></div>`;
+      // Central emblems (Sol de Mayo, stars), centred on the flag (reg block).
       const emb = n => FLAG_EMBLEM[normKey(canonName(n))];
       const he = emb(m.home.name), ae = emb(m.away.name);
-      if (he) xl += `<div class="koemb" style="left:${(hExact / 2).toFixed(2)}%;background:${he}"></div>`;
-      if (ae) xl += `<div class="koemb" style="left:${(hExact + (100 - hExact) / 2).toFixed(2)}%;background:${ae}"></div>`;
+      if (he) xl += `<div class="koemb" style="left:${hRegC.toFixed(2)}%;background:${he}"></div>`;
+      if (ae) xl += `<div class="koemb" style="left:${aRegC.toFixed(2)}%;background:${ae}"></div>`;
       return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
         + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
         + `<div class="wdl kobar">`
