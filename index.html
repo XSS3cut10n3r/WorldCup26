@@ -564,9 +564,10 @@
     pointer-events: none; z-index: 0;
     background: linear-gradient(100deg, transparent 30%, rgba(232,195,74,0.28) 50%, transparent 70%);
     background-size: 250% 100%; background-position: 150% 0;
-    animation: bktSheen 6.2s ease-in-out infinite; }
+    animation: bktSheen 8s ease-in-out infinite;
+    animation-delay: var(--sheen-delay, 0s); }   /* JS staggers this per card for the cascade */
   .bkt-box.finished > * { position: relative; z-index: 1; }
-  @keyframes bktSheen { 0% { background-position: 150% 0; } 37%, 100% { background-position: -60% 0; } }
+  @keyframes bktSheen { 0% { background-position: 150% 0; } 29%, 100% { background-position: -60% 0; } }
   @media (prefers-reduced-motion: reduce) { .bkt-box.finished::after { animation: none; } }
   @keyframes bktpop { 0% { transform: scale(.82); } 55% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
@@ -599,7 +600,8 @@
   .bkt-list .lcard.finished::after { content: ""; position: absolute; inset: 0; border-radius: inherit;
     pointer-events: none; z-index: 0;
     background: linear-gradient(100deg, transparent 30%, rgba(232,195,74,0.28) 50%, transparent 70%);
-    background-size: 250% 100%; background-position: 150% 0; animation: bktSheen 6.2s ease-in-out infinite; }
+    background-size: 250% 100%; background-position: 150% 0;
+    animation: bktSheen 8s ease-in-out infinite; animation-delay: var(--sheen-delay, 0s); }
   .bkt-list .lcard.finished > * { position: relative; z-index: 1; }
   .bkt-list .bline { font-size: 16px; }
   .bkt-list .bline + .bline { margin-top: 3px; }
@@ -2537,7 +2539,16 @@
       const done = info.m.status === "FINISHED" || info.m.status === "AWARDED";
       el.classList.toggle("on", on);
       el.classList.toggle("actual", !!info.m.actual);          // cyan: /#knockout real games
-      el.classList.toggle("finished", !BKT.mlb && done);       // gold: live /#bracket played games
+      const goldFin = !BKT.mlb && done;
+      el.classList.toggle("finished", goldFin);                // gold: live /#bracket played games
+      if (goldFin) {
+        // Waterfall cascade: R32 outermost first, then inward (R16, QF, SF, Final),
+        // each column top-to-bottom; left/right mirror because both sides share the
+        // same round depth + vertical unit, so matching positions fire together.
+        const rIdx = { R32: 0, R16: 1, QF: 2, SF: 3, F: 4, T: 4 }[round] || 0;
+        const u = BKT.tree.unit[no] || 0;
+        el.style.setProperty("--sheen-delay", (rIdx * 0.75 + u * 0.11).toFixed(2) + "s");
+      } else { el.style.removeProperty("--sheen-delay"); }
       el.innerHTML = bktContent(info.m, on);
       el.style.height = bh + "px";
       if (round === "F" || round === "T") {
@@ -2564,10 +2575,12 @@
     });
     nos.sort((a, b) => a - b);
     if (bktActive === "F") nos = [104, 103].filter(no => BKT.byNo[no]);
-    list.innerHTML = nos.map(no => { const m = BKT.byNo[no].m;
+    list.innerHTML = nos.map((no, i) => { const m = BKT.byNo[no].m;
       const done = m.status === "FINISHED" || m.status === "AWARDED";
-      const cls = m.actual ? " actual" : (!BKT.mlb && done ? " finished" : "");
-      return `<div class="lcard${cls}">${bktContent(m, true)}</div>`; }).join("");
+      const fin = !BKT.mlb && done;
+      const cls = m.actual ? " actual" : (fin ? " finished" : "");
+      const sty = fin ? ` style="--sheen-delay:${(i * 0.16).toFixed(2)}s"` : "";
+      return `<div class="lcard${cls}"${sty}>${bktContent(m, true)}</div>`; }).join("");
   }
   function bktLayout(animate) {
     if (!BKT) return;
