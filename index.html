@@ -1663,6 +1663,7 @@
   }
 
   function render(data) {
+    updateBubbleBtn();   // keep the Bubble button's visibility in step with the data
     if (view === "bubble") {
       document.body.classList.add("bubble-mode");
       // The disclaimer overlay and its scroll-lock would otherwise sit over the
@@ -2392,6 +2393,21 @@
     }));
   }
 
+  // The Round-of-32 race shows each team's CHANCE of qualifying. Once every group
+  // game has been played there are no chances left — every side is definitively
+  // through or out — so the race is redundant and gets dropped from #odds. We read
+  // completion off the real games: each team plays (group size - 1) group matches.
+  function groupStageComplete(data) {
+    const gs = (data && data.groups) || [];
+    if (!gs.length) return false;
+    return gs.every(g => {
+      const tbl = g.table || [];
+      if (tbl.length < 2) return false;
+      const need = tbl.length - 1;
+      return tbl.every(r => (r.played || 0) >= need);
+    });
+  }
+
   function renderKnockoutRace(data) {
     const sim = data.simulated === true;
     const intro = `<p class="gnote">Each flag's distance is its chance of reaching the
@@ -2492,8 +2508,11 @@
   function renderOdds(data) {
     let html = "";
 
-    // 0) Race to the Round of 32 (sits at the top of the odds page).
-    html += renderKnockoutRace(data);
+    // 0) Race to the Round of 32 (sits at the top of the odds page) — but only
+    //    while the group stage is still live. Once every group game has been
+    //    played, qualification is settled, so we drop the race entirely. Keyed
+    //    on the real games (lastData), so a what-if still shows it mid-groups.
+    if (!groupStageComplete(lastData || data)) html += renderKnockoutRace(data);
 
     // 1) Pool-winner odds: 100,000 Monte Carlo tournaments (the Simulate engine).
     const simNote = `<p class="gnote">Live model odds from <b>1,000,000 simulated
@@ -2999,6 +3018,12 @@
   const bubbleBtn = document.getElementById("bubblebtn");
   function updateBubbleBtn() {
     const on = view === "bubble";
+    // Once every group game is played the third-place race is settled, so the
+    // "Bubble" entry button is dropped — mirroring the knockout race on #odds.
+    // The red "Return Home" still shows while the bubble page is open, so a
+    // viewer there can always get back (its nav chrome is hidden).
+    const done = groupStageComplete(lastData);
+    bubbleBtn.style.display = (!on && done) ? "none" : "";
     bubbleBtn.textContent = on ? "Return Home" : "Bubble";
     bubbleBtn.classList.toggle("on", on);
     bubbleBtn.setAttribute("aria-label", on ? "Return to the home page"
