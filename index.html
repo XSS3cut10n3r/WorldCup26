@@ -19,6 +19,7 @@
     --chalk-faint: rgba(242, 240, 228, 0.35);
     --gold: #E8C34A;
     --live: #FF5A45;
+    --maroon: #800000;
     --up: #57C97A;
     --held: #FF5147;
     --ice: #6FD8EC;
@@ -992,6 +993,13 @@
     color: var(--live); border-color: rgba(255, 90, 69, 0.55);
   }
   .match .tname.elim, .cd-name.elim { color: var(--live); }
+  /* Recent results: any eliminated side (group or knockout) reads maroon; a
+     finished knockout winner gets a white name with a slight white glow. */
+  .recent-matches .match .tname.elim { color: var(--maroon); }
+  .recent-matches .match .tname.kowin {
+    color: #FFFFFF;
+    text-shadow: 0 0 7px rgba(255,255,255,0.55), 0 0 2px rgba(255,255,255,0.6);
+  }
   .cd-stake { display: flex; flex-direction: column; align-items: center;
     gap: 7px; margin-top: 12px; }
 
@@ -1428,18 +1436,19 @@
     });
   };
 
-  function teamCell(t, side, tagHTML, isOut, noThrough) {
+  function teamCell(t, side, tagHTML, isOut, noThrough, isWin) {
     const unres = t.resolved === false;
     const proj = t.projected === true;
     const out = isOut === true && !unres;
-    const through = sideThrough(t) && !unres && !out && !noThrough;
+    const win = isWin === true && !unres && !out;
+    const through = sideThrough(t) && !unres && !out && !noThrough && !win;
     const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
     const hasRank = !unres && t.fifaRank !== null && t.fifaRank !== undefined;
     const rankEl = `<div class="trank">${hasRank ? "#" + t.fifaRank : ""}</div>`;
     const sub = t.owner ? esc(t.owner)
       : (proj && t.slot ? esc(t.slot) : "&mdash;");
     const info = `<div class="tinfo">
-      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""} ${through ? "through" : ""} ${out ? "elim" : ""}">${nm}</div>
+      <div class="tname ${proj ? "proj" : ""} ${unres ? "unres" : ""} ${through ? "through" : ""} ${out ? "elim" : ""} ${win ? "kowin" : ""}">${nm}</div>
       <div class="towner">${sub}</div>
       ${tagHTML || ""}
     </div>`;
@@ -1868,8 +1877,13 @@
     const showClinch = !live && !done;
     const footer = showClinch ? clinchFooter(m.clinch, m) : "";
     const tagged = showClinch && hasClinchTag(m) ? " tagged" : "";
-    const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home", "", false, isKnockout(m));
-    const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away", "", false, isKnockout(m));
+    // Recent-results emphasis: any eliminated side (group OR knockout) shows a
+    // maroon name; the winner of a finished knockout game gets a white-glow name.
+    const homeOut = upElimNames.has(m.home.name), awayOut = upElimNames.has(m.away.name);
+    const ko = done && isKnockout(m) && m.winner && m.winner !== "DRAW";
+    const homeWin = ko && m.winner === "HOME_TEAM", awayWin = ko && m.winner === "AWAY_TEAM";
+    const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home", "", homeOut, isKnockout(m), homeWin);
+    const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away", "", awayOut, isKnockout(m), awayWin);
     // KO overlay eligibility: a finished KNOCKOUT result with a score and NO
     // priority marker. Group-stage games never qualify; UPSET / PENS / live all
     // take precedence (HELD requires a draw, so it can't occur in a knockout).
@@ -2196,7 +2210,7 @@
 
     // Recent results
     const rec = (data.recent || []).map(matchCard).join("");
-    if (rec) html += section("Recent results", `<div class="matches">${rec}</div>`);
+    if (rec) html += section("Recent results", `<div class="matches recent-matches">${rec}</div>`);
 
     // Upcoming
     const up = (data.upcoming || []).map(matchCard).join("");
