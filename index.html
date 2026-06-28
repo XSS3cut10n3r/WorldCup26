@@ -904,6 +904,7 @@
   .koxline { position: absolute; top: 0; bottom: 0; width: 3px; transform: translateX(-50%);
              background: #CE1124; pointer-events: none; }
   .koflag { position: absolute; top: 0; bottom: 0; pointer-events: none; }
+  .kowash { position: absolute; top: 0; bottom: 0; pointer-events: none; }
   .match .mid .wdlwrap { width: clamp(150px, 30vw, 230px); }
   .cd-center .wdlwrap { max-width: 230px; }
   /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
@@ -1475,6 +1476,7 @@
     "Japan":         "radial-gradient(circle at 50% 50%,#BC002D 3.2px,transparent 3.7px) 0 0 / 13px 13px,radial-gradient(circle at 50% 50%,#BC002D 2px,transparent 2.5px) 6.5px 6.5px / 13px 13px,#fff", // clean red polka dots (two sizes, offset)
     "England":       "linear-gradient(180deg,#fff 0 34%,#CE1124 34% 66%,#fff 66%)", // St George cross — horizontal arm (vertical arm drawn via .koxline)
     "Norway":        "#BA0C2F", // red field; the Nordic cross is drawn via FLAG_OVERLAY
+    "South Africa":  "#007A4D", // placeholder field — the full flag is drawn via FLAG_OVERLAY
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
@@ -1482,13 +1484,20 @@
   const FLAG_CROSS = new Set(["England"].map(normKey));
   // Full-flag overlays drawn over a team's whole region (e.g. Nordic crosses, which
   // need a continuous blue cross with a white border, offset toward the hoist).
-  const NORDIC = (red, blue) =>
-      `linear-gradient(${blue},${blue}) no-repeat calc(30% - 1px) 50% / 2px 100%,`
-    + `linear-gradient(${blue},${blue}) no-repeat 0 50% / 100% 2px,`
-    + `linear-gradient(#fff,#fff) no-repeat calc(30% - 2px) 50% / 4px 100%,`
-    + `linear-gradient(#fff,#fff) no-repeat 0 50% / 100% 4px`;
+  // Nordic cross drawn with full-box gradient bands so the white border centres evenly
+  // on the blue (stops are relative to the box, unlike background-position percentages).
+  const koBand = (deg, c, half, col) =>
+    `linear-gradient(${deg},transparent calc(${c} - ${half}px),${col} calc(${c} - ${half}px),${col} calc(${c} + ${half}px),transparent calc(${c} + ${half}px))`;
+  const NORDIC = (blue) => [
+    koBand("90deg", "30%", 1, blue), koBand("180deg", "50%", 1, blue),   // blue cross (on top)
+    koBand("90deg", "30%", 2, "#fff"), koBand("180deg", "50%", 2, "#fff") // white cross (border)
+  ].join(",");
   const FLAG_OVERLAY = {};
-  FLAG_OVERLAY[normKey("Norway")] = NORDIC("#BA0C2F", "#00205B");
+  FLAG_OVERLAY[normKey("Norway")] = NORDIC("#00205B");
+  // Full flag stretched across the region (SVG keeps the geometry exact at any width).
+  FLAG_OVERLAY[normKey("South Africa")] = `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA2MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjMwLjAiIGZpbGw9IiNERTM4MzEiLz48cmVjdCB4PSIwIiB5PSIzMC4wIiB3aWR0aD0iOTAiIGhlaWdodD0iMzAuMCIgZmlsbD0iIzAwMTQ4OSIvPjxwb2x5bGluZSBwb2ludHM9IjAsMCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCwwIDI5LjcwMDAwMDAwMDAwMDAwMywzMC4wIDkwLDMwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN0E0RCIgc3Ryb2tlLXdpZHRoPSIxMy4yIi8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdBNEQiIHN0cm9rZS13aWR0aD0iMTMuMiIvPjxwb2x5Z29uIHBvaW50cz0iMCwwIDI0LjMsMzAuMCAwLDYwIiBmaWxsPSIjRkZCNjEyIi8+PHBvbHlnb24gcG9pbnRzPSIwLDAgMTkuOCwzMC4wIDAsNjAiIGZpbGw9IiMwMDAiLz48L3N2Zz4=") 0 0 / 100% 100% no-repeat`;
+  // Overlay flags whose ET/penalty fade is painted on top of the flag (opaque flags).
+  const FLAG_TOPFADE = new Set(["South Africa"].map(normKey));
   // Fill for one knockout segment: a team's flag pattern (with the reg→ET→penalty
   // lighten applied as a white wash) if it has one, else the flat colour shade.
   function koFill(name, hex, level) {
@@ -1526,6 +1535,17 @@
       const ho = ovl(m.home.name), ao = ovl(m.away.name);
       if (ho) xl += `<div class="koflag" style="left:0;width:${hExact.toFixed(2)}%;background:${ho}"></div>`;
       if (ao) xl += `<div class="koflag" style="left:${hExact.toFixed(2)}%;width:${(100 - hExact).toFixed(2)}%;background:${ao}"></div>`;
+      // For opaque full-flag overlays the fade can't come from the segment beneath, so
+      // paint the ET/penalty wash on top of the flag over those slivers.
+      const topFade = n => FLAG_TOPFADE.has(normKey(canonName(n)));
+      const wash = (l, w, op) => `<div class="kowash" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%;background:rgba(255,255,255,${op})"></div>`;
+      if (topFade(m.home.name)) {       // home order L→R: reg, et, pen
+        const r = W(g.hReg), e = W(g.hET);
+        xl += wash(r, e, 0.30) + wash(r + e, W(g.hPen), 0.55);
+      }
+      if (topFade(m.away.name)) {       // away order from boundary: pen, et, reg
+        xl += wash(hExact, W(g.aPen), 0.55) + wash(hExact + W(g.aPen), W(g.aET), 0.30);
+      }
       return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
         + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
         + `<div class="wdl kobar">`
