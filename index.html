@@ -834,6 +834,32 @@
   body.bubble-mode #simbtn { display: none !important; }
   @media (prefers-reduced-motion: reduce) { #bubblebtn.on { animation: none; } }
 
+  /* "Knockout" control: the Bubble pill's mirror — gold, hidden until every group
+     game is played (when Bubble retires), then it appears. On /#knockout it flips
+     to the red "Return Home" like the others. JS drives its visibility. */
+  #knockoutbtn {
+    font-family: var(--display); font-weight: 600; font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--gold); background: rgba(14, 48, 20, 0.92);
+    border: 1px solid var(--gold); border-radius: 999px;
+    padding: 7px 14px; cursor: pointer; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    display: none;
+  }
+  #knockoutbtn:hover { background: var(--gold); color: var(--pitch-deep); }
+  #knockoutbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #knockoutbtn.on {
+    color: var(--live); border-color: var(--live);
+    box-shadow: 0 0 12px 2px rgba(255, 90, 69, 0.5);
+    animation: simExitGlow 1.8s ease-in-out infinite;
+  }
+  #knockoutbtn.on:hover {
+    background: var(--live); color: #fff;
+    box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.7);
+  }
+  html.sim #knockoutbtn { background: rgba(46, 58, 70, 0.92); }
+  body.knockout-mode #simbtn { display: none !important; }
+  @media (prefers-reduced-motion: reduce) { #knockoutbtn.on { animation: none; } }
+
   /* "Winner clinches" pills on upcoming group games (home feed + countdown).
      Match-level lines (group/advance + the draw line) stack in a centered,
      full-width footer. The per-team lines — "Through" for an already-qualified
@@ -1157,6 +1183,20 @@
   .bubble-empty { text-align: center; color: var(--chalk-dim); font-size: 15px;
     padding: 80px 16px; line-height: 1.5; }
 </style>
+<style id="knockout-style">
+  /* Hidden /#knockout view: a standalone graphic like /#bubble, but shown only
+     once the group stage is complete. Same full-bleed treatment (chrome hidden). */
+  body.knockout-mode { background: var(--pitch-deep); }
+  body.knockout-mode .wrap { max-width: 1080px; }
+  body.knockout-mode .wrap > header,
+  body.knockout-mode .wrap > nav.tabs,
+  body.knockout-mode .wrap > footer { display: none !important; }
+  body.knockout-mode #ngOverlay { display: none !important; }
+  .knockout-wrap { max-width: 1080px; margin: 0 auto; padding: 24px 0 40px; }
+  .knockout-wrap svg { width: 100%; height: auto; display: block; }
+  .knockout-empty { text-align: center; color: var(--chalk-dim); font-size: 15px;
+    padding: 80px 16px; line-height: 1.5; }
+</style>
 </head>
 <body>
 <!-- No-gambling entry gate: shown on load, remembered after the visitor agrees. -->
@@ -1201,6 +1241,7 @@
 </script>
 <div id="topbtns">
   <button id="bubblebtn" type="button" aria-label="View the third-place bubble">Bubble</button>
+  <button id="knockoutbtn" type="button" aria-label="View the knockout projection">Knockout</button>
   <button id="simbtn" type="button" aria-label="Simulate the remaining games">Simulate</button>
 </div>
 <div class="modal-backdrop" id="sim-modal" hidden>
@@ -1864,6 +1905,7 @@
 
   function render(data) {
     updateBubbleBtn();   // keep the Bubble button's visibility in step with the data
+    updateKnockoutBtn(); // and the Knockout button (appears once the group stage ends)
     if (view === "bubble") {
       document.body.classList.add("bubble-mode");
       // The disclaimer overlay and its scroll-lock would otherwise sit over the
@@ -1877,7 +1919,19 @@
            Run the Post-game pipeline once, then refresh.</div>`;
       return;
     }
+    if (view === "knockout") {
+      document.body.classList.add("knockout-mode");
+      document.documentElement.classList.remove("ng-lock");
+      var _ovk = document.getElementById("ngOverlay");
+      if (_ovk) _ovk.classList.add("hidden");
+      app.innerHTML = knockoutSvg
+        ? `<div class="knockout-wrap">${knockoutSvg}</div>`
+        : `<div class="knockout-wrap knockout-empty">Generating the knockout projection.<br>
+           Run the Post-game pipeline once, then refresh.</div>`;
+      return;
+    }
     document.body.classList.remove("bubble-mode");
+    document.body.classList.remove("knockout-mode");
     reconcileMathFlags(data);
     if (data.simulated) {
       updatedEl.innerHTML = "Simulated Results &middot; Not Live";
@@ -2747,7 +2801,7 @@
   }
 
   // ---------- Tab switching with hash routing ----------
-  let view = ["groups", "bracket", "conduct", "odds", "bubble"].includes(location.hash.slice(1))
+  let view = ["groups", "bracket", "conduct", "odds", "bubble", "knockout"].includes(location.hash.slice(1))
     ? location.hash.slice(1) : "home";
   let lastData = null;
   let oddsData = null;
@@ -2756,6 +2810,7 @@
   let upcData = null;
   let eloData = null;
   let bubbleSvg = null;
+  let knockoutSvg = null;
 
   // ---------- Simulate remaining games (client-side what-if) ----------
   let simMode = false, simData = null;
@@ -3231,6 +3286,20 @@
   }
   bubbleBtn.addEventListener("click", () => setView(view === "bubble" ? "home" : "bubble"));
 
+  const knockoutBtn = document.getElementById("knockoutbtn");
+  function updateKnockoutBtn() {
+    const on = view === "knockout";
+    // Mirror of the Bubble button, inverted: it only appears once every group game
+    // is played (when Bubble retires). On the page it flips to "Return Home".
+    const show = on || groupStageComplete(lastData);
+    knockoutBtn.style.display = show ? "inline-block" : "none";
+    knockoutBtn.textContent = on ? "Return Home" : "Knockout";
+    knockoutBtn.classList.toggle("on", on);
+    knockoutBtn.setAttribute("aria-label", on ? "Return to the home page"
+                                              : "View the knockout projection");
+  }
+  knockoutBtn.addEventListener("click", () => setView(view === "knockout" ? "home" : "knockout"));
+
   function setView(v) {
     view = v;
     koAnimated = false;          // re-run the race entrance whenever #odds is opened
@@ -3238,6 +3307,7 @@
     document.querySelectorAll(".tab").forEach(b =>
       b.classList.toggle("active", b.dataset.view === v));
     updateBubbleBtn();
+    updateKnockoutBtn();
     const cd = currentData(); if (cd) render(cd);
     window.scrollTo({ top: 0 });
   }
@@ -3246,9 +3316,10 @@
   document.querySelectorAll(".tab").forEach(b =>
     b.classList.toggle("active", b.dataset.view === view));
   updateBubbleBtn();
+  updateKnockoutBtn();
 
   function fail() {
-    if (view === "bubble") { render(null); return; }
+    if (view === "bubble" || view === "knockout") { render(null); return; }
     updatedEl.textContent = "Couldn't load scores";
     app.innerHTML = `<section><div class="error">
       <strong>No score data yet.</strong> If you just set this site up, run the
@@ -3302,6 +3373,12 @@
       .then(r => r.ok ? r.text() : null)
       .then(t => { if (t) { bubbleSvg = t; if (view === "bubble") render(currentData()); } })
       .catch(() => {});
+    // Hidden /#knockout view: a standalone graphic written by the Post-game pipeline
+    // (content TBD). Same loader as bubble.svg — empty state until the file exists.
+    fetch("knockout.svg?t=" + Date.now())
+      .then(r => r.ok ? r.text() : null)
+      .then(t => { if (t) { knockoutSvg = t; if (view === "knockout") render(currentData()); } })
+      .catch(() => {});
   }
 
   load();
@@ -3309,7 +3386,7 @@
   // linked straight to the address bar (including the hidden #bubble) needs this.
   window.addEventListener("hashchange", () => {
     const h = location.hash.slice(1);
-    const v = ["groups", "bracket", "conduct", "odds", "bubble"].includes(h) ? h : "home";
+    const v = ["groups", "bracket", "conduct", "odds", "bubble", "knockout"].includes(h) ? h : "home";
     if (v !== view) setView(v);
   });
   window.addEventListener("resize", () => { if (view === "odds") krLayout(false); });
