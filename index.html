@@ -1461,6 +1461,22 @@
     const target = L <= 0.6 ? [255, 255, 255] : [11, 24, 16];
     return { reg: hex, et: koRgbHex(koMix(base, target, 0.30)), pen: koRgbHex(koMix(base, target, 0.55)) };
   }
+  // Flag patterns for the knockout bar — CSS gradients keyed by canonical team name.
+  // National flags carry no copyright. Teams without one fall back to flat shades.
+  const FLAG_RAW = {
+    "United States": "repeating-linear-gradient(180deg,#B22234 0 3px,#fff 3px 6px)",       // red/white stripes
+    "Germany":       "linear-gradient(180deg,#000 0 33.333%,#DD0000 33.333% 66.667%,#FFCE00 66.667% 100%)", // black/red/gold
+  };
+  const FLAG_PATTERN = {};
+  for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
+  // Fill for one knockout segment: a team's flag pattern (with the reg→ET→penalty
+  // lighten applied as a white wash) if it has one, else the flat colour shade.
+  function koFill(name, hex, level) {
+    const pat = FLAG_PATTERN[normKey(canonName(name))];
+    if (!pat) return koShades(hex)[level];
+    const ov = level === "et" ? 0.30 : level === "pen" ? 0.55 : 0;
+    return ov ? `linear-gradient(rgba(255,255,255,${ov}),rgba(255,255,255,${ov})),${pat}` : pat;
+  }
   const WDL_DRAW = "#6d7378";   // draw segment grey
   function wdlBar(m) {
     const g = wdlGame(m);
@@ -1472,7 +1488,6 @@
       // Knockouts can't draw: one bar end to end, each team split into regulation /
       // extra-time / penalty shares (shaded), with the two win totals in the same
       // label slots the group bar uses.
-      const hs = koShades(hc), as = koShades(ac);
       const W = v => +(((v || 0) * 100).toFixed(2));   // exact segment width
       const P = v => Math.round((v || 0) * 100);        // rounded label/tooltip %
       const hTot = P((g.hReg || 0) + (g.hET || 0) + (g.hPen || 0)), aTot = 100 - hTot;
@@ -1481,12 +1496,12 @@
       return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
         + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
         + `<div class="wdl kobar">`
-          + seg(W(g.hReg), hs.reg, `${nh} in regulation: ${P(g.hReg)}%`)
-          + seg(W(g.hET), hs.et, `${nh} after extra time: ${P(g.hET)}%`)
-          + seg(W(g.hPen), hs.pen, `${nh} on penalties: ${P(g.hPen)}%`)
-          + seg(W(g.aPen), as.pen, `${na} on penalties: ${P(g.aPen)}%`)
-          + seg(W(g.aET), as.et, `${na} after extra time: ${P(g.aET)}%`)
-          + seg(W(g.aReg), as.reg, `${na} in regulation: ${P(g.aReg)}%`)
+          + seg(W(g.hReg), koFill(m.home.name, hc, "reg"), `${nh} in regulation: ${P(g.hReg)}%`)
+          + seg(W(g.hET), koFill(m.home.name, hc, "et"), `${nh} after extra time: ${P(g.hET)}%`)
+          + seg(W(g.hPen), koFill(m.home.name, hc, "pen"), `${nh} on penalties: ${P(g.hPen)}%`)
+          + seg(W(g.aPen), koFill(m.away.name, ac, "pen"), `${na} on penalties: ${P(g.aPen)}%`)
+          + seg(W(g.aET), koFill(m.away.name, ac, "et"), `${na} after extra time: ${P(g.aET)}%`)
+          + seg(W(g.aReg), koFill(m.away.name, ac, "reg"), `${na} in regulation: ${P(g.aReg)}%`)
         + `</div></div>`;
     }
     const hw = Math.round((g.home || 0) * 100);
