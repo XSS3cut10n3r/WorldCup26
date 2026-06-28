@@ -253,6 +253,69 @@
       "rank": 8
     },
     {
+      "name": "Charlie",
+      "points": 4.5,
+      "teams": [
+        {
+          "name": "Colombia",
+          "points": 2.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "South Korea",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Saudi Arabia",
+          "points": 1.0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Jordan",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "name": "Kelly",
+      "points": 4.5,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 2.0,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Austria",
+          "points": 1,
+          "eliminated": false,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Canada",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        }
+      ],
+      "rank": 9
+    },
+    {
       "name": "Tom",
       "points": 4.5,
       "teams": [
@@ -306,70 +369,7 @@
           "clinchType": null
         }
       ],
-      "rank": 10
-    },
-    {
-      "name": "Charlie",
-      "points": 4.0,
-      "teams": [
-        {
-          "name": "Colombia",
-          "points": 2,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "South Korea",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Saudi Arabia",
-          "points": 1.0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Jordan",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 10
-    },
-    {
-      "name": "Kelly",
-      "points": 4.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Austria",
-          "points": 1,
-          "eliminated": false,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Canada",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        }
-      ],
-      "rank": 10
+      "rank": 12
     },
     {
       "name": "Ondine",
@@ -437,6 +437,20 @@
   ],
   "events": [
     {
+      "owner": "Kelly",
+      "team": "Portugal",
+      "points": 0.5,
+      "label": "Portugal drew (Group stage)",
+      "utcDate": "2026-06-27T23:30:00Z"
+    },
+    {
+      "owner": "Charlie",
+      "team": "Colombia",
+      "points": 0.5,
+      "label": "Colombia drew (Group stage)",
+      "utcDate": "2026-06-27T23:30:00Z"
+    },
+    {
       "owner": "Tom",
       "team": "Croatia",
       "points": 1,
@@ -456,45 +470,9 @@
       "points": 0.5,
       "label": "Iran drew (Group stage)",
       "utcDate": "2026-06-27T03:00:00Z"
-    },
-    {
-      "owner": "Tom",
-      "team": "Egypt",
-      "points": 0.5,
-      "label": "Egypt drew (Group stage)",
-      "utcDate": "2026-06-27T03:00:00Z"
-    },
-    {
-      "owner": "Paul",
-      "team": "Belgium",
-      "points": 1,
-      "label": "Belgium won (Group stage)",
-      "utcDate": "2026-06-27T03:00:00Z"
     }
   ],
   "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-27T23:30:00Z",
-      "home": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 13
-      },
-      "away": {
-        "name": "Portugal",
-        "owner": "Kelly",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 5
-      },
-      "penalties": false,
-      "winner": "DRAW"
-    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -519,6 +497,28 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T23:30:00Z",
+      "home": {
+        "name": "Colombia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 13
+      },
+      "away": {
+        "name": "Portugal",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 5
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -606,28 +606,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T00:00:00Z",
-      "home": {
-        "name": "Cape Verde Islands",
-        "owner": "Paul",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 67
-      },
-      "away": {
-        "name": "Saudi Arabia",
-        "owner": "Charlie",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 61
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -1334,7 +1312,7 @@
             "owner": "Charlie",
             "goals": null,
             "penGoals": null,
-            "projected": true,
+            "projected": false,
             "slot": "Winner Group K",
             "resolved": true
           },
@@ -2590,31 +2568,31 @@
           "pos": 1,
           "team": "Colombia",
           "owner": "Charlie",
-          "played": 2,
+          "played": 3,
           "won": 2,
-          "draw": 0,
+          "draw": 1,
           "lost": 0,
           "gf": 4,
           "ga": 1,
           "gd": 3,
-          "points": 6,
+          "points": 7,
           "conduct": -3,
           "fifaRank": 13,
-          "clinched": false,
-          "clinchType": null
+          "clinched": true,
+          "clinchType": "winner"
         },
         {
           "pos": 2,
           "team": "Portugal",
           "owner": "Kelly",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "draw": 1,
+          "draw": 2,
           "lost": 0,
           "gf": 6,
           "ga": 1,
           "gd": 5,
-          "points": 4,
+          "points": 5,
           "conduct": -4,
           "fifaRank": 5,
           "clinched": false,
@@ -9400,6 +9378,12 @@
           "a": "DR Congo",
           "hg": 1,
           "ag": 0
+        },
+        {
+          "h": "Colombia",
+          "a": "Portugal",
+          "hg": 0,
+          "ag": 0
         }
       ],
       "L": [
@@ -9462,10 +9446,6 @@
         }
       ],
       "K": [
-        {
-          "h": "Colombia",
-          "a": "Portugal"
-        },
         {
           "h": "DR Congo",
           "a": "Uzbekistan"
@@ -9813,5 +9793,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-28T01:32:56Z"
+  "generated": "2026-06-28T01:33:59Z"
 }
