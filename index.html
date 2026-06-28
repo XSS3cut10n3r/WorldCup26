@@ -1220,6 +1220,34 @@
   .kt-pct { color: var(--chalk-dim); font-size: 12px; margin-left: 3px; }
   .kt-sub { font-weight: 400; text-transform: none; letter-spacing: 0; opacity: 0.65; }
   .ktable tbody tr:hover { background: rgba(255,255,255,0.03); }
+  .mlb-note { color: var(--chalk-dim); font-size: 13px; line-height: 1.5; margin: 0 0 12px; max-width: 840px; }
+  .mlb-champ { text-align: center; margin: 4px 0 18px; padding: 12px 14px;
+    border: 1px solid rgba(232,195,74,0.4); border-radius: 12px; background: rgba(232,195,74,0.07); }
+  .mlb-champ-flag { font-size: 30px; line-height: 1; }
+  .mlb-champ-name { font-family: var(--display); font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; color: var(--gold); font-size: 23px; margin: 4px 0 2px; }
+  .mlb-champ-sub { color: var(--chalk-dim); font-size: 12px; }
+  .mlb-scroll { overflow-x: auto; padding-bottom: 10px; }
+  .mlb-cols { display: flex; gap: 12px; min-width: max-content; align-items: stretch; }
+  .mlb-col { display: flex; flex-direction: column; min-width: 162px; flex: 1; }
+  .mlb-col-head { font-family: var(--display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.05em; font-size: 11px; color: var(--chalk-dim); text-align: center; padding: 2px 0 8px; }
+  .mlb-col-games { flex: 1; display: flex; flex-direction: column; justify-content: space-around; gap: 8px; }
+  .mlb-game { border: 1px solid rgba(255,255,255,0.10); border-radius: 8px; overflow: hidden;
+    background: rgba(255,255,255,0.02); }
+  .mlb-row { display: flex; align-items: center; gap: 6px; padding: 5px 8px; font-size: 13px; }
+  .mlb-flag { line-height: 1; }
+  .mlb-row .mlb-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--chalk); }
+  .mlb-row .mlb-freq { font-size: 10px; color: var(--chalk-faint); }
+  .mlb-row .mlb-g { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--chalk); min-width: 12px; text-align: right; }
+  .mlb-row.win { background: rgba(232,195,74,0.13); }
+  .mlb-row.win .mlb-name { color: var(--gold); font-weight: 600; }
+  .mlb-row.lose .mlb-name, .mlb-row.lose .mlb-g { color: var(--chalk-dim); }
+  .mlb-row.lose .mlb-flag { filter: grayscale(0.6) opacity(0.7); }
+  .mlb-pick { text-align: center; font-size: 11px; color: var(--chalk-dim);
+    padding: 4px 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+  .mlb-pick b { color: var(--gold); font-weight: 600; }
+  .mlb-tag { color: var(--ice); letter-spacing: 0.04em; }
 </style>
 </head>
 <body>
@@ -2759,7 +2787,51 @@
       '<p class="kpage-note">For every team that won at least one simulated title, the average strength of the ' +
       'five knockout opponents it beat on the way \u2014 scored as \u2212log(FIFA rank) \u2014 across only the tournaments it actually won. ' +
       'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.</p>' +
-      kBell(rows) + kTable(byWins) + '</section>';
+      kBell(rows) + kTable(byWins) + '</section>' + kBracket();
+  }
+
+  function kStageGames(br) {
+    const order = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL"];
+    const labels = { LAST_32: "Round of 32", LAST_16: "Round of 16",
+      QUARTER_FINALS: "Quarter-finals", SEMI_FINALS: "Semi-finals", FINAL: "Final" };
+    const byStage = {}; order.forEach(st => byStage[st] = []);
+    (br || []).forEach(g => { if (byStage[g.stage]) byStage[g.stage].push(g); });
+    order.forEach(st => byStage[st].sort((a, b) => a.match - b.match));
+    return { order, labels, byStage };
+  }
+  function mlbGame(g) {
+    const mh = krMeta(g.home.name), ma = krMeta(g.away.name);
+    const pickHome = g.pick.name === g.home.name, s = g.score;
+    const tag = s.type === "et" ? "ET" : s.type === "pens" ? "PENS" : "";
+    const row = (side, meta, isWin, goals, freq) => {
+      const fr = (freq != null && freq < 0.999) ? '<span class="mlb-freq">' + Math.round(freq * 100) + '%</span>' : "";
+      return '<div class="mlb-row ' + (isWin ? "win" : "lose") + '">' +
+        '<span class="mlb-flag">' + meta[1] + '</span>' +
+        '<span class="mlb-name">' + esc(side.name) + '</span>' + fr +
+        '<span class="mlb-g">' + goals + '</span></div>';
+    };
+    return '<div class="mlb-game">' +
+      row(g.home, mh, pickHome, s.h, g.home.freq) +
+      row(g.away, ma, !pickHome, s.a, g.away.freq) +
+      '<div class="mlb-pick">\u2713 <b>' + esc(g.pick.name) + '</b> \u00b7 ' + Math.round(g.pick.winPct * 100) + '%' +
+      (tag ? ' \u00b7 <span class="mlb-tag">' + tag + '</span>' : '') + '</div></div>';
+  }
+  function kBracket() {
+    const br = (koData && koData.bracket) || [];
+    if (!br.length) return "";
+    const sg = kStageGames(br);
+    const cols = sg.order.map(st =>
+      '<div class="mlb-col"><div class="mlb-col-head">' + sg.labels[st] + '</div>' +
+      '<div class="mlb-col-games">' + sg.byStage[st].map(mlbGame).join("") + '</div></div>').join("");
+    const champ = koData && koData.champion;
+    const banner = champ ? ('<div class="mlb-champ"><div class="mlb-champ-flag">' + krMeta(champ.name)[1] + '</div>' +
+      '<div class="mlb-champ-name">' + esc(champ.name) + '</div>' +
+      '<div class="mlb-champ-sub">most likely champion \u00b7 wins ' + (champ.winPct * 100).toFixed(1) + '% of simulations</div></div>') : "";
+    return '<section class="ksec"><h2>Most Likely Bracket</h2>' +
+      '<p class="mlb-note">Each slot shows the team that reaches it most often \u2014 its % is how often it gets there. ' +
+      'Rounds are tallied independently, so the bracket can read inconsistently between rounds: the team shown winning a game isn\'t always the one shown in the next slot. ' +
+      'Each game\'s score and win % come from a head-to-head of the two teams shown, with (ET)/(PENS) noted.</p>' +
+      banner + '<div class="mlb-scroll"><div class="mlb-cols">' + cols + '</div></div></section>';
   }
 
   function renderKnockoutRace(data) {
