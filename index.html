@@ -2730,39 +2730,59 @@
     });
   }
   function kBell(rows) {
-    const W = 1000, H = 360, padL = 56, padR = 56, peakY = 50, baseY = 300;
+    const W = 1000, H = 470, padL = 60, padR = 60;
+    const peakY = 40, curveBase = 190, swarmY = 322, axisY = 444;
     const xs = rows.map(r => r.str);
     let lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
     if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }
-    const span = hi - lo; lo -= span * 0.14; hi += span * 0.14;
+    const span = hi - lo; lo -= span * 0.16; hi += span * 0.16;
     const X = s => padL + (s - lo) / (hi - lo) * (W - padL - padR);
     const nn = xs.length, mu = xs.reduce((a, b) => a + b, 0) / nn;
     let sd = Math.sqrt(xs.reduce((a, b) => a + (b - mu) * (b - mu), 0) / nn);
     if (!(sd > 0)) sd = (hi - lo) / 6;
     const g = s => Math.exp(-0.5 * ((s - mu) / sd) * ((s - mu) / sd));
-    const Y = s => baseY - g(s) * (baseY - peakY);
+    const Y = s => curveBase - g(s) * (curveBase - peakY);
     let d = "";
     for (let i = 0; i <= 140; i++) { const s = lo + (hi - lo) * i / 140, x = X(s), y = Y(s); d += (i ? " L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
-    const area = d + " L" + X(hi).toFixed(1) + " " + baseY + " L" + X(lo).toFixed(1) + " " + baseY + " Z";
+    const area = d + " L" + X(hi).toFixed(1) + " " + curveBase + " L" + X(lo).toFixed(1) + " " + curveBase + " Z";
     const maxPct = Math.max.apply(null, rows.map(r => r.winPct)) || 1;
-    const dotR = pc => 3 + 9 * Math.sqrt(pc / maxPct);
-    const flagPx = pc => 9 + 13 * Math.sqrt(pc / maxPct);
-    const muX = X(mu);
-    const marks = rows.slice().sort((a, b) => a.winPct - b.winPct).map(r => {
-      const x = X(r.str), y = Y(r.str), rr = dotR(r.winPct), fp = flagPx(r.winPct);
-      const tip = r.name + " \u2014 " + r.wins.toLocaleString() + " titles (" + (r.winPct * 100).toFixed(1) + "%) \u00b7 avg opp rank " + r.oppRank;
+    const flagPx = pc => 13 + 9 * Math.sqrt(pc / maxPct);
+    // Beeswarm: every team sits at its true x (path difficulty) but is nudged
+    // vertically so markers never overlap — clustered average-path teams fan out
+    // into a cloud instead of stacking on one another.
+    const nodes = rows.map(r => { const fp = flagPx(r.winPct); return { r, x: X(r.str), fp, ring: fp * 0.62, rad: fp * 0.62 + 2 }; });
+    nodes.sort((a, b) => a.x - b.x);
+    const placed = [];
+    nodes.forEach(node => {
+      let y = swarmY;
+      for (let k = 0; k < 600; k++) {
+        const off = k === 0 ? 0 : ((k % 2 ? 1 : -1) * Math.ceil(k / 2) * 3);
+        const cand = swarmY + off;
+        if (cand < peakY + 22 || cand > axisY - 16) continue;
+        let ok = true;
+        for (const pnode of placed) {
+          const need = pnode.rad + node.rad;
+          if (Math.abs(pnode.x - node.x) < need && Math.abs(pnode.y - cand) < need) { ok = false; break; }
+        }
+        if (ok) { y = cand; break; }
+      }
+      node.y = y; placed.push(node);
+    });
+    const marks = nodes.map(o => {
+      const tip = o.r.name + " \u2014 " + o.r.wins.toLocaleString() + " titles (" + (o.r.winPct * 100).toFixed(1) + "%) \u00b7 avg opp rank " + o.r.oppRank;
       return '<g><title>' + esc(tip) + '</title>' +
-        '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + rr.toFixed(1) + '" fill="' + r.color + '" stroke="#0B0E12" stroke-width="1.2"/>' +
-        '<text x="' + x.toFixed(1) + '" y="' + (y - rr - 2).toFixed(1) + '" text-anchor="middle" font-size="' + fp.toFixed(0) + '">' + r.flag + '</text></g>';
+        '<circle cx="' + o.x.toFixed(1) + '" cy="' + o.y.toFixed(1) + '" r="' + o.ring.toFixed(1) + '" fill="' + o.r.color + '" fill-opacity="0.16" stroke="' + o.r.color + '" stroke-width="2"/>' +
+        '<text x="' + o.x.toFixed(1) + '" y="' + (o.y + o.fp * 0.34).toFixed(1) + '" text-anchor="middle" font-size="' + o.fp.toFixed(0) + '">' + o.r.flag + '</text></g>';
     }).join("");
+    const muX = X(mu);
     return '<svg viewBox="0 0 ' + W + ' ' + H + '" class="kbell" xmlns="http://www.w3.org/2000/svg">' +
       '<path d="' + area + '" fill="rgba(232,195,74,0.10)"/>' +
       '<path d="' + d + '" fill="none" stroke="rgba(232,195,74,0.55)" stroke-width="2"/>' +
-      '<line x1="' + padL + '" y1="' + baseY + '" x2="' + (W - padR) + '" y2="' + baseY + '" stroke="rgba(242,240,228,0.28)"/>' +
-      '<line x1="' + muX.toFixed(1) + '" y1="' + (peakY - 6) + '" x2="' + muX.toFixed(1) + '" y2="' + baseY + '" stroke="rgba(242,240,228,0.4)" stroke-dasharray="4 5"/>' +
+      '<line x1="' + muX.toFixed(1) + '" y1="' + (peakY - 6) + '" x2="' + muX.toFixed(1) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.4)" stroke-dasharray="4 5"/>' +
       '<text x="' + muX.toFixed(1) + '" y="' + (peakY - 12) + '" text-anchor="middle" fill="rgba(242,240,228,0.75)" font-size="13">Average path</text>' +
-      '<text x="' + padL + '" y="' + (baseY + 26) + '" text-anchor="start" fill="#6FD8EC" font-size="13">\u2190 Easier (weaker opponents)</text>' +
-      '<text x="' + (W - padR) + '" y="' + (baseY + 26) + '" text-anchor="end" fill="#FF5A45" font-size="13">Harder (stronger opponents) \u2192</text>' +
+      '<line x1="' + padL + '" y1="' + axisY + '" x2="' + (W - padR) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.28)"/>' +
+      '<text x="' + padL + '" y="' + (axisY + 20) + '" text-anchor="start" fill="#6FD8EC" font-size="13">\u2190 Easier (weaker opponents)</text>' +
+      '<text x="' + (W - padR) + '" y="' + (axisY + 20) + '" text-anchor="end" fill="#FF5A45" font-size="13">Harder (stronger opponents) \u2192</text>' +
       marks + '</svg>';
   }
   function kTable(rows) {
