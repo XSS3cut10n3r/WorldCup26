@@ -492,7 +492,7 @@
       "away": {
         "name": "Canada",
         "owner": "Kelly",
-        "goals": 0,
+        "goals": 1,
         "penGoals": null,
         "projected": false,
         "slot": "Runner-up Group B",
@@ -500,7 +500,7 @@
         "fifaRank": 30
       },
       "penalties": false,
-      "winner": null
+      "winner": "AWAY_TEAM"
     }
   ],
   "recent": [
@@ -931,7 +931,7 @@
           "away": {
             "name": "Canada",
             "owner": "Kelly",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group B",
@@ -939,7 +939,7 @@
             "fifaRank": 30
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 74,
@@ -9808,5 +9808,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-28T20:47:58Z"
+  "generated": "2026-06-28T20:57:46Z"
 }
