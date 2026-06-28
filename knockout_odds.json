@@ -1,7 +1,13 @@
 {
-  "generated": "2026-06-28T01:47:24.667980Z",
+  "generated": "2026-06-28T04:14:17.073903Z",
   "sims": 1000000,
   "teams": [
+    {
+      "name": "Algeria",
+      "odds": 1.0,
+      "base": 0.56122,
+      "delta": null
+    },
     {
       "name": "Argentina",
       "odds": 1.0,
@@ -12,6 +18,12 @@
       "name": "Australia",
       "odds": 1.0,
       "base": 0.93486,
+      "delta": null
+    },
+    {
+      "name": "Austria",
+      "odds": 1.0,
+      "base": 0.69882,
       "delta": null
     },
     {
@@ -48,12 +60,6 @@
       "name": "Colombia",
       "odds": 1.0,
       "base": 0.98726,
-      "delta": null
-    },
-    {
-      "name": "Croatia",
-      "odds": 1.0,
-      "base": 0.885,
       "delta": null
     },
     {
@@ -183,22 +189,16 @@
       "delta": null
     },
     {
+      "name": "Croatia",
+      "odds": 0.81854,
+      "base": 1.0,
+      "delta": -0.18146
+    },
+    {
       "name": "Iran",
-      "odds": 0.73996,
-      "base": 0.86787,
-      "delta": -0.12791
-    },
-    {
-      "name": "Austria",
-      "odds": 0.69882,
-      "base": 0.79312,
-      "delta": -0.0943
-    },
-    {
-      "name": "Algeria",
-      "odds": 0.56122,
-      "base": 0.55298,
-      "delta": 0.00824
+      "odds": 0.18146,
+      "base": 0.73996,
+      "delta": -0.5585
     },
     {
       "name": "Curaçao",
