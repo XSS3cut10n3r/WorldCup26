@@ -1193,17 +1193,21 @@
 </style>
 <style id="knockout-style">
   /* Hidden /#knockout view: a standalone graphic like /#bubble, but shown only
-     once the group stage is complete. It keeps the site-wide pitch background and
-     kickoff-circle header so it matches every other page; only the tabs and footer
-     are dropped for the full-bleed feel. */
-  body.knockout-mode .wrap { max-width: 1080px; }
+     once the group stage is complete. It keeps the site-wide pitch background,
+     the standard 860px container, and the kickoff-circle header so the header
+     (and its center circle) is pixel-identical to every other page; only the
+     tabs and footer are dropped for the full-bleed feel. */
   body.knockout-mode .wrap > nav.tabs,
   body.knockout-mode .wrap > footer { display: none !important; }
   /* The standard kickoff-circle header stays visible on /#knockout (like every
      other page); only the tabs and footer are dropped for the full-bleed feel. */
   body.knockout-mode .wrap > header { display: block; }
+  /* The "scores as of" pill is meaningless on a projection, so it's hidden — but
+     with visibility (not display:none) so it still reserves its line and the
+     header keeps the exact same height, leaving the center circle put. */
+  body.knockout-mode .wrap > header .updated { visibility: hidden; }
   body.knockout-mode #ngOverlay { display: none !important; }
-  .knockout-wrap { max-width: 1080px; margin: 0 auto; padding: 24px 0 40px; }
+  .knockout-wrap { max-width: 100%; margin: 0 auto; padding: 24px 0 40px; }
   .knockout-wrap svg.kbell { width: 100%; height: auto; display: block; }
   .knockout-empty { text-align: center; color: var(--chalk-dim); font-size: 15px;
     padding: 80px 16px; line-height: 1.5; }
@@ -1973,18 +1977,17 @@
     updateBubbleBtn();   // keep the Bubble button's visibility in step with the data
     updateKnockoutBtn(); // and the Knockout button (appears once the group stage ends)
     // The kickoff-circle header is shared across every view. On /#knockout it
-    // re-titles itself and drops the "scores as of" pill; everywhere else it
-    // carries the pool's name and tagline.
+    // re-titles itself; the "scores as of" pill is hidden by CSS (via visibility,
+    // so the header keeps its height and the center circle stays put). Everywhere
+    // else it carries the pool's name and tagline.
     if (titleEl && subEl) {
       if (view === "knockout") {
         const sims = (koData && koData.sims) ? koData.sims.toLocaleString() : "1,000,000";
         titleEl.textContent = "KO Projections";
         subEl.textContent = "Over " + sims + " simulated tournaments";
-        if (updatedEl) updatedEl.style.display = "none";
       } else {
         titleEl.textContent = HOME_TITLE;
         subEl.textContent = HOME_SUB;
-        if (updatedEl) updatedEl.style.display = "";
       }
     }
     if (view === "bubble") {
