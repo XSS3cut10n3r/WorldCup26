@@ -817,6 +817,77 @@ def main():
             })
         games.sort(key=lambda g: (g["group"], g["home"].lower(), g["away"].lower()))
 
+        # Per-game win odds for upcoming KNOCKOUT fixtures. Knockouts can't draw, so
+        # instead of home/draw/away each team gets a regulation / extra-time / penalty
+        # win share (summing to 1 across both teams). Computed as a direct head-to-head
+        # Monte-Carlo using the same KO match model as the bracket sim, and keyed (like
+        # the group games) on the home/away pair so the page joins them to its cards.
+        ko_fixtures, seen_ko = [], set()
+        for mm in (data.get("upcoming") or []):
+            code = (mm.get("stageCode") or "").upper()
+            if not code or code == "GROUP_STAGE":
+                continue
+            hn = (mm.get("home") or {}).get("name")
+            an = (mm.get("away") or {}).get("name")
+            if not hn or not an or (hn, an) in seen_ko:
+                continue
+            seen_ko.add((hn, an))
+            ko_fixtures.append((code, hn, an))
+
+        ko_games = []
+        if ko_fixtures:
+            _sg, ko_elo, ko_shoot = make_engine(model)
+            R = model["R"]
+            P = model["p"]
+            DC, KO_MUL, ET_TOTAL = P["dcRho"], P["koTotalMul"], P["etTotal"]
+            KO_SIMS = min(N, 200000) or 200000
+            # Deterministic and independent of the group draws: reseed the global RNG
+            # (the one ko_elo/ko_shoot draw from) so a no-op re-run is byte-stable.
+            random.seed((args.seed if args.seed is not None else 0) ^ 0x4B4F)
+
+            def ko_split(h, a):
+                if R is not None and (h not in R or a not in R):
+                    return None
+                # counts: home reg/ET/pen, away reg/ET/pen
+                hr = he = hp = ar = ae = ap = 0
+                for _ in range(KO_SIMS):
+                    hg, ag = ko_elo(h, a, total_mul=KO_MUL, rho=DC)
+                    if hg != ag:                       # decided in regulation
+                        if hg > ag: hr += 1
+                        else:       ar += 1
+                        continue
+                    e1, e2 = ko_elo(h, a, total_abs=ET_TOTAL, rho=DC)
+                    if e1 != e2:                       # decided in extra time
+                        if e1 > e2: he += 1
+                        else:       ae += 1
+                        continue
+                    if random.random() < ko_shoot(h, a):   # decided on penalties
+                        hp += 1
+                    else:
+                        ap += 1
+                n = float(KO_SIMS)
+                return {"homeReg": hr / n, "homeET": he / n, "homePen": hp / n,
+                        "awayReg": ar / n, "awayET": ae / n, "awayPen": ap / n}
+
+            KEYS = ("homeReg", "homeET", "homePen", "awayReg", "awayET", "awayPen")
+            for code, hn, an in ko_fixtures:
+                raw = ko_split(hn, an)
+                if raw is None:
+                    continue
+                odds = {k: d5(raw[k]) for k in KEYS}
+                pg = prev_g.get((hn, an)) or {}
+                po, pb, pdl = pg.get("odds") or {}, pg.get("base") or {}, pg.get("delta") or {}
+                base, delta = {}, {}
+                for k in KEYS:
+                    b, dlt = utrend(odds[k], po.get(k), pb.get(k), pdl.get(k))
+                    base[k], delta[k] = d5(b), dlt
+                ko_games.append({
+                    "stageCode": code, "home": hn, "away": an, "knockout": True,
+                    "odds": odds, "base": base, "delta": delta,
+                })
+            ko_games.sort(key=lambda g: (g["stageCode"], g["home"].lower(), g["away"].lower()))
+        games += ko_games
+
         if prev is not None and prev.get("games") == games:
             print(f"No upcoming-odds changes since last run; {args.upcoming_json} left untouched.")
         else:
