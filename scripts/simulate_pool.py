@@ -92,7 +92,7 @@ def build_model(elo, data):
         "formDefFloor": P.get("formDefFloor", 0.0),
         "pensHangover": P.get("pensHangover", 0.0),
         "finalScoreBoost": P.get("finalScoreBoost", 1.0),
-        "koTotalMul": P.get("koTotalMul", 0.85),
+        "koTotalMul": P.get("koTotalMul", 0.91),
         "etTotal": P.get("etTotal", 0.75),
         "dcRho": P.get("dcRho", -0.30),
     }
@@ -354,7 +354,7 @@ def make_runner(model, form_feedback=False):
     base_fa = model["fa"]; avgGpg = model["avgGpg"]; rs_bar = model["rs_bar"]
     rsf = model["rs"]; qCoef = p["formOppCoef"]
     atkFloor = p["formAtkFloor"]; defFloor = p["formDefFloor"]
-    koFormGain = p.get("koFormGain", 3.0)   # amplify in-tournament form so wins snowball
+    koFormGain = p.get("koFormGain", 4.0)   # amplify in-tournament form so wins snowball
     fa_live = {}
     def _cur_atk(t):
         f = fa_live.get(t)
