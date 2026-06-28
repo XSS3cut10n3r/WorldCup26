@@ -896,6 +896,9 @@
   .wdl { display: flex; width: 100%; height: 9px; border-radius: 5px; overflow: hidden;
          box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.28); }
   .wseg { height: 100%; min-width: 0; }
+  /* knockout bar reuses .wdl; a hairline between segments keeps the regulation /
+     extra-time / penalty shades of one team distinct (incl. near-white nations). */
+  .wdl.kobar .wseg + .wseg { box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.30); }
   .match .mid .wdlwrap { width: clamp(150px, 30vw, 230px); }
   .cd-center .wdlwrap { max-width: 230px; }
   /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
@@ -1264,11 +1267,11 @@
     });
   };
 
-  function teamCell(t, side, tagHTML, isOut) {
+  function teamCell(t, side, tagHTML, isOut, noThrough) {
     const unres = t.resolved === false;
     const proj = t.projected === true;
     const out = isOut === true && !unres;
-    const through = sideThrough(t) && !unres && !out;
+    const through = sideThrough(t) && !unres && !out && !noThrough;
     const nm = unres ? esc(t.slot || "TBD") : esc(t.name);
     const hasRank = !unres && t.fifaRank !== null && t.fifaRank !== undefined;
     const rankEl = `<div class="trank">${hasRank ? "#" + t.fifaRank : ""}</div>`;
@@ -1313,11 +1316,21 @@
       h += `<span class="cpill draw">A draw: both go through</span>`;
     return h;
   }
+  // A match is a knockout once it leaves the group stage. Group fixtures carry
+  // stageCode "GROUP_STAGE"; everything past that (LAST_32, LAST_16, …) is KO.
+  function isKnockout(m) {
+    if (!m) return false;
+    const c = (m.stageCode || "").toUpperCase();
+    if (c) return c !== "GROUP_STAGE";
+    return !!m.stage && m.stage !== "Group stage";
+  }
   // Per-team tag under the owner: "Through" for an already-qualified side
   // (its name also glows gold), otherwise "Win to advance" when winning this
-  // game alone clinches a top-two place. Returns "" when neither applies.
-  function clinchTag(side, cside, cls, isOut) {
+  // game alone clinches a top-two place. Returns "" when neither applies. In the
+  // knockouts every side is already through, so the tag is dropped entirely.
+  function clinchTag(side, cside, cls, isOut, isKO) {
     if (isOut) return `<div class="${cls} out">Eliminated</div>`;
+    if (isKO) return "";
     if (sideThrough(side)) return `<div class="${cls}">Through</div>`;
     if (cside && cside.winAdvances) return `<div class="${cls}">Win to advance</div>`;
     return "";
@@ -1325,6 +1338,7 @@
   // True when either side will render a per-team tag (so the card can top-align
   // its row and keep both country names level).
   function hasClinchTag(m) {
+    if (isKnockout(m)) return false;
     const c = m.clinch;
     return !!(sideThrough(m.home) || sideThrough(m.away) ||
       upElimNames.has(m.home.name) || upElimNames.has(m.away.name) ||
@@ -1336,7 +1350,8 @@
     const c = m.clinch;
     const cside = c ? (side === "home" ? c.home : c.away) : null;
     const isOut = upElimNames.has(t.name);
-    return teamCell(t, side, clinchTag(t, cside, "ctag", isOut), isOut);
+    const ko = isKnockout(m);
+    return teamCell(t, side, clinchTag(t, cside, "ctag", isOut, ko), isOut, ko);
   }
 
   function fmtCountdown(ms) {
@@ -1419,10 +1434,32 @@
     for (const g of (upcData.games || [])) {
       const o = g.odds || {};
       const gh = normKey(g.home), ga = normKey(g.away);
-      if (gh === h && ga === a) return { home: o.home, draw: o.draw, away: o.away };
-      if (gh === a && ga === h) return { home: o.away, draw: o.draw, away: o.home };
+      const same = gh === h && ga === a, swap = gh === a && ga === h;
+      if (!same && !swap) continue;
+      if (g.knockout) {
+        // six-way split: each team's regulation / extra-time / penalty win odds
+        return same
+          ? { ko: true, hReg: o.homeReg, hET: o.homeET, hPen: o.homePen,
+                         aReg: o.awayReg, aET: o.awayET, aPen: o.awayPen }
+          : { ko: true, hReg: o.awayReg, hET: o.awayET, hPen: o.awayPen,
+                         aReg: o.homeReg, aET: o.homeET, aPen: o.homePen };
+      }
+      return same ? { home: o.home, draw: o.draw, away: o.away }
+                  : { home: o.away, draw: o.draw, away: o.home };
     }
     return null;
+  }
+  // Three shades of a team colour for the knockout bar: base (regulation), then two
+  // steps toward white for dark colours, or toward deep ink for light ones, so the
+  // regulation / extra-time / penalty segments stay distinct for every nation.
+  function koHexToRgb(x) { x = x.replace("#", ""); return [0, 2, 4].map(i => parseInt(x.slice(i, i + 2), 16)); }
+  function koMix(a, b, t) { return a.map((v, i) => Math.round(v + (b[i] - v) * t)); }
+  function koRgbHex(a) { return "#" + a.map(v => v.toString(16).padStart(2, "0")).join(""); }
+  function koShades(hex) {
+    const base = koHexToRgb(hex);
+    const L = (0.299 * base[0] + 0.587 * base[1] + 0.114 * base[2]) / 255;
+    const target = L <= 0.6 ? [255, 255, 255] : [11, 24, 16];
+    return { reg: hex, et: koRgbHex(koMix(base, target, 0.30)), pen: koRgbHex(koMix(base, target, 0.55)) };
   }
   const WDL_DRAW = "#6d7378";   // draw segment grey
   function wdlBar(m) {
@@ -1430,11 +1467,32 @@
     if (!g) return "";
     const hc = COLOR_BY_KEY[normKey(canonName(m.home.name))] || "#888";
     const ac = COLOR_BY_KEY[normKey(canonName(m.away.name))] || "#888";
+    const seg = (w, bg, title) => `<div class="wseg" style="width:${w}%;background:${bg}"${title ? ` title="${title}"` : ""}></div>`;
+    if (g.ko) {
+      // Knockouts can't draw: one bar end to end, each team split into regulation /
+      // extra-time / penalty shares (shaded), with the two win totals in the same
+      // label slots the group bar uses.
+      const hs = koShades(hc), as = koShades(ac);
+      const W = v => +(((v || 0) * 100).toFixed(2));   // exact segment width
+      const P = v => Math.round((v || 0) * 100);        // rounded label/tooltip %
+      const hTot = P((g.hReg || 0) + (g.hET || 0) + (g.hPen || 0)), aTot = 100 - hTot;
+      const lab = (w, cls) => `<span class="wlab ${cls}">${w}%</span>`;
+      const nh = esc(m.home.name), na = esc(m.away.name);
+      return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
+        + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
+        + `<div class="wdl kobar">`
+          + seg(W(g.hReg), hs.reg, `${nh} in regulation: ${P(g.hReg)}%`)
+          + seg(W(g.hET), hs.et, `${nh} after extra time: ${P(g.hET)}%`)
+          + seg(W(g.hPen), hs.pen, `${nh} on penalties: ${P(g.hPen)}%`)
+          + seg(W(g.aPen), as.pen, `${na} on penalties: ${P(g.aPen)}%`)
+          + seg(W(g.aET), as.et, `${na} after extra time: ${P(g.aET)}%`)
+          + seg(W(g.aReg), as.reg, `${na} in regulation: ${P(g.aReg)}%`)
+        + `</div></div>`;
+    }
     const hw = Math.round((g.home || 0) * 100);
     const aw = Math.round((g.away || 0) * 100);
     const dw = Math.max(0, 100 - hw - aw);           // draw takes the remainder so it sums to 100
     const lab = (w, cls) => `<span class="wlab ${cls}">${w}%</span>`;
-    const seg = (w, bg) => `<div class="wseg" style="width:${w}%;background:${bg}"></div>`;
     return `<div class="wdlwrap" title="${esc(m.home.name)} ${hw}% &middot; Draw ${dw}% &middot; ${esc(m.away.name)} ${aw}%">`
       + `<div class="wlabels">${lab(hw, "home")}${lab(dw, "dr")}${lab(aw, "away")}</div>`
       + `<div class="wdl">${seg(hw, hc)}${seg(dw, WDL_DRAW)}${seg(aw, ac)}</div>`
@@ -1443,16 +1501,17 @@
 
   function countdownCard(m) {
     const c = m.clinch;
+    const ko = isKnockout(m);
     const rank = t => (t.fifaRank !== null && t.fifaRank !== undefined)
       ? `<div class="cd-rank">#${t.fifaRank}</div>` : "";
     const info = (t, side) => {
       const isOut = upElimNames.has(t.name);
-      const through = sideThrough(t) && !isOut;
+      const through = sideThrough(t) && !isOut && !ko;
       const cside = c ? (side === "home" ? c.home : c.away) : null;
       return `<div class="cd-tinfo">
         <div class="cd-name ${through ? "through" : ""} ${isOut ? "elim" : ""}">${esc(t.name)}</div>
         <div class="cd-owner">${t.owner ? esc(t.owner) : "&mdash;"}</div>
-        ${clinchTag(t, cside, "cd-ctag", isOut)}</div>`;
+        ${clinchTag(t, cside, "cd-ctag", isOut, ko)}</div>`;
     };
     const initial = fmtCountdown(new Date(m.utcDate).getTime() - Date.now()) || "";
     const footer = clinchFooter(c, m);
@@ -1514,8 +1573,8 @@
     const showClinch = !live && !done;
     const footer = showClinch ? clinchFooter(m.clinch, m) : "";
     const tagged = showClinch && hasClinchTag(m) ? " tagged" : "";
-    const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home");
-    const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away");
+    const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home", "", false, isKnockout(m));
+    const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away", "", false, isKnockout(m));
     return `<div class="match ${live ? "is-live" : ""} ${pens ? "pens" : ""} ${showUpset ? "upset" : ""} ${held ? "held" : ""}${tagged}">
       ${pens ? '<div class="pens-badge"><span class="spot"></span>PENS</div>'
              : (showUpset ? '<div class="upset-badge">UPSET</div>' : "")}
