@@ -1505,7 +1505,7 @@
     if (!g) return "";
     const hc = COLOR_BY_KEY[normKey(canonName(m.home.name))] || "#888";
     const ac = COLOR_BY_KEY[normKey(canonName(m.away.name))] || "#888";
-    const seg = (w, bg, title) => `<div class="wseg" style="width:${w}%;background:${bg}"${title ? ` title="${title}"` : ""}></div>`;
+    const seg = (w, bg, title, cls) => `<div class="wseg${cls ? " " + cls : ""}" style="width:${w}%;background:${bg}"${title ? ` title="${title}"` : ""}></div>`;
     if (g.ko) {
       // Knockouts can't draw: one bar end to end, each team split into regulation /
       // extra-time / penalty shares (shaded), with the two win totals in the same
