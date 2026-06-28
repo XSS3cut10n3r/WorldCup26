@@ -1486,6 +1486,7 @@
     "Senegal":       "linear-gradient(180deg,#00853F 0 33.333%,#FDEF42 33.333% 66.667%,#E31B23 66.667%)", // green/yellow/red (rotated 90deg); green star via FLAG_EMBLEM
     "Portugal":      "linear-gradient(180deg,#046A38 0 40%,#DA291C 40%)", // green(40)/red(60), rotated 90deg, emblem ignored
     "Algeria":       "linear-gradient(180deg,#006233 0 50%,#fff 50%)", // green/white, rotated 90deg, emblem ignored
+    "Sweden":        "#006AA7", // blue field; yellow Nordic cross via FLAG_OVERLAY
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
@@ -1503,6 +1504,9 @@
   ].join(",");
   const FLAG_OVERLAY = {};
   FLAG_OVERLAY[normKey("Norway")] = NORDIC("#00205B");
+  // Borderless Nordic cross (e.g. Sweden's yellow cross on blue).
+  const NORDIC_PLAIN = (col, half) => [koBand("90deg", "30%", half, col), koBand("180deg", "50%", half, col)].join(",");
+  FLAG_OVERLAY[normKey("Sweden")] = NORDIC_PLAIN("#FECC00", 1.6);
   // Full flag stretched across the region (SVG keeps the geometry exact at any width).
   FLAG_OVERLAY[normKey("South Africa")] = `url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA2MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjMwLjAiIGZpbGw9IiNERTM4MzEiLz48cmVjdCB4PSIwIiB5PSIzMC4wIiB3aWR0aD0iOTAiIGhlaWdodD0iMzAuMCIgZmlsbD0iIzAwMTQ4OSIvPjxwb2x5bGluZSBwb2ludHM9IjAsMCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCwwIDI5LjcwMDAwMDAwMDAwMDAwMywzMC4wIDkwLDMwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN0E0RCIgc3Ryb2tlLXdpZHRoPSIxMy4yIi8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdBNEQiIHN0cm9rZS13aWR0aD0iMTMuMiIvPjxwb2x5Z29uIHBvaW50cz0iMCwwIDI0LjMsMzAuMCAwLDYwIiBmaWxsPSIjRkZCNjEyIi8+PHBvbHlnb24gcG9pbnRzPSIwLDAgMTkuOCwzMC4wIDAsNjAiIGZpbGw9IiMwMDAiLz48L3N2Zz4=') 0 0 / 100% 100% no-repeat`;
   // Switzerland: tiled white plusses across the red field; `round` fits a whole number evenly.
@@ -1539,6 +1543,7 @@
     "Senegal":       ["#00853F", "#FDEF42", "#E31B23"],
     "Portugal":      ["#046A38", "#DA291C"],
     "Algeria":       ["#006233", "#ffffff"],
+    "Sweden":        ["#006AA7", "#FECC00"],
   };
   const FLAG_COLORS = {};
   for (const k in FLAG_COLORS_RAW) FLAG_COLORS[normKey(k)] = FLAG_COLORS_RAW[k];
