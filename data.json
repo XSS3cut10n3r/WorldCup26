@@ -472,7 +472,54 @@
       "utcDate": "2026-06-27T21:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-28T02:00Z",
+      "home": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 28
+      },
+      "away": {
+        "name": "Austria",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 24
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-28T02:00Z",
+      "home": {
+        "name": "Jordan",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 63
+      },
+      "away": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 1
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,66 +633,6 @@
     }
   ],
   "upcoming": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-28T02:00:00Z",
-      "home": {
-        "name": "Jordan",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 63,
-        "clinched": false
-      },
-      "away": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 1,
-        "clinched": true
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "TIMED",
-      "utcDate": "2026-06-28T02:00:00Z",
-      "home": {
-        "name": "Algeria",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 28,
-        "clinched": false
-      },
-      "away": {
-        "name": "Austria",
-        "owner": "Kelly",
-        "goals": null,
-        "penGoals": null,
-        "fifaRank": 24,
-        "clinched": false
-      },
-      "penalties": false,
-      "winner": null,
-      "clinch": {
-        "group": "J",
-        "winnerWinsGroup": false,
-        "winnerAdvances": true,
-        "drawBoth": false,
-        "home": {
-          "winAdvances": false
-        },
-        "away": {
-          "winAdvances": false
-        }
-      }
-    },
     {
       "matchNo": 73,
       "stage": "Round of 32",
