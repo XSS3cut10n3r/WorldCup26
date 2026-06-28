@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Kelly",
+      "points": 7.0,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 2.0,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Austria",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Canada",
+          "points": 3.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Mat",
       "points": 6.5,
       "teams": [
@@ -26,7 +54,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Nik",
@@ -54,7 +82,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Sydney",
@@ -77,7 +105,7 @@
         {
           "name": "South Africa",
           "points": 1.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         },
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Charlotte",
@@ -117,7 +145,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Pete",
@@ -145,7 +173,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Paul",
@@ -180,7 +208,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Tom",
@@ -208,7 +236,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Tomi",
@@ -243,7 +271,7 @@
           "clinchType": null
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Darcy",
@@ -278,35 +306,7 @@
           "clinchType": null
         }
       ],
-      "rank": 9
-    },
-    {
-      "name": "Kelly",
-      "points": 5.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 2.0,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Austria",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Canada",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        }
-      ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Charlie",
@@ -438,6 +438,13 @@
   "events": [
     {
       "owner": "Kelly",
+      "team": "Canada",
+      "points": 2,
+      "label": "Canada won (Round of 32)",
+      "utcDate": "2026-06-28T19:00:00Z"
+    },
+    {
+      "owner": "Kelly",
       "team": "Austria",
       "points": 0.5,
       "label": "Austria drew (Group stage)",
@@ -463,21 +470,15 @@
       "points": 1,
       "label": "DR Congo won (Group stage)",
       "utcDate": "2026-06-27T23:30:00Z"
-    },
-    {
-      "owner": "Kelly",
-      "team": "Portugal",
-      "points": 0.5,
-      "label": "Portugal drew (Group stage)",
-      "utcDate": "2026-06-27T23:30:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 73,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "PAUSED",
+      "status": "FINISHED",
       "utcDate": "2026-06-28T19:00:00Z",
       "home": {
         "name": "South Africa",
@@ -501,9 +502,7 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -591,28 +590,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T21:00:00Z",
-      "home": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 11
-      },
-      "away": {
-        "name": "Ghana",
-        "owner": "Charlotte",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 73
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -916,7 +893,7 @@
           "matchNo": 73,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "PAUSED",
+          "status": "FINISHED",
           "utcDate": "2026-06-28T19:00:00Z",
           "home": {
             "name": "South Africa",
@@ -1406,13 +1383,13 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-04T21:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Canada",
+            "owner": "Kelly",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 73",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -9806,7 +9783,19 @@
         "group": "L"
       }
     },
-    "knockoutPlayed": []
+    "knockoutPlayed": [
+      {
+        "stageCode": "LAST_32",
+        "home": "South Africa",
+        "away": "Canada",
+        "homeGoals": 0,
+        "awayGoals": 1,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
+      }
+    ]
   },
-  "generated": "2026-06-28T20:57:46Z"
+  "generated": "2026-06-28T21:02:56Z"
 }
