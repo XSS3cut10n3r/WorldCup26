@@ -514,11 +514,16 @@ def make_runner(model):
                 "loser": {"name": lose["name"], "fifa": lose["fifa"]}}
 
         champ = None
+        champ_opps = None
         if final_match is not None:
             res = results.get(final_match)
             if res:
                 champ = res["winner"]["name"]
-        return person, champ, qualified
+                # The champion's road to the title: the FIFA rank of every side it
+                # beat (R32 -> Final = 5 games), read straight off the bracket.
+                champ_opps = [results[m]["loser"]["fifa"] for m in results
+                              if results[m]["winner"]["name"] == champ]
+        return person, champ, qualified, champ_opps
 
     return run, upc
 
@@ -538,10 +543,16 @@ def _run_chunk(task):
     pts_sum = defaultdict(float)
     champ = defaultdict(float)
     ko = defaultdict(float)        # per-team count of "made the Round of 32"
+    ep_sum = defaultdict(float)    # champion -> sum over its titles of mean(-log opp rank)
+    ep_rank = defaultdict(float)   # champion -> sum over its titles of mean(opp FIFA rank)
     for _ in range(n):
-        person, champion, qualified = run()
+        person, champion, qualified, champ_opps = run()
         if champion is not None:
             champ[champion] += 1
+            if champ_opps:
+                k = len(champ_opps)
+                ep_sum[champion]  += sum(-math.log(f or 40) for f in champ_opps) / k
+                ep_rank[champion] += sum((f or 40) for f in champ_opps) / k
         for nm in qualified:
             ko[nm] += 1
         best = max(person.values())
@@ -551,7 +562,7 @@ def _run_chunk(task):
             wins[nm] += share
         for nm, v in person.items():
             pts_sum[nm] += v
-    return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc
+    return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc, dict(ep_sum), dict(ep_rank)
 
 
 # ----------------------------------------------------------------------------
@@ -615,12 +626,14 @@ def main():
     pts_sum = defaultdict(float)
     champ = defaultdict(float)
     ko = defaultdict(float)
+    ep_sum_total = defaultdict(float)   # champion -> summed mean opponent strength over titles
+    ep_rank_total = defaultdict(float)  # champion -> summed mean opponent FIFA rank over titles
     # Per-game [home-win, draw, away-win] counts, summed across workers by the
     # shared flat_upcoming index order.
     upc_total = [[0, 0, 0] for _ in model["flat_upcoming"]]
 
     def merge(result):
-        w, p, c, k, u = result
+        w, p, c, k, u, es, er = result
         for nm, v in w.items():
             wins[nm] += v
         for nm, v in p.items():
@@ -629,6 +642,10 @@ def main():
             champ[nm] += v
         for nm, v in k.items():
             ko[nm] += v
+        for nm, v in es.items():
+            ep_sum_total[nm] += v
+        for nm, v in er.items():
+            ep_rank_total[nm] += v
         for i, x in enumerate(u):
             t = upc_total[i]
             t[0] += x[0]; t[1] += x[1]; t[2] += x[2]
@@ -758,11 +775,31 @@ def main():
             teams.append({"name": nm, "odds": odds, "base": d5(kb), "delta": kd})
         teams.sort(key=lambda t: (-t["odds"], t["name"].lower()))
 
-        if prev is not None and prev.get("teams") == teams:
+        # Easiest-Path-to-the-Title: for every team that won >= 1 simulated title,
+        # the mean strength (-log FIFA rank) of the five knockout sides it beat on
+        # the way, averaged over its title-winning sims, with a readable mean
+        # opponent rank and the raw title tally. The #knockout page plots these on a
+        # bell curve and lists them. Deterministic under a fixed --seed, so the
+        # no-op skip still holds when nothing upstream changed.
+        ep_rows = []
+        for nm in model["T"]:
+            c = champ.get(nm, 0.0)
+            if c <= 0:
+                continue
+            ep_rows.append({
+                "name": nm,
+                "wins": int(round(c)),
+                "winPct": d5(c / N),
+                "avgStrength": round(ep_sum_total.get(nm, 0.0) / c, 5),
+                "avgOppRank": round(ep_rank_total.get(nm, 0.0) / c, 2),
+            })
+        ep_rows.sort(key=lambda r: (-r["wins"], r["name"].lower()))
+
+        if prev is not None and prev.get("teams") == teams and prev.get("easiestPath") == ep_rows:
             print(f"No knockout-odds changes since last run; {args.knockout_json} left untouched.")
         else:
             out = {"generated": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                   "sims": N, "teams": teams}
+                   "sims": N, "teams": teams, "easiestPath": ep_rows}
             with open(args.knockout_json, "w", encoding="utf-8") as f:
                 json.dump(out, f, ensure_ascii=False, indent=2)
             print(f"Wrote {args.knockout_json} ({N:,} sims).")
