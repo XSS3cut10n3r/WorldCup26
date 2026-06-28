@@ -472,7 +472,37 @@
       "utcDate": "2026-06-27T23:30:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 73,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-28T19:00:00Z",
+      "home": {
+        "name": "South Africa",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group A",
+        "resolved": true,
+        "fifaRank": 60
+      },
+      "away": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group B",
+        "resolved": true,
+        "fifaRank": 30
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "stage": "Group stage",
@@ -586,35 +616,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 73,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-28T19:00:00Z",
-      "home": {
-        "name": "South Africa",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group A",
-        "resolved": true,
-        "fifaRank": 60
-      },
-      "away": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group B",
-        "resolved": true,
-        "fifaRank": 30
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 76,
       "stage": "Round of 32",
@@ -875,6 +876,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 84,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-07-02T19:00:00Z",
+      "home": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group H",
+        "resolved": true,
+        "fifaRank": 2
+      },
+      "away": {
+        "name": "Austria",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group J",
+        "resolved": true,
+        "fifaRank": 24
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -886,12 +916,12 @@
           "matchNo": 73,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-06-28T19:00:00Z",
           "home": {
             "name": "South Africa",
             "owner": "Sydney",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group A",
@@ -901,7 +931,7 @@
           "away": {
             "name": "Canada",
             "owner": "Kelly",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group B",
@@ -1212,7 +1242,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group H",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 2
           },
           "away": {
             "name": "Austria",
@@ -1221,7 +1252,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group J",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 24
           },
           "penalties": false,
           "winner": null
@@ -9776,5 +9808,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-28T08:27:01Z"
+  "generated": "2026-06-28T19:45:16Z"
 }
