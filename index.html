@@ -903,6 +903,7 @@
   .wdl.kobar { position: relative; }
   .koxline { position: absolute; top: 0; bottom: 0; width: 3px; transform: translateX(-50%);
              background: #CE1124; pointer-events: none; }
+  .koflag { position: absolute; top: 0; bottom: 0; pointer-events: none; }
   .match .mid .wdlwrap { width: clamp(150px, 30vw, 230px); }
   .cd-center .wdlwrap { max-width: 230px; }
   /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
@@ -1473,11 +1474,21 @@
     "Croatia":       "conic-gradient(#D81E2E 90deg,#fff 90deg 180deg,#D81E2E 180deg 270deg,#fff 270deg) 0 0 / 6px 6px", // red/white checkerboard
     "Japan":         "radial-gradient(circle at 50% 50%,#BC002D 3.2px,transparent 3.7px) 0 0 / 13px 13px,radial-gradient(circle at 50% 50%,#BC002D 2px,transparent 2.5px) 6.5px 6.5px / 13px 13px,#fff", // clean red polka dots (two sizes, offset)
     "England":       "linear-gradient(180deg,#fff 0 34%,#CE1124 34% 66%,#fff 66%)", // St George cross — horizontal arm (vertical arm drawn via .koxline)
+    "Norway":        "#BA0C2F", // red field; the Nordic cross is drawn via FLAG_OVERLAY
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
   // "Cross" flags also get a vertical red arm centered on the team's region.
   const FLAG_CROSS = new Set(["England"].map(normKey));
+  // Full-flag overlays drawn over a team's whole region (e.g. Nordic crosses, which
+  // need a continuous blue cross with a white border, offset toward the hoist).
+  const NORDIC = (red, blue) =>
+      `linear-gradient(${blue},${blue}) no-repeat calc(30% - 1px) 50% / 2px 100%,`
+    + `linear-gradient(${blue},${blue}) no-repeat 0 50% / 100% 2px,`
+    + `linear-gradient(#fff,#fff) no-repeat calc(30% - 2px) 50% / 4px 100%,`
+    + `linear-gradient(#fff,#fff) no-repeat 0 50% / 100% 4px`;
+  const FLAG_OVERLAY = {};
+  FLAG_OVERLAY[normKey("Norway")] = NORDIC("#BA0C2F", "#00205B");
   // Fill for one knockout segment: a team's flag pattern (with the reg→ET→penalty
   // lighten applied as a white wash) if it has one, else the flat colour shade.
   function koFill(name, hex, level) {
@@ -1510,6 +1521,11 @@
       let xl = "";
       if (isCross(m.home.name)) xl += `<div class="koxline" style="left:${(hExact / 2).toFixed(2)}%"></div>`;
       if (isCross(m.away.name)) xl += `<div class="koxline" style="left:${(hExact + (100 - hExact) / 2).toFixed(2)}%"></div>`;
+      // Full-flag overlays (Nordic crosses) drawn over the team's whole region.
+      const ovl = n => FLAG_OVERLAY[normKey(canonName(n))];
+      const ho = ovl(m.home.name), ao = ovl(m.away.name);
+      if (ho) xl += `<div class="koflag" style="left:0;width:${hExact.toFixed(2)}%;background:${ho}"></div>`;
+      if (ao) xl += `<div class="koflag" style="left:${hExact.toFixed(2)}%;width:${(100 - hExact).toFixed(2)}%;background:${ao}"></div>`;
       return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
         + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
         + `<div class="wdl kobar">`
