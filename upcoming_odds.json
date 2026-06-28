@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T23:38:08.773768Z",
+  "generated": "2026-06-28T01:47:24.668525Z",
   "sims": 1000000,
   "games": [
     {
@@ -7,19 +7,19 @@
       "home": "Algeria",
       "away": "Austria",
       "odds": {
+        "home": 0.30118,
+        "draw": 0.26004,
+        "away": 0.43878
+      },
+      "base": {
         "home": 0.29343,
         "draw": 0.25955,
         "away": 0.44701
       },
-      "base": {
-        "home": 0.29579,
-        "draw": 0.26007,
-        "away": 0.44414
-      },
       "delta": {
-        "home": -0.00236,
-        "draw": -0.00052,
-        "away": 0.00287
+        "home": 0.00775,
+        "draw": 0.00049,
+        "away": -0.00823
       }
     },
     {
@@ -27,59 +27,19 @@
       "home": "Jordan",
       "away": "Argentina",
       "odds": {
+        "home": 0.00838,
+        "draw": 0.03453,
+        "away": 0.95709
+      },
+      "base": {
         "home": 0.00791,
         "draw": 0.03361,
         "away": 0.95847
       },
-      "base": {
-        "home": 0.00743,
-        "draw": 0.03305,
-        "away": 0.95952
-      },
       "delta": {
-        "home": 0.00048,
-        "draw": 0.00056,
-        "away": -0.00105
-      }
-    },
-    {
-      "group": "K",
-      "home": "Colombia",
-      "away": "Portugal",
-      "odds": {
-        "home": 0.17056,
-        "draw": 0.2205,
-        "away": 0.60895
-      },
-      "base": {
-        "home": 0.16989,
-        "draw": 0.2191,
-        "away": 0.61102
-      },
-      "delta": {
-        "home": 0.00067,
-        "draw": 0.0014,
-        "away": -0.00207
-      }
-    },
-    {
-      "group": "K",
-      "home": "DR Congo",
-      "away": "Uzbekistan",
-      "odds": {
-        "home": 0.50937,
-        "draw": 0.24987,
-        "away": 0.24076
-      },
-      "base": {
-        "home": 0.52007,
-        "draw": 0.24756,
-        "away": 0.23237
-      },
-      "delta": {
-        "home": -0.0107,
-        "draw": 0.00231,
-        "away": 0.00839
+        "home": 0.00047,
+        "draw": 0.00092,
+        "away": -0.00138
       }
     }
   ]

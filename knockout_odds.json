@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-27T23:38:08.773228Z",
+  "generated": "2026-06-28T01:47:24.667980Z",
   "sims": 1000000,
   "teams": [
     {
@@ -60,6 +60,12 @@
       "name": "Côte d'Ivoire",
       "odds": 1.0,
       "base": 0.93222,
+      "delta": null
+    },
+    {
+      "name": "DR Congo",
+      "odds": 1.0,
+      "base": 0.50937,
       "delta": null
     },
     {
@@ -178,39 +184,21 @@
     },
     {
       "name": "Iran",
-      "odds": 0.86787,
-      "base": 0.86502,
-      "delta": 0.00285
+      "odds": 0.73996,
+      "base": 0.86787,
+      "delta": -0.12791
     },
     {
       "name": "Austria",
-      "odds": 0.79312,
-      "base": 0.7897,
-      "delta": 0.00342
+      "odds": 0.69882,
+      "base": 0.79312,
+      "delta": -0.0943
     },
     {
       "name": "Algeria",
-      "odds": 0.55298,
-      "base": 0.55586,
-      "delta": -0.00288
-    },
-    {
-      "name": "DR Congo",
-      "odds": 0.50937,
-      "base": 0.52007,
-      "delta": -0.0107
-    },
-    {
-      "name": "South Korea",
-      "odds": 0.27652,
-      "base": 0.26924,
-      "delta": 0.00728
-    },
-    {
-      "name": "Uzbekistan",
-      "odds": 0.01,
-      "base": 0.01,
-      "delta": null
+      "odds": 0.56122,
+      "base": 0.55298,
+      "delta": 0.00824
     },
     {
       "name": "Curaçao",
@@ -273,6 +261,12 @@
       "delta": null
     },
     {
+      "name": "South Korea",
+      "odds": 0.0,
+      "base": 0.27652,
+      "delta": null
+    },
+    {
       "name": "Tunisia",
       "odds": 0.0,
       "base": 0.0,
@@ -288,6 +282,12 @@
       "name": "Uruguay",
       "odds": 0.0,
       "base": 0.20266,
+      "delta": null
+    },
+    {
+      "name": "Uzbekistan",
+      "odds": 0.0,
+      "base": 0.01,
       "delta": null
     }
   ]
