@@ -1870,9 +1870,10 @@
     const tagged = showClinch && hasClinchTag(m) ? " tagged" : "";
     const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home", "", false, isKnockout(m));
     const awayCell = showClinch ? teamCellW(m, "away") : teamCell(m.away, "away", "", false, isKnockout(m));
-    // KO overlay eligibility: a finished result with a score and NO priority
-    // marker (upset / pens / held / live all take precedence over the generic KO).
-    const koOk = done && hasScore && !showUpset && !pens && !held && !live;
+    // KO overlay eligibility: a finished KNOCKOUT result with a score and NO
+    // priority marker. Group-stage games never qualify; UPSET / PENS / live all
+    // take precedence (HELD requires a draw, so it can't occur in a knockout).
+    const koOk = done && hasScore && isKnockout(m) && !showUpset && !pens && !held && !live;
     return `<div class="match ${live ? "is-live" : ""} ${pens ? "pens" : ""} ${showUpset ? "upset" : ""} ${held ? "held" : ""}${tagged}"${koOk ? ' data-ko="1"' : ""}>
       ${pens ? '<div class="pens-badge"><span class="spot"></span>PENS</div>'
              : (showUpset ? '<div class="upset-badge">UPSET</div>' : "")}
