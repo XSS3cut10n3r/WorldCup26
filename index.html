@@ -1433,7 +1433,7 @@
     const h = normKey(canonName(m.home.name)), a = normKey(canonName(m.away.name));
     for (const g of (upcData.games || [])) {
       const o = g.odds || {};
-      const gh = normKey(g.home), ga = normKey(g.away);
+      const gh = normKey(canonName(g.home)), ga = normKey(canonName(g.away));
       const same = gh === h && ga === a, swap = gh === a && ga === h;
       if (!same && !swap) continue;
       if (g.knockout) {
