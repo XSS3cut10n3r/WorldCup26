@@ -1915,7 +1915,7 @@
           "ga": 3,
           "gd": 5,
           "points": 4,
-          "conduct": -5,
+          "conduct": -7,
           "fifaRank": 30,
           "clinched": true,
           "clinchType": "second"
@@ -3247,16 +3247,6 @@
         "rank": 27
       },
       {
-        "team": "Canada",
-        "owner": "Kelly",
-        "yellow": 5,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -5,
-        "rank": 27
-      },
-      {
         "team": "DR Congo",
         "owner": "Tom",
         "yellow": 5,
@@ -3324,7 +3314,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Iran",
@@ -3334,7 +3324,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Mexico",
@@ -3344,7 +3334,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Saudi Arabia",
@@ -3354,7 +3344,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 36
+        "rank": 35
       },
       {
         "team": "Belgium",
@@ -3364,7 +3354,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 40
+        "rank": 39
+      },
+      {
+        "team": "Canada",
+        "owner": "Kelly",
+        "yellow": 7,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -7,
+        "rank": 39
       },
       {
         "team": "Curaçao",
@@ -3374,7 +3374,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Haiti",
@@ -3384,7 +3384,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Iraq",
@@ -3583,6 +3583,25 @@
         "rank": 6
       },
       {
+        "name": "Kelly",
+        "score": -15,
+        "teams": [
+          {
+            "name": "Portugal",
+            "score": -4
+          },
+          {
+            "name": "Austria",
+            "score": -4
+          },
+          {
+            "name": "Canada",
+            "score": -7
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Agatha",
         "score": -14,
         "teams": [
@@ -3599,7 +3618,7 @@
             "score": -8
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Darcy",
@@ -3622,7 +3641,7 @@
             "score": -7
           }
         ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Pete",
@@ -3641,26 +3660,7 @@
             "score": -11
           }
         ],
-        "rank": 7
-      },
-      {
-        "name": "Kelly",
-        "score": -13,
-        "teams": [
-          {
-            "name": "Portugal",
-            "score": -4
-          },
-          {
-            "name": "Austria",
-            "score": -4
-          },
-          {
-            "name": "Canada",
-            "score": -5
-          }
-        ],
-        "rank": 10
+        "rank": 8
       },
       {
         "name": "Tom",
@@ -3679,7 +3679,7 @@
             "score": -5
           }
         ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Nik",
@@ -9477,7 +9477,7 @@
       "Canada": {
         "owner": "Kelly",
         "canon": "Canada",
-        "conduct": -5,
+        "conduct": -7,
         "fifa": 30,
         "group": "B"
       },
@@ -9797,5 +9797,5 @@
       }
     ]
   },
-  "generated": "2026-06-28T21:02:56Z"
+  "generated": "2026-06-28T21:37:55Z"
 }
