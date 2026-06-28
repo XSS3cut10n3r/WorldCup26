@@ -16,9 +16,16 @@ It is deliberately minimal and non-authoritative:
     score can briefly lead the points during a feed lag — same as any lag today.
   * Owner / FIFA rank / canonical name for each team are read out of data.json
     itself (sim.teams), so no extra join files or second source are needed.
-  * Group stage only. A live group game is the case that was breaking; knockout
-    rounds (with penalties / round labels we don't have a sample for) are left to
-    football-data untouched.
+  * The watcher counts live / finished / upcoming games of EVERY stage, so the
+    GitHub Actions loop stays awake through the knockout rounds too (the bug
+    that silently killed runs the moment the group stage ended).
+  * Group cards are injected as before — a group live card REPLACES a
+    differently-spelled football-data copy (the Côte d'Ivoire dedup).
+  * Knockout cards (Round of 32 … Final, with round labels and penalty
+    shootouts) are now bridged too, but only as a GAP-FILLER: update_scores.py
+    owns the richer knockout card (matchNo, bracket slots), so the overlay only
+    injects a knockout card when football-data hasn't published that pairing
+    yet, and never removes or overwrites the producer's copy.
 
 Idempotent: every card this script adds is tagged "_src", and each run first
 removes its own previous tags before re-deriving from ESPN. If nothing is live
@@ -76,6 +83,22 @@ TAG = "_src"
 TAG_LIVE = "espn-live"
 TAG_FINAL = "espn-final"
 
+# ESPN season.slug -> (stageCode, label) used by update_scores.py. The
+# round-of-32 slug is confirmed from a live sample; the rest follow FIFA's
+# standard scoreboard slugs, with a note-text fallback in classify_stage() in
+# case a slug differs. stageCode/label here MUST match update_scores.py's
+# STAGE_LABELS so an overlay-bridged card is indistinguishable from a producer
+# card on the page.
+ESPN_STAGE_SLUG = {
+    "group-stage":   ("GROUP_STAGE",    "Group stage"),
+    "round-of-32":   ("LAST_32",        "Round of 32"),
+    "round-of-16":   ("LAST_16",        "Round of 16"),
+    "quarterfinals": ("QUARTER_FINALS", "Quarter-final"),
+    "semifinals":    ("SEMI_FINALS",    "Semi-final"),
+    "third-place":   ("THIRD_PLACE",    "Third-place match"),
+    "final":         ("FINAL",          "Final"),
+}
+
 
 def _norm(s):
     """Fold accents, unify apostrophes, lowercase, collapse spaces — for matching
@@ -127,20 +150,47 @@ def canonicalize(espn_name, meta, by_norm):
     return hit  # None if we can't confidently place the team
 
 
-def espn_group_events(espn):
-    """Yield (competition, state) for GROUP-STAGE events only."""
+def classify_stage(ev, comp):
+    """Map an ESPN event to (stage_code, stage_label, is_group).
+
+    stage_code is None when we genuinely cannot place a knockout round — in that
+    case the watcher still counts the game, but we won't inject a card for it
+    (better a brief gap than a card with a wrong/blank round label)."""
+    slug = ((ev.get("season") or {}).get("slug")
+            or (comp.get("season") or {}).get("slug") or "").lower()
+    if slug in ESPN_STAGE_SLUG:
+        code, label = ESPN_STAGE_SLUG[slug]
+        return code, label, code == "GROUP_STAGE"
+    # Fallback: read the human note / event name. Order matters — "third",
+    # "semi" and "quarter" are checked before the bare "final" substring, since
+    # "semifinal" etc. all contain "final".
+    low = (comp.get("altGameNote") or ev.get("name") or "").lower()
+    if "group" in low:
+        return "GROUP_STAGE", "Group stage", True
+    if "round of 32" in low:                   return "LAST_32", "Round of 32", False
+    if "round of 16" in low:                   return "LAST_16", "Round of 16", False
+    if "quarter" in low:                       return "QUARTER_FINALS", "Quarter-final", False
+    if "semi" in low:                          return "SEMI_FINALS", "Semi-final", False
+    if "third" in low or "3rd" in low:         return "THIRD_PLACE", "Third-place match", False
+    if "final" in low:                         return "FINAL", "Final", False
+    return None, None, False
+
+
+def espn_events(espn):
+    """Yield (competition, state, stage_code, stage_label) for every event.
+
+    Unlike the old group-only generator, this yields ALL stages so the watcher's
+    live / finished / next-kickoff counts stay correct through the knockout
+    rounds. stage_code distinguishes what we may inject (anything we can place)
+    from what we can't (stage_code is None)."""
     for ev in espn.get("events", []):
         comps = ev.get("competitions") or []
         if not comps:
             continue
         comp = comps[0]
-        slug = (ev.get("season") or {}).get("slug") or (comp.get("season") or {}).get("slug") or ""
-        note = comp.get("altGameNote") or ev.get("name") or ""
-        is_group = slug == "group-stage" or "Group" in note
-        if not is_group:
-            continue
         state = (((comp.get("status") or {}).get("type") or {}).get("state")) or ""
-        yield comp, state
+        stage_code, stage_label, _is_group = classify_stage(ev, comp)
+        yield comp, state, stage_code, stage_label
 
 
 def sides(comp):
@@ -178,6 +228,46 @@ def goals_of(competitor):
         return 0
 
 
+def _shootout(competitor, comp):
+    """Penalty-shootout tally for a competitor, or None if the game wasn't decided
+    on penalties. Regulation/ET goals stay in `score`; the shootout is separate.
+
+    Primary source is ESPN's per-competitor `shootoutScore` (seen on decided KO
+    games). We have no finished-shootout sample to verify against, so as a
+    fallback we count made shootout kicks from the play-by-play `details` (each
+    carries a `shootout` flag, plus `scoringPlay` + `team` for a converted kick)."""
+    v = competitor.get("shootoutScore")
+    if v not in (None, ""):
+        try:
+            return int(v)
+        except (TypeError, ValueError):
+            pass
+    tid = (competitor.get("team") or {}).get("id")
+    saw, made = False, 0
+    for d in comp.get("details") or []:
+        if not d.get("shootout"):
+            continue
+        saw = True
+        if d.get("scoringPlay") and (d.get("team") or {}).get("id") == tid:
+            made += 1
+    return made if saw else None
+
+
+def _ko_winner(h, a, home, away, sh, sa):
+    """Knockout result -> 'HOME_TEAM' / 'AWAY_TEAM' / None. Trust ESPN's per-side
+    `winner` boolean first; fall back to ET goals, then the shootout tally."""
+    if h.get("winner") is True:
+        return "HOME_TEAM"
+    if a.get("winner") is True:
+        return "AWAY_TEAM"
+    hg, ag = home.get("goals") or 0, away.get("goals") or 0
+    if hg != ag:
+        return "HOME_TEAM" if hg > ag else "AWAY_TEAM"
+    if sh is not None and sa is not None and sh != sa:
+        return "HOME_TEAM" if sh > sa else "AWAY_TEAM"
+    return None
+
+
 def team_block(competitor, meta, by_norm, with_goals=True):
     espn_name = (competitor.get("team") or {}).get("displayName") \
         or (competitor.get("team") or {}).get("name") or ""
@@ -195,7 +285,7 @@ def team_block(competitor, meta, by_norm, with_goals=True):
     return block, espn_name
 
 
-def make_card(comp, meta, by_norm, status):
+def make_card(comp, meta, by_norm, status, stage_code, stage_label):
     h, a = sides(comp)
     if not (h and a):
         return None, None
@@ -206,15 +296,43 @@ def make_card(comp, meta, by_norm, status):
         # broken card. (Returns the unmatched ESPN name for a warning.)
         return None, (hn if home is None else an)
 
+    is_group = (stage_code == "GROUP_STAGE")
+
+    # Penalty shootout (knockout only): expose the tally as penGoals and flip the
+    # `penalties` flag, mirroring how update_scores.py marks a shootout result.
+    sh, sa = _shootout(h, comp), _shootout(a, comp)
+    penalties = (sh is not None) or (sa is not None)
+    if penalties:
+        home["penGoals"], away["penGoals"] = sh, sa
+
+    winner = None
+    if status == "FINISHED":
+        if is_group:
+            hg, ag = home["goals"], away["goals"]
+            winner = ("DRAW" if hg == ag else
+                      "HOME_TEAM" if hg > ag else "AWAY_TEAM")
+        else:
+            winner = _ko_winner(h, a, home, away, sh, sa)
+
+    if not is_group:
+        # Match the producer's knockout card shape so the page treats a bridged
+        # card the same as a real one. Both sides are real teams (ESPN named
+        # them), so they're resolved and not projected. We omit `slot` (only read
+        # for unresolved sides) and top-level `matchNo` (a bracket index we can't
+        # get from ESPN); a bridged card is replaced by the producer's richer one
+        # on the very next football-data poll, so this is at most a brief gap.
+        home["projected"], home["resolved"] = False, True
+        away["projected"], away["resolved"] = False, True
+
     card = {
-        "stage": "Group stage",
-        "stageCode": "GROUP_STAGE",
+        "stage": stage_label,
+        "stageCode": stage_code,
         "status": status,
         "utcDate": comp.get("date") or comp.get("startDate"),
         "home": home,
         "away": away,
-        "penalties": False,
-        "winner": None,
+        "penalties": penalties,
+        "winner": winner,
         TAG: None,  # set by caller
     }
     return card, pair_key(home["name"], away["name"])
@@ -250,22 +368,35 @@ def main():
     for key in ("live", "recent", "upcoming"):
         data[key] = [m for m in data[key] if m.get(TAG) not in (TAG_LIVE, TAG_FINAL)]
 
-    # 2) Walk ESPN group games: collect live cards, and final cards for games that
-    #    football-data hasn't published anywhere yet (the disappearing-at-FT gap).
-    live_cards, final_cards, unplaceable = [], [], set()
+    # 2) Walk every ESPN game. The watcher needs live / finished / next-kickoff
+    #    counts across ALL stages (otherwise the loop terminates the moment the
+    #    group stage ends — the knockout-blindness bug that killed the run).
+    #    We collect group and knockout cards into separate lists because they're
+    #    injected with different rules (see step 5): group cards REPLACE a
+    #    differently-spelled football-data copy, while knockout cards only BRIDGE
+    #    a gap and defer to update_scores.py's richer card whenever it exists.
+    live_group, live_ko = [], []
+    final_group, final_ko = [], []
+    unplaceable = set()
     now = datetime.now(timezone.utc)
-    finished_count = 0          # all finished group games (cumulative this tournament)
-    next_kick_mins = None       # minutes until the soonest not-yet-started group game
-    for comp, state in espn_group_events(espn):
+    live_total = 0              # live games of ANY stage (drives the watcher loop)
+    finished_count = 0          # finished games of ANY stage (drives marker/dispatch)
+    next_kick_mins = None       # minutes until the soonest not-yet-started game, ANY stage
+    for comp, state, stage_code, stage_label in espn_events(espn):
         if state == "in":
-            card, key = make_card(comp, meta, by_norm, "IN_PLAY")
+            live_total += 1
+            if stage_code is None:
+                continue        # counted (loop stays awake); can't place -> no card
+            card, key = make_card(comp, meta, by_norm, "IN_PLAY", stage_code, stage_label)
             if card:
                 card[TAG] = TAG_LIVE
-                live_cards.append(card)
+                (live_group if stage_code == "GROUP_STAGE" else live_ko).append(card)
             elif key:
                 unplaceable.add(key)
         elif state == "post":
             finished_count += 1
+            if stage_code is None:
+                continue
             # Only fill the gap for a game that JUST finished (kickoff within the
             # recency window). Older finished games are history that football-data
             # has simply rotated out of its short `recent` list, not a live-window
@@ -273,13 +404,12 @@ def main():
             dt = _kickoff_dt(comp)
             if dt is None or (now - dt).total_seconds() > FINAL_GAP_HOURS * 3600:
                 continue
-            card, key = make_card(comp, meta, by_norm, "FINISHED")
+            card, key = make_card(comp, meta, by_norm, "FINISHED", stage_code, stage_label)
             if card:
-                hg, ag = card["home"]["goals"], card["away"]["goals"]
-                card["winner"] = ("DRAW" if hg == ag else
-                                  "HOME_TEAM" if hg > ag else "AWAY_TEAM")
                 card[TAG] = TAG_FINAL
-                final_cards.append(card)
+                (final_group if stage_code == "GROUP_STAGE" else final_ko).append(card)
+            elif key:
+                unplaceable.add(key)
         else:  # "pre" (scheduled): track the soonest kickoff for the watcher
             dt = _kickoff_dt(comp)
             if dt is not None:
@@ -287,7 +417,11 @@ def main():
                 mins = mins if mins > 0 else 0.0
                 next_kick_mins = mins if next_kick_mins is None else min(next_kick_mins, mins)
 
-    live_keys = {pair_key(c["home"]["name"], c["away"]["name"]) for c in live_cards}
+    # Group live games are the only ones we REPLACE in the file (this is what
+    # fixes the "Ivory Coast" vs "Côte d'Ivoire" duplicate-live bug). Knockout
+    # live games are owned by update_scores.py — we never key off them for
+    # removal, so we can't strip the producer's richer knockout card.
+    group_live_keys = {pair_key(c["home"]["name"], c["away"]["name"]) for c in live_group}
 
     # Identity key for a card ALREADY in data.json. Crucial: football-data's live
     # feed may spell a team differently from the canonical name the overlay injects
@@ -300,26 +434,35 @@ def main():
         return pair_key(canonicalize(h, meta, by_norm) or h,
                         canonicalize(a, meta, by_norm) or a)
 
-    # 3) A live game must not also sit in recent/upcoming (or a stale football-data
-    #    live entry) — remove any matching pair so it shows once, as live.
+    # 3) A GROUP live game must not also sit in recent/upcoming (or as a stale
+    #    football-data live entry) — remove any matching pair so it shows once.
     for key in ("live", "recent", "upcoming"):
-        data[key] = [m for m in data[key] if existing_key(m) not in live_keys]
+        data[key] = [m for m in data[key] if existing_key(m) not in group_live_keys]
 
-    # 4) Existing fixtures across the file (after live removal), so final-gap cards
-    #    only fill in when football-data truly hasn't published the game yet.
+    # 4) What's present across the file now (after group-live removal). A knockout
+    #    card — live or final — is only injected when its pairing is absent here,
+    #    i.e. football-data genuinely hasn't published the game yet.
     present = set()
     for key in ("live", "recent", "upcoming"):
         for m in data[key]:
             present.add(existing_key(m))
 
-    # 5) Inject. Live games sorted by kickoff; final-gap fillers prepended to
-    #    recent (newest first) only when otherwise absent.
-    live_cards.sort(key=lambda c: c.get("utcDate") or "")
-    data["live"] = live_cards + data["live"]
+    def _pk(c):
+        return pair_key(c["home"]["name"], c["away"]["name"])
 
-    add_finals = [c for c in final_cards
-                  if pair_key(c["home"]["name"], c["away"]["name"]) not in present
-                  and pair_key(c["home"]["name"], c["away"]["name"]) not in live_keys]
+    # 5) Inject.
+    #    live: group cards prepend unconditionally (their duplicates were just
+    #    removed); knockout cards prepend only if the producer hasn't got them.
+    add_live_ko = [c for c in live_ko
+                   if _pk(c) not in present and _pk(c) not in group_live_keys]
+    live_group.sort(key=lambda c: c.get("utcDate") or "")
+    add_live_ko.sort(key=lambda c: c.get("utcDate") or "")
+    data["live"] = live_group + add_live_ko + data["live"]
+    for c in live_group + add_live_ko:        # so a final-gap card can't re-add a live one
+        present.add(_pk(c))
+
+    # final-gap: group + knockout, only when the game is absent everywhere.
+    add_finals = [c for c in (final_group + final_ko) if _pk(c) not in present]
     add_finals.sort(key=lambda c: c.get("utcDate") or "", reverse=True)
 
     # football-data decides the recent window (normally 5). When we prepend a
@@ -335,10 +478,10 @@ def main():
     if unplaceable:
         for nm in sorted(unplaceable):
             print(f"WARNING: ESPN team '{nm}' not matched to a canonical name; "
-                  f"its live game was skipped.", file=sys.stderr)
+                  f"its game was skipped.", file=sys.stderr)
 
     # 6) Write only if something actually changed (keeps the no-change check happy).
-    print(f"LIVE_COUNT={len(live_cards)}")
+    print(f"LIVE_COUNT={live_total}")
     print(f"FINISHED_COUNT={finished_count}")
     print(f"NEXT_KICKOFF_MINS={int(next_kick_mins) if next_kick_mins is not None else -1}")
     if data == original:
@@ -350,7 +493,9 @@ def main():
         text += "\n"
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         f.write(text)
-    print(f"Patched {DATA_FILE}: {len(live_cards)} live, "
+    n_live = len(live_group) + len(add_live_ko)
+    print(f"Patched {DATA_FILE}: {n_live} live "
+          f"({len(add_live_ko)} knockout-bridged), "
           f"{len(add_finals)} final-gap game(s) injected.")
     return 0
 
