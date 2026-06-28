@@ -648,7 +648,7 @@
       "matchNo": 74,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-06-29T20:30:00Z",
       "home": {
         "name": "Germany",
@@ -703,11 +703,40 @@
       "winner": null
     },
     {
+      "matchNo": 78,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-06-30T17:00:00Z",
+      "home": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group E",
+        "resolved": true,
+        "fifaRank": 33
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group I",
+        "resolved": true,
+        "fifaRank": 31
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
       "matchNo": 77,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
-      "utcDate": "2026-06-30T17:00:00Z",
+      "status": "TIMED",
+      "utcDate": "2026-06-30T21:00:00Z",
       "home": {
         "name": "France",
         "owner": "Darcy",
@@ -732,39 +761,10 @@
       "winner": null
     },
     {
-      "matchNo": 78,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "SCHEDULED",
-      "utcDate": "2026-06-30T21:00:00Z",
-      "home": {
-        "name": "Côte d'Ivoire",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group E",
-        "resolved": true,
-        "fifaRank": 33
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group I",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": null
-    },
-    {
       "matchNo": 79,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-01T01:00:00Z",
       "home": {
         "name": "Mexico",
@@ -793,7 +793,7 @@
       "matchNo": 80,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-01T16:00:00Z",
       "home": {
         "name": "England",
@@ -806,7 +806,7 @@
         "fifaRank": 4
       },
       "away": {
-        "name": "DR Congo",
+        "name": "Congo DR",
         "owner": "Tom",
         "goals": null,
         "penGoals": null,
@@ -822,7 +822,7 @@
       "matchNo": 82,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-01T20:00:00Z",
       "home": {
         "name": "Belgium",
@@ -915,7 +915,7 @@
           "matchNo": 74,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-06-29T20:30:00Z",
           "home": {
             "name": "Germany",
@@ -1002,8 +1002,8 @@
           "matchNo": 77,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-06-30T17:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-06-30T21:00:00Z",
           "home": {
             "name": "France",
             "owner": "Darcy",
@@ -1031,10 +1031,10 @@
           "matchNo": 78,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-06-30T21:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-06-30T17:00:00Z",
           "home": {
-            "name": "Côte d'Ivoire",
+            "name": "Ivory Coast",
             "owner": "Paul",
             "goals": null,
             "penGoals": null,
@@ -1060,7 +1060,7 @@
           "matchNo": 79,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-01T01:00:00Z",
           "home": {
             "name": "Mexico",
@@ -1089,7 +1089,7 @@
           "matchNo": 80,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-01T16:00:00Z",
           "home": {
             "name": "England",
@@ -1102,7 +1102,7 @@
             "fifaRank": 4
           },
           "away": {
-            "name": "DR Congo",
+            "name": "Congo DR",
             "owner": "Tom",
             "goals": null,
             "penGoals": null,
@@ -1147,7 +1147,7 @@
           "matchNo": 82,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-01T20:00:00Z",
           "home": {
             "name": "Belgium",
@@ -1176,8 +1176,8 @@
           "matchNo": 83,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-02T19:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-02T23:00:00Z",
           "home": {
             "name": "Portugal",
             "owner": "Kelly",
@@ -1203,8 +1203,8 @@
           "matchNo": 84,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-02T23:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-02T19:00:00Z",
           "home": {
             "name": "Spain",
             "owner": "Pete",
@@ -1230,7 +1230,7 @@
           "matchNo": 85,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-03T03:00:00Z",
           "home": {
             "name": "Switzerland",
@@ -1257,8 +1257,8 @@
           "matchNo": 86,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-03T18:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-03T22:00:00Z",
           "home": {
             "name": "Argentina",
             "owner": "Nik",
@@ -1269,7 +1269,7 @@
             "resolved": true
           },
           "away": {
-            "name": "Cabo Verde",
+            "name": "Cape Verde Islands",
             "owner": "Paul",
             "goals": null,
             "penGoals": null,
@@ -1284,8 +1284,8 @@
           "matchNo": 87,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-03T22:00:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-04T01:30:00Z",
           "home": {
             "name": "Colombia",
             "owner": "Charlie",
@@ -1311,8 +1311,8 @@
           "matchNo": 88,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "SCHEDULED",
-          "utcDate": "2026-07-04T01:30:00Z",
+          "status": "TIMED",
+          "utcDate": "2026-07-03T18:00:00Z",
           "home": {
             "name": "Australia",
             "owner": "Agatha",
@@ -9776,5 +9776,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-28T05:00:05Z"
+  "generated": "2026-06-28T08:27:01Z"
 }
