@@ -69,7 +69,17 @@ jobs:
             git fetch -q origin "$BRANCH" || true
             git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
           }
-          regen_full() { python3 scripts/update_scores.py && python3 scripts/espn_live_overlay.py; }
+
+          # The full producer. sync_cards.py runs FIRST so update_scores.py folds a
+          # fresh cards-manual.json into data.json's conduct block in the same pass
+          # — that's what drops card latency from ~4h (the sync-cards cron) to one
+          # catch-up poll after full-time. It is best-effort: `|| true` means a card
+          # fetch failure or an unmapped-team error (sync_cards exit 2) can NEVER
+          # block a scores update — the dedicated sync-cards workflow stays the loud
+          # alarm for unmapped teams. It lives inside regen_full (not inline in the
+          # catch-up loop) so commit_push's push-retry path re-runs it too; otherwise
+          # a retry's resync would revert cards-manual.json and commit stale conduct.
+          regen_full() { python3 scripts/sync_cards.py || true; python3 scripts/update_scores.py && python3 scripts/espn_live_overlay.py; }
           regen_espn() { python3 scripts/espn_live_overlay.py; }
 
           # When WANT_MARKER is set, every commit ensures .scores_state holds it,
@@ -78,6 +88,7 @@ jobs:
           stage_changes() {
             [ -n "$WANT_MARKER" ] && printf '%s\n' "$WANT_MARKER" > .scores_state
             git add data.json 2>/dev/null || true
+            git add cards-manual.json 2>/dev/null || true   # fresh cards committed alongside scores
             [ -f .scores_state ] && git add .scores_state || true
           }
           commit_push() {
@@ -119,7 +130,7 @@ jobs:
             fi
           }
 
-          # --- Baseline: refresh football-data (+overlay), committed -----------
+          # --- Baseline: refresh football-data (+cards +overlay), committed ----
           resync
           regen_full || echo "baseline producer failed (transient?); continuing."
           commit_push "Scores baseline: $(ts)" regen_full
