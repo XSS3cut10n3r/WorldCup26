@@ -472,31 +472,7 @@
       "utcDate": "2026-06-27T03:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-27T23:30Z",
-      "home": {
-        "name": "DR Congo",
-        "owner": "Tom",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 45
-      },
-      "away": {
-        "name": "Uzbekistan",
-        "owner": "Ondine",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 50
-      },
-      "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "stage": "Group stage",
@@ -519,6 +495,29 @@
       },
       "penalties": false,
       "winner": "DRAW",
+      "_src": "espn-final"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T23:30Z",
+      "home": {
+        "name": "DR Congo",
+        "owner": "Tom",
+        "goals": 3,
+        "penGoals": null,
+        "fifaRank": 45
+      },
+      "away": {
+        "name": "Uzbekistan",
+        "owner": "Ondine",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 50
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM",
       "_src": "espn-final"
     }
   ],
