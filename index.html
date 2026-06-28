@@ -2490,8 +2490,12 @@
     });
     bktSyncTabs();
     if (!bktResizeBound) { bktResizeBound = true; let rt;
-      window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => bktLayout(false), 140); }); }
-    bktLayout(false);
+      window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => bktLayout(true), 140); }); }
+    // The boxes slide into place via CSS transitions, so the connector lines must
+    // be redrawn across that settle (animate=true runs the short redraw loop) or
+    // they'd be frozen at the pre-transition measurement on first paint — exactly
+    // the off-kilter lines that a tab click would otherwise be needed to fix.
+    bktLayout(true);
   }
 
   function renderBracket(data, opts) {
