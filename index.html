@@ -1331,8 +1331,8 @@
   <header>
     <div class="center-circle" aria-hidden="true"></div>
     <div class="eyebrow">World Cup 2026 &middot; Family Pool</div>
-    <h1>The Family Cup</h1>
-    <div class="sub">One tournament. Fourteen rivals. No mercy at the dinner table.</div>
+    <h1 id="page-title">The Family Cup</h1>
+    <div class="sub" id="page-sub">One tournament. Fourteen rivals. No mercy at the dinner table.</div>
     <div class="updated" id="updated">Loading scores…</div>
   </header>
 
@@ -1356,6 +1356,10 @@
 (function () {
   const app = document.getElementById("app");
   const updatedEl = document.getElementById("updated");
+  const titleEl = document.getElementById("page-title");
+  const subEl = document.getElementById("page-sub");
+  const HOME_TITLE = "The Family Cup";
+  const HOME_SUB = "One tournament. Fourteen rivals. No mercy at the dinner table.";
   const esc = s => String(s ?? "").replace(/[&<>"']/g,
     c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -1960,6 +1964,21 @@
   function render(data) {
     updateBubbleBtn();   // keep the Bubble button's visibility in step with the data
     updateKnockoutBtn(); // and the Knockout button (appears once the group stage ends)
+    // The kickoff-circle header is shared across every view. On /#knockout it
+    // re-titles itself and drops the "scores as of" pill; everywhere else it
+    // carries the pool's name and tagline.
+    if (titleEl && subEl) {
+      if (view === "knockout") {
+        const sims = (koData && koData.sims) ? koData.sims.toLocaleString() : "1,000,000";
+        titleEl.textContent = "KO Projections";
+        subEl.textContent = "Over " + sims + " simulated tournaments";
+        if (updatedEl) updatedEl.style.display = "none";
+      } else {
+        titleEl.textContent = HOME_TITLE;
+        subEl.textContent = HOME_SUB;
+        if (updatedEl) updatedEl.style.display = "";
+      }
+    }
     if (view === "bubble") {
       document.body.classList.add("bubble-mode");
       // The disclaimer overlay and its scroll-lock would otherwise sit over the
@@ -2733,10 +2752,11 @@
   }
   function kBell(rows) {
     const W = 1000, H = 380, padL = 70, padR = 70;
-    // Curve sits up top; the swarm rests on a baseline just above the axis and
-    // packs UPWARD toward the curve, so clusters read as density instead of a
-    // loose floating cloud. minY caps how high a tall column may climb.
-    const peakY = 34, curveBase = 205, axisY = 356, baseY = axisY - 20, minY = curveBase - 2;
+    // The bell curve is a BACKDROP: its baseline sits on the x-axis and it fills
+    // the panel behind the swarm (drawn first, so it's underneath). The flags rest
+    // just above the axis and pack UPWARD over the curve, densest under the peak,
+    // so the cloud echoes the curve's shape instead of floating beneath it.
+    const peakY = 30, axisY = 356, curveBase = axisY, baseY = axisY - 16, minY = peakY + 6;
     const xs = rows.map(r => r.str);
     let lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
     if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }
@@ -2802,16 +2822,13 @@
   }
   function renderKnockoutPage(data, mlb) {
     const rows = kEpRows();
-    const sims = (koData && koData.sims) ? koData.sims.toLocaleString() : "";
     if (!rows.length) {
       return '<div class="knockout-empty">The knockout projection appears here once the ' +
         '<b>Post-game pipeline</b> has written <b>knockout_odds.json</b> with the easiest-path data.<br>' +
         'Trigger it from the repository\'s Actions tab, then refresh.</div>';
     }
     const byWins = rows.slice().sort((a, b) => (b.wins - a.wins) || a.name.localeCompare(b.name));
-    return '<header class="kpage-head"><h1>Knockout Projection</h1>' +
-      (sims ? '<p class="kpage-sub">Over ' + sims + ' simulated tournaments</p>' : '') + '</header>' +
-      '<section class="ksec"><h2>Easiest Path to the Title</h2>' +
+    return '<section class="ksec"><h2>Easiest Path to the Title</h2>' +
       '<p class="kpage-note">For every team that won at least one simulated title, the average strength of the ' +
       'five knockout opponents it beat on the way, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
       'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.</p>' +
