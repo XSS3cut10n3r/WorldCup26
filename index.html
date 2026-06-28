@@ -1196,6 +1196,30 @@
   .knockout-wrap svg { width: 100%; height: auto; display: block; }
   .knockout-empty { text-align: center; color: var(--chalk-dim); font-size: 15px;
     padding: 80px 16px; line-height: 1.5; }
+  .kpage-head { text-align: center; padding: 6px 0 2px; }
+  .kpage-head h1 { font-family: var(--display); font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; color: var(--chalk); font-size: 26px; margin: 0; }
+  .kpage-sub { color: var(--chalk-dim); font-size: 13px; margin: 4px 0 0; }
+  .ksec { margin: 22px 0 8px; }
+  .ksec h2 { font-family: var(--display); font-weight: 600; letter-spacing: 0.03em;
+    text-transform: uppercase; color: var(--gold); font-size: 19px; margin: 0 0 6px;
+    border-bottom: 1px solid rgba(232,195,74,0.25); padding-bottom: 6px; }
+  .kpage-note { color: var(--chalk-dim); font-size: 13px; line-height: 1.5; margin: 0 0 12px; max-width: 780px; }
+  .kbell { width: 100%; height: auto; display: block; margin: 4px 0 18px;
+    background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; }
+  .ktable { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .ktable th { font-family: var(--display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.04em; font-size: 11px; color: var(--chalk-dim); text-align: right;
+    padding: 8px 10px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+  .ktable th:nth-child(1), .ktable th:nth-child(2) { text-align: left; }
+  .ktable td { padding: 7px 10px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    text-align: right; color: var(--chalk); }
+  .ktable td.kt-rank { color: var(--chalk-dim); text-align: left; width: 34px; }
+  .ktable td.kt-team { text-align: left; font-weight: 600; }
+  .kt-flag { margin-right: 7px; }
+  .kt-pct { color: var(--chalk-dim); font-size: 12px; margin-left: 3px; }
+  .kt-sub { font-weight: 400; text-transform: none; letter-spacing: 0; opacity: 0.65; }
+  .ktable tbody tr:hover { background: rgba(255,255,255,0.03); }
 </style>
 </head>
 <body>
@@ -1924,10 +1948,7 @@
       document.documentElement.classList.remove("ng-lock");
       var _ovk = document.getElementById("ngOverlay");
       if (_ovk) _ovk.classList.add("hidden");
-      app.innerHTML = knockoutSvg
-        ? `<div class="knockout-wrap">${knockoutSvg}</div>`
-        : `<div class="knockout-wrap knockout-empty">Generating the knockout projection.<br>
-           Run the Post-game pipeline once, then refresh.</div>`;
+      app.innerHTML = `<div class="knockout-wrap">${renderKnockoutPage()}</div>`;
       return;
     }
     document.body.classList.remove("bubble-mode");
@@ -2662,6 +2683,85 @@
     });
   }
 
+  // ---------- /#knockout: Easiest Path to the Title (bell curve + table) ----------
+  // Reads koData.easiestPath (written by simulate_pool.py): per champion, the mean
+  // opponent strength (-log FIFA rank) over its title-winning sims, the raw title
+  // tally, and a readable mean opponent rank. Rendered as HTML + inline SVG.
+  function kEpRows() {
+    const ep = (koData && koData.easiestPath) || [];
+    return ep.map(r => {
+      const m = krMeta(r.name);
+      return { name: r.name, code: m[0], flag: m[1],
+               color: COLOR_BY_KEY[normKey(canonName(r.name))] || "#9aa0a6",
+               wins: r.wins || 0, winPct: r.winPct || 0,
+               str: r.avgStrength, oppRank: r.avgOppRank };
+    });
+  }
+  function kBell(rows) {
+    const W = 1000, H = 360, padL = 56, padR = 56, peakY = 50, baseY = 300;
+    const xs = rows.map(r => r.str);
+    let lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
+    if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }
+    const span = hi - lo; lo -= span * 0.14; hi += span * 0.14;
+    const X = s => padL + (s - lo) / (hi - lo) * (W - padL - padR);
+    const nn = xs.length, mu = xs.reduce((a, b) => a + b, 0) / nn;
+    let sd = Math.sqrt(xs.reduce((a, b) => a + (b - mu) * (b - mu), 0) / nn);
+    if (!(sd > 0)) sd = (hi - lo) / 6;
+    const g = s => Math.exp(-0.5 * ((s - mu) / sd) * ((s - mu) / sd));
+    const Y = s => baseY - g(s) * (baseY - peakY);
+    let d = "";
+    for (let i = 0; i <= 140; i++) { const s = lo + (hi - lo) * i / 140, x = X(s), y = Y(s); d += (i ? " L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
+    const area = d + " L" + X(hi).toFixed(1) + " " + baseY + " L" + X(lo).toFixed(1) + " " + baseY + " Z";
+    const maxPct = Math.max.apply(null, rows.map(r => r.winPct)) || 1;
+    const dotR = pc => 3 + 9 * Math.sqrt(pc / maxPct);
+    const flagPx = pc => 9 + 13 * Math.sqrt(pc / maxPct);
+    const muX = X(mu);
+    const marks = rows.slice().sort((a, b) => a.winPct - b.winPct).map(r => {
+      const x = X(r.str), y = Y(r.str), rr = dotR(r.winPct), fp = flagPx(r.winPct);
+      const tip = r.name + " \u2014 " + r.wins.toLocaleString() + " titles (" + (r.winPct * 100).toFixed(1) + "%) \u00b7 avg opp rank " + r.oppRank;
+      return '<g><title>' + esc(tip) + '</title>' +
+        '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + rr.toFixed(1) + '" fill="' + r.color + '" stroke="#0B0E12" stroke-width="1.2"/>' +
+        '<text x="' + x.toFixed(1) + '" y="' + (y - rr - 2).toFixed(1) + '" text-anchor="middle" font-size="' + fp.toFixed(0) + '">' + r.flag + '</text></g>';
+    }).join("");
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" class="kbell" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="' + area + '" fill="rgba(232,195,74,0.10)"/>' +
+      '<path d="' + d + '" fill="none" stroke="rgba(232,195,74,0.55)" stroke-width="2"/>' +
+      '<line x1="' + padL + '" y1="' + baseY + '" x2="' + (W - padR) + '" y2="' + baseY + '" stroke="rgba(242,240,228,0.28)"/>' +
+      '<line x1="' + muX.toFixed(1) + '" y1="' + (peakY - 6) + '" x2="' + muX.toFixed(1) + '" y2="' + baseY + '" stroke="rgba(242,240,228,0.4)" stroke-dasharray="4 5"/>' +
+      '<text x="' + muX.toFixed(1) + '" y="' + (peakY - 12) + '" text-anchor="middle" fill="rgba(242,240,228,0.75)" font-size="13">Average path</text>' +
+      '<text x="' + padL + '" y="' + (baseY + 26) + '" text-anchor="start" fill="#6FD8EC" font-size="13">\u2190 Easier (weaker opponents)</text>' +
+      '<text x="' + (W - padR) + '" y="' + (baseY + 26) + '" text-anchor="end" fill="#FF5A45" font-size="13">Harder (stronger opponents) \u2192</text>' +
+      marks + '</svg>';
+  }
+  function kTable(rows) {
+    const body = rows.map((r, i) =>
+      '<tr><td class="kt-rank">' + (i + 1) + '</td>' +
+      '<td class="kt-team"><span class="kt-flag">' + r.flag + '</span>' + esc(r.name) + '</td>' +
+      '<td>' + r.wins.toLocaleString() + ' <span class="kt-pct">' + (r.winPct * 100).toFixed(1) + '%</span></td>' +
+      '<td>' + (r.str != null ? r.str.toFixed(3) : "\u2014") + '</td>' +
+      '<td>' + (r.oppRank != null ? r.oppRank.toFixed(1) : "\u2014") + '</td></tr>').join("");
+    return '<table class="ktable"><thead><tr><th>#</th><th>Team</th><th>Titles</th>' +
+      '<th>Avg path<span class="kt-sub"> \u2212log(rank)</span></th>' +
+      '<th>Avg opp<span class="kt-sub"> FIFA rank</span></th></tr></thead><tbody>' + body + '</tbody></table>';
+  }
+  function renderKnockoutPage() {
+    const rows = kEpRows();
+    const sims = (koData && koData.sims) ? koData.sims.toLocaleString() : "";
+    if (!rows.length) {
+      return '<div class="knockout-empty">The knockout projection appears here once the ' +
+        '<b>Post-game pipeline</b> has written <b>knockout_odds.json</b> with the easiest-path data.<br>' +
+        'Trigger it from the repository\'s Actions tab, then refresh.</div>';
+    }
+    const byWins = rows.slice().sort((a, b) => (b.wins - a.wins) || a.name.localeCompare(b.name));
+    return '<header class="kpage-head"><h1>Knockout Projection</h1>' +
+      (sims ? '<p class="kpage-sub">Over ' + sims + ' simulated tournaments</p>' : '') + '</header>' +
+      '<section class="ksec"><h2>Easiest Path to the Title</h2>' +
+      '<p class="kpage-note">For every team that won at least one simulated title, the average strength of the ' +
+      'five knockout opponents it beat on the way \u2014 scored as \u2212log(FIFA rank) \u2014 across only the tournaments it actually won. ' +
+      'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.</p>' +
+      kBell(rows) + kTable(byWins) + '</section>';
+  }
+
   function renderKnockoutRace(data) {
     const sim = data.simulated === true;
     const intro = `<p class="gnote">Each flag's distance is its chance of reaching the
@@ -2810,7 +2910,6 @@
   let upcData = null;
   let eloData = null;
   let bubbleSvg = null;
-  let knockoutSvg = null;
 
   // ---------- Simulate remaining games (client-side what-if) ----------
   let simMode = false, simData = null;
@@ -3372,12 +3471,6 @@
     fetch("bubble.svg?t=" + Date.now())
       .then(r => r.ok ? r.text() : null)
       .then(t => { if (t) { bubbleSvg = t; if (view === "bubble") render(currentData()); } })
-      .catch(() => {});
-    // Hidden /#knockout view: a standalone graphic written by the Post-game pipeline
-    // (content TBD). Same loader as bubble.svg — empty state until the file exists.
-    fetch("knockout.svg?t=" + Date.now())
-      .then(r => r.ok ? r.text() : null)
-      .then(t => { if (t) { knockoutSvg = t; if (view === "knockout") render(currentData()); } })
       .catch(() => {});
   }
 
