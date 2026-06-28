@@ -1466,6 +1466,7 @@
   const FLAG_RAW = {
     "United States": "repeating-linear-gradient(180deg,#B22234 0 11.1111%,#fff 11.1111% 22.2222%)",  // 9 stripes
     "Germany":       "linear-gradient(180deg,#000 0 33.333%,#DD0000 33.333% 66.667%,#FFCE00 66.667% 100%)", // black/red/gold
+    "Croatia":       "conic-gradient(#D81E2E 90deg,#fff 90deg 180deg,#D81E2E 180deg 270deg,#fff 270deg) 0 0 / 6px 6px", // red/white checkerboard
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
@@ -1475,7 +1476,9 @@
     const pat = FLAG_PATTERN[normKey(canonName(name))];
     if (!pat) return koShades(hex)[level];
     const ov = level === "et" ? 0.30 : level === "pen" ? 0.55 : 0;
-    return ov ? `linear-gradient(rgba(255,255,255,${ov}),rgba(255,255,255,${ov})),${pat}` : pat;
+    // White wash on top for the ET/penalty fade. "0 0 / auto" pins the wash layer so
+    // the pattern layer keeps its own size (e.g. the checkerboard's 6px tile).
+    return ov ? `linear-gradient(rgba(255,255,255,${ov}),rgba(255,255,255,${ov})) 0 0 / auto,${pat}` : pat;
   }
   const WDL_DRAW = "#6d7378";   // draw segment grey
   function wdlBar(m) {
