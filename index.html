@@ -526,6 +526,11 @@
   }
   .bkt-box.on { box-shadow: 0 7px 22px rgba(0,0,0,0.32); border-color: rgba(232,195,74,0.45);
     animation: bktpop .5s cubic-bezier(.34,1.3,.5,1); }
+  /* A game that has actually been played (real result overlaid on the projected
+     most-likely bracket) reads in a cool steel-blue instead of the projection's
+     muted pitch tone, so a finished tie is obvious at a glance. */
+  .bkt-box.actual { border-color: rgba(111,216,236,0.55); background: rgba(111,216,236,0.08); }
+  .bkt-box.on.actual { border-color: rgba(111,216,236,0.8); }
   @keyframes bktpop { 0% { transform: scale(.82); } 55% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
   .bline { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; line-height: 1.3; }
@@ -551,6 +556,7 @@
   .bkt-list { display: none; }
   .bkt-list .lcard { background: var(--pitch-deep); border: 1px solid var(--pitch-line);
     border-radius: 9px; padding: 11px 15px; margin-bottom: 10px; }
+  .bkt-list .lcard.actual { border-color: rgba(111,216,236,0.55); background: rgba(111,216,236,0.08); }
   .bkt-list .bline { font-size: 16px; }
   .bkt-list .bline + .bline { margin-top: 3px; }
   .bkt-list .bmeta2 { font-size: 11.5px; margin-top: 7px; }
@@ -2138,6 +2144,21 @@
     return s;
   }
 
+  // Teams that LOST a finished knockout match, read straight off the live bracket
+  // (the same source /#bracket strikes through). Group-stage elimination alone
+  // misses these, so the leaderboard, odds, and conduct views all consult this to
+  // cross out knockout losers too — not just teams that fell in the groups.
+  function koEliminatedNames(data) {
+    const out = new Set();
+    ((data && data.bracket) || []).forEach(r => (r.matches || []).forEach(m => {
+      const done = m.status === "FINISHED" || m.status === "AWARDED";
+      if (!done || !m.winner || m.winner === "DRAW") return;
+      const loser = m.winner === "HOME_TEAM" ? m.away : m.home;
+      if (loser && loser.resolved && loser.name) out.add(canonName(loser.name));
+    }));
+    return out;
+  }
+
   // Make the mathematically-exact knockout math the single source of truth for
   // clinched / eliminated on the live data. simulate_group_maxmin.py clamps
   // knockout_odds.json so a team's odds are EXACTLY 1.0 only when it is provably
@@ -2147,17 +2168,25 @@
   // flags on every leaderboard team and group-table row, so no team is ever
   // shown clinched (gold) unless mathematically clinched, and a side the model
   // has at 0 (e.g. a third now mathematically short of the cut) is correctly
-  // dimmed. Live mode only: the in-browser what-if keeps its own per-run flags.
+  // dimmed. A team that lost a played knockout game is always eliminated,
+  // regardless of any stale odds. Live mode only.
   function reconcileMathFlags(data) {
-    if (!data || data.simulated || !koData) return;
+    if (!data || data.simulated) return;
+    const koLost = koEliminatedNames(data);
     const odds = {};
-    (koData.teams || []).forEach(t => { odds[t.name] = t.odds; });
+    if (koData) (koData.teams || []).forEach(t => { odds[t.name] = t.odds; });
     const apply = obj => {
       const nm = (obj && obj.team !== undefined) ? obj.team : (obj && obj.name);
-      if (nm == null || !(nm in odds)) return;   // unknown to the model: leave as-is
-      const o = odds[nm] || 0;
-      obj.clinched = o >= 1;
-      obj.eliminated = o <= 0;
+      if (nm == null) return;
+      const lost = koLost.has(canonName(nm));
+      if (nm in odds) {
+        const o = odds[nm] || 0;
+        obj.clinched = o >= 1 && !lost;
+        obj.eliminated = o <= 0 || lost;
+      } else if (lost) {                 // knocked out but unknown to the model
+        obj.clinched = false;
+        obj.eliminated = true;
+      }
     };
     (data.leaderboard || []).forEach(p => (p.teams || []).forEach(apply));
     (data.groups || []).forEach(g => (g.table || []).forEach(apply));
@@ -2404,6 +2433,7 @@
       const el = document.getElementById("bkt-box-" + no); if (!el) return;
       const on = isOn(round), bh = on ? activeH : smallH;
       el.classList.toggle("on", on);
+      el.classList.toggle("actual", !!info.m.actual);
       el.innerHTML = bktContent(info.m, on);
       el.style.height = bh + "px";
       if (round === "F" || round === "T") {
@@ -2430,7 +2460,7 @@
     });
     nos.sort((a, b) => a - b);
     if (bktActive === "F") nos = [104, 103].filter(no => BKT.byNo[no]);
-    list.innerHTML = nos.map(no => `<div class="lcard">${bktContent(BKT.byNo[no].m, true)}</div>`).join("");
+    list.innerHTML = nos.map(no => `<div class="lcard${BKT.byNo[no].m.actual ? " actual" : ""}">${bktContent(BKT.byNo[no].m, true)}</div>`).join("");
   }
   function bktLayout(animate) {
     if (!BKT) return;
@@ -2854,13 +2884,42 @@
     'Use the round buttons to step through; it scales down on narrow screens just like the bracket page.</p>';
   function buildMlbData(data) {
     const br = (koData && koData.bracket) || [];
-    if (!br.length) return null;
     const teams = (data && data.sim && data.sim.teams) || {};
     const ownerOf = nm => (teams[nm] && teams[nm].owner) || "";
     const ORDER = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL"];
+    // Real, already-played knockout games indexed by FIFA match number. These are
+    // overlaid on the projected most-likely bracket: a game that has actually been
+    // played keeps its slot and renders as an ACTUAL result (its own colour) rather
+    // than dropping out of the view or showing a now-stale projection.
+    const realByNo = {};
+    if (data && !data.simulated) ((data && data.bracket) || []).forEach(r => {
+      if (ORDER.indexOf(r.stageCode) < 0) return;        // bracket here is R32..Final
+      (r.matches || []).forEach(m => {
+        const done = m.status === "FINISHED" || m.status === "AWARDED";
+        if (!done || !m.winner || m.winner === "DRAW") return;
+        if (!(m.home && m.home.resolved && m.away && m.away.resolved)) return;
+        realByNo[m.matchNo] = { stage: r.stageCode, m };
+      });
+    });
+    const realEntry = (no, m) => {
+      const mk = side => { const t = m[side];
+        return { name: t.name, resolved: true, projected: false,
+          goals: (t.goals != null ? t.goals : null),
+          penGoals: (t.penGoals != null ? t.penGoals : null),
+          slot: ownerOf(t.name) }; };
+      return { matchNo: no, home: mk("home"), away: mk("away"), winner: m.winner,
+        status: "FINISHED", actual: true, penalties: !!m.penalties,
+        afterExtraTime: !!m.afterExtraTime, utcDate: null };
+    };
+
     const byStage = {}; ORDER.forEach(st => byStage[st] = []);
+    const seen = new Set();
     br.forEach(g => {
       if (!byStage[g.stage]) return;
+      if (realByNo[g.match]) {                 // played for real: actual result wins
+        byStage[g.stage].push(realEntry(g.match, realByNo[g.match].m));
+        seen.add(g.match); return;
+      }
       const homeWins = g.pHome >= 0.5, s = g.score;
       const mk = (nm, goals) => ({ name: nm, resolved: true, projected: false,
         goals: goals, penGoals: null, slot: ownerOf(nm) });
@@ -2876,6 +2935,12 @@
         utcDate: null
       });
     });
+    // Played games the projection dropped entirely: fold them back into their round.
+    Object.keys(realByNo).forEach(k => { const no = +k;
+      if (seen.has(no)) return;
+      const e = realByNo[no]; if (!byStage[e.stage]) return;
+      byStage[e.stage].push(realEntry(no, e.m)); });
+
     ORDER.forEach(st => byStage[st].sort((a, b) => a.matchNo - b.matchNo));
     const rounds = ORDER.filter(st => byStage[st].length).map(st => ({ stageCode: st, matches: byStage[st] }));
     return rounds.length ? { bracket: rounds } : null;
