@@ -1189,9 +1189,11 @@
      once the group stage is complete. Same full-bleed treatment (chrome hidden). */
   body.knockout-mode { background: var(--pitch-deep); }
   body.knockout-mode .wrap { max-width: 1080px; }
-  body.knockout-mode .wrap > header,
   body.knockout-mode .wrap > nav.tabs,
   body.knockout-mode .wrap > footer { display: none !important; }
+  /* The standard kickoff-circle header stays visible on /#knockout (like every
+     other page); only the tabs and footer are dropped for the full-bleed feel. */
+  body.knockout-mode .wrap > header { display: block; }
   body.knockout-mode #ngOverlay { display: none !important; }
   .knockout-wrap { max-width: 1080px; margin: 0 auto; padding: 24px 0 40px; }
   .knockout-wrap svg.kbell { width: 100%; height: auto; display: block; }
@@ -1203,7 +1205,7 @@
   .kpage-sub { color: var(--chalk-dim); font-size: 13px; margin: 4px 0 0; }
   .ksec { margin: 22px 0 8px; }
   .ksec h2 { font-family: var(--display); font-weight: 600; letter-spacing: 0.03em;
-    text-transform: uppercase; color: var(--gold); font-size: 19px; margin: 0 0 6px;
+    text-transform: uppercase; color: var(--chalk); font-size: 19px; margin: 0 0 6px;
     border-bottom: 1px solid rgba(232,195,74,0.25); padding-bottom: 6px; }
   .kpage-note { color: var(--chalk-dim); font-size: 13px; line-height: 1.5; margin: 0 0 12px; max-width: 780px; }
   .kbell { width: 100%; height: auto; display: block; margin: 4px 0 18px;
@@ -1991,7 +1993,7 @@
       updatedEl.innerHTML = src ? "Odds as of " + esc(new Date(src).toLocaleString())
                                 : "Odds not loaded yet";
     } else {
-      const when = data.generated ? new Date(data.generated).toLocaleString() : "—";
+      const when = data.generated ? new Date(data.generated).toLocaleString() : "\u2013";
       const anyLive = (data.live || []).length > 0;
       updatedEl.innerHTML = (anyLive ? '<span class="live-dot"></span> ' : "") +
         "Scores as of " + esc(when);
@@ -2730,12 +2732,15 @@
     });
   }
   function kBell(rows) {
-    const W = 1000, H = 470, padL = 60, padR = 60;
-    const peakY = 40, curveBase = 190, swarmY = 322, axisY = 444;
+    const W = 1000, H = 380, padL = 70, padR = 70;
+    // Curve sits up top; the swarm rests on a baseline just above the axis and
+    // packs UPWARD toward the curve, so clusters read as density instead of a
+    // loose floating cloud. minY caps how high a tall column may climb.
+    const peakY = 34, curveBase = 205, axisY = 356, baseY = axisY - 20, minY = curveBase - 2;
     const xs = rows.map(r => r.str);
     let lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
     if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }
-    const span = hi - lo; lo -= span * 0.16; hi += span * 0.16;
+    const span = hi - lo; lo -= span * 0.18; hi += span * 0.18;
     const X = s => padL + (s - lo) / (hi - lo) * (W - padL - padR);
     const nn = xs.length, mu = xs.reduce((a, b) => a + b, 0) / nn;
     let sd = Math.sqrt(xs.reduce((a, b) => a + (b - mu) * (b - mu), 0) / nn);
@@ -2746,33 +2751,32 @@
     for (let i = 0; i <= 140; i++) { const s = lo + (hi - lo) * i / 140, x = X(s), y = Y(s); d += (i ? " L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
     const area = d + " L" + X(hi).toFixed(1) + " " + curveBase + " L" + X(lo).toFixed(1) + " " + curveBase + " Z";
     const maxPct = Math.max.apply(null, rows.map(r => r.winPct)) || 1;
-    const flagPx = pc => 13 + 9 * Math.sqrt(pc / maxPct);
-    // Beeswarm: every team sits at its true x (path difficulty) but is nudged
-    // vertically so markers never overlap — clustered average-path teams fan out
-    // into a cloud instead of stacking on one another.
-    const nodes = rows.map(r => { const fp = flagPx(r.winPct); return { r, x: X(r.str), fp, ring: fp * 0.62, rad: fp * 0.62 + 2 }; });
-    nodes.sort((a, b) => a.x - b.x);
+    // Smaller, tighter markers (radius 9..14) so dense clusters stack a few rows
+    // high rather than ballooning across the whole panel.
+    const radOf = pc => 9 + 5 * Math.sqrt(pc / maxPct);
+    const nodes = rows.map(r => ({ r, x: X(r.str), rad: radOf(r.winPct) }));
+    // Place bigger (more frequent) winners first so they get the prime baseline spots.
+    nodes.sort((a, b) => (b.rad - a.rad) || (a.x - b.x));
     const placed = [];
     nodes.forEach(node => {
-      let y = swarmY;
-      for (let k = 0; k < 600; k++) {
-        const off = k === 0 ? 0 : ((k % 2 ? 1 : -1) * Math.ceil(k / 2) * 3);
-        const cand = swarmY + off;
-        if (cand < peakY + 22 || cand > axisY - 16) continue;
+      let y = baseY;
+      for (let row = 0; row < 400; row++) {
+        const cand = baseY - row * 4;            // climb in small steps; collisions decide spacing
         let ok = true;
-        for (const pnode of placed) {
-          const need = pnode.rad + node.rad;
-          if (Math.abs(pnode.x - node.x) < need && Math.abs(pnode.y - cand) < need) { ok = false; break; }
+        for (const p of placed) {
+          const need = p.rad + node.rad + 2;
+          if (Math.abs(p.x - node.x) < need && Math.abs(p.y - cand) < need) { ok = false; break; }
         }
-        if (ok) { y = cand; break; }
+        if (ok || cand <= minY) { y = Math.max(cand, minY); break; }
       }
       node.y = y; placed.push(node);
     });
     const marks = nodes.map(o => {
-      const tip = o.r.name + " \u2014 " + o.r.wins.toLocaleString() + " titles (" + (o.r.winPct * 100).toFixed(1) + "%) \u00b7 avg opp rank " + o.r.oppRank;
+      const F = o.rad * 1.6;                       // flag glyph sized to fill its ring
+      const tip = o.r.name + ": " + o.r.wins.toLocaleString() + " titles (" + (o.r.winPct * 100).toFixed(1) + "%), avg opp rank " + o.r.oppRank;
       return '<g><title>' + esc(tip) + '</title>' +
-        '<circle cx="' + o.x.toFixed(1) + '" cy="' + o.y.toFixed(1) + '" r="' + o.ring.toFixed(1) + '" fill="' + o.r.color + '" fill-opacity="0.16" stroke="' + o.r.color + '" stroke-width="2"/>' +
-        '<text x="' + o.x.toFixed(1) + '" y="' + (o.y + o.fp * 0.34).toFixed(1) + '" text-anchor="middle" font-size="' + o.fp.toFixed(0) + '">' + o.r.flag + '</text></g>';
+        '<circle cx="' + o.x.toFixed(1) + '" cy="' + o.y.toFixed(1) + '" r="' + o.rad.toFixed(1) + '" fill="' + o.r.color + '" fill-opacity="0.16" stroke="' + o.r.color + '" stroke-width="2"/>' +
+        '<text x="' + o.x.toFixed(1) + '" y="' + (o.y + F * 0.34).toFixed(1) + '" text-anchor="middle" font-size="' + F.toFixed(0) + '">' + o.r.flag + '</text></g>';
     }).join("");
     const muX = X(mu);
     return '<svg viewBox="0 0 ' + W + ' ' + H + '" class="kbell" xmlns="http://www.w3.org/2000/svg">' +
@@ -2790,8 +2794,8 @@
       '<tr><td class="kt-rank">' + (i + 1) + '</td>' +
       '<td class="kt-team"><span class="kt-flag">' + r.flag + '</span>' + esc(r.name) + '</td>' +
       '<td>' + r.wins.toLocaleString() + ' <span class="kt-pct">' + (r.winPct * 100).toFixed(1) + '%</span></td>' +
-      '<td>' + (r.str != null ? r.str.toFixed(3) : "\u2014") + '</td>' +
-      '<td>' + (r.oppRank != null ? r.oppRank.toFixed(1) : "\u2014") + '</td></tr>').join("");
+      '<td>' + (r.str != null ? r.str.toFixed(3) : "\u2013") + '</td>' +
+      '<td>' + (r.oppRank != null ? r.oppRank.toFixed(1) : "\u2013") + '</td></tr>').join("");
     return '<table class="ktable"><thead><tr><th>#</th><th>Team</th><th>Titles</th>' +
       '<th>Avg path<span class="kt-sub"> \u2212log(rank)</span></th>' +
       '<th>Avg opp<span class="kt-sub"> FIFA rank</span></th></tr></thead><tbody>' + body + '</tbody></table>';
@@ -2809,7 +2813,7 @@
       (sims ? '<p class="kpage-sub">Over ' + sims + ' simulated tournaments</p>' : '') + '</header>' +
       '<section class="ksec"><h2>Easiest Path to the Title</h2>' +
       '<p class="kpage-note">For every team that won at least one simulated title, the average strength of the ' +
-      'five knockout opponents it beat on the way \u2014 scored as \u2212log(FIFA rank) \u2014 across only the tournaments it actually won. ' +
+      'five knockout opponents it beat on the way, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
       'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.</p>' +
       kBell(rows) + kTable(byWins) + '</section>' + mlbSection(mlb);
   }
@@ -2819,7 +2823,7 @@
   // teams, the home win prob, and the most likely score) and render it through the
   // SAME bracket component as /#bracket, so it inherits the connector lines, the
   // round-toggle buttons and the mobile active-round scaling.
-  const MLB_NOTE = '<p class="gnote">Built round by round \u2014 each game is a head-to-head of the two teams that advanced, ' +
+  const MLB_NOTE = '<p class="gnote">Built round by round: each game is a head-to-head of the two teams that advanced, ' +
     'the more likely side moves on, and that result becomes the next round\u2019s matchup, so it connects all the way through. ' +
     'On the active round, each tie\u2019s badge is the winner\u2019s chance of taking that game; the score is the most likely result, with AET / penalties noted. ' +
     'Use the round buttons to step through; it scales down on narrow screens just like the bracket page.</p>';
@@ -3379,7 +3383,7 @@
       .concat(bracketByStage.THIRD_PLACE || [], bracketByStage.SEMI_FINALS || [])
       .slice(0, 5);
     const events = simKOGames.map(g => { const wi = info(g.winnerName);
-      return {owner: wi.owner || "—", team: g.winnerName,
+      return {owner: wi.owner || "\u2013", team: g.winnerName,
         points: simStagePts(sc, g.stageCode, false),
         label: g.winnerName + " won (" + SIM_STAGE_LABEL[g.stageCode] + ")"}; })
       .filter(e => e.points > 0).slice(-5).reverse();
