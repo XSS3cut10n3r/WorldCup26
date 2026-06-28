@@ -1,41 +1,41 @@
 {
-  "generated": "2026-06-28T15:54:35.172306Z",
-  "sims": 1000000,
+  "generated": "2026-06-28T16:49:42.469863Z",
+  "sims": 200000,
   "teams": [
     {
       "name": "Algeria",
       "odds": 1.0,
-      "base": 0.56122,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Argentina",
       "odds": 1.0,
-      "base": 0.99985,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Australia",
       "odds": 1.0,
-      "base": 0.93486,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Austria",
       "odds": 1.0,
-      "base": 0.69882,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Belgium",
       "odds": 1.0,
-      "base": 0.87219,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Bosnia and Herzegovina",
       "odds": 1.0,
-      "base": 0.4861,
+      "base": 1.0,
       "delta": null
     },
     {
@@ -47,7 +47,7 @@
     {
       "name": "Cabo Verde",
       "odds": 1.0,
-      "base": 0.61304,
+      "base": 1.0,
       "delta": null
     },
     {
@@ -59,49 +59,49 @@
     {
       "name": "Colombia",
       "odds": 1.0,
-      "base": 0.98726,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Croatia",
       "odds": 1.0,
-      "base": 0.81854,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Côte d'Ivoire",
       "odds": 1.0,
-      "base": 0.93222,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "DR Congo",
       "odds": 1.0,
-      "base": 0.50937,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Ecuador",
       "odds": 1.0,
-      "base": 0.23394,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Egypt",
       "odds": 1.0,
-      "base": 0.99999,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "England",
       "odds": 1.0,
-      "base": 0.99994,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "France",
       "odds": 1.0,
-      "base": 0.99895,
+      "base": 1.0,
       "delta": null
     },
     {
@@ -113,7 +113,7 @@
     {
       "name": "Ghana",
       "odds": 1.0,
-      "base": 0.99988,
+      "base": 1.0,
       "delta": null
     },
     {
@@ -143,31 +143,31 @@
     {
       "name": "Norway",
       "odds": 1.0,
-      "base": 0.98513,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Paraguay",
       "odds": 1.0,
-      "base": 0.99943,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Portugal",
       "odds": 1.0,
-      "base": 0.95673,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "Senegal",
       "odds": 1.0,
-      "base": 0.99,
+      "base": 1.0,
       "delta": null
     },
     {
       "name": "South Africa",
       "odds": 1.0,
-      "base": 0.24893,
+      "base": 1.0,
       "delta": null
     },
     {
@@ -179,7 +179,7 @@
     {
       "name": "Sweden",
       "odds": 1.0,
-      "base": 0.88942,
+      "base": 1.0,
       "delta": null
     },
     {
@@ -197,13 +197,13 @@
     {
       "name": "Curaçao",
       "odds": 0.0,
-      "base": 0.21917,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Czechia",
       "odds": 0.0,
-      "base": 0.25665,
+      "base": 0.0,
       "delta": null
     },
     {
@@ -215,55 +215,55 @@
     {
       "name": "Iran",
       "odds": 0.0,
-      "base": 0.18146,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Iraq",
       "odds": 0.0,
-      "base": 0.02926,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Jordan",
       "odds": 0.0,
-      "base": 0.01,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "New Zealand",
       "odds": 0.0,
-      "base": 0.11965,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Panama",
       "odds": 0.0,
-      "base": 0.01,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Qatar",
       "odds": 0.0,
-      "base": 0.269,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Saudi Arabia",
       "odds": 0.0,
-      "base": 0.37388,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Scotland",
       "odds": 0.0,
-      "base": 0.01,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "South Korea",
       "odds": 0.0,
-      "base": 0.27652,
+      "base": 0.0,
       "delta": null
     },
     {
@@ -281,14 +281,240 @@
     {
       "name": "Uruguay",
       "odds": 0.0,
-      "base": 0.20266,
+      "base": 0.0,
       "delta": null
     },
     {
       "name": "Uzbekistan",
       "odds": 0.0,
-      "base": 0.01,
+      "base": 0.0,
       "delta": null
+    }
+  ],
+  "easiestPath": [
+    {
+      "name": "Argentina",
+      "wins": 63131,
+      "winPct": 0.31566,
+      "avgStrength": -2.79755,
+      "avgOppRank": 26.72
+    },
+    {
+      "name": "France",
+      "wins": 59531,
+      "winPct": 0.29766,
+      "avgStrength": -2.25095,
+      "avgOppRank": 16.34
+    },
+    {
+      "name": "Spain",
+      "wins": 20668,
+      "winPct": 0.10334,
+      "avgStrength": -2.12255,
+      "avgOppRank": 12.77
+    },
+    {
+      "name": "England",
+      "wins": 17443,
+      "winPct": 0.08722,
+      "avgStrength": -2.35426,
+      "avgOppRank": 18.77
+    },
+    {
+      "name": "Brazil",
+      "wins": 9328,
+      "winPct": 0.04664,
+      "avgStrength": -2.24738,
+      "avgOppRank": 15.64
+    },
+    {
+      "name": "Portugal",
+      "wins": 8322,
+      "winPct": 0.04161,
+      "avgStrength": -1.87515,
+      "avgOppRank": 10.49
+    },
+    {
+      "name": "Netherlands",
+      "wins": 6294,
+      "winPct": 0.03147,
+      "avgStrength": -2.08455,
+      "avgOppRank": 15.09
+    },
+    {
+      "name": "United States",
+      "wins": 3500,
+      "winPct": 0.0175,
+      "avgStrength": -2.19517,
+      "avgOppRank": 19.16
+    },
+    {
+      "name": "Germany",
+      "wins": 3075,
+      "winPct": 0.01537,
+      "avgStrength": -2.17879,
+      "avgOppRank": 16.78
+    },
+    {
+      "name": "Mexico",
+      "wins": 2585,
+      "winPct": 0.01293,
+      "avgStrength": -2.15921,
+      "avgOppRank": 14.94
+    },
+    {
+      "name": "Colombia",
+      "wins": 1950,
+      "winPct": 0.00975,
+      "avgStrength": -2.49113,
+      "avgOppRank": 25.79
+    },
+    {
+      "name": "Norway",
+      "wins": 906,
+      "winPct": 0.00453,
+      "avgStrength": -2.22991,
+      "avgOppRank": 15.64
+    },
+    {
+      "name": "Belgium",
+      "wins": 807,
+      "winPct": 0.00404,
+      "avgStrength": -2.10281,
+      "avgOppRank": 14.23
+    },
+    {
+      "name": "Morocco",
+      "wins": 804,
+      "winPct": 0.00402,
+      "avgStrength": -2.14665,
+      "avgOppRank": 15.56
+    },
+    {
+      "name": "Japan",
+      "wins": 473,
+      "winPct": 0.00236,
+      "avgStrength": -2.1494,
+      "avgOppRank": 14.12
+    },
+    {
+      "name": "Switzerland",
+      "wins": 392,
+      "winPct": 0.00196,
+      "avgStrength": -2.401,
+      "avgOppRank": 19.91
+    },
+    {
+      "name": "DR Congo",
+      "wins": 119,
+      "winPct": 0.0006,
+      "avgStrength": -1.97348,
+      "avgOppRank": 11.73
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "wins": 110,
+      "winPct": 0.00055,
+      "avgStrength": -1.97268,
+      "avgOppRank": 10.07
+    },
+    {
+      "name": "Senegal",
+      "wins": 107,
+      "winPct": 0.00053,
+      "avgStrength": -2.06947,
+      "avgOppRank": 13.88
+    },
+    {
+      "name": "Ecuador",
+      "wins": 91,
+      "winPct": 0.00046,
+      "avgStrength": -2.20718,
+      "avgOppRank": 14.87
+    },
+    {
+      "name": "Croatia",
+      "wins": 85,
+      "winPct": 0.00042,
+      "avgStrength": -1.93176,
+      "avgOppRank": 11.23
+    },
+    {
+      "name": "Côte d'Ivoire",
+      "wins": 57,
+      "winPct": 0.00028,
+      "avgStrength": -2.3729,
+      "avgOppRank": 16.35
+    },
+    {
+      "name": "Egypt",
+      "wins": 37,
+      "winPct": 0.00018,
+      "avgStrength": -2.23623,
+      "avgOppRank": 17.62
+    },
+    {
+      "name": "Australia",
+      "wins": 33,
+      "winPct": 0.00016,
+      "avgStrength": -2.20408,
+      "avgOppRank": 17.62
+    },
+    {
+      "name": "Cabo Verde",
+      "wins": 29,
+      "winPct": 0.00015,
+      "avgStrength": -2.04965,
+      "avgOppRank": 16.21
+    },
+    {
+      "name": "Canada",
+      "wins": 28,
+      "winPct": 0.00014,
+      "avgStrength": -2.5412,
+      "avgOppRank": 22.26
+    },
+    {
+      "name": "Austria",
+      "wins": 27,
+      "winPct": 0.00014,
+      "avgStrength": -1.7714,
+      "avgOppRank": 10.84
+    },
+    {
+      "name": "Ghana",
+      "wins": 24,
+      "winPct": 0.00012,
+      "avgStrength": -2.44607,
+      "avgOppRank": 17.73
+    },
+    {
+      "name": "Sweden",
+      "wins": 24,
+      "winPct": 0.00012,
+      "avgStrength": -2.01272,
+      "avgOppRank": 12.15
+    },
+    {
+      "name": "South Africa",
+      "wins": 12,
+      "winPct": 6e-05,
+      "avgStrength": -2.25639,
+      "avgOppRank": 14.65
+    },
+    {
+      "name": "Paraguay",
+      "wins": 5,
+      "winPct": 3e-05,
+      "avgStrength": -1.85093,
+      "avgOppRank": 9.8
+    },
+    {
+      "name": "Algeria",
+      "wins": 3,
+      "winPct": 2e-05,
+      "avgStrength": -2.49691,
+      "avgOppRank": 19.67
     }
   ]
 }
