@@ -479,29 +479,6 @@
       "status": "IN_PLAY",
       "utcDate": "2026-06-27T23:30Z",
       "home": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 13
-      },
-      "away": {
-        "name": "Portugal",
-        "owner": "Kelly",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 5
-      },
-      "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "IN_PLAY",
-      "utcDate": "2026-06-27T23:30Z",
-      "home": {
         "name": "DR Congo",
         "owner": "Tom",
         "goals": 3,
@@ -521,6 +498,29 @@
     }
   ],
   "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T23:30Z",
+      "home": {
+        "name": "Colombia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 13
+      },
+      "away": {
+        "name": "Portugal",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 5
+      },
+      "penalties": false,
+      "winner": "DRAW",
+      "_src": "espn-final"
+    },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
@@ -608,28 +608,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T00:00:00Z",
-      "home": {
-        "name": "Cape Verde Islands",
-        "owner": "Paul",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 67
-      },
-      "away": {
-        "name": "Saudi Arabia",
-        "owner": "Charlie",
-        "goals": 0,
-        "penGoals": null,
-        "fifaRank": 61
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
