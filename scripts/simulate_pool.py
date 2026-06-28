@@ -165,6 +165,7 @@ def build_model(elo, data):
         "owner_of": owner_of, "canon_of": canon_of,
         "fifa_of": fifa_of, "conduct_of": conduct_of,
         "rs": rs, "atk": atk, "deff": deff,
+        "fa": fa, "avgGpg": avgGpg, "rs_bar": rs_bar,
         "flat_upcoming": flat_upcoming,
         "baseline": {row["name"]: row["points"] for row in data["leaderboard"]},
     }
@@ -206,7 +207,8 @@ def make_engine(model):
                 return k - 1
 
     def elo_score(a, b, group=False, total_abs=None, total_mul=1.0,
-                  hangA=False, hangB=False, rho=0.0):
+                  hangA=False, hangB=False, rho=0.0,
+                  atkA=None, defA=None, atkB=None, defB=None):
         if R is None or R.get(a) is None or R.get(b) is None:
             return sim_goals(), sim_goals()
         s = suprK * (R[a] - R[b])
@@ -214,8 +216,12 @@ def make_engine(model):
         lamA = max(floor, total / 2 + s / 2)
         lamB = max(floor, total / 2 - s / 2)
         rc = rankCoefGroup if (group and rankCoefGroup is not None) else rankCoef
-        eA = ATK * atk(a) + DEF * deff(b)
-        eB = ATK * atk(b) + DEF * deff(a)
+        aA = atk(a) if atkA is None else atkA
+        dB = deff(b) if defB is None else defB
+        aB = atk(b) if atkB is None else atkB
+        dA = deff(a) if defA is None else defA
+        eA = ATK * aA + DEF * dB
+        eB = ATK * aB + DEF * dA
         eA = -cap if eA < -cap else (cap if eA > cap else eA)
         eB = -cap if eB < -cap else (cap if eB > cap else eB)
         lamA *= exp(eA + rc * (rs(a) - rs(b)))
@@ -303,7 +309,7 @@ def rank_group(rows, results):
 # ----------------------------------------------------------------------------
 # One simulated tournament -> ({person: total points}, champion, {qualified teams})
 # ----------------------------------------------------------------------------
-def make_runner(model):
+def make_runner(model, form_feedback=False):
     sim = model["sim"]
     sc = model["sc"]
     p = model["p"]
@@ -341,7 +347,37 @@ def make_runner(model):
     KO_MUL = p["koTotalMul"]
     ET_TOTAL = p["etTotal"]
 
+    # Optional in-knockout form feedback (knockout page only): each KO result
+    # updates both teams' opponent-weighted attack/defence form, so later rounds
+    # see the in-form sides. Same bump the model applies to real games.
+    atkf = model["atk"]; deff_f = model["deff"]
+    base_fa = model["fa"]; avgGpg = model["avgGpg"]; rs_bar = model["rs_bar"]
+    rsf = model["rs"]; qCoef = p["formOppCoef"]
+    atkFloor = p["formAtkFloor"]; defFloor = p["formDefFloor"]
+    koFormGain = p.get("koFormGain", 3.0)   # amplify in-tournament form so wins snowball
+    fa_live = {}
+    def _cur_atk(t):
+        f = fa_live.get(t)
+        return f["an"] / f["n"] if (f and f["n"]) else atkf(t)
+    def _cur_def(t):
+        f = fa_live.get(t)
+        return f["dn"] / f["n"] if (f and f["n"]) else deff_f(t)
+    def _bump_live(t, opp, gf, ga):
+        f = fa_live.get(t)
+        if f is None:
+            bb = base_fa.get(t)
+            f = {"an": bb["an"], "dn": bb["dn"], "n": bb["n"]} if bb else {"an": 0.0, "dn": 0.0, "n": 0}
+            fa_live[t] = f
+        w = math.exp(qCoef * (rsf(opp) - rs_bar)); wi = 1.0 / w
+        dA = gf - avgGpg
+        f["an"] += koFormGain * (w if dA >= 0 else (atkFloor if atkFloor > wi else wi)) * dA
+        dD = ga - avgGpg
+        f["dn"] += koFormGain * ((defFloor if defFloor > wi else wi) if dD > 0 else w) * dD
+        f["n"] += 1
+
     def run(decide=None):
+        if form_feedback:
+            fa_live.clear()
         person = dict(baseline)
 
         # 1) Group tables: real results + simulated remaining fixtures.
@@ -481,24 +517,31 @@ def make_runner(model):
                                                 stage, md["match"])
             else:
                 fin_mul = FINAL_BOOST if stage == "FINAL" else 1.0
-                hangA = bool(won_on_pens.get(home["name"]))
-                hangB = bool(won_on_pens.get(away["name"]))
-                hg, ag = elo_score(home["name"], away["name"], hangA=hangA,
-                                   hangB=hangB, total_mul=KO_MUL * fin_mul, rho=DC)
+                hn = home["name"]; an_ = away["name"]
+                hangA = bool(won_on_pens.get(hn))
+                hangB = bool(won_on_pens.get(an_))
+                fkw = (dict(atkA=_cur_atk(hn), defA=_cur_def(hn),
+                            atkB=_cur_atk(an_), defB=_cur_def(an_))
+                       if form_feedback else {})
+                hg, ag = elo_score(hn, an_, hangA=hangA, hangB=hangB,
+                                   total_mul=KO_MUL * fin_mul, rho=DC, **fkw)
                 if hg == ag:
-                    e1, e2 = elo_score(home["name"], away["name"], hangA=hangA,
-                                       hangB=hangB, total_abs=ET_TOTAL,
-                                       total_mul=fin_mul, rho=DC)
+                    e1, e2 = elo_score(hn, an_, hangA=hangA, hangB=hangB,
+                                       total_abs=ET_TOTAL, total_mul=fin_mul,
+                                       rho=DC, **fkw)
                     hg += e1; ag += e2
                 pens = False
                 if hg == ag:
                     pens = True
-                    home_wins = random.random() < shoot_win(home["name"], away["name"])
+                    home_wins = random.random() < shoot_win(hn, an_)
                     win_side = "HOME_TEAM" if home_wins else "AWAY_TEAM"
                 else:
                     win_side = "HOME_TEAM" if hg > ag else "AWAY_TEAM"
+                if form_feedback:
+                    _bump_live(hn, an_, hg, ag)
+                    _bump_live(an_, hn, ag, hg)
                 # award the simulated knockout winner this round's points
-                winner_name = home["name"] if win_side == "HOME_TEAM" else away["name"]
+                winner_name = hn if win_side == "HOME_TEAM" else an_
                 pts = sc.get(stage, 0)
                 if pts:
                     o = owner_of.get(winner_name)
@@ -566,6 +609,27 @@ def _run_chunk(task):
         for nm, v in person.items():
             pts_sum[nm] += v
     return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc, dict(ep_sum), dict(ep_rank)
+
+
+def _ko_chunk(task):
+    """Knockout-only tally WITH in-round form feedback (drives the /#knockout
+    page only). Returns champion counts + easiest-path sums."""
+    n, seed, data_path, elo_path = task
+    random.seed(seed)
+    model = build_model(load(elo_path), load(data_path))
+    run, _u = make_runner(model, form_feedback=True)
+    champ = defaultdict(float)
+    ep_sum = defaultdict(float)
+    ep_rank = defaultdict(float)
+    for _ in range(n):
+        _person, champion, _q, champ_opps = run()
+        if champion is not None:
+            champ[champion] += 1
+            if champ_opps:
+                k = len(champ_opps)
+                ep_sum[champion]  += sum(-math.log(f or 40) for f in champ_opps) / k
+                ep_rank[champion] += sum((f or 40) for f in champ_opps) / k
+    return dict(champ), dict(ep_sum), dict(ep_rank)
 
 
 # ----------------------------------------------------------------------------
@@ -662,6 +726,39 @@ def main():
                 merge(result)
                 done += 1
                 print(f"  …worker {done}/{workers} finished", file=sys.stderr)
+
+    # Knockout-page pass: re-simulate the knockout WITH in-round form feedback (a
+    # result updates the winner's form for the next round). This drives ONLY the
+    # /#knockout easiest-path bell + champion; the title odds in sim_odds stay on
+    # the no-feedback model the rest of the site uses. Deterministic under --seed.
+    champ_ko = defaultdict(float)
+    ep_sum_ko = defaultdict(float)
+    ep_rank_ko = defaultdict(float)
+    N_ko = 0
+    if args.knockout_json:
+        N_ko = N
+        kseeder = random.Random((args.seed if args.seed is not None else 0) + 4242)
+        ktasks = [(counts[i], kseeder.randrange(2 ** 31 - 1), args.data, args.elo)
+                  for i in range(workers)]
+
+        def kmerge(res):
+            c, es, er = res
+            for nm, v in c.items():
+                champ_ko[nm] += v
+            for nm, v in es.items():
+                ep_sum_ko[nm] += v
+            for nm, v in er.items():
+                ep_rank_ko[nm] += v
+
+        print(f"Knockout form-feedback pass: {N_ko:,} tournaments …", file=sys.stderr)
+        if workers == 1:
+            kmerge(_ko_chunk(ktasks[0]))
+        else:
+            with Pool(processes=workers) as pool:
+                kdone = 0
+                for res in pool.imap_unordered(_ko_chunk, ktasks):
+                    kmerge(res); kdone += 1
+                    print(f"  …ko worker {kdone}/{workers} finished", file=sys.stderr)
 
     rows = sorted(people, key=lambda nm: -wins[nm])
     width = max(len(nm) for nm in people)
@@ -786,15 +883,15 @@ def main():
         # no-op skip still holds when nothing upstream changed.
         ep_rows = []
         for nm in model["T"]:
-            c = champ.get(nm, 0.0)
+            c = champ_ko.get(nm, 0.0)
             if c <= 0:
                 continue
             ep_rows.append({
                 "name": nm,
                 "wins": int(round(c)),
-                "winPct": d5(c / N),
-                "avgStrength": round(ep_sum_total.get(nm, 0.0) / c, 5),
-                "avgOppRank": round(ep_rank_total.get(nm, 0.0) / c, 2),
+                "winPct": d5(c / N_ko),
+                "avgStrength": round(ep_sum_ko.get(nm, 0.0) / c, 5),
+                "avgOppRank": round(ep_rank_ko.get(nm, 0.0) / c, 2),
             })
         ep_rows.sort(key=lambda r: (-r["wins"], r["name"].lower()))
 
@@ -809,12 +906,42 @@ def main():
         FINAL_BOOST = pp["finalScoreBoost"]; DC = pp["dcRho"]
         _, elo_b, shoot_b = make_engine(model)
 
-        def play1(h, a, is_final):
+        # Same in-round form feedback as the easiest-path pass, but along the single
+        # coherent bracket chain: each decided result updates both teams' form, so
+        # the next round's head-to-head sees the in-form sides.
+        base_fa = model["fa"]; avgGpg = model["avgGpg"]; rs_bar = model["rs_bar"]
+        rsf = model["rs"]; qCoef = pp["formOppCoef"]
+        atkFloor = pp["formAtkFloor"]; defFloor = pp["formDefFloor"]
+        koFormGain = pp.get("koFormGain", 3.0)
+        b_atk0 = model["atk"]; b_def0 = model["deff"]
+        fa_b = {}
+        def cur_a(t):
+            f = fa_b.get(t)
+            return f["an"] / f["n"] if (f and f["n"]) else b_atk0(t)
+        def cur_d(t):
+            f = fa_b.get(t)
+            return f["dn"] / f["n"] if (f and f["n"]) else b_def0(t)
+        def bump_b(t, opp, gf, ga):
+            f = fa_b.get(t)
+            if f is None:
+                bb = base_fa.get(t)
+                f = {"an": bb["an"], "dn": bb["dn"], "n": bb["n"]} if bb else {"an": 0.0, "dn": 0.0, "n": 0}
+                fa_b[t] = f
+            w = math.exp(qCoef * (rsf(opp) - rs_bar)); wi = 1.0 / w
+            dA = gf - avgGpg
+            f["an"] += koFormGain * (w if dA >= 0 else (atkFloor if atkFloor > wi else wi)) * dA
+            dD = ga - avgGpg
+            f["dn"] += koFormGain * ((defFloor if defFloor > wi else wi) if dD > 0 else w) * dD
+            f["n"] += 1
+
+        def play1(h, a, is_final, fv):
             fmul = FINAL_BOOST if is_final else 1.0
-            hg, ag = elo_b(h, a, total_mul=KO_MUL * fmul, rho=DC)
+            hg, ag = elo_b(h, a, total_mul=KO_MUL * fmul, rho=DC,
+                           atkA=fv[0], defA=fv[1], atkB=fv[2], defB=fv[3])
             if hg != ag:
                 return hg, ag, 0, (0 if hg > ag else 1)
-            e1, e2 = elo_b(h, a, total_abs=ET_TOTAL, total_mul=fmul, rho=DC)
+            e1, e2 = elo_b(h, a, total_abs=ET_TOTAL, total_mul=fmul, rho=DC,
+                           atkA=fv[0], defA=fv[1], atkB=fv[2], defB=fv[3])
             hg += e1; ag += e2
             if hg != ag:
                 return hg, ag, 1, (0 if hg > ag else 1)
@@ -825,32 +952,44 @@ def main():
 
         def decide(h, a, stage, match):
             is_final = (stage == "FINAL")
-            wh = 0
+            fv = (cur_a(h), cur_d(h), cur_a(a), cur_d(a))
+            wh = 0; rtc = [0, 0, 0]
             hist = defaultdict(int)
             for _ in range(K):
-                hg, ag, rt, ws = play1(h, a, is_final)
+                hg, ag, rt, ws = play1(h, a, is_final, fv)
                 if ws == 0:
                     wh += 1
+                rtc[rt] += 1
                 hist[(hg, ag, rt, ws)] += 1
             ph = wh / K
             pick_home = ph >= 0.5
-            best, bestc = None, -1
+            # Result type = the most common of reg / extra time / pens, so close ties
+            # show a shootout. Score = the most likely scoreline OF THAT TYPE with the
+            # favourite winning (pens: the modal level score). Keeps realistic variety
+            # — 1-0, 2-0, 2-1, 1-1 (pens) — driven by the matchup and live form.
+            ti = rtc.index(max(rtc))
+            best, bc = None, -1
             for (hg, ag, rt, ws), cc in hist.items():
-                if (ws == 0) != pick_home:
+                if rt != ti:
                     continue
-                if cc > bestc:
-                    bestc, best = cc, (hg, ag, rt)
+                if ti != 2 and (ws == 0) != pick_home:
+                    continue
+                if cc > bc:
+                    bc, best = cc, (hg, ag)
             if best is None:
                 for (hg, ag, rt, ws), cc in hist.items():
-                    if cc > bestc:
-                        bestc, best = cc, (hg, ag, rt)
-            hg, ag, rt = best
+                    if (ws == 0) != pick_home:
+                        continue
+                    if cc > bc:
+                        bc, best = cc, (hg, ag)
+            gh, ga = best if best else (1, 0)
+            bump_b(h, a, gh, ga); bump_b(a, h, ga, gh)
             bdata[match] = {
                 "home": h, "away": a, "pHome": d5(ph),
-                "score": {"h": hg, "a": ag,
-                          "type": ("reg" if rt == 0 else "et" if rt == 1 else "pens")},
+                "score": {"h": gh, "a": ga,
+                          "type": ("reg" if ti == 0 else "et" if ti == 1 else "pens")},
             }
-            return hg, ag, ("HOME_TEAM" if pick_home else "AWAY_TEAM"), (rt == 2)
+            return gh, ga, ("HOME_TEAM" if pick_home else "AWAY_TEAM"), (ti == 2)
 
         random.seed((args.seed if args.seed is not None else 1) + 777)
         chalk_run, _cu = make_runner(model)
@@ -872,7 +1011,7 @@ def main():
         fin = next((r for r in bracket_rows if r["stage"] == "FINAL"), None)
         if fin:
             cn = fin["home"] if fin["pHome"] >= 0.5 else fin["away"]
-            champion = {"name": cn, "titlePct": d5(champ.get(cn, 0.0) / N)}
+            champion = {"name": cn, "titlePct": d5(champ_ko.get(cn, 0.0) / N_ko)}
 
 
         if (prev is not None and prev.get("teams") == teams and prev.get("easiestPath") == ep_rows
