@@ -841,19 +841,20 @@
   body.bubble-mode #simbtn { display: none !important; }
   @media (prefers-reduced-motion: reduce) { #bubblebtn.on { animation: none; } }
 
-  /* "Knockout" control: the Bubble pill's mirror — gold, hidden until every group
-     game is played (when Bubble retires), then it appears. On /#knockout it flips
-     to the red "Return Home" like the others. JS drives its visibility. */
+  /* "Knockout" control: the Bubble pill's mirror — cyan like Bubble, hidden until
+     every group game is played (when Bubble retires), then it appears. On
+     /#knockout it flips to the red "Return Home" like the others. JS drives its
+     visibility (and hides it entirely while a what-if simulation is active). */
   #knockoutbtn {
     font-family: var(--display); font-weight: 600; font-size: 12px;
     letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--gold); background: rgba(14, 48, 20, 0.92);
-    border: 1px solid var(--gold); border-radius: 999px;
+    color: var(--ice); background: rgba(14, 48, 20, 0.92);
+    border: 1px solid var(--ice); border-radius: 999px;
     padding: 7px 14px; cursor: pointer; -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
     display: none;
   }
-  #knockoutbtn:hover { background: var(--gold); color: var(--pitch-deep); }
-  #knockoutbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  #knockoutbtn:hover { background: var(--ice); color: var(--pitch-deep); }
+  #knockoutbtn:focus-visible { outline: 2px solid var(--ice); outline-offset: 2px; }
   #knockoutbtn.on {
     color: var(--live); border-color: var(--live);
     box-shadow: 0 0 12px 2px rgba(255, 90, 69, 0.5);
@@ -3587,8 +3588,10 @@
   function updateKnockoutBtn() {
     const on = view === "knockout";
     // Mirror of the Bubble button, inverted: it only appears once every group game
-    // is played (when Bubble retires). On the page it flips to "Return Home".
-    const show = on || groupStageComplete(lastData);
+    // is played (when Bubble retires). On the page it flips to "Return Home". It is
+    // also hidden whenever a what-if simulation is running, so it's only offered on
+    // live results — `on` keeps a return path if somehow open during a sim.
+    const show = on || (!simMode && groupStageComplete(lastData));
     knockoutBtn.style.display = show ? "inline-block" : "none";
     knockoutBtn.textContent = on ? "Return Home" : "Knockout";
     knockoutBtn.classList.toggle("on", on);
