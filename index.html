@@ -1462,12 +1462,8 @@
   function koHexToRgb(x) { x = x.replace("#", ""); return [0, 2, 4].map(i => parseInt(x.slice(i, i + 2), 16)); }
   function koMix(a, b, t) { return a.map((v, i) => Math.round(v + (b[i] - v) * t)); }
   function koRgbHex(a) { return "#" + a.map(v => v.toString(16).padStart(2, "0")).join(""); }
-  function koShades(hex) {
-    const base = koHexToRgb(hex);
-    const L = (0.299 * base[0] + 0.587 * base[1] + 0.114 * base[2]) / 255;
-    const target = L <= 0.6 ? [255, 255, 255] : [11, 24, 16];
-    return { reg: hex, et: koRgbHex(koMix(base, target, 0.30)), pen: koRgbHex(koMix(base, target, 0.55)) };
-  }
+  // Darken a colour toward black by t (0..1) — used to fill the ET / penalty blocks.
+  function koDark(hex, t) { return koRgbHex(koHexToRgb(hex).map(v => Math.round(v * (1 - t)))); }
   // Flag patterns for the knockout bar — CSS gradients keyed by canonical team name.
   // National flags carry no copyright. Teams without one fall back to flat shades.
   const FLAG_RAW = {
@@ -1521,15 +1517,43 @@
   FLAG_EMBLEM[normKey("Argentina")] = "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cG9seWdvbiBwb2ludHM9Ijk2LjAwLDUwLjAwIDcxLjA0LDQ3Ljc5IDcxLjA0LDUyLjIxIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI5Mi41MCw2Ny42MCA3MC4yOSw1Ni4wMSA2OC42MCw2MC4xMCIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iODIuNTMsODIuNTMgNjYuNDQsNjMuMzIgNjMuMzIsNjYuNDQiIGZpbGw9IiNGNkI0MEUiLz48cG9seWdvbiBwb2ludHM9IjY3LjYwLDkyLjUwIDYwLjEwLDY4LjYwIDU2LjAxLDcwLjI5IiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI1MC4wMCw5Ni4wMCA1Mi4yMSw3MS4wNCA0Ny43OSw3MS4wNCIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iMzIuNDAsOTIuNTAgNDMuOTksNzAuMjkgMzkuOTAsNjguNjAiIGZpbGw9IiNGNkI0MEUiLz48cG9seWdvbiBwb2ludHM9IjE3LjQ3LDgyLjUzIDM2LjY4LDY2LjQ0IDMzLjU2LDYzLjMyIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI3LjUwLDY3LjYwIDMxLjQwLDYwLjEwIDI5LjcxLDU2LjAxIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI0LjAwLDUwLjAwIDI4Ljk2LDUyLjIxIDI4Ljk2LDQ3Ljc5IiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI3LjUwLDMyLjQwIDI5LjcxLDQzLjk5IDMxLjQwLDM5LjkwIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSIxNy40NywxNy40NyAzMy41NiwzNi42OCAzNi42OCwzMy41NiIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iMzIuNDAsNy41MCAzOS45MCwzMS40MCA0My45OSwyOS43MSIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iNTAuMDAsNC4wMCA0Ny43OSwyOC45NiA1Mi4yMSwyOC45NiIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iNjcuNjAsNy41MCA1Ni4wMSwyOS43MSA2MC4xMCwzMS40MCIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iODIuNTMsMTcuNDcgNjMuMzIsMzMuNTYgNjYuNDQsMzYuNjgiIGZpbGw9IiNGNkI0MEUiLz48cG9seWdvbiBwb2ludHM9IjkyLjUwLDMyLjQwIDY4LjYwLDM5LjkwIDcwLjI5LDQzLjk5IiBmaWxsPSIjRjZCNDBFIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMTkuMzIiIGZpbGw9IiNGNkI0MEUiLz48Y2lyY2xlIGN4PSI0My4yNCIgY3k9IjQ3LjEwIiByPSIyLjYxIiBmaWxsPSIjQjk3QTBFIi8+PGNpcmNsZSBjeD0iNTYuNzYiIGN5PSI0Ny4xMCIgcj0iMi42MSIgZmlsbD0iI0I5N0EwRSIvPjxwYXRoIGQ9Ik0gNDMuMjQgNTYuNzYgUSA1MC4wMCA2MS45OCA1Ni43NiA1Ni43NiIgc3Ryb2tlPSIjQjk3QTBFIiBzdHJva2Utd2lkdGg9IjIuMzIiIGZpbGw9Im5vbmUiLz48L3N2Zz4=') center / contain no-repeat";
   FLAG_EMBLEM[normKey("Ghana")] = "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cG9seWdvbiBwb2ludHM9IjUwLjAwLDQuMDAgNjAuMzMsMzUuNzggOTMuNzUsMzUuNzkgNjYuNzEsNTUuNDMgNzcuMDQsODcuMjEgNTAuMDAsNjcuNTcgMjIuOTYsODcuMjEgMzMuMjksNTUuNDMgNi4yNSwzNS43OSAzOS42NywzNS43OCIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==') center / contain no-repeat";
   FLAG_EMBLEM[normKey("Senegal")] = "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cG9seWdvbiBwb2ludHM9IjUwLjAwLDQuMDAgNjAuMzMsMzUuNzggOTMuNzUsMzUuNzkgNjYuNzEsNTUuNDMgNzcuMDQsODcuMjEgNTAuMDAsNjcuNTcgMjIuOTYsODcuMjEgMzMuMjksNTUuNDMgNi4yNSwzNS43OSAzOS42NywzNS43OCIgZmlsbD0iIzAwODUzRiIvPjwvc3ZnPg==') center / contain no-repeat";
-  // Fill for one knockout segment: a team's flag pattern (with the reg→ET→penalty
-  // lighten applied as a white wash) if it has one, else the flat colour shade.
+  // Every colour that appears on a flag, blended (equal-weight average) to fill the
+  // ET / penalty blocks. Teams without a flag fall back to their single team colour.
+  const FLAG_COLORS_RAW = {
+    "United States": ["#B22234", "#ffffff"],
+    "Germany":       ["#000000", "#DD0000", "#FFCE00"],
+    "Croatia":       ["#D81E2E", "#ffffff"],
+    "Japan":         ["#BC002D", "#ffffff"],
+    "England":       ["#ffffff", "#CE1124"],
+    "Norway":        ["#BA0C2F", "#00205B", "#ffffff"],
+    "South Africa":  ["#DE3831", "#001489", "#007A4D", "#FFB612", "#000000", "#ffffff"],
+    "Argentina":     ["#6CACE4", "#ffffff", "#F6B40E"],
+    "Austria":       ["#ED2939", "#ffffff"],
+    "Spain":         ["#AA151B", "#F1BF00"],
+    "Egypt":         ["#CE1126", "#ffffff", "#000000"],
+    "Ghana":         ["#CE1126", "#FCD116", "#006B3F", "#000000"],
+    "Switzerland":   ["#D52B1E", "#ffffff"],
+    "Colombia":      ["#FCD116", "#003893", "#CE1126"],
+    "France":        ["#002395", "#ffffff", "#ED2939"],
+    "Belgium":       ["#000000", "#FDDA24", "#EF3340"],
+    "Senegal":       ["#00853F", "#FDEF42", "#E31B23"],
+    "Portugal":      ["#046A38", "#DA291C"],
+    "Algeria":       ["#006233", "#ffffff"],
+  };
+  const FLAG_COLORS = {};
+  for (const k in FLAG_COLORS_RAW) FLAG_COLORS[normKey(k)] = FLAG_COLORS_RAW[k];
+  function koBlend(name, hex) {
+    const cols = FLAG_COLORS[normKey(canonName(name))];
+    if (!cols || !cols.length) return hex;
+    const s = cols.reduce((a, c) => { const r = koHexToRgb(c); return [a[0] + r[0], a[1] + r[1], a[2] + r[2]]; }, [0, 0, 0]);
+    return koRgbHex(s.map(v => Math.round(v / cols.length)));
+  }
+  // Fill for one knockout segment. Regulation shows the flag pattern (or flat colour);
+  // ET and penalties are SOLID blocks of the flag's blended palette, each darker than the
+  // last, so the blocks read as distinct and deepen toward the centre of the bar.
   function koFill(name, hex, level) {
-    const pat = FLAG_PATTERN[normKey(canonName(name))];
-    if (!pat) return koShades(hex)[level];
-    const ov = level === "et" ? 0.30 : level === "pen" ? 0.55 : 0;
-    // White wash on top for the ET/penalty fade. "0 0 / auto" pins the wash layer so
-    // the pattern layer keeps its own size (e.g. the checkerboard's 6px tile).
-    return ov ? `linear-gradient(rgba(255,255,255,${ov}),rgba(255,255,255,${ov})) 0 0 / auto,${pat}` : pat;
+    if (level === "reg") return FLAG_PATTERN[normKey(canonName(name))] || hex;
+    return koDark(koBlend(name, hex), level === "et" ? 0.33 : 0.58);
   }
   const WDL_DRAW = "#6d7378";   // draw segment grey
   function wdlBar(m) {
@@ -1563,14 +1587,17 @@
         xl += `<div class="koflag" style="left:${hExact.toFixed(2)}%;width:${(100 - hExact).toFixed(2)}%;background:${ao}"></div>`;
       // For opaque full-flag overlays the fade can't come from the segment beneath, so
       // paint the ET/penalty wash on top of the flag over those slivers.
+      // Opaque full-flag overlays can't darken from the segment beneath, so paint the
+      // same solid ET / penalty blocks on top of the flag over those slivers.
       const topFade = n => FLAG_TOPFADE.has(normKey(canonName(n)));
-      const wash = (l, w, op) => `<div class="kowash" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%;background:rgba(255,255,255,${op})"></div>`;
+      const block = (l, w, col) => `<div class="kowash" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%;background:${col}"></div>`;
       if (topFade(m.home.name)) {       // home order L→R: reg, et, pen
-        const r = W(g.hReg), e = W(g.hET);
-        xl += wash(r, e, 0.30) + wash(r + e, W(g.hPen), 0.55);
+        const r = W(g.hReg), e = W(g.hET), bl = koBlend(m.home.name, hc);
+        xl += block(r, e, koDark(bl, 0.33)) + block(r + e, W(g.hPen), koDark(bl, 0.58));
       }
       if (topFade(m.away.name)) {       // away order from boundary: pen, et, reg
-        xl += wash(hExact, W(g.aPen), 0.55) + wash(hExact + W(g.aPen), W(g.aET), 0.30);
+        const bl = koBlend(m.away.name, ac);
+        xl += block(hExact, W(g.aPen), koDark(bl, 0.58)) + block(hExact + W(g.aPen), W(g.aET), koDark(bl, 0.33));
       }
       // Central emblems (Sol de Mayo, etc.), centered on the team's region.
       const emb = n => FLAG_EMBLEM[normKey(canonName(n))];
