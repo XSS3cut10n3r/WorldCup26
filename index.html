@@ -1483,6 +1483,7 @@
     "Spain":         "linear-gradient(180deg,#AA151B 0 25%,#F1BF00 25% 75%,#AA151B 75%)", // red/yellow(double)/red
     "Egypt":         "linear-gradient(180deg,#CE1126 0 33.333%,#fff 33.333% 66.667%,#000 66.667%)", // red/white/black (no eagle)
     "Ghana":         "linear-gradient(180deg,#CE1126 0 33.333%,#FCD116 33.333% 66.667%,#006B3F 66.667%)", // red/gold/green; black star via FLAG_EMBLEM
+    "Switzerland":   "#D52B1E", // red field; tiled white plusses via FLAG_OVERLAY (falls back to red when too narrow)
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
@@ -1502,6 +1503,11 @@
   FLAG_OVERLAY[normKey("Norway")] = NORDIC("#00205B");
   // Full flag stretched across the region (SVG keeps the geometry exact at any width).
   FLAG_OVERLAY[normKey("South Africa")] = `url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA2MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjMwLjAiIGZpbGw9IiNERTM4MzEiLz48cmVjdCB4PSIwIiB5PSIzMC4wIiB3aWR0aD0iOTAiIGhlaWdodD0iMzAuMCIgZmlsbD0iIzAwMTQ4OSIvPjxwb2x5bGluZSBwb2ludHM9IjAsMCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCwwIDI5LjcwMDAwMDAwMDAwMDAwMywzMC4wIDkwLDMwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN0E0RCIgc3Ryb2tlLXdpZHRoPSIxMy4yIi8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdBNEQiIHN0cm9rZS13aWR0aD0iMTMuMiIvPjxwb2x5Z29uIHBvaW50cz0iMCwwIDI0LjMsMzAuMCAwLDYwIiBmaWxsPSIjRkZCNjEyIi8+PHBvbHlnb24gcG9pbnRzPSIwLDAgMTkuOCwzMC4wIDAsNjAiIGZpbGw9IiMwMDAiLz48L3N2Zz4=') 0 0 / 100% 100% no-repeat`;
+  // Switzerland: tiled white plusses across the red field; `round` fits a whole number evenly.
+  FLAG_OVERLAY[normKey("Switzerland")] = `url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iOTAiIHZpZXdCb3g9IjAgMCAxNDAgOTAiPjxyZWN0IHg9IjQzLjAwIiB5PSIzNy4wMCIgd2lkdGg9IjU0LjAwIiBoZWlnaHQ9IjE2LjAwIiBmaWxsPSIjZmZmIi8+PHJlY3QgeD0iNjIuMDAiIHk9IjE4LjAwIiB3aWR0aD0iMTYuMDAiIGhlaWdodD0iNTQuMDAiIGZpbGw9IiNmZmYiLz48L3N2Zz4=') 0 0 / 14px 100% round`;
+  // Tiled overlays fall back to the plain field when the region is too narrow for one tile.
+  const FLAG_TILED = new Set(["Switzerland"].map(normKey));
+  const TILE_MIN = 7;
   // Overlay flags whose ET/penalty fade is painted on top of the flag (opaque flags).
   const FLAG_TOPFADE = new Set(["South Africa"].map(normKey));
   // Central emblems (e.g. Argentina's Sol de Mayo) drawn as a centered square over the region.
@@ -1542,9 +1548,12 @@
       if (isCross(m.away.name)) xl += `<div class="koxline" style="left:${(hExact + (100 - hExact) / 2).toFixed(2)}%"></div>`;
       // Full-flag overlays (Nordic crosses) drawn over the team's whole region.
       const ovl = n => FLAG_OVERLAY[normKey(canonName(n))];
+      const tiled = n => FLAG_TILED.has(normKey(canonName(n)));
       const ho = ovl(m.home.name), ao = ovl(m.away.name);
-      if (ho) xl += `<div class="koflag" style="left:0;width:${hExact.toFixed(2)}%;background:${ho}"></div>`;
-      if (ao) xl += `<div class="koflag" style="left:${hExact.toFixed(2)}%;width:${(100 - hExact).toFixed(2)}%;background:${ao}"></div>`;
+      if (ho && !(tiled(m.home.name) && hExact < TILE_MIN))
+        xl += `<div class="koflag" style="left:0;width:${hExact.toFixed(2)}%;background:${ho}"></div>`;
+      if (ao && !(tiled(m.away.name) && (100 - hExact) < TILE_MIN))
+        xl += `<div class="koflag" style="left:${hExact.toFixed(2)}%;width:${(100 - hExact).toFixed(2)}%;background:${ao}"></div>`;
       // For opaque full-flag overlays the fade can't come from the segment beneath, so
       // paint the ET/penalty wash on top of the flag over those slivers.
       const topFade = n => FLAG_TOPFADE.has(normKey(canonName(n)));
