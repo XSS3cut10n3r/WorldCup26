@@ -472,13 +472,12 @@
       "utcDate": "2026-06-27T03:00:00Z"
     }
   ],
-  "live": [],
-  "recent": [
+  "live": [
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T23:30Z",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T23:30:00Z",
       "home": {
         "name": "Colombia",
         "owner": "Charlie",
@@ -494,16 +493,15 @@
         "fifaRank": 5
       },
       "penalties": false,
-      "winner": "DRAW",
-      "_src": "espn-final"
+      "winner": "DRAW"
     },
     {
       "stage": "Group stage",
       "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T23:30Z",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-27T23:30:00Z",
       "home": {
-        "name": "DR Congo",
+        "name": "Congo DR",
         "owner": "Tom",
         "goals": 3,
         "penGoals": null,
@@ -517,8 +515,119 @@
         "fifaRank": 50
       },
       "penalties": false,
-      "winner": "HOME_TEAM",
-      "_src": "espn-final"
+      "winner": "HOME_TEAM"
+    }
+  ],
+  "recent": [
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T21:00:00Z",
+      "home": {
+        "name": "Croatia",
+        "owner": "Tom",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 11
+      },
+      "away": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 73
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T21:00:00Z",
+      "home": {
+        "name": "Panama",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 34
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T03:00:00Z",
+      "home": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 29
+      },
+      "away": {
+        "name": "Iran",
+        "owner": "Ondine",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 21
+      },
+      "penalties": false,
+      "winner": "DRAW"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T03:00:00Z",
+      "home": {
+        "name": "New Zealand",
+        "owner": "Tomi",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 85
+      },
+      "away": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": 5,
+        "penGoals": null,
+        "fifaRank": 9
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "stage": "Group stage",
+      "stageCode": "GROUP_STAGE",
+      "status": "FINISHED",
+      "utcDate": "2026-06-27T00:00:00Z",
+      "home": {
+        "name": "Cape Verde Islands",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 67
+      },
+      "away": {
+        "name": "Saudi Arabia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 61
+      },
+      "penalties": false,
+      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -755,6 +864,64 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 79,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-01T01:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group A",
+        "resolved": true,
+        "fifaRank": 14
+      },
+      "away": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "projected": true,
+        "slot": "3rd place C/E/F/H/I",
+        "resolved": true,
+        "fifaRank": 23
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 80,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-01T16:00:00Z",
+      "home": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group L",
+        "resolved": true,
+        "fifaRank": 4
+      },
+      "away": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": null,
+        "penGoals": null,
+        "projected": true,
+        "slot": "3rd place E/H/I/J/K",
+        "resolved": true,
+        "fifaRank": 15
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -949,7 +1116,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group A",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 14
           },
           "away": {
             "name": "Ecuador",
@@ -958,7 +1126,8 @@
             "penGoals": null,
             "projected": true,
             "slot": "3rd place C/E/F/H/I",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 23
           },
           "penalties": false,
           "winner": null
@@ -976,7 +1145,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group L",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 4
           },
           "away": {
             "name": "Senegal",
@@ -985,7 +1155,8 @@
             "penGoals": null,
             "projected": true,
             "slot": "3rd place E/H/I/J/K",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 15
           },
           "penalties": false,
           "winner": null
@@ -9642,5 +9813,5 @@
     },
     "knockoutPlayed": []
   },
-  "generated": "2026-06-27T23:05:09Z"
+  "generated": "2026-06-28T01:32:56Z"
 }
