@@ -899,6 +899,10 @@
   /* knockout bar reuses .wdl; a hairline between segments keeps the regulation /
      extra-time / penalty shades of one team distinct (incl. near-white nations). */
   .wdl.kobar .wseg + .wseg { box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.30); }
+  /* vertical arm for "cross" flags (e.g. England), centered on a team's region */
+  .wdl.kobar { position: relative; }
+  .koxline { position: absolute; top: 0; bottom: 0; width: 3px; transform: translateX(-50%);
+             background: #CE1124; pointer-events: none; }
   .match .mid .wdlwrap { width: clamp(150px, 30vw, 230px); }
   .cd-center .wdlwrap { max-width: 230px; }
   /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
@@ -1468,9 +1472,12 @@
     "Germany":       "linear-gradient(180deg,#000 0 33.333%,#DD0000 33.333% 66.667%,#FFCE00 66.667% 100%)", // black/red/gold
     "Croatia":       "conic-gradient(#D81E2E 90deg,#fff 90deg 180deg,#D81E2E 180deg 270deg,#fff 270deg) 0 0 / 6px 6px", // red/white checkerboard
     "Japan":         "radial-gradient(circle at 50% 50%,#BC002D 3.2px,transparent 3.7px) 0 0 / 13px 13px,radial-gradient(circle at 50% 50%,#BC002D 2px,transparent 2.5px) 6.5px 6.5px / 13px 13px,#fff", // clean red polka dots (two sizes, offset)
+    "England":       "linear-gradient(180deg,#fff 0 34%,#CE1124 34% 66%,#fff 66%)", // St George cross — horizontal arm (vertical arm drawn via .koxline)
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
+  // "Cross" flags also get a vertical red arm centered on the team's region.
+  const FLAG_CROSS = new Set(["England"].map(normKey));
   // Fill for one knockout segment: a team's flag pattern (with the reg→ET→penalty
   // lighten applied as a white wash) if it has one, else the flat colour shade.
   function koFill(name, hex, level) {
@@ -1497,6 +1504,12 @@
       const hTot = P((g.hReg || 0) + (g.hET || 0) + (g.hPen || 0)), aTot = 100 - hTot;
       const lab = (w, cls) => `<span class="wlab ${cls}">${w}%</span>`;
       const nh = esc(m.home.name), na = esc(m.away.name);
+      // Vertical arm for cross flags, centered on the team's region (exact widths).
+      const hExact = W(g.hReg) + W(g.hET) + W(g.hPen);
+      const isCross = n => FLAG_CROSS.has(normKey(canonName(n)));
+      let xl = "";
+      if (isCross(m.home.name)) xl += `<div class="koxline" style="left:${(hExact / 2).toFixed(2)}%"></div>`;
+      if (isCross(m.away.name)) xl += `<div class="koxline" style="left:${(hExact + (100 - hExact) / 2).toFixed(2)}%"></div>`;
       return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
         + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
         + `<div class="wdl kobar">`
@@ -1506,6 +1519,7 @@
           + seg(W(g.aPen), koFill(m.away.name, ac, "pen"), `${na} on penalties: ${P(g.aPen)}%`)
           + seg(W(g.aET), koFill(m.away.name, ac, "et"), `${na} after extra time: ${P(g.aET)}%`)
           + seg(W(g.aReg), koFill(m.away.name, ac, "reg"), `${na} in regulation: ${P(g.aReg)}%`)
+          + xl
         + `</div></div>`;
     }
     const hw = Math.round((g.home || 0) * 100);
