@@ -1288,6 +1288,10 @@
   .kt-pct { color: var(--chalk-dim); font-size: 12px; margin-left: 3px; }
   .kt-sub { font-weight: 400; text-transform: none; letter-spacing: 0; opacity: 0.65; }
   .ktable tbody tr:hover { background: rgba(255,255,255,0.03); }
+  .ktable th.ktsort { cursor: pointer; user-select: none; transition: color .12s; }
+  .ktable th.ktsort:hover { color: var(--chalk); }
+  .ktable th.ktsort.active { color: var(--chalk); }
+  .kt-arrow { margin-left: 4px; color: var(--gold); font-size: 9px; vertical-align: middle; }
   .mlb-note { color: var(--chalk-dim); font-size: 13px; line-height: 1.5; margin: 0 0 12px; max-width: 880px; }
   .mlb-champ { text-align: center; margin: 4px 0 16px; padding: 12px 14px;
     border: 1px solid rgba(232,195,74,0.4); border-radius: 12px; background: rgba(232,195,74,0.07); }
@@ -2110,6 +2114,7 @@
       mlbData = buildMlbData(data);
       app.innerHTML = `<div class="knockout-wrap">${renderKnockoutPage(data, mlbData)}</div>`;
       if (mlbData) mountBracket(mlbData, true);
+      wireKTable();   // make the Easiest-Path table sortable by header click
       return;
     }
     document.body.classList.remove("bubble-mode");
@@ -2973,16 +2978,52 @@
       '<text x="' + (W - padR) + '" y="' + (axisY + 20) + '" text-anchor="end" fill="#FF5A45" font-size="13">Harder (stronger opponents) \u2192</text>' +
       marks + '</svg>';
   }
-  function kTable(rows) {
-    const body = rows.map((r, i) =>
+  // Easiest-Path table state: the current rows (for in-place re-sorting) and the
+  // active sort column/direction (defaults to Titles, descending).
+  let ktRows = [], ktSort = { key: "wins", dir: -1 };
+  // Sort the Easiest-Path rows by a column. dir: 1 ascending, -1 descending.
+  function ktSortRows(rows, key, dir) {
+    return rows.slice().sort((a, b) => {
+      if (key === "name") return a.name.localeCompare(b.name) * dir;
+      const v = r => key === "wins" ? (r.wins || 0)
+        : key === "str" ? (r.str == null ? -Infinity : r.str)
+        : key === "oppRank" ? (r.oppRank == null ? Infinity : r.oppRank) : 0;
+      const va = v(a), vb = v(b);
+      if (va < vb) return -dir;
+      if (va > vb) return dir;
+      return a.name.localeCompare(b.name);   // stable tiebreak
+    });
+  }
+  function kTable(rows, sort) {
+    sort = sort || ktSort;
+    const sorted = ktSortRows(rows, sort.key, sort.dir);
+    const body = sorted.map((r, i) =>
       '<tr><td class="kt-rank">' + (i + 1) + '</td>' +
       '<td class="kt-team"><span class="kt-flag">' + r.flag + '</span>' + esc(r.name) + '</td>' +
       '<td>' + r.wins.toLocaleString() + ' <span class="kt-pct">' + (r.winPct * 100).toFixed(1) + '%</span></td>' +
       '<td>' + (r.str != null ? r.str.toFixed(3) : "\u2013") + '</td>' +
       '<td>' + (r.oppRank != null ? r.oppRank.toFixed(1) : "\u2013") + '</td></tr>').join("");
-    return '<table class="ktable"><thead><tr><th>#</th><th>Team</th><th>Titles</th>' +
-      '<th>Avg path<span class="kt-sub"> \u2212log(rank)</span></th>' +
-      '<th>Avg opp<span class="kt-sub"> FIFA rank</span></th></tr></thead><tbody>' + body + '</tbody></table>';
+    const arrow = k => sort.key === k ? '<span class="kt-arrow">' + (sort.dir === 1 ? "\u25B2" : "\u25BC") + '</span>' : "";
+    const th = (k, label) => '<th class="ktsort' + (sort.key === k ? " active" : "") + '" data-key="' + k + '">' + label + arrow(k) + '</th>';
+    return '<table class="ktable" id="ktable"><thead><tr><th>#</th>' +
+      th("name", "Team") +
+      th("wins", "Titles") +
+      th("str", 'Avg path<span class="kt-sub"> \u2212log(rank)</span>') +
+      th("oppRank", 'Avg opp<span class="kt-sub"> FIFA rank</span>') +
+      '</tr></thead><tbody>' + body + '</tbody></table>';
+  }
+  // Header clicks re-sort the table in place (same column toggles direction; a new
+  // column starts descending for the numeric stats, ascending for the team name).
+  function wireKTable() {
+    const tbl = document.getElementById("ktable"); if (!tbl) return;
+    tbl.addEventListener("click", e => {
+      const h = e.target.closest("th[data-key]"); if (!h) return;
+      const key = h.dataset.key;
+      if (ktSort.key === key) ktSort.dir = -ktSort.dir;
+      else ktSort = { key, dir: key === "name" ? 1 : -1 };
+      tbl.outerHTML = kTable(ktRows, ktSort);
+      wireKTable();   // the table element was replaced; bind the new one
+    });
   }
   function renderKnockoutPage(data, mlb) {
     const rows = kEpRows();
@@ -2991,12 +3032,12 @@
         '<b>Post-game pipeline</b> has written <b>knockout_odds.json</b> with the easiest-path data.<br>' +
         'Trigger it from the repository\'s Actions tab, then refresh.</div>';
     }
-    const byWins = rows.slice().sort((a, b) => (b.wins - a.wins) || a.name.localeCompare(b.name));
+    ktRows = rows;                       // kept so header clicks can re-sort in place
     return '<section class="ksec"><h2>Easiest Path to the Title</h2>' +
       '<p class="kpage-note">For every team that won at least one simulated title, the average strength of the ' +
       'five knockout opponents it beat on the way, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
       'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.</p>' +
-      kBell(rows) + kTable(byWins) + '</section>' + mlbSection(mlb);
+      kBell(rows) + kTable(rows, ktSort) + '</section>' + mlbSection(mlb);
   }
 
   // Most-Likely Bracket: synthesize a /#bracket-shaped object from koData.bracket
