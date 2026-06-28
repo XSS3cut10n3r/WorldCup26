@@ -822,13 +822,49 @@ def main():
         # win share (summing to 1 across both teams). Computed as a direct head-to-head
         # Monte-Carlo using the same KO match model as the bracket sim, and keyed (like
         # the group games) on the home/away pair so the page joins them to its cards.
+        # Knockout fixtures come from the live feed, which spells some nations
+        # differently from the canonical sim names ("Congo DR" vs "DR Congo",
+        # "Ivory Coast" vs "Côte d'Ivoire", "Bosnia-Herzegovina" vs "Bosnia and
+        # Herzegovina"). Map them to the model's names (same aliases the page uses)
+        # so the matchup is rated and the row joins to the page's cards. Group games
+        # avoid this because they're built straight from the canonical sim names.
+        import unicodedata
+        KO_ALIAS = {"Congo DR": "DR Congo", "Bosnia-Herzegovina": "Bosnia and Herzegovina",
+                    "Ivory Coast": "Côte d'Ivoire", "Turkey": "Türkiye",
+                    "Cape Verde Islands": "Cabo Verde"}
+        _team_names = set(model["fifa_of"])
+
+        def _nk(s):
+            s = unicodedata.normalize("NFKD", s or "")
+            s = "".join(c for c in s if not unicodedata.combining(c))
+            for ch in "\u2018\u2019\u02bc`\u00b4":
+                s = s.replace(ch, "'")
+            return " ".join(s.lower().split())
+        _norm_map = {_nk(n): n for n in _team_names}
+        _alias_norm = {_nk(k): v for k, v in KO_ALIAS.items()}
+
+        def canon_feed(name):
+            if name in _team_names:
+                return name
+            a = KO_ALIAS.get(name) or _alias_norm.get(_nk(name))
+            if a and a in _team_names:
+                return a
+            m = _norm_map.get(_nk(name))
+            if m:
+                return m
+            if a:
+                m = _norm_map.get(_nk(a))
+                if m:
+                    return m
+            return name  # unknown to the model; ko_split will skip if Elo is present
+
         ko_fixtures, seen_ko = [], set()
         for mm in (data.get("upcoming") or []):
             code = (mm.get("stageCode") or "").upper()
             if not code or code == "GROUP_STAGE":
                 continue
-            hn = (mm.get("home") or {}).get("name")
-            an = (mm.get("away") or {}).get("name")
+            hn = canon_feed((mm.get("home") or {}).get("name"))
+            an = canon_feed((mm.get("away") or {}).get("name"))
             if not hn or not an or (hn, an) in seen_ko:
                 continue
             seen_ko.add((hn, an))
