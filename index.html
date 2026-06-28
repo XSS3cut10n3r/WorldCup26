@@ -905,6 +905,7 @@
              background: #CE1124; pointer-events: none; }
   .koflag { position: absolute; top: 0; bottom: 0; pointer-events: none; }
   .kowash { position: absolute; top: 0; bottom: 0; pointer-events: none; }
+  .koemb { position: absolute; top: 0; bottom: 0; aspect-ratio: 1; transform: translateX(-50%); pointer-events: none; }
   .match .mid .wdlwrap { width: clamp(150px, 30vw, 230px); }
   .cd-center .wdlwrap { max-width: 230px; }
   /* Eliminated side on an upcoming card: red name + red-outline pill, mirroring
@@ -1477,6 +1478,7 @@
     "England":       "linear-gradient(180deg,#fff 0 34%,#CE1124 34% 66%,#fff 66%)", // St George cross — horizontal arm (vertical arm drawn via .koxline)
     "Norway":        "#BA0C2F", // red field; the Nordic cross is drawn via FLAG_OVERLAY
     "South Africa":  "#007A4D", // placeholder field — the full flag is drawn via FLAG_OVERLAY
+    "Argentina":     "linear-gradient(180deg,#6CACE4 0 33.333%,#fff 33.333% 66.667%,#6CACE4 66.667%)", // sky/white/sky triband; Sol de Mayo via FLAG_EMBLEM
   };
   const FLAG_PATTERN = {};
   for (const k in FLAG_RAW) FLAG_PATTERN[normKey(k)] = FLAG_RAW[k];
@@ -1495,9 +1497,12 @@
   const FLAG_OVERLAY = {};
   FLAG_OVERLAY[normKey("Norway")] = NORDIC("#00205B");
   // Full flag stretched across the region (SVG keeps the geometry exact at any width).
-  FLAG_OVERLAY[normKey("South Africa")] = `url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA2MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjMwLjAiIGZpbGw9IiNERTM4MzEiLz48cmVjdCB4PSIwIiB5PSIzMC4wIiB3aWR0aD0iOTAiIGhlaWdodD0iMzAuMCIgZmlsbD0iIzAwMTQ4OSIvPjxwb2x5bGluZSBwb2ludHM9IjAsMCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCwwIDI5LjcwMDAwMDAwMDAwMDAwMywzMC4wIDkwLDMwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN0E0RCIgc3Ryb2tlLXdpZHRoPSIxMy4yIi8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdBNEQiIHN0cm9rZS13aWR0aD0iMTMuMiIvPjxwb2x5Z29uIHBvaW50cz0iMCwwIDI0LjMsMzAuMCAwLDYwIiBmaWxsPSIjRkZCNjEyIi8+PHBvbHlnb24gcG9pbnRzPSIwLDAgMTkuOCwzMC4wIDAsNjAiIGZpbGw9IiMwMDAiLz48L3N2Zz4=") 0 0 / 100% 100% no-repeat`;
+  FLAG_OVERLAY[normKey("South Africa")] = `url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA2MCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjMwLjAiIGZpbGw9IiNERTM4MzEiLz48cmVjdCB4PSIwIiB5PSIzMC4wIiB3aWR0aD0iOTAiIGhlaWdodD0iMzAuMCIgZmlsbD0iIzAwMTQ4OSIvPjxwb2x5bGluZSBwb2ludHM9IjAsMCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjEuNTk5OTk5OTk5OTk5OTk4Ii8+PHBvbHlsaW5lIHBvaW50cz0iMCwwIDI5LjcwMDAwMDAwMDAwMDAwMywzMC4wIDkwLDMwLjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwN0E0RCIgc3Ryb2tlLXdpZHRoPSIxMy4yIi8+PHBvbHlsaW5lIHBvaW50cz0iMCw2MCAyOS43MDAwMDAwMDAwMDAwMDMsMzAuMCA5MCwzMC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDdBNEQiIHN0cm9rZS13aWR0aD0iMTMuMiIvPjxwb2x5Z29uIHBvaW50cz0iMCwwIDI0LjMsMzAuMCAwLDYwIiBmaWxsPSIjRkZCNjEyIi8+PHBvbHlnb24gcG9pbnRzPSIwLDAgMTkuOCwzMC4wIDAsNjAiIGZpbGw9IiMwMDAiLz48L3N2Zz4=') 0 0 / 100% 100% no-repeat`;
   // Overlay flags whose ET/penalty fade is painted on top of the flag (opaque flags).
   const FLAG_TOPFADE = new Set(["South Africa"].map(normKey));
+  // Central emblems (e.g. Argentina's Sol de Mayo) drawn as a centered square over the region.
+  const FLAG_EMBLEM = {};
+  FLAG_EMBLEM[normKey("Argentina")] = "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cG9seWdvbiBwb2ludHM9Ijk2LjAwLDUwLjAwIDcxLjA0LDQ3Ljc5IDcxLjA0LDUyLjIxIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI5Mi41MCw2Ny42MCA3MC4yOSw1Ni4wMSA2OC42MCw2MC4xMCIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iODIuNTMsODIuNTMgNjYuNDQsNjMuMzIgNjMuMzIsNjYuNDQiIGZpbGw9IiNGNkI0MEUiLz48cG9seWdvbiBwb2ludHM9IjY3LjYwLDkyLjUwIDYwLjEwLDY4LjYwIDU2LjAxLDcwLjI5IiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI1MC4wMCw5Ni4wMCA1Mi4yMSw3MS4wNCA0Ny43OSw3MS4wNCIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iMzIuNDAsOTIuNTAgNDMuOTksNzAuMjkgMzkuOTAsNjguNjAiIGZpbGw9IiNGNkI0MEUiLz48cG9seWdvbiBwb2ludHM9IjE3LjQ3LDgyLjUzIDM2LjY4LDY2LjQ0IDMzLjU2LDYzLjMyIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI3LjUwLDY3LjYwIDMxLjQwLDYwLjEwIDI5LjcxLDU2LjAxIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI0LjAwLDUwLjAwIDI4Ljk2LDUyLjIxIDI4Ljk2LDQ3Ljc5IiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSI3LjUwLDMyLjQwIDI5LjcxLDQzLjk5IDMxLjQwLDM5LjkwIiBmaWxsPSIjRjZCNDBFIi8+PHBvbHlnb24gcG9pbnRzPSIxNy40NywxNy40NyAzMy41NiwzNi42OCAzNi42OCwzMy41NiIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iMzIuNDAsNy41MCAzOS45MCwzMS40MCA0My45OSwyOS43MSIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iNTAuMDAsNC4wMCA0Ny43OSwyOC45NiA1Mi4yMSwyOC45NiIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iNjcuNjAsNy41MCA1Ni4wMSwyOS43MSA2MC4xMCwzMS40MCIgZmlsbD0iI0Y2QjQwRSIvPjxwb2x5Z29uIHBvaW50cz0iODIuNTMsMTcuNDcgNjMuMzIsMzMuNTYgNjYuNDQsMzYuNjgiIGZpbGw9IiNGNkI0MEUiLz48cG9seWdvbiBwb2ludHM9IjkyLjUwLDMyLjQwIDY4LjYwLDM5LjkwIDcwLjI5LDQzLjk5IiBmaWxsPSIjRjZCNDBFIi8+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iMTkuMzIiIGZpbGw9IiNGNkI0MEUiLz48Y2lyY2xlIGN4PSI0My4yNCIgY3k9IjQ3LjEwIiByPSIyLjYxIiBmaWxsPSIjQjk3QTBFIi8+PGNpcmNsZSBjeD0iNTYuNzYiIGN5PSI0Ny4xMCIgcj0iMi42MSIgZmlsbD0iI0I5N0EwRSIvPjxwYXRoIGQ9Ik0gNDMuMjQgNTYuNzYgUSA1MC4wMCA2MS45OCA1Ni43NiA1Ni43NiIgc3Ryb2tlPSIjQjk3QTBFIiBzdHJva2Utd2lkdGg9IjIuMzIiIGZpbGw9Im5vbmUiLz48L3N2Zz4=') center / contain no-repeat";
   // Fill for one knockout segment: a team's flag pattern (with the reg→ET→penalty
   // lighten applied as a white wash) if it has one, else the flat colour shade.
   function koFill(name, hex, level) {
@@ -1546,6 +1551,11 @@
       if (topFade(m.away.name)) {       // away order from boundary: pen, et, reg
         xl += wash(hExact, W(g.aPen), 0.55) + wash(hExact + W(g.aPen), W(g.aET), 0.30);
       }
+      // Central emblems (Sol de Mayo, etc.), centered on the team's region.
+      const emb = n => FLAG_EMBLEM[normKey(canonName(n))];
+      const he = emb(m.home.name), ae = emb(m.away.name);
+      if (he) xl += `<div class="koemb" style="left:${(hExact / 2).toFixed(2)}%;background:${he}"></div>`;
+      if (ae) xl += `<div class="koemb" style="left:${(hExact + (100 - hExact) / 2).toFixed(2)}%;background:${ae}"></div>`;
       return `<div class="wdlwrap" title="${nh} ${hTot}% &middot; ${na} ${aTot}%">`
         + `<div class="wlabels">${lab(hTot, "home")}${lab(aTot, "away")}</div>`
         + `<div class="wdl kobar">`
