@@ -528,9 +528,25 @@
     animation: bktpop .5s cubic-bezier(.34,1.3,.5,1); }
   /* A game that has actually been played (real result overlaid on the projected
      most-likely bracket) reads in a cool steel-blue instead of the projection's
-     muted pitch tone, so a finished tie is obvious at a glance. */
+     muted pitch tone, so a finished tie is obvious at a glance. (/#knockout only.) */
   .bkt-box.actual { border-color: rgba(111,216,236,0.55); background: rgba(111,216,236,0.08); }
   .bkt-box.on.actual { border-color: rgba(111,216,236,0.8); }
+  /* On the live /#bracket, a finished tie instead reads as a reflective golden
+     card — gold border, a warm tint, and a slow diagonal sheen sweeping across
+     (echoing the leaderboard's UPSET cards). The sheen rests ~2s longer between
+     passes, and sits behind the text via z-index so names/scores stay crisp. */
+  .bkt-box.finished { border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(232,195,74,0.14), rgba(232,195,74,0.04)), var(--pitch-deep); }
+  .bkt-box.finished.on { border-color: var(--gold);
+    box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 14px rgba(232,195,74,0.18); }
+  .bkt-box.finished::after { content: ""; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(232,195,74,0.28) 50%, transparent 70%);
+    background-size: 250% 100%; background-position: 150% 0;
+    animation: bktSheen 6.2s ease-in-out infinite; }
+  .bkt-box.finished > * { position: relative; z-index: 1; }
+  @keyframes bktSheen { 0% { background-position: 150% 0; } 37%, 100% { background-position: -60% 0; } }
+  @media (prefers-reduced-motion: reduce) { .bkt-box.finished::after { animation: none; } }
   @keyframes bktpop { 0% { transform: scale(.82); } 55% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
   .bline { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; line-height: 1.3; }
@@ -557,6 +573,13 @@
   .bkt-list .lcard { background: var(--pitch-deep); border: 1px solid var(--pitch-line);
     border-radius: 9px; padding: 11px 15px; margin-bottom: 10px; }
   .bkt-list .lcard.actual { border-color: rgba(111,216,236,0.55); background: rgba(111,216,236,0.08); }
+  .bkt-list .lcard.finished { border-color: var(--gold); position: relative; overflow: hidden;
+    background: linear-gradient(180deg, rgba(232,195,74,0.14), rgba(232,195,74,0.04)), var(--pitch-deep); }
+  .bkt-list .lcard.finished::after { content: ""; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(232,195,74,0.28) 50%, transparent 70%);
+    background-size: 250% 100%; background-position: 150% 0; animation: bktSheen 6.2s ease-in-out infinite; }
+  .bkt-list .lcard.finished > * { position: relative; z-index: 1; }
   .bkt-list .bline { font-size: 16px; }
   .bkt-list .bline + .bline { margin-top: 3px; }
   .bkt-list .bmeta2 { font-size: 11.5px; margin-top: 7px; }
@@ -2010,7 +2033,7 @@
       if (_ovk) _ovk.classList.add("hidden");
       mlbData = buildMlbData(data);
       app.innerHTML = `<div class="knockout-wrap">${renderKnockoutPage(data, mlbData)}</div>`;
-      if (mlbData) mountBracket(mlbData);
+      if (mlbData) mountBracket(mlbData, true);
       return;
     }
     document.body.classList.remove("bubble-mode");
@@ -2034,7 +2057,7 @@
                   : view === "odds" ? renderOdds(data)
                   : renderHome(data);
     tickCountdown();
-    if (view === "bracket") mountBracket(data);
+    if (view === "bracket") mountBracket(data, false);
     if (view === "odds") {
       // Lay out the race after the new DOM is in place. First time the odds view
       // appears (koAnimated false) the flags race in from the start; later
@@ -2436,8 +2459,10 @@
       const no = +k, info = BKT.byNo[no], round = info.round;
       const el = document.getElementById("bkt-box-" + no); if (!el) return;
       const on = isOn(round), bh = on ? activeH : smallH;
+      const done = info.m.status === "FINISHED" || info.m.status === "AWARDED";
       el.classList.toggle("on", on);
-      el.classList.toggle("actual", !!info.m.actual);
+      el.classList.toggle("actual", !!info.m.actual);          // cyan: /#knockout real games
+      el.classList.toggle("finished", !BKT.mlb && done);       // gold: live /#bracket played games
       el.innerHTML = bktContent(info.m, on);
       el.style.height = bh + "px";
       if (round === "F" || round === "T") {
@@ -2464,7 +2489,10 @@
     });
     nos.sort((a, b) => a - b);
     if (bktActive === "F") nos = [104, 103].filter(no => BKT.byNo[no]);
-    list.innerHTML = nos.map(no => `<div class="lcard${BKT.byNo[no].m.actual ? " actual" : ""}">${bktContent(BKT.byNo[no].m, true)}</div>`).join("");
+    list.innerHTML = nos.map(no => { const m = BKT.byNo[no].m;
+      const done = m.status === "FINISHED" || m.status === "AWARDED";
+      const cls = m.actual ? " actual" : (!BKT.mlb && done ? " finished" : "");
+      return `<div class="lcard${cls}">${bktContent(m, true)}</div>`; }).join("");
   }
   function bktLayout(animate) {
     if (!BKT) return;
@@ -2473,7 +2501,7 @@
   function bktSyncTabs() {
     document.querySelectorAll("#bkt-tabs button").forEach(b => b.classList.toggle("active", b.dataset.r === bktActive));
   }
-  function mountBracket(data) {
+  function mountBracket(data, isMlb) {
     const stage = document.getElementById("bkt-stage"); if (!stage) return;
     const rounds = data.bracket || [];
     const byNo = {};
@@ -2485,7 +2513,9 @@
         pr: (byNo[no] || {}).round, cr: (byNo[BKT_FEED[no][0]] || {}).round}); });
     conns.push({p: 104, c: [101], side: "L", single: true, pr: "F", cr: "SF"});
     conns.push({p: 104, c: [102], side: "R", single: true, pr: "F", cr: "SF"});
-    BKT = {data, byNo, tree, conns};
+    // mlb=true marks the /#knockout Most Likely Bracket, where played games wear the
+    // cyan "actual" tint; on the live /#bracket they instead get the gold "finished".
+    BKT = {data, byNo, tree, conns, mlb: !!isMlb};
     [...stage.querySelectorAll(".bkt-box")].forEach(e => e.remove());
     Object.keys(byNo).forEach(no => { const d = document.createElement("div");
       d.className = "bkt-box"; d.id = "bkt-box-" + no; stage.appendChild(d); });
