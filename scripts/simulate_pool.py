@@ -319,9 +319,6 @@ def make_runner(model):
     # Shared [home-win, draw, away-win] tally per remaining group game, summed
     # across all of this worker's runs (no per-run allocation).
     upc = [[0, 0, 0] for _ in flat_upcoming]
-    # (match, 0=home-slot|1=away-slot, team) -> times that team filled that slot,
-    # summed across this worker's runs. Drives the per-slot "most common team".
-    occ = defaultdict(int)
     tmpl = sim["template"]
     knockout_played = sim.get("knockoutPlayed") or []
     third_alloc = tmpl.get("thirdAllocation") or {}
@@ -344,7 +341,7 @@ def make_runner(model):
     KO_MUL = p["koTotalMul"]
     ET_TOTAL = p["etTotal"]
 
-    def run():
+    def run(decide=None):
         person = dict(baseline)
 
         # 1) Group tables: real results + simulated remaining fixtures.
@@ -466,8 +463,6 @@ def make_runner(model):
             away = side_from_code(md["away"], md)
             if not (home and away):
                 continue
-            occ[(md["match"], 0, home["name"])] += 1
-            occ[(md["match"], 1, away["name"])] += 1
             real = find_real(home["name"], away["name"], stage)
             if real and real.get("winner"):
                 same = real.get("home") == home["name"]
@@ -481,6 +476,9 @@ def make_runner(model):
                     win_side = ("AWAY_TEAM" if real["winner"] == "HOME_TEAM"
                                 else "HOME_TEAM")
                 pens = real.get("penalties", False)
+            elif decide is not None:
+                hg, ag, win_side, pens = decide(home["name"], away["name"],
+                                                stage, md["match"])
             else:
                 fin_mul = FINAL_BOOST if stage == "FINAL" else 1.0
                 hangA = bool(won_on_pens.get(home["name"]))
@@ -530,7 +528,7 @@ def make_runner(model):
                               if results[m]["winner"]["name"] == champ]
         return person, champ, qualified, champ_opps
 
-    return run, upc, occ
+    return run, upc
 
 
 # ----------------------------------------------------------------------------
@@ -542,7 +540,7 @@ def _run_chunk(task):
     n, seed, data_path, elo_path = task
     random.seed(seed)
     model = build_model(load(elo_path), load(data_path))
-    run, upc, occ = make_runner(model)
+    run, upc = make_runner(model)
 
     wins = defaultdict(float)
     pts_sum = defaultdict(float)
@@ -567,7 +565,7 @@ def _run_chunk(task):
             wins[nm] += share
         for nm, v in person.items():
             pts_sum[nm] += v
-    return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc, dict(ep_sum), dict(ep_rank), dict(occ)
+    return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc, dict(ep_sum), dict(ep_rank)
 
 
 # ----------------------------------------------------------------------------
@@ -633,13 +631,12 @@ def main():
     ko = defaultdict(float)
     ep_sum_total = defaultdict(float)   # champion -> summed mean opponent strength over titles
     ep_rank_total = defaultdict(float)  # champion -> summed mean opponent FIFA rank over titles
-    occ_total = defaultdict(int)        # (match, slot, team) -> times that team filled the slot
     # Per-game [home-win, draw, away-win] counts, summed across workers by the
     # shared flat_upcoming index order.
     upc_total = [[0, 0, 0] for _ in model["flat_upcoming"]]
 
     def merge(result):
-        w, p, c, k, u, es, er, oc = result
+        w, p, c, k, u, es, er = result
         for nm, v in w.items():
             wins[nm] += v
         for nm, v in p.items():
@@ -652,8 +649,6 @@ def main():
             ep_sum_total[nm] += v
         for nm, v in er.items():
             ep_rank_total[nm] += v
-        for key, v in oc.items():
-            occ_total[key] += v
         for i, x in enumerate(u):
             t = upc_total[i]
             t[0] += x[0]; t[1] += x[1]; t[2] += x[2]
@@ -803,57 +798,42 @@ def main():
             })
         ep_rows.sort(key=lambda r: (-r["wins"], r["name"].lower()))
 
-        # Most-Likely Bracket: per-slot MODAL team (raw frequency; rounds independent,
-        # so they may not chain). For each shown matchup we then run a fast targeted
-        # head-to-head with the SAME model weights to get the win% and the most likely
-        # score (with ET/pens noted). Champion = the modal title holder.
-        tmpl = model["sim"]["template"]
-        by_game = {}   # match -> [home-counts, away-counts]
-        for (mm, slot, team), cc in occ_total.items():
-            g = by_game.setdefault(mm, [{}, {}])
-            g[slot][team] = g[slot].get(team, 0) + cc
-        bgames = []
-        for key in ("r32", "r16", "qf", "sf", "final"):
-            for md in (tmpl.get(key) or []):
-                bgames.append((md["match"], SIM_ROUND_STAGE[key]))
-        bgames.sort()
-
+        # Most-Likely Bracket — coherent, ROUND BY ROUND. R32 are the real fixed
+        # matchups. Each game is decided by a fast head-to-head with the SAME model
+        # weights; the winner advances and the next round's matchup is formed from
+        # those winners (a result genuinely feeds the next round, so the bracket
+        # chains cleanly). We keep the home win probability (away = 1 - it) and the
+        # most likely score with ET/pens noted. Deterministic under a fixed --seed.
         pp = model["p"]
         KO_MUL = pp["koTotalMul"]; ET_TOTAL = pp["etTotal"]
         FINAL_BOOST = pp["finalScoreBoost"]; DC = pp["dcRho"]
-        _, elo_score, shoot_win = make_engine(model)
+        _, elo_b, shoot_b = make_engine(model)
 
-        def play_game(h, a, is_final):
+        def play1(h, a, is_final):
             fmul = FINAL_BOOST if is_final else 1.0
-            hg, ag = elo_score(h, a, total_mul=KO_MUL * fmul, rho=DC)
+            hg, ag = elo_b(h, a, total_mul=KO_MUL * fmul, rho=DC)
             if hg != ag:
                 return hg, ag, 0, (0 if hg > ag else 1)
-            e1, e2 = elo_score(h, a, total_abs=ET_TOTAL, total_mul=fmul, rho=DC)
+            e1, e2 = elo_b(h, a, total_abs=ET_TOTAL, total_mul=fmul, rho=DC)
             hg += e1; ag += e2
             if hg != ag:
                 return hg, ag, 1, (0 if hg > ag else 1)
-            ws = 0 if random.random() < shoot_win(h, a) else 1
-            return hg, ag, 2, ws
+            return hg, ag, 2, (0 if random.random() < shoot_b(h, a) else 1)
 
-        random.seed(args.seed if args.seed is not None else 1)
         K = 40000
-        bracket_rows = []
-        for (M, stage) in bgames:
-            g = by_game.get(M)
-            if not g or not g[0] or not g[1]:
-                continue
-            home = max(g[0], key=lambda t: (g[0][t], t))
-            away = max(g[1], key=lambda t: (g[1][t], t))
+        bdata = {}
+
+        def decide(h, a, stage, match):
             is_final = (stage == "FINAL")
             wh = 0
             hist = defaultdict(int)
             for _ in range(K):
-                hg, ag, rt, ws = play_game(home, away, is_final)
+                hg, ag, rt, ws = play1(h, a, is_final)
                 if ws == 0:
                     wh += 1
                 hist[(hg, ag, rt, ws)] += 1
             ph = wh / K
-            pick, pick_pct, pick_home = (home, ph, True) if ph >= 0.5 else (away, 1 - ph, False)
+            pick_home = ph >= 0.5
             best, bestc = None, -1
             for (hg, ag, rt, ws), cc in hist.items():
                 if (ws == 0) != pick_home:
@@ -865,17 +845,35 @@ def main():
                     if cc > bestc:
                         bestc, best = cc, (hg, ag, rt)
             hg, ag, rt = best
-            bracket_rows.append({
-                "match": M, "stage": stage,
-                "home": {"name": home, "freq": d5(g[0][home] / N)},
-                "away": {"name": away, "freq": d5(g[1][away] / N)},
-                "pick": {"name": pick, "winPct": d5(pick_pct)},
-                "score": {"h": hg, "a": ag, "type": ("reg" if rt == 0 else "et" if rt == 1 else "pens")},
-            })
+            bdata[match] = {
+                "home": h, "away": a, "pHome": d5(ph),
+                "score": {"h": hg, "a": ag,
+                          "type": ("reg" if rt == 0 else "et" if rt == 1 else "pens")},
+            }
+            return hg, ag, ("HOME_TEAM" if pick_home else "AWAY_TEAM"), (rt == 2)
+
+        random.seed((args.seed if args.seed is not None else 1) + 777)
+        chalk_run, _cu = make_runner(model)
+        chalk_run(decide=decide)
+
+        tmpl = model["sim"]["template"]
+        bracket_rows = []
+        for key in ("r32", "r16", "qf", "sf", "final"):
+            stage = SIM_ROUND_STAGE[key]
+            for md in (tmpl.get(key) or []):
+                b = bdata.get(md["match"])
+                if not b:
+                    continue
+                bracket_rows.append({"match": md["match"], "stage": stage,
+                                     "home": b["home"], "away": b["away"],
+                                     "pHome": b["pHome"], "score": b["score"]})
+        bracket_rows.sort(key=lambda r: r["match"])
         champion = None
-        if champ:
-            cn = max(champ, key=lambda t: (champ[t], t))
-            champion = {"name": cn, "winPct": d5(champ[cn] / N)}
+        fin = next((r for r in bracket_rows if r["stage"] == "FINAL"), None)
+        if fin:
+            cn = fin["home"] if fin["pHome"] >= 0.5 else fin["away"]
+            champion = {"name": cn, "titlePct": d5(champ.get(cn, 0.0) / N)}
+
 
         if (prev is not None and prev.get("teams") == teams and prev.get("easiestPath") == ep_rows
                 and prev.get("bracket") == bracket_rows and prev.get("champion") == champion):
