@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-28T04:14:17.073903Z",
+  "generated": "2026-06-28T05:06:57.169019Z",
   "sims": 1000000,
   "teams": [
     {
@@ -60,6 +60,12 @@
       "name": "Colombia",
       "odds": 1.0,
       "base": 0.98726,
+      "delta": null
+    },
+    {
+      "name": "Croatia",
+      "odds": 1.0,
+      "base": 0.81854,
       "delta": null
     },
     {
@@ -189,18 +195,6 @@
       "delta": null
     },
     {
-      "name": "Croatia",
-      "odds": 0.81854,
-      "base": 1.0,
-      "delta": -0.18146
-    },
-    {
-      "name": "Iran",
-      "odds": 0.18146,
-      "base": 0.73996,
-      "delta": -0.5585
-    },
-    {
       "name": "Curaçao",
       "odds": 0.0,
       "base": 0.21917,
@@ -216,6 +210,12 @@
       "name": "Haiti",
       "odds": 0.0,
       "base": 0.0,
+      "delta": null
+    },
+    {
+      "name": "Iran",
+      "odds": 0.0,
+      "base": 0.18146,
       "delta": null
     },
     {
