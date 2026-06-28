@@ -1186,8 +1186,9 @@
 </style>
 <style id="knockout-style">
   /* Hidden /#knockout view: a standalone graphic like /#bubble, but shown only
-     once the group stage is complete. Same full-bleed treatment (chrome hidden). */
-  body.knockout-mode { background: var(--pitch-deep); }
+     once the group stage is complete. It keeps the site-wide pitch background and
+     kickoff-circle header so it matches every other page; only the tabs and footer
+     are dropped for the full-bleed feel. */
   body.knockout-mode .wrap { max-width: 1080px; }
   body.knockout-mode .wrap > nav.tabs,
   body.knockout-mode .wrap > footer { display: none !important; }
@@ -2751,12 +2752,12 @@
     });
   }
   function kBell(rows) {
-    const W = 1000, H = 380, padL = 70, padR = 70;
-    // The bell curve is a BACKDROP: its baseline sits on the x-axis and it fills
-    // the panel behind the swarm (drawn first, so it's underneath). The flags rest
-    // just above the axis and pack UPWARD over the curve, densest under the peak,
-    // so the cloud echoes the curve's shape instead of floating beneath it.
-    const peakY = 30, axisY = 356, curveBase = axisY, baseY = axisY - 16, minY = peakY + 6;
+    const W = 1000, padL = 70, padR = 70;
+    // The bell curve is a BACKDROP: its baseline sits on the x-axis and it's drawn
+    // first, so it's underneath the flags. The flags rest just above the axis and
+    // pack UPWARD, densest under the peak; the curve's peak is then set just above
+    // the tallest stack so the bell hugs the cloud instead of towering over it.
+    const axisY = 356, curveBase = axisY, baseY = axisY - 16, ceilY = 70;
     const xs = rows.map(r => r.str);
     let lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
     if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }
@@ -2766,10 +2767,6 @@
     let sd = Math.sqrt(xs.reduce((a, b) => a + (b - mu) * (b - mu), 0) / nn);
     if (!(sd > 0)) sd = (hi - lo) / 6;
     const g = s => Math.exp(-0.5 * ((s - mu) / sd) * ((s - mu) / sd));
-    const Y = s => curveBase - g(s) * (curveBase - peakY);
-    let d = "";
-    for (let i = 0; i <= 140; i++) { const s = lo + (hi - lo) * i / 140, x = X(s), y = Y(s); d += (i ? " L" : "M") + x.toFixed(1) + " " + y.toFixed(1); }
-    const area = d + " L" + X(hi).toFixed(1) + " " + curveBase + " L" + X(lo).toFixed(1) + " " + curveBase + " Z";
     const maxPct = Math.max.apply(null, rows.map(r => r.winPct)) || 1;
     // Smaller, tighter markers (radius 9..14) so dense clusters stack a few rows
     // high rather than ballooning across the whole panel.
@@ -2787,10 +2784,18 @@
           const need = p.rad + node.rad + 2;
           if (Math.abs(p.x - node.x) < need && Math.abs(p.y - cand) < need) { ok = false; break; }
         }
-        if (ok || cand <= minY) { y = Math.max(cand, minY); break; }
+        if (ok || cand <= ceilY) { y = Math.max(cand, ceilY); break; }
       }
       node.y = y; placed.push(node);
     });
+    // Snug fit: peak sits ~28px above the highest marker (clamped so the bell never
+    // gets pancake-flat when the flags barely stack), baseline stays on the axis.
+    const topEdge = Math.min.apply(null, placed.map(n => n.y - n.rad));
+    const peakY = Math.min(Math.max(topEdge - 28, 46), 230);
+    const Y = s => curveBase - g(s) * (curveBase - peakY);
+    let d = "";
+    for (let i = 0; i <= 140; i++) { const s = lo + (hi - lo) * i / 140; d += (i ? " L" : "M") + X(s).toFixed(1) + " " + Y(s).toFixed(1); }
+    const area = d + " L" + X(hi).toFixed(1) + " " + curveBase + " L" + X(lo).toFixed(1) + " " + curveBase + " Z";
     const marks = nodes.map(o => {
       const F = o.rad * 1.6;                       // flag glyph sized to fill its ring
       const tip = o.r.name + ": " + o.r.wins.toLocaleString() + " titles (" + (o.r.winPct * 100).toFixed(1) + "%), avg opp rank " + o.r.oppRank;
@@ -2799,11 +2804,14 @@
         '<text x="' + o.x.toFixed(1) + '" y="' + (o.y + F * 0.34).toFixed(1) + '" text-anchor="middle" font-size="' + F.toFixed(0) + '">' + o.r.flag + '</text></g>';
     }).join("");
     const muX = X(mu);
-    return '<svg viewBox="0 0 ' + W + ' ' + H + '" class="kbell" xmlns="http://www.w3.org/2000/svg">' +
+    // Crop the viewBox to the used band (label at top to axis labels at bottom) so
+    // there's no tall empty margin above the curve.
+    const topVB = peakY - 22, botVB = axisY + 30, H = botVB - topVB;
+    return '<svg viewBox="0 ' + topVB.toFixed(0) + ' ' + W + ' ' + H.toFixed(0) + '" class="kbell" xmlns="http://www.w3.org/2000/svg">' +
       '<path d="' + area + '" fill="rgba(232,195,74,0.10)"/>' +
       '<path d="' + d + '" fill="none" stroke="rgba(232,195,74,0.55)" stroke-width="2"/>' +
       '<line x1="' + muX.toFixed(1) + '" y1="' + (peakY - 6) + '" x2="' + muX.toFixed(1) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.4)" stroke-dasharray="4 5"/>' +
-      '<text x="' + muX.toFixed(1) + '" y="' + (peakY - 12) + '" text-anchor="middle" fill="rgba(242,240,228,0.75)" font-size="13">Average path</text>' +
+      '<text x="' + muX.toFixed(1) + '" y="' + (peakY - 11) + '" text-anchor="middle" fill="rgba(242,240,228,0.75)" font-size="13">Average path</text>' +
       '<line x1="' + padL + '" y1="' + axisY + '" x2="' + (W - padR) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.28)"/>' +
       '<text x="' + padL + '" y="' + (axisY + 20) + '" text-anchor="start" fill="#6FD8EC" font-size="13">\u2190 Easier (weaker opponents)</text>' +
       '<text x="' + (W - padR) + '" y="' + (axisY + 20) + '" text-anchor="end" fill="#FF5A45" font-size="13">Harder (stronger opponents) \u2192</text>' +
