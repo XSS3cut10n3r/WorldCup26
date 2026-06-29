@@ -2703,8 +2703,17 @@
       b.onclick = () => { bktActive = b.dataset.r; bktSyncTabs(); bktLayout(true); };
     });
     bktSyncTabs();
-    if (!bktResizeBound) { bktResizeBound = true; let rt;
-      window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => bktLayout(true), 140); }); }
+    if (!bktResizeBound) { bktResizeBound = true; let rt, lastW = window.innerWidth;
+      window.addEventListener("resize", () => {
+        // Mobile browsers fire `resize` whenever the URL bar shows/hides on scroll
+        // — a HEIGHT-only change. Re-laying out on those made the page (and the
+        // header's clipped kickoff circle) visibly jitter and reshape on every
+        // scroll, while desktop (which never fires resize on scroll) stayed clean.
+        // So relayout only when the WIDTH actually changes.
+        if (window.innerWidth === lastW) return;
+        lastW = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(() => bktLayout(true), 140);
+      }); }
     // The boxes slide into place via CSS transitions, so the connector lines must
     // be redrawn across that settle (animate=true runs the short redraw loop) or
     // they'd be frozen at the pre-transition measurement on first paint — exactly
