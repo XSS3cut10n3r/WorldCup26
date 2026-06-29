@@ -3120,7 +3120,13 @@
     const br = (koData && koData.bracket) || [];
     const teams = (data && data.sim && data.sim.teams) || {};
     const ownerOf = nm => (teams[nm] && teams[nm].owner) || "";
-    const ORDER = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL"];
+    const ORDER = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL", "THIRD_PLACE"];
+    // Per-team strength (simulated title odds) used to project the third-place
+    // play-off, which koData doesn't itself simulate.
+    const koStrength = {};
+    if (koData && koData.teams) (koData.teams || []).forEach(t =>
+      { koStrength[normKey(canonName(t.name))] = (t.odds != null ? t.odds : (t.titlePct || 0)); });
+    const strengthOf = nm => koStrength[normKey(canonName(nm))] || 0;
     // Real, already-played knockout games indexed by FIFA match number. These are
     // overlaid on the projected most-likely bracket: a game that has actually been
     // played keeps its slot and renders as an ACTUAL result (its own colour) rather
@@ -3173,10 +3179,39 @@
       });
     });
     // Played games the projection dropped entirely: fold them back into their round.
+    // (103 / third place is handled in the synthesis block below, with its prediction.)
     Object.keys(realByNo).forEach(k => { const no = +k;
-      if (seen.has(no)) return;
+      if (seen.has(no) || no === 103) return;
       const e = realByNo[no]; if (!byStage[e.stage]) return;
       byStage[e.stage].push(realEntry(no, e.m, MLB_PREDICTED[no])); });
+
+    // Third-place play-off: koData doesn't project it, so build it from the two
+    // semifinal losers. The stronger side (by simulated title odds) is the projected
+    // winner; once the real game is played it overlays and is judged against that pick.
+    if (!(byStage.THIRD_PLACE || []).length) {
+      const sfs = (byStage.SEMI_FINALS || []).slice().sort((a, b) => a.matchNo - b.matchNo);
+      if (sfs.length === 2) {
+        const loserOf = e => (e.winner === "HOME_TEAM" ? e.away : e.home);
+        const l1 = loserOf(sfs[0]), l2 = loserOf(sfs[1]);
+        if (l1 && l2 && l1.name && l2.name && l1.resolved !== false && l2.resolved !== false) {
+          const homeWins = strengthOf(l1.name) >= strengthOf(l2.name);
+          const predName = homeWins ? l1.name : l2.name;
+          const real3 = realByNo[103];
+          if (real3) {
+            byStage.THIRD_PLACE.push(realEntry(103, real3.m, predName));
+          } else {
+            const sH = strengthOf(l1.name), sA = strengthOf(l2.name), tot = sH + sA;
+            const pHome = tot > 0 ? Math.min(0.8, Math.max(0.5, (homeWins ? sH : sA) / tot)) : null;
+            const mk = (nm, goals) => ({ name: nm, resolved: true, projected: false, goals: goals, penGoals: null, slot: ownerOf(nm) });
+            byStage.THIRD_PLACE.push({
+              matchNo: 103, home: mk(l1.name, homeWins ? 1 : 0), away: mk(l2.name, homeWins ? 0 : 1),
+              winner: homeWins ? "HOME_TEAM" : "AWAY_TEAM", status: "FINISHED",
+              penalties: false, afterExtraTime: false, pickPct: pHome, utcDate: null
+            });
+          }
+        }
+      }
+    }
 
     ORDER.forEach(st => byStage[st].sort((a, b) => a.matchNo - b.matchNo));
     const rounds = ORDER.filter(st => byStage[st].length).map(st => ({ stageCode: st, matches: byStage[st] }));
