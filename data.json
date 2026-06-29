@@ -472,12 +472,13 @@
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 74,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-29T20:30:00Z",
       "home": {
         "name": "Germany",
@@ -501,9 +502,7 @@
       },
       "penalties": true,
       "winner": null
-    }
-  ],
-  "recent": [
+    },
     {
       "matchNo": 76,
       "stage": "Round of 32",
@@ -605,28 +604,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-27T23:30:00Z",
-      "home": {
-        "name": "Congo DR",
-        "owner": "Tom",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 45
-      },
-      "away": {
-        "name": "Uzbekistan",
-        "owner": "Ondine",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 50
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -959,7 +936,7 @@
           "matchNo": 74,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-06-29T20:30:00Z",
           "home": {
             "name": "Germany",
@@ -9846,8 +9823,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Germany",
+        "away": "Paraguay",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "penalties": true,
+        "penHome": 4,
+        "penAway": 4,
+        "winner": null
       }
     ]
   },
-  "generated": "2026-06-29T23:32:01Z"
+  "generated": "2026-06-29T23:33:04Z"
 }
