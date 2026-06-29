@@ -482,8 +482,8 @@
       "home": {
         "name": "Germany",
         "owner": "Tomi",
-        "goals": 1,
-        "penGoals": 3,
+        "goals": 0,
+        "penGoals": 4,
         "projected": false,
         "slot": "Winner Group E",
         "resolved": true,
@@ -964,8 +964,8 @@
           "home": {
             "name": "Germany",
             "owner": "Tomi",
-            "goals": 2,
-            "penGoals": null,
+            "goals": 0,
+            "penGoals": 4,
             "projected": false,
             "slot": "Winner Group E",
             "resolved": true,
@@ -975,14 +975,14 @@
             "name": "Paraguay",
             "owner": "Pete",
             "goals": 1,
-            "penGoals": null,
+            "penGoals": 4,
             "projected": false,
             "slot": "3rd place A/B/C/D/F",
             "resolved": true,
             "fifaRank": 40
           },
-          "penalties": false,
-          "winner": "HOME_TEAM"
+          "penalties": true,
+          "winner": null
         },
         {
           "matchNo": 75,
@@ -2121,7 +2121,7 @@
           "ga": 4,
           "gd": -2,
           "points": 4,
-          "conduct": -11,
+          "conduct": -13,
           "fifaRank": 40,
           "clinched": true,
           "clinchType": "third"
@@ -2161,7 +2161,7 @@
           "ga": 4,
           "gd": 6,
           "points": 6,
-          "conduct": -1,
+          "conduct": -3,
           "fifaRank": 10,
           "clinched": true,
           "clinchType": "winner"
@@ -2884,7 +2884,7 @@
       "ga": 4,
       "gd": -2,
       "points": 4,
-      "conduct": -11,
+      "conduct": -13,
       "fifaRank": 40,
       "clinched": true,
       "clinchType": "third",
@@ -3038,16 +3038,6 @@
         "rank": 1
       },
       {
-        "team": "Germany",
-        "owner": "Tomi",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 1
-      },
-      {
         "team": "Morocco",
         "owner": "Agatha",
         "yellow": 1,
@@ -3085,7 +3075,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 8
+        "rank": 7
       },
       {
         "team": "Croatia",
@@ -3095,7 +3085,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 8
+        "rank": 7
       },
       {
         "team": "England",
@@ -3105,7 +3095,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 8
+        "rank": 7
       },
       {
         "team": "Senegal",
@@ -3115,7 +3105,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 8
+        "rank": 7
       },
       {
         "team": "Spain",
@@ -3125,7 +3115,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 8
+        "rank": 7
       },
       {
         "team": "Türkiye",
@@ -3135,7 +3125,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 8
+        "rank": 7
+      },
+      {
+        "team": "Germany",
+        "owner": "Tomi",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 13
       },
       {
         "team": "Ghana",
@@ -3145,7 +3145,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 14
+        "rank": 13
       },
       {
         "team": "Netherlands",
@@ -3155,7 +3155,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 14
+        "rank": 13
       },
       {
         "team": "Switzerland",
@@ -3165,7 +3165,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 14
+        "rank": 13
       },
       {
         "team": "Austria",
@@ -3458,16 +3458,6 @@
         "rank": 45
       },
       {
-        "team": "Paraguay",
-        "owner": "Pete",
-        "yellow": 7,
-        "indirect_red": 0,
-        "direct_red": 1,
-        "yellow_direct_red": 0,
-        "score": -11,
-        "rank": 46
-      },
-      {
         "team": "Qatar",
         "owner": "Iva",
         "yellow": 4,
@@ -3475,6 +3465,16 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -12,
+        "rank": 46
+      },
+      {
+        "team": "Paraguay",
+        "owner": "Pete",
+        "yellow": 9,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -13,
         "rank": 47
       },
       {
@@ -3485,7 +3485,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -13,
-        "rank": 48
+        "rank": 47
       }
     ],
     "people": [
@@ -3532,6 +3532,29 @@
         "rank": 2
       },
       {
+        "name": "Tomi",
+        "score": -22,
+        "teams": [
+          {
+            "name": "Germany",
+            "score": -3
+          },
+          {
+            "name": "Sweden",
+            "score": -5
+          },
+          {
+            "name": "Bosnia and Herzegovina",
+            "score": -10
+          },
+          {
+            "name": "New Zealand",
+            "score": -4
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Paul",
         "score": -20,
         "teams": [
@@ -3552,30 +3575,7 @@
             "score": -4
           }
         ],
-        "rank": 3
-      },
-      {
-        "name": "Tomi",
-        "score": -20,
-        "teams": [
-          {
-            "name": "Germany",
-            "score": -1
-          },
-          {
-            "name": "Sweden",
-            "score": -5
-          },
-          {
-            "name": "Bosnia and Herzegovina",
-            "score": -10
-          },
-          {
-            "name": "New Zealand",
-            "score": -4
-          }
-        ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Ondine",
@@ -3601,6 +3601,25 @@
         "rank": 5
       },
       {
+        "name": "Pete",
+        "score": -19,
+        "teams": [
+          {
+            "name": "Spain",
+            "score": -2
+          },
+          {
+            "name": "Japan",
+            "score": -4
+          },
+          {
+            "name": "Paraguay",
+            "score": -13
+          }
+        ],
+        "rank": 5
+      },
+      {
         "name": "Charlie",
         "score": -18,
         "teams": [
@@ -3619,25 +3638,6 @@
           {
             "name": "Jordan",
             "score": -4
-          }
-        ],
-        "rank": 6
-      },
-      {
-        "name": "Pete",
-        "score": -17,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": -2
-          },
-          {
-            "name": "Japan",
-            "score": -4
-          },
-          {
-            "name": "Paraguay",
-            "score": -11
           }
         ],
         "rank": 7
@@ -9581,7 +9581,7 @@
       "Paraguay": {
         "owner": "Pete",
         "canon": "Paraguay",
-        "conduct": -11,
+        "conduct": -13,
         "fifa": 40,
         "group": "D"
       },
@@ -9602,7 +9602,7 @@
       "Germany": {
         "owner": "Tomi",
         "canon": "Germany",
-        "conduct": -1,
+        "conduct": -3,
         "fifa": 10,
         "group": "E"
       },
@@ -9849,5 +9849,5 @@
       }
     ]
   },
-  "generated": "2026-06-29T22:58:27Z"
+  "generated": "2026-06-29T23:29:56Z"
 }
