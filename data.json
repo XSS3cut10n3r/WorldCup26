@@ -483,8 +483,8 @@
       "home": {
         "name": "Germany",
         "owner": "Tomi",
-        "goals": 1,
-        "penGoals": 4,
+        "goals": 0,
+        "penGoals": 5,
         "projected": false,
         "slot": "Winner Group E",
         "resolved": true,
@@ -494,7 +494,7 @@
         "name": "Paraguay",
         "owner": "Pete",
         "goals": 1,
-        "penGoals": 4,
+        "penGoals": 5,
         "projected": false,
         "slot": "3rd place A/B/C/D/F",
         "resolved": true,
@@ -941,8 +941,8 @@
           "home": {
             "name": "Germany",
             "owner": "Tomi",
-            "goals": 1,
-            "penGoals": 4,
+            "goals": 0,
+            "penGoals": 5,
             "projected": false,
             "slot": "Winner Group E",
             "resolved": true,
@@ -952,7 +952,7 @@
             "name": "Paraguay",
             "owner": "Pete",
             "goals": 1,
-            "penGoals": 4,
+            "penGoals": 5,
             "projected": false,
             "slot": "3rd place A/B/C/D/F",
             "resolved": true,
@@ -9828,14 +9828,14 @@
         "stageCode": "LAST_32",
         "home": "Germany",
         "away": "Paraguay",
-        "homeGoals": 1,
+        "homeGoals": 0,
         "awayGoals": 1,
         "penalties": true,
-        "penHome": 4,
-        "penAway": 4,
+        "penHome": 5,
+        "penAway": 5,
         "winner": null
       }
     ]
   },
-  "generated": "2026-06-29T23:33:04Z"
+  "generated": "2026-06-29T23:35:10Z"
 }
