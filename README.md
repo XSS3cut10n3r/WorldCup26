@@ -4,12 +4,15 @@ A self-updating GitHub Pages site that tracks your family's World Cup 2026 pool.
 A GitHub Action checks live scores every 20 minutes via the
 [football-data.org](https://www.football-data.org/) API, applies your family
 scoring rules, and updates the site. It also pulls live championship odds from
-the betting market and runs a strength-rated tournament **simulator** right in
-the browser — no server, no cost, runs by itself for the whole tournament.
+the betting market, runs its own strength-rated Monte Carlo to project the rest
+of the tournament (a most-likely **Knockout bracket**, each person's odds of
+winning the pool, and per-game win chances), and gives you a one-tap
+**simulator** that plays the rest of the cup out in your browser. No server, no
+cost, runs by itself for the whole tournament.
 
 ## A look at the site
 
-The leaderboard — every person's points, with their teams as chips:
+The leaderboard, every person's points, with their teams as chips:
 
 ![The Family Cup leaderboard, showing the family standings with each person's teams](screenshots/01-leaderboard.png)
 
@@ -17,64 +20,114 @@ The leaderboard — every person's points, with their teams as chips:
   <tr>
     <td width="50%">
       <img src="screenshots/02-results.png" alt="Recent results feed with UPSET and HELD tags"><br>
-      <sub><b>Recent results</b> — finished games with automatic <b>UPSET</b> (a low-ranked team beats a high one) and <b>HELD</b> (a big draw against the odds) tags, plus a live points feed.</sub>
+      <sub><b>Recent results</b>: finished games with automatic <b>UPSET</b> (a low-ranked team beats a high one) and <b>HELD</b> (a big draw against the odds) tags, plus a live points feed. Knockout finishes get a brief <b>"KO"</b> flourish.</sub>
     </td>
     <td width="50%">
       <img src="screenshots/03-groups.png" alt="Group tables A through F"><br>
-      <sub><b>Group tables</b> — all twelve groups, ordered by the full FIFA tiebreaker chain, with each team's owner underneath.</sub>
+      <sub><b>Group tables</b>: all twelve groups, ordered by the full FIFA tiebreaker chain, with each team's owner underneath.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <img src="screenshots/04-bracket.png" alt="Projected knockout bracket"><br>
-      <sub><b>Knockout bracket</b> — projected from the live standings (italic = not yet locked), third-place slots placed by FIFA's official Annex C table.</sub>
+      <sub><b>Knockout bracket</b>: projected from the live standings (italic = not yet locked), third-place slots placed by FIFA's official Annex C table.</sub>
     </td>
     <td width="50%">
       <img src="screenshots/05-coming-up.png" alt="Upcoming fixtures list"><br>
-      <sub><b>Coming up</b> — the next fixtures with kickoff times, FIFA ranks, and which family member owns each side.</sub>
+      <sub><b>Coming up</b>: the next fixtures with kickoff times, FIFA ranks, each side's model win chance, and which family member owns each team.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%">
       <img src="screenshots/06-odds.png" alt="Odds to win the cup, per person"><br>
-      <sub><b>Odds to win</b> — live championship odds, combined per person, with each team's share and the move since the last update.</sub>
+      <sub><b>Odds to win</b>: live championship odds, combined per person, with each team's share and the move since the last update.</sub>
     </td>
     <td width="50%">
       <img src="screenshots/07-conduct.png" alt="Worst conduct table"><br>
-      <sub><b>Worst conduct</b> — every card your teams pick up counts against you; rank 1 owns the dirtiest squad list.</sub>
+      <sub><b>Worst conduct</b>: every card your teams pick up counts against you; rank 1 owns the dirtiest squad list.</sub>
     </td>
   </tr>
 </table>
+
+## The Knockout projection
+
+The **Knockout** button (top of the page, available once the group stage is
+settled) opens a full-bleed projection page titled **Model Projected Results**,
+the model's best guess at how the bracket plays out, in a cool cyan theme so it
+never reads as a live score.
+
+- **Most-likely bracket.** The whole knockout drawn round by round, all the way
+  to a **projected champion**, built from the Monte Carlo (see below).
+- **Graded against your picks.** Each knockout slot carries a locked-in
+  prediction. As real games finish, every played match turns **green** when the
+  result matched the prediction and **red** when it didn't, so at a glance you
+  can see how the model (and your own call) is holding up. A third-place card
+  sits alongside the final.
+- **Easiest Path to the Title.** A chart plus a sortable table ranking the
+  contenders not just by how often they win, but by *how hard the road is*: the
+  average strength of the five knockout opponents a team would have to beat to
+  lift the trophy. Tap any column header to re-sort.
+
+Hit **Simulate** while you're here and the page follows your what-if instead of
+the model: the bracket becomes the tournament *you just simulated*, still graded
+green/red against the locked predictions, and the Easiest Path narrows to the
+road your simulated champion actually walked. Switch back to live results and
+it returns to the model projection.
 
 ## Live championship odds
 
 The **Odds** tab shows each person's live chance of owning the eventual winner.
 `scripts/update_odds.py` pulls the "who wins the World Cup" market from
-[Kalshi](https://kalshi.com/) — public market data, **no API key needed** —
+[Kalshi](https://kalshi.com/) (public market data, **no API key needed**),
 strips the bookmaker margin so every team's implied probability sums to 100%,
 and rolls each person's teams up into their combined odds. The tab shows each
 team's individual share and the move since the last refresh. Run it any time
 from the **Actions** tab (**Update odds → Run workflow**).
 
+## The pool simulator (server-side projection)
+
+Separate from the market odds, the site runs its own strength-rated Monte Carlo
+over the *current* tournament state to answer the questions the betting line
+doesn't: who's winning the **pool**, how the **bracket** is most likely to fall,
+and each side's chance in the **next game**.
+
+`scripts/simulate_pool.py` reads `data.json` (the live results, group tables and
+bracket) and `elo.json` (the team ratings) and plays the rest of the tournament
+forward many thousands of times, including the **third-place play-off**, then
+writes three files:
+
+- **`sim_odds.json`**: each person's odds of winning the family pool.
+- **`knockout_odds.json`** holds everything the Knockout page draws: the
+  most-likely bracket, the projected champion, and the Easiest-Path numbers.
+- **`upcoming_odds.json`**: per-game win/draw/loss chances for the next
+  fixtures, shown on the **Coming up** cards.
+
+It's the same strength model the in-browser Simulate button uses, so the
+projection and your what-ifs speak the same language. Run it from the **Actions**
+tab (**Simulate pool → Run workflow**); it also re-runs after a scores update so
+the projection re-anchors the moment results change.
+
 ## The simulator
 
 Every tab has a **Simulate** button. It plays the *rest* of the tournament
-forward — the remaining group games, the full Annex C knockout bracket, extra
-time and shootouts — instantly in your browser, and shows who lifts the trophy.
-Hit it again and again to get a feel for how the draw tends to break.
+forward (the remaining group games, the full Annex C knockout bracket including
+the **third-place play-off**, extra time and shootouts) instantly in your
+browser, and shows who lifts the trophy. Hit it again and again to get a feel
+for how the draw tends to break. (On the Knockout page, Simulate also redraws
+the bracket itself, see [The Knockout projection](#the-knockout-projection).)
 
 It's strength-weighted, not a coin toss. Each team carries a rating in
 **`elo.json`**, produced by `scripts/build_elos.py`: a 100,000-tournament Monte
 Carlo that tunes every rating until the simulated champions line up with the
 live Kalshi odds. So the simulator's baseline **matches the market**.
 
-On top of that baseline it leans on what has actually happened so far — the
+On top of that baseline it leans on what has actually happened so far, the
 things a betting line is slow to price:
 
 - **Form, weighted by who you played.** Goals scored and conceded versus the
-  tournament's running average, scaled by the quality of the opponent. A 7–0
+  tournament's running average, scaled by the quality of the opponent. A 7-0
   over a top-ranked side moves a team far more than the same score over a
-  minnow — and leaking goals to a minnow hurts more than leaking to a giant.
+  minnow, and leaking goals to a minnow hurts more than leaking to a giant.
   Both group and knockout games count.
 - **FIFA rank.** A small edge to the higher-ranked side, leaned on more heavily
   in the group stage than the knockouts.
@@ -83,11 +136,11 @@ things a betting line is slow to price:
 - **Bigger finals.** Roughly 20% more goals are expected in the final than in a
   normal match.
 - **Realistic knockout scoring.** Knockout games stay lively, around 2.3 goals a
-  game in regulation, in line with recent World Cups, rather than cagey 0–0s.
+  game in regulation, in line with recent World Cups, rather than cagey 0-0s.
 - **True-to-life shootouts.** Level games go to extra time, then penalties. A
   small *Dixon-Coles* correction (the `dcRho` dial) fixes a known quirk of the
   usual scoring model, which slightly under-counts low-scoring draws: it nudges
-  the 0–0, 1–1, 1–0 and 0–1 outcomes so games finish level at the real-world rate,
+  the 0-0, 1-1, 1-0 and 0-1 outcomes so games finish level at the real-world rate,
   without changing the total goals or who is favoured. That lifts shootouts to
   about **six a tournament**, roughly one in five knockout games, which is the
   World Cup's historical rate. With 2026's 32 knockout matches (double the old
@@ -98,22 +151,22 @@ you can nudge the model's personality without touching code.
 
 **Keeping the ratings fresh.** The **Rebuild Elo ratings** workflow re-runs the
 full calibration after each scores update (and on demand), re-anchoring every
-rating to the latest results and odds — a couple of CI minutes per run. Between
+rating to the latest results and odds, a couple of CI minutes per run. Between
 those rebuilds, each **Update odds** run also gives the ratings a light nudge as
 the market drifts (via `scripts/elo_nudge.py`), so the simulator always reflects
 the current picture without waiting for a full rebuild.
 
-If `elo.json` is ever missing, the Simulate button still works — it just falls
+If `elo.json` is ever missing, the Simulate button still works; it just falls
 back to even, unweighted scorelines until the ratings are rebuilt.
 
 **A what-if, never the real thing.** A simulation never touches the live
 standings, and the site makes that unmistakable. Sim mode repaints the whole
-page in a cool slate-blue theme (the live pages stay green), the status pill
-reads "Simulated Results · Not Live", and on phones the browser bar tints to
-match. A quick popup confirms before you start, and again before you head back
-to the live scores, and the first time you ever simulate, a small pointer shows
-you the way back. Nothing is saved: leave the what-if and the real results are
-exactly as you left them.
+page (the Knockout projection included) in a cool slate-blue theme (the live
+pages stay green), the status pill reads "Simulated Results · Not Live", and on
+phones the browser bar tints to match. A quick popup confirms before you start,
+and again before you head back to the live scores, and the first time you ever
+simulate, a small pointer shows you the way back. Nothing is saved: leave the
+what-if and the real results are exactly as you left them.
 
 ## Scoring rules (current settings)
 
@@ -128,8 +181,8 @@ exactly as you left them.
 | Third-place match win | 3 |
 | Final win | 6 |
 
-Penalty-shootout wins count as full wins. Change any value in **`config.json`**
-— for example, to score the bronze-medal match like a semi-final, set
+Penalty-shootout wins count as full wins. Change any value in **`config.json`**.
+For example, to score the bronze-medal match like a semi-final, set
 `"THIRD_PLACE": 5`.
 
 Team assignments live in **`assignments.json`**. Edit that file any time;
@@ -138,8 +191,8 @@ the next scheduled run picks it up automatically.
 ## One-time setup (about 10 minutes)
 
 1. **Get a free API key.** Register at
-   [football-data.org/client/register](https://www.football-data.org/client/register)
-   — the free tier covers the World Cup. The key arrives by email. (This is for
+   [football-data.org/client/register](https://www.football-data.org/client/register);
+   the free tier covers the World Cup. The key arrives by email. (This is for
    scores only; the odds feed needs no key.)
 
 2. **Create the repository.** On GitHub, create a new **public** repo (public
@@ -154,7 +207,7 @@ the next scheduled run picks it up automatically.
 
 4. **Allow the workflows to push.** **Settings → Actions → General →
    Workflow permissions** → select **Read and write permissions** → Save.
-   (All three workflows commit back to the repo, so this covers them all.)
+   (Every workflow commits back to the repo, so this covers them all.)
 
 5. **Turn on GitHub Pages.** **Settings → Pages** → under *Build and
    deployment*, set Source to **Deploy from a branch**, branch **main**,
@@ -162,17 +215,23 @@ the next scheduled run picks it up automatically.
    (usually `https://<your-username>.github.io/<repo-name>/`).
 
 6. **Run it once manually.** Go to the **Actions** tab → **Update scores** →
-   **Run workflow**. When it finishes green, refresh your site — real fixture
-   data should appear. From then on it runs itself every 20 minutes (ideally —
+   **Run workflow**. When it finishes green, refresh your site, real fixture
+   data should appear. From then on it runs itself every 20 minutes (ideally;
    GitHub's cron is unreliable, so in practice it's every few hours. Frequent
    manual runs are fine!).
 
-7. **Light up the odds and the simulator.** Still on the **Actions** tab, run
-   **Update odds** once (fills in `odds.json` → the Odds tab), then **Rebuild
-   Elo ratings** once (fills in `elo.json` → the strength-weighted Simulate
-   button). No extra keys are needed. After this, **Rebuild Elo ratings**
-   re-runs itself after every scores update; refresh the market whenever you
-   like by running **Update odds** again.
+7. **Light up the odds, the ratings and the projection.** Still on the
+   **Actions** tab, run these once each (no extra keys needed):
+   - **Update odds** → fills `odds.json` (the Odds tab).
+   - **Rebuild Elo ratings** → fills `elo.json` (the strength-weighted Simulate
+     button).
+   - **Simulate pool** → fills `sim_odds.json`, `knockout_odds.json` and
+     `upcoming_odds.json` (the pool odds, the **Knockout** projection page, and
+     the per-game chances on **Coming up**).
+
+   After this, **Rebuild Elo ratings** and **Simulate pool** re-run themselves
+   after every scores update; refresh the market whenever you like by running
+   **Update odds** again.
 
 ## How it works
 
@@ -180,49 +239,61 @@ the next scheduled run picks it up automatically.
 .github/workflows/update-scores.yml   schedule: fetch scores + commit (every ~20 min)
 .github/workflows/update-odds.yml     manual: fetch Kalshi odds (+ nudge ratings) + commit
 .github/workflows/build-elos.yml      recalibrate elo.json after each scores update + commit
+.github/workflows/simulate-pool.yml   re-project after each scores update: pool + knockout + per-game odds + commit
 scripts/update_scores.py              calls the API, applies scoring, writes data.json
 scripts/update_odds.py                Kalshi championship odds -> odds.json (+ nudges elo.json)
 scripts/build_elos.py                 Monte Carlo: calibrate team ratings to the odds -> elo.json
 scripts/elo_nudge.py                  cheap rating nudge as odds drift (used by update_odds.py)
+scripts/simulate_pool.py              Monte Carlo over data.json + elo.json -> sim_odds.json, knockout_odds.json, upcoming_odds.json
 assignments.json                      who owns which teams
-config.json                           points per round
+config.json                           points per round (includes the third-place match)
 bracket-template.json                 FIFA bracket structure + Annex C third-place map
-data.json                             generated — scores, tables, bracket, simulator inputs
-odds.json                             generated — championship odds per person and team
-elo.json                              generated — team ratings + simulator parameters
-index.html                            the website — reads data.json, odds.json, elo.json
+data.json                             generated: scores, tables, bracket, simulator inputs
+odds.json                             generated: championship (market) odds per person and team
+elo.json                              generated: team ratings + simulator parameters
+sim_odds.json                         generated: each person's odds of winning the pool
+knockout_odds.json                    generated: Knockout page (most-likely bracket, champion, easiest path)
+upcoming_odds.json                    generated: per-game win/draw/loss chances for upcoming fixtures
+index.html                            the website, reads data.json, odds.json, elo.json, sim_odds.json, knockout_odds.json, upcoming_odds.json
 ```
 
 Each script only commits when something actually changed, so the repo history
 stays clean between match days. During live matches, scores on the site move as
 the scores Action runs (and the page also re-checks itself every 5 minutes while
-open). **Rebuild Elo ratings** is chained to fire right after **Update scores**,
-so the moment results change, the simulator re-anchors to them.
+open). **Rebuild Elo ratings** and **Simulate pool** are chained to fire right
+after **Update scores**, so the moment results change, both the ratings and the
+projection re-anchor to them.
 
-Want the full reasoning behind the rating model — the market calibration, the
+Want the full reasoning behind the rating model, the market calibration, the
 opponent-weighted form, the shootout tuning? It's all in the comments at the top
 of `scripts/build_elos.py` and the `params` block of `elo.json`.
 
 ## Troubleshooting
 
-- **Site shows "No score data yet"** — run the **Update scores** workflow once
+- **Site shows "No score data yet"**: run the **Update scores** workflow once
   from the Actions tab (step 6), and check it succeeded.
-- **Workflow fails with HTTP 403/401** — the `FOOTBALL_DATA_TOKEN` secret is
-  missing or mistyped (step 3). (The odds and Elo workflows don't use it.)
-- **Workflow fails on the push step** — workflow permissions aren't set to
+- **Workflow fails with HTTP 403/401**: the `FOOTBALL_DATA_TOKEN` secret is
+  missing or mistyped (step 3). (The odds, Elo and pool workflows don't use it.)
+- **Workflow fails on the push step**: workflow permissions aren't set to
   read/write (step 4).
-- **Odds tab is empty** — run **Update odds** once (step 7). If a team shows 0%,
+- **Odds tab is empty**: run **Update odds** once (step 7). If a team shows 0%,
   Kalshi spelled its name differently than `assignments.json`; add a line to the
   `ALIASES` dict near the top of `scripts/update_odds.py`.
-- **Simulate button does nothing or says it needs data** — it needs a recent
+- **Knockout page is empty (or pool odds / "Coming up" chances are missing)**:
+  run **Simulate pool** once (step 7). It needs a recent `data.json` and, for
+  strength weighting, `elo.json`.
+- **Simulate button does nothing or says it needs data**: it needs a recent
   `data.json` (run **Update scores**). For strength weighting it also needs
   `elo.json` (run **Rebuild Elo ratings**); without it the sim still runs but
   treats every team as even.
-- **A team isn't getting points** — the scores API may spell it differently than
+- **The "KO" sound never plays**: browsers block audio until you've interacted
+  with the page, so tap or click anywhere once and it'll play on the next
+  knockout finish. (It only sounds while the leaderboard is on screen.)
+- **A team isn't getting points**: the scores API may spell it differently than
   `assignments.json`. Common spellings are already handled (USA, Türkiye,
   Korea Republic, Ivory Coast, Cabo Verde, DR Congo, Czechia, …). If one slips
   through, add a line to the `ALIASES` dict near the top of
   `scripts/update_scores.py`.
-- **Scheduled runs stop after the tournament** — GitHub disables schedules
+- **Scheduled runs stop after the tournament**: GitHub disables schedules
   after 60 days without repo activity, which is fine; you can also delete or
   disable the workflows once the final is played.
