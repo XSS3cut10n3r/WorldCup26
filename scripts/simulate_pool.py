@@ -485,6 +485,7 @@ def make_runner(model, form_feedback=False):
         # 4) Knockout bracket, simulated forward (real results kept where played).
         results = {}
         won_on_pens = {}
+        real_ko = set()   # match numbers resolved from already-played real games
 
         def side_from_code(code, md):
             c0 = code[0]
@@ -516,6 +517,7 @@ def make_runner(model, form_feedback=False):
                 continue
             real = find_real(home["name"], away["name"], stage)
             if real and real.get("winner"):
+                real_ko.add(md["match"])
                 same = real.get("home") == home["name"]
                 hg = real["homeGoals"] if same else real["awayGoals"]
                 ag = real["awayGoals"] if same else real["homeGoals"]
@@ -580,10 +582,14 @@ def make_runner(model, form_feedback=False):
             res = results.get(final_match)
             if res:
                 champ = res["winner"]["name"]
-                # The champion's road to the title: the FIFA rank of every side it
-                # beat (R32 -> Final = 5 games), read straight off the bracket.
+                # The champion's road to the title FROM HERE: the FIFA rank of each
+                # side still AHEAD of it that it's projected to beat. Games already
+                # played in reality are excluded (real_ko), so "Easiest Path to the
+                # Title" reflects the remaining draw, not opponents already disposed
+                # of. Empty once a team has no knockout games left to play.
                 champ_opps = [results[m]["loser"]["fifa"] for m in results
-                              if results[m]["winner"]["name"] == champ]
+                              if results[m]["winner"]["name"] == champ
+                              and m not in real_ko]
         return person, champ, qualified, champ_opps
 
     return run, upc
@@ -891,11 +897,12 @@ def main():
         teams.sort(key=lambda t: (-t["odds"], t["name"].lower()))
 
         # Easiest-Path-to-the-Title: for every team that won >= 1 simulated title,
-        # the mean strength (-log FIFA rank) of the five knockout sides it beat on
-        # the way, averaged over its title-winning sims, with a readable mean
-        # opponent rank and the raw title tally. The #knockout page plots these on a
-        # bell curve and lists them. Deterministic under a fixed --seed, so the
-        # no-op skip still holds when nothing upstream changed.
+        # the mean strength (-log FIFA rank) of the knockout sides STILL AHEAD of it
+        # that it's projected to beat (games already played are excluded), averaged
+        # over its title-winning sims, with a readable mean opponent rank and the raw
+        # title tally. The #knockout page plots these on a bell curve and lists them.
+        # Deterministic under a fixed --seed, so the no-op skip still holds when
+        # nothing upstream changed.
         ep_rows = []
         for nm in model["T"]:
             c = champ_ko.get(nm, 0.0)
