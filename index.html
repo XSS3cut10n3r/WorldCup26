@@ -1460,7 +1460,7 @@
   <div id="app"></div>
 
   <footer>
-    scores via football-data.org &middot; odds via kalshi &middot; updates automatically every 20 minutes &middot;
+    Scores via football-data.org &middot; odds via Kalshi &middot; updates automatically every 20 minutes &middot;
     kickoff times shown in your local time
   </footer>
 </div>
@@ -1996,8 +1996,11 @@
     try {
       const src = koAC.createBufferSource(); src.buffer = koSoundBuf;
       const lp = koAC.createBiquadFilter(); lp.type = "lowpass";
-      lp.frequency.value = 3200; lp.Q.value = 0.6;     // roll off the harsh top end
-      const g = koAC.createGain(); g.gain.value = 0.3; // quieter
+      lp.frequency.value = 1500; lp.Q.value = 0.5;     // roll the harsh top end off hard
+      const g = koAC.createGain();                      // much quieter, with a soft onset
+      const now = koAC.currentTime;
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.linearRampToValueAtTime(0.11, now + 0.015);   // ~12ms fade-in, no clicky spike
       src.connect(lp); lp.connect(g); g.connect(koAC.destination);
       src.start();
     } catch (e) {}
