@@ -1999,10 +1999,18 @@
       lp.frequency.value = 1500; lp.Q.value = 0.5;     // roll the harsh top end off hard
       const g = koAC.createGain();                      // much quieter, with a soft onset
       const now = koAC.currentTime;
+      // The clip rings ~1.3s past the 4.4s KO visual, and that tail is where the
+      // shrill, painful bit lives. Stop before it and fade out over the last
+      // ~0.7s so it tapers away instead of cutting off (or ringing) sharply.
+      const PLAY = Math.min(koSoundBuf.duration || 4, 4.0);
+      const FADE = Math.min(0.7, PLAY * 0.4);
       g.gain.setValueAtTime(0.0001, now);
-      g.gain.linearRampToValueAtTime(0.11, now + 0.015);   // ~12ms fade-in, no clicky spike
+      g.gain.linearRampToValueAtTime(0.11, now + 0.015);    // ~12ms fade-in, no clicky spike
+      g.gain.setValueAtTime(0.11, now + (PLAY - FADE));
+      g.gain.linearRampToValueAtTime(0.0001, now + PLAY);   // gentle fade-out before the tail
       src.connect(lp); lp.connect(g); g.connect(koAC.destination);
       src.start();
+      try { src.stop(now + PLAY + 0.03); } catch (e) {}
     } catch (e) {}
   }
   // Browsers block audio until the user interacts; resume on the first gesture.
