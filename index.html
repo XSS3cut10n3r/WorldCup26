@@ -3012,8 +3012,9 @@
 
   // ---------- /#knockout: Easiest Path to the Title (bell curve + table) ----------
   // Reads koData.easiestPath (written by simulate_pool.py): per champion, the mean
-  // opponent strength (-log FIFA rank) over its title-winning sims, the raw title
-  // tally, and a readable mean opponent rank. Rendered as HTML + inline SVG.
+  // strength (-log FIFA rank) of the opponents STILL AHEAD of it that it's projected
+  // to beat (games already played are excluded), the raw title tally, and a readable
+  // mean opponent rank. Rendered as HTML + inline SVG.
   function kEpRows() {
     const ep = (koData && koData.easiestPath) || [];
     return ep.map(r => {
@@ -3185,15 +3186,15 @@
         'Trigger it from the repository\'s Actions tab, then refresh.</div>';
     }
     ktRows = rows;                       // kept so header clicks can re-sort in place
-    const heading = simView ? 'Easiest Path to the Title'
+    const heading = simView ? 'Easiest Path to the Title \u2014 your simulation'
                             : 'Easiest Path to the Title';
     const note = simView
       ? 'Your simulated champion\u2019s road to the title: the average strength of the knockout opponents it ' +
         'beat on the way, scored as \u2212log(FIFA rank). Further left means it beat weaker sides; further right ' +
         'means a tougher run. This follows the single what-if from the Simulate button.'
       : 'For every team that won at least one simulated title, the average strength of the ' +
-        'five knockout opponents it beat on the way, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
-        'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.';
+        'knockout opponents still ahead of it: the sides it would yet have to beat to lift the trophy, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
+        'Left means an easier run from here; right means tougher sides still to come. Marker size shows how often it won.';
     return '<section class="ksec"><h2>' + heading + '</h2>' +
       '<p class="kpage-note">' + note + '</p>' +
       kBell(rows) + '<div class="kt-scroll">' + kTable(rows, ktSort) + '</div></section>' + mlbSection(mlb);
