@@ -3077,18 +3077,56 @@
       wireKTable();   // the table element was replaced; bind the new one
     });
   }
+  // When the Simulate what-if is active, the /#knockout easiest-path section
+  // follows THAT single simulated tournament instead of the Monte-Carlo file:
+  // its champion (the final's winner) and the knockout opponents it beat, scored
+  // exactly like koData.easiestPath (mean \u2212log FIFA rank), rendered as one row.
+  function simEpRows(sd) {
+    const bracket = (sd && sd.bracket) || [];
+    const matches = [];
+    bracket.forEach(r => (r.matches || []).forEach(m =>
+      matches.push({ stageCode: r.stageCode, winner: m.winner, home: m.home, away: m.away })));
+    const fin = matches.find(m => m.stageCode === "FINAL" && m.winner && m.winner !== "DRAW");
+    if (!fin) return [];
+    const champ = fin.winner === "HOME_TEAM" ? fin.home : fin.away;
+    if (!champ || !champ.name) return [];
+    const ranks = [];
+    matches.forEach(m => {
+      if (!m.winner || m.winner === "DRAW" || m.stageCode === "THIRD_PLACE") return;
+      const win = m.winner === "HOME_TEAM" ? m.home : m.away;
+      const lose = m.winner === "HOME_TEAM" ? m.away : m.home;
+      if (win && lose && sameTeam(win.name, champ.name))
+        ranks.push(lose.fifaRank != null ? lose.fifaRank : 40);
+    });
+    if (!ranks.length) return [];
+    const avgStr = ranks.reduce((a, b) => a + (-Math.log(b || 40)), 0) / ranks.length;
+    const avgRank = ranks.reduce((a, b) => a + (b || 40), 0) / ranks.length;
+    const mt = krMeta(champ.name);
+    return [{ name: champ.name, code: mt[0], flag: mt[1],
+              color: COLOR_BY_KEY[normKey(canonName(champ.name))] || "#9aa0a6",
+              wins: 1, winPct: 1, str: avgStr, oppRank: avgRank }];
+  }
   function renderKnockoutPage(data, mlb) {
-    const rows = kEpRows();
+    const simView = !!(data && data.simulated);
+    let rows = kEpRows();
+    if (simView) { const sr = simEpRows(data); if (sr.length) rows = sr; }
     if (!rows.length) {
       return '<div class="knockout-empty">The knockout projection appears here once the ' +
         '<b>Post-game pipeline</b> has written <b>knockout_odds.json</b> with the easiest-path data.<br>' +
         'Trigger it from the repository\'s Actions tab, then refresh.</div>';
     }
     ktRows = rows;                       // kept so header clicks can re-sort in place
-    return '<section class="ksec"><h2>Easiest Path to the Title</h2>' +
-      '<p class="kpage-note">For every team that won at least one simulated title, the average strength of the ' +
-      'five knockout opponents it beat on the way, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
-      'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.</p>' +
+    const heading = simView ? 'Easiest Path to the Title \u2014 your simulation'
+                            : 'Easiest Path to the Title';
+    const note = simView
+      ? 'Your simulated champion\u2019s road to the title: the average strength of the knockout opponents it ' +
+        'beat on the way, scored as \u2212log(FIFA rank). Further left means it beat weaker sides; further right ' +
+        'means a tougher run. This follows the single what-if from the Simulate button.'
+      : 'For every team that won at least one simulated title, the average strength of the ' +
+        'five knockout opponents it beat on the way, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
+        'Left means it tended to win against weaker fields; right means it had to get past stronger sides. Marker size shows how often it won.';
+    return '<section class="ksec"><h2>' + heading + '</h2>' +
+      '<p class="kpage-note">' + note + '</p>' +
       kBell(rows) + '<div class="kt-scroll">' + kTable(rows, ktSort) + '</div></section>' + mlbSection(mlb);
   }
 
@@ -3118,7 +3156,13 @@
   const sameTeam = (a, b) => !!(a && b && normKey(canonName(a)) === normKey(canonName(b)));
   function buildMlbData(data) {
     const br = (koData && koData.bracket) || [];
-    const teams = (data && data.sim && data.sim.teams) || {};
+    // /#knockout is the offline model projection. The real, already-played games
+    // overlaid below must come from the REAL feed (lastData), never the client-side
+    // Simulate what-if: a simulated `data` is flagged `simulated` and marks every
+    // game FINISHED, which would skip the overlay and hide the genuinely-played,
+    // green/red-graded result cards. So resolve the real feed here and ignore sim.
+    const rd = (typeof lastData !== "undefined" && lastData) ? lastData : data;
+    const teams = (rd && rd.sim && rd.sim.teams) || {};
     const ownerOf = nm => (teams[nm] && teams[nm].owner) || "";
     const ORDER = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL", "THIRD_PLACE"];
     // Per-team strength (simulated title odds) used to project the third-place
@@ -3132,7 +3176,7 @@
     // played keeps its slot and renders as an ACTUAL result (its own colour) rather
     // than dropping out of the view or showing a now-stale projection.
     const realByNo = {};
-    if (data && !data.simulated) ((data && data.bracket) || []).forEach(r => {
+    if (rd && !rd.simulated) ((rd && rd.bracket) || []).forEach(r => {
       if (ORDER.indexOf(r.stageCode) < 0) return;        // bracket here is R32..Final
       (r.matches || []).forEach(m => {
         const done = m.status === "FINISHED" || m.status === "AWARDED";
