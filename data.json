@@ -472,7 +472,35 @@
       "utcDate": "2026-06-27T23:30:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-29T17:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 6,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 18,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 73,
@@ -593,35 +621,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 76,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-29T17:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group C",
-        "resolved": true,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group F",
-        "resolved": true,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 74,
       "stage": "Round of 32",
