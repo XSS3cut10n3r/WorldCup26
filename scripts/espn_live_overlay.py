@@ -452,9 +452,27 @@ def main():
 
     # 5) Inject.
     #    live: group cards prepend unconditionally (their duplicates were just
-    #    removed); knockout cards prepend only if the producer hasn't got them.
+    #    removed); knockout cards prepend unless football-data ALREADY owns the
+    #    game as a live or finished card of its own.
+    #    A not-yet-started `upcoming` fixture does NOT count as "owned": football-
+    #    data is slow to flip a knockout from TIMED -> IN_PLAY (the very reason
+    #    this overlay exists), and the old rule — "suppress if the pairing is
+    #    present anywhere" — treated that stale upcoming fixture as the producer's
+    #    copy and silently swallowed every live knockout game. We now defer only to
+    #    a genuine live/finished producer card; otherwise we bridge the ESPN live
+    #    game in and drop the stale upcoming entry so it shows once, as live.
+    OWNED_STATUSES = {"IN_PLAY", "PAUSED", "FINISHED", "AWARDED"}
+    producer_owns = set()
+    for _k in ("live", "recent", "upcoming"):
+        for _m in data[_k]:
+            if _m.get("status") in OWNED_STATUSES:
+                producer_owns.add(existing_key(_m))
     add_live_ko = [c for c in live_ko
-                   if _pk(c) not in present and _pk(c) not in group_live_keys]
+                   if _pk(c) not in producer_owns and _pk(c) not in group_live_keys]
+    bridged_ko = {_pk(c) for c in add_live_ko}
+    if bridged_ko:   # remove the stale not-yet-started copy so the game isn't shown twice
+        data["upcoming"] = [m for m in data["upcoming"]
+                            if existing_key(m) not in bridged_ko]
     live_group.sort(key=lambda c: c.get("utcDate") or "")
     add_live_ko.sort(key=lambda c: c.get("utcDate") or "")
     data["live"] = live_group + add_live_ko + data["live"]
