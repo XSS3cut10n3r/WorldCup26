@@ -1255,10 +1255,12 @@
   /* The standard kickoff-circle header stays visible on /#knockout (like every
      other page); only the tabs and footer are dropped for the full-bleed feel. */
   body.knockout-mode .wrap > header { display: block; }
-  /* The "scores as of" pill is meaningless on a projection, so it's hidden — but
-     with visibility (not display:none) so it still reserves its line and the
-     header keeps the exact same height, leaving the center circle put. */
-  body.knockout-mode .wrap > header .updated { visibility: hidden; }
+  /* On /#knockout the header pill stays in place (same spot as every other page)
+     but turns ice-blue and reads "Model Projected Results" to flag that the view
+     is a projection rather than live scores. */
+  body.knockout-mode .wrap > header .updated {
+    background: var(--ice); color: var(--pitch-deep); border-color: var(--ice); font-weight: 600;
+  }
   body.knockout-mode #ngOverlay { display: none !important; }
   .knockout-wrap { max-width: 100%; margin: 0 auto; padding: 24px 0 40px; }
   .knockout-wrap svg.kbell { width: 100%; height: auto; display: block; }
@@ -2080,9 +2082,8 @@
     updateKnockoutBtn(); // and the Knockout button (appears once the group stage ends)
     koStop();            // KO overlay runs on the leaderboard only; restarted below if so
     // The kickoff-circle header is shared across every view. On /#knockout it
-    // re-titles itself; the "scores as of" pill is hidden by CSS (via visibility,
-    // so the header keeps its height and the center circle stays put). Everywhere
-    // else it carries the pool's name and tagline.
+    // re-titles itself and its pill turns ice-blue reading "Model Projected
+    // Results" (set below); everywhere else it carries the pool's name + tagline.
     if (titleEl && subEl) {
       if (view === "knockout") {
         const sims = (koData && koData.sims) ? koData.sims.toLocaleString() : "1,000,000";
@@ -2108,6 +2109,7 @@
     }
     if (view === "knockout") {
       document.body.classList.add("knockout-mode");
+      updatedEl.innerHTML = "Model Projected Results";   // ice pill (styled in CSS)
       document.documentElement.classList.remove("ng-lock");
       var _ovk = document.getElementById("ngOverlay");
       if (_ovk) _ovk.classList.add("hidden");
