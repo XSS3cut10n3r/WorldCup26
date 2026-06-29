@@ -472,7 +472,35 @@
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-29T20:30Z",
+      "home": {
+        "name": "Germany",
+        "owner": "Tomi",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 10,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Paraguay",
+        "owner": "Pete",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 40,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 76,
@@ -600,35 +628,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 74,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-29T20:30:00Z",
-      "home": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group E",
-        "resolved": true,
-        "fifaRank": 10
-      },
-      "away": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place A/B/C/D/F",
-        "resolved": true,
-        "fifaRank": 40
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 75,
       "stage": "Round of 32",
