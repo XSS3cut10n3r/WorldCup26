@@ -916,7 +916,8 @@
   /* "Knockout" control: the Bubble pill's mirror — cyan like Bubble, hidden until
      every group game is played (when Bubble retires), then it appears. On
      /#knockout it flips to the red "Return Home" like the others. JS drives its
-     visibility (and hides it entirely while a what-if simulation is active). */
+     visibility; it stays visible during a what-if sim too, so Knockout and
+     Simulate are always offered together once the group stage is done. */
   #knockoutbtn {
     font-family: var(--display); font-weight: 600; font-size: 12px;
     letter-spacing: 0.06em; text-transform: uppercase;
@@ -937,7 +938,6 @@
     box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.7);
   }
   html.sim #knockoutbtn { background: rgba(46, 58, 70, 0.92); }
-  body.knockout-mode #simbtn { display: none !important; }
   @media (prefers-reduced-motion: reduce) { #knockoutbtn.on { animation: none; } }
 
   /* "Winner clinches" pills on upcoming group games (home feed + countdown).
@@ -2149,7 +2149,8 @@
     }
     if (view === "knockout") {
       document.body.classList.add("knockout-mode");
-      updatedEl.innerHTML = "Model Projected Results";   // ice pill (styled in CSS)
+      updatedEl.innerHTML = (data && data.simulated)
+        ? "Simulated Results &middot; Not Live" : "Model Projected Results";   // ice pill (styled in CSS)
       document.documentElement.classList.remove("ng-lock");
       var _ovk = document.getElementById("ngOverlay");
       if (_ovk) _ovk.classList.add("hidden");
@@ -3154,15 +3155,48 @@
     101: "France", 102: "Argentina", 103: "Spain", 104: "France"
   };
   const sameTeam = (a, b) => !!(a && b && normKey(canonName(a)) === normKey(canonName(b)));
+  // Bracket from the Simulate what-if: take that single simulated tournament's
+  // result for EVERY round and grade each game green/red against the hardwired
+  // MLB_PREDICTED (green where the winner matches the pick, red where it differs).
+  // Real already-played games are part of the same what-if, so they grade identically.
+  function buildSimMlb(sd) {
+    const ORDER = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL", "THIRD_PLACE"];
+    const teams = (typeof lastData !== "undefined" && lastData && lastData.sim && lastData.sim.teams)
+      || (sd && sd.sim && sd.sim.teams) || {};
+    const ownerOf = nm => (teams[nm] && teams[nm].owner) || "";
+    const byStage = {}; ORDER.forEach(st => byStage[st] = []);
+    (sd.bracket || []).forEach(r => {
+      const st = r.stageCode; if (!byStage[st]) return;
+      (r.matches || []).forEach(m => {
+        if (!m.winner || m.winner === "DRAW") return;                       // unresolved: skip
+        if (!(m.home && m.away && m.home.name && m.away.name)) return;
+        const winnerName = m.winner === "HOME_TEAM" ? m.home.name : m.away.name;
+        const pred = MLB_PREDICTED[m.matchNo];
+        const correct = pred ? sameTeam(winnerName, pred) : null;
+        const mk = side => { const t = m[side]; return {
+          name: t.name, resolved: true, projected: false,
+          goals: (t.goals != null ? t.goals : null),
+          penGoals: (t.penGoals != null ? t.penGoals : null),
+          slot: ownerOf(t.name) }; };
+        byStage[st].push({
+          matchNo: m.matchNo, home: mk("home"), away: mk("away"),
+          winner: m.winner, status: "FINISHED", actual: true, correct: correct,
+          penalties: !!m.penalties, afterExtraTime: !!m.afterExtraTime, utcDate: null
+        });
+      });
+    });
+    ORDER.forEach(st => byStage[st].sort((a, b) => a.matchNo - b.matchNo));
+    const rounds = ORDER.filter(st => byStage[st].length).map(st => ({ stageCode: st, matches: byStage[st] }));
+    return rounds.length ? { bracket: rounds } : null;
+  }
   function buildMlbData(data) {
+    // When the Simulate what-if is active, the bracket follows THAT single simulated
+    // tournament, every game graded green/red against the hardwired MLB_PREDICTED.
+    // Otherwise it's the offline most-likely projection with the genuinely-played
+    // games overlaid as graded result cards.
+    if (data && data.simulated) return buildSimMlb(data);
     const br = (koData && koData.bracket) || [];
-    // /#knockout is the offline model projection. The real, already-played games
-    // overlaid below must come from the REAL feed (lastData), never the client-side
-    // Simulate what-if: a simulated `data` is flagged `simulated` and marks every
-    // game FINISHED, which would skip the overlay and hide the genuinely-played,
-    // green/red-graded result cards. So resolve the real feed here and ignore sim.
-    const rd = (typeof lastData !== "undefined" && lastData) ? lastData : data;
-    const teams = (rd && rd.sim && rd.sim.teams) || {};
+    const teams = (data && data.sim && data.sim.teams) || {};
     const ownerOf = nm => (teams[nm] && teams[nm].owner) || "";
     const ORDER = ["LAST_32", "LAST_16", "QUARTER_FINALS", "SEMI_FINALS", "FINAL", "THIRD_PLACE"];
     // Per-team strength (simulated title odds) used to project the third-place
@@ -3176,7 +3210,7 @@
     // played keeps its slot and renders as an ACTUAL result (its own colour) rather
     // than dropping out of the view or showing a now-stale projection.
     const realByNo = {};
-    if (rd && !rd.simulated) ((rd && rd.bracket) || []).forEach(r => {
+    if (data && !data.simulated) ((data && data.bracket) || []).forEach(r => {
       if (ORDER.indexOf(r.stageCode) < 0) return;        // bracket here is R32..Final
       (r.matches || []).forEach(m => {
         const done = m.status === "FINISHED" || m.status === "AWARDED";
@@ -3264,8 +3298,24 @@
     const rounds = ORDER.filter(st => byStage[st].length).map(st => ({ stageCode: st, matches: byStage[st] }));
     return rounds.length ? { bracket: rounds } : null;
   }
+  const SIM_MLB_NOTE = '<p class="gnote">This is the single what-if from the Simulate button, played out through every round. ' +
+    'Each game is graded against your hardwired predictions: green where the result matches your pick, red where it differs. ' +
+    'Use the round buttons to step through; it scales down on narrow screens just like the bracket page.</p>';
   function mlbSection(mlb) {
     if (!mlb) return "";
+    if (simMode && simData) {
+      let champName = null;
+      (simData.bracket || []).forEach(r => { if (r.stageCode === "FINAL") (r.matches || []).forEach(m => {
+        if (m.winner && m.winner !== "DRAW") champName = m.winner === "HOME_TEAM" ? m.home.name : m.away.name; }); });
+      const predChamp = MLB_PREDICTED[104];
+      const banner = champName ? ('<div class="mlb-champ"><div class="mlb-champ-flag">' + krMeta(champName)[1] +
+        '</div><div class="mlb-champ-name">' + esc(champName) +
+        '</div><div class="mlb-champ-sub">champion of your simulated bracket' +
+        (predChamp ? (sameTeam(champName, predChamp) ? ' \u00b7 matches your hardwired pick'
+                                                      : ' \u00b7 your pick was ' + esc(predChamp)) : '') +
+        '</div></div>') : "";
+      return renderBracket(mlb, { title: "Your Simulated Bracket", note: banner + SIM_MLB_NOTE });
+    }
     const champ = koData && koData.champion;
     const banner = champ ? ('<div class="mlb-champ"><div class="mlb-champ-flag">' + krMeta(champ.name)[1] +
       '</div><div class="mlb-champ-name">' + esc(champ.name) +
@@ -3914,10 +3964,10 @@
   function updateKnockoutBtn() {
     const on = view === "knockout";
     // Mirror of the Bubble button, inverted: it only appears once every group game
-    // is played (when Bubble retires). On the page it flips to "Return Home". It is
-    // also hidden whenever a what-if simulation is running, so it's only offered on
-    // live results — `on` keeps a return path if somehow open during a sim.
-    const show = on || (!simMode && groupStageComplete(lastData));
+    // is played (when Bubble retires). On the page it flips to "Return Home". It
+    // stays visible during a what-if sim too, so Simulate and Knockout are always
+    // offered together throughout the knockout phase.
+    const show = on || groupStageComplete(lastData);
     knockoutBtn.style.display = show ? "inline-block" : "none";
     knockoutBtn.textContent = on ? "Return Home" : "Knockout";
     knockoutBtn.classList.toggle("on", on);
