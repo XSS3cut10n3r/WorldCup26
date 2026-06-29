@@ -12,6 +12,8 @@ cost, runs by itself for the whole tournament.
 
 ## A look at the site
 
+Live here - https://xss3cut10n3r.github.io/WorldCup26/
+
 The leaderboard, every person's points, with their teams as chips:
 
 ![The Family Cup leaderboard, showing the family standings with each person's teams](screenshots/01-leaderboard.png)
