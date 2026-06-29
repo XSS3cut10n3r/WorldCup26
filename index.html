@@ -553,11 +553,11 @@
      most-likely bracket): bright green + green glow when the hardwired prediction
      was right, red + red glow when it was wrong. Scoped to knockout-mode so it
      outranks the cyan active-card border; /#bracket keeps its gold treatment. */
-  body.knockout-mode .bkt-box.actual { border-color: rgba(59,229,126,0.85); background: rgba(59,229,126,0.10);
+  body.knockout-mode .bkt-box.actual { border-color: rgba(59,229,126,0.85); background: var(--pitch-deep);
     box-shadow: 0 0 18px rgba(59,229,126,0.5); }
   body.knockout-mode .bkt-box.on.actual { border-color: rgb(59,229,126);
     box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 22px rgba(59,229,126,0.6); }
-  body.knockout-mode .bkt-box.actual.wrong { border-color: rgba(255,81,71,0.85); background: rgba(255,81,71,0.10);
+  body.knockout-mode .bkt-box.actual.wrong { border-color: rgba(255,81,71,0.85); background: var(--pitch-deep);
     box-shadow: 0 0 18px rgba(255,81,71,0.52); }
   body.knockout-mode .bkt-box.on.actual.wrong { border-color: rgb(255,81,71);
     box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 22px rgba(255,81,71,0.6); }
@@ -603,9 +603,9 @@
   .bkt-list { display: none; }
   .bkt-list .lcard { background: var(--pitch-deep); border: 1px solid var(--pitch-line);
     border-radius: 9px; padding: 11px 15px; margin-bottom: 10px; }
-  .bkt-list .lcard.actual { border-color: rgba(59,229,126,0.85); background: rgba(59,229,126,0.10);
+  .bkt-list .lcard.actual { border-color: rgba(59,229,126,0.85); background: var(--pitch-deep);
     box-shadow: 0 0 16px rgba(59,229,126,0.4); }
-  .bkt-list .lcard.actual.wrong { border-color: rgba(255,81,71,0.85); background: rgba(255,81,71,0.10);
+  .bkt-list .lcard.actual.wrong { border-color: rgba(255,81,71,0.85); background: var(--pitch-deep);
     box-shadow: 0 0 16px rgba(255,81,71,0.42); }
   .bkt-list .lcard.finished { border-color: var(--gold); position: relative; overflow: hidden;
     background: linear-gradient(180deg, rgba(232,195,74,0.14), rgba(232,195,74,0.04)), var(--pitch-deep); }
