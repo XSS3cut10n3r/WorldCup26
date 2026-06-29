@@ -2005,10 +2005,20 @@
   // Browsers block audio until the user interacts; resume on the first gesture.
   function koUnlockAudio() { koAudioInit(); if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {}); }
   ["pointerdown", "keydown"].forEach(ev => document.addEventListener(ev, koUnlockAudio, { passive: true }));
+  // True only if a KO-eligible card is actually in the viewport right now, so the
+  // sound fires only when the player can SEE the animation (on the leaderboard,
+  // scrolled to the Recent Results) — never blind from off-screen or another page
+  // (other pages have no KO cards at all, so this is also false there).
+  function koAnyVisible() {
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const vw = window.innerWidth || document.documentElement.clientWidth;
+    return koEligible().some(c => { const r = c.getBoundingClientRect();
+      return r.bottom > 0 && r.top < vh && r.right > 0 && r.left < vw; });
+  }
   function koTick() {
     if (!koBlob || koReduced() || document.hidden || view !== "home") return;
     const cards = koEligible(); if (!cards.length) return;
-    koPlaySound();                                          // one KO sound for the whole cascade
+    if (koAnyVisible()) koPlaySound();                      // sound only when a card is on-screen
     cards.forEach((c, i) => koPlayOn(c, i * KO_STAGGER));   // every eligible card, cascaded
   }
   function koStart() { koStop(); if (view === "home" && !koReduced()) { koTick(); koTimer = setInterval(koTick, KO_PERIOD); } }
