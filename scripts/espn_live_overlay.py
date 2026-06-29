@@ -377,6 +377,9 @@ def main():
     #    a gap and defer to update_scores.py's richer card whenever it exists.
     live_group, live_ko = [], []
     final_group, final_ko = [], []
+    ko_final_results = {}   # pairing -> ESPN finished KO card, ANY age, for correcting
+                            # the producer's copy (separate from the recency-gated
+                            # final_ko gap-fill, so a correction never expires)
     unplaceable = set()
     now = datetime.now(timezone.utc)
     live_total = 0              # live games of ANY stage (drives the watcher loop)
@@ -397,19 +400,24 @@ def main():
             finished_count += 1
             if stage_code is None:
                 continue
-            # Only fill the gap for a game that JUST finished (kickoff within the
-            # recency window). Older finished games are history that football-data
-            # has simply rotated out of its short `recent` list, not a live-window
-            # gap — back-filling them all is what flooded `recent`.
-            dt = _kickoff_dt(comp)
-            if dt is None or (now - dt).total_seconds() > FINAL_GAP_HOURS * 3600:
-                continue
             card, key = make_card(comp, meta, by_norm, "FINISHED", stage_code, stage_label)
-            if card:
-                card[TAG] = TAG_FINAL
+            if not card:
+                if key:
+                    unplaceable.add(key)
+                continue
+            card[TAG] = TAG_FINAL
+            # Record EVERY finished knockout result (any age) so we can correct the
+            # producer's stored copy whenever football-data has it wrong (notably
+            # mis-parsed penalty shootouts). This is independent of the recency
+            # window below, so a correction doesn't lapse after FINAL_GAP_HOURS.
+            if stage_code != "GROUP_STAGE":
+                ko_final_results[pair_key(card["home"]["name"], card["away"]["name"])] = card
+            # Only GAP-FILL (inject into recent) a game that JUST finished — older
+            # finished games are history football-data has rotated out, not a gap;
+            # back-filling them all is what flooded `recent`.
+            dt = _kickoff_dt(comp)
+            if dt is not None and (now - dt).total_seconds() <= FINAL_GAP_HOURS * 3600:
                 (final_group if stage_code == "GROUP_STAGE" else final_ko).append(card)
-            elif key:
-                unplaceable.add(key)
         else:  # "pre" (scheduled): track the soonest kickoff for the watcher
             dt = _kickoff_dt(comp)
             if dt is not None:
@@ -478,6 +486,7 @@ def main():
                 producer_live_card.setdefault(existing_key(_m), _m)
 
     add_live_ko = []
+    refreshed_live = 0   # producer live cards whose score we updated in place
     for c in live_ko:
         pk = _pk(c)
         if pk in group_live_keys or pk in producer_done:
@@ -494,6 +503,7 @@ def main():
             for side in ("home", "away"):
                 pm[side]["goals"] = c[side]["goals"]
                 pm[side]["penGoals"] = c[side]["penGoals"]
+            refreshed_live += 1
         else:
             add_live_ko.append(c)
     bridged_ko = {_pk(c) for c in add_live_ko}
@@ -505,6 +515,54 @@ def main():
     data["live"] = live_group + add_live_ko + data["live"]
     for c in live_group + add_live_ko:        # so a final-gap card can't re-add a live one
         present.add(_pk(c))
+
+    # Finished knockout games: ESPN is authoritative for the actual result.
+    # football-data's free-tier feed mis-reports penalty shootouts (a real
+    # 1-1 / 4-3-on-penalties can arrive as 0-1 with a 5-5 shootout and a null
+    # winner), and we otherwise defer to it once it flags the game finished, so its
+    # bad result would stick. When ESPN has a finished knockout result, overwrite
+    # the producer card's scoreline, shootout tally, penalties flag and winner from
+    # ESPN (keeping matchNo, bracket slots and owners), and make sure the game ends
+    # up in `recent`, not stranded in live/upcoming. Mutated in place so it survives
+    # the next tag-strip and is re-applied if a later producer run rewrites the bad
+    # values.
+    def _apply_final(m, c):
+        m["status"] = "FINISHED"
+        m["penalties"] = c["penalties"]
+        m["winner"] = c["winner"]
+        for side in ("home", "away"):
+            m[side]["goals"] = c[side]["goals"]
+            m[side]["penGoals"] = c[side]["penGoals"]
+
+    corrected_final = 0
+    if ko_final_results:
+        relocated = []
+        for k in ("live", "upcoming"):       # a finished game shouldn't sit here
+            kept = []
+            for m in data[k]:
+                c = ko_final_results.get(existing_key(m))
+                if c is None:
+                    kept.append(m)
+                else:
+                    _apply_final(m, c); corrected_final += 1; relocated.append(m)
+            data[k] = kept
+        for m in data["recent"]:             # correct any copy already in recent
+            c = ko_final_results.get(existing_key(m))
+            if c is not None:
+                _apply_final(m, c); corrected_final += 1
+        # The bracket page reads data["bracket"] (rounds -> matches) separately, so
+        # correct the played match there too. Only touch matches already marked
+        # finished, never a future projection that happens to share a pairing.
+        for rnd in (data.get("bracket") or []):
+            for m in (rnd.get("matches") or []):
+                if m.get("status") not in ("FINISHED", "AWARDED"):
+                    continue
+                c = ko_final_results.get(existing_key(m))
+                if c is not None:
+                    _apply_final(m, c); corrected_final += 1
+        if relocated:                        # re-home the pulled ones (present already
+            relocated.sort(key=lambda m: m.get("utcDate") or "", reverse=True)
+            data["recent"] = relocated + data["recent"]   # lists their keys, so no dup)
 
     # final-gap: group + knockout, only when the game is absent everywhere.
     add_finals = [c for c in (final_group + final_ko) if _pk(c) not in present]
@@ -539,8 +597,10 @@ def main():
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         f.write(text)
     n_live = len(live_group) + len(add_live_ko)
-    print(f"Patched {DATA_FILE}: {n_live} live "
+    print(f"Patched {DATA_FILE}: {n_live} live injected "
           f"({len(add_live_ko)} knockout-bridged), "
+          f"{refreshed_live} live score(s) refreshed, "
+          f"{corrected_final} finished KO result(s) corrected, "
           f"{len(add_finals)} final-gap game(s) injected.")
     return 0
 
