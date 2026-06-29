@@ -343,6 +343,21 @@ def make_runner(model, form_feedback=False):
     defs.sort(key=lambda d: d[0]["match"])
     final_match = (tmpl.get("final") or [{}])[0].get("match")
 
+    # If the template doesn't define the third-place play-off, synthesize it from
+    # the two semi-final losers using the bracket engine's own loser-reference
+    # codes ("L<semi match>"). Injected into the template so it is simulated and
+    # emitted exactly like any other tie — points awarded (per the scoring table),
+    # a projection written, and the /#knockout third-place card shown. Idempotent.
+    if not tmpl.get("third"):
+        _sf = list(tmpl.get("sf") or [])
+        if len(_sf) == 2 and final_match:
+            _third = {"match": final_match - 1,
+                      "home": "L" + str(_sf[0]["match"]),
+                      "away": "L" + str(_sf[1]["match"])}
+            tmpl["third"] = [_third]
+            defs.append((_third, "THIRD_PLACE"))
+            defs.sort(key=lambda d: d[0]["match"])
+
     FINAL_BOOST = p["finalScoreBoost"]
     KO_MUL = p["koTotalMul"]
     ET_TOTAL = p["etTotal"]
@@ -997,7 +1012,7 @@ def main():
 
         tmpl = model["sim"]["template"]
         bracket_rows = []
-        for key in ("r32", "r16", "qf", "sf", "final"):
+        for key in ("r32", "r16", "qf", "sf", "final", "third"):
             stage = SIM_ROUND_STAGE[key]
             for md in (tmpl.get(key) or []):
                 b = bdata.get(md["match"])
