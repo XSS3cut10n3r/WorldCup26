@@ -2755,6 +2755,7 @@
     const cd = data.conduct || {};
     const people = cd.people || [];
     const teams = cd.teams || [];
+    const projd = !!(data && data.simulated);   // sim mode: scores are projected forward
     if (!people.length && !teams.length) {
       return section("Conduct", `<div class="empty">Conduct data appears here
         once card counts are entered in <b>cards-manual.json</b>.</div>`);
@@ -2804,8 +2805,10 @@
       </div>`;
     }).join("");
     html += section("Worst conduct", `
-      <p class="gnote">Every card your teams collect counts against you.
-      Rank 1 holds the family's dirtiest squad list: wear it proudly.</p>
+      <p class="gnote">${projd
+        ? `Projected to the end of this simulated run: each team keeps picking up cards at its current per-game rate, so these totals run ahead of today's. Rank 1 holds the family's dirtiest squad list.`
+        : `Every card your teams collect counts against you.
+      Rank 1 holds the family's dirtiest squad list: wear it proudly.`}</p>
       <div class="board">${rows}</div>`);
 
     // Full team table
@@ -2826,9 +2829,11 @@
         <div class="gtable-wrap"><table class="gtable">
           <thead><tr><th></th><th class="l">Team</th><th>Y</th><th>2Y&rarr;R</th><th>R</th><th>Y+R</th><th>Score</th></tr></thead>
           <tbody>${ctrs}</tbody></table></div>
-        ${cd.hasData ? "" :
+        ${projd
+          ? `<p class="gnote"><b>Score</b> is projected at each team's current per-game rate; the Y / 2Y&rarr;R / R / Y+R columns are the cards collected so far.</p>`
+          : (cd.hasData ? "" :
           `<p class="gnote">No cards entered yet: totals update when
-           <b>cards-manual.json</b> in the repository is edited.</p>`}`);
+           <b>cards-manual.json</b> in the repository is edited.</p>`)}`);
     }
     return html;
   }
@@ -3607,6 +3612,16 @@
       if (k.home && k.away && k.homeGoals != null && k.awayGoals != null)
         playedGames.push({h: k.home, a: k.away, hg: k.homeGoals, ag: k.awayGoals}); });
 
+    // Conduct projection bookkeeping. playedCount = real games each team has
+    // played so far (the denominator for its cards-per-game rate); futureCount =
+    // games it goes on to play in THIS what-if (simulated group remainder + every
+    // knockout match it appears in, the third-place play-off included). Keyed by
+    // canonName so conduct-table spellings line up with the simulator's names.
+    const czName = nm => canonName(nm);
+    const playedCount = {}, futureCount = {};
+    const bumpCount = (obj, nm) => { const k = czName(nm); if (k) obj[k] = (obj[k] || 0) + 1; };
+    playedGames.forEach(m => { bumpCount(playedCount, m.h); bumpCount(playedCount, m.a); });
+
     // Field-average goals per team-game — the baseline a result is judged against.
     let totG = 0, totGames = 0;
     playedGames.forEach(m => { totG += m.hg + m.ag; totGames += 2; });
@@ -3713,6 +3728,9 @@
         else if (r.pos === 2) { r.clinched = true; r.clinchType = "second"; } });
       groupTables.push({letter, rows: ranked});
     });
+
+    // Future group games this what-if plays (the simulated remainder).
+    simGroupGames.forEach(g => { bumpCount(futureCount, g.h); bumpCount(futureCount, g.a); });
 
     // 2) Best third-place race (top eight qualify).
     const thirds = groupTables.map(g => {
@@ -3824,6 +3842,10 @@
             ph = hw ? 5 : 4; pa = hw ? 4 : 5; winSide = hw ? "HOME_TEAM" : "AWAY_TEAM"; }
           else winSide = hg > ag ? "HOME_TEAM" : "AWAY_TEAM";
           simKOGames.push({stageCode, winnerName: (winSide === "HOME_TEAM" ? home : away).name});
+          // This knockout game is being simulated (not a real result), so both
+          // sides are about to play it for the first time — count it toward each
+          // one's future-game tally for the conduct projection.
+          bumpCount(futureCount, home.name); bumpCount(futureCount, away.name);
         }
         const win = winSide === "HOME_TEAM" ? home : away;
         const lose = winSide === "HOME_TEAM" ? away : home;
@@ -3848,6 +3870,36 @@
       }
       bracketByStage[stageCode].push(entry);
     });
+
+    // Projected conduct for /#conduct in sim mode. Each team keeps collecting
+    // cards at the rate it's shown so far — current conduct score / games played,
+    // rounded to a whole number per game — added once for every future game it
+    // plays in this what-if. A team that's out collects nothing more (futureCount
+    // is 0), but a semi-final loser still plays the third-place game, which is in
+    // futureCount, so that one extra game is credited. The Y/2Y/R/Y+R breakdown
+    // stays at real counts (we can't know how future cards split); only the score
+    // grows. People scores move by the same per-team deltas, off the real base.
+    const projCardScore = (nm, cur) => {
+      const k = czName(nm), gp = playedCount[k] || 0, fut = futureCount[k] || 0;
+      if (!gp || !fut) return cur;
+      return cur + Math.round(cur / gp) * fut;
+    };
+    const baseCd = data.conduct || {};
+    const projTeams = (baseCd.teams || []).map(t =>
+      Object.assign({}, t, {score: projCardScore(t.team, t.score)}));
+    projTeams.sort((a, b) => (b.score - a.score) ||
+      (czName(a.team) < czName(b.team) ? -1 : 1));      // best-behaved (least negative) first
+    projTeams.forEach((t, i) => { t.rank = i + 1; });
+    const projPeople = (baseCd.people || []).map(p => {
+      let delta = 0;
+      const teams = (p.teams || []).map(t => {
+        const ps = projCardScore(t.name, t.score); delta += ps - t.score;
+        return Object.assign({}, t, {score: ps}); });
+      return Object.assign({}, p, {teams, score: p.score + delta}); });
+    projPeople.sort((a, b) => (a.score - b.score) ||
+      (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1));   // dirtiest (most negative) first
+    projPeople.forEach((p, i) => { p.rank = i + 1; });
+    const projConduct = Object.assign({}, baseCd, {people: projPeople, teams: projTeams});
 
     const order = ["LAST_32","LAST_16","QUARTER_FINALS","SEMI_FINALS","FINAL","THIRD_PLACE"];
     const bracketOut = order.filter(s => (bracketByStage[s] || []).length).map(s => ({
@@ -3913,7 +3965,7 @@
 
     return {generated: data.generated, simulated: true, leaderboard: lb,
       events, live: [], recent, upcoming: [], bracket: bracketOut,
-      groups: groupsOut, thirdPlace: thirdOut, conduct: data.conduct,
+      groups: groupsOut, thirdPlace: thirdOut, conduct: projConduct,
       scoring: data.scoring, tournamentStarted: true};
   }
 
