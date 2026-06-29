@@ -474,31 +474,33 @@
   ],
   "live": [
     {
+      "matchNo": 74,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "IN_PLAY",
-      "utcDate": "2026-06-29T20:30Z",
+      "utcDate": "2026-06-29T20:30:00Z",
       "home": {
         "name": "Germany",
         "owner": "Tomi",
         "goals": 1,
         "penGoals": null,
-        "fifaRank": 10,
         "projected": false,
-        "resolved": true
+        "slot": "Winner Group E",
+        "resolved": true,
+        "fifaRank": 10
       },
       "away": {
         "name": "Paraguay",
         "owner": "Pete",
         "goals": 1,
         "penGoals": null,
-        "fifaRank": 40,
         "projected": false,
-        "resolved": true
+        "slot": "3rd place A/B/C/D/F",
+        "resolved": true,
+        "fifaRank": 40
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
+      "winner": null
     }
   ],
   "recent": [
@@ -888,6 +890,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 85,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-07-03T03:00:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group B",
+        "resolved": true,
+        "fifaRank": 19
+      },
+      "away": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place E/F/G/I/J",
+        "resolved": true,
+        "fifaRank": 28
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -928,12 +959,12 @@
           "matchNo": 74,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-06-29T20:30:00Z",
           "home": {
             "name": "Germany",
             "owner": "Tomi",
-            "goals": null,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group E",
@@ -943,7 +974,7 @@
           "away": {
             "name": "Paraguay",
             "owner": "Pete",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place A/B/C/D/F",
@@ -951,7 +982,7 @@
             "fifaRank": 40
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 75,
@@ -1256,7 +1287,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group B",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 19
           },
           "away": {
             "name": "Algeria",
@@ -1265,7 +1297,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "3rd place E/F/G/I/J",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 28
           },
           "penalties": false,
           "winner": null
@@ -9816,5 +9849,5 @@
       }
     ]
   },
-  "generated": "2026-06-29T19:08:09Z"
+  "generated": "2026-06-29T22:58:27Z"
 }
