@@ -474,31 +474,33 @@
   ],
   "live": [
     {
+      "matchNo": 76,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "IN_PLAY",
-      "utcDate": "2026-06-29T17:00Z",
+      "utcDate": "2026-06-29T17:00:00Z",
       "home": {
         "name": "Brazil",
         "owner": "Sydney",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 6,
         "projected": false,
-        "resolved": true
+        "slot": "Winner Group C",
+        "resolved": true,
+        "fifaRank": 6
       },
       "away": {
         "name": "Japan",
         "owner": "Pete",
-        "goals": 1,
+        "goals": 0,
         "penGoals": null,
-        "fifaRank": 18,
         "projected": false,
-        "resolved": true
+        "slot": "Runner-up Group F",
+        "resolved": true,
+        "fifaRank": 18
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
+      "winner": null
     }
   ],
   "recent": [
@@ -881,6 +883,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 83,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-07-02T23:00:00Z",
+      "home": {
+        "name": "Portugal",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group K",
+        "resolved": true,
+        "fifaRank": 5
+      },
+      "away": {
+        "name": "Croatia",
+        "owner": "Tom",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group L",
+        "resolved": true,
+        "fifaRank": 11
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -979,12 +1010,12 @@
           "matchNo": 76,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-06-29T17:00:00Z",
           "home": {
             "name": "Brazil",
             "owner": "Sydney",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group C",
@@ -994,7 +1025,7 @@
           "away": {
             "name": "Japan",
             "owner": "Pete",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group F",
@@ -1191,7 +1222,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group K",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 5
           },
           "away": {
             "name": "Croatia",
@@ -1200,7 +1232,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group L",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 11
           },
           "penalties": false,
           "winner": null
@@ -9796,5 +9829,5 @@
       }
     ]
   },
-  "generated": "2026-06-28T21:37:55Z"
+  "generated": "2026-06-29T17:32:40Z"
 }
