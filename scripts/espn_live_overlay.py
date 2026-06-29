@@ -450,25 +450,52 @@ def main():
     def _pk(c):
         return pair_key(c["home"]["name"], c["away"]["name"])
 
-    # 5) Inject.
-    #    live: group cards prepend unconditionally (their duplicates were just
-    #    removed); knockout cards prepend unless football-data ALREADY owns the
-    #    game as a live or finished card of its own.
-    #    A not-yet-started `upcoming` fixture does NOT count as "owned": football-
-    #    data is slow to flip a knockout from TIMED -> IN_PLAY (the very reason
-    #    this overlay exists), and the old rule — "suppress if the pairing is
-    #    present anywhere" — treated that stale upcoming fixture as the producer's
-    #    copy and silently swallowed every live knockout game. We now defer only to
-    #    a genuine live/finished producer card; otherwise we bridge the ESPN live
-    #    game in and drop the stale upcoming entry so it shows once, as live.
-    OWNED_STATUSES = {"IN_PLAY", "PAUSED", "FINISHED", "AWARDED"}
-    producer_owns = set()
+    # 5) Inject / refresh.
+    #    Group live cards prepend unconditionally (their duplicates were removed).
+    #    Knockout live games are handled by what football-data already has:
+    #      * football-data FINISHED it  -> defer entirely (never revert a final to
+    #        live just because ESPN lags behind).
+    #      * football-data has it LIVE   -> the watch loop never re-runs the
+    #        producer, so its score is frozen at the baseline. Refresh the live
+    #        score / status FROM ESPN in place, keeping the producer's richer
+    #        fields (matchNo, bracket slots). This is what makes a knockout score
+    #        actually tick over during the watch instead of sitting still.
+    #      * football-data has it only as a not-yet-started `upcoming` fixture, or
+    #        not at all -> bridge the ESPN live card in and drop the stale upcoming
+    #        copy so it shows once, as live. (football-data is slow to flip a
+    #        knockout TIMED -> IN_PLAY, which is the whole reason this overlay
+    #        exists; a TIMED fixture must NOT count as the producer "owning" it.)
+    DONE_STATUSES = {"FINISHED", "AWARDED"}
+    LIVE_STATUSES = {"IN_PLAY", "PAUSED"}
+    producer_done = set()
+    producer_live_card = {}
     for _k in ("live", "recent", "upcoming"):
         for _m in data[_k]:
-            if _m.get("status") in OWNED_STATUSES:
-                producer_owns.add(existing_key(_m))
-    add_live_ko = [c for c in live_ko
-                   if _pk(c) not in producer_owns and _pk(c) not in group_live_keys]
+            st = _m.get("status")
+            if st in DONE_STATUSES:
+                producer_done.add(existing_key(_m))
+            elif st in LIVE_STATUSES and _k == "live":
+                producer_live_card.setdefault(existing_key(_m), _m)
+
+    add_live_ko = []
+    for c in live_ko:
+        pk = _pk(c)
+        if pk in group_live_keys or pk in producer_done:
+            continue
+        pm = producer_live_card.get(pk)
+        if pm is not None:
+            # Refresh football-data's own live card with ESPN's current score,
+            # leaving its structural fields (matchNo, slot, resolved/projected)
+            # untouched. Mutating in place means the card survives next cycle's
+            # tag-strip, so matchNo isn't lost while the score keeps updating.
+            pm["status"] = c["status"]
+            pm["penalties"] = c["penalties"]
+            pm["winner"] = c["winner"]
+            for side in ("home", "away"):
+                pm[side]["goals"] = c[side]["goals"]
+                pm[side]["penGoals"] = c[side]["penGoals"]
+        else:
+            add_live_ko.append(c)
     bridged_ko = {_pk(c) for c in add_live_ko}
     if bridged_ko:   # remove the stale not-yet-started copy so the game isn't shown twice
         data["upcoming"] = [m for m in data["upcoming"]
