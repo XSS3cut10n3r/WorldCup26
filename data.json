@@ -483,7 +483,7 @@
         "name": "Germany",
         "owner": "Tomi",
         "goals": 1,
-        "penGoals": null,
+        "penGoals": 0,
         "projected": false,
         "slot": "Winner Group E",
         "resolved": true,
@@ -493,13 +493,13 @@
         "name": "Paraguay",
         "owner": "Pete",
         "goals": 1,
-        "penGoals": null,
+        "penGoals": 0,
         "projected": false,
         "slot": "3rd place A/B/C/D/F",
         "resolved": true,
         "fifaRank": 40
       },
-      "penalties": false,
+      "penalties": true,
       "winner": null
     }
   ],
