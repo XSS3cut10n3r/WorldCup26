@@ -23,7 +23,7 @@
     --up: #57C97A;
     --held: #FF5147;
     --ice: #6FD8EC;
-    --mlb-good: #33C27A;
+    --mlb-good: #3BE57E;
     --mlb-bad: #FF5147;
     --ink: #0B0E12;
     --display: "Oswald", sans-serif;
@@ -550,17 +550,17 @@
   .bkt-box.on { box-shadow: 0 7px 22px rgba(0,0,0,0.32); border-color: rgba(232,195,74,0.45);
     animation: bktpop .5s cubic-bezier(.34,1.3,.5,1); }
   /* A game that has actually been played (real result overlaid on the projected
-     most-likely bracket): green with a green glow when the hardwired prediction
-     was right, red with a red glow when it was wrong. /#knockout only — the live
-     /#bracket uses the gold `finished` treatment. */
-  .bkt-box.actual { border-color: rgba(51,194,122,0.65); background: rgba(51,194,122,0.10);
-    box-shadow: 0 0 16px rgba(51,194,122,0.38); }
-  .bkt-box.on.actual { border-color: rgba(51,194,122,0.9);
-    box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 18px rgba(51,194,122,0.45); }
-  .bkt-box.actual.wrong { border-color: rgba(255,81,71,0.7); background: rgba(255,81,71,0.10);
-    box-shadow: 0 0 16px rgba(255,81,71,0.42); }
-  .bkt-box.on.actual.wrong { border-color: rgba(255,81,71,0.95);
-    box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 18px rgba(255,81,71,0.5); }
+     most-likely bracket): bright green + green glow when the hardwired prediction
+     was right, red + red glow when it was wrong. Scoped to knockout-mode so it
+     outranks the cyan active-card border; /#bracket keeps its gold treatment. */
+  body.knockout-mode .bkt-box.actual { border-color: rgba(59,229,126,0.85); background: rgba(59,229,126,0.10);
+    box-shadow: 0 0 18px rgba(59,229,126,0.5); }
+  body.knockout-mode .bkt-box.on.actual { border-color: rgb(59,229,126);
+    box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 22px rgba(59,229,126,0.6); }
+  body.knockout-mode .bkt-box.actual.wrong { border-color: rgba(255,81,71,0.85); background: rgba(255,81,71,0.10);
+    box-shadow: 0 0 18px rgba(255,81,71,0.52); }
+  body.knockout-mode .bkt-box.on.actual.wrong { border-color: rgb(255,81,71);
+    box-shadow: 0 7px 22px rgba(0,0,0,0.32), 0 0 22px rgba(255,81,71,0.6); }
   /* On the live /#bracket, a finished tie instead reads as a reflective golden
      card — gold border, a warm tint, and a slow diagonal sheen sweeping across
      (echoing the leaderboard's UPSET cards). The sheen rests ~2s longer between
@@ -603,10 +603,10 @@
   .bkt-list { display: none; }
   .bkt-list .lcard { background: var(--pitch-deep); border: 1px solid var(--pitch-line);
     border-radius: 9px; padding: 11px 15px; margin-bottom: 10px; }
-  .bkt-list .lcard.actual { border-color: rgba(51,194,122,0.65); background: rgba(51,194,122,0.10);
-    box-shadow: 0 0 14px rgba(51,194,122,0.3); }
-  .bkt-list .lcard.actual.wrong { border-color: rgba(255,81,71,0.7); background: rgba(255,81,71,0.10);
-    box-shadow: 0 0 14px rgba(255,81,71,0.34); }
+  .bkt-list .lcard.actual { border-color: rgba(59,229,126,0.85); background: rgba(59,229,126,0.10);
+    box-shadow: 0 0 16px rgba(59,229,126,0.4); }
+  .bkt-list .lcard.actual.wrong { border-color: rgba(255,81,71,0.85); background: rgba(255,81,71,0.10);
+    box-shadow: 0 0 16px rgba(255,81,71,0.42); }
   .bkt-list .lcard.finished { border-color: var(--gold); position: relative; overflow: hidden;
     background: linear-gradient(180deg, rgba(232,195,74,0.14), rgba(232,195,74,0.04)), var(--pitch-deep); }
   .bkt-list .lcard.finished::after { content: ""; position: absolute; inset: 0; border-radius: inherit;
@@ -628,10 +628,10 @@
   body.knockout-mode .bline.winner .bn { color: var(--ice); }
   body.knockout-mode .bkt-box.actual .bline.winner .bn,
   body.knockout-mode .bkt-list .lcard.actual .bline.winner .bn {
-    color: var(--mlb-good); text-shadow: 0 0 7px rgba(51,194,122,0.6); }
+    color: var(--mlb-good); text-shadow: 0 0 7px rgba(59,229,126,0.85), 0 0 2px rgba(59,229,126,0.9); }
   body.knockout-mode .bkt-box.actual.wrong .bline.winner .bn,
   body.knockout-mode .bkt-list .lcard.actual.wrong .bline.winner .bn {
-    color: var(--mlb-bad); text-shadow: 0 0 7px rgba(255,81,71,0.65); }
+    color: var(--mlb-bad); text-shadow: 0 0 7px rgba(255,81,71,0.85), 0 0 2px rgba(255,81,71,0.9); }
 
 
   /* ---------- Tabs ---------- */
@@ -3113,7 +3113,7 @@
     89: "France", 90: "Netherlands", 91: "Brazil", 92: "England",
     93: "Spain", 94: "United States", 95: "Argentina", 96: "Colombia",
     97: "France", 98: "Spain", 99: "England", 100: "Argentina",
-    101: "France", 102: "Argentina", 104: "France"
+    101: "France", 102: "Argentina", 103: "Spain", 104: "France"
   };
   const sameTeam = (a, b) => !!(a && b && normKey(canonName(a)) === normKey(canonName(b)));
   function buildMlbData(data) {
@@ -3194,8 +3194,11 @@
         const loserOf = e => (e.winner === "HOME_TEAM" ? e.away : e.home);
         const l1 = loserOf(sfs[0]), l2 = loserOf(sfs[1]);
         if (l1 && l2 && l1.name && l2.name && l1.resolved !== false && l2.resolved !== false) {
-          const homeWins = strengthOf(l1.name) >= strengthOf(l2.name);
-          const predName = homeWins ? l1.name : l2.name;
+          // Prefer the hardwired pick; fall back to the stronger side by title odds.
+          const predName = MLB_PREDICTED[103] && (sameTeam(MLB_PREDICTED[103], l1.name) || sameTeam(MLB_PREDICTED[103], l2.name))
+            ? MLB_PREDICTED[103]
+            : (strengthOf(l1.name) >= strengthOf(l2.name) ? l1.name : l2.name);
+          const homeWins = sameTeam(l1.name, predName);
           const real3 = realByNo[103];
           if (real3) {
             byStage.THIRD_PLACE.push(realEntry(103, real3.m, predName));
