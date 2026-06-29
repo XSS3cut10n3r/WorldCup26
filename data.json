@@ -483,8 +483,8 @@
       "home": {
         "name": "Germany",
         "owner": "Tomi",
-        "goals": 0,
-        "penGoals": 5,
+        "goals": 1,
+        "penGoals": 3,
         "projected": false,
         "slot": "Winner Group E",
         "resolved": true,
@@ -494,14 +494,14 @@
         "name": "Paraguay",
         "owner": "Pete",
         "goals": 1,
-        "penGoals": 5,
+        "penGoals": 4,
         "projected": false,
         "slot": "3rd place A/B/C/D/F",
         "resolved": true,
         "fifaRank": 40
       },
       "penalties": true,
-      "winner": null
+      "winner": "AWAY_TEAM"
     },
     {
       "matchNo": 76,
@@ -941,8 +941,8 @@
           "home": {
             "name": "Germany",
             "owner": "Tomi",
-            "goals": 0,
-            "penGoals": 5,
+            "goals": 1,
+            "penGoals": 3,
             "projected": false,
             "slot": "Winner Group E",
             "resolved": true,
@@ -952,14 +952,14 @@
             "name": "Paraguay",
             "owner": "Pete",
             "goals": 1,
-            "penGoals": 5,
+            "penGoals": 4,
             "projected": false,
             "slot": "3rd place A/B/C/D/F",
             "resolved": true,
             "fifaRank": 40
           },
           "penalties": true,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 75,
