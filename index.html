@@ -910,6 +910,7 @@
     box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.7);
   }
   html.sim #bubblebtn { background: rgba(46, 58, 70, 0.92); }
+  html.sim #bubblebtn:not(.on):hover { background: var(--ice); color: var(--pitch-deep); }
   body.bubble-mode #simbtn { display: none !important; }
   @media (prefers-reduced-motion: reduce) { #bubblebtn.on { animation: none; } }
 
@@ -938,6 +939,7 @@
     box-shadow: 0 0 16px 3px rgba(255, 90, 69, 0.7);
   }
   html.sim #knockoutbtn { background: rgba(46, 58, 70, 0.92); }
+  html.sim #knockoutbtn:not(.on):hover { background: var(--ice); color: var(--pitch-deep); }
   @media (prefers-reduced-motion: reduce) { #knockoutbtn.on { animation: none; } }
 
   /* "Winner clinches" pills on upcoming group games (home feed + countdown).
