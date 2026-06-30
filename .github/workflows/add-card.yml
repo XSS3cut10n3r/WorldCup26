@@ -87,7 +87,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Apply card, regenerate data.json, and push
+      - name: Apply card override, regenerate, and push
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
           TEAM: ${{ inputs.team }}
@@ -98,21 +98,24 @@ jobs:
           set -u
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          # Each attempt syncs to the live remote tip, re-applies the card to the
-          # CURRENT cards-manual.json, regenerates data.json on top of whatever
-          # scores just landed, then pushes. So a collision with the live loop
-          # never double-counts the card and never reverts a score update.
+          # Each attempt syncs to the live remote tip, re-applies the delta to
+          # the CURRENT cards-overrides.json (never cards-manual.json, which
+          # sync_cards regenerates from ESPN), then re-runs sync_cards +
+          # update_scores on top of whatever scores just landed, and pushes. So a
+          # collision with the live loop never double-counts the card and never
+          # reverts a score update.
           ok=no
           for attempt in 1 2 3 4 5; do
             git rebase --abort 2>/dev/null || true
             rm -rf .git/rebase-merge .git/rebase-apply 2>/dev/null || true
             git fetch -q origin "$BRANCH" || true
             git checkout -q -B "$BRANCH" "origin/$BRANCH" 2>/dev/null || git reset -q --hard "origin/$BRANCH"
-            python3 -c "import json,os,sys; t=os.environ['TEAM']; c=os.environ['CARD'].split()[0]; n=int(os.environ['COUNT']); d=json.load(open('cards-manual.json',encoding='utf-8')); (t in d) or sys.exit('Team '+t+' not in cards-manual.json'); (c in d[t]) or sys.exit('Unknown card type '+c); d[t][c]=max(0,d[t][c]+n); json.dump(d,open('cards-manual.json','w',encoding='utf-8'),indent=2,ensure_ascii=False); print(t,c,'is now',d[t][c])" || exit 1
+            python3 -c "import json,os,sys; t=os.environ['TEAM']; c=os.environ['CARD'].split()[0]; n=int(os.environ['COUNT']); b=json.load(open('cards-manual.json',encoding='utf-8')); (t in b) or sys.exit('Team '+t+' not in cards-manual.json'); (c in b[t]) or sys.exit('Unknown card type '+c); p='cards-overrides.json'; o=(json.load(open(p,encoding='utf-8')) if os.path.exists(p) else {}); r=(o[t] if isinstance(o.get(t),dict) else {}); v=max(0,int(r.get(c,0))+n); (r.__setitem__(c,v) if v else r.pop(c,None)); (o.__setitem__(t,r) if r else o.pop(t,None)); f=open(p,'w',encoding='utf-8'); json.dump(o,f,indent=2,ensure_ascii=False); f.write('\n'); f.close(); print(t,c,'override now',v)" || exit 1
+            python3 scripts/sync_cards.py || true
             python3 scripts/update_scores.py || true
-            git add cards-manual.json data.json
+            git add cards-overrides.json cards-manual.json data.json
             if git diff --staged --quiet; then echo "Nothing changed."; ok=skip; break; fi
-            git commit -q -m "Card: $TEAM +$COUNT $CARD"
+            git commit -q -m "Card override: $TEAM $CARD ($COUNT)"
             if git push -q origin HEAD:"$BRANCH"; then ok=yes; break; fi
             echo "push rejected (remote moved); resyncing and retrying (${attempt}/5)…"
             sleep 2
