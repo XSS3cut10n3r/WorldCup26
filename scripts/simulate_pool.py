@@ -604,7 +604,12 @@ def _run_chunk(task):
     n, seed, data_path, elo_path = task
     random.seed(seed)
     model = build_model(load(elo_path), load(data_path))
-    run, upc = make_runner(model)
+    # Round-by-round with in-knockout form feedback (a result updates the winner's
+    # form for the next round). This single pass now drives EVERYTHING — pool-win
+    # odds, per-team title odds, R32-reach odds, the easiest-path bell and the
+    # upcoming-game odds — so the whole site shares one coherent, more accurate
+    # simulation instead of a second no-feedback pass.
+    run, upc = make_runner(model, form_feedback=True)
 
     wins = defaultdict(float)
     pts_sum = defaultdict(float)
@@ -630,27 +635,6 @@ def _run_chunk(task):
         for nm, v in person.items():
             pts_sum[nm] += v
     return dict(wins), dict(pts_sum), dict(champ), dict(ko), upc, dict(ep_sum), dict(ep_rank)
-
-
-def _ko_chunk(task):
-    """Knockout-only tally WITH in-round form feedback (drives the /#knockout
-    page only). Returns champion counts + easiest-path sums."""
-    n, seed, data_path, elo_path = task
-    random.seed(seed)
-    model = build_model(load(elo_path), load(data_path))
-    run, _u = make_runner(model, form_feedback=True)
-    champ = defaultdict(float)
-    ep_sum = defaultdict(float)
-    ep_rank = defaultdict(float)
-    for _ in range(n):
-        _person, champion, _q, champ_opps = run()
-        if champion is not None:
-            champ[champion] += 1
-            if champ_opps:
-                k = len(champ_opps)
-                ep_sum[champion]  += sum(-math.log(f or 40) for f in champ_opps) / k
-                ep_rank[champion] += sum((f or 40) for f in champ_opps) / k
-    return dict(champ), dict(ep_sum), dict(ep_rank)
 
 
 # ----------------------------------------------------------------------------
@@ -747,39 +731,6 @@ def main():
                 merge(result)
                 done += 1
                 print(f"  …worker {done}/{workers} finished", file=sys.stderr)
-
-    # Knockout-page pass: re-simulate the knockout WITH in-round form feedback (a
-    # result updates the winner's form for the next round). This drives ONLY the
-    # /#knockout easiest-path bell + champion; the title odds in sim_odds stay on
-    # the no-feedback model the rest of the site uses. Deterministic under --seed.
-    champ_ko = defaultdict(float)
-    ep_sum_ko = defaultdict(float)
-    ep_rank_ko = defaultdict(float)
-    N_ko = 0
-    if args.knockout_json:
-        N_ko = N
-        kseeder = random.Random((args.seed if args.seed is not None else 0) + 4242)
-        ktasks = [(counts[i], kseeder.randrange(2 ** 31 - 1), args.data, args.elo)
-                  for i in range(workers)]
-
-        def kmerge(res):
-            c, es, er = res
-            for nm, v in c.items():
-                champ_ko[nm] += v
-            for nm, v in es.items():
-                ep_sum_ko[nm] += v
-            for nm, v in er.items():
-                ep_rank_ko[nm] += v
-
-        print(f"Knockout form-feedback pass: {N_ko:,} tournaments …", file=sys.stderr)
-        if workers == 1:
-            kmerge(_ko_chunk(ktasks[0]))
-        else:
-            with Pool(processes=workers) as pool:
-                kdone = 0
-                for res in pool.imap_unordered(_ko_chunk, ktasks):
-                    kmerge(res); kdone += 1
-                    print(f"  …ko worker {kdone}/{workers} finished", file=sys.stderr)
 
     rows = sorted(people, key=lambda nm: -wins[nm])
     width = max(len(nm) for nm in people)
@@ -900,20 +851,21 @@ def main():
         # the mean strength (-log FIFA rank) of the knockout sides STILL AHEAD of it
         # that it's projected to beat (games already played are excluded), averaged
         # over its title-winning sims, with a readable mean opponent rank and the raw
-        # title tally. The #knockout page plots these on a bell curve and lists them.
-        # Deterministic under a fixed --seed, so the no-op skip still holds when
-        # nothing upstream changed.
+        # title tally. From the same single form-feedback pass as the odds above, so
+        # the champion and the bell agree exactly. The #knockout page plots these on
+        # a bell curve and lists them. Deterministic under a fixed --seed, so the
+        # no-op skip still holds when nothing upstream changed.
         ep_rows = []
         for nm in model["T"]:
-            c = champ_ko.get(nm, 0.0)
+            c = champ.get(nm, 0.0)
             if c <= 0:
                 continue
             ep_rows.append({
                 "name": nm,
                 "wins": int(round(c)),
-                "winPct": d5(c / N_ko),
-                "avgStrength": round(ep_sum_ko.get(nm, 0.0) / c, 5),
-                "avgOppRank": round(ep_rank_ko.get(nm, 0.0) / c, 2),
+                "winPct": d5(c / N),
+                "avgStrength": round(ep_sum_total.get(nm, 0.0) / c, 5),
+                "avgOppRank": round(ep_rank_total.get(nm, 0.0) / c, 2),
             })
         ep_rows.sort(key=lambda r: (-r["wins"], r["name"].lower()))
 
@@ -1033,7 +985,7 @@ def main():
         fin = next((r for r in bracket_rows if r["stage"] == "FINAL"), None)
         if fin:
             cn = fin["home"] if fin["pHome"] >= 0.5 else fin["away"]
-            champion = {"name": cn, "titlePct": d5(champ_ko.get(cn, 0.0) / N_ko)}
+            champion = {"name": cn, "titlePct": d5(champ.get(cn, 0.0) / N)}
 
 
         if (prev is not None and prev.get("teams") == teams and prev.get("easiestPath") == ep_rows
