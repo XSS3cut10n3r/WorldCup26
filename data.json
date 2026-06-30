@@ -472,12 +472,13 @@
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 75,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-30T01:00:00Z",
       "home": {
         "name": "Netherlands",
@@ -500,10 +501,8 @@
         "fifaRank": 7
       },
       "penalties": true,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM"
+    },
     {
       "matchNo": 74,
       "stage": "Round of 32",
