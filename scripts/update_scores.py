@@ -100,6 +100,94 @@ def fetch_matches(token: str) -> list:
     return payload.get("matches", [])
 
 
+# ---------------------------------------------------------------------------
+# ESPN is authoritative for penalty shootouts. football-data's free tier
+# mis-reports them (a real 1-1 / 4-3-on-penalties can arrive as 0-1 with a 5-5
+# shootout and a NULL winner), which would zero the knockout points, skip the
+# elimination and stall the bracket. We fold ESPN's shootout results in below.
+# ---------------------------------------------------------------------------
+ESPN_SCOREBOARD_URL = (
+    "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/"
+    "scoreboard?limit=300&dates=20260611-20260719"
+)
+
+
+def _espn_goals(competitor) -> int:
+    try:
+        return int(competitor.get("score"))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _espn_shootout(competitor, comp):
+    """Made shootout kicks for a competitor, or None if this game wasn't a
+    shootout. Prefer ESPN's per-competitor `shootoutScore`; fall back to counting
+    converted shootout kicks in the play-by-play `details`."""
+    v = competitor.get("shootoutScore")
+    if v not in (None, ""):
+        try:
+            return int(v)
+        except (TypeError, ValueError):
+            pass
+    tid = (competitor.get("team") or {}).get("id")
+    seen, made = False, 0
+    for d in comp.get("details") or []:
+        if not d.get("shootout"):
+            continue
+        seen = True
+        if d.get("scoringPlay") and (d.get("team") or {}).get("id") == tid:
+            made += 1
+    return made if seen else None
+
+
+def fetch_espn_penalty_results() -> dict:
+    """Best-effort map of FINISHED knockout games ESPN reports as penalty
+    shootouts: {frozenset({home_norm, away_norm}): {goals, pens, winner_norm}}.
+    Keyed and valued by normalized team name so it aligns with whatever
+    football-data calls the sides. Never raises — returns {} if ESPN is
+    unreachable or the shape is unexpected, so a scores update never depends on
+    ESPN being up. Only shootout games are included; everything else is left to
+    football-data."""
+    req = urllib.request.Request(
+        ESPN_SCOREBOARD_URL, headers={"User-Agent": "family-world-cup/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            board = json.load(resp)
+    except (urllib.error.URLError, ValueError, OSError):
+        return {}
+    out = {}
+    for ev in board.get("events") or []:
+        for comp in ev.get("competitions") or []:
+            if (((comp.get("status") or {}).get("type") or {}).get("state")) != "post":
+                continue
+            comps = comp.get("competitors") or []
+            home = next((c for c in comps if c.get("homeAway") == "home"), None)
+            away = next((c for c in comps if c.get("homeAway") == "away"), None)
+            if not home or not away:
+                continue
+            ph, pa = _espn_shootout(home, comp), _espn_shootout(away, comp)
+            if ph is None and pa is None:
+                continue   # not a shootout -> leave football-data's result alone
+            hn = normalize((home.get("team") or {}).get("displayName") or "")
+            an = normalize((away.get("team") or {}).get("displayName") or "")
+            if not hn or not an:
+                continue
+            if home.get("winner") is True:
+                wn = hn
+            elif away.get("winner") is True:
+                wn = an
+            elif ph is not None and pa is not None and ph != pa:
+                wn = hn if ph > pa else an
+            else:
+                wn = None
+            out[frozenset((hn, an))] = {
+                "goals": {hn: _espn_goals(home), an: _espn_goals(away)},
+                "pens": {hn: ph, an: pa},
+                "winner_norm": wn,
+            }
+    return out
+
+
 def team_owner_lookup(assignments: dict) -> dict:
     """normalized team name -> (owner, canonical team name as the family wrote it)"""
     lookup = {}
@@ -148,6 +236,10 @@ def main():
     matches = fetch_matches(token)
     matches.sort(key=lambda m: m.get("utcDate") or "")
 
+    # ESPN's authoritative penalty-shootout results, merged in per game below.
+    # Best-effort: empty if ESPN is unreachable, leaving football-data as-is.
+    espn_pens = fetch_espn_penalty_results()
+
     # Running state
     points = {owner: 0.0 for owner in assignments["participants"]}
     team_points = {}   # canonical team name -> points earned
@@ -189,6 +281,25 @@ def main():
                 away_goals -= pen_away
         home, away = m.get("homeTeam", {}) or {}, m.get("awayTeam", {}) or {}
         home_hit, away_hit = match_team(home, lookup), match_team(away, lookup)
+
+        # ESPN override for penalty shootouts (authoritative). football-data's free
+        # tier mis-reports a shootout (a real 1-1 / 4-3-pens can arrive as 0-1 with
+        # a 5-5 shootout and a NULL winner). The null winner would trip the
+        # `continue` in the scoring block below, so NO points are awarded, the loser
+        # is never eliminated, and the bracket never advances. Taking ESPN's result
+        # here — before the entry, the scoring, and the bracket all read it — fixes
+        # the score, the points, the elimination and the advancement together.
+        if status in FINISHED and stage != "GROUP_STAGE":
+            _hn, _an = normalize(home.get("name") or ""), normalize(away.get("name") or "")
+            _er = espn_pens.get(frozenset((_hn, _an))) if (_hn and _an) else None
+            if _er and _hn in _er["goals"] and _an in _er["goals"]:
+                home_goals, away_goals = _er["goals"][_hn], _er["goals"][_an]
+                pen_home, pen_away = _er["pens"][_hn], _er["pens"][_an]
+                is_pens = True
+                _wn = _er["winner_norm"]
+                score = dict(score)
+                score["winner"] = ("HOME_TEAM" if _wn == _hn else
+                                   "AWAY_TEAM" if _wn == _an else None)
 
         entry = {
             "stage": STAGE_LABELS.get(stage, stage.replace("_", " ").title()),
