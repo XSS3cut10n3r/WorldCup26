@@ -472,7 +472,37 @@
       "utcDate": "2026-06-28T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 77,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-30T21:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group I",
+        "resolved": true,
+        "fifaRank": 3
+      },
+      "away": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place C/D/F/G/H",
+        "resolved": true,
+        "fifaRank": 38
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 78,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 77,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-30T21:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group I",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place C/D/F/G/H",
-        "resolved": true,
-        "fifaRank": 38
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 79,
       "stage": "Round of 32",
@@ -910,6 +911,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 87,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-07-04T01:30:00Z",
+      "home": {
+        "name": "Colombia",
+        "owner": "Charlie",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group K",
+        "resolved": true,
+        "fifaRank": 13
+      },
+      "away": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place D/E/I/J/L",
+        "resolved": true,
+        "fifaRank": 73
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -1037,12 +1067,12 @@
           "matchNo": 77,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-06-30T21:00:00Z",
           "home": {
             "name": "France",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group I",
@@ -1052,7 +1082,7 @@
           "away": {
             "name": "Sweden",
             "owner": "Tomi",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place C/D/F/G/H",
@@ -1336,7 +1366,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group K",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 13
           },
           "away": {
             "name": "Ghana",
@@ -1345,7 +1376,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "3rd place D/E/I/J/L",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 73
           },
           "penalties": false,
           "winner": null
@@ -9877,5 +9909,5 @@
       }
     ]
   },
-  "generated": "2026-06-30T19:03:31Z"
+  "generated": "2026-06-30T21:14:07Z"
 }
