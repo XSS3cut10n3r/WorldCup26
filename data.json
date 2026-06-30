@@ -483,7 +483,7 @@
         "name": "Netherlands",
         "owner": "Charlotte",
         "goals": 1,
-        "penGoals": null,
+        "penGoals": 1,
         "projected": false,
         "slot": "Winner Group F",
         "resolved": true,
@@ -493,13 +493,13 @@
         "name": "Morocco",
         "owner": "Agatha",
         "goals": 1,
-        "penGoals": null,
+        "penGoals": 0,
         "projected": false,
         "slot": "Runner-up Group C",
         "resolved": true,
         "fifaRank": 7
       },
-      "penalties": false,
+      "penalties": true,
       "winner": null
     }
   ],
