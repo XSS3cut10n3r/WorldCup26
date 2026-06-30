@@ -1,0 +1,4 @@
+{
+  "_comment": "Hand-entered card deltas ADDED on top of ESPN's auto-synced counts (see scripts/sync_cards.py). ESPN doesn't record cards shown to coaches/officials, so add them here. Use canonical team names and the buckets yellow / indirect_red / direct_red / yellow_direct_red. Values are added to ESPN's tally (negatives undo a miscount); each bucket is clamped at 0. These persist across every regeneration. Remove an entry only if it was a mistake — a coach booking stays here for the whole tournament.",
+  "Germany": { "yellow": 1 }
+}
