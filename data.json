@@ -2147,7 +2147,7 @@
           "ga": 4,
           "gd": 6,
           "points": 6,
-          "conduct": -4,
+          "conduct": -3,
           "fifaRank": 10,
           "clinched": true,
           "clinchType": "winner"
@@ -3114,6 +3114,16 @@
         "rank": 6
       },
       {
+        "team": "Germany",
+        "owner": "Tomi",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 13
+      },
+      {
         "team": "Ghana",
         "owner": "Charlotte",
         "yellow": 3,
@@ -3151,7 +3161,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Cabo Verde",
@@ -3161,7 +3171,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Colombia",
@@ -3171,7 +3181,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Côte d'Ivoire",
@@ -3181,17 +3191,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
-      },
-      {
-        "team": "Germany",
-        "owner": "Tomi",
-        "yellow": 4,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Japan",
@@ -3201,7 +3201,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Jordan",
@@ -3211,7 +3211,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "New Zealand",
@@ -3221,7 +3221,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Portugal",
@@ -3231,7 +3231,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "South Korea",
@@ -3241,7 +3241,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Uzbekistan",
@@ -3251,7 +3251,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 16
+        "rank": 17
       },
       {
         "team": "Australia",
@@ -3519,11 +3519,11 @@
       },
       {
         "name": "Tomi",
-        "score": -23,
+        "score": -22,
         "teams": [
           {
             "name": "Germany",
-            "score": -4
+            "score": -3
           },
           {
             "name": "Sweden",
@@ -3538,7 +3538,7 @@
             "score": -4
           }
         ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Paul",
@@ -9588,7 +9588,7 @@
       "Germany": {
         "owner": "Tomi",
         "canon": "Germany",
-        "conduct": -4,
+        "conduct": -3,
         "fifa": 10,
         "group": "E"
       },
@@ -9857,5 +9857,5 @@
       }
     ]
   },
-  "generated": "2026-06-30T12:32:48Z"
+  "generated": "2026-06-30T15:10:42Z"
 }
