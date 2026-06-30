@@ -36,6 +36,34 @@
       "rank": 1
     },
     {
+      "name": "Pete",
+      "points": 8.0,
+      "teams": [
+        {
+          "name": "Spain",
+          "points": 2.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Japan",
+          "points": 2.0,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Paraguay",
+          "points": 3.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Kelly",
       "points": 7.0,
       "teams": [
@@ -61,7 +89,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Mat",
@@ -89,7 +117,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Nik",
@@ -117,7 +145,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Charlotte",
@@ -145,35 +173,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 5
-    },
-    {
-      "name": "Pete",
-      "points": 6.0,
-      "teams": [
-        {
-          "name": "Spain",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Japan",
-          "points": 2.0,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Paraguay",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "third"
-        }
-      ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Paul",
@@ -245,7 +245,7 @@
         {
           "name": "Germany",
           "points": 2,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Pete",
+      "team": "Paraguay",
+      "points": 2,
+      "label": "Paraguay won on penalties (Round of 32)",
+      "utcDate": "2026-06-29T20:30:00Z"
+    },
+    {
       "owner": "Sydney",
       "team": "Brazil",
       "points": 2,
@@ -462,13 +469,6 @@
       "team": "Algeria",
       "points": 0.5,
       "label": "Algeria drew (Group stage)",
-      "utcDate": "2026-06-28T02:00:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Argentina",
-      "points": 1,
-      "label": "Argentina won (Group stage)",
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
@@ -1374,13 +1374,13 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-04T17:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Paraguay",
+            "owner": "Pete",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 74",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -9828,14 +9828,14 @@
         "stageCode": "LAST_32",
         "home": "Germany",
         "away": "Paraguay",
-        "homeGoals": 0,
+        "homeGoals": 1,
         "awayGoals": 1,
         "penalties": true,
-        "penHome": 5,
-        "penAway": 5,
-        "winner": null
+        "penHome": 3,
+        "penAway": 4,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-06-29T23:35:10Z"
+  "generated": "2026-06-30T00:03:14Z"
 }
