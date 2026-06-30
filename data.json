@@ -472,7 +472,37 @@
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 78,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-30T17:00:00Z",
+      "home": {
+        "name": "Ivory Coast",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group E",
+        "resolved": true,
+        "fifaRank": 33
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group I",
+        "resolved": true,
+        "fifaRank": 31
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 75,
@@ -614,35 +644,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 78,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-30T17:00:00Z",
-      "home": {
-        "name": "Ivory Coast",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group E",
-        "resolved": true,
-        "fifaRank": 33
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group I",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 77,
       "stage": "Round of 32",
@@ -903,6 +904,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 86,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-07-03T22:00:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group J",
+        "resolved": true,
+        "fifaRank": 1
+      },
+      "away": {
+        "name": "Cape Verde Islands",
+        "owner": "Paul",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group H",
+        "resolved": true,
+        "fifaRank": 67
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -1059,12 +1089,12 @@
           "matchNo": 78,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-06-30T17:00:00Z",
           "home": {
             "name": "Ivory Coast",
             "owner": "Paul",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group E",
@@ -1074,7 +1104,7 @@
           "away": {
             "name": "Norway",
             "owner": "Charlotte",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group I",
@@ -1300,7 +1330,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group J",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 1
           },
           "away": {
             "name": "Cape Verde Islands",
@@ -1309,7 +1340,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group H",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 67
           },
           "penalties": false,
           "winner": null
@@ -9857,5 +9889,5 @@
       }
     ]
   },
-  "generated": "2026-06-30T15:10:42Z"
+  "generated": "2026-06-30T17:23:09Z"
 }
