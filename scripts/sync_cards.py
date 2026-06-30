@@ -16,6 +16,12 @@ Usage:
     python3 scripts/sync_cards.py audit TEAM  # prints one team's card events
     CARDS_FILE=other.json python3 scripts/sync_cards.py   # override target
 
+Manual additions: cards ESPN can't see (e.g. a coach's booking) go in
+cards-overrides.json as additive deltas — { "Germany": { "yellow": 1 } } — which
+are ADDED on top of ESPN's counts every run. ESPN stays authoritative for player
+cards (new bookings still appear); the manual delta is never removed and never
+absorbed when the team picks up more cards.
+
 Exit codes: 0 on success, 1 on fetch/parse failure (so the workflow can tell).
 No API key required. Standard library only.
 
@@ -34,6 +40,10 @@ SCOREBOARD = (
     "scoreboard?limit=300&dates=20260611-20260719"
 )
 CARDS_FILE = os.environ.get("CARDS_FILE", "cards-manual.json")
+# Hand-entered card deltas ADDED on top of ESPN's auto-synced counts, so a card
+# ESPN never records (e.g. a coach's caution) survives every regeneration and is
+# never absorbed when the team later picks up more player cards.
+OVERRIDES_FILE = os.environ.get("CARDS_OVERRIDES_FILE", "cards-overrides.json")
 
 # ESPN display names -> your canonical names.
 NAME_MAP = {
@@ -136,6 +146,50 @@ def build(data):
     return out, unmapped
 
 
+def apply_overrides(out, path):
+    """Add hand-entered card deltas from `path` ON TOP of ESPN's counts; return
+    how many deltas were applied. ESPN never records cards shown to coaches or
+    other officials (they aren't players in the feed), so those have to be added
+    here. Because the deltas are ADDED to whatever ESPN reports — not a floor and
+    not a max — ESPN stays authoritative for every player card (new bookings keep
+    appearing), while a manual addition is never wiped by the regeneration and
+    never gets absorbed when a team later picks up more cards.
+
+    Schema mirrors cards-manual.json (canonical team name -> bucket -> count):
+        { "Germany": { "yellow": 1 } }
+    Values are integers added to the ESPN tally; negatives are allowed (to undo a
+    miscount) and each bucket is clamped at 0. Best-effort: a missing file is
+    silently fine, a malformed one is warned about and skipped (never fatal), and
+    any entry whose value isn't a bucket dict (e.g. a "_comment" string) is
+    ignored."""
+    if not os.path.exists(path):
+        return 0
+    try:
+        with open(path, encoding="utf-8") as f:
+            overrides = json.load(f)
+    except (OSError, ValueError) as e:
+        print(f"WARNING: couldn't read {path} ({e}); manual card overrides "
+              f"skipped.", file=sys.stderr)
+        return 0
+    applied = 0
+    for team, buckets in (overrides or {}).items():
+        if not isinstance(buckets, dict):
+            continue  # e.g. a "_comment" string — safely ignored
+        name = NAME_MAP.get(team, team)
+        row = out.setdefault(name, {b: 0 for b in BUCKETS})
+        for bucket, n in buckets.items():
+            if bucket not in BUCKETS:
+                continue
+            try:
+                n = int(n)
+            except (TypeError, ValueError):
+                continue
+            if n:
+                row[bucket] = max(0, row[bucket] + n)
+                applied += 1
+    return applied
+
+
 def write_atomic(path, obj):
     d = os.path.dirname(os.path.abspath(path))
     fd, tmp = tempfile.mkstemp(dir=d, suffix=".tmp")
@@ -186,9 +240,14 @@ def main():
                   f"add it before writing.", file=sys.stderr)
         return 2
 
+    applied = apply_overrides(out, OVERRIDES_FILE)
+
     write_atomic(CARDS_FILE, out)
     total = sum(sum(v.values()) for v in out.values())
-    print(f"Wrote {CARDS_FILE}: {len(out)} teams, {total} cards total.")
+    msg = f"Wrote {CARDS_FILE}: {len(out)} teams, {total} cards total."
+    if applied:
+        msg += f" (+{applied} manual override(s) from {OVERRIDES_FILE})"
+    print(msg)
     return 0
 
 
