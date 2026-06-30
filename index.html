@@ -1561,7 +1561,7 @@
     if (isKnockout(m)) return false;
     const c = m.clinch;
     return !!(sideThrough(m.home) || sideThrough(m.away) ||
-      upElimNames.has(m.home.name) || upElimNames.has(m.away.name) ||
+      elimHas(m.home.name) || elimHas(m.away.name) ||
       (c && ((c.home && c.home.winAdvances) || (c.away && c.away.winAdvances))));
   }
   function teamCellW(m, side) {
@@ -1569,7 +1569,7 @@
     const t = side === "home" ? m.home : m.away;
     const c = m.clinch;
     const cside = c ? (side === "home" ? c.home : c.away) : null;
-    const isOut = upElimNames.has(t.name);
+    const isOut = elimHas(t.name);
     const ko = isKnockout(m);
     return teamCell(t, side, clinchTag(t, cside, "ctag", isOut, ko), isOut, ko);
   }
@@ -1627,6 +1627,11 @@
   const ALIAS_BY_KEY = {};
   for (const k in NAME_ALIAS) ALIAS_BY_KEY[normKey(k)] = NAME_ALIAS[k];
   const canonName = n => ALIAS_BY_KEY[normKey(n)] || n;
+  // Eliminated-team lookups go through this so feed spelling variants — accents,
+  // apostrophe encodings (e.g. Côte d'Ivoire) — always match the leaderboard's
+  // stored name. A raw Set.has(name) missed them, leaving a knockout loser's name
+  // un-dimmed on the Recent-results card even though the bracket showed the loss.
+  const elimHas = n => upElimNames.has(normKey(canonName(n)));
   const COUNTRY_COLOR = {
     "Mexico": "#157F43", "South Korea": "#3060B0", "South Africa": "#F2A900", "Czechia": "#D62828",
     "Canada": "#E23B4E", "Switzerland": "#E6E6E6", "Qatar": "#6E1B3D", "Bosnia and Herzegovina": "#243F9E",
@@ -1859,7 +1864,7 @@
     const rank = t => (t.fifaRank !== null && t.fifaRank !== undefined)
       ? `<div class="cd-rank">#${t.fifaRank}</div>` : "";
     const info = (t, side) => {
-      const isOut = upElimNames.has(t.name);
+      const isOut = elimHas(t.name);
       const through = sideThrough(t) && !isOut && !ko;
       const cside = c ? (side === "home" ? c.home : c.away) : null;
       return `<div class="cd-tinfo">
@@ -1929,7 +1934,7 @@
     const tagged = showClinch && hasClinchTag(m) ? " tagged" : "";
     // Recent-results emphasis: any eliminated side (group OR knockout) shows a
     // maroon name; the winner of a finished knockout game gets a white-glow name.
-    const homeOut = upElimNames.has(m.home.name), awayOut = upElimNames.has(m.away.name);
+    const homeOut = elimHas(m.home.name), awayOut = elimHas(m.away.name);
     const ko = done && isKnockout(m) && m.winner && m.winner !== "DRAW";
     const homeWin = ko && m.winner === "HOME_TEAM", awayWin = ko && m.winner === "AWAY_TEAM";
     const homeCell = showClinch ? teamCellW(m, "home") : teamCell(m.home, "home", "", homeOut, isKnockout(m), homeWin);
@@ -2272,7 +2277,7 @@
   function renderHome(data) {
     upElimNames = new Set();
     (data.leaderboard || []).forEach(p =>
-      (p.teams || []).forEach(t => { if (t.eliminated) upElimNames.add(t.name); }));
+      (p.teams || []).forEach(t => { if (t.eliminated) upElimNames.add(normKey(canonName(t.name))); }));
     upThroughNames = koCertainNames(data);
     let html = "";
 
