@@ -36,6 +36,34 @@
       "rank": 1
     },
     {
+      "name": "Charlotte",
+      "points": 8.0,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 2.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Norway",
+          "points": 4,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Ghana",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Pete",
       "points": 8.0,
       "teams": [
@@ -89,7 +117,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Mat",
@@ -117,7 +145,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Nik",
@@ -145,7 +173,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Agatha",
@@ -173,35 +201,7 @@
           "clinchType": null
         }
       ],
-      "rank": 6
-    },
-    {
-      "name": "Charlotte",
-      "points": 6.0,
-      "teams": [
-        {
-          "name": "Netherlands",
-          "points": 2.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Norway",
-          "points": 2,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Ghana",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "third"
-        }
-      ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Paul",
@@ -217,7 +217,7 @@
         {
           "name": "Côte d'Ivoire",
           "points": 2,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Charlotte",
+      "team": "Norway",
+      "points": 2,
+      "label": "Norway won (Round of 32)",
+      "utcDate": "2026-06-30T17:00:00Z"
+    },
+    {
       "owner": "Agatha",
       "team": "Morocco",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Canada won (Round of 32)",
       "utcDate": "2026-06-28T19:00:00Z"
-    },
-    {
-      "owner": "Kelly",
-      "team": "Austria",
-      "points": 0.5,
-      "label": "Austria drew (Group stage)",
-      "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
   "live": [],
@@ -618,28 +618,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-28T02:00:00Z",
-      "home": {
-        "name": "Algeria",
-        "owner": "Mat",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 28
-      },
-      "away": {
-        "name": "Austria",
-        "owner": "Kelly",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 24
-      },
-      "penalties": false,
-      "winner": "DRAW"
     }
   ],
   "upcoming": [
@@ -1088,7 +1066,7 @@
           "matchNo": 78,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-06-30T17:00:00Z",
           "home": {
             "name": "Ivory Coast",
@@ -1477,13 +1455,13 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Norway",
+            "owner": "Charlotte",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 78",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -9885,8 +9863,19 @@
         "penHome": 2,
         "penAway": 3,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Côte d'Ivoire",
+        "away": "Norway",
+        "homeGoals": 1,
+        "awayGoals": 2,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-06-30T19:02:27Z"
+  "generated": "2026-06-30T19:03:31Z"
 }
