@@ -1093,7 +1093,7 @@
           "home": {
             "name": "Ivory Coast",
             "owner": "Paul",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group E",
@@ -1103,7 +1103,7 @@
           "away": {
             "name": "Norway",
             "owner": "Charlotte",
-            "goals": 0,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group I",
@@ -1111,7 +1111,7 @@
             "fifaRank": 31
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 79,
@@ -2491,7 +2491,7 @@
           "ga": 7,
           "gd": 1,
           "points": 6,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 31,
           "clinched": true,
           "clinchType": "second"
@@ -3055,16 +3055,6 @@
         "rank": 1
       },
       {
-        "team": "Norway",
-        "owner": "Charlotte",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 1
-      },
-      {
         "team": "Tunisia",
         "owner": "Darcy",
         "yellow": 1,
@@ -3082,7 +3072,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Croatia",
@@ -3092,7 +3082,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "England",
@@ -3102,7 +3092,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Morocco",
@@ -3112,7 +3102,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
+      },
+      {
+        "team": "Norway",
+        "owner": "Charlotte",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 5
       },
       {
         "team": "Senegal",
@@ -3122,7 +3122,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Spain",
@@ -3132,7 +3132,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Türkiye",
@@ -3142,7 +3142,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 6
+        "rank": 5
       },
       {
         "team": "Germany",
@@ -3760,7 +3760,7 @@
       },
       {
         "name": "Charlotte",
-        "score": -7,
+        "score": -8,
         "teams": [
           {
             "name": "Netherlands",
@@ -3768,7 +3768,7 @@
           },
           {
             "name": "Norway",
-            "score": -1
+            "score": -2
           },
           {
             "name": "Ghana",
@@ -9745,7 +9745,7 @@
       "Norway": {
         "owner": "Charlotte",
         "canon": "Norway",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 31,
         "group": "I"
       },
@@ -9888,5 +9888,5 @@
       }
     ]
   },
-  "generated": "2026-06-30T17:23:09Z"
+  "generated": "2026-06-30T18:59:16Z"
 }
