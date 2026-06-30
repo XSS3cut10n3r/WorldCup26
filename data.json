@@ -472,7 +472,37 @@
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 75,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-06-30T01:00:00Z",
+      "home": {
+        "name": "Netherlands",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group F",
+        "resolved": true,
+        "fifaRank": 8
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group C",
+        "resolved": true,
+        "fifaRank": 7
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 74,
@@ -607,35 +637,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 75,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-06-30T01:00:00Z",
-      "home": {
-        "name": "Netherlands",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group F",
-        "resolved": true,
-        "fifaRank": 8
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group C",
-        "resolved": true,
-        "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 78,
       "stage": "Round of 32",
@@ -896,6 +897,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 88,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "TIMED",
+      "utcDate": "2026-07-03T18:00:00Z",
+      "home": {
+        "name": "Australia",
+        "owner": "Agatha",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group D",
+        "resolved": true,
+        "fifaRank": 27
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group G",
+        "resolved": true,
+        "fifaRank": 29
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -965,12 +995,12 @@
           "matchNo": 75,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-06-30T01:00:00Z",
           "home": {
             "name": "Netherlands",
             "owner": "Charlotte",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group F",
@@ -980,7 +1010,7 @@
           "away": {
             "name": "Morocco",
             "owner": "Agatha",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group C",
@@ -1347,7 +1377,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group D",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 27
           },
           "away": {
             "name": "Egypt",
@@ -1356,7 +1387,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group G",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 29
           },
           "penalties": false,
           "winner": null
@@ -9837,5 +9869,5 @@
       }
     ]
   },
-  "generated": "2026-06-30T00:03:14Z"
+  "generated": "2026-06-30T01:30:07Z"
 }
