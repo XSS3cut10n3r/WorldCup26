@@ -148,13 +148,41 @@
       "rank": 4
     },
     {
+      "name": "Agatha",
+      "points": 6.0,
+      "teams": [
+        {
+          "name": "Morocco",
+          "points": 4.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Australia",
+          "points": 1.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Iraq",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 6
+    },
+    {
       "name": "Charlotte",
       "points": 6.0,
       "teams": [
         {
           "name": "Netherlands",
           "points": 2.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -208,7 +236,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Tom",
@@ -236,7 +264,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Tomi",
@@ -271,7 +299,7 @@
           "clinchType": null
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Darcy",
@@ -306,7 +334,7 @@
           "clinchType": null
         }
       ],
-      "rank": 10
+      "rank": 11
     },
     {
       "name": "Charlie",
@@ -335,34 +363,6 @@
         },
         {
           "name": "Jordan",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 11
-    },
-    {
-      "name": "Agatha",
-      "points": 4.0,
-      "teams": [
-        {
-          "name": "Morocco",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Australia",
-          "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Iraq",
           "points": 0,
           "eliminated": true,
           "clinched": false,
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Agatha",
+      "team": "Morocco",
+      "points": 2,
+      "label": "Morocco won on penalties (Round of 32)",
+      "utcDate": "2026-06-30T01:00:00Z"
+    },
+    {
       "owner": "Pete",
       "team": "Paraguay",
       "points": 2,
@@ -462,13 +469,6 @@
       "team": "Austria",
       "points": 0.5,
       "label": "Austria drew (Group stage)",
-      "utcDate": "2026-06-28T02:00:00Z"
-    },
-    {
-      "owner": "Mat",
-      "team": "Algeria",
-      "points": 0.5,
-      "label": "Algeria drew (Group stage)",
       "utcDate": "2026-06-28T02:00:00Z"
     }
   ],
@@ -611,28 +611,6 @@
       },
       "penalties": false,
       "winner": "DRAW"
-    },
-    {
-      "stage": "Group stage",
-      "stageCode": "GROUP_STAGE",
-      "status": "FINISHED",
-      "utcDate": "2026-06-28T02:00:00Z",
-      "home": {
-        "name": "Jordan",
-        "owner": "Charlie",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 63
-      },
-      "away": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": 3,
-        "penGoals": null,
-        "fifaRank": 1
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -994,13 +972,13 @@
           "matchNo": 75,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-06-30T01:00:00Z",
           "home": {
             "name": "Netherlands",
             "owner": "Charlotte",
-            "goals": 0,
-            "penGoals": null,
+            "goals": 1,
+            "penGoals": 2,
             "projected": false,
             "slot": "Winner Group F",
             "resolved": true,
@@ -1009,15 +987,15 @@
           "away": {
             "name": "Morocco",
             "owner": "Agatha",
-            "goals": 0,
-            "penGoals": null,
+            "goals": 1,
+            "penGoals": 3,
             "projected": false,
             "slot": "Runner-up Group C",
             "resolved": true,
             "fifaRank": 7
           },
-          "penalties": false,
-          "winner": null
+          "penalties": true,
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 76,
@@ -1441,13 +1419,13 @@
             "resolved": true
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Morocco",
+            "owner": "Agatha",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 75",
-            "resolved": false
+            "resolved": true
           },
           "penalties": false,
           "winner": null
@@ -2038,7 +2016,7 @@
           "ga": 3,
           "gd": 3,
           "points": 7,
-          "conduct": -1,
+          "conduct": -2,
           "fifaRank": 7,
           "clinched": true,
           "clinchType": "second"
@@ -3046,16 +3024,6 @@
         "rank": 1
       },
       {
-        "team": "Morocco",
-        "owner": "Agatha",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 1
-      },
-      {
         "team": "Norway",
         "owner": "Charlotte",
         "yellow": 1,
@@ -3083,7 +3051,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Croatia",
@@ -3093,7 +3061,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "England",
@@ -3103,7 +3071,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 7
+        "rank": 6
+      },
+      {
+        "team": "Morocco",
+        "owner": "Agatha",
+        "yellow": 2,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -2,
+        "rank": 6
       },
       {
         "team": "Senegal",
@@ -3113,7 +3091,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Spain",
@@ -3123,7 +3101,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Türkiye",
@@ -3133,7 +3111,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Germany",
@@ -3651,6 +3629,25 @@
         "rank": 7
       },
       {
+        "name": "Agatha",
+        "score": -15,
+        "teams": [
+          {
+            "name": "Morocco",
+            "score": -2
+          },
+          {
+            "name": "Australia",
+            "score": -5
+          },
+          {
+            "name": "Iraq",
+            "score": -8
+          }
+        ],
+        "rank": 8
+      },
+      {
         "name": "Kelly",
         "score": -15,
         "teams": [
@@ -3668,25 +3665,6 @@
           }
         ],
         "rank": 8
-      },
-      {
-        "name": "Agatha",
-        "score": -14,
-        "teams": [
-          {
-            "name": "Morocco",
-            "score": -1
-          },
-          {
-            "name": "Australia",
-            "score": -5
-          },
-          {
-            "name": "Iraq",
-            "score": -8
-          }
-        ],
-        "rank": 9
       },
       {
         "name": "Darcy",
@@ -3709,7 +3687,7 @@
             "score": -7
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Tom",
@@ -9561,7 +9539,7 @@
       "Morocco": {
         "owner": "Agatha",
         "canon": "Morocco",
-        "conduct": -1,
+        "conduct": -2,
         "fifa": 7,
         "group": "C"
       },
@@ -9865,8 +9843,19 @@
         "penHome": 3,
         "penAway": 4,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Netherlands",
+        "away": "Morocco",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "penalties": true,
+        "penHome": 2,
+        "penAway": 3,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-06-30T01:30:07Z"
+  "generated": "2026-06-30T03:54:26Z"
 }
