@@ -472,12 +472,13 @@
       "utcDate": "2026-06-28T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 77,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-06-30T21:00:00Z",
       "home": {
         "name": "France",
@@ -500,10 +501,8 @@
         "fifaRank": 38
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM"
+    },
     {
       "matchNo": 78,
       "stage": "Round of 32",
