@@ -3196,7 +3196,7 @@
     // Per-team tournament record for the grid.
     const rec = nm => {
       const K = normKey(canonName(nm));
-      const out = { seq: [], gf: 0, ga: 0, oppRanks: [], pensWinLast: false };
+      const out = { seq: [], gf: 0, ga: 0, oppRanks: [], pensWinLast: false, pensWon: false };
       played.forEach(g => {
         const hK = normKey(canonName(g.h)), aK = normKey(canonName(g.a));
         if (hK !== K && aK !== K) return;
@@ -3206,8 +3206,11 @@
         const fr = fifa(mine ? g.a : g.h);
         if (fr != null) out.oppRanks.push(fr);
         out.seq.push(gf > ga ? "w" : gf < ga ? "l" : "d");
-        if (g.ko) out.pensWinLast = !!g.ko.penalties &&
-          ((mine && g.ko.winner === "HOME_TEAM") || (!mine && g.ko.winner === "AWAY_TEAM"));
+        if (g.ko) {
+          out.pensWinLast = !!g.ko.penalties &&
+            ((mine && g.ko.winner === "HOME_TEAM") || (!mine && g.ko.winner === "AWAY_TEAM"));
+          if (out.pensWinLast) out.pensWon = true;   // any shootout win so far
+        }
       });
       return out;
     };
@@ -3267,13 +3270,26 @@
       if (H.pensWinLast) lamA *= Math.exp(-fat);
       if (A.pensWinLast) lamB *= Math.exp(-fat);
       html += gRow(lamA, lamB, "Model xG This Game", true, v => v.toFixed(2));
-      if (isKO) {
-        const pw = 1 / (1 + Math.exp(-(P.pensK || 0.9) * (Ra - Rb)));
-        html += gRow(Math.round(pw * 100), Math.round((1 - pw) * 100),
-          "If It Goes to Pens", true, v => v + "%");
-      }
     } else {
-      html += `<div class="upx-note">Model ratings (elo.json) not loaded, so Elo / xG / pens lines are hidden.</div>`;
+      html += `<div class="upx-note">Model ratings (elo.json) not loaded, so Elo / xG lines are hidden.</div>`;
+    }
+    if (isKO) {
+      // Near-coin-flip penalty model: form + points-per-game + prior-shootout-win
+      // boost, clamped to 40-60% by default. Same math as eloShootWin in
+      // buildSimData and shoot_win in simulate_pool.py — keep all three in sync.
+      const kF = P.pensFormK != null ? P.pensFormK : 0.06;
+      const kR = P.pensResK != null ? P.pensResK : 0.10;
+      const kP = P.pensWonK != null ? P.pensWonK : 0.15;
+      const pcap = P.pensCap != null ? P.pensCap : 0.60;
+      const ppgOf = r => r.seq.length
+        ? r.seq.reduce((s, c) => s + (c === "w" ? 3 : c === "d" ? 1 : 0), 0) / r.seq.length : 0;
+      const dd = kF * ((M.atk(hn) - M.def(hn)) - (M.atk(an) - M.def(an)))
+               + kR * (ppgOf(H) - ppgOf(A))
+               + kP * ((H.pensWon ? 1 : 0) - (A.pensWon ? 1 : 0));
+      let pw = 1 / (1 + Math.exp(-dd));
+      pw = Math.min(pcap, Math.max(1 - pcap, pw));
+      html += gRow(Math.round(pw * 100), Math.round((1 - pw) * 100),
+        "If It Goes to Pens", true, v => v + "%");
     }
     return `<div class="upx-panel">${html}</div>`;
   }
@@ -3970,6 +3986,24 @@
     playedGames.forEach(m => { bump(m.h, m.a, m.hg, m.ag); bump(m.a, m.h, m.ag, m.hg); });
     const atk = t => { const f = fa[t]; return (f && f.n) ? f.an / f.n : 0; };
     const def = t => { const f = fa[t]; return (f && f.n) ? f.dn / f.n : 0; };
+    // Real results so far: points-per-game (a shootout counts as the 90-min draw)
+    // and the set of teams that have ALREADY WON a shootout (grown below as this
+    // what-if plays out). Together with form these are the only inputs to the
+    // penalty model (eloShootWin).
+    const recPts = {}, recN = {};
+    playedGames.forEach(g => {
+      [[g.h, g.hg, g.ag], [g.a, g.ag, g.hg]].forEach(([t, gf, ga]) => {
+        const k = czName(t);
+        recN[k] = (recN[k] || 0) + 1;
+        recPts[k] = (recPts[k] || 0) + (gf > ga ? 3 : gf === ga ? 1 : 0);
+      });
+    });
+    const ppg = t => { const k = czName(t); return recN[k] ? recPts[k] / recN[k] : 0; };
+    const everPens = new Set();
+    (sim.knockoutPlayed || []).forEach(k => {
+      if (k.penalties && (k.winner === "HOME_TEAM" || k.winner === "AWAY_TEAM"))
+        everPens.add(czName(k.winner === "HOME_TEAM" ? k.home : k.away));
+    });
     const simPoisson = lam => { const L = Math.exp(-lam); let k = 0, p = 1;
       do { k++; p *= Math.random(); } while (p > L); return k - 1; };
     // opts: {group, hangA, hangB, totalMul}. group -> heavier FIFA-rank tilt;
@@ -4013,8 +4047,22 @@
       }
       return [ga, gb];
     }
-    const eloShootWin = (a, b) => (!R || R[a] == null || R[b] == null)
-      ? 0.5 : 1 / (1 + Math.exp(-(P.pensK || 0.9) * (R[a] - R[b])));
+    // Penalty shootouts are close to a coin flip. Only tiny nudges apply:
+    // attacking/defending form, real points-per-game so far, and a boost for a
+    // side that has already won a shootout this tournament (real, or earlier in
+    // this what-if). Clamped to [1-pensCap, pensCap], 40-60% by default. Elo
+    // plays no part. Mirrored by shoot_win in simulate_pool.py — keep in sync.
+    const eloShootWin = (a, b) => {
+      const kF = P.pensFormK != null ? P.pensFormK : 0.06;
+      const kR = P.pensResK != null ? P.pensResK : 0.10;
+      const kP = P.pensWonK != null ? P.pensWonK : 0.15;
+      const pcap = P.pensCap != null ? P.pensCap : 0.60;
+      const d = kF * ((atk(a) - def(a)) - (atk(b) - def(b)))
+              + kR * (ppg(a) - ppg(b))
+              + kP * ((everPens.has(czName(a)) ? 1 : 0) - (everPens.has(czName(b)) ? 1 : 0));
+      const pr = 1 / (1 + Math.exp(-d));
+      return Math.min(pcap, Math.max(1 - pcap, pr));
+    };
 
     // 1) Group tables (current results + random scorelines for what's left).
     const simGroupGames = [];
@@ -4164,6 +4212,7 @@
         const lose = winSide === "HOME_TEAM" ? away : home;
         // winner carries a pens-hangover into their next game iff this was a shootout
         wonOnPens[win.name] = pens;
+        if (pens) everPens.add(czName(win.name));   // pens boost in later rounds
         results[md.match] = {
           winner: {name:win.name, owner:win.owner, fifa:win.fifa},
           loser: {name:lose.name, owner:lose.owner, fifa:lose.fifa}};
