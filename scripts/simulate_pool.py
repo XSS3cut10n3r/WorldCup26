@@ -81,7 +81,12 @@ def build_model(elo, data):
         "suprK": P.get("suprK", 0.42),
         "total": P.get("total", 2.6),
         "floor": P.get("floor", 0.18),
-        "pensK": P.get("pensK", 0.9),
+        # Penalty-shootout model: near-coin-flip, tiny nudges only (see
+        # shoot_win). Elo plays no part.
+        "pensFormK": P.get("pensFormK", 0.06),
+        "pensResK": P.get("pensResK", 0.10),
+        "pensWonK": P.get("pensWonK", 0.15),
+        "pensCap": P.get("pensCap", 0.60),
         "atkCoef": P.get("atkCoef", 0.0),
         "defCoef": P.get("defCoef", 0.0),
         "rankCoef": P.get("rankCoef", 0.0),
@@ -149,6 +154,24 @@ def build_model(elo, data):
         f = fa.get(t)
         return (f["dn"] / f["n"]) if (f and f["n"]) else 0.0
 
+    # Real results so far: points-per-game (3/1/0, a shootout counts as the 90-min
+    # draw) and the set of teams that have ALREADY WON a shootout. Together with
+    # form these are the only inputs to the penalty model (shoot_win).
+    rec_pts, rec_n = {}, {}
+    for (h, a, hg, ag) in played:
+        for t, gf, ga in ((h, hg, ag), (a, ag, hg)):
+            rec_n[t] = rec_n.get(t, 0) + 1
+            rec_pts[t] = rec_pts.get(t, 0) + (3 if gf > ga else 1 if gf == ga else 0)
+
+    def ppg(t):
+        n = rec_n.get(t)
+        return (rec_pts[t] / n) if n else 0.0
+
+    pens_won = set()
+    for k in (sim.get("knockoutPlayed") or []):
+        if k.get("penalties") and k.get("winner") in ("HOME_TEAM", "AWAY_TEAM"):
+            pens_won.add(k["home"] if k["winner"] == "HOME_TEAM" else k["away"])
+
     # Flat, deterministically-ordered list of the remaining GROUP fixtures, shared
     # by the runner (which tallies each game's outcome as it plays it) and the
     # upcoming-odds writer (which maps those tallies back to games). The order is
@@ -165,6 +188,7 @@ def build_model(elo, data):
         "owner_of": owner_of, "canon_of": canon_of,
         "fifa_of": fifa_of, "conduct_of": conduct_of,
         "rs": rs, "atk": atk, "deff": deff,
+        "ppg": ppg, "pensWon": pens_won,
         "fa": fa, "avgGpg": avgGpg, "rs_bar": rs_bar,
         "flat_upcoming": flat_upcoming,
         "baseline": {row["name"]: row["points"] for row in data["leaderboard"]},
@@ -190,7 +214,11 @@ def make_engine(model):
     suprK, total0, floor = p["suprK"], p["total"], p["floor"]
     ATK, DEF = p["atkCoef"], p["defCoef"]
     rankCoef, rankCoefGroup = p["rankCoef"], p["rankCoefGroup"]
-    cap, fatigue, pensK = p["formCap"], p["pensHangover"], p["pensK"]
+    cap, fatigue = p["formCap"], p["pensHangover"]
+    kF, kR, kP = p["pensFormK"], p["pensResK"], p["pensWonK"]
+    pcap = p["pensCap"]
+    ppg = model["ppg"]
+    base_pens = model["pensWon"]
 
     def sim_goals():
         r = rnd()
@@ -246,10 +274,26 @@ def make_engine(model):
             ga, gb = ((0, 0), (0, 1), (1, 0), (1, 1))[k]
         return ga, gb
 
-    def shoot_win(a, b):
-        if R is None or R.get(a) is None or R.get(b) is None:
-            return 0.5
-        return 1.0 / (1.0 + exp(-pensK * (R[a] - R[b])))
+    def shoot_win(a, b, atkA=None, defA=None, atkB=None, defB=None,
+                  pensA=None, pensB=None):
+        """Penalty shootouts are close to a coin flip. Only tiny nudges apply:
+        attacking/defending form (live values may be passed in), real
+        points-per-game so far, and a boost for a side that has ALREADY WON a
+        shootout this tournament (pensA/pensB; defaults to the real winners).
+        Clamped to [1-pensCap, pensCap], 40-60% by default. Elo plays no part.
+        Mirrored by eloShootWin in index.html — keep the two in sync."""
+        aA = atk(a) if atkA is None else atkA
+        dA = deff(a) if defA is None else defA
+        aB = atk(b) if atkB is None else atkB
+        dB = deff(b) if defB is None else defB
+        pA = (a in base_pens) if pensA is None else pensA
+        pB = (b in base_pens) if pensB is None else pensB
+        d = (kF * ((aA - dA) - (aB - dB))
+             + kR * (ppg(a) - ppg(b))
+             + kP * ((1.0 if pA else 0.0) - (1.0 if pB else 0.0)))
+        pr = 1.0 / (1.0 + exp(-d))
+        lo = 1.0 - pcap
+        return lo if pr < lo else (pcap if pr > pcap else pr)
 
     return sim_goals, elo_score, shoot_win
 
@@ -484,7 +528,8 @@ def make_runner(model, form_feedback=False):
 
         # 4) Knockout bracket, simulated forward (real results kept where played).
         results = {}
-        won_on_pens = {}
+        won_on_pens = {}                       # last-match pens win -> hangover
+        ever_pens = set(model["pensWon"])      # any pens win so far -> pens boost
         real_ko = set()   # match numbers resolved from already-played real games
 
         def side_from_code(code, md):
@@ -550,7 +595,9 @@ def make_runner(model, form_feedback=False):
                 pens = False
                 if hg == ag:
                     pens = True
-                    home_wins = random.random() < shoot_win(hn, an_)
+                    home_wins = random.random() < shoot_win(
+                        hn, an_, pensA=(hn in ever_pens), pensB=(an_ in ever_pens),
+                        **fkw)
                     win_side = "HOME_TEAM" if home_wins else "AWAY_TEAM"
                 else:
                     win_side = "HOME_TEAM" if hg > ag else "AWAY_TEAM"
@@ -572,6 +619,8 @@ def make_runner(model, form_feedback=False):
             else:
                 win, lose = home, away  # (a real draw with no decisive winner)
             won_on_pens[win["name"]] = pens
+            if pens:
+                ever_pens.add(win["name"])
             results[md["match"]] = {
                 "winner": {"name": win["name"], "fifa": win["fifa"]},
                 "loser": {"name": lose["name"], "fifa": lose["fifa"]}}
@@ -908,7 +957,11 @@ def main():
             f["dn"] += koFormGain * ((defFloor if defFloor > wi else wi) if dD > 0 else w) * dD
             f["n"] += 1
 
-        def play1(h, a, is_final, fv):
+        # Modal-bracket pens history: real shootout winners, plus each round's
+        # modal winner when the modal result was itself a shootout.
+        ml_pens = set(model["pensWon"])
+
+        def play1(h, a, is_final, fv, pH, pA):
             fmul = FINAL_BOOST if is_final else 1.0
             hg, ag = elo_b(h, a, total_mul=KO_MUL * fmul, rho=DC,
                            atkA=fv[0], defA=fv[1], atkB=fv[2], defB=fv[3])
@@ -919,7 +972,10 @@ def main():
             hg += e1; ag += e2
             if hg != ag:
                 return hg, ag, 1, (0 if hg > ag else 1)
-            return hg, ag, 2, (0 if random.random() < shoot_b(h, a) else 1)
+            hw = random.random() < shoot_b(h, a, atkA=fv[0], defA=fv[1],
+                                           atkB=fv[2], defB=fv[3],
+                                           pensA=pH, pensB=pA)
+            return hg, ag, 2, (0 if hw else 1)
 
         K = 40000
         bdata = {}
@@ -927,10 +983,11 @@ def main():
         def decide(h, a, stage, match):
             is_final = (stage == "FINAL")
             fv = (cur_a(h), cur_d(h), cur_a(a), cur_d(a))
+            pH, pA = (h in ml_pens), (a in ml_pens)
             wh = 0; rtc = [0, 0, 0]
             hist = defaultdict(int)
             for _ in range(K):
-                hg, ag, rt, ws = play1(h, a, is_final, fv)
+                hg, ag, rt, ws = play1(h, a, is_final, fv, pH, pA)
                 if ws == 0:
                     wh += 1
                 rtc[rt] += 1
@@ -958,6 +1015,8 @@ def main():
                         bc, best = cc, (hg, ag)
             gh, ga = best if best else (1, 0)
             bump_b(h, a, gh, ga); bump_b(a, h, ga, gh)
+            if ti == 2:
+                ml_pens.add(h if pick_home else a)
             bdata[match] = {
                 "home": h, "away": a, "pHome": d5(ph),
                 "score": {"h": gh, "a": ga,
