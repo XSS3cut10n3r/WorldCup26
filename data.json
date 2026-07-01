@@ -472,11 +472,12 @@
       "utcDate": "2026-06-29T17:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-01T02:00Z",
       "home": {
         "name": "Mexico",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 77,
       "stage": "Round of 32",
@@ -617,35 +616,6 @@
       },
       "penalties": true,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 76,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-29T17:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group C",
-        "resolved": true,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group F",
-        "resolved": true,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
