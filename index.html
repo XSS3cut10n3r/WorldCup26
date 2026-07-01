@@ -714,6 +714,29 @@
      same fixed width so P/Pts/GD/GF/Cond/FIFA are equidistant and centered. */
   .gtable th:nth-child(1), .gtable td:nth-child(1) { width: 24px; }
   .gtable td.gteam { width: auto; overflow: hidden; text-overflow: ellipsis; }
+  /* ---- Team games dropdown (#groups): click a team name to expand ---- */
+  .gcard td.gteam[data-gx] { cursor: pointer; }
+  .gcard td.gteam[data-gx]:hover { text-decoration: underline dotted; }
+  .gcard td.gteam.gxon { text-decoration: underline dotted; }
+  tr.gxrow td {
+    padding: 2px 8px 8px; background: rgba(0,0,0,.22);
+    border-bottom: 1px solid rgba(242,240,228,.12);
+  }
+  .gxline {
+    display: flex; gap: 8px; align-items: baseline;
+    font-size: 12px; padding: 3px 2px;
+    border-bottom: 1px dashed rgba(242,240,228,.08);
+  }
+  .gxline:last-child { border-bottom: none; }
+  .gxstage { min-width: 30px; color: var(--gold); font-weight: 700; font-size: 10px; letter-spacing: .04em; }
+  .gxres { font-weight: 800; }
+  .gxres.w { color: var(--mlb-good); }
+  .gxres.l { color: var(--mlb-bad); }
+  .gxres.d { color: var(--chalk); opacity: .75; }
+  .gxopp { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .gxup { opacity: .6; font-style: italic; }
+  .gxdate { margin-left: auto; opacity: .55; font-size: 10px; white-space: nowrap; }
+  .gxnone { opacity: .6; font-size: 12px; padding: 4px 2px; }
   .gtable th:nth-child(n+3), .gtable td:nth-child(n+3) { width: 32px; }
   .gpos { color: var(--chalk-faint); }
   .gowner { display: block; font-size: 10.5px; color: var(--chalk-faint); }
@@ -2242,6 +2265,7 @@
     tickCountdown();
     if (view === "home") koStart();   // begin the KO overlay cycle on the leaderboard
     if (view === "bracket") mountBracket(data, false);
+    if (view === "groups") gxApply(data);
     if (view === "odds") {
       // Lay out the race after the new DOM is in place. First time the odds view
       // appears (koAnimated false) the flags race in from the start; later
@@ -2415,7 +2439,7 @@
         const trs = g.table.map(r =>
           `<tr class="${g.ranked && r.pos <= 2 ? "adv" : ""}">
             <td class="gpos">${r.pos}</td>
-            <td class="gteam ${(r.clinched || koThrough.has(r.team)) ? "clinched" : ""}">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
+            <td class="gteam ${(r.clinched || koThrough.has(r.team)) ? "clinched" : ""}" data-gx="${esc(r.team)}">${esc(r.team)}${r.owner ? `<span class="gowner">${esc(r.owner)}</span>` : ""}</td>
             <td>${r.played}</td><td class="gpts">${r.points}</td><td>${signedGD(r.gd)}</td>
             <td>${r.gf}</td><td>${r.conduct ?? 0}</td><td>${r.fifaRank ?? "&mdash;"}</td>
           </tr>`).join("");
@@ -3004,6 +3028,101 @@
   // game has been played there are no chances left — every side is definitively
   // through or out — so the race is redundant and gets dropped from #odds. We read
   // completion off the real games: each team plays (group size - 1) group matches.
+  // ===== #groups team dropdown: click a team name in a group table to expand a
+  // compact list of its games (group + knockout, played + upcoming). Accordion:
+  // opening a team closes the previous one; clicking the open team collapses it.
+  // gxOpen survives re-renders (5-min data refresh, sim toggle) via gxApply().
+  let gxOpen = null;                                   // normKey of the open team
+  const gxKey = n => normKey(canonName(n));
+  const GX_STAGE = { LAST_32: "R32", LAST_16: "R16", QUARTER_FINALS: "QF",
+                     SEMI_FINALS: "SF", THIRD_PLACE: "3rd", FINAL: "Final" };
+
+  function gxLine(st, res, score, opp, date, up) {
+    return `<div class="gxline${up ? " gxup" : ""}">
+      <span class="gxstage">${esc(st)}</span>
+      ${res ? `<span class="gxres ${res}">${res.toUpperCase()}</span>` : ""}
+      ${score ? `<span class="gxscore">${esc(score)}</span>` : ""}
+      <span class="gxopp">vs ${esc(opp)}</span>
+      ${date ? `<span class="gxdate">${esc(date)}</span>` : ""}
+    </div>`;
+  }
+
+  function gxGamesHtml(team, d) {
+    const K = gxKey(team), lines = [];
+    // Group games live in data.sim (real results). Sim-mode data carries no .sim,
+    // so fall back to lastData's: the played group games are identical either way.
+    const sim = (d && d.sim) || (lastData && lastData.sim) || {};
+    const gr = sim.groupResults || {};
+    Object.keys(gr).forEach(L => (gr[L] || []).forEach(m => {
+      const hK = gxKey(m.h), aK = gxKey(m.a);
+      if (hK !== K && aK !== K) return;
+      const mine = hK === K;
+      const gf = mine ? m.hg : m.ag, ga = mine ? m.ag : m.hg;
+      lines.push(gxLine("GS", gf > ga ? "w" : gf < ga ? "l" : "d",
+        `${gf}-${ga}`, mine ? m.a : m.h, null, false));
+    }));
+    // Remaining group fixtures (no dates exist for these in data.json).
+    const rem = sim.groupRemaining || {};
+    Object.keys(rem).forEach(L => (rem[L] || []).forEach(m => {
+      const hK = gxKey(m.h), aK = gxKey(m.a);
+      if (hK !== K && aK !== K) return;
+      lines.push(gxLine("GS", null, null, hK === K ? m.a : m.h, null, true));
+    }));
+    // Knockout games, bracket round order = chronological. A side only counts
+    // once it's resolved (no listing "TBD vs TBD" under anyone).
+    ((d && d.bracket) || []).forEach(r => (r.matches || []).forEach(m => {
+      const h = m.home || {}, a = m.away || {};
+      const hK = h.resolved ? gxKey(h.name) : null;
+      const aK = a.resolved ? gxKey(a.name) : null;
+      if (hK !== K && aK !== K) return;
+      const mineHome = hK === K, mine = mineHome ? h : a, opp = mineHome ? a : h;
+      const st = GX_STAGE[m.stageCode] || m.stage || "KO";
+      const dt = m.utcDate ? new Date(m.utcDate) : null;
+      const ds = dt ? dt.toLocaleDateString(undefined, { month: "short", day: "numeric" }) : null;
+      const done = (m.status === "FINISHED" || m.status === "AWARDED")
+        && mine.goals != null && opp.goals != null;
+      if (done) {
+        let res = "d";
+        if (m.winner === "HOME_TEAM") res = mineHome ? "w" : "l";
+        else if (m.winner === "AWAY_TEAM") res = mineHome ? "l" : "w";
+        let score = `${mine.goals}-${opp.goals}`;
+        if (m.penalties && mine.penGoals != null && opp.penGoals != null)
+          score += ` (${mine.penGoals}-${opp.penGoals} pens)`;
+        lines.push(gxLine(st, res, score, opp.name || "TBD", ds, false));
+      } else {
+        lines.push(gxLine(st, null, null,
+          opp.resolved ? opp.name : (opp.slot || "TBD"), ds, true));
+      }
+    }));
+    return lines.length ? lines.join("")
+                        : `<div class="gxnone">No games recorded yet.</div>`;
+  }
+
+  function gxApply(d) {
+    document.querySelectorAll("tr.gxrow").forEach(t => t.remove());
+    document.querySelectorAll(".gcard td.gteam.gxon").forEach(t => t.classList.remove("gxon"));
+    if (!gxOpen) return;
+    const td = [...document.querySelectorAll(".gcard td.gteam[data-gx]")]
+      .find(t => gxKey(t.dataset.gx) === gxOpen);
+    if (!td) return;
+    td.classList.add("gxon");
+    const row = document.createElement("tr");
+    row.className = "gxrow";
+    const cell = document.createElement("td");
+    cell.colSpan = td.closest("tr").children.length;
+    cell.innerHTML = gxGamesHtml(td.dataset.gx, d);
+    row.appendChild(cell);
+    td.closest("tr").after(row);
+  }
+
+  app.addEventListener("click", e => {
+    const td = e.target.closest(".gcard td.gteam[data-gx]");
+    if (!td || view !== "groups") return;
+    const k = gxKey(td.dataset.gx);
+    gxOpen = (gxOpen === k) ? null : k;    // same team toggles; other team swaps
+    gxApply(currentData());
+  });
+
   function groupStageComplete(data) {
     const gs = (data && data.groups) || [];
     if (!gs.length) return false;
