@@ -3242,7 +3242,7 @@
     html += row(chips(H), "Form (Oldest to Newest)", chips(A));
     html += gRow(H.gf, A.gf, "Goals For", true);
     html += gRow(H.ga, A.ga, "Goals Against", false);
-    html += gRow(avgR(H), avgR(A), "Avg Opponent FIFA Rank", true, v => v.toFixed(1));
+    html += gRow(avgR(H), avgR(A), "Avg Opponent FIFA Rank", false, v => v.toFixed(1));
     html += gRow(M.fifa(hn), M.fifa(an), "FIFA Rank", false);
     const R = M.R, P = M.P;
     if (R && R[hn] != null && R[an] != null) {
