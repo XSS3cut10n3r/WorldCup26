@@ -472,7 +472,37 @@
       "utcDate": "2026-06-30T01:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 82,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-01T20:00:00Z",
+      "home": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group G",
+        "resolved": true,
+        "fifaRank": 9
+      },
+      "away": {
+        "name": "Senegal",
+        "owner": "Ondine",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place A/E/H/I/J",
+        "resolved": true,
+        "fifaRank": 15
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 80,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 82,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-01T20:00:00Z",
-      "home": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group G",
-        "resolved": true,
-        "fifaRank": 9
-      },
-      "away": {
-        "name": "Senegal",
-        "owner": "Ondine",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place A/E/H/I/J",
-        "resolved": true,
-        "fifaRank": 15
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 81,
       "stage": "Round of 32",
@@ -907,6 +908,35 @@
         "slot": "Winner match 77",
         "resolved": true,
         "fifaRank": 3
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 91,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "TIMED",
+      "utcDate": "2026-07-05T20:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 76",
+        "resolved": true,
+        "fifaRank": 6
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 78",
+        "resolved": true,
+        "fifaRank": 31
       },
       "penalties": false,
       "winner": null
@@ -1176,12 +1206,12 @@
           "matchNo": 82,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-01T20:00:00Z",
           "home": {
             "name": "Belgium",
             "owner": "Paul",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group G",
@@ -1191,7 +1221,7 @@
           "away": {
             "name": "Senegal",
             "owner": "Ondine",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place A/E/H/I/J",
@@ -1452,7 +1482,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 76",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 6
           },
           "away": {
             "name": "Norway",
@@ -1461,7 +1492,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 78",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 31
           },
           "penalties": false,
           "winner": null
@@ -9910,5 +9942,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T18:05:39Z"
+  "generated": "2026-07-01T20:21:15Z"
 }
