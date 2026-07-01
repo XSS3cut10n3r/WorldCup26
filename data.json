@@ -1205,12 +1205,12 @@
           "matchNo": 82,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "PAUSED",
           "utcDate": "2026-07-01T20:00:00Z",
           "home": {
             "name": "Belgium",
             "owner": "Paul",
-            "goals": 1,
+            "goals": 3,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group G",
@@ -1228,7 +1228,7 @@
             "fifaRank": 15
           },
           "penalties": false,
-          "winner": "AWAY_TEAM"
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 83,
@@ -2335,7 +2335,7 @@
           "ga": 2,
           "gd": 4,
           "points": 5,
-          "conduct": -8,
+          "conduct": -9,
           "fifaRank": 9,
           "clinched": true,
           "clinchType": "winner"
@@ -2517,7 +2517,7 @@
           "ga": 6,
           "gd": 2,
           "points": 3,
-          "conduct": -2,
+          "conduct": -3,
           "fifaRank": 15,
           "clinched": true,
           "clinchType": "third"
@@ -2932,7 +2932,7 @@
       "ga": 6,
       "gd": 2,
       "points": 3,
-      "conduct": -2,
+      "conduct": -3,
       "fifaRank": 15,
       "clinched": true,
       "clinchType": "third",
@@ -3114,16 +3114,6 @@
         "rank": 5
       },
       {
-        "team": "Senegal",
-        "owner": "Ondine",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 5
-      },
-      {
         "team": "Spain",
         "owner": "Pete",
         "yellow": 2,
@@ -3151,7 +3141,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Ghana",
@@ -3161,7 +3151,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Netherlands",
@@ -3171,7 +3161,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 12
+        "rank": 11
+      },
+      {
+        "team": "Senegal",
+        "owner": "Ondine",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 11
       },
       {
         "team": "Switzerland",
@@ -3181,7 +3181,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 12
+        "rank": 11
       },
       {
         "team": "Austria",
@@ -3434,16 +3434,6 @@
         "rank": 37
       },
       {
-        "team": "Belgium",
-        "owner": "Paul",
-        "yellow": 4,
-        "indirect_red": 0,
-        "direct_red": 1,
-        "yellow_direct_red": 0,
-        "score": -8,
-        "rank": 41
-      },
-      {
         "team": "Iraq",
         "owner": "Agatha",
         "yellow": 4,
@@ -3454,6 +3444,16 @@
         "rank": 41
       },
       {
+        "team": "Belgium",
+        "owner": "Paul",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -9,
+        "rank": 42
+      },
+      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 5,
@@ -3461,7 +3461,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -9,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3582,11 +3582,11 @@
       },
       {
         "name": "Paul",
-        "score": -21,
+        "score": -22,
         "teams": [
           {
             "name": "Belgium",
-            "score": -8
+            "score": -9
           },
           {
             "name": "Côte d'Ivoire",
@@ -3605,11 +3605,11 @@
       },
       {
         "name": "Ondine",
-        "score": -19,
+        "score": -20,
         "teams": [
           {
             "name": "Senegal",
-            "score": -2
+            "score": -3
           },
           {
             "name": "Iran",
@@ -3643,7 +3643,7 @@
             "score": -13
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Charlie",
@@ -9684,7 +9684,7 @@
       "Belgium": {
         "owner": "Paul",
         "canon": "Belgium",
-        "conduct": -8,
+        "conduct": -9,
         "fifa": 9,
         "group": "G"
       },
@@ -9747,7 +9747,7 @@
       "Senegal": {
         "owner": "Ondine",
         "canon": "Senegal",
-        "conduct": -2,
+        "conduct": -3,
         "fifa": 15,
         "group": "I"
       },
@@ -9941,5 +9941,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T21:53:56Z"
+  "generated": "2026-07-01T22:51:12Z"
 }
