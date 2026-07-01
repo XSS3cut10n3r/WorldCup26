@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Nik",
+      "points": 8.5,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 3,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Mexico",
+          "points": 5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Czechia",
+          "points": 0.5,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Sydney",
       "points": 8.5,
       "teams": [
@@ -14,7 +42,7 @@
         {
           "name": "Ecuador",
           "points": 1.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "third"
         },
@@ -61,7 +89,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Pete",
@@ -89,7 +117,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -124,7 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Kelly",
@@ -152,7 +180,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Mat",
@@ -180,35 +208,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 6
-    },
-    {
-      "name": "Nik",
-      "points": 6.5,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 3,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Mexico",
-          "points": 3,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Czechia",
-          "points": 0.5,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Agatha",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Mexico",
+      "points": 2,
+      "label": "Mexico won (Round of 32)",
+      "utcDate": "2026-07-01T01:00:00Z"
+    },
+    {
       "owner": "Darcy",
       "team": "France",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Paraguay won on penalties (Round of 32)",
       "utcDate": "2026-06-29T20:30:00Z"
-    },
-    {
-      "owner": "Sydney",
-      "team": "Brazil",
-      "points": 2,
-      "label": "Brazil won (Round of 32)",
-      "utcDate": "2026-06-29T17:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": true,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 76,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-29T17:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group C",
-        "resolved": true,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Japan",
-        "owner": "Pete",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group F",
-        "resolved": true,
-        "fifaRank": 18
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -1044,8 +1015,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group C",
-            "resolved": true,
-            "fifaRank": 6
+            "resolved": true
           },
           "away": {
             "name": "Japan",
@@ -1054,8 +1024,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group F",
-            "resolved": true,
-            "fifaRank": 18
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1122,7 +1091,7 @@
           "matchNo": 79,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-01T01:00:00Z",
           "home": {
             "name": "Mexico",
@@ -1504,13 +1473,13 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-06T00:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Mexico",
+            "owner": "Nik",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 79",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "TBD",
@@ -9916,8 +9885,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Mexico",
+        "away": "Ecuador",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-01T04:06:44Z"
+  "generated": "2026-07-01T04:07:48Z"
 }
