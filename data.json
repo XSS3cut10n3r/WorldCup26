@@ -482,7 +482,7 @@
       "home": {
         "name": "Belgium",
         "owner": "Paul",
-        "goals": 2,
+        "goals": 1,
         "penGoals": null,
         "projected": false,
         "slot": "Winner Group G",
@@ -500,7 +500,7 @@
         "fifaRank": 15
       },
       "penalties": false,
-      "winner": null
+      "winner": "AWAY_TEAM"
     }
   ],
   "recent": [
@@ -1211,7 +1211,7 @@
           "home": {
             "name": "Belgium",
             "owner": "Paul",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group G",
@@ -1221,7 +1221,7 @@
           "away": {
             "name": "Senegal",
             "owner": "Ondine",
-            "goals": 0,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place A/E/H/I/J",
@@ -1229,7 +1229,7 @@
             "fifaRank": 15
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 83,
@@ -2336,7 +2336,7 @@
           "ga": 2,
           "gd": 4,
           "points": 5,
-          "conduct": -7,
+          "conduct": -8,
           "fifaRank": 9,
           "clinched": true,
           "clinchType": "winner"
@@ -3395,16 +3395,6 @@
         "rank": 32
       },
       {
-        "team": "Belgium",
-        "owner": "Paul",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 1,
-        "yellow_direct_red": 0,
-        "score": -7,
-        "rank": 37
-      },
-      {
         "team": "Brazil",
         "owner": "Sydney",
         "yellow": 7,
@@ -3445,6 +3435,16 @@
         "rank": 37
       },
       {
+        "team": "Belgium",
+        "owner": "Paul",
+        "yellow": 4,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -8,
+        "rank": 41
+      },
+      {
         "team": "Iraq",
         "owner": "Agatha",
         "yellow": 4,
@@ -3452,7 +3452,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Uruguay",
@@ -3583,11 +3583,11 @@
       },
       {
         "name": "Paul",
-        "score": -20,
+        "score": -21,
         "teams": [
           {
             "name": "Belgium",
-            "score": -7
+            "score": -8
           },
           {
             "name": "Côte d'Ivoire",
@@ -9685,7 +9685,7 @@
       "Belgium": {
         "owner": "Paul",
         "canon": "Belgium",
-        "conduct": -7,
+        "conduct": -8,
         "fifa": 9,
         "group": "G"
       },
@@ -9942,5 +9942,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T20:21:15Z"
+  "generated": "2026-07-01T21:53:56Z"
 }
