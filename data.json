@@ -475,31 +475,33 @@
   "live": [],
   "recent": [
     {
+      "matchNo": 79,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "FINISHED",
-      "utcDate": "2026-07-01T02:00Z",
+      "utcDate": "2026-07-01T01:00:00Z",
       "home": {
         "name": "Mexico",
         "owner": "Nik",
         "goals": 2,
         "penGoals": null,
-        "fifaRank": 14,
         "projected": false,
-        "resolved": true
+        "slot": "Winner Group A",
+        "resolved": true,
+        "fifaRank": 14
       },
       "away": {
         "name": "Ecuador",
         "owner": "Sydney",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 23,
         "projected": false,
-        "resolved": true
+        "slot": "3rd place C/E/F/H/I",
+        "resolved": true,
+        "fifaRank": 23
       },
       "penalties": false,
-      "winner": "HOME_TEAM",
-      "_src": "espn-final"
+      "winner": "HOME_TEAM"
     },
     {
       "matchNo": 77,
@@ -616,6 +618,35 @@
       },
       "penalties": true,
       "winner": "AWAY_TEAM"
+    },
+    {
+      "matchNo": 76,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "FINISHED",
+      "utcDate": "2026-06-29T17:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group C",
+        "resolved": true,
+        "fifaRank": 6
+      },
+      "away": {
+        "name": "Japan",
+        "owner": "Pete",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Runner-up Group F",
+        "resolved": true,
+        "fifaRank": 18
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -879,6 +910,35 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 90,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "TIMED",
+      "utcDate": "2026-07-04T17:00:00Z",
+      "home": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 73",
+        "resolved": true,
+        "fifaRank": 30
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 75",
+        "resolved": true,
+        "fifaRank": 7
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -1062,12 +1122,12 @@
           "matchNo": 79,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "LIVE",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-01T01:00:00Z",
           "home": {
             "name": "Mexico",
             "owner": "Nik",
-            "goals": 1,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group A",
@@ -1394,7 +1454,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 73",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 30
           },
           "away": {
             "name": "Morocco",
@@ -1403,7 +1464,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 75",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 7
           },
           "penalties": false,
           "winner": null
@@ -2159,7 +2221,7 @@
           "ga": 2,
           "gd": 0,
           "points": 4,
-          "conduct": -5,
+          "conduct": -12,
           "fifaRank": 23,
           "clinched": true,
           "clinchType": "third"
@@ -2782,7 +2844,7 @@
       "ga": 2,
       "gd": 0,
       "points": 4,
-      "conduct": -5,
+      "conduct": -12,
       "fifaRank": 23,
       "clinched": true,
       "clinchType": "third",
@@ -3252,16 +3314,6 @@
         "rank": 27
       },
       {
-        "team": "Ecuador",
-        "owner": "Sydney",
-        "yellow": 5,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -5,
-        "rank": 27
-      },
-      {
         "team": "Panama",
         "owner": "Paul",
         "yellow": 5,
@@ -3309,7 +3361,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Iran",
@@ -3319,7 +3371,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Mexico",
@@ -3329,7 +3381,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Saudi Arabia",
@@ -3339,7 +3391,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Belgium",
@@ -3349,7 +3401,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Brazil",
@@ -3359,7 +3411,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Canada",
@@ -3369,7 +3421,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Curaçao",
@@ -3379,7 +3431,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Haiti",
@@ -3389,7 +3441,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Iraq",
@@ -3399,7 +3451,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Uruguay",
@@ -3409,7 +3461,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -9,
-        "rank": 44
+        "rank": 43
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3419,6 +3471,16 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -10,
+        "rank": 44
+      },
+      {
+        "team": "Ecuador",
+        "owner": "Sydney",
+        "yellow": 8,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -12,
         "rank": 45
       },
       {
@@ -3429,7 +3491,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 46
+        "rank": 45
       },
       {
         "team": "Paraguay",
@@ -3455,7 +3517,7 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -30,
+        "score": -37,
         "teams": [
           {
             "name": "Brazil",
@@ -3463,7 +3525,7 @@
           },
           {
             "name": "Ecuador",
-            "score": -5
+            "score": -12
           },
           {
             "name": "South Africa",
@@ -9587,7 +9649,7 @@
       "Ecuador": {
         "owner": "Sydney",
         "canon": "Ecuador",
-        "conduct": -5,
+        "conduct": -12,
         "fifa": 23,
         "group": "E"
       },
@@ -9857,5 +9919,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T02:33:13Z"
+  "generated": "2026-07-01T04:02:30Z"
 }
