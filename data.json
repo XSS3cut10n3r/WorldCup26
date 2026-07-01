@@ -472,12 +472,13 @@
       "utcDate": "2026-06-30T01:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 82,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-01T20:00:00Z",
       "home": {
         "name": "Belgium",
@@ -500,10 +501,8 @@
         "fifaRank": 15
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM"
+    },
     {
       "matchNo": 80,
       "stage": "Round of 32",
