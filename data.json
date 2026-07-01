@@ -472,11 +472,12 @@
       "utcDate": "2026-06-29T20:30:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-01T16:00Z",
       "home": {
         "name": "England",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 79,
       "stage": "Round of 32",
@@ -614,35 +613,6 @@
         "slot": "Runner-up Group C",
         "resolved": true,
         "fifaRank": 7
-      },
-      "penalties": true,
-      "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 74,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-29T20:30:00Z",
-      "home": {
-        "name": "Germany",
-        "owner": "Tomi",
-        "goals": 1,
-        "penGoals": 3,
-        "projected": false,
-        "slot": "Winner Group E",
-        "resolved": true,
-        "fifaRank": 10
-      },
-      "away": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": 1,
-        "penGoals": 4,
-        "projected": false,
-        "slot": "3rd place A/B/C/D/F",
-        "resolved": true,
-        "fifaRank": 40
       },
       "penalties": true,
       "winner": "AWAY_TEAM"
