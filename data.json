@@ -472,7 +472,35 @@
       "utcDate": "2026-06-29T20:30:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-01T16:00Z",
+      "home": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 4,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "DR Congo",
+        "owner": "Tom",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 45,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 79,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 80,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-01T16:00:00Z",
-      "home": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group L",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "away": {
-        "name": "Congo DR",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place E/H/I/J/K",
-        "resolved": true,
-        "fifaRank": 45
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 82,
       "stage": "Round of 32",
@@ -1120,12 +1119,12 @@
           "matchNo": 80,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "LIVE",
           "utcDate": "2026-07-01T16:00:00Z",
           "home": {
             "name": "England",
             "owner": "Mat",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group L",
@@ -1135,7 +1134,7 @@
           "away": {
             "name": "Congo DR",
             "owner": "Tom",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place E/H/I/J/K",
@@ -1143,7 +1142,7 @@
             "fifaRank": 45
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 81,
@@ -9899,5 +9898,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T08:58:36Z"
+  "generated": "2026-07-01T16:12:26Z"
 }
