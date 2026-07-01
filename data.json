@@ -472,7 +472,35 @@
       "utcDate": "2026-06-29T17:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-01T02:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 2,
+        "penGoals": null,
+        "fifaRank": 14,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Ecuador",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 23,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 77,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 79,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-01T01:00:00Z",
-      "home": {
-        "name": "Mexico",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group A",
-        "resolved": true,
-        "fifaRank": 14
-      },
-      "away": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place C/E/F/H/I",
-        "resolved": true,
-        "fifaRank": 23
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 80,
       "stage": "Round of 32",
@@ -1093,12 +1092,12 @@
           "matchNo": 79,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "LIVE",
           "utcDate": "2026-07-01T01:00:00Z",
           "home": {
             "name": "Mexico",
             "owner": "Nik",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group A",
@@ -1108,7 +1107,7 @@
           "away": {
             "name": "Ecuador",
             "owner": "Sydney",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place C/E/F/H/I",
@@ -1116,7 +1115,7 @@
             "fifaRank": 23
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 80,
@@ -9888,5 +9887,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T00:04:23Z"
+  "generated": "2026-07-01T02:33:13Z"
 }
