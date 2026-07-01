@@ -737,6 +737,28 @@
   .gxup { opacity: .6; font-style: italic; }
   .gxdate { margin-left: auto; opacity: .55; font-size: 10px; white-space: nowrap; }
   .gxnone { opacity: .6; font-size: 12px; padding: 4px 2px; }
+  /* ---- "Under the hood" prediction explainer on Upcoming cards ---- */
+  .upx { cursor: pointer; }
+  .upx.upx-on .match { border-color: rgba(232,195,74,.55); }
+  .upx-panel {
+    margin: -4px 0 10px; padding: 8px 10px 9px;
+    background: rgba(0,0,0,.28); border: 1px solid rgba(242,240,228,.14);
+    border-top: none; border-radius: 0 0 10px 10px;
+    font-size: 12px;
+  }
+  .upx-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px;
+    align-items: center; padding: 2.5px 0;
+    border-bottom: 1px dashed rgba(242,240,228,.08); }
+  .upx-row:last-child { border-bottom: none; }
+  .upx-l { text-align: left; } .upx-r { text-align: right; }
+  .upx-k { font-size: 10px; opacity: .6; text-align: center; white-space: nowrap; }
+  .upx-chips { display: inline-flex; gap: 3px; }
+  .upx-chip { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .upx-chip.w { background: var(--mlb-good); }
+  .upx-chip.d { background: rgba(242,240,228,.45); }
+  .upx-chip.l { background: var(--mlb-bad); }
+  .upx-fav { color: var(--gold); font-weight: 700; }
+  .upx-note { opacity: .55; font-size: 10px; margin-top: 6px; }
   .gtable th:nth-child(n+3), .gtable td:nth-child(n+3) { width: 32px; }
   .gpos { color: var(--chalk-faint); }
   .gowner { display: block; font-size: 10.5px; color: var(--chalk-faint); }
@@ -2266,6 +2288,7 @@
     if (view === "home") koStart();   // begin the KO overlay cycle on the leaderboard
     if (view === "bracket") mountBracket(data, false);
     if (view === "groups") gxApply(data);
+    if (view === "home") upxApply(data);
     if (view === "odds") {
       // Lay out the race after the new DOM is in place. First time the odds view
       // appears (koAnimated false) the flags race in from the start; later
@@ -2348,7 +2371,7 @@
     if (rec) html += section("Recent results", `<div class="matches recent-matches">${rec}</div>`);
 
     // Upcoming
-    const up = (data.upcoming || []).map(matchCard).join("");
+    const up = (data.upcoming || []).map(upxWrap).join("");
     if (up) html += section("Coming up", `<div class="matches">${up}</div>`);
 
     // Rules
@@ -3121,6 +3144,160 @@
     const k = gxKey(td.dataset.gx);
     gxOpen = (gxOpen === k) ? null : k;    // same team toggles; other team swaps
     gxApply(currentData());
+  });
+
+  // ===== "Under the hood" on the leaderboard's Upcoming cards: click a card to
+  // expand a stats grid explaining the model's odds for that game. Mirrors the
+  // deterministic parts of buildSimData's eloScore/eloShootWin (keep in sync if
+  // that math changes): elo supremacy, opponent-weighted form, FIFA-rank nudge,
+  // pens-hangover haircut. Accordion; survives the 5-min re-render via upxApply.
+  let upxOpen = null;
+  const upxKey = m => m && m.matchNo != null ? "m" + m.matchNo
+    : normKey(canonName((m.home || {}).name)) + "|" + normKey(canonName((m.away || {}).name));
+  function upxWrap(m) {
+    return `<div class="upx" data-upx="${esc(upxKey(m))}">${matchCard(m)}</div>`;
+  }
+
+  // Tournament aggregates + the model's live-form numbers, rebuilt on demand.
+  function upxModel(d) {
+    const sim = (d && d.sim) || (lastData && lastData.sim) || {};
+    const T = sim.teams || {};
+    const P = (eloData && eloData.params) || {};
+    const R = (eloData && eloData.ratings) || null;
+    const played = [];
+    Object.keys(sim.groupResults || {}).forEach(L =>
+      (sim.groupResults[L] || []).forEach(g => played.push({ h: g.h, a: g.a, hg: g.hg, ag: g.ag })));
+    (sim.knockoutPlayed || []).forEach(k => {
+      if (k.home && k.away && k.homeGoals != null && k.awayGoals != null)
+        played.push({ h: k.home, a: k.away, hg: k.homeGoals, ag: k.awayGoals, ko: k }); });
+    let totG = 0, totN = 0;
+    played.forEach(g => { totG += g.hg + g.ag; totN += 2; });
+    const avgGpg = totN ? totG / totN : 1.3;
+    const fifa = nm => { const t = T[canonName(nm)]; return t ? t.fifa : null; };
+    const rs = nm => -Math.log(fifa(nm) || 40);
+    const rsVals = Object.keys(T).map(rs);
+    const rsBar = rsVals.length ? rsVals.reduce((x, y) => x + y, 0) / rsVals.length : 0;
+    const qCoef = P.formOppCoef != null ? P.formOppCoef : 0.4;
+    const oppW = nm => Math.exp(qCoef * (rs(nm) - rsBar));
+    // Same opponent-weighted form as the simulator (see buildSimData).
+    const fa = {};
+    const bump = (t, opp, gf, ga) => {
+      const wS = oppW(opp), wI = 1 / wS;
+      const aF = P.formAtkFloor != null ? P.formAtkFloor : 1.0;
+      const dF = P.formDefFloor != null ? P.formDefFloor : 0.0;
+      const k = canonName(t);
+      const f = (fa[k] = fa[k] || { an: 0, dn: 0, n: 0 });
+      const dA = gf - avgGpg; f.an += (dA >= 0 ? wS : Math.max(aF, wI)) * dA;
+      const dD = ga - avgGpg; f.dn += (dD > 0 ? Math.max(dF, wI) : wS) * dD;
+      f.n++; };
+    played.forEach(g => { bump(g.h, g.a, g.hg, g.ag); bump(g.a, g.h, g.ag, g.hg); });
+    const atk = nm => { const f = fa[canonName(nm)]; return (f && f.n) ? f.an / f.n : 0; };
+    const def = nm => { const f = fa[canonName(nm)]; return (f && f.n) ? f.dn / f.n : 0; };
+    // Per-team tournament record for the grid.
+    const rec = nm => {
+      const K = normKey(canonName(nm));
+      const out = { seq: [], gf: 0, ga: 0, oppRanks: [], pensWinLast: false };
+      played.forEach(g => {
+        const hK = normKey(canonName(g.h)), aK = normKey(canonName(g.a));
+        if (hK !== K && aK !== K) return;
+        const mine = hK === K;
+        const gf = mine ? g.hg : g.ag, ga = mine ? g.ag : g.hg;
+        out.gf += gf; out.ga += ga;
+        const fr = fifa(mine ? g.a : g.h);
+        if (fr != null) out.oppRanks.push(fr);
+        out.seq.push(gf > ga ? "w" : gf < ga ? "l" : "d");
+        if (g.ko) out.pensWinLast = !!g.ko.penalties &&
+          ((mine && g.ko.winner === "HOME_TEAM") || (!mine && g.ko.winner === "AWAY_TEAM"));
+      });
+      return out;
+    };
+    return { P, R, avgGpg, fifa, rs, atk, def, rec };
+  }
+
+  function upxStatsHtml(m, d) {
+    const M = upxModel(d);
+    const hn = canonName(m.home.name), an = canonName(m.away.name);
+    const H = M.rec(hn), A = M.rec(an);
+    const isKO = isKnockout(m);
+    const chips = s => `<span class="upx-chips">${s.seq.map(c => `<span class="upx-chip ${c}"></span>`).join("") || "&mdash;"}</span>`;
+    const avgR = r => r.oppRanks.length
+      ? r.oppRanks.reduce((x, y) => x + y, 0) / r.oppRanks.length : null;
+    const row = (l, k, r) =>
+      `<div class="upx-row"><span class="upx-l">${l}</span><span class="upx-k">${k}</span><span class="upx-r">${r}</span></div>`;
+    // Gold the better side of each comparison; ties get no gold. `hiGood` flags
+    // whether a HIGHER number wins the row (goals for, elo, xG) or a lower one
+    // does (goals against, FIFA rank).
+    const gRow = (vH, vA, label, hiGood, fmt) => {
+      const f = fmt || (x => x);
+      const disp = v => v == null ? "&mdash;" : f(v);
+      let cH = "", cA = "";
+      if (vH != null && vA != null && vH !== vA) {
+        const homeBetter = hiGood ? vH > vA : vH < vA;
+        if (homeBetter) cH = "upx-fav"; else cA = "upx-fav";
+      }
+      return row(`<span class="${cH}">${disp(vH)}</span>`, label,
+                 `<span class="${cA}">${disp(vA)}</span>`);
+    };
+    let html = "";
+    html += row(chips(H), "Form (Oldest to Newest)", chips(A));
+    html += gRow(H.gf, A.gf, "Goals For", true);
+    html += gRow(H.ga, A.ga, "Goals Against", false);
+    html += gRow(avgR(H), avgR(A), "Avg Opponent FIFA Rank", true, v => v.toFixed(1));
+    html += gRow(M.fifa(hn), M.fifa(an), "FIFA Rank", false);
+    const R = M.R, P = M.P;
+    if (R && R[hn] != null && R[an] != null) {
+      const Ra = R[hn], Rb = R[an];
+      html += gRow(Ra, Rb, "Elo Rating (Model)", true, v => v.toFixed(2));
+      const sgn = v => (v >= 0 ? "+" : "") + v.toFixed(2);
+      html += gRow(M.atk(hn), M.atk(an), "Form: Attack", true, sgn);
+      html += gRow(M.def(hn), M.def(an), "Form: Defence", false, sgn);
+      // Expected goals, computed exactly as the simulator's eloScore does before
+      // it samples (Dixon-Coles resampling doesn't move the means).
+      const s = (P.suprK || 0.42) * (Ra - Rb);
+      const total = P.total || 2.6;
+      let lamA = Math.max(P.floor || 0.18, total / 2 + s / 2);
+      let lamB = Math.max(P.floor || 0.18, total / 2 - s / 2);
+      const ac = P.atkCoef || 0, dc = P.defCoef || 0;
+      const rc = (!isKO && P.rankCoefGroup != null) ? P.rankCoefGroup : (P.rankCoef || 0);
+      const cap = P.formCap != null ? P.formCap : 0.4;
+      const clamp = x => Math.max(-cap, Math.min(cap, x));
+      lamA *= Math.exp(clamp(ac * M.atk(hn) + dc * M.def(an)) + rc * (M.rs(hn) - M.rs(an)));
+      lamB *= Math.exp(clamp(ac * M.atk(an) + dc * M.def(hn)) + rc * (M.rs(an) - M.rs(hn)));
+      const fat = P.pensHangover || 0;
+      if (H.pensWinLast) lamA *= Math.exp(-fat);
+      if (A.pensWinLast) lamB *= Math.exp(-fat);
+      html += gRow(lamA, lamB, "Model xG This Game", true, v => v.toFixed(2));
+      if (isKO) {
+        const pw = 1 / (1 + Math.exp(-(P.pensK || 0.9) * (Ra - Rb)));
+        html += gRow(Math.round(pw * 100), Math.round((1 - pw) * 100),
+          "If It Goes to Pens", true, v => v + "%");
+      }
+    } else {
+      html += `<div class="upx-note">Model ratings (elo.json) not loaded, so Elo / xG / pens lines are hidden.</div>`;
+    }
+    return `<div class="upx-panel">${html}</div>`;
+  }
+
+  function upxApply(d) {
+    document.querySelectorAll(".upx-panel").forEach(p => p.remove());
+    document.querySelectorAll(".upx.upx-on").forEach(w => w.classList.remove("upx-on"));
+    if (!upxOpen) return;
+    const w = [...document.querySelectorAll(".upx[data-upx]")]
+      .find(x => x.dataset.upx === upxOpen);
+    if (!w) return;
+    // Find the match again from the data so the panel always reflects live numbers.
+    const m = ((d && d.upcoming) || []).find(x => upxKey(x) === upxOpen);
+    if (!m) return;
+    w.classList.add("upx-on");
+    w.insertAdjacentHTML("beforeend", upxStatsHtml(m, d));
+  }
+
+  app.addEventListener("click", e => {
+    const w = e.target.closest(".upx[data-upx]");
+    if (!w || view !== "home") return;
+    const k = w.dataset.upx;
+    upxOpen = (upxOpen === k) ? null : k;   // same card toggles; other card swaps
+    upxApply(currentData());
   });
 
   function groupStageComplete(data) {
