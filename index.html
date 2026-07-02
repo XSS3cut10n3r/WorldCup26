@@ -744,7 +744,10 @@
   /* Countdown wrapper carries the card's old bottom margin so the stats panel
      (-4px top margin) tucks snugly under it, exactly like the match cards. */
   .upx-cd { margin-bottom: 8px; }
-  .upx-cd .countdown { margin-bottom: 0; }
+  /* Positioned like .match, so the card paints ABOVE the panel's -4px overlap:
+     the panel's top edge tucks behind the card, same attached look as the
+     Coming Up cards, with the gold outline fully visible on top. */
+  .upx-cd .countdown { margin-bottom: 0; position: relative; z-index: 1; }
   .upx.upx-on .match { border-color: rgba(232,195,74,.55); }
   /* The Next Match countdown card gets the same gold open-state outline, so the
      boundary between the card and its dropped stats panel reads clearly. */
