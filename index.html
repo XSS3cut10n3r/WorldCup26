@@ -746,6 +746,9 @@
   .upx-cd { margin-bottom: 8px; }
   .upx-cd .countdown { margin-bottom: 0; }
   .upx.upx-on .match { border-color: rgba(232,195,74,.55); }
+  /* The Next Match countdown card gets the same gold open-state outline, so the
+     boundary between the card and its dropped stats panel reads clearly. */
+  .upx.upx-on .countdown { border-color: rgba(232,195,74,.55); }
   /* Live games ALWAYS keep the red live border, open or closed; the gold
      open-state border applies to non-live (upcoming) cards only. */
   .upx.upx-on .match.is-live { border-color: rgba(255,90,69,0.55); }
