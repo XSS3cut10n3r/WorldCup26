@@ -741,6 +741,10 @@
   .gxnone { opacity: .6; font-size: 12px; padding: 4px 2px; }
   /* ---- "Under the hood" prediction explainer on Upcoming cards ---- */
   .upx { cursor: pointer; }
+  /* Countdown wrapper carries the card's old bottom margin so the stats panel
+     (-4px top margin) tucks snugly under it, exactly like the match cards. */
+  .upx-cd { margin-bottom: 8px; }
+  .upx-cd .countdown { margin-bottom: 0; }
   .upx.upx-on .match { border-color: rgba(232,195,74,.55); }
   /* Live games ALWAYS keep the red live border, open or closed; the gold
      open-state border applies to non-live (upcoming) cards only. */
@@ -1704,7 +1708,9 @@
     const el = document.getElementById("countdown");
     if (!el) return;
     const txt = fmtCountdown(new Date(el.dataset.kickoff).getTime() - Date.now());
-    if (txt === null) { el.remove(); return; }
+    // Kickoff reached: remove the clickable wrapper too (it may hold an open
+    // stats panel), not just the card, so nothing is left floating.
+    if (txt === null) { (el.closest(".upx-cd") || el).remove(); return; }
     const t = el.querySelector(".cd-timer");
     if (t) t.textContent = txt;
   }
@@ -2403,12 +2409,15 @@
       const next = upcomingAll(data)[0];
       if (next && next.utcDate &&
           new Date(next.utcDate).getTime() > Date.now()) {
-        html += countdownCard(next);
+        // Clickable like the Coming Up cards; the "cd:" prefix keeps its
+        // accordion entry separate from the same game's card in the list below.
+        html += `<div class="upx upx-cd" data-upx="cd:${esc(upxKey(next))}">${countdownCard(next)}</div>`;
       }
     }
 
     // Leaderboard
     const koThrough = koCertainNames(data);
+    const nameOut = allOutPlayers(data);
     const rows = (data.leaderboard || []).map(r => {
       const chips = r.teams.map(t => {
         const clinch = (t.clinched || koThrough.has(t.name)) && !t.eliminated;
@@ -2416,12 +2425,9 @@
           clinch ? ' title="Through to the knockouts"' : ""
         }>${esc(t.name)} <b>${fmtPts(t.points)}</b></span>`;
       }).join("");
-      // A player with EVERY team knocked out reads maroon, unless they lead the
-      // pool: 1st place keeps its normal (gold-glow) styling regardless.
-      const allOut = (r.teams || []).length > 0 && r.teams.every(t => t.eliminated) && r.rank !== 1;
       return `<div class="row ${r.rank === 1 && r.points > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
-        <div class="who"><div class="name${allOut ? " all-out" : ""}">${esc(r.name)}</div><div class="teams">${chips}</div></div>
+        <div class="who"><div class="name${nameOut.has(r.name) ? " all-out" : ""}">${esc(r.name)}</div><div class="teams">${chips}</div></div>
         <div class="pts">${fmtPts(r.points)}<small>pts</small></div>
       </div>`;
     }).join("");
@@ -2927,12 +2933,13 @@
     const isThrough = nm => through.has(canonName(nm)) && !isOut(nm);
 
     // Worst conduct: same look as the main standings, inverted honor
+    const nameOut = allOutPlayers(data);
     const rows = people.map(p => {
       const chips = p.teams.map(t =>
         `<span class="chip ${isOut(t.name) ? "out" : ""} ${isThrough(t.name) ? "clinched" : ""}">${esc(t.name)} <b>${t.score}</b></span>`).join("");
       return `<div class="row ${p.rank === 1 && p.score < 0 ? "leader" : ""}">
         <div class="rank">${p.rank}</div>
-        <div class="who"><div class="name">${esc(p.name)}</div><div class="teams">${chips}</div></div>
+        <div class="who"><div class="name${nameOut.has(p.name) ? " all-out" : ""}">${esc(p.name)}</div><div class="teams">${chips}</div></div>
         <div class="pts">${p.score}<small>card pts</small></div>
       </div>`;
     }).join("");
@@ -3026,15 +3033,17 @@
     return view;
   }
 
-  // Shared row markup for both odds boards (identical formatting).
-  function oddsBoardRows(view){
+  // Shared row markup for both odds boards (identical formatting). `data` feeds
+  // the same all-teams-eliminated maroon-name rule the main leaderboard uses.
+  function oddsBoardRows(view, data){
+    const nameOut = allOutPlayers(data);
     return view.map(r => {
       const chips = r.teams.map(t =>
         `<span class="chip ${t.out ? "out" : ""}">${esc(t.name)} <b>${fmtPct(t.out ? 0 : t.odds)}</b></span>`
       ).join("");
       return `<div class="row ${r.rank === 1 && r.odds > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
-        <div class="who"><div class="name">${esc(r.name)}</div><div class="teams">${chips}</div></div>
+        <div class="who"><div class="name${nameOut.has(r.name) ? " all-out" : ""}">${esc(r.name)}</div><div class="teams">${chips}</div></div>
         <div class="pts">${(r.odds * 100).toFixed(1)}%<small>to win</small>${fmtDelta(r.delta)}</div>
       </div>`;
     }).join("");
@@ -3403,9 +3412,12 @@
       .find(x => x.dataset.upx === upxOpen);
     if (!w) return;
     // Find the match again from the data so the panel always reflects live
-    // numbers. Live cards share the same accordion, so search them too.
-    const m = upcomingAll(d).find(x => upxKey(x) === upxOpen)
-      || ((d && d.live) || []).find(x => upxKey(x) === upxOpen);
+    // numbers. Live cards share the same accordion, so search them too. The
+    // countdown card keys itself as "cd:<key>" so it can open independently
+    // of the same game's card in Coming Up; strip that prefix for the lookup.
+    const mk = upxOpen.indexOf("cd:") === 0 ? upxOpen.slice(3) : upxOpen;
+    const m = upcomingAll(d).find(x => upxKey(x) === mk)
+      || ((d && d.live) || []).find(x => upxKey(x) === mk);
     if (!m) return;
     w.classList.add("upx-on");
     w.insertAdjacentHTML("beforeend", upxStatsHtml(m, d));
@@ -3418,6 +3430,18 @@
     upxOpen = (upxOpen === k) ? null : k;   // same card toggles; other card swaps
     upxApply(currentData());
   });
+
+  // Players whose name reads maroon: every one of their teams is eliminated and
+  // they are NOT 1st on the main /#leaderboard. Computed once from the pool
+  // standings so /#leaderboard, /#conduct and both /#odds boards always agree.
+  function allOutPlayers(data) {
+    const s = new Set();
+    ((data && data.leaderboard) || []).forEach(r => {
+      if ((r.teams || []).length > 0 && r.teams.every(t => t.eliminated) && r.rank !== 1)
+        s.add(r.name);
+    });
+    return s;
+  }
 
   function groupStageComplete(data) {
     const gs = (data && data.groups) || [];
@@ -3912,7 +3936,7 @@
       '</div><div class="mlb-champ-name">' + esc(champ.name) +
       '</div><div class="mlb-champ-sub">champion of the most likely bracket \u00b7 wins the title ' +
       (champ.titlePct * 100).toFixed(1) + '% of all simulations</div></div>') : "";
-    return renderBracket(mlb, { title: "The Model's \"Most Likely Bracket\"", note: banner });
+    return renderBracket(mlb, { title: "The Model's Most Likely Bracket", note: banner });
   }
 
   function renderKnockoutRace(data) {
@@ -4031,7 +4055,7 @@
       is the change since the last run. Knocked-out teams are struck through.</p>`;
     if (simOddsData && (simOddsData.standings || []).length) {
       html += section("Odds to win the Cup",
-        simNote + `<div class="board board-sim">${oddsBoardRows(simView())}</div>`);
+        simNote + `<div class="board board-sim">${oddsBoardRows(simView(), data)}</div>`);
     } else {
       html += section("Odds to win the Cup", `<div class="empty">Pool-winner odds
         appear here once the <b>Simulate pool</b> workflow has run. Trigger it from
@@ -4047,7 +4071,7 @@
       is their change since the last update. Knocked-out teams are struck through.</p>`;
     if (oddsData && (oddsData.standings || []).length) {
       html += section("Kalshi Odds to Win the Tournament",
-        kalshiNote + `<div class="board board-kalshi">${oddsBoardRows(oddsView())}</div>`);
+        kalshiNote + `<div class="board board-kalshi">${oddsBoardRows(oddsView(), data)}</div>`);
     }
 
     return html;
