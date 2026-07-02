@@ -472,7 +472,35 @@
       "utcDate": "2026-06-30T21:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-02T19:00Z",
+      "home": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 2,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Austria",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 24,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 81,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 84,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-02T19:00:00Z",
-      "home": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group H",
-        "resolved": true,
-        "fifaRank": 2
-      },
-      "away": {
-        "name": "Austria",
-        "owner": "Kelly",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group J",
-        "resolved": true,
-        "fifaRank": 24
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 83,
       "stage": "Round of 32",
