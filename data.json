@@ -472,11 +472,12 @@
       "utcDate": "2026-06-30T17:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-02T00:00Z",
       "home": {
         "name": "United States",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 82,
       "stage": "Round of 32",
@@ -617,35 +616,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 78,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-30T17:00:00Z",
-      "home": {
-        "name": "Ivory Coast",
-        "owner": "Paul",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group E",
-        "resolved": true,
-        "fifaRank": 33
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group I",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
