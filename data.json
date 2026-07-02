@@ -1,6 +1,41 @@
 {
   "leaderboard": [
     {
+      "name": "Darcy",
+      "points": 9.0,
+      "teams": [
+        {
+          "name": "France",
+          "points": 5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "United States",
+          "points": 4,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Tunisia",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Haiti",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Mat",
       "points": 8.5,
       "teams": [
@@ -26,7 +61,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Nik",
@@ -54,7 +89,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Sydney",
@@ -89,7 +124,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Charlotte",
@@ -117,7 +152,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Pete",
@@ -145,7 +180,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Paul",
@@ -180,41 +215,6 @@
           "clinchType": "second"
         }
       ],
-      "rank": 6
-    },
-    {
-      "name": "Darcy",
-      "points": 7.0,
-      "teams": [
-        {
-          "name": "France",
-          "points": 5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "United States",
-          "points": 2,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Tunisia",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Haiti",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
       "rank": 7
     },
     {
@@ -243,7 +243,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Agatha",
@@ -322,7 +322,7 @@
         {
           "name": "Bosnia and Herzegovina",
           "points": 1.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "third"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Darcy",
+      "team": "United States",
+      "points": 2,
+      "label": "United States won (Round of 32)",
+      "utcDate": "2026-07-02T00:00:00Z"
+    },
+    {
       "owner": "Paul",
       "team": "Belgium",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "France won (Round of 32)",
       "utcDate": "2026-06-30T21:00:00Z"
-    },
-    {
-      "owner": "Charlotte",
-      "team": "Norway",
-      "points": 2,
-      "label": "Norway won (Round of 32)",
-      "utcDate": "2026-06-30T17:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 78,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-30T17:00:00Z",
-      "home": {
-        "name": "Ivory Coast",
-        "owner": "Paul",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group E",
-        "resolved": true,
-        "fifaRank": 33
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group I",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -1096,8 +1067,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group E",
-            "resolved": true,
-            "fifaRank": 33
+            "resolved": true
           },
           "away": {
             "name": "Norway",
@@ -1106,8 +1076,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group I",
-            "resolved": true,
-            "fifaRank": 31
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1174,7 +1143,7 @@
           "matchNo": 81,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-02T00:00:00Z",
           "home": {
             "name": "United States",
@@ -1558,13 +1527,13 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-07T00:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "United States",
+            "owner": "Darcy",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 81",
-            "resolved": false
+            "resolved": true
           },
           "away": {
             "name": "Belgium",
@@ -9949,8 +9918,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "United States",
+        "away": "Bosnia and Herzegovina",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-02T02:10:36Z"
+  "generated": "2026-07-02T02:11:40Z"
 }
