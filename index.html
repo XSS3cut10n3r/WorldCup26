@@ -167,6 +167,8 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }
+  /* Every one of this player's teams is out (and they're not leading the pool). */
+  .who .name.all-out { color: var(--maroon); }
   .teams { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; }
   .chip {
     font-size: 12.5px;
@@ -740,6 +742,9 @@
   /* ---- "Under the hood" prediction explainer on Upcoming cards ---- */
   .upx { cursor: pointer; }
   .upx.upx-on .match { border-color: rgba(232,195,74,.55); }
+  /* Live games ALWAYS keep the red live border, open or closed; the gold
+     open-state border applies to non-live (upcoming) cards only. */
+  .upx.upx-on .match.is-live { border-color: rgba(255,90,69,0.55); }
   .upx-panel {
     margin: -4px 0 10px; padding: 8px 10px 9px;
     background: var(--pitch-deep); border: 1px solid rgba(242,240,228,.14);
@@ -1661,6 +1666,40 @@
   // Updates the live timer every second and removes the card the instant its
   // own countdown crosses zero (rather than sitting at 0:00 while the data
   // refresh catches up).
+  // The pipeline's data.upcoming only carries the feed's near-term fixtures, so
+  // a knockout game can be missing from Coming Up even after both of its teams
+  // are known. Merge in every bracket match that has BOTH sides resolved (and
+  // not sim-projected), hasn't kicked off, and isn't already in the list, so a
+  // game appears the moment its second team is decided. The synthesized card
+  // reuses the bracket match object plus a human stage label; matchCard treats
+  // it exactly like a feed fixture (no score yet -> kickoff time + clinch path).
+  // Sorted by kickoff; missing dates sink to the end.
+  function upcomingAll(data) {
+    const base = ((data && data.upcoming) || []).slice();
+    const seen = new Set(base.map(upxKey));
+    ((data && data.bracket) || []).forEach(r => (r.matches || []).forEach(m => {
+      const live = m.status === "IN_PLAY" || m.status === "PAUSED";
+      const done = m.status === "FINISHED" || m.status === "AWARDED";
+      if (live || done) return;
+      const h = m.home, a = m.away;
+      if (!h || !a || !h.resolved || !a.resolved || h.projected || a.projected) return;
+      const card = Object.assign({}, m, {
+        stage: m.stage || SIM_STAGE_LABEL[r.stageCode] || r.stageCode,
+        stageCode: m.stageCode || r.stageCode
+      });
+      const k = upxKey(card);
+      if (seen.has(k)) return;
+      seen.add(k);
+      base.push(card);
+    }));
+    base.sort((x, y) => {
+      const tx = x.utcDate ? new Date(x.utcDate).getTime() : Infinity;
+      const ty = y.utcDate ? new Date(y.utcDate).getTime() : Infinity;
+      return tx - ty;
+    });
+    return base;
+  }
+
   function tickCountdown() {
     const el = document.getElementById("countdown");
     if (!el) return;
@@ -2357,11 +2396,11 @@
 
     if ((data.live || []).length) {
       html += section('<span class="live-dot"></span>&nbsp;Live now',
-        `<div class="matches">${data.live.map(matchCard).join("")}</div>`);
+        `<div class="matches">${data.live.map(upxWrap).join("")}</div>`);
     } else {
       // No live game: count down to the first upcoming fixture, but only
       // while it's genuinely still in the future.
-      const next = (data.upcoming || [])[0];
+      const next = upcomingAll(data)[0];
       if (next && next.utcDate &&
           new Date(next.utcDate).getTime() > Date.now()) {
         html += countdownCard(next);
@@ -2377,9 +2416,12 @@
           clinch ? ' title="Through to the knockouts"' : ""
         }>${esc(t.name)} <b>${fmtPts(t.points)}</b></span>`;
       }).join("");
+      // A player with EVERY team knocked out reads maroon, unless they lead the
+      // pool: 1st place keeps its normal (gold-glow) styling regardless.
+      const allOut = (r.teams || []).length > 0 && r.teams.every(t => t.eliminated) && r.rank !== 1;
       return `<div class="row ${r.rank === 1 && r.points > 0 ? "leader" : ""}">
         <div class="rank">${r.rank}</div>
-        <div class="who"><div class="name">${esc(r.name)}</div><div class="teams">${chips}</div></div>
+        <div class="who"><div class="name${allOut ? " all-out" : ""}">${esc(r.name)}</div><div class="teams">${chips}</div></div>
         <div class="pts">${fmtPts(r.points)}<small>pts</small></div>
       </div>`;
     }).join("");
@@ -2398,7 +2440,7 @@
     if (rec) html += section("Recent results", `<div class="matches recent-matches">${rec}</div>`);
 
     // Upcoming
-    const up = (data.upcoming || []).map(upxWrap).join("");
+    const up = upcomingAll(data).map(upxWrap).join("");
     if (up) html += section("Coming up", `<div class="matches">${up}</div>`);
 
     // Rules
@@ -3360,8 +3402,10 @@
     const w = [...document.querySelectorAll(".upx[data-upx]")]
       .find(x => x.dataset.upx === upxOpen);
     if (!w) return;
-    // Find the match again from the data so the panel always reflects live numbers.
-    const m = ((d && d.upcoming) || []).find(x => upxKey(x) === upxOpen);
+    // Find the match again from the data so the panel always reflects live
+    // numbers. Live cards share the same accordion, so search them too.
+    const m = upcomingAll(d).find(x => upxKey(x) === upxOpen)
+      || ((d && d.live) || []).find(x => upxKey(x) === upxOpen);
     if (!m) return;
     w.classList.add("upx-on");
     w.insertAdjacentHTML("beforeend", upxStatsHtml(m, d));
@@ -3687,10 +3731,6 @@
   // teams, the home win prob, and the most likely score) and render it through the
   // SAME bracket component as /#bracket, so it inherits the connector lines, the
   // round-toggle buttons and the mobile active-round scaling.
-  const MLB_NOTE = '<p class="gnote">Built round by round: each game is a head-to-head of the two teams that advanced, ' +
-    'the more likely side moves on, and that result becomes the next round\u2019s matchup, so it connects all the way through. ' +
-    'On the active round, each tie\u2019s badge is the winner\u2019s chance of taking that game; the score is the most likely result, with AET / penalties noted. ' +
-    'Use the round buttons to step through; it scales down on narrow screens just like the bracket page.</p>';
   // Hardwired most-likely bracket (the prediction shown in the original projection,
   // locked in as the contest's basis): FIFA match number -> predicted winner. A
   // completed game is "correct" (green) when the real winner matches this, "wrong"
@@ -3872,7 +3912,7 @@
       '</div><div class="mlb-champ-name">' + esc(champ.name) +
       '</div><div class="mlb-champ-sub">champion of the most likely bracket \u00b7 wins the title ' +
       (champ.titlePct * 100).toFixed(1) + '% of all simulations</div></div>') : "";
-    return renderBracket(mlb, { title: "Most Likely Bracket", note: banner + MLB_NOTE });
+    return renderBracket(mlb, { title: "The Model's Most Likely Bracket", note: banner });
   }
 
   function renderKnockoutRace(data) {
