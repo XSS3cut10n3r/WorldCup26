@@ -742,23 +742,23 @@
   .upx.upx-on .match { border-color: rgba(232,195,74,.55); }
   .upx-panel {
     margin: -4px 0 10px; padding: 8px 10px 9px;
-    background: rgba(0,0,0,.28); border: 1px solid rgba(242,240,228,.14);
+    background: var(--pitch-deep); border: 1px solid rgba(242,240,228,.14);
     border-top: none; border-radius: 0 0 10px 10px;
-    font-size: 12px;
+    font-size: 15.5px;
   }
   .upx-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px;
     align-items: center; padding: 2.5px 0;
     border-bottom: 1px dashed rgba(242,240,228,.08); }
   .upx-row:last-child { border-bottom: none; }
   .upx-l { text-align: left; } .upx-r { text-align: right; }
-  .upx-k { font-size: 10px; opacity: .6; text-align: center; white-space: nowrap; }
-  .upx-chips { display: inline-flex; gap: 3px; }
-  .upx-chip { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+  .upx-k { font-size: 13px; opacity: .6; text-align: center; white-space: nowrap; }
+  .upx-chips { display: inline-flex; gap: 4px; }
+  .upx-chip { width: 13px; height: 13px; border-radius: 2.5px; display: inline-block; }
   .upx-chip.w { background: var(--mlb-good); }
   .upx-chip.d { background: rgba(242,240,228,.45); }
   .upx-chip.l { background: var(--mlb-bad); }
   .upx-fav { color: var(--gold); font-weight: 700; }
-  .upx-note { opacity: .55; font-size: 10px; margin-top: 6px; }
+  .upx-note { opacity: .55; font-size: 13px; margin-top: 6px; }
   .gtable th:nth-child(n+3), .gtable td:nth-child(n+3) { width: 32px; }
   .gpos { color: var(--chalk-faint); }
   .gowner { display: block; font-size: 10.5px; color: var(--chalk-faint); }
@@ -1373,6 +1373,32 @@
   .ktable th.ktsort.active { color: var(--chalk); }
   .kt-arrow { color: var(--ice); font-size: 8px; line-height: 1; }
   .kt-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  /* Stat Leaders: fixed table layout so the seven stat columns are all exactly
+     the same width (the leftover space after # and Team splits evenly). Narrower
+     than the page and centered on desktop; on phones it collapses to the full
+     viewport width with tighter cells so every column stays visible, no scroll. */
+  #sltable { table-layout: fixed; width: 640px; max-width: 100%; margin: 0 auto; }
+  /* Stat Leaders heading sits centered over its centered table. */
+  .ksec h2.sl-h2 { text-align: center; }
+  #sltable th:nth-child(1) { width: 34px; }
+  #sltable th:nth-child(2) { width: 140px; }
+  #sltable td.kt-team { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @media (max-width: 600px) {
+    #sltable { width: 100%; }
+    /* Drop the two least essential columns (AVG OPP, FIFA RANK are cells 8 and 9)
+       so the remaining five stats all fit a 375px viewport with no sideways scroll.
+       Team names ellipsize via the kt-team rule above. */
+    #sltable th:nth-child(8), #sltable td:nth-child(8),
+    #sltable th:nth-child(9), #sltable td:nth-child(9) { display: none; }
+    #sltable th:nth-child(1) { width: 20px; }
+    #sltable th:nth-child(2) { width: 96px; }
+    #sltable th, #sltable td { padding: 6px 3px; }
+    #sltable th { font-size: 10px; letter-spacing: 0.02em; }
+    #sltable td { font-size: 12px; }
+    #sltable .kt-flag { margin-right: 3px; }
+    /* Headers shorten to ATK / DEF on small screens. */
+    #sltable .sl-form { display: none; }
+  }
   @media (max-width: 600px) {
     .ktable { font-size: 12px; }
     .ktable th, .ktable td { padding: 6px 6px; }
@@ -2262,6 +2288,7 @@
       app.innerHTML = `<div class="knockout-wrap">${renderKnockoutPage(data, mlbData)}</div>`;
       if (mlbData) mountBracket(mlbData, true);
       wireKTable();   // make the Easiest-Path table sortable by header click
+      wireSLTable();  // same for the Stat Leaders table
       return;
     }
     document.body.classList.remove("bubble-mode");
@@ -3151,6 +3178,28 @@
   // deterministic parts of buildSimData's eloScore/eloShootWin (keep in sync if
   // that math changes): elo supremacy, opponent-weighted form, FIFA-rank nudge,
   // pens-hangover haircut. Accordion; survives the 5-min re-render via upxApply.
+  // ---- Shared bell-curve (normal CDF) scoring ------------------------------
+  // A value is z-scored against its field's mean/sd and mapped through the
+  // normal CDF, so a score reads "better than X% of a bell-curved field": the
+  // pack clusters near 50 and the extremes approach (but never pin) 0 / 100.
+  // Used by the Upcoming-card explainer (Elo / Form) and the knockout page's
+  // Avg-path score. `invert` flips the tail for metrics where LOWER raw = better.
+  const nrmErf = x => {                 // Abramowitz-Stegun 7.1.26, |err| < 1.5e-7
+    const sg = x < 0 ? -1 : 1; x = Math.abs(x);
+    const t = 1 / (1 + 0.3275911 * x);
+    const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t
+      - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+    return sg * y;
+  };
+  const nrmPhi = z => 0.5 * (1 + nrmErf(z / Math.SQRT2));
+  const nrmStats = vals => {
+    const n = vals.length, mu = vals.reduce((a, b) => a + b, 0) / n;
+    return { mu, sd: Math.sqrt(vals.reduce((a, b) => a + (b - mu) * (b - mu), 0) / n) };
+  };
+  const bellScore = (v, s, invert) => v == null || !s ? null
+    : !(s.sd > 0) ? 50
+    : Math.round(nrmPhi((invert ? s.mu - v : v - s.mu) / s.sd) * 100);
+
   let upxOpen = null;
   const upxKey = m => m && m.matchNo != null ? "m" + m.matchNo
     : normKey(canonName((m.home || {}).name)) + "|" + normKey(canonName((m.away || {}).name));
@@ -3193,6 +3242,17 @@
     played.forEach(g => { bump(g.h, g.a, g.hg, g.ag); bump(g.a, g.h, g.ag, g.hg); });
     const atk = nm => { const f = fa[canonName(nm)]; return (f && f.n) ? f.an / f.n : 0; };
     const def = nm => { const f = fa[canonName(nm)]; return (f && f.n) ? f.dn / f.n : 0; };
+    // ---- 0-100 display normalisation (bell curve across the whole field) ----
+    // Percentile of a normal fit to the field: 50 = average, tails ~0/100.
+    // Defence is inverted (conceding least = highest score). These feed the
+    // DISPLAY rows only — the xG math below keeps using the raw atk/def/R.
+    const faKeys = Object.keys(fa);
+    const aS = faKeys.length ? nrmStats(faKeys.map(k => fa[k].n ? fa[k].an / fa[k].n : 0)) : null;
+    const dS = faKeys.length ? nrmStats(faKeys.map(k => fa[k].n ? fa[k].dn / fa[k].n : 0)) : null;
+    const eS = R ? nrmStats(Object.keys(R).map(k => R[k]).filter(v => typeof v === "number")) : null;
+    const atkN = nm => bellScore(atk(nm), aS, false);   // higher raw attack = better
+    const defN = nm => bellScore(def(nm), dS, true);    // lower raw (concedes less) = better
+    const eloN = nm => (R && R[canonName(nm)] != null) ? bellScore(R[canonName(nm)], eS, false) : null;
     // Per-team tournament record for the grid.
     const rec = nm => {
       const K = normKey(canonName(nm));
@@ -3214,7 +3274,7 @@
       });
       return out;
     };
-    return { P, R, avgGpg, fifa, rs, atk, def, rec };
+    return { P, R, avgGpg, fifa, rs, atk, def, atkN, defN, eloN, rec };
   }
 
   function upxStatsHtml(m, d) {
@@ -3250,10 +3310,9 @@
     const R = M.R, P = M.P;
     if (R && R[hn] != null && R[an] != null) {
       const Ra = R[hn], Rb = R[an];
-      html += gRow(Ra, Rb, "Elo Rating (Model)", true, v => v.toFixed(2));
-      const sgn = v => (v >= 0 ? "+" : "") + v.toFixed(2);
-      html += gRow(M.atk(hn), M.atk(an), "Form: Attack", true, sgn);
-      html += gRow(M.def(hn), M.def(an), "Form: Defence", false, sgn);
+      html += gRow(M.eloN(hn), M.eloN(an), "Elo Rating (Model)", true);
+      html += gRow(M.atkN(hn), M.atkN(an), "Form: Attack", true);
+      html += gRow(M.defN(hn), M.defN(an), "Form: Defence", true);
       // Expected goals, computed exactly as the simulator's eloScore does before
       // it samples (Dixon-Coles resampling doesn't move the means).
       const s = (P.suprK || 0.42) * (Ra - Rb);
@@ -3327,19 +3386,121 @@
     });
   }
 
+  // ---------- /#knockout: Stat Leaders (sortable table of remaining teams) ----------
+  // Every team still alive in the tournament, with the same numbers the Upcoming
+  // cards' "under the hood" panel shows: tournament goals, schedule strength,
+  // FIFA rank, and the bell-curve-normalised Elo / form scores (0-100, 50 = avg).
+  // Column clicks cycle: best-first for that stat, then reversed, then back to
+  // the default order (Goals For, best first).
+  const SL_COLS = [
+    { key: "gf",   label: "GF",        best: 1 },
+    { key: "ga",   label: "GA",        best: -1 },
+    { key: "elo",  label: "ELO",       best: 1 },
+    { key: "atk",  label: "<span class=\"sl-form\">FORM </span>ATK", best: 1 },
+    { key: "def",  label: "<span class=\"sl-form\">FORM </span>DEF", best: 1 },
+    { key: "opp",  label: "AVG OPP",   best: -1 },
+    { key: "fifa", label: "FIFA RANK", best: -1 },
+  ];
+  let slSort = { key: null, dir: -1 }, slData = [];
+  function slRows(data) {
+    const M = upxModel(data);
+    const sim = (data && data.sim) || (lastData && lastData.sim) || {};
+    const teams = Object.keys(sim.teams || {});
+    // A team is out if it lost a finished knockout game, the exact knockout
+    // math has it at 0, or data.json flags it eliminated on the leaderboard.
+    const outs = koEliminatedNames(data);
+    if (koData) (koData.teams || []).forEach(t => {
+      if ((t.odds || 0) <= 0) outs.add(canonName(t.name)); });
+    ((data && data.leaderboard) || []).forEach(p => (p.teams || []).forEach(t => {
+      if (t.eliminated) outs.add(canonName(t.name)); }));
+    return teams.filter(t => !outs.has(canonName(t))).map(t => {
+      const r = M.rec(t), m = krMeta(t);
+      const opp = r.oppRanks.length
+        ? r.oppRanks.reduce((a, b) => a + b, 0) / r.oppRanks.length : null;
+      return { name: t, flag: m[1], gf: r.gf, ga: r.ga, opp,
+               fifa: M.fifa(t), elo: M.eloN(t), atk: M.atkN(t), def: M.defN(t) };
+    });
+  }
+  // dir is the actual order applied: 1 ascending, -1 descending. Missing values
+  // always sink to the bottom whichever way the column is sorted.
+  function slSortRows(rows, key, dir) {
+    return rows.slice().sort((a, b) => {
+      if (key === "name") return a.name.localeCompare(b.name) * dir;
+      const miss = dir === 1 ? Infinity : -Infinity;
+      const va = a[key] == null ? miss : a[key], vb = b[key] == null ? miss : b[key];
+      if (va < vb) return -dir;
+      if (va > vb) return dir;
+      return a.name.localeCompare(b.name);   // stable tiebreak
+    });
+  }
+  function slTable(rows, sort) {
+    sort = sort || slSort;
+    const eff = sort.key ? sort : { key: "gf", dir: -1 };   // null key => default: Goals For, best first
+    const sorted = slSortRows(rows, eff.key, eff.dir);
+    const fmt = (v, k) => v == null ? "\u2013" : k === "opp" ? v.toFixed(1) : v;
+    const body = sorted.map((r, i) =>
+      '<tr><td class="kt-rank">' + (i + 1) + '</td>' +
+      '<td class="kt-team"><span class="kt-flag">' + r.flag + '</span>' + esc(r.name) + '</td>' +
+      SL_COLS.map(c => '<td>' + fmt(r[c.key], c.key) + '</td>').join("") + '</tr>').join("");
+    const arrow = k => sort.key === k ? '<span class="kt-arrow">' + (sort.dir === 1 ? "\u25B2" : "\u25BC") + '</span>' : "";
+    const th = (k, label, sub) =>
+      '<th class="ktsort' + (sort.key === k ? " active" : "") + '" data-key="' + k + '">' +
+        '<span class="kt-h"><span class="kt-lbl">' + label + '</span>' + arrow(k) + '</span>' +
+        (sub ? '<span class="kt-sub">' + sub + '</span>' : "") +
+      '</th>';
+    return '<table class="ktable" id="sltable"><thead><tr><th>#</th>' +
+      th("name", "Team") +
+      SL_COLS.map(c => th(c.key, c.label, c.sub)).join("") +
+      '</tr></thead><tbody>' + body + '</tbody></table>';
+  }
+  // Header clicks cycle a column: best-first for that stat, then reversed, then
+  // back to the default order (Goals For, best first, no arrow).
+  function wireSLTable() {
+    const tbl = document.getElementById("sltable"); if (!tbl) return;
+    tbl.addEventListener("click", e => {
+      const h = e.target.closest("th[data-key]"); if (!h) return;
+      const key = h.dataset.key;
+      const col = SL_COLS.find(c => c.key === key);
+      const firstDir = key === "name" ? 1 : (col && col.best === 1 ? -1 : 1);
+      if (slSort.key !== key) slSort = { key, dir: firstDir };            // 1st click: best first
+      else if (slSort.dir === firstDir) slSort = { key, dir: -firstDir }; // 2nd: reverse
+      else slSort = { key: null, dir: -1 };                               // 3rd: back to default
+      tbl.outerHTML = slTable(slData, slSort);
+      wireSLTable();   // the table element was replaced; bind the new one
+    });
+  }
+  function slSection(data) {
+    slData = slRows(data);
+    if (!slData.length) return "";
+    return '<section class="ksec"><h2 class="sl-h2">Stat Leaders</h2>' +
+      '<div class="kt-scroll">' + slTable(slData, slSort) + '</div></section>';
+  }
+
   // ---------- /#knockout: Easiest Path to the Title (bell curve + table) ----------
   // Reads koData.easiestPath (written by simulate_pool.py): per champion, the mean
   // strength (-log FIFA rank) of the opponents STILL AHEAD of it that it's projected
   // to beat (games already played are excluded), the raw title tally, and a readable
   // mean opponent rank. Rendered as HTML + inline SVG.
+  // Mean/sd of the Monte-Carlo table's raw strengths, kept so the Simulate
+  // what-if's single row is scored on the SAME bell curve.
+  let ktPathRange = null;
+  // 1-100 path score, bell-curve percentile: 100 = easiest run (weakest
+  // opponents), 1 = hardest. Raw strength is inverted (higher raw = harder)
+  // and clamped to 1..100 so rounding never shows a 0.
+  const kPathScore = v => {
+    const s = bellScore(v, ktPathRange, true);
+    return s == null ? null : Math.max(1, Math.min(100, s));
+  };
   function kEpRows() {
     const ep = (koData && koData.easiestPath) || [];
+    const strs = ep.map(r => r.avgStrength).filter(v => v != null);
+    ktPathRange = strs.length ? nrmStats(strs) : null;
     return ep.map(r => {
       const m = krMeta(r.name);
       return { name: r.name, code: m[0], flag: m[1],
                color: COLOR_BY_KEY[normKey(canonName(r.name))] || "#9aa0a6",
                wins: r.wins || 0, winPct: r.winPct || 0,
-               str: r.avgStrength, oppRank: r.avgOppRank };
+               str: r.avgStrength, path: kPathScore(r.avgStrength), oppRank: r.avgOppRank };
     });
   }
   function kBell(rows) {
@@ -3348,7 +3509,10 @@
     // first, so it's underneath the flags. The flags rest just above the axis and
     // pack UPWARD, densest under the peak; the curve's peak is then set just above
     // the tallest stack so the bell hugs the cloud instead of towering over it.
-    const axisY = 356, curveBase = axisY, baseY = axisY - 16, ceilY = 70;
+    // Geometry is ~2.2x the original vertical scale so the chart renders tall
+    // (the width:100% SVG keeps the aspect ratio, so more internal height =
+    // a visibly taller chart on both desktop and mobile).
+    const axisY = 760, curveBase = axisY, baseY = axisY - 34, ceilY = 120;
     const xs = rows.map(r => r.str);
     let lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
     if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; }
@@ -3359,9 +3523,10 @@
     if (!(sd > 0)) sd = (hi - lo) / 6;
     const g = s => Math.exp(-0.5 * ((s - mu) / sd) * ((s - mu) / sd));
     const maxPct = Math.max.apply(null, rows.map(r => r.winPct)) || 1;
-    // Smaller, tighter markers (radius 9..14) so dense clusters stack a few rows
-    // high rather than ballooning across the whole panel.
-    const radOf = pc => 9 + 5 * Math.sqrt(pc / maxPct);
+    // Big markers (radius 20..31): the flags are the point of the chart, so they
+    // get as large as the packing allows; collisions still decide the spacing,
+    // so they can never overlap no matter how dense a cluster gets.
+    const radOf = pc => 20 + 11 * Math.sqrt(pc / maxPct);
     const nodes = rows.map(r => ({ r, x: X(r.str), rad: radOf(r.winPct) }));
     // Place bigger (more frequent) winners first so they get the prime baseline spots.
     nodes.sort((a, b) => (b.rad - a.rad) || (a.x - b.x));
@@ -3369,20 +3534,20 @@
     nodes.forEach(node => {
       let y = baseY;
       for (let row = 0; row < 400; row++) {
-        const cand = baseY - row * 4;            // climb in small steps; collisions decide spacing
+        const cand = baseY - row * 6;            // climb in small steps; collisions decide spacing
         let ok = true;
         for (const p of placed) {
-          const need = p.rad + node.rad + 2;
+          const need = p.rad + node.rad + 3;
           if (Math.abs(p.x - node.x) < need && Math.abs(p.y - cand) < need) { ok = false; break; }
         }
         if (ok || cand <= ceilY) { y = Math.max(cand, ceilY); break; }
       }
       node.y = y; placed.push(node);
     });
-    // Snug fit: peak sits ~28px above the highest marker (clamped so the bell never
+    // Snug fit: peak sits ~70px above the highest marker (clamped so the bell never
     // gets pancake-flat when the flags barely stack), baseline stays on the axis.
     const topEdge = Math.min.apply(null, placed.map(n => n.y - n.rad));
-    const peakY = Math.min(Math.max(topEdge - 28, 46), 230);
+    const peakY = Math.min(Math.max(topEdge - 70, 80), 455);
     const Y = s => curveBase - g(s) * (curveBase - peakY);
     let d = "";
     for (let i = 0; i <= 140; i++) { const s = lo + (hi - lo) * i / 140; d += (i ? " L" : "M") + X(s).toFixed(1) + " " + Y(s).toFixed(1); }
@@ -3397,15 +3562,15 @@
     const muX = X(mu);
     // Crop the viewBox to the used band (label at top to axis labels at bottom) so
     // there's no tall empty margin above the curve.
-    const topVB = peakY - 22, botVB = axisY + 30, H = botVB - topVB;
+    const topVB = peakY - 30, botVB = axisY + 40, H = botVB - topVB;
     return '<svg viewBox="0 ' + topVB.toFixed(0) + ' ' + W + ' ' + H.toFixed(0) + '" class="kbell" xmlns="http://www.w3.org/2000/svg">' +
       '<path d="' + area + '" fill="rgba(232,195,74,0.10)"/>' +
       '<path d="' + d + '" fill="none" stroke="rgba(232,195,74,0.55)" stroke-width="2"/>' +
-      '<line x1="' + muX.toFixed(1) + '" y1="' + (peakY - 6) + '" x2="' + muX.toFixed(1) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.4)" stroke-dasharray="4 5"/>' +
-      '<text x="' + muX.toFixed(1) + '" y="' + (peakY - 11) + '" text-anchor="middle" fill="rgba(242,240,228,0.75)" font-size="13">Average path</text>' +
+      '<line x1="' + muX.toFixed(1) + '" y1="' + (peakY - 8) + '" x2="' + muX.toFixed(1) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.4)" stroke-dasharray="4 5"/>' +
+      '<text x="' + muX.toFixed(1) + '" y="' + (peakY - 14) + '" text-anchor="middle" fill="rgba(242,240,228,0.75)" font-size="17">Average path</text>' +
       '<line x1="' + padL + '" y1="' + axisY + '" x2="' + (W - padR) + '" y2="' + axisY + '" stroke="rgba(242,240,228,0.28)"/>' +
-      '<text x="' + padL + '" y="' + (axisY + 20) + '" text-anchor="start" fill="#6FD8EC" font-size="13">\u2190 Easier (weaker opponents)</text>' +
-      '<text x="' + (W - padR) + '" y="' + (axisY + 20) + '" text-anchor="end" fill="#FF5A45" font-size="13">Harder (stronger opponents) \u2192</text>' +
+      '<text x="' + padL + '" y="' + (axisY + 26) + '" text-anchor="start" fill="#6FD8EC" font-size="17">\u2190 Easier (weaker opponents)</text>' +
+      '<text x="' + (W - padR) + '" y="' + (axisY + 26) + '" text-anchor="end" fill="#FF5A45" font-size="17">Harder (stronger opponents) \u2192</text>' +
       marks + '</svg>';
   }
   // Easiest-Path table state: the current rows (for in-place re-sorting) and the
@@ -3417,7 +3582,7 @@
     return rows.slice().sort((a, b) => {
       if (key === "name") return a.name.localeCompare(b.name) * dir;
       const v = r => key === "wins" ? (r.wins || 0)
-        : key === "str" ? (r.str == null ? -Infinity : r.str)
+        : key === "str" ? (r.path == null ? -Infinity : r.path)
         : key === "oppRank" ? (r.oppRank == null ? Infinity : r.oppRank) : 0;
       const va = v(a), vb = v(b);
       if (va < vb) return -dir;
@@ -3433,7 +3598,7 @@
       '<tr><td class="kt-rank">' + (i + 1) + '</td>' +
       '<td class="kt-team"><span class="kt-flag">' + r.flag + '</span>' + esc(r.name) + '</td>' +
       '<td>' + r.wins.toLocaleString() + ' <span class="kt-pct">' + (r.winPct * 100).toFixed(1) + '%</span></td>' +
-      '<td>' + (r.str != null ? r.str.toFixed(3) : "\u2013") + '</td>' +
+      '<td>' + (r.path != null ? r.path : "\u2013") + '</td>' +
       '<td>' + (r.oppRank != null ? r.oppRank.toFixed(1) : "\u2013") + '</td></tr>').join("");
     const arrow = k => sort.key === k ? '<span class="kt-arrow">' + (sort.dir === 1 ? "\u25B2" : "\u25BC") + '</span>' : "";
     const th = (k, label, sub) =>
@@ -3444,7 +3609,7 @@
     return '<table class="ktable" id="ktable"><thead><tr><th>#</th>' +
       th("name", "Team") +
       th("wins", "Titles") +
-      th("str", "Avg path", "\u2212log(rank)") +
+      th("str", "Avg path", "100 = easiest") +
       th("oppRank", "Avg opp", "FIFA rank") +
       '</tr></thead><tbody>' + body + '</tbody></table>';
   }
@@ -3491,7 +3656,7 @@
     const mt = krMeta(champ.name);
     return [{ name: champ.name, code: mt[0], flag: mt[1],
               color: COLOR_BY_KEY[normKey(canonName(champ.name))] || "#9aa0a6",
-              wins: 1, winPct: 1, str: avgStr, oppRank: avgRank }];
+              wins: 1, winPct: 1, str: avgStr, path: kPathScore(avgStr), oppRank: avgRank }];
   }
   function renderKnockoutPage(data, mlb) {
     const simView = !!(data && data.simulated);
@@ -3512,7 +3677,7 @@
       : 'For every team that won at least one simulated title, the average strength of the ' +
         'knockout opponents still ahead of it: the sides it would yet have to beat to lift the trophy, scored as \u2212log(FIFA rank), across only the tournaments it actually won. ' +
         'Left means an easier run from here; right means tougher sides still to come. Marker size shows how often it won.';
-    return '<section class="ksec"><h2>' + heading + '</h2>' +
+    return slSection(data) + '<section class="ksec"><h2>' + heading + '</h2>' +
       '<p class="kpage-note">' + note + '</p>' +
       kBell(rows) + '<div class="kt-scroll">' + kTable(rows, ktSort) + '</div></section>' + mlbSection(mlb);
   }
@@ -4505,7 +4670,7 @@
     // buildSimData falls back to uniform random scorelines without it.
     fetch("elo.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d) eloData = d; })
+      .then(d => { if (d) { eloData = d; render(currentData()); } })
       .catch(() => {});
     // Hidden /#bubble view: the news-style cut-off graphic, regenerated by the
     // Post-game pipeline (simulate_group_maxmin.py --svg bubble.svg). It's plain
