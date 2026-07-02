@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Pete",
+      "points": 10.0,
+      "teams": [
+        {
+          "name": "Spain",
+          "points": 4.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Japan",
+          "points": 2.0,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Paraguay",
+          "points": 3.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Darcy",
       "points": 9.0,
       "teams": [
@@ -33,7 +61,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Mat",
@@ -61,7 +89,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Nik",
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Sydney",
@@ -124,7 +152,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Charlotte",
@@ -152,35 +180,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 5
-    },
-    {
-      "name": "Pete",
-      "points": 8.0,
-      "teams": [
-        {
-          "name": "Spain",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Japan",
-          "points": 2.0,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Paraguay",
-          "points": 3.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "third"
-        }
-      ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Paul",
@@ -231,7 +231,7 @@
         {
           "name": "Austria",
           "points": 1.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Pete",
+      "team": "Spain",
+      "points": 2,
+      "label": "Spain won (Round of 32)",
+      "utcDate": "2026-07-02T19:00:00Z"
+    },
+    {
       "owner": "Darcy",
       "team": "United States",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Mexico won (Round of 32)",
       "utcDate": "2026-07-01T02:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "France",
-      "points": 2,
-      "label": "France won (Round of 32)",
-      "utcDate": "2026-06-30T21:00:00Z"
     }
   ],
   "live": [],
@@ -615,35 +615,6 @@
         "slot": "3rd place C/E/F/H/I",
         "resolved": true,
         "fifaRank": 23
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 77,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-30T21:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group I",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place C/D/F/G/H",
-        "resolved": true,
-        "fifaRank": 38
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -927,13 +898,14 @@
         "resolved": false
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Spain",
+        "owner": "Pete",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 84",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 2
       },
       "penalties": false,
       "winner": null
@@ -1065,8 +1037,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group I",
-            "resolved": true,
-            "fifaRank": 3
+            "resolved": true
           },
           "away": {
             "name": "Sweden",
@@ -1075,8 +1046,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "3rd place C/D/F/G/H",
-            "resolved": true,
-            "fifaRank": 38
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1257,7 +1227,7 @@
           "matchNo": 84,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-02T19:00:00Z",
           "home": {
             "name": "Spain",
@@ -1536,13 +1506,14 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Spain",
+            "owner": "Pete",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 84",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 2
           },
           "penalties": false,
           "winner": null
@@ -9956,8 +9927,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Spain",
+        "away": "Austria",
+        "homeGoals": 3,
+        "awayGoals": 0,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-02T21:02:40Z"
+  "generated": "2026-07-02T21:03:44Z"
 }
