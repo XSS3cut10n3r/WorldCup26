@@ -472,11 +472,12 @@
       "utcDate": "2026-06-30T21:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-02T19:00Z",
       "home": {
         "name": "Spain",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 81,
       "stage": "Round of 32",
@@ -614,35 +613,6 @@
         "slot": "3rd place C/E/F/H/I",
         "resolved": true,
         "fifaRank": 23
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 77,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-06-30T21:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group I",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Sweden",
-        "owner": "Tomi",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place C/D/F/G/H",
-        "resolved": true,
-        "fifaRank": 38
       },
       "penalties": false,
       "winner": "HOME_TEAM"
