@@ -1161,6 +1161,32 @@ def main():
             seen_ko.add((hn, an))
             ko_fixtures.append((code, hn, an))
 
+        # The feed's `upcoming` list only carries the next handful of fixtures,
+        # so a knockout game can have both of its teams decided yet be missing
+        # from it. The page now merges those straight from the bracket into its
+        # Coming Up section; mirror that rule here so every one of them also
+        # gets its odds bar: any bracket match that hasn't kicked off and whose
+        # two sides are both resolved (and not what-if projections) is rated.
+        for rnd in (data.get("bracket") or []):
+            code = (rnd.get("stageCode") or "").upper()
+            if not code or code == "GROUP_STAGE":
+                continue
+            for mm in (rnd.get("matches") or []):
+                st = (mm.get("status") or "").upper()
+                if st in ("IN_PLAY", "PAUSED", "FINISHED", "AWARDED"):
+                    continue
+                hs, aw = mm.get("home") or {}, mm.get("away") or {}
+                if not hs.get("resolved") or not aw.get("resolved"):
+                    continue
+                if hs.get("projected") or aw.get("projected"):
+                    continue
+                hn = canon_feed(hs.get("name"))
+                an = canon_feed(aw.get("name"))
+                if not hn or not an or (hn, an) in seen_ko:
+                    continue
+                seen_ko.add((hn, an))
+                ko_fixtures.append((code, hn, an))
+
         ko_games = []
         if ko_fixtures:
             _sg, ko_elo, ko_shoot = make_engine(model)
