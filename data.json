@@ -472,7 +472,35 @@
       "utcDate": "2026-06-30T17:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-02T00:00Z",
+      "home": {
+        "name": "United States",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 17,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Bosnia and Herzegovina",
+        "owner": "Tomi",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 64,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 82,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 81,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-02T00:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group D",
-        "resolved": true,
-        "fifaRank": 17
-      },
-      "away": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place B/E/F/I/J",
-        "resolved": true,
-        "fifaRank": 64
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 84,
       "stage": "Round of 32",
@@ -1145,12 +1144,12 @@
           "matchNo": 81,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "LIVE",
           "utcDate": "2026-07-02T00:00:00Z",
           "home": {
             "name": "United States",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group D",
@@ -1160,7 +1159,7 @@
           "away": {
             "name": "Bosnia-Herzegovina",
             "owner": "Tomi",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place B/E/F/I/J",
@@ -9921,5 +9920,5 @@
       }
     ]
   },
-  "generated": "2026-07-01T22:55:33Z"
+  "generated": "2026-07-02T00:05:53Z"
 }
