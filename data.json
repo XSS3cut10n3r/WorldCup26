@@ -475,31 +475,33 @@
   "live": [],
   "recent": [
     {
+      "matchNo": 84,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "FINISHED",
-      "utcDate": "2026-07-02T19:00Z",
+      "utcDate": "2026-07-02T19:00:00Z",
       "home": {
         "name": "Spain",
         "owner": "Pete",
         "goals": 3,
         "penGoals": null,
-        "fifaRank": 2,
         "projected": false,
-        "resolved": true
+        "slot": "Winner Group H",
+        "resolved": true,
+        "fifaRank": 2
       },
       "away": {
         "name": "Austria",
         "owner": "Kelly",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 24,
         "projected": false,
-        "resolved": true
+        "slot": "Runner-up Group J",
+        "resolved": true,
+        "fifaRank": 24
       },
       "penalties": false,
-      "winner": "HOME_TEAM",
-      "_src": "espn-final"
+      "winner": "HOME_TEAM"
     },
     {
       "matchNo": 81,
@@ -613,6 +615,35 @@
         "slot": "3rd place C/E/F/H/I",
         "resolved": true,
         "fifaRank": 23
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
+    },
+    {
+      "matchNo": 77,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "FINISHED",
+      "utcDate": "2026-06-30T21:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 3,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group I",
+        "resolved": true,
+        "fifaRank": 3
+      },
+      "away": {
+        "name": "Sweden",
+        "owner": "Tomi",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place C/D/F/G/H",
+        "resolved": true,
+        "fifaRank": 38
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -876,6 +907,33 @@
         "slot": "Winner match 80",
         "resolved": true,
         "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 93,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-06T19:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 83",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 84",
+        "resolved": false
       },
       "penalties": false,
       "winner": null
@@ -1199,12 +1257,12 @@
           "matchNo": 84,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-02T19:00:00Z",
           "home": {
             "name": "Spain",
             "owner": "Pete",
-            "goals": null,
+            "goals": 3,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group H",
@@ -1214,7 +1272,7 @@
           "away": {
             "name": "Austria",
             "owner": "Kelly",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group J",
@@ -1222,7 +1280,7 @@
             "fifaRank": 24
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 85,
@@ -2512,7 +2570,7 @@
           "ga": 6,
           "gd": 0,
           "points": 4,
-          "conduct": -4,
+          "conduct": -5,
           "fifaRank": 24,
           "clinched": true,
           "clinchType": "second"
@@ -3122,16 +3180,6 @@
         "rank": 11
       },
       {
-        "team": "Austria",
-        "owner": "Kelly",
-        "yellow": 4,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -4,
-        "rank": 16
-      },
-      {
         "team": "Cabo Verde",
         "owner": "Paul",
         "yellow": 4,
@@ -3239,7 +3287,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 27
+        "rank": 26
+      },
+      {
+        "team": "Austria",
+        "owner": "Kelly",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 26
       },
       {
         "team": "Panama",
@@ -3249,7 +3307,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Scotland",
@@ -3259,7 +3317,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "Sweden",
@@ -3269,7 +3327,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 27
+        "rank": 26
       },
       {
         "team": "DR Congo",
@@ -3630,6 +3688,25 @@
         "rank": 7
       },
       {
+        "name": "Kelly",
+        "score": -16,
+        "teams": [
+          {
+            "name": "Portugal",
+            "score": -4
+          },
+          {
+            "name": "Austria",
+            "score": -5
+          },
+          {
+            "name": "Canada",
+            "score": -7
+          }
+        ],
+        "rank": 9
+      },
+      {
         "name": "Agatha",
         "score": -15,
         "teams": [
@@ -3646,26 +3723,7 @@
             "score": -8
           }
         ],
-        "rank": 9
-      },
-      {
-        "name": "Kelly",
-        "score": -15,
-        "teams": [
-          {
-            "name": "Portugal",
-            "score": -4
-          },
-          {
-            "name": "Austria",
-            "score": -4
-          },
-          {
-            "name": "Canada",
-            "score": -7
-          }
-        ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Tom",
@@ -9720,7 +9778,7 @@
       "Austria": {
         "owner": "Kelly",
         "canon": "Austria",
-        "conduct": -4,
+        "conduct": -5,
         "fifa": 24,
         "group": "J"
       },
@@ -9901,5 +9959,5 @@
       }
     ]
   },
-  "generated": "2026-07-02T08:10:56Z"
+  "generated": "2026-07-02T20:59:31Z"
 }
