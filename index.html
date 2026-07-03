@@ -800,6 +800,10 @@
   .upx-k { font-size: 13px; opacity: .6; text-align: center; white-space: nowrap; }
   .upx-chips { display: inline-flex; gap: 4px; }
   .upx-chip { width: 13px; height: 13px; border-radius: 2.5px; display: inline-block; }
+  /* Clickable "Croatia" (plays the send-off): dotted underline says click me. */
+  .cro-click { text-decoration: underline dotted; text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px; cursor: pointer; }
+  .cro-click:active { opacity: .65; }
   .upx-chip.w { background: var(--mlb-good); }
   .upx-chip.d { background: rgba(242,240,228,.45); }
   .upx-chip.l { background: var(--mlb-bad); }
@@ -2175,6 +2179,7 @@
   }
   function koPlaySound() {
     if (!koAC || !koSoundBuf) return;
+    if (croPlaying()) return;   // the Croatia send-off owns the speakers
     if (koAC.state === "suspended") koAC.resume().catch(() => {});
     try {
       const src = koAC.createBufferSource(); src.buffer = koSoundBuf;
@@ -2196,8 +2201,9 @@
       try { src.stop(now + PLAY + 0.03); } catch (e) {}
     } catch (e) {}
   }
-  // Browsers block audio until the user interacts; resume on the first gesture.
-  function koUnlockAudio() { koAudioInit(); if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {}); }
+  // Browsers block audio until the user interacts; resume on the first gesture
+  // (but never mid-send-off — the Croatia song keeps the KO context suspended).
+  function koUnlockAudio() { koAudioInit(); if (koAC && koAC.state === "suspended" && !croPlaying()) koAC.resume().catch(() => {}); }
   ["pointerdown", "keydown"].forEach(ev => document.addEventListener(ev, koUnlockAudio, { passive: true }));
   // True only if a KO-eligible card is actually in the viewport right now, so the
   // sound fires only when the player can SEE the animation (on the leaderboard,
@@ -2423,6 +2429,7 @@
     if (view === "bracket") mountBracket(data, false);
     if (view === "groups") gxApply(data);
     if (view === "home") upxApply(data);
+    croMark();   // underline every clickable "Croatia" in the fresh DOM
     if (view === "odds") {
       // Lay out the race after the new DOM is in place. First time the odds view
       // appears (koAnimated false) the flags race in from the start; later
@@ -3503,13 +3510,38 @@
   // croatia.mp3 sits next to index.html in the repo; fetched on first click.
   const CRO_SONG = "croatia.mp3";
   let croAudio = null;
+  // While the send-off plays it owns the speakers: koPlaySound checks this
+  // before firing, koUnlockAudio won't resume the KO context mid-song, and
+  // starting the song suspends the KO context to cut off any clip already
+  // ringing. The context resumes when the song finishes.
+  function croPlaying() {
+    return !!(croAudio && !croAudio.paused && !croAudio.ended);
+  }
+  const croIsName = el => {
+    const t = ((el && el.textContent) || "").trim();
+    return t.length <= 20 && normKey(t).replace(/[^a-z]/g, "") === "croatia";
+  };
+  // Tag every leaf element whose whole text is "Croatia" so CSS can give it
+  // the dotted click-me underline. Runs after each render (the DOM is rebuilt
+  // wholesale, so tags never go stale).
+  function croMark() {
+    for (const el of app.querySelectorAll("*")) {
+      if (!el.children.length && croIsName(el)) el.classList.add("cro-click");
+    }
+  }
   document.addEventListener("click", e => {
     let el = e.target;
     for (let i = 0; el && el.nodeType === 1 && i < 4; i++, el = el.parentElement) {
       const t = (el.textContent || "").trim();
       if (t.length > 20) break;                    // a container, not the name
-      if (normKey(t).replace(/[^a-z]/g, "") === "croatia") {
-        if (!croAudio) { croAudio = new Audio(CRO_SONG); croAudio.preload = "auto"; }
+      if (croIsName(el)) {
+        if (!croAudio) {
+          croAudio = new Audio(CRO_SONG); croAudio.preload = "auto";
+          croAudio.addEventListener("ended", () => {   // give the speakers back
+            if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {});
+          });
+        }
+        if (koAC && koAC.state === "running") koAC.suspend().catch(() => {});
         croAudio.currentTime = 0;                  // re-click restarts from 0:00
         croAudio.play().catch(() => {});           // click is the user gesture
         break;
