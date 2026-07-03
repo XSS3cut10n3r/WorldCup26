@@ -3283,6 +3283,7 @@
     cell.innerHTML = gxGamesHtml(td.dataset.gx, d);
     row.appendChild(cell);
     td.closest("tr").after(row);
+    croMark(row);   // the fresh dropdown may mention Croatia in its lines
   }
 
   app.addEventListener("click", e => {
@@ -3490,6 +3491,7 @@
     if (!m) return;
     w.classList.add("upx-on");
     w.insertAdjacentHTML("beforeend", upxStatsHtml(m, d));
+    croMark(w);   // stats panel is inserted after the page-wide croMark ran
   }
 
   app.addEventListener("click", e => {
@@ -3517,36 +3519,46 @@
   function croPlaying() {
     return !!(croAudio && !croAudio.paused && !croAudio.ended);
   }
-  const croIsName = el => {
-    const t = ((el && el.textContent) || "").trim();
-    return t.length <= 20 && normKey(t).replace(/[^a-z]/g, "") === "croatia";
-  };
-  // Tag every leaf element whose whole text is "Croatia" so CSS can give it
-  // the dotted click-me underline. Runs after each render (the DOM is rebuilt
-  // wholesale, so tags never go stale).
-  function croMark() {
-    for (const el of app.querySelectorAll("*")) {
-      if (!el.children.length && croIsName(el)) el.classList.add("cro-click");
+  // Wrap every occurrence of the word "Croatia" in rendered text with a
+  // .cro-click span: that underlines exactly the word (not the points next to
+  // it in a leaderboard chip, not the "vs" in a groups dropdown line) and is
+  // what the click handler listens for. Idempotent (skips already-wrapped
+  // text), so it can run after every render AND after gxApply/upxApply insert
+  // their panels into an already-marked page.
+  const CRO_RE = /\bcroatia\b/i;
+  function croMark(root) {
+    const tw = document.createTreeWalker(root || app, NodeFilter.SHOW_TEXT);
+    const hits = [];
+    while (tw.nextNode()) {
+      const n = tw.currentNode;
+      if (!CRO_RE.test(n.nodeValue)) continue;
+      if (n.parentElement && n.parentElement.closest(".cro-click")) continue;
+      hits.push(n);
+    }
+    for (let n of hits) {
+      let m;
+      while (n && (m = n.nodeValue.match(CRO_RE))) {
+        const word = n.splitText(m.index);
+        n = word.splitText(m[0].length);          // tail; loop catches repeats
+        const s = document.createElement("span");
+        s.className = "cro-click";
+        word.parentNode.insertBefore(s, word);
+        s.appendChild(word);
+      }
     }
   }
   document.addEventListener("click", e => {
-    let el = e.target;
-    for (let i = 0; el && el.nodeType === 1 && i < 4; i++, el = el.parentElement) {
-      const t = (el.textContent || "").trim();
-      if (t.length > 20) break;                    // a container, not the name
-      if (croIsName(el)) {
-        if (!croAudio) {
-          croAudio = new Audio(CRO_SONG); croAudio.preload = "auto";
-          croAudio.addEventListener("ended", () => {   // give the speakers back
-            if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {});
-          });
-        }
-        if (koAC && koAC.state === "running") koAC.suspend().catch(() => {});
-        croAudio.currentTime = 0;                  // re-click restarts from 0:00
-        croAudio.play().catch(() => {});           // click is the user gesture
-        break;
-      }
+    if (!(e.target instanceof Element) || !e.target.closest(".cro-click")) return;
+    if (!croAudio) {
+      croAudio = new Audio(CRO_SONG); croAudio.preload = "auto";
+      croAudio.volume = 0.5;                     // half volume
+      croAudio.addEventListener("ended", () => {   // give the speakers back
+        if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {});
+      });
     }
+    if (koAC && koAC.state === "running") koAC.suspend().catch(() => {});
+    croAudio.currentTime = 0;                    // re-click restarts from 0:00
+    croAudio.play().catch(() => {});             // click is the user gesture
   });
 
   // Players whose name reads maroon: every one of their teams is eliminated and
