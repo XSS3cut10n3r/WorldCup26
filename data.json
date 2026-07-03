@@ -472,7 +472,35 @@
       "utcDate": "2026-07-01T20:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-03T18:00Z",
+      "home": {
+        "name": "Australia",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 27,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 29,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 85,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 88,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-03T18:00:00Z",
-      "home": {
-        "name": "Australia",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group D",
-        "resolved": true,
-        "fifaRank": 27
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group G",
-        "resolved": true,
-        "fifaRank": 29
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 86,
       "stage": "Round of 32",
