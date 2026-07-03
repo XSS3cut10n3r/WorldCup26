@@ -64,6 +64,34 @@
       "rank": 2
     },
     {
+      "name": "Kelly",
+      "points": 9.0,
+      "teams": [
+        {
+          "name": "Portugal",
+          "points": 4.0,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Austria",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Canada",
+          "points": 3.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Mat",
       "points": 8.5,
       "teams": [
@@ -89,7 +117,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Nik",
@@ -117,7 +145,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Sydney",
@@ -152,7 +180,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Charlotte",
@@ -180,7 +208,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Paul",
@@ -210,34 +238,6 @@
         {
           "name": "Cabo Verde",
           "points": 1.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        }
-      ],
-      "rank": 7
-    },
-    {
-      "name": "Kelly",
-      "points": 7.0,
-      "teams": [
-        {
-          "name": "Portugal",
-          "points": 2.0,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Austria",
-          "points": 1.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Canada",
-          "points": 3.5,
           "eliminated": false,
           "clinched": true,
           "clinchType": "second"
@@ -280,7 +280,7 @@
         {
           "name": "Croatia",
           "points": 2,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Kelly",
+      "team": "Portugal",
+      "points": 2,
+      "label": "Portugal won (Round of 32)",
+      "utcDate": "2026-07-02T23:00:00Z"
+    },
+    {
       "owner": "Pete",
       "team": "Spain",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "England won (Round of 32)",
       "utcDate": "2026-07-01T16:00:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Mexico",
-      "points": 2,
-      "label": "Mexico won (Round of 32)",
-      "utcDate": "2026-07-01T02:00:00Z"
     }
   ],
   "live": [],
@@ -860,13 +860,14 @@
       "status": "SCHEDULED",
       "utcDate": "2026-07-06T19:00:00Z",
       "home": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Portugal",
+        "owner": "Kelly",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 83",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 5
       },
       "away": {
         "name": "Spain",
@@ -1495,13 +1496,14 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-06T19:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Portugal",
+            "owner": "Kelly",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 83",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 5
           },
           "away": {
             "name": "Spain",
@@ -9944,13 +9946,13 @@
         "home": "Portugal",
         "away": "Croatia",
         "homeGoals": 2,
-        "awayGoals": 2,
+        "awayGoals": 1,
         "penalties": false,
         "penHome": null,
         "penAway": null,
-        "winner": "DRAW"
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-03T01:19:47Z"
+  "generated": "2026-07-03T01:32:24Z"
 }
