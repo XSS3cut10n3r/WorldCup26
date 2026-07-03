@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 79,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-01T02:00:00Z",
-      "home": {
-        "name": "Mexico",
-        "owner": "Nik",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group A",
-        "resolved": true,
-        "fifaRank": 14
-      },
-      "away": {
-        "name": "Ecuador",
-        "owner": "Sydney",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place C/E/F/H/I",
-        "resolved": true,
-        "fifaRank": 23
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -1120,8 +1091,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group A",
-            "resolved": true,
-            "fifaRank": 14
+            "resolved": true
           },
           "away": {
             "name": "Ecuador",
@@ -1130,8 +1100,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "3rd place C/E/F/H/I",
-            "resolved": true,
-            "fifaRank": 23
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1227,7 +1196,7 @@
           "matchNo": 83,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-02T23:00:00Z",
           "home": {
             "name": "Portugal",
@@ -1242,7 +1211,7 @@
           "away": {
             "name": "Croatia",
             "owner": "Tom",
-            "goals": 2,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group L",
@@ -1250,7 +1219,7 @@
             "fifaRank": 11
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 84,
@@ -9969,8 +9938,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Portugal",
+        "away": "Croatia",
+        "homeGoals": 2,
+        "awayGoals": 2,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "DRAW"
       }
     ]
   },
-  "generated": "2026-07-03T01:13:30Z"
+  "generated": "2026-07-03T01:14:33Z"
 }
