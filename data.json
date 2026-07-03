@@ -472,7 +472,35 @@
       "utcDate": "2026-07-01T16:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-03T03:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 19,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 28,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 83,
