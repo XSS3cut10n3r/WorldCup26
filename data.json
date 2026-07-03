@@ -474,31 +474,33 @@
   ],
   "live": [
     {
+      "matchNo": 88,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "IN_PLAY",
-      "utcDate": "2026-07-03T18:00Z",
+      "utcDate": "2026-07-03T18:00:00Z",
       "home": {
         "name": "Australia",
         "owner": "Agatha",
         "goals": 1,
         "penGoals": null,
-        "fifaRank": 27,
         "projected": false,
-        "resolved": true
+        "slot": "Runner-up Group D",
+        "resolved": true,
+        "fifaRank": 27
       },
       "away": {
         "name": "Egypt",
         "owner": "Tom",
         "goals": 1,
         "penGoals": null,
-        "fifaRank": 29,
         "projected": false,
-        "resolved": true
+        "slot": "Runner-up Group G",
+        "resolved": true,
+        "fifaRank": 29
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
+      "winner": null
     }
   ],
   "recent": [
@@ -903,6 +905,34 @@
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 88",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 96,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-07T20:00:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 85",
+        "resolved": true,
+        "fifaRank": 19
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 87",
         "resolved": false
       },
       "penalties": false,
@@ -1337,12 +1367,12 @@
           "matchNo": 88,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "PAUSED",
           "utcDate": "2026-07-03T18:00:00Z",
           "home": {
             "name": "Australia",
             "owner": "Agatha",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group D",
@@ -1352,7 +1382,7 @@
           "away": {
             "name": "Egypt",
             "owner": "Tom",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group G",
@@ -1582,7 +1612,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 85",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 19
           },
           "away": {
             "name": "TBD",
@@ -9960,5 +9991,5 @@
       }
     ]
   },
-  "generated": "2026-07-03T05:01:30Z"
+  "generated": "2026-07-03T20:26:40Z"
 }
