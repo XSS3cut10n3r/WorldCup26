@@ -472,7 +472,35 @@
       "utcDate": "2026-07-02T00:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-03T22:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 1,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Cabo Verde",
+        "owner": "Paul",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 67,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 88,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 86,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-03T22:00:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group J",
-        "resolved": true,
-        "fifaRank": 1
-      },
-      "away": {
-        "name": "Cape Verde Islands",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group H",
-        "resolved": true,
-        "fifaRank": 67
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 87,
       "stage": "Round of 32",
