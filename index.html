@@ -3493,6 +3493,30 @@
     upxApply(currentData());
   });
 
+  // ---- Croatia send-off -----------------------------------------------------
+  // Croatia are out. Clicking the NAME itself, anywhere it appears (recent
+  // results, leaderboard chips, groups, bracket, conduct, odds, everywhere),
+  // plays the tribute in full; clicking it again restarts it from the top.
+  // The click must land on the name: we walk a few ancestors up from the
+  // click target and only fire when an element's entire text IS "Croatia",
+  // so rows that merely contain the name somewhere don't trigger it.
+  // croatia.mp3 sits next to index.html in the repo; fetched on first click.
+  const CRO_SONG = "croatia.mp3";
+  let croAudio = null;
+  document.addEventListener("click", e => {
+    let el = e.target;
+    for (let i = 0; el && el.nodeType === 1 && i < 4; i++, el = el.parentElement) {
+      const t = (el.textContent || "").trim();
+      if (t.length > 20) break;                    // a container, not the name
+      if (normKey(t).replace(/[^a-z]/g, "") === "croatia") {
+        if (!croAudio) { croAudio = new Audio(CRO_SONG); croAudio.preload = "auto"; }
+        croAudio.currentTime = 0;                  // re-click restarts from 0:00
+        croAudio.play().catch(() => {});           // click is the user gesture
+        break;
+      }
+    }
+  });
+
   // Players whose name reads maroon: every one of their teams is eliminated and
   // they are NOT 1st on the main /#leaderboard. Computed once from the pool
   // standings so /#leaderboard, /#conduct and both /#odds boards always agree.
