@@ -1,0 +1,111 @@
+name: Rig a game
+
+# Manually stamp any game as RIGGED (or remove the stamp) from the Actions tab.
+# Writes rigged.json in the repo root, which the site polls every 5 minutes:
+#   { "matches": [97, ...], "pairs": [["France", "Sweden"], ...] }
+# A game can be flagged either by its match number (precise) or by its two team
+# names (order does not matter; the page matches through the same canonical
+# aliases it uses everywhere, so "Turkey v Japan" hits a Türkiye card fine).
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        required: true
+        default: add
+        type: choice
+        options:
+          - add
+          - remove
+          - clear
+      game:
+        description: "Match number (e.g. 97) or team pair (e.g. France v Sweden). Ignored for clear."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rigged-json
+  cancel-in-progress: false
+
+jobs:
+  rig:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update rigged.json
+        env:
+          ACTION: ${{ inputs.action }}
+          GAME: ${{ inputs.game }}
+        run: |
+          python3 - << 'EOF'
+          import json, os, re, sys
+
+          path = "rigged.json"
+          try:
+              with open(path, encoding="utf-8") as f:
+                  data = json.load(f)
+          except Exception:
+              data = {}
+          matches = [int(x) for x in (data.get("matches") or [])]
+          pairs = [list(p) for p in (data.get("pairs") or []) if p and len(p) >= 2]
+
+          action = os.environ["ACTION"].strip().lower()
+          game = os.environ["GAME"].strip()
+
+          def parse(g):
+              """A bare integer is a match number; otherwise 'A v B' / 'A vs B'."""
+              if re.fullmatch(r"\d+", g):
+                  return int(g), None
+              parts = re.split(r"\s+(?:v|vs|vs\.)\s+", g, maxsplit=1, flags=re.I)
+              if len(parts) == 2 and parts[0].strip() and parts[1].strip():
+                  return None, [parts[0].strip(), parts[1].strip()]
+              sys.exit(f"Could not parse game {g!r}. Use a match number like 97, "
+                       f"or a pair like 'France v Sweden'.")
+
+          same = lambda p, q: {s.strip().lower() for s in p} == {s.strip().lower() for s in q}
+
+          if action == "clear":
+              matches, pairs = [], []
+          elif action in ("add", "remove"):
+              if not game:
+                  sys.exit("The 'game' input is required for add/remove.")
+              no, pair = parse(game)
+              if action == "add":
+                  if no is not None and no not in matches:
+                      matches.append(no)
+                  if pair is not None and not any(same(p, pair) for p in pairs):
+                      pairs.append(pair)
+              else:
+                  if no is not None:
+                      matches = [m for m in matches if m != no]
+                  if pair is not None:
+                      pairs = [p for p in pairs if not same(p, pair)]
+          else:
+              sys.exit(f"Unknown action {action!r}.")
+
+          out = {"matches": sorted(matches), "pairs": pairs}
+          with open(path, "w", encoding="utf-8") as f:
+              json.dump(out, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+          print("rigged.json ->", json.dumps(out, ensure_ascii=False))
+          EOF
+
+      - name: Commit and push
+        env:
+          ACTION: ${{ inputs.action }}
+          GAME: ${{ inputs.game }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add rigged.json
+          if git diff --cached --quiet; then
+            echo "No change to rigged.json; nothing to commit."
+          else
+            git commit -m "rigged: ${ACTION} ${GAME}"
+            git push
+          fi
