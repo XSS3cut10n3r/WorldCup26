@@ -472,11 +472,12 @@
       "utcDate": "2026-07-01T16:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-03T03:00Z",
       "home": {
         "name": "Switzerland",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 83,
       "stage": "Round of 32",
@@ -614,35 +613,6 @@
         "slot": "3rd place A/E/H/I/J",
         "resolved": true,
         "fifaRank": 15
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 80,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-01T16:00:00Z",
-      "home": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group L",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "away": {
-        "name": "Congo DR",
-        "owner": "Tom",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place E/H/I/J/K",
-        "resolved": true,
-        "fifaRank": 45
       },
       "penalties": false,
       "winner": "HOME_TEAM"
