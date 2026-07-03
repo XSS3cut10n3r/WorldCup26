@@ -472,12 +472,13 @@
       "utcDate": "2026-07-01T20:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 88,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-03T18:00:00Z",
       "home": {
         "name": "Australia",
@@ -500,10 +501,8 @@
         "fifaRank": 29
       },
       "penalties": true,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM"
+    },
     {
       "matchNo": 85,
       "stage": "Round of 32",
