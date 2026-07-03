@@ -3511,7 +3511,7 @@
   // so rows that merely contain the name somewhere don't trigger it.
   // croatia.mp3 sits next to index.html in the repo; fetched on first click.
   const CRO_SONG = "croatia.mp3";
-  let croAudio = null, croCtx = null, croGain = null;
+  let croAudio = null;
   // While the send-off plays it owns the speakers: koPlaySound checks this
   // before firing, koUnlockAudio won't resume the KO context mid-song, and
   // starting the song suspends the KO context to cut off any clip already
@@ -3550,29 +3550,14 @@
   document.addEventListener("click", e => {
     if (!(e.target instanceof Element) || !e.target.closest(".cro-click")) return;
     if (!croAudio) {
+      // The mp3 itself is rendered at half volume (baked in with ffmpeg), so
+      // playback is plain and works identically everywhere, including iOS
+      // where element volume and gain tricks are unreliable.
       croAudio = new Audio(CRO_SONG); croAudio.preload = "auto";
       croAudio.addEventListener("ended", () => {   // give the speakers back
         if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {});
       });
-      // Half volume. element.volume is READ-ONLY on iOS (silently ignored),
-      // so route playback through a Web Audio gain node, which iOS respects.
-      // Needs its own context: koAC gets suspended while the song plays, so
-      // piping the song through it would mute the song too. If Web Audio is
-      // unavailable, fall back to element volume (works everywhere but iOS).
-      try {
-        const AC = window.AudioContext || window.webkitAudioContext;
-        croCtx = new AC();
-        const srcNode = croCtx.createMediaElementSource(croAudio);
-        croGain = croCtx.createGain();
-        croGain.gain.value = 0.5;                  // the volume dial
-        srcNode.connect(croGain);
-        croGain.connect(croCtx.destination);
-      } catch (_) {
-        croCtx = null;
-        croAudio.volume = 0.5;
-      }
     }
-    if (croCtx && croCtx.state === "suspended") croCtx.resume().catch(() => {});
     if (koAC && koAC.state === "running") koAC.suspend().catch(() => {});
     croAudio.currentTime = 0;                    // re-click restarts from 0:00
     croAudio.play().catch(() => {});             // click is the user gesture
