@@ -366,6 +366,37 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
   }
 
+  /* Rigged: manually flagged games (rigged.json). A crooked maroon inspection
+     stamp in the corner, plus faint caution striping across the whole card.
+     Deliberately static: bureaucratic corruption, no theatrics. */
+  .match.rigged { position: relative; border-color: var(--maroon); margin-top: 10px; }
+  .match.rigged::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: repeating-linear-gradient(-45deg, transparent 0 26px, rgba(128,0,0,.14) 26px 30px);
+  }
+  .rigged-badge {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 4;
+    background: var(--pitch-deep);
+    color: #FF6A5E;
+    border: 2px solid #FF6A5E;
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    padding: 1px 9px;
+    border-radius: 4px;
+    transform: rotate(-7deg);
+    transform-origin: left center;
+    box-shadow: 0 2px 6px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,106,94,.25);
+  }
+
   /* Held: a big underdog (25+ FIFA places below) drew a much stronger side.
      Red outline + corner "HELD" pill, with a bright red glow that breathes
      around the whole card, plus a glowing heartbeat on the pill itself. */
@@ -2012,7 +2043,27 @@
     </div>`;
   }
 
+  // rigged.json: { "matches": [97, ...], "pairs": [["France","Sweden"], ...] }.
+  // Loaded at startup like the other data files; missing file = no stamps.
+  let riggedData = null;
+  function isRigged(m) {
+    if (!riggedData || !m) return false;
+    if (m.matchNo != null && (riggedData.matches || []).indexOf(m.matchNo) !== -1) return true;
+    const h = normKey(canonName(((m.home || {}).name) || ""));
+    const a = normKey(canonName(((m.away || {}).name) || ""));
+    if (!h || !a) return false;
+    return (riggedData.pairs || []).some(p => {
+      if (!p || p.length < 2) return false;
+      const x = normKey(canonName(p[0] || "")), y = normKey(canonName(p[1] || ""));
+      return (x === h && y === a) || (x === a && y === h);
+    });
+  }
+
   function matchCard(m) {
+    // Rigged: manually flagged in rigged.json, matched by match number or by
+    // team pair (order-insensitive, canonical names), so any game anywhere on
+    // the site's cards can carry the stamp.
+    const rig = isRigged(m);
     const live = m.status === "IN_PLAY" || m.status === "PAUSED";
     const done = m.status === "FINISHED" || m.status === "AWARDED";
     const hasScore = m.home.goals !== null && m.home.goals !== undefined;
@@ -2034,11 +2085,15 @@
       const hr = m.home.fifaRank, ar = m.away.fifaRank;
       if (hr != null && ar != null && Math.abs(hr - ar) >= 25) held = true;
     }
+    // RIGGED overrides every other marker: a rigged card shows ONLY the stamp,
+    // suppressing the PENS / UPSET / HELD pills along with their card effects.
+    // (The bracketed shootout score in the scoreline is factual and stays.)
+    if (rig) held = false;
     // A finished shootout flies the PENS flag, which takes precedence over the
     // UPSET pill (a shootout can also be an upset; PENS wins). Held only fires
     // on draws, so it can never coincide with a shootout.
-    const pens = done && m.penalties === true;
-    const showUpset = upset && !pens;
+    const pens = done && m.penalties === true && !rig;
+    const showUpset = upset && !pens && !rig;
     // Shootout: show the penalty score in brackets, in the same .score block
     // as the regulation scoreline (which is fullTime minus penalties).
     const penStr = (m.penalties && m.home.penGoals != null && m.away.penGoals != null)
@@ -2064,11 +2119,12 @@
     // KO overlay eligibility: a finished KNOCKOUT result with a score and NO
     // priority marker. Group-stage games never qualify; UPSET / PENS / live all
     // take precedence (HELD requires a draw, so it can't occur in a knockout).
-    const koOk = done && hasScore && isKnockout(m) && !showUpset && !pens && !held && !live;
-    return `<div class="match ${live ? "is-live" : ""} ${pens ? "pens" : ""} ${showUpset ? "upset" : ""} ${held ? "held" : ""}${tagged}"${koOk ? ' data-ko="1"' : ""}>
+    const koOk = done && hasScore && isKnockout(m) && !showUpset && !pens && !held && !live && !rig;
+    return `<div class="match ${live ? "is-live" : ""} ${pens ? "pens" : ""} ${showUpset ? "upset" : ""} ${held ? "held" : ""} ${rig ? "rigged" : ""}${tagged}"${koOk ? ' data-ko="1"' : ""}>
       ${pens ? '<div class="pens-badge"><span class="spot"></span>PENS</div>'
              : (showUpset ? '<div class="upset-badge">UPSET</div>' : "")}
       ${held ? '<div class="held-badge">Held</div>' : ""}
+      ${rig ? '<div class="rigged-badge">RIGGED</div>' : ""}
       <div class="match-grid">
         ${homeCell}
         <div class="mid">${mid}</div>
@@ -4741,6 +4797,10 @@
     fetch("elo.json?t=" + Date.now())
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d) { eloData = d; render(currentData()); } })
+      .catch(() => {});
+    fetch("rigged.json?t=" + Date.now())
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) { riggedData = d; render(currentData()); } })
       .catch(() => {});
     // Hidden /#bubble view: the news-style cut-off graphic, regenerated by the
     // Post-game pipeline (simulate_group_maxmin.py --svg bubble.svg). It's plain
