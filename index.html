@@ -3551,7 +3551,7 @@
     if (!(e.target instanceof Element) || !e.target.closest(".cro-click")) return;
     if (!croAudio) {
       croAudio = new Audio(CRO_SONG); croAudio.preload = "auto";
-      croAudio.volume = 0.5;                     // half volume
+      croAudio.volume = 0.3;                     // 0.3 volume
       croAudio.addEventListener("ended", () => {   // give the speakers back
         if (koAC && koAC.state === "suspended") koAC.resume().catch(() => {});
       });
