@@ -483,7 +483,7 @@
         "name": "Australia",
         "owner": "Agatha",
         "goals": 1,
-        "penGoals": null,
+        "penGoals": 2,
         "projected": false,
         "slot": "Runner-up Group D",
         "resolved": true,
@@ -493,13 +493,13 @@
         "name": "Egypt",
         "owner": "Tom",
         "goals": 1,
-        "penGoals": null,
+        "penGoals": 4,
         "projected": false,
         "slot": "Runner-up Group G",
         "resolved": true,
         "fifaRank": 29
       },
-      "penalties": false,
+      "penalties": true,
       "winner": null
     }
   ],
