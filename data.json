@@ -1310,7 +1310,7 @@
           "home": {
             "name": "Argentina",
             "owner": "Nik",
-            "goals": 2,
+            "goals": 3,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group J",
@@ -1328,7 +1328,7 @@
             "fifaRank": 67
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 87,
@@ -2418,7 +2418,7 @@
           "ga": 2,
           "gd": 0,
           "points": 3,
-          "conduct": -4,
+          "conduct": -5,
           "fifaRank": 67,
           "clinched": true,
           "clinchType": "second"
@@ -2549,7 +2549,7 @@
           "ga": 1,
           "gd": 7,
           "points": 9,
-          "conduct": -2,
+          "conduct": -3,
           "fifaRank": 1,
           "clinched": true,
           "clinchType": "winner"
@@ -3056,16 +3056,6 @@
         "rank": 1
       },
       {
-        "team": "Argentina",
-        "owner": "Nik",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 4
-      },
-      {
         "team": "Morocco",
         "owner": "Agatha",
         "yellow": 2,
@@ -3113,7 +3103,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 9
+        "rank": 8
+      },
+      {
+        "team": "Argentina",
+        "owner": "Nik",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 8
       },
       {
         "team": "England",
@@ -3123,7 +3123,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Ghana",
@@ -3133,7 +3133,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Netherlands",
@@ -3143,7 +3143,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Senegal",
@@ -3153,7 +3153,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Switzerland",
@@ -3163,17 +3163,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 9
-      },
-      {
-        "team": "Cabo Verde",
-        "owner": "Paul",
-        "yellow": 4,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -4,
-        "rank": 15
+        "rank": 8
       },
       {
         "team": "Colombia",
@@ -3273,7 +3263,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Austria",
@@ -3283,7 +3273,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 25
+        "rank": 24
+      },
+      {
+        "team": "Cabo Verde",
+        "owner": "Paul",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 24
       },
       {
         "team": "Panama",
@@ -3293,7 +3293,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Portugal",
@@ -3303,7 +3303,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Scotland",
@@ -3313,7 +3313,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Sweden",
@@ -3323,7 +3323,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "DR Congo",
@@ -3574,7 +3574,7 @@
       },
       {
         "name": "Paul",
-        "score": -22,
+        "score": -23,
         "teams": [
           {
             "name": "Belgium",
@@ -3590,10 +3590,10 @@
           },
           {
             "name": "Cabo Verde",
-            "score": -4
+            "score": -5
           }
         ],
-        "rank": 4
+        "rank": 3
       },
       {
         "name": "Ondine",
@@ -3741,6 +3741,25 @@
         "rank": 11
       },
       {
+        "name": "Nik",
+        "score": -10,
+        "teams": [
+          {
+            "name": "Argentina",
+            "score": -3
+          },
+          {
+            "name": "Mexico",
+            "score": -6
+          },
+          {
+            "name": "Czechia",
+            "score": -1
+          }
+        ],
+        "rank": 12
+      },
+      {
         "name": "Mat",
         "score": -9,
         "teams": [
@@ -3757,26 +3776,7 @@
             "score": -3
           }
         ],
-        "rank": 12
-      },
-      {
-        "name": "Nik",
-        "score": -9,
-        "teams": [
-          {
-            "name": "Argentina",
-            "score": -2
-          },
-          {
-            "name": "Mexico",
-            "score": -6
-          },
-          {
-            "name": "Czechia",
-            "score": -1
-          }
-        ],
-        "rank": 12
+        "rank": 13
       },
       {
         "name": "Charlotte",
@@ -9711,7 +9711,7 @@
       "Cabo Verde": {
         "owner": "Paul",
         "canon": "Cabo Verde",
-        "conduct": -4,
+        "conduct": -5,
         "fifa": 67,
         "group": "H"
       },
@@ -9760,7 +9760,7 @@
       "Argentina": {
         "owner": "Nik",
         "canon": "Argentina",
-        "conduct": -2,
+        "conduct": -3,
         "fifa": 1,
         "group": "J"
       },
@@ -9999,5 +9999,5 @@
       }
     ]
   },
-  "generated": "2026-07-04T00:34:12Z"
+  "generated": "2026-07-04T00:45:32Z"
 }
