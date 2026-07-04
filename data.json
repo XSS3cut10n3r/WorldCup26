@@ -474,31 +474,33 @@
   ],
   "live": [
     {
+      "matchNo": 86,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
       "status": "IN_PLAY",
-      "utcDate": "2026-07-03T22:00Z",
+      "utcDate": "2026-07-03T22:00:00Z",
       "home": {
         "name": "Argentina",
         "owner": "Nik",
         "goals": 3,
         "penGoals": null,
-        "fifaRank": 1,
         "projected": false,
-        "resolved": true
+        "slot": "Winner Group J",
+        "resolved": true,
+        "fifaRank": 1
       },
       "away": {
-        "name": "Cabo Verde",
+        "name": "Cape Verde Islands",
         "owner": "Paul",
         "goals": 2,
         "penGoals": null,
-        "fifaRank": 67,
         "projected": false,
-        "resolved": true
+        "slot": "Runner-up Group H",
+        "resolved": true,
+        "fifaRank": 67
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
+      "winner": null
     }
   ],
   "recent": [
@@ -907,6 +909,33 @@
       },
       "penalties": false,
       "winner": null
+    },
+    {
+      "matchNo": 97,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-09T20:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 89",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 90",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
     }
   ],
   "bracket": [
@@ -1277,12 +1306,12 @@
           "matchNo": 86,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "PAUSED",
           "utcDate": "2026-07-03T22:00:00Z",
           "home": {
             "name": "Argentina",
             "owner": "Nik",
-            "goals": null,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group J",
@@ -1292,7 +1321,7 @@
           "away": {
             "name": "Cape Verde Islands",
             "owner": "Paul",
-            "goals": null,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group H",
@@ -9971,5 +10000,5 @@
       }
     ]
   },
-  "generated": "2026-07-03T20:56:50Z"
+  "generated": "2026-07-04T00:34:12Z"
 }
