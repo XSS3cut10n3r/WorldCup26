@@ -472,7 +472,37 @@
       "utcDate": "2026-07-02T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 87,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-04T01:30:00Z",
+      "home": {
+        "name": "Colombia",
+        "owner": "Charlie",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group K",
+        "resolved": true,
+        "fifaRank": 13
+      },
+      "away": {
+        "name": "Ghana",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place D/E/I/J/L",
+        "resolved": true,
+        "fifaRank": 73
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 86,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 87,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "TIMED",
-      "utcDate": "2026-07-04T01:30:00Z",
-      "home": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group K",
-        "resolved": true,
-        "fifaRank": 13
-      },
-      "away": {
-        "name": "Ghana",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place D/E/I/J/L",
-        "resolved": true,
-        "fifaRank": 73
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 90,
       "stage": "Round of 16",
@@ -903,6 +904,33 @@
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 90",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 98,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-10T19:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 93",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 94",
         "resolved": false
       },
       "penalties": false,
@@ -1304,12 +1332,12 @@
           "matchNo": 87,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-04T01:30:00Z",
           "home": {
             "name": "Colombia",
             "owner": "Charlie",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group K",
@@ -1319,7 +1347,7 @@
           "away": {
             "name": "Ghana",
             "owner": "Charlotte",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "3rd place D/E/I/J/L",
@@ -1327,7 +1355,7 @@
             "fifaRank": 73
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 88,
@@ -9981,5 +10009,5 @@
       }
     ]
   },
-  "generated": "2026-07-04T00:49:44Z"
+  "generated": "2026-07-04T02:48:37Z"
 }
