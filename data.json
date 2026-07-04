@@ -472,12 +472,13 @@
       "utcDate": "2026-07-02T00:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 86,
       "stage": "Round of 32",
       "stageCode": "LAST_32",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-03T22:00:00Z",
       "home": {
         "name": "Argentina",
@@ -500,10 +501,8 @@
         "fifaRank": 67
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM"
+    },
     {
       "matchNo": 88,
       "stage": "Round of 32",
