@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-04T19:19:10.467240Z",
+  "generated": "2026-07-04T19:48:54.063144Z",
   "sims": 1000000,
   "games": [
     {
@@ -8,6 +8,14 @@
       "away": "Egypt",
       "knockout": true,
       "odds": {
+        "homeReg": 0.68683,
+        "homeET": 0.14317,
+        "homePen": 0.0494,
+        "awayReg": 0.06463,
+        "awayET": 0.00963,
+        "awayPen": 0.04634
+      },
+      "base": {
         "homeReg": 0.68324,
         "homeET": 0.14338,
         "homePen": 0.05015,
@@ -15,21 +23,13 @@
         "awayET": 0.00989,
         "awayPen": 0.04715
       },
-      "base": {
-        "homeReg": 0.68917,
-        "homeET": 0.1432,
-        "homePen": 0.04886,
-        "awayReg": 0.06358,
-        "awayET": 0.00954,
-        "awayPen": 0.04566
-      },
       "delta": {
-        "homeReg": -0.00593,
-        "homeET": 0.00018,
-        "homePen": 0.00129,
-        "awayReg": 0.00262,
-        "awayET": 0.00035,
-        "awayPen": 0.00149
+        "homeReg": 0.00359,
+        "homeET": -0.00021,
+        "homePen": -0.00075,
+        "awayReg": -0.00157,
+        "awayET": -0.00026,
+        "awayPen": -0.00081
       }
     },
     {
@@ -38,6 +38,14 @@
       "away": "Norway",
       "knockout": true,
       "odds": {
+        "homeReg": 0.47271,
+        "homeET": 0.13499,
+        "homePen": 0.09323,
+        "awayReg": 0.18879,
+        "awayET": 0.02477,
+        "awayPen": 0.08551
+      },
+      "base": {
         "homeReg": 0.46507,
         "homeET": 0.13193,
         "homePen": 0.09405,
@@ -45,21 +53,13 @@
         "awayET": 0.02722,
         "awayPen": 0.0865
       },
-      "base": {
-        "homeReg": 0.46993,
-        "homeET": 0.13432,
-        "homePen": 0.09327,
-        "awayReg": 0.1909,
-        "awayET": 0.02548,
-        "awayPen": 0.08608
-      },
       "delta": {
-        "homeReg": -0.00486,
-        "homeET": -0.00239,
-        "homePen": 0.00078,
-        "awayReg": 0.00431,
-        "awayET": 0.00174,
-        "awayPen": 0.00042
+        "homeReg": 0.00764,
+        "homeET": 0.00306,
+        "homePen": -0.00082,
+        "awayReg": -0.00642,
+        "awayET": -0.00245,
+        "awayPen": -0.00099
       }
     },
     {
@@ -68,6 +68,14 @@
       "away": "England",
       "knockout": true,
       "odds": {
+        "homeReg": 0.28616,
+        "homeET": 0.06768,
+        "homePen": 0.11245,
+        "awayReg": 0.3463,
+        "awayET": 0.08588,
+        "awayPen": 0.10153
+      },
+      "base": {
         "homeReg": 0.28732,
         "homeET": 0.06827,
         "homePen": 0.11262,
@@ -75,21 +83,13 @@
         "awayET": 0.08527,
         "awayPen": 0.10167
       },
-      "base": {
-        "homeReg": 0.28515,
-        "homeET": 0.06709,
-        "homePen": 0.11224,
-        "awayReg": 0.34728,
-        "awayET": 0.08671,
-        "awayPen": 0.10154
-      },
       "delta": {
-        "homeReg": 0.00217,
-        "homeET": 0.00118,
-        "homePen": 0.00038,
-        "awayReg": -0.00242,
-        "awayET": -0.00144,
-        "awayPen": 0.00013
+        "homeReg": -0.00116,
+        "homeET": -0.00059,
+        "homePen": -0.00017,
+        "awayReg": 0.00144,
+        "awayET": 0.00061,
+        "awayPen": -0.00014
       }
     },
     {
@@ -98,6 +98,14 @@
       "away": "France",
       "knockout": true,
       "odds": {
+        "homeReg": 0.02667,
+        "homeET": 0.00505,
+        "homePen": 0.02621,
+        "awayReg": 0.78619,
+        "awayET": 0.12448,
+        "awayPen": 0.0314
+      },
+      "base": {
         "homeReg": 0.03698,
         "homeET": 0.00632,
         "homePen": 0.0303,
@@ -105,21 +113,13 @@
         "awayET": 0.13271,
         "awayPen": 0.03746
       },
-      "base": {
-        "homeReg": 0.03415,
-        "homeET": 0.00615,
-        "homePen": 0.02911,
-        "awayReg": 0.76326,
-        "awayET": 0.13149,
-        "awayPen": 0.03583
-      },
       "delta": {
-        "homeReg": 0.00283,
-        "homeET": 0.00017,
-        "homePen": 0.00119,
-        "awayReg": -0.00703,
-        "awayET": 0.00122,
-        "awayPen": 0.00163
+        "homeReg": -0.01031,
+        "homeET": -0.00127,
+        "homePen": -0.00409,
+        "awayReg": 0.02996,
+        "awayET": -0.00823,
+        "awayPen": -0.00606
       }
     },
     {
@@ -128,6 +128,14 @@
       "away": "Spain",
       "knockout": true,
       "odds": {
+        "homeReg": 0.25665,
+        "homeET": 0.05285,
+        "homePen": 0.10492,
+        "awayReg": 0.3727,
+        "awayET": 0.10153,
+        "awayPen": 0.11135
+      },
+      "base": {
         "homeReg": 0.25527,
         "homeET": 0.0521,
         "homePen": 0.10459,
@@ -135,21 +143,13 @@
         "awayET": 0.1026,
         "awayPen": 0.11131
       },
-      "base": {
-        "homeReg": 0.25938,
-        "homeET": 0.05473,
-        "homePen": 0.1056,
-        "awayReg": 0.36902,
-        "awayET": 0.09997,
-        "awayPen": 0.11123
-      },
       "delta": {
-        "homeReg": -0.00411,
-        "homeET": -0.00263,
-        "homePen": -0.00101,
-        "awayReg": 0.0051,
-        "awayET": 0.00263,
-        "awayPen": 8e-05
+        "homeReg": 0.00138,
+        "homeET": 0.00075,
+        "homePen": 0.00033,
+        "awayReg": -0.00142,
+        "awayET": -0.00107,
+        "awayPen": 4e-05
       }
     },
     {
@@ -158,6 +158,14 @@
       "away": "Colombia",
       "knockout": true,
       "odds": {
+        "homeReg": 0.24954,
+        "homeET": 0.04481,
+        "homePen": 0.10776,
+        "awayReg": 0.37942,
+        "awayET": 0.11182,
+        "awayPen": 0.10665
+      },
+      "base": {
         "homeReg": 0.24836,
         "homeET": 0.04414,
         "homePen": 0.10755,
@@ -165,21 +173,13 @@
         "awayET": 0.11248,
         "awayPen": 0.1063
       },
-      "base": {
-        "homeReg": 0.2484,
-        "homeET": 0.04412,
-        "homePen": 0.1076,
-        "awayReg": 0.38115,
-        "awayET": 0.11254,
-        "awayPen": 0.10619
-      },
       "delta": {
-        "homeReg": -4e-05,
-        "homeET": 2e-05,
-        "homePen": -5e-05,
-        "awayReg": 2e-05,
-        "awayET": -6e-05,
-        "awayPen": 0.00011
+        "homeReg": 0.00118,
+        "homeET": 0.00067,
+        "homePen": 0.00021,
+        "awayReg": -0.00175,
+        "awayET": -0.00066,
+        "awayPen": 0.00035
       }
     },
     {
@@ -188,6 +188,14 @@
       "away": "Belgium",
       "knockout": true,
       "odds": {
+        "homeReg": 0.36823,
+        "homeET": 0.10899,
+        "homePen": 0.10447,
+        "awayReg": 0.26934,
+        "awayET": 0.04789,
+        "awayPen": 0.10108
+      },
+      "base": {
         "homeReg": 0.3638,
         "homeET": 0.10647,
         "homePen": 0.10558,
@@ -195,21 +203,13 @@
         "awayET": 0.04933,
         "awayPen": 0.1019
       },
-      "base": {
-        "homeReg": 0.35676,
-        "homeET": 0.10301,
-        "homePen": 0.10629,
-        "awayReg": 0.2788,
-        "awayET": 0.0526,
-        "awayPen": 0.10253
-      },
       "delta": {
-        "homeReg": 0.00704,
-        "homeET": 0.00346,
-        "homePen": -0.00071,
-        "awayReg": -0.00588,
-        "awayET": -0.00327,
-        "awayPen": -0.00063
+        "homeReg": 0.00443,
+        "homeET": 0.00252,
+        "homePen": -0.00111,
+        "awayReg": -0.00358,
+        "awayET": -0.00144,
+        "awayPen": -0.00082
       }
     }
   ]
