@@ -472,11 +472,12 @@
       "utcDate": "2026-07-02T23:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-04T17:00Z",
       "home": {
         "name": "Canada",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 87,
       "stage": "Round of 32",
@@ -614,35 +613,6 @@
         "slot": "3rd place E/F/G/I/J",
         "resolved": true,
         "fifaRank": 28
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 83,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-02T23:00:00Z",
-      "home": {
-        "name": "Portugal",
-        "owner": "Kelly",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group K",
-        "resolved": true,
-        "fifaRank": 5
-      },
-      "away": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group L",
-        "resolved": true,
-        "fifaRank": 11
       },
       "penalties": false,
       "winner": "HOME_TEAM"
