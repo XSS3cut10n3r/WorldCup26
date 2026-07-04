@@ -85,6 +85,34 @@
       "rank": 3
     },
     {
+      "name": "Agatha",
+      "points": 9.0,
+      "teams": [
+        {
+          "name": "Morocco",
+          "points": 7.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Australia",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Iraq",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 4
+    },
+    {
       "name": "Darcy",
       "points": 9.0,
       "teams": [
@@ -140,7 +168,7 @@
         {
           "name": "Canada",
           "points": 3.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         }
@@ -180,7 +208,7 @@
           "clinchType": null
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Charlotte",
@@ -208,7 +236,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 7
+      "rank": 8
     },
     {
       "name": "Paul",
@@ -243,7 +271,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
       "name": "Tom",
@@ -271,7 +299,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 8
+      "rank": 9
     },
     {
       "name": "Charlie",
@@ -300,34 +328,6 @@
         },
         {
           "name": "Jordan",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 10
-    },
-    {
-      "name": "Agatha",
-      "points": 6.0,
-      "teams": [
-        {
-          "name": "Morocco",
-          "points": 4.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Australia",
-          "points": 1.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Iraq",
           "points": 0,
           "eliminated": true,
           "clinched": false,
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Agatha",
+      "team": "Morocco",
+      "points": 3,
+      "label": "Morocco won (Round of 16)",
+      "utcDate": "2026-07-04T17:00:00Z"
+    },
+    {
       "owner": "Charlie",
       "team": "Colombia",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Switzerland won (Round of 32)",
       "utcDate": "2026-07-03T03:00:00Z"
-    },
-    {
-      "owner": "Kelly",
-      "team": "Portugal",
-      "points": 2,
-      "label": "Portugal won (Round of 32)",
-      "utcDate": "2026-07-02T23:00:00Z"
     }
   ],
   "live": [],
@@ -615,35 +615,6 @@
         "slot": "3rd place E/F/G/I/J",
         "resolved": true,
         "fifaRank": 28
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 83,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-02T23:00:00Z",
-      "home": {
-        "name": "Portugal",
-        "owner": "Kelly",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group K",
-        "resolved": true,
-        "fifaRank": 5
-      },
-      "away": {
-        "name": "Croatia",
-        "owner": "Tom",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group L",
-        "resolved": true,
-        "fifaRank": 11
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -869,13 +840,14 @@
         "resolved": false
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Morocco",
+        "owner": "Agatha",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 90",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 7
       },
       "penalties": false,
       "winner": null
@@ -1223,8 +1195,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group K",
-            "resolved": true,
-            "fifaRank": 5
+            "resolved": true
           },
           "away": {
             "name": "Croatia",
@@ -1233,8 +1204,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group L",
-            "resolved": true,
-            "fifaRank": 11
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1421,7 +1391,7 @@
           "matchNo": 90,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-04T17:00:00Z",
           "home": {
             "name": "Canada",
@@ -1642,13 +1612,14 @@
             "resolved": false
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Morocco",
+            "owner": "Agatha",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 90",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 7
           },
           "penalties": false,
           "winner": null
@@ -10014,8 +9985,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
+        "home": "Canada",
+        "away": "Morocco",
+        "homeGoals": 0,
+        "awayGoals": 3,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-07-04T19:08:48Z"
+  "generated": "2026-07-04T19:09:50Z"
 }
