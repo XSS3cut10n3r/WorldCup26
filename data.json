@@ -741,7 +741,7 @@
       "matchNo": 93,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-06T19:00:00Z",
       "home": {
         "name": "Portugal",
@@ -799,7 +799,7 @@
       "matchNo": 95,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-07T16:00:00Z",
       "home": {
         "name": "Argentina",
@@ -828,7 +828,7 @@
       "matchNo": 96,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-07T20:00:00Z",
       "home": {
         "name": "Switzerland",
@@ -1481,7 +1481,7 @@
           "matchNo": 93,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-06T19:00:00Z",
           "home": {
             "name": "Portugal",
@@ -1539,7 +1539,7 @@
           "matchNo": 95,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-07T16:00:00Z",
           "home": {
             "name": "Argentina",
@@ -1568,7 +1568,7 @@
           "matchNo": 96,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-07T20:00:00Z",
           "home": {
             "name": "Switzerland",
@@ -9981,7 +9981,7 @@
         "stageCode": "LAST_32",
         "home": "Colombia",
         "away": "Ghana",
-        "homeGoals": 2,
+        "homeGoals": 1,
         "awayGoals": 0,
         "penalties": false,
         "penHome": null,
@@ -9990,5 +9990,5 @@
       }
     ]
   },
-  "generated": "2026-07-04T03:42:10Z"
+  "generated": "2026-07-04T06:18:47Z"
 }
