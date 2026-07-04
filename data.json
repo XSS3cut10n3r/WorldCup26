@@ -472,7 +472,35 @@
       "utcDate": "2026-07-02T23:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-04T17:00Z",
+      "home": {
+        "name": "Canada",
+        "owner": "Kelly",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 30,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 7,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 87,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 90,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "TIMED",
-      "utcDate": "2026-07-04T17:00:00Z",
-      "home": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 73",
-        "resolved": true,
-        "fifaRank": 30
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 75",
-        "resolved": true,
-        "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 89,
       "stage": "Round of 16",
