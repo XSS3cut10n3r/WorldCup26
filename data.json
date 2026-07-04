@@ -475,31 +475,33 @@
   "live": [],
   "recent": [
     {
+      "matchNo": 89,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
       "status": "FINISHED",
-      "utcDate": "2026-07-04T21:00Z",
+      "utcDate": "2026-07-04T21:00:00Z",
       "home": {
         "name": "Paraguay",
         "owner": "Pete",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 40,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 74",
+        "resolved": true,
+        "fifaRank": 40
       },
       "away": {
         "name": "France",
         "owner": "Darcy",
         "goals": 1,
         "penGoals": null,
-        "fifaRank": 3,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 77",
+        "resolved": true,
+        "fifaRank": 3
       },
       "penalties": false,
-      "winner": "AWAY_TEAM",
-      "_src": "espn-final"
+      "winner": "AWAY_TEAM"
     },
     {
       "matchNo": 90,
@@ -616,6 +618,35 @@
       },
       "penalties": true,
       "winner": "AWAY_TEAM"
+    },
+    {
+      "matchNo": 85,
+      "stage": "Round of 32",
+      "stageCode": "LAST_32",
+      "status": "FINISHED",
+      "utcDate": "2026-07-03T03:00:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner Group B",
+        "resolved": true,
+        "fifaRank": 19
+      },
+      "away": {
+        "name": "Algeria",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "3rd place E/F/G/I/J",
+        "resolved": true,
+        "fifaRank": 28
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -870,6 +901,33 @@
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 92",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 100,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-12T01:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 95",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 96",
         "resolved": false
       },
       "penalties": false,
@@ -1331,7 +1389,7 @@
           "matchNo": 89,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "LIVE",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-04T21:00:00Z",
           "home": {
             "name": "Paraguay",
@@ -1346,7 +1404,7 @@
           "away": {
             "name": "France",
             "owner": "Darcy",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 77",
@@ -1354,7 +1412,7 @@
             "fifaRank": 3
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 90,
@@ -2411,7 +2469,7 @@
           "ga": 2,
           "gd": 8,
           "points": 9,
-          "conduct": -1,
+          "conduct": -4,
           "fifaRank": 3,
           "clinched": true,
           "clinchType": "winner"
@@ -2972,16 +3030,6 @@
         "rank": 1
       },
       {
-        "team": "France",
-        "owner": "Darcy",
-        "yellow": 1,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -1,
-        "rank": 1
-      },
-      {
         "team": "Tunisia",
         "owner": "Darcy",
         "yellow": 1,
@@ -2999,7 +3047,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 4
+        "rank": 3
       },
       {
         "team": "Spain",
@@ -3009,7 +3057,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 4
+        "rank": 3
       },
       {
         "team": "Türkiye",
@@ -3019,7 +3067,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -2,
-        "rank": 4
+        "rank": 3
       },
       {
         "team": "Algeria",
@@ -3029,7 +3077,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Argentina",
@@ -3039,7 +3087,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "England",
@@ -3049,7 +3097,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Netherlands",
@@ -3059,7 +3107,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Senegal",
@@ -3069,7 +3117,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Switzerland",
@@ -3079,7 +3127,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 7
+        "rank": 6
       },
       {
         "team": "Croatia",
@@ -3089,7 +3137,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "Côte d'Ivoire",
@@ -3099,7 +3147,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
+      },
+      {
+        "team": "France",
+        "owner": "Darcy",
+        "yellow": 4,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -4,
+        "rank": 12
       },
       {
         "team": "Germany",
@@ -3109,7 +3167,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "Japan",
@@ -3119,7 +3177,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "Jordan",
@@ -3129,7 +3187,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "New Zealand",
@@ -3139,7 +3197,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "South Korea",
@@ -3149,7 +3207,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "Uzbekistan",
@@ -3159,7 +3217,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 13
+        "rank": 12
       },
       {
         "team": "Australia",
@@ -3532,6 +3590,29 @@
         "rank": 3
       },
       {
+        "name": "Darcy",
+        "score": -21,
+        "teams": [
+          {
+            "name": "France",
+            "score": -4
+          },
+          {
+            "name": "United States",
+            "score": -9
+          },
+          {
+            "name": "Tunisia",
+            "score": -1
+          },
+          {
+            "name": "Haiti",
+            "score": -7
+          }
+        ],
+        "rank": 5
+      },
+      {
         "name": "Kelly",
         "score": -21,
         "teams": [
@@ -3571,7 +3652,7 @@
             "score": -4
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Ondine",
@@ -3594,7 +3675,7 @@
             "score": -7
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Agatha",
@@ -3613,7 +3694,7 @@
             "score": -8
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Pete",
@@ -3632,30 +3713,7 @@
             "score": -13
           }
         ],
-        "rank": 8
-      },
-      {
-        "name": "Darcy",
-        "score": -18,
-        "teams": [
-          {
-            "name": "France",
-            "score": -1
-          },
-          {
-            "name": "United States",
-            "score": -9
-          },
-          {
-            "name": "Tunisia",
-            "score": -1
-          },
-          {
-            "name": "Haiti",
-            "score": -7
-          }
-        ],
-        "rank": 10
+        "rank": 9
       },
       {
         "name": "Tom",
@@ -3674,7 +3732,7 @@
             "score": -6
           }
         ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Charlotte",
@@ -9668,7 +9726,7 @@
       "France": {
         "owner": "Darcy",
         "canon": "France",
-        "conduct": -1,
+        "conduct": -4,
         "fifa": 3,
         "group": "I"
       },
@@ -9968,5 +10026,5 @@
       }
     ]
   },
-  "generated": "2026-07-04T21:27:39Z"
+  "generated": "2026-07-04T23:05:37Z"
 }
