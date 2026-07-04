@@ -29,6 +29,34 @@
       "rank": 1
     },
     {
+      "name": "Nik",
+      "points": 10.5,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Mexico",
+          "points": 5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Czechia",
+          "points": 0.5,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Pete",
       "points": 10.0,
       "teams": [
@@ -54,7 +82,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Kelly",
@@ -117,35 +145,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 3
-    },
-    {
-      "name": "Nik",
-      "points": 8.5,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 3,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Mexico",
-          "points": 5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Czechia",
-          "points": 0.5,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Sydney",
@@ -180,7 +180,7 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Charlotte",
@@ -238,7 +238,7 @@
         {
           "name": "Cabo Verde",
           "points": 1.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         }
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Argentina",
+      "points": 2,
+      "label": "Argentina won (Round of 32)",
+      "utcDate": "2026-07-03T22:00:00Z"
+    },
+    {
       "owner": "Tom",
       "team": "Egypt",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Spain won (Round of 32)",
       "utcDate": "2026-07-02T19:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "United States",
-      "points": 2,
-      "label": "United States won (Round of 32)",
-      "utcDate": "2026-07-02T00:00:00Z"
     }
   ],
   "live": [],
@@ -615,35 +615,6 @@
         "slot": "Runner-up Group J",
         "resolved": true,
         "fifaRank": 24
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 81,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-02T00:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group D",
-        "resolved": true,
-        "fifaRank": 17
-      },
-      "away": {
-        "name": "Bosnia-Herzegovina",
-        "owner": "Tomi",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "3rd place B/E/F/I/J",
-        "resolved": true,
-        "fifaRank": 64
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -860,13 +831,14 @@
       "status": "SCHEDULED",
       "utcDate": "2026-07-07T16:00:00Z",
       "home": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Argentina",
+        "owner": "Nik",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 86",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 1
       },
       "away": {
         "name": "Egypt",
@@ -1171,8 +1143,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group D",
-            "resolved": true,
-            "fifaRank": 17
+            "resolved": true
           },
           "away": {
             "name": "Bosnia-Herzegovina",
@@ -1181,8 +1152,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "3rd place B/E/F/I/J",
-            "resolved": true,
-            "fifaRank": 64
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1305,7 +1275,7 @@
           "matchNo": 86,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "PAUSED",
+          "status": "FINISHED",
           "utcDate": "2026-07-03T22:00:00Z",
           "home": {
             "name": "Argentina",
@@ -1575,13 +1545,14 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-07T16:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Argentina",
+            "owner": "Nik",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 86",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 1
           },
           "away": {
             "name": "Egypt",
@@ -9996,8 +9967,19 @@
         "penHome": 2,
         "penAway": 4,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Argentina",
+        "away": "Cabo Verde",
+        "homeGoals": 3,
+        "awayGoals": 2,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-04T00:48:41Z"
+  "generated": "2026-07-04T00:49:44Z"
 }
