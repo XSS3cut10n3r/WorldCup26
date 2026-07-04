@@ -472,7 +472,35 @@
       "utcDate": "2026-07-03T03:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-04T21:00Z",
+      "home": {
+        "name": "Paraguay",
+        "owner": "Pete",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 40,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 3,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 90,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 89,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "TIMED",
-      "utcDate": "2026-07-04T21:00:00Z",
-      "home": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 74",
-        "resolved": true,
-        "fifaRank": 40
-      },
-      "away": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 77",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 91,
       "stage": "Round of 16",
@@ -1362,12 +1361,12 @@
           "matchNo": 89,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "TIMED",
+          "status": "LIVE",
           "utcDate": "2026-07-04T21:00:00Z",
           "home": {
             "name": "Paraguay",
             "owner": "Pete",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 74",
@@ -1377,7 +1376,7 @@
           "away": {
             "name": "France",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 77",
@@ -9999,5 +9998,5 @@
       }
     ]
   },
-  "generated": "2026-07-04T19:09:50Z"
+  "generated": "2026-07-04T21:27:39Z"
 }
