@@ -203,7 +203,7 @@
         {
           "name": "Ghana",
           "points": 1.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "third"
         }
@@ -274,6 +274,41 @@
       "rank": 8
     },
     {
+      "name": "Charlie",
+      "points": 6.5,
+      "teams": [
+        {
+          "name": "Colombia",
+          "points": 4.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "South Korea",
+          "points": 1,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Saudi Arabia",
+          "points": 1.0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Jordan",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 10
+    },
+    {
       "name": "Agatha",
       "points": 6.0,
       "teams": [
@@ -299,7 +334,7 @@
           "clinchType": null
         }
       ],
-      "rank": 10
+      "rank": 11
     },
     {
       "name": "Tomi",
@@ -329,41 +364,6 @@
         {
           "name": "New Zealand",
           "points": 0.5,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 11
-    },
-    {
-      "name": "Charlie",
-      "points": 4.5,
-      "teams": [
-        {
-          "name": "Colombia",
-          "points": 2.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "South Korea",
-          "points": 1,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Saudi Arabia",
-          "points": 1.0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Jordan",
-          "points": 0,
           "eliminated": true,
           "clinched": false,
           "clinchType": null
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Charlie",
+      "team": "Colombia",
+      "points": 2,
+      "label": "Colombia won (Round of 32)",
+      "utcDate": "2026-07-04T01:30:00Z"
+    },
+    {
       "owner": "Nik",
       "team": "Argentina",
       "points": 2,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Portugal won (Round of 32)",
       "utcDate": "2026-07-02T23:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Spain",
-      "points": 2,
-      "label": "Spain won (Round of 32)",
-      "utcDate": "2026-07-02T19:00:00Z"
     }
   ],
   "live": [],
@@ -615,35 +615,6 @@
         "slot": "Runner-up Group L",
         "resolved": true,
         "fifaRank": 11
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 84,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-02T19:00:00Z",
-      "home": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group H",
-        "resolved": true,
-        "fifaRank": 2
-      },
-      "away": {
-        "name": "Austria",
-        "owner": "Kelly",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group J",
-        "resolved": true,
-        "fifaRank": 24
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -870,13 +841,14 @@
         "fifaRank": 19
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Colombia",
+        "owner": "Charlie",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 87",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 13
       },
       "penalties": false,
       "winner": null
@@ -1253,8 +1225,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group H",
-            "resolved": true,
-            "fifaRank": 2
+            "resolved": true
           },
           "away": {
             "name": "Austria",
@@ -1263,8 +1234,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group J",
-            "resolved": true,
-            "fifaRank": 24
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1331,12 +1301,12 @@
           "matchNo": 87,
           "stage": "Round of 32",
           "stageCode": "LAST_32",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-04T01:30:00Z",
           "home": {
             "name": "Colombia",
             "owner": "Charlie",
-            "goals": 2,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group K",
@@ -1611,13 +1581,14 @@
             "fifaRank": 19
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Colombia",
+            "owner": "Charlie",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 87",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 13
           },
           "penalties": false,
           "winner": null
@@ -10005,8 +9976,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_32",
+        "home": "Colombia",
+        "away": "Ghana",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-04T03:35:50Z"
+  "generated": "2026-07-04T03:36:53Z"
 }
