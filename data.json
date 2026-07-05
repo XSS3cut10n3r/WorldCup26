@@ -472,7 +472,37 @@
       "utcDate": "2026-07-03T18:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 91,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-05T20:00:00Z",
+      "home": {
+        "name": "Brazil",
+        "owner": "Sydney",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 76",
+        "resolved": true,
+        "fifaRank": 6
+      },
+      "away": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 78",
+        "resolved": true,
+        "fifaRank": 31
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 89,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 91,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "TIMED",
-      "utcDate": "2026-07-05T20:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 76",
-        "resolved": true,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 78",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 92,
       "stage": "Round of 16",
@@ -900,6 +901,33 @@
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 96",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 101,
+      "stage": "Semi-final",
+      "stageCode": "SEMI_FINALS",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-14T19:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 97",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 98",
         "resolved": false
       },
       "penalties": false,
@@ -1417,12 +1445,12 @@
           "matchNo": 91,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-05T20:00:00Z",
           "home": {
             "name": "Brazil",
             "owner": "Sydney",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 76",
@@ -1432,7 +1460,7 @@
           "away": {
             "name": "Norway",
             "owner": "Charlotte",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 78",
@@ -10008,5 +10036,5 @@
       }
     ]
   },
-  "generated": "2026-07-05T06:54:22Z"
+  "generated": "2026-07-05T20:36:03Z"
 }
