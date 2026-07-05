@@ -904,33 +904,6 @@
       },
       "penalties": false,
       "winner": null
-    },
-    {
-      "matchNo": 101,
-      "stage": "Semi-final",
-      "stageCode": "SEMI_FINALS",
-      "status": "SCHEDULED",
-      "utcDate": "2026-07-14T19:00:00Z",
-      "home": {
-        "name": "TBD",
-        "owner": null,
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 97",
-        "resolved": false
-      },
-      "away": {
-        "name": "TBD",
-        "owner": null,
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 98",
-        "resolved": false
-      },
-      "penalties": false,
-      "winner": null
     }
   ],
   "bracket": [
@@ -1444,7 +1417,7 @@
           "matchNo": 91,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "IN_PLAY",
+          "status": "LIVE",
           "utcDate": "2026-07-05T20:00:00Z",
           "home": {
             "name": "Brazil",
@@ -1459,7 +1432,7 @@
           "away": {
             "name": "Norway",
             "owner": "Charlotte",
-            "goals": 0,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 78",
@@ -1467,7 +1440,7 @@
             "fifaRank": 31
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 92,
@@ -2023,7 +1996,7 @@
           "ga": 1,
           "gd": 6,
           "points": 7,
-          "conduct": -7,
+          "conduct": -8,
           "fifaRank": 6,
           "clinched": true,
           "clinchType": "winner"
@@ -3358,16 +3331,6 @@
         "rank": 28
       },
       {
-        "team": "Brazil",
-        "owner": "Sydney",
-        "yellow": 7,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -7,
-        "rank": 35
-      },
-      {
         "team": "Curaçao",
         "owner": "Ondine",
         "yellow": 7,
@@ -3388,6 +3351,16 @@
         "rank": 35
       },
       {
+        "team": "Brazil",
+        "owner": "Sydney",
+        "yellow": 8,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -8,
+        "rank": 37
+      },
+      {
         "team": "Egypt",
         "owner": "Tom",
         "yellow": 8,
@@ -3395,7 +3368,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Iraq",
@@ -3405,7 +3378,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Belgium",
@@ -3501,11 +3474,11 @@
     "people": [
       {
         "name": "Sydney",
-        "score": -37,
+        "score": -38,
         "teams": [
           {
             "name": "Brazil",
-            "score": -7
+            "score": -8
           },
           {
             "name": "Ecuador",
@@ -9556,7 +9529,7 @@
       "Brazil": {
         "owner": "Sydney",
         "canon": "Brazil",
-        "conduct": -7,
+        "conduct": -8,
         "fifa": 6,
         "group": "C"
       },
@@ -10035,5 +10008,5 @@
       }
     ]
   },
-  "generated": "2026-07-05T20:36:03Z"
+  "generated": "2026-07-05T22:05:15Z"
 }
