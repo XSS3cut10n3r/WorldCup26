@@ -36,6 +36,34 @@
       "rank": 1
     },
     {
+      "name": "Charlotte",
+      "points": 11.0,
+      "teams": [
+        {
+          "name": "Netherlands",
+          "points": 2.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Norway",
+          "points": 7,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Ghana",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Mat",
       "points": 10.5,
       "teams": [
@@ -61,7 +89,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Nik",
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Pete",
@@ -117,7 +145,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 4
+      "rank": 5
     },
     {
       "name": "Agatha",
@@ -145,7 +173,7 @@
           "clinchType": null
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Kelly",
@@ -173,7 +201,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Sydney",
@@ -182,7 +210,7 @@
         {
           "name": "Brazil",
           "points": 4.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -206,34 +234,6 @@
           "eliminated": true,
           "clinched": false,
           "clinchType": null
-        }
-      ],
-      "rank": 7
-    },
-    {
-      "name": "Charlotte",
-      "points": 8.0,
-      "teams": [
-        {
-          "name": "Netherlands",
-          "points": 2.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Norway",
-          "points": 4,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Ghana",
-          "points": 1.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "third"
         }
       ],
       "rank": 8
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Charlotte",
+      "team": "Norway",
+      "points": 3,
+      "label": "Norway won (Round of 16)",
+      "utcDate": "2026-07-05T20:00:00Z"
+    },
+    {
       "owner": "Darcy",
       "team": "France",
       "points": 3,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Argentina won (Round of 32)",
       "utcDate": "2026-07-03T22:00:00Z"
-    },
-    {
-      "owner": "Tom",
-      "team": "Egypt",
-      "points": 2,
-      "label": "Egypt won on penalties (Round of 32)",
-      "utcDate": "2026-07-03T18:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 88,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-03T18:00:00Z",
-      "home": {
-        "name": "Australia",
-        "owner": "Agatha",
-        "goals": 1,
-        "penGoals": 2,
-        "projected": false,
-        "slot": "Runner-up Group D",
-        "resolved": true,
-        "fifaRank": 27
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": 1,
-        "penGoals": 4,
-        "projected": false,
-        "slot": "Runner-up Group G",
-        "resolved": true,
-        "fifaRank": 29
-      },
-      "penalties": true,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -858,13 +829,14 @@
       "status": "SCHEDULED",
       "utcDate": "2026-07-11T21:00:00Z",
       "home": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Norway",
+        "owner": "Charlotte",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 91",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 31
       },
       "away": {
         "name": "TBD",
@@ -900,6 +872,33 @@
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 96",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 101,
+      "stage": "Semi-final",
+      "stageCode": "SEMI_FINALS",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-14T19:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 97",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 98",
         "resolved": false
       },
       "penalties": false,
@@ -1333,8 +1332,7 @@
             "penGoals": 2,
             "projected": false,
             "slot": "Runner-up Group D",
-            "resolved": true,
-            "fifaRank": 27
+            "resolved": true
           },
           "away": {
             "name": "Egypt",
@@ -1343,8 +1341,7 @@
             "penGoals": 4,
             "projected": false,
             "slot": "Runner-up Group G",
-            "resolved": true,
-            "fifaRank": 29
+            "resolved": true
           },
           "penalties": true,
           "winner": "AWAY_TEAM"
@@ -1417,7 +1414,7 @@
           "matchNo": 91,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "LIVE",
+          "status": "FINISHED",
           "utcDate": "2026-07-05T20:00:00Z",
           "home": {
             "name": "Brazil",
@@ -1656,13 +1653,14 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-11T21:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Norway",
+            "owner": "Charlotte",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 91",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 31
           },
           "away": {
             "name": "TBD",
@@ -10005,8 +10003,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
+        "home": "Brazil",
+        "away": "Norway",
+        "homeGoals": 1,
+        "awayGoals": 2,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-07-05T22:08:22Z"
+  "generated": "2026-07-05T22:09:25Z"
 }
