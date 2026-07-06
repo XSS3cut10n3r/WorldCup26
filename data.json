@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Mat",
+      "points": 13.5,
+      "teams": [
+        {
+          "name": "England",
+          "points": 7.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Switzerland",
+          "points": 4.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Algeria",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Darcy",
       "points": 12.0,
       "teams": [
@@ -33,7 +61,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Charlotte",
@@ -61,34 +89,6 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
-    },
-    {
-      "name": "Mat",
-      "points": 10.5,
-      "teams": [
-        {
-          "name": "England",
-          "points": 4.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Switzerland",
-          "points": 4.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Algeria",
-          "points": 1.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "third"
-        }
-      ],
       "rank": 3
     },
     {
@@ -105,7 +105,7 @@
         {
           "name": "Mexico",
           "points": 5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -117,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Pete",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Mat",
+      "team": "England",
+      "points": 3,
+      "label": "England won (Round of 16)",
+      "utcDate": "2026-07-06T01:00:00Z"
+    },
+    {
       "owner": "Charlotte",
       "team": "Norway",
       "points": 3,
@@ -463,13 +470,6 @@
       "points": 2,
       "label": "Colombia won (Round of 32)",
       "utcDate": "2026-07-04T01:30:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Argentina",
-      "points": 2,
-      "label": "Argentina won (Round of 32)",
-      "utcDate": "2026-07-03T22:00:00Z"
     }
   ],
   "live": [],
@@ -615,35 +615,6 @@
         "slot": "3rd place D/E/I/J/L",
         "resolved": true,
         "fifaRank": 73
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 86,
-      "stage": "Round of 32",
-      "stageCode": "LAST_32",
-      "status": "FINISHED",
-      "utcDate": "2026-07-03T22:00:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner Group J",
-        "resolved": true,
-        "fifaRank": 1
-      },
-      "away": {
-        "name": "Cape Verde Islands",
-        "owner": "Paul",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Runner-up Group H",
-        "resolved": true,
-        "fifaRank": 67
       },
       "penalties": false,
       "winner": "HOME_TEAM"
@@ -839,13 +810,14 @@
         "fifaRank": 31
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "England",
+        "owner": "Mat",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 92",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 4
       },
       "penalties": false,
       "winner": null
@@ -1301,8 +1273,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner Group J",
-            "resolved": true,
-            "fifaRank": 1
+            "resolved": true
           },
           "away": {
             "name": "Cape Verde Islands",
@@ -1311,8 +1282,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Runner-up Group H",
-            "resolved": true,
-            "fifaRank": 67
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1470,7 +1440,7 @@
           "matchNo": 92,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-06T01:00:00Z",
           "home": {
             "name": "Mexico",
@@ -1690,13 +1660,14 @@
             "fifaRank": 31
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "England",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 92",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 4
           },
           "penalties": false,
           "winner": null
@@ -10041,8 +10012,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
+        "home": "Mexico",
+        "away": "England",
+        "homeGoals": 2,
+        "awayGoals": 3,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-07-06T03:09:09Z"
+  "generated": "2026-07-06T03:10:14Z"
 }
