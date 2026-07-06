@@ -472,12 +472,13 @@
       "utcDate": "2026-07-04T01:30:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 93,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-06T19:00:00Z",
       "home": {
         "name": "Portugal",
@@ -500,10 +501,8 @@
         "fifaRank": 2
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM"
+    },
     {
       "matchNo": 92,
       "stage": "Round of 16",
