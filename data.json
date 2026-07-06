@@ -472,7 +472,37 @@
       "utcDate": "2026-07-03T22:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 92,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-06T01:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 79",
+        "resolved": true,
+        "fifaRank": 14
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 80",
+        "resolved": true,
+        "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 91,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 92,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "2026-07-06 01:00:00Z",
-      "utcDate": "2026-07-06T01:00:00Z",
-      "home": {
-        "name": "Mexico",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 79",
-        "resolved": true,
-        "fifaRank": 14
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 80",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 93,
       "stage": "Round of 16",
@@ -899,6 +900,33 @@
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 98",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 102,
+      "stage": "Semi-final",
+      "stageCode": "SEMI_FINALS",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-15T19:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 99",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 100",
         "resolved": false
       },
       "penalties": false,
@@ -1443,12 +1471,12 @@
           "matchNo": 92,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "2026-07-06 01:00:00Z",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-06T01:00:00Z",
           "home": {
             "name": "Mexico",
             "owner": "Nik",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 79",
@@ -1458,7 +1486,7 @@
           "away": {
             "name": "England",
             "owner": "Mat",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 80",
@@ -10017,5 +10045,5 @@
       }
     ]
   },
-  "generated": "2026-07-05T23:34:28Z"
+  "generated": "2026-07-06T01:13:21Z"
 }
