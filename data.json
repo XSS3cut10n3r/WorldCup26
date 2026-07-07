@@ -472,7 +472,35 @@
       "utcDate": "2026-07-05T20:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-07T20:00Z",
+      "home": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 19,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Colombia",
+        "owner": "Charlie",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 13,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 95,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 96,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "TIMED",
-      "utcDate": "2026-07-07T20:00:00Z",
-      "home": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 85",
-        "resolved": true,
-        "fifaRank": 19
-      },
-      "away": {
-        "name": "Colombia",
-        "owner": "Charlie",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 87",
-        "resolved": true,
-        "fifaRank": 13
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 97,
       "stage": "Quarter-final",
