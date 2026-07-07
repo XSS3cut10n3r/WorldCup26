@@ -2301,7 +2301,7 @@
           "ga": 3,
           "gd": 2,
           "points": 5,
-          "conduct": -11,
+          "conduct": -12,
           "fifaRank": 29,
           "clinched": true,
           "clinchType": "second"
@@ -3393,16 +3393,6 @@
         "rank": 40
       },
       {
-        "team": "Egypt",
-        "owner": "Tom",
-        "yellow": 11,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -11,
-        "rank": 40
-      },
-      {
         "team": "England",
         "owner": "Mat",
         "yellow": 7,
@@ -3430,7 +3420,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 45
+        "rank": 44
+      },
+      {
+        "team": "Egypt",
+        "owner": "Tom",
+        "yellow": 12,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -12,
+        "rank": 44
       },
       {
         "team": "Qatar",
@@ -3440,7 +3440,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 45
+        "rank": 44
       },
       {
         "team": "South Africa",
@@ -3595,6 +3595,25 @@
         "rank": 3
       },
       {
+        "name": "Tom",
+        "score": -22,
+        "teams": [
+          {
+            "name": "Croatia",
+            "score": -4
+          },
+          {
+            "name": "Egypt",
+            "score": -12
+          },
+          {
+            "name": "DR Congo",
+            "score": -6
+          }
+        ],
+        "rank": 7
+      },
+      {
         "name": "Pete",
         "score": -21,
         "teams": [
@@ -3611,26 +3630,7 @@
             "score": -14
           }
         ],
-        "rank": 7
-      },
-      {
-        "name": "Tom",
-        "score": -21,
-        "teams": [
-          {
-            "name": "Croatia",
-            "score": -4
-          },
-          {
-            "name": "Egypt",
-            "score": -11
-          },
-          {
-            "name": "DR Congo",
-            "score": -6
-          }
-        ],
-        "rank": 7
+        "rank": 8
       },
       {
         "name": "Charlie",
@@ -9640,7 +9640,7 @@
       "Egypt": {
         "owner": "Tom",
         "canon": "Egypt",
-        "conduct": -11,
+        "conduct": -12,
         "fifa": 29,
         "group": "G"
       },
@@ -10044,5 +10044,5 @@
       }
     ]
   },
-  "generated": "2026-07-07T18:08:13Z"
+  "generated": "2026-07-07T18:09:16Z"
 }
