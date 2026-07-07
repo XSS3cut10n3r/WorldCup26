@@ -472,12 +472,13 @@
       "utcDate": "2026-07-04T17:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 94,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-07T00:00:00Z",
       "home": {
         "name": "United States",
@@ -500,10 +501,8 @@
         "fifaRank": 9
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM"
+    },
     {
       "matchNo": 93,
       "stage": "Round of 16",
