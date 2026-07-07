@@ -472,7 +472,37 @@
       "utcDate": "2026-07-04T21:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 95,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-07T16:00:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 86",
+        "resolved": true,
+        "fifaRank": 1
+      },
+      "away": {
+        "name": "Egypt",
+        "owner": "Tom",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 88",
+        "resolved": true,
+        "fifaRank": 29
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 94,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 95,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "TIMED",
-      "utcDate": "2026-07-07T16:00:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 86",
-        "resolved": true,
-        "fifaRank": 1
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 88",
-        "resolved": true,
-        "fifaRank": 29
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 96,
       "stage": "Round of 16",
@@ -1521,12 +1522,12 @@
           "matchNo": 95,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-07T16:00:00Z",
           "home": {
             "name": "Argentina",
             "owner": "Nik",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 86",
@@ -1536,7 +1537,7 @@
           "away": {
             "name": "Egypt",
             "owner": "Tom",
-            "goals": null,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 88",
@@ -1544,7 +1545,7 @@
             "fifaRank": 29
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 96,
@@ -10044,5 +10045,5 @@
       }
     ]
   },
-  "generated": "2026-07-07T09:38:51Z"
+  "generated": "2026-07-07T17:27:40Z"
 }
