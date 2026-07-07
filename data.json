@@ -474,31 +474,33 @@
   ],
   "live": [
     {
+      "matchNo": 96,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
       "status": "IN_PLAY",
-      "utcDate": "2026-07-07T20:00Z",
+      "utcDate": "2026-07-07T20:00:00Z",
       "home": {
         "name": "Switzerland",
         "owner": "Mat",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 19,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 85",
+        "resolved": true,
+        "fifaRank": 19
       },
       "away": {
         "name": "Colombia",
         "owner": "Charlie",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 13,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 87",
+        "resolved": true,
+        "fifaRank": 13
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
+      "winner": null
     }
   ],
   "recent": [
@@ -1519,12 +1521,12 @@
           "matchNo": 96,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "TIMED",
+          "status": "PAUSED",
           "utcDate": "2026-07-07T20:00:00Z",
           "home": {
             "name": "Switzerland",
             "owner": "Mat",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 85",
@@ -1534,7 +1536,7 @@
           "away": {
             "name": "Colombia",
             "owner": "Charlie",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 87",
@@ -10025,5 +10027,5 @@
       }
     ]
   },
-  "generated": "2026-07-07T18:10:32Z"
+  "generated": "2026-07-07T22:24:04Z"
 }
