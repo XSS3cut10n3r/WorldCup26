@@ -70,7 +70,7 @@
         {
           "name": "United States",
           "points": 4,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -148,6 +148,41 @@
       "rank": 5
     },
     {
+      "name": "Paul",
+      "points": 10.5,
+      "teams": [
+        {
+          "name": "Belgium",
+          "points": 7.0,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Côte d'Ivoire",
+          "points": 2,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Panama",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Cabo Verde",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        }
+      ],
+      "rank": 5
+    },
+    {
       "name": "Agatha",
       "points": 9.0,
       "teams": [
@@ -173,7 +208,7 @@
           "clinchType": null
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Kelly",
@@ -201,7 +236,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "name": "Sydney",
@@ -236,41 +271,6 @@
           "clinchType": null
         }
       ],
-      "rank": 8
-    },
-    {
-      "name": "Paul",
-      "points": 7.5,
-      "teams": [
-        {
-          "name": "Belgium",
-          "points": 4.0,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Côte d'Ivoire",
-          "points": 2,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Panama",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Cabo Verde",
-          "points": 1.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        }
-      ],
       "rank": 9
     },
     {
@@ -299,7 +299,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 9
+      "rank": 10
     },
     {
       "name": "Charlie",
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Paul",
+      "team": "Belgium",
+      "points": 3,
+      "label": "Belgium won (Round of 16)",
+      "utcDate": "2026-07-07T00:00:00Z"
+    },
+    {
       "owner": "Pete",
       "team": "Spain",
       "points": 3,
@@ -463,13 +470,6 @@
       "points": 3,
       "label": "France won (Round of 16)",
       "utcDate": "2026-07-04T21:00:00Z"
-    },
-    {
-      "owner": "Agatha",
-      "team": "Morocco",
-      "points": 3,
-      "label": "Morocco won (Round of 16)",
-      "utcDate": "2026-07-04T17:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 90,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "FINISHED",
-      "utcDate": "2026-07-04T17:00:00Z",
-      "home": {
-        "name": "Canada",
-        "owner": "Kelly",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 73",
-        "resolved": true,
-        "fifaRank": 30
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 75",
-        "resolved": true,
-        "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -754,13 +725,14 @@
         "fifaRank": 2
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Belgium",
+        "owner": "Paul",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 94",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 9
       },
       "penalties": false,
       "winner": null
@@ -1415,8 +1387,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 73",
-            "resolved": true,
-            "fifaRank": 30
+            "resolved": true
           },
           "away": {
             "name": "Morocco",
@@ -1425,8 +1396,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 75",
-            "resolved": true,
-            "fifaRank": 7
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1522,7 +1492,7 @@
           "matchNo": 94,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-07T00:00:00Z",
           "home": {
             "name": "United States",
@@ -1657,13 +1627,14 @@
             "fifaRank": 2
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Belgium",
+            "owner": "Paul",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 94",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 9
           },
           "penalties": false,
           "winner": null
@@ -10059,8 +10030,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
+        "home": "United States",
+        "away": "Belgium",
+        "homeGoals": 1,
+        "awayGoals": 4,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-07-07T02:02:31Z"
+  "generated": "2026-07-07T02:03:33Z"
 }
