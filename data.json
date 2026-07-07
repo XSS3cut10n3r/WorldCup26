@@ -2272,7 +2272,7 @@
           "ga": 3,
           "gd": 2,
           "points": 5,
-          "conduct": -13,
+          "conduct": -17,
           "fifaRank": 29,
           "clinched": true,
           "clinchType": "second"
@@ -3404,16 +3404,6 @@
         "rank": 44
       },
       {
-        "team": "Egypt",
-        "owner": "Tom",
-        "yellow": 13,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -13,
-        "rank": 46
-      },
-      {
         "team": "South Africa",
         "owner": "Sydney",
         "yellow": 5,
@@ -3431,6 +3421,16 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -14,
+        "rank": 47
+      },
+      {
+        "team": "Egypt",
+        "owner": "Tom",
+        "yellow": 13,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -17,
         "rank": 48
       }
     ],
@@ -3459,6 +3459,25 @@
         "rank": 1
       },
       {
+        "name": "Tom",
+        "score": -27,
+        "teams": [
+          {
+            "name": "Croatia",
+            "score": -4
+          },
+          {
+            "name": "Egypt",
+            "score": -17
+          },
+          {
+            "name": "DR Congo",
+            "score": -6
+          }
+        ],
+        "rank": 2
+      },
+      {
         "name": "Tomi",
         "score": -24,
         "teams": [
@@ -3479,7 +3498,7 @@
             "score": -4
           }
         ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Darcy",
@@ -3502,7 +3521,7 @@
             "score": -7
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Iva",
@@ -3521,7 +3540,7 @@
             "score": -12
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Kelly",
@@ -3540,7 +3559,7 @@
             "score": -11
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Paul",
@@ -3563,26 +3582,7 @@
             "score": -5
           }
         ],
-        "rank": 3
-      },
-      {
-        "name": "Tom",
-        "score": -23,
-        "teams": [
-          {
-            "name": "Croatia",
-            "score": -4
-          },
-          {
-            "name": "Egypt",
-            "score": -13
-          },
-          {
-            "name": "DR Congo",
-            "score": -6
-          }
-        ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Pete",
@@ -9611,7 +9611,7 @@
       "Egypt": {
         "owner": "Tom",
         "canon": "Egypt",
-        "conduct": -13,
+        "conduct": -17,
         "fifa": 29,
         "group": "G"
       },
@@ -10026,5 +10026,5 @@
       }
     ]
   },
-  "generated": "2026-07-07T18:10:20Z"
+  "generated": "2026-07-07T18:10:32Z"
 }
