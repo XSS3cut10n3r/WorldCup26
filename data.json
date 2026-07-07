@@ -472,13 +472,12 @@
       "utcDate": "2026-07-04T21:00:00Z"
     }
   ],
-  "live": [],
-  "recent": [
+  "live": [
     {
       "matchNo": 95,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "FINISHED",
+      "status": "IN_PLAY",
       "utcDate": "2026-07-07T16:00:00Z",
       "home": {
         "name": "Argentina",
@@ -502,7 +501,9 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
+    }
+  ],
+  "recent": [
     {
       "matchNo": 94,
       "stage": "Round of 16",
@@ -2301,7 +2302,7 @@
           "ga": 3,
           "gd": 2,
           "points": 5,
-          "conduct": -12,
+          "conduct": -13,
           "fifaRank": 29,
           "clinched": true,
           "clinchType": "second"
@@ -3423,16 +3424,6 @@
         "rank": 44
       },
       {
-        "team": "Egypt",
-        "owner": "Tom",
-        "yellow": 12,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -12,
-        "rank": 44
-      },
-      {
         "team": "Qatar",
         "owner": "Iva",
         "yellow": 4,
@@ -3443,6 +3434,16 @@
         "rank": 44
       },
       {
+        "team": "Egypt",
+        "owner": "Tom",
+        "yellow": 13,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -13,
+        "rank": 46
+      },
+      {
         "team": "South Africa",
         "owner": "Sydney",
         "yellow": 5,
@@ -3450,7 +3451,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -13,
-        "rank": 47
+        "rank": 46
       },
       {
         "team": "Paraguay",
@@ -3596,7 +3597,7 @@
       },
       {
         "name": "Tom",
-        "score": -22,
+        "score": -23,
         "teams": [
           {
             "name": "Croatia",
@@ -3604,14 +3605,14 @@
           },
           {
             "name": "Egypt",
-            "score": -12
+            "score": -13
           },
           {
             "name": "DR Congo",
             "score": -6
           }
         ],
-        "rank": 7
+        "rank": 3
       },
       {
         "name": "Pete",
@@ -9640,7 +9641,7 @@
       "Egypt": {
         "owner": "Tom",
         "canon": "Egypt",
-        "conduct": -12,
+        "conduct": -13,
         "fifa": 29,
         "group": "G"
       },
@@ -10044,5 +10045,5 @@
       }
     ]
   },
-  "generated": "2026-07-07T18:09:16Z"
+  "generated": "2026-07-07T18:10:06Z"
 }
