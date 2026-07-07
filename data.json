@@ -1537,7 +1537,7 @@
           "away": {
             "name": "Belgium",
             "owner": "Paul",
-            "goals": 2,
+            "goals": 3,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 82",
@@ -2091,7 +2091,7 @@
           "ga": 4,
           "gd": 4,
           "points": 6,
-          "conduct": -9,
+          "conduct": -11,
           "fifaRank": 17,
           "clinched": true,
           "clinchType": "winner"
@@ -3402,16 +3402,6 @@
         "rank": 39
       },
       {
-        "team": "United States",
-        "owner": "Darcy",
-        "yellow": 5,
-        "indirect_red": 0,
-        "direct_red": 1,
-        "yellow_direct_red": 0,
-        "score": -9,
-        "rank": 39
-      },
-      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 5,
@@ -3429,7 +3419,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "Canada",
@@ -3439,7 +3429,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 42
+        "rank": 41
       },
       {
         "team": "England",
@@ -3449,7 +3439,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 42
+        "rank": 41
+      },
+      {
+        "team": "United States",
+        "owner": "Darcy",
+        "yellow": 7,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -11,
+        "rank": 41
       },
       {
         "team": "Ecuador",
@@ -3540,6 +3540,29 @@
         "rank": 2
       },
       {
+        "name": "Darcy",
+        "score": -23,
+        "teams": [
+          {
+            "name": "France",
+            "score": -4
+          },
+          {
+            "name": "United States",
+            "score": -11
+          },
+          {
+            "name": "Tunisia",
+            "score": -1
+          },
+          {
+            "name": "Haiti",
+            "score": -7
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Iva",
         "score": -23,
         "teams": [
@@ -3601,29 +3624,6 @@
         "rank": 3
       },
       {
-        "name": "Darcy",
-        "score": -21,
-        "teams": [
-          {
-            "name": "France",
-            "score": -4
-          },
-          {
-            "name": "United States",
-            "score": -9
-          },
-          {
-            "name": "Tunisia",
-            "score": -1
-          },
-          {
-            "name": "Haiti",
-            "score": -7
-          }
-        ],
-        "rank": 6
-      },
-      {
         "name": "Pete",
         "score": -21,
         "teams": [
@@ -3640,7 +3640,7 @@
             "score": -14
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Charlie",
@@ -9578,7 +9578,7 @@
       "United States": {
         "owner": "Darcy",
         "canon": "United States",
-        "conduct": -9,
+        "conduct": -11,
         "fifa": 17,
         "group": "D"
       },
@@ -10062,5 +10062,5 @@
       }
     ]
   },
-  "generated": "2026-07-07T01:16:07Z"
+  "generated": "2026-07-07T01:59:24Z"
 }
