@@ -472,7 +472,37 @@
       "utcDate": "2026-07-04T17:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 94,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-07T00:00:00Z",
+      "home": {
+        "name": "United States",
+        "owner": "Darcy",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 81",
+        "resolved": true,
+        "fifaRank": 17
+      },
+      "away": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 82",
+        "resolved": true,
+        "fifaRank": 9
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 93,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 94,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "TIMED",
-      "utcDate": "2026-07-07T00:00:00Z",
-      "home": {
-        "name": "United States",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 81",
-        "resolved": true,
-        "fifaRank": 17
-      },
-      "away": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 82",
-        "resolved": true,
-        "fifaRank": 9
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 95,
       "stage": "Round of 16",
@@ -897,6 +898,33 @@
         "penGoals": null,
         "projected": false,
         "slot": "Loser match 102",
+        "resolved": false
+      },
+      "penalties": false,
+      "winner": null
+    },
+    {
+      "matchNo": 104,
+      "stage": "Final",
+      "stageCode": "FINAL",
+      "status": "SCHEDULED",
+      "utcDate": "2026-07-19T19:00:00Z",
+      "home": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 101",
+        "resolved": false
+      },
+      "away": {
+        "name": "TBD",
+        "owner": null,
+        "goals": null,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 102",
         "resolved": false
       },
       "penalties": false,
@@ -1495,12 +1523,12 @@
           "matchNo": 94,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-07T00:00:00Z",
           "home": {
             "name": "United States",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 81",
@@ -1510,7 +1538,7 @@
           "away": {
             "name": "Belgium",
             "owner": "Paul",
-            "goals": null,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 82",
@@ -1518,7 +1546,7 @@
             "fifaRank": 9
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 95,
@@ -10035,5 +10063,5 @@
       }
     ]
   },
-  "generated": "2026-07-06T21:07:00Z"
+  "generated": "2026-07-07T01:16:07Z"
 }
