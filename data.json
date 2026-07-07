@@ -2,7 +2,7 @@
   "leaderboard": [
     {
       "name": "Mat",
-      "points": 13.5,
+      "points": 16.5,
       "teams": [
         {
           "name": "England",
@@ -13,7 +13,7 @@
         },
         {
           "name": "Switzerland",
-          "points": 4.5,
+          "points": 7.5,
           "eliminated": false,
           "clinched": true,
           "clinchType": "winner"
@@ -54,7 +54,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Pete",
@@ -308,7 +308,7 @@
         {
           "name": "Colombia",
           "points": 4.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Mat",
+      "team": "Switzerland",
+      "points": 3,
+      "label": "Switzerland won on penalties (Round of 16)",
+      "utcDate": "2026-07-07T20:00:00Z"
+    },
+    {
       "owner": "Nik",
       "team": "Argentina",
       "points": 3,
@@ -463,13 +470,6 @@
       "points": 3,
       "label": "England won (Round of 16)",
       "utcDate": "2026-07-06T01:00:00Z"
-    },
-    {
-      "owner": "Charlotte",
-      "team": "Norway",
-      "points": 3,
-      "label": "Norway won (Round of 16)",
-      "utcDate": "2026-07-05T20:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 91,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "FINISHED",
-      "utcDate": "2026-07-05T20:00:00Z",
-      "home": {
-        "name": "Brazil",
-        "owner": "Sydney",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 76",
-        "resolved": true,
-        "fifaRank": 6
-      },
-      "away": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 78",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -754,13 +725,14 @@
         "fifaRank": 1
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Switzerland",
+        "owner": "Mat",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 96",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 19
       },
       "penalties": false,
       "winner": null
@@ -1384,8 +1356,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 76",
-            "resolved": true,
-            "fifaRank": 6
+            "resolved": true
           },
           "away": {
             "name": "Norway",
@@ -1394,8 +1365,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 78",
-            "resolved": true,
-            "fifaRank": 31
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1520,13 +1490,13 @@
           "matchNo": 96,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "PAUSED",
+          "status": "FINISHED",
           "utcDate": "2026-07-07T20:00:00Z",
           "home": {
             "name": "Switzerland",
             "owner": "Mat",
             "goals": 0,
-            "penGoals": null,
+            "penGoals": 4,
             "projected": false,
             "slot": "Winner match 85",
             "resolved": true,
@@ -1536,14 +1506,14 @@
             "name": "Colombia",
             "owner": "Charlie",
             "goals": 0,
-            "penGoals": null,
+            "penGoals": 3,
             "projected": false,
             "slot": "Winner match 87",
             "resolved": true,
             "fifaRank": 13
           },
-          "penalties": false,
-          "winner": null
+          "penalties": true,
+          "winner": "HOME_TEAM"
         }
       ]
     },
@@ -1655,13 +1625,14 @@
             "fifaRank": 1
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Switzerland",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 96",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 19
           },
           "penalties": false,
           "winner": null
@@ -1885,7 +1856,7 @@
           "ga": 3,
           "gd": 4,
           "points": 7,
-          "conduct": -3,
+          "conduct": -6,
           "fifaRank": 19,
           "clinched": true,
           "clinchType": "winner"
@@ -2551,7 +2522,7 @@
           "ga": 1,
           "gd": 3,
           "points": 7,
-          "conduct": -6,
+          "conduct": -8,
           "fifaRank": 13,
           "clinched": true,
           "clinchType": "winner"
@@ -3044,16 +3015,6 @@
         "rank": 5
       },
       {
-        "team": "Switzerland",
-        "owner": "Mat",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 5
-      },
-      {
         "team": "Croatia",
         "owner": "Tom",
         "yellow": 4,
@@ -3061,7 +3022,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "Côte d'Ivoire",
@@ -3071,7 +3032,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "France",
@@ -3081,7 +3042,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "Germany",
@@ -3091,7 +3052,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "Japan",
@@ -3101,7 +3062,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "Jordan",
@@ -3111,7 +3072,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "New Zealand",
@@ -3121,7 +3082,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "South Korea",
@@ -3131,7 +3092,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "Uzbekistan",
@@ -3141,7 +3102,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 11
+        "rank": 10
       },
       {
         "team": "Australia",
@@ -3151,7 +3112,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Austria",
@@ -3161,7 +3122,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Cabo Verde",
@@ -3171,7 +3132,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Panama",
@@ -3181,7 +3142,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Scotland",
@@ -3191,7 +3152,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 20
+        "rank": 19
       },
       {
         "team": "Sweden",
@@ -3201,17 +3162,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 20
-      },
-      {
-        "team": "Colombia",
-        "owner": "Charlie",
-        "yellow": 6,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -6,
-        "rank": 26
+        "rank": 19
       },
       {
         "team": "DR Congo",
@@ -3221,7 +3172,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Ghana",
@@ -3231,7 +3182,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Iran",
@@ -3241,7 +3192,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Morocco",
@@ -3251,7 +3202,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 26
+        "rank": 25
       },
       {
         "team": "Saudi Arabia",
@@ -3261,7 +3212,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 26
+        "rank": 25
+      },
+      {
+        "team": "Switzerland",
+        "owner": "Mat",
+        "yellow": 6,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -6,
+        "rank": 25
       },
       {
         "team": "Curaçao",
@@ -3271,7 +3232,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Haiti",
@@ -3281,7 +3242,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Portugal",
@@ -3291,7 +3252,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 32
+        "rank": 31
       },
       {
         "team": "Brazil",
@@ -3301,7 +3262,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 35
+        "rank": 34
+      },
+      {
+        "team": "Colombia",
+        "owner": "Charlie",
+        "yellow": 8,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -8,
+        "rank": 34
       },
       {
         "team": "Iraq",
@@ -3311,7 +3282,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Mexico",
@@ -3321,7 +3292,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 35
+        "rank": 34
       },
       {
         "team": "Belgium",
@@ -3585,6 +3556,29 @@
         "rank": 4
       },
       {
+        "name": "Charlie",
+        "score": -22,
+        "teams": [
+          {
+            "name": "Colombia",
+            "score": -8
+          },
+          {
+            "name": "South Korea",
+            "score": -4
+          },
+          {
+            "name": "Saudi Arabia",
+            "score": -6
+          },
+          {
+            "name": "Jordan",
+            "score": -4
+          }
+        ],
+        "rank": 8
+      },
+      {
         "name": "Pete",
         "score": -21,
         "teams": [
@@ -3601,30 +3595,26 @@
             "score": -14
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
-        "name": "Charlie",
+        "name": "Mat",
         "score": -20,
         "teams": [
           {
-            "name": "Colombia",
+            "name": "England",
+            "score": -11
+          },
+          {
+            "name": "Switzerland",
             "score": -6
           },
           {
-            "name": "South Korea",
-            "score": -4
-          },
-          {
-            "name": "Saudi Arabia",
-            "score": -6
-          },
-          {
-            "name": "Jordan",
-            "score": -4
+            "name": "Algeria",
+            "score": -3
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Ondine",
@@ -3647,7 +3637,7 @@
             "score": -7
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Agatha",
@@ -3664,25 +3654,6 @@
           {
             "name": "Iraq",
             "score": -8
-          }
-        ],
-        "rank": 11
-      },
-      {
-        "name": "Mat",
-        "score": -17,
-        "teams": [
-          {
-            "name": "England",
-            "score": -11
-          },
-          {
-            "name": "Switzerland",
-            "score": -3
-          },
-          {
-            "name": "Algeria",
-            "score": -3
           }
         ],
         "rank": 12
@@ -9471,7 +9442,7 @@
       "Switzerland": {
         "owner": "Mat",
         "canon": "Switzerland",
-        "conduct": -3,
+        "conduct": -6,
         "fifa": 19,
         "group": "B"
       },
@@ -9723,7 +9694,7 @@
       "Colombia": {
         "owner": "Charlie",
         "canon": "Colombia",
-        "conduct": -6,
+        "conduct": -8,
         "fifa": 13,
         "group": "K"
       },
@@ -10023,8 +9994,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
+        "home": "Switzerland",
+        "away": "Colombia",
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "penalties": true,
+        "penHome": 4,
+        "penAway": 3,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-07T22:24:04Z"
+  "generated": "2026-07-07T22:57:44Z"
 }
