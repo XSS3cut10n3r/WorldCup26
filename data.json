@@ -29,6 +29,34 @@
       "rank": 1
     },
     {
+      "name": "Nik",
+      "points": 13.5,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 8,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Mexico",
+          "points": 5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Czechia",
+          "points": 0.5,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Pete",
       "points": 13.0,
       "teams": [
@@ -54,7 +82,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -89,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 3
+      "rank": 4
     },
     {
       "name": "Charlotte",
@@ -115,34 +143,6 @@
           "eliminated": true,
           "clinched": true,
           "clinchType": "third"
-        }
-      ],
-      "rank": 4
-    },
-    {
-      "name": "Nik",
-      "points": 10.5,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Mexico",
-          "points": 5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Czechia",
-          "points": 0.5,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
         }
       ],
       "rank": 5
@@ -180,7 +180,7 @@
           "clinchType": "second"
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "name": "Agatha",
@@ -287,7 +287,7 @@
         {
           "name": "Egypt",
           "points": 4.0,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Argentina",
+      "points": 3,
+      "label": "Argentina won (Round of 16)",
+      "utcDate": "2026-07-07T16:00:00Z"
+    },
+    {
       "owner": "Paul",
       "team": "Belgium",
       "points": 3,
@@ -463,21 +470,15 @@
       "points": 3,
       "label": "Norway won (Round of 16)",
       "utcDate": "2026-07-05T20:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "France",
-      "points": 3,
-      "label": "France won (Round of 16)",
-      "utcDate": "2026-07-04T21:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 95,
       "stage": "Round of 16",
       "stageCode": "LAST_16",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-07T16:00:00Z",
       "home": {
         "name": "Argentina",
@@ -501,9 +502,7 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    }
-  ],
-  "recent": [
+    },
     {
       "matchNo": 94,
       "stage": "Round of 16",
@@ -616,35 +615,6 @@
         "slot": "Winner match 78",
         "resolved": true,
         "fifaRank": 31
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 89,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "FINISHED",
-      "utcDate": "2026-07-04T21:00:00Z",
-      "home": {
-        "name": "Paraguay",
-        "owner": "Pete",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 74",
-        "resolved": true,
-        "fifaRank": 40
-      },
-      "away": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 77",
-        "resolved": true,
-        "fifaRank": 3
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
@@ -774,13 +744,14 @@
       "status": "SCHEDULED",
       "utcDate": "2026-07-12T01:00:00Z",
       "home": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Argentina",
+        "owner": "Nik",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 95",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 1
       },
       "away": {
         "name": "TBD",
@@ -1359,8 +1330,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 74",
-            "resolved": true,
-            "fifaRank": 40
+            "resolved": true
           },
           "away": {
             "name": "France",
@@ -1369,8 +1339,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 77",
-            "resolved": true,
-            "fifaRank": 3
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1522,7 +1491,7 @@
           "matchNo": 95,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-07T16:00:00Z",
           "home": {
             "name": "Argentina",
@@ -1676,13 +1645,14 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-12T01:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Argentina",
+            "owner": "Nik",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 95",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 1
           },
           "away": {
             "name": "TBD",
@@ -10042,8 +10012,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
+        "home": "Argentina",
+        "away": "Egypt",
+        "homeGoals": 3,
+        "awayGoals": 2,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-07T18:10:06Z"
+  "generated": "2026-07-07T18:10:20Z"
 }
