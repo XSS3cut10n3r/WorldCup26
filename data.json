@@ -483,7 +483,7 @@
         "name": "Switzerland",
         "owner": "Mat",
         "goals": 0,
-        "penGoals": null,
+        "penGoals": 0,
         "projected": false,
         "slot": "Winner match 85",
         "resolved": true,
@@ -493,13 +493,13 @@
         "name": "Colombia",
         "owner": "Charlie",
         "goals": 0,
-        "penGoals": null,
+        "penGoals": 1,
         "projected": false,
         "slot": "Winner match 87",
         "resolved": true,
         "fifaRank": 13
       },
-      "penalties": false,
+      "penalties": true,
       "winner": null
     }
   ],
