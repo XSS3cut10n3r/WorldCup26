@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-07T12:45:59.219192Z",
+  "generated": "2026-07-07T16:59:34.589406Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,73 +294,73 @@
   "easiestPath": [
     {
       "name": "France",
-      "wins": 331494,
-      "winPct": 0.33149,
-      "avgStrength": -1.4712,
-      "avgOppRank": 6.5
+      "wins": 344681,
+      "winPct": 0.34468,
+      "avgStrength": -1.56319,
+      "avgOppRank": 7.15
     },
     {
       "name": "Spain",
-      "wins": 219992,
-      "winPct": 0.21999,
-      "avgStrength": -1.64031,
-      "avgOppRank": 7.31
-    },
-    {
-      "name": "Argentina",
-      "wins": 204954,
-      "winPct": 0.20495,
-      "avgStrength": -2.34734,
-      "avgOppRank": 15.57
+      "wins": 234175,
+      "winPct": 0.23417,
+      "avgStrength": -1.72758,
+      "avgOppRank": 7.93
     },
     {
       "name": "England",
-      "wins": 136441,
-      "winPct": 0.13644,
-      "avgStrength": -1.91959,
-      "avgOppRank": 14.18
+      "wins": 154773,
+      "winPct": 0.15477,
+      "avgStrength": -1.99609,
+      "avgOppRank": 14.72
+    },
+    {
+      "name": "Argentina",
+      "wins": 126794,
+      "winPct": 0.12679,
+      "avgStrength": -2.3611,
+      "avgOppRank": 15.73
     },
     {
       "name": "Norway",
-      "wins": 35630,
-      "winPct": 0.03563,
-      "avgStrength": -1.28599,
-      "avgOppRank": 5.47
+      "wins": 50530,
+      "winPct": 0.05053,
+      "avgStrength": -1.34475,
+      "avgOppRank": 5.91
     },
     {
       "name": "Morocco",
-      "wins": 25380,
-      "winPct": 0.02538,
-      "avgStrength": -1.27923,
-      "avgOppRank": 5.74
-    },
-    {
-      "name": "Belgium",
-      "wins": 20474,
-      "winPct": 0.02047,
-      "avgStrength": -1.20586,
-      "avgOppRank": 5.43
+      "wins": 28485,
+      "winPct": 0.02848,
+      "avgStrength": -1.35193,
+      "avgOppRank": 6.3
     },
     {
       "name": "Colombia",
-      "wins": 18674,
-      "winPct": 0.01867,
-      "avgStrength": -1.77317,
-      "avgOppRank": 11.24
+      "wins": 25085,
+      "winPct": 0.02508,
+      "avgStrength": -1.8143,
+      "avgOppRank": 11.61
+    },
+    {
+      "name": "Belgium",
+      "wins": 22813,
+      "winPct": 0.02281,
+      "avgStrength": -1.27749,
+      "avgOppRank": 5.98
     },
     {
       "name": "Switzerland",
-      "wins": 5346,
-      "winPct": 0.00535,
-      "avgStrength": -1.68744,
-      "avgOppRank": 9.79
+      "wins": 7274,
+      "winPct": 0.00727,
+      "avgStrength": -1.73449,
+      "avgOppRank": 10.21
     },
     {
       "name": "Egypt",
-      "wins": 1615,
-      "winPct": 0.00161,
-      "avgStrength": -1.5423,
-      "avgOppRank": 8.89
+      "wins": 5390,
+      "winPct": 0.00539,
+      "avgStrength": -1.54107,
+      "avgOppRank": 8.95
     }
   ],
   "bracket": [
@@ -369,7 +369,7 @@
       "stage": "LAST_16",
       "home": "Argentina",
       "away": "Egypt",
-      "pHome": 0.87367,
+      "pHome": 0.78782,
       "score": {
         "h": 2,
         "a": 0,
@@ -381,7 +381,7 @@
       "stage": "LAST_16",
       "home": "Switzerland",
       "away": "Colombia",
-      "pHome": 0.3979,
+      "pHome": 0.39667,
       "score": {
         "h": 0,
         "a": 1,
@@ -393,7 +393,7 @@
       "stage": "QUARTER_FINALS",
       "home": "France",
       "away": "Morocco",
-      "pHome": 0.78875,
+      "pHome": 0.785,
       "score": {
         "h": 2,
         "a": 0,
@@ -405,7 +405,7 @@
       "stage": "QUARTER_FINALS",
       "home": "Spain",
       "away": "Belgium",
-      "pHome": 0.76328,
+      "pHome": 0.7628,
       "score": {
         "h": 1,
         "a": 0,
@@ -417,7 +417,7 @@
       "stage": "QUARTER_FINALS",
       "home": "Norway",
       "away": "England",
-      "pHome": 0.3408,
+      "pHome": 0.36115,
       "score": {
         "h": 0,
         "a": 2,
@@ -429,7 +429,7 @@
       "stage": "QUARTER_FINALS",
       "home": "Argentina",
       "away": "Colombia",
-      "pHome": 0.7505,
+      "pHome": 0.6843,
       "score": {
         "h": 1,
         "a": 0,
@@ -441,7 +441,7 @@
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "pHome": 0.58693,
+      "pHome": 0.58393,
       "score": {
         "h": 1,
         "a": 0,
@@ -453,10 +453,10 @@
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
-      "pHome": 0.43252,
+      "pHome": 0.51433,
       "score": {
-        "h": 0,
-        "a": 1,
+        "h": 1,
+        "a": 0,
         "type": "reg"
       }
     },
@@ -464,8 +464,8 @@
       "match": 103,
       "stage": "THIRD_PLACE",
       "home": "Spain",
-      "away": "England",
-      "pHome": 0.57345,
+      "away": "Argentina",
+      "pHome": 0.58693,
       "score": {
         "h": 1,
         "a": 0,
@@ -476,8 +476,8 @@
       "match": 104,
       "stage": "FINAL",
       "home": "France",
-      "away": "Argentina",
-      "pHome": 0.59898,
+      "away": "England",
+      "pHome": 0.63248,
       "score": {
         "h": 2,
         "a": 1,
@@ -487,6 +487,6 @@
   ],
   "champion": {
     "name": "France",
-    "titlePct": 0.33149
+    "titlePct": 0.34468
   }
 }
