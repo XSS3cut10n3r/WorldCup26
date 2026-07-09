@@ -475,31 +475,33 @@
   "live": [],
   "recent": [
     {
+      "matchNo": 97,
       "stage": "Quarter-final",
       "stageCode": "QUARTER_FINALS",
       "status": "FINISHED",
-      "utcDate": "2026-07-09T20:00Z",
+      "utcDate": "2026-07-09T20:00:00Z",
       "home": {
         "name": "France",
         "owner": "Darcy",
         "goals": 2,
         "penGoals": null,
-        "fifaRank": 3,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 89",
+        "resolved": true,
+        "fifaRank": 3
       },
       "away": {
         "name": "Morocco",
         "owner": "Agatha",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 7,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 90",
+        "resolved": true,
+        "fifaRank": 7
       },
       "penalties": false,
-      "winner": "HOME_TEAM",
-      "_src": "espn-final"
+      "winner": "HOME_TEAM"
     },
     {
       "matchNo": 96,
@@ -613,6 +615,35 @@
         "slot": "Winner match 84",
         "resolved": true,
         "fifaRank": 2
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
+    {
+      "matchNo": 92,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "FINISHED",
+      "utcDate": "2026-07-06T01:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 79",
+        "resolved": true,
+        "fifaRank": 14
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 3,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 80",
+        "resolved": true,
+        "fifaRank": 4
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
@@ -1494,12 +1525,12 @@
           "matchNo": 97,
           "stage": "Quarter-final",
           "stageCode": "QUARTER_FINALS",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-09T20:00:00Z",
           "home": {
             "name": "France",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 89",
@@ -1509,7 +1540,7 @@
           "away": {
             "name": "Morocco",
             "owner": "Agatha",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 90",
@@ -1517,7 +1548,7 @@
             "fifaRank": 7
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 98,
@@ -1916,7 +1947,7 @@
           "ga": 3,
           "gd": 3,
           "points": 7,
-          "conduct": -6,
+          "conduct": -7,
           "fifaRank": 7,
           "clinched": true,
           "clinchType": "second"
@@ -3164,16 +3195,6 @@
         "rank": 25
       },
       {
-        "team": "Morocco",
-        "owner": "Agatha",
-        "yellow": 6,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -6,
-        "rank": 25
-      },
-      {
         "team": "Saudi Arabia",
         "owner": "Charlie",
         "yellow": 6,
@@ -3201,7 +3222,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Haiti",
@@ -3211,7 +3232,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 31
+        "rank": 30
+      },
+      {
+        "team": "Morocco",
+        "owner": "Agatha",
+        "yellow": 7,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -7,
+        "rank": 30
       },
       {
         "team": "Portugal",
@@ -3221,7 +3252,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 31
+        "rank": 30
       },
       {
         "team": "Brazil",
@@ -3567,6 +3598,25 @@
         "rank": 9
       },
       {
+        "name": "Agatha",
+        "score": -20,
+        "teams": [
+          {
+            "name": "Morocco",
+            "score": -7
+          },
+          {
+            "name": "Australia",
+            "score": -5
+          },
+          {
+            "name": "Iraq",
+            "score": -8
+          }
+        ],
+        "rank": 10
+      },
+      {
         "name": "Mat",
         "score": -20,
         "teams": [
@@ -3607,25 +3657,6 @@
           }
         ],
         "rank": 10
-      },
-      {
-        "name": "Agatha",
-        "score": -19,
-        "teams": [
-          {
-            "name": "Morocco",
-            "score": -6
-          },
-          {
-            "name": "Australia",
-            "score": -5
-          },
-          {
-            "name": "Iraq",
-            "score": -8
-          }
-        ],
-        "rank": 12
       },
       {
         "name": "Nik",
@@ -9439,7 +9470,7 @@
       "Morocco": {
         "owner": "Agatha",
         "canon": "Morocco",
-        "conduct": -6,
+        "conduct": -7,
         "fifa": 7,
         "group": "C"
       },
@@ -9977,5 +10008,5 @@
       }
     ]
   },
-  "generated": "2026-07-08T08:25:59Z"
+  "generated": "2026-07-09T22:01:56Z"
 }
