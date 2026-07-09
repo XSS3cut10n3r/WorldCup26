@@ -29,6 +29,41 @@
       "rank": 1
     },
     {
+      "name": "Darcy",
+      "points": 16.0,
+      "teams": [
+        {
+          "name": "France",
+          "points": 12,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "United States",
+          "points": 4,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Tunisia",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        },
+        {
+          "name": "Haiti",
+          "points": 0,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 2
+    },
+    {
       "name": "Nik",
       "points": 13.5,
       "teams": [
@@ -54,7 +89,7 @@
           "clinchType": null
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Pete",
@@ -80,41 +115,6 @@
           "eliminated": true,
           "clinched": true,
           "clinchType": "third"
-        }
-      ],
-      "rank": 3
-    },
-    {
-      "name": "Darcy",
-      "points": 12.0,
-      "teams": [
-        {
-          "name": "France",
-          "points": 8,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "United States",
-          "points": 4,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Tunisia",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        },
-        {
-          "name": "Haiti",
-          "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
         }
       ],
       "rank": 4
@@ -189,7 +189,7 @@
         {
           "name": "Morocco",
           "points": 7.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "second"
         },
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Darcy",
+      "team": "France",
+      "points": 4,
+      "label": "France won (Quarter-final)",
+      "utcDate": "2026-07-09T20:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "Switzerland",
       "points": 3,
@@ -463,13 +470,6 @@
       "points": 3,
       "label": "Spain won (Round of 16)",
       "utcDate": "2026-07-06T19:00:00Z"
-    },
-    {
-      "owner": "Mat",
-      "team": "England",
-      "points": 3,
-      "label": "England won (Round of 16)",
-      "utcDate": "2026-07-06T01:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 92,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "FINISHED",
-      "utcDate": "2026-07-06T01:00:00Z",
-      "home": {
-        "name": "Mexico",
-        "owner": "Nik",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 79",
-        "resolved": true,
-        "fifaRank": 14
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 80",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [
@@ -744,13 +715,14 @@
       "status": "SCHEDULED",
       "utcDate": "2026-07-14T19:00:00Z",
       "home": {
-        "name": "TBD",
-        "owner": null,
+        "name": "France",
+        "owner": "Darcy",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 97",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 3
       },
       "away": {
         "name": "TBD",
@@ -1383,8 +1355,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 79",
-            "resolved": true,
-            "fifaRank": 14
+            "resolved": true
           },
           "away": {
             "name": "England",
@@ -1393,8 +1364,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 80",
-            "resolved": true,
-            "fifaRank": 4
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1525,7 +1495,7 @@
           "matchNo": 97,
           "stage": "Quarter-final",
           "stageCode": "QUARTER_FINALS",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-09T20:00:00Z",
           "home": {
             "name": "France",
@@ -1650,13 +1620,14 @@
           "status": "SCHEDULED",
           "utcDate": "2026-07-14T19:00:00Z",
           "home": {
-            "name": "TBD",
-            "owner": null,
+            "name": "France",
+            "owner": "Darcy",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 97",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 3
           },
           "away": {
             "name": "TBD",
@@ -10005,8 +9976,19 @@
         "penHome": 4,
         "penAway": 3,
         "winner": "HOME_TEAM"
+      },
+      {
+        "stageCode": "QUARTER_FINALS",
+        "home": "France",
+        "away": "Morocco",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-09T22:05:06Z"
+  "generated": "2026-07-09T22:06:09Z"
 }
