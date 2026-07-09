@@ -472,7 +472,35 @@
       "utcDate": "2026-07-06T01:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-09T20:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 3,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "Morocco",
+        "owner": "Agatha",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 7,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 96,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 97,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "TIMED",
-      "utcDate": "2026-07-09T20:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 89",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 90",
-        "resolved": true,
-        "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 98,
       "stage": "Quarter-final",
