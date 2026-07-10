@@ -1529,7 +1529,7 @@
           "home": {
             "name": "Spain",
             "owner": "Pete",
-            "goals": 0,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 93",
@@ -1539,7 +1539,7 @@
           "away": {
             "name": "Belgium",
             "owner": "Paul",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 94",
@@ -1547,7 +1547,7 @@
             "fifaRank": 9
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         },
         {
           "matchNo": 99,
@@ -2197,7 +2197,7 @@
           "ga": 2,
           "gd": 4,
           "points": 5,
-          "conduct": -9,
+          "conduct": -11,
           "fifaRank": 9,
           "clinched": true,
           "clinchType": "winner"
@@ -2271,7 +2271,7 @@
           "ga": 0,
           "gd": 5,
           "points": 7,
-          "conduct": -3,
+          "conduct": -5,
           "fifaRank": 2,
           "clinched": true,
           "clinchType": "winner"
@@ -2976,16 +2976,6 @@
         "rank": 5
       },
       {
-        "team": "Spain",
-        "owner": "Pete",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 5
-      },
-      {
         "team": "Croatia",
         "owner": "Tom",
         "yellow": 4,
@@ -2993,7 +2983,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Côte d'Ivoire",
@@ -3003,7 +2993,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "France",
@@ -3013,7 +3003,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Germany",
@@ -3023,7 +3013,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Japan",
@@ -3033,7 +3023,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Jordan",
@@ -3043,7 +3033,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "New Zealand",
@@ -3053,7 +3043,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "South Korea",
@@ -3063,7 +3053,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Uzbekistan",
@@ -3073,7 +3063,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 10
+        "rank": 9
       },
       {
         "team": "Australia",
@@ -3083,7 +3073,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 19
+        "rank": 18
       },
       {
         "team": "Austria",
@@ -3093,7 +3083,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 19
+        "rank": 18
       },
       {
         "team": "Cabo Verde",
@@ -3103,7 +3093,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 19
+        "rank": 18
       },
       {
         "team": "Panama",
@@ -3113,7 +3103,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 19
+        "rank": 18
       },
       {
         "team": "Scotland",
@@ -3123,7 +3113,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 19
+        "rank": 18
+      },
+      {
+        "team": "Spain",
+        "owner": "Pete",
+        "yellow": 5,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -5,
+        "rank": 18
       },
       {
         "team": "Sweden",
@@ -3133,7 +3133,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 19
+        "rank": 18
       },
       {
         "team": "DR Congo",
@@ -3266,16 +3266,6 @@
         "rank": 34
       },
       {
-        "team": "Belgium",
-        "owner": "Paul",
-        "yellow": 5,
-        "indirect_red": 0,
-        "direct_red": 1,
-        "yellow_direct_red": 0,
-        "score": -9,
-        "rank": 38
-      },
-      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 5,
@@ -3286,6 +3276,16 @@
         "rank": 38
       },
       {
+        "team": "Belgium",
+        "owner": "Paul",
+        "yellow": 7,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -11,
+        "rank": 39
+      },
+      {
         "team": "Bosnia and Herzegovina",
         "owner": "Tomi",
         "yellow": 7,
@@ -3293,7 +3293,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Canada",
@@ -3303,7 +3303,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "England",
@@ -3313,7 +3313,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "United States",
@@ -3323,7 +3323,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 40
+        "rank": 39
       },
       {
         "team": "Ecuador",
@@ -3420,6 +3420,29 @@
         "rank": 2
       },
       {
+        "name": "Paul",
+        "score": -25,
+        "teams": [
+          {
+            "name": "Belgium",
+            "score": -11
+          },
+          {
+            "name": "Côte d'Ivoire",
+            "score": -4
+          },
+          {
+            "name": "Panama",
+            "score": -5
+          },
+          {
+            "name": "Cabo Verde",
+            "score": -5
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Tomi",
         "score": -24,
         "teams": [
@@ -3440,7 +3463,7 @@
             "score": -4
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Darcy",
@@ -3463,7 +3486,7 @@
             "score": -7
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Iva",
@@ -3482,7 +3505,7 @@
             "score": -12
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Kelly",
@@ -3501,30 +3524,26 @@
             "score": -11
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
-        "name": "Paul",
+        "name": "Pete",
         "score": -23,
         "teams": [
           {
-            "name": "Belgium",
-            "score": -9
+            "name": "Spain",
+            "score": -5
           },
           {
-            "name": "Côte d'Ivoire",
+            "name": "Japan",
             "score": -4
           },
           {
-            "name": "Panama",
-            "score": -5
-          },
-          {
-            "name": "Cabo Verde",
-            "score": -5
+            "name": "Paraguay",
+            "score": -14
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Charlie",
@@ -3545,25 +3564,6 @@
           {
             "name": "Jordan",
             "score": -4
-          }
-        ],
-        "rank": 8
-      },
-      {
-        "name": "Pete",
-        "score": -21,
-        "teams": [
-          {
-            "name": "Spain",
-            "score": -3
-          },
-          {
-            "name": "Japan",
-            "score": -4
-          },
-          {
-            "name": "Paraguay",
-            "score": -14
           }
         ],
         "rank": 9
@@ -9546,7 +9546,7 @@
       "Belgium": {
         "owner": "Paul",
         "canon": "Belgium",
-        "conduct": -9,
+        "conduct": -11,
         "fifa": 9,
         "group": "G"
       },
@@ -9574,7 +9574,7 @@
       "Spain": {
         "owner": "Pete",
         "canon": "Spain",
-        "conduct": -3,
+        "conduct": -5,
         "fifa": 2,
         "group": "H"
       },
@@ -9990,5 +9990,5 @@
       }
     ]
   },
-  "generated": "2026-07-10T19:25:45Z"
+  "generated": "2026-07-10T21:00:29Z"
 }
