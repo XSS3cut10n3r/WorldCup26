@@ -472,12 +472,13 @@
       "utcDate": "2026-07-06T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 98,
       "stage": "Quarter-final",
       "stageCode": "QUARTER_FINALS",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-10T19:00:00Z",
       "home": {
         "name": "Spain",
@@ -500,10 +501,8 @@
         "fifaRank": 9
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM"
+    },
     {
       "matchNo": 97,
       "stage": "Quarter-final",
