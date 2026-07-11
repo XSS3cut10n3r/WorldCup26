@@ -1,18 +1,18 @@
 {
-  "generated": "2026-07-11T14:04:53.667390Z",
+  "generated": "2026-07-11T15:34:08.354493Z",
   "sims": 1000000,
   "standings": [
     {
       "name": "Darcy",
-      "odds": 0.33785,
-      "base": 0.33531,
-      "delta": 0.00254,
+      "odds": 0.33829,
+      "base": 0.33785,
+      "delta": 0.00044,
       "teams": [
         {
           "name": "France",
-          "odds": 0.39306,
-          "base": 0.39081,
-          "delta": 0.00225
+          "odds": 0.39375,
+          "base": 0.39306,
+          "delta": 0.00069
         },
         {
           "name": "United States",
@@ -37,21 +37,21 @@
     },
     {
       "name": "Mat",
-      "odds": 0.22423,
-      "base": 0.22518,
-      "delta": -0.00095,
+      "odds": 0.22412,
+      "base": 0.22423,
+      "delta": -0.00011,
       "teams": [
         {
           "name": "England",
-          "odds": 0.12282,
-          "base": 0.12124,
-          "delta": 0.00158
+          "odds": 0.12176,
+          "base": 0.12282,
+          "delta": -0.00106
         },
         {
           "name": "Switzerland",
-          "odds": 0.01247,
-          "base": 0.01284,
-          "delta": -0.00037
+          "odds": 0.0122,
+          "base": 0.01247,
+          "delta": -0.00027
         },
         {
           "name": "Algeria",
@@ -63,43 +63,16 @@
       "rank": 2
     },
     {
-      "name": "Nik",
-      "odds": 0.20339,
-      "base": 0.19695,
-      "delta": 0.00644,
-      "teams": [
-        {
-          "name": "Argentina",
-          "odds": 0.20339,
-          "base": 0.19695,
-          "delta": 0.00644
-        },
-        {
-          "name": "Mexico",
-          "odds": 0.0,
-          "base": 0.03861,
-          "delta": -0.03861
-        },
-        {
-          "name": "Czechia",
-          "odds": 0.0,
-          "base": 0.00063,
-          "delta": -0.00063
-        }
-      ],
-      "rank": 3
-    },
-    {
       "name": "Pete",
-      "odds": 0.19928,
-      "base": 0.20618,
-      "delta": -0.0069,
+      "odds": 0.20373,
+      "base": 0.19928,
+      "delta": 0.00445,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.233,
-          "base": 0.24179,
-          "delta": -0.00879
+          "odds": 0.23843,
+          "base": 0.233,
+          "delta": 0.00543
         },
         {
           "name": "Japan",
@@ -114,19 +87,46 @@
           "delta": -0.00075
         }
       ],
+      "rank": 3
+    },
+    {
+      "name": "Nik",
+      "odds": 0.19895,
+      "base": 0.20339,
+      "delta": -0.00444,
+      "teams": [
+        {
+          "name": "Argentina",
+          "odds": 0.19895,
+          "base": 0.20339,
+          "delta": -0.00444
+        },
+        {
+          "name": "Mexico",
+          "odds": 0.0,
+          "base": 0.03861,
+          "delta": -0.03861
+        },
+        {
+          "name": "Czechia",
+          "odds": 0.0,
+          "base": 0.00063,
+          "delta": -0.00063
+        }
+      ],
       "rank": 4
     },
     {
       "name": "Charlotte",
-      "odds": 0.03525,
-      "base": 0.03638,
-      "delta": -0.00113,
+      "odds": 0.03492,
+      "base": 0.03525,
+      "delta": -0.00033,
       "teams": [
         {
           "name": "Norway",
-          "odds": 0.03525,
-          "base": 0.03638,
-          "delta": -0.00113
+          "odds": 0.03492,
+          "base": 0.03525,
+          "delta": -0.00033
         },
         {
           "name": "Netherlands",
