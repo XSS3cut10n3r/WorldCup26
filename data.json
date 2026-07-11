@@ -1554,12 +1554,12 @@
           "matchNo": 99,
           "stage": "Quarter-final",
           "stageCode": "QUARTER_FINALS",
-          "status": "IN_PLAY",
+          "status": "PAUSED",
           "utcDate": "2026-07-11T21:00:00Z",
           "home": {
             "name": "Norway",
             "owner": "Charlotte",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 91",
@@ -1569,7 +1569,7 @@
           "away": {
             "name": "England",
             "owner": "Mat",
-            "goals": 0,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 92",
@@ -1577,7 +1577,7 @@
             "fifaRank": 4
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         },
         {
           "matchNo": 100,
@@ -2364,7 +2364,7 @@
           "ga": 7,
           "gd": 1,
           "points": 6,
-          "conduct": -2,
+          "conduct": -3,
           "fifaRank": 31,
           "clinched": true,
           "clinchType": "second"
@@ -2918,16 +2918,6 @@
         "rank": 1
       },
       {
-        "team": "Norway",
-        "owner": "Charlotte",
-        "yellow": 2,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -2,
-        "rank": 3
-      },
-      {
         "team": "Türkiye",
         "owner": "Iva",
         "yellow": 2,
@@ -2945,7 +2935,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 5
+        "rank": 4
       },
       {
         "team": "Argentina",
@@ -2955,7 +2945,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 5
+        "rank": 4
       },
       {
         "team": "Netherlands",
@@ -2965,7 +2955,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 5
+        "rank": 4
+      },
+      {
+        "team": "Norway",
+        "owner": "Charlotte",
+        "yellow": 3,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -3,
+        "rank": 4
       },
       {
         "team": "Senegal",
@@ -2975,7 +2975,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -3,
-        "rank": 5
+        "rank": 4
       },
       {
         "team": "Croatia",
@@ -3632,6 +3632,25 @@
         "rank": 10
       },
       {
+        "name": "Charlotte",
+        "score": -12,
+        "teams": [
+          {
+            "name": "Netherlands",
+            "score": -3
+          },
+          {
+            "name": "Norway",
+            "score": -3
+          },
+          {
+            "name": "Ghana",
+            "score": -6
+          }
+        ],
+        "rank": 13
+      },
+      {
         "name": "Nik",
         "score": -12,
         "teams": [
@@ -3649,25 +3668,6 @@
           }
         ],
         "rank": 13
-      },
-      {
-        "name": "Charlotte",
-        "score": -11,
-        "teams": [
-          {
-            "name": "Netherlands",
-            "score": -3
-          },
-          {
-            "name": "Norway",
-            "score": -2
-          },
-          {
-            "name": "Ghana",
-            "score": -6
-          }
-        ],
-        "rank": 14
       }
     ],
     "hasData": true
@@ -9618,7 +9618,7 @@
       "Norway": {
         "owner": "Charlotte",
         "canon": "Norway",
-        "conduct": -2,
+        "conduct": -3,
         "fifa": 31,
         "group": "I"
       },
@@ -9992,5 +9992,5 @@
       }
     ]
   },
-  "generated": "2026-07-11T21:22:13Z"
+  "generated": "2026-07-11T23:47:45Z"
 }
