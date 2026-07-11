@@ -29,34 +29,6 @@
       "rank": 1
     },
     {
-      "name": "Mat",
-      "points": 16.5,
-      "teams": [
-        {
-          "name": "England",
-          "points": 7.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Switzerland",
-          "points": 7.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Algeria",
-          "points": 1.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "third"
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Darcy",
       "points": 16.0,
       "teams": [
@@ -89,6 +61,34 @@
           "clinchType": null
         }
       ],
+      "rank": 2
+    },
+    {
+      "name": "Mat",
+      "points": 13.5,
+      "teams": [
+        {
+          "name": "England",
+          "points": 4.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Switzerland",
+          "points": 7.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Algeria",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
       "rank": 3
     },
     {
@@ -105,7 +105,7 @@
         {
           "name": "Mexico",
           "points": 5,
-          "eliminated": true,
+          "eliminated": false,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -117,7 +117,7 @@
           "clinchType": null
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Charlotte",
@@ -472,8 +472,67 @@
       "utcDate": "2026-07-07T00:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 99,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-11T21:00:00Z",
+      "home": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 91",
+        "resolved": true,
+        "fifaRank": 31
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 92",
+        "resolved": true,
+        "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
+    {
+      "matchNo": 92,
+      "stage": "Round of 16",
+      "stageCode": "LAST_16",
+      "status": "FINISHED",
+      "utcDate": "2026-07-06T01:00:00Z",
+      "home": {
+        "name": "Mexico",
+        "owner": "Nik",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 79",
+        "resolved": true,
+        "fifaRank": 14
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 3,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 80",
+        "resolved": true,
+        "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
+    },
     {
       "matchNo": 98,
       "stage": "Quarter-final",
@@ -621,35 +680,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 99,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "TIMED",
-      "utcDate": "2026-07-11T21:00:00Z",
-      "home": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 91",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 92",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 100,
       "stage": "Quarter-final",
@@ -1318,7 +1348,7 @@
           "matchNo": 92,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "FINISHED",
+          "status": "2026-07-06 01:00:00Z",
           "utcDate": "2026-07-06T01:00:00Z",
           "home": {
             "name": "Mexico",
@@ -1327,7 +1357,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 79",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 14
           },
           "away": {
             "name": "England",
@@ -1336,7 +1367,8 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 80",
-            "resolved": true
+            "resolved": true,
+            "fifaRank": 4
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1523,12 +1555,12 @@
           "matchNo": 99,
           "stage": "Quarter-final",
           "stageCode": "QUARTER_FINALS",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-11T21:00:00Z",
           "home": {
             "name": "Norway",
             "owner": "Charlotte",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 91",
@@ -1538,7 +1570,7 @@
           "away": {
             "name": "England",
             "owner": "Mat",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 92",
@@ -9895,17 +9927,6 @@
       },
       {
         "stageCode": "LAST_16",
-        "home": "Mexico",
-        "away": "England",
-        "homeGoals": 2,
-        "awayGoals": 3,
-        "penalties": false,
-        "penHome": null,
-        "penAway": null,
-        "winner": "AWAY_TEAM"
-      },
-      {
-        "stageCode": "LAST_16",
         "home": "Portugal",
         "away": "Spain",
         "homeGoals": 0,
@@ -9972,5 +9993,5 @@
       }
     ]
   },
-  "generated": "2026-07-11T06:35:06Z"
+  "generated": "2026-07-11T21:22:13Z"
 }
