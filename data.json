@@ -14,7 +14,7 @@
         {
           "name": "Switzerland",
           "points": 7.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -24,6 +24,34 @@
           "eliminated": true,
           "clinched": true,
           "clinchType": "third"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "name": "Nik",
+      "points": 17.5,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 12,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Mexico",
+          "points": 5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Czechia",
+          "points": 0.5,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
         }
       ],
       "rank": 1
@@ -54,7 +82,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 2
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -84,34 +112,6 @@
         {
           "name": "Haiti",
           "points": 0,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
-        }
-      ],
-      "rank": 3
-    },
-    {
-      "name": "Nik",
-      "points": 13.5,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 8,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Mexico",
-          "points": 5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Czechia",
-          "points": 0.5,
           "eliminated": true,
           "clinched": false,
           "clinchType": null
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Argentina",
+      "points": 4,
+      "label": "Argentina won (Quarter-final)",
+      "utcDate": "2026-07-12T01:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "England",
       "points": 4,
@@ -463,44 +470,9 @@
       "points": 3,
       "label": "Switzerland won on penalties (Round of 16)",
       "utcDate": "2026-07-07T20:00:00Z"
-    },
-    {
-      "owner": "Nik",
-      "team": "Argentina",
-      "points": 3,
-      "label": "Argentina won (Round of 16)",
-      "utcDate": "2026-07-07T16:00:00Z"
     }
   ],
-  "live": [
-    {
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "IN_PLAY",
-      "utcDate": "2026-07-12T01:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": 2,
-        "penGoals": null,
-        "fifaRank": 1,
-        "projected": false,
-        "resolved": true
-      },
-      "away": {
-        "name": "Switzerland",
-        "owner": "Mat",
-        "goals": 1,
-        "penGoals": null,
-        "fifaRank": 19,
-        "projected": false,
-        "resolved": true
-      },
-      "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
+  "live": [],
   "recent": [
     {
       "matchNo": 92,
@@ -530,6 +502,35 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
+    },
+    {
+      "matchNo": 100,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "FINISHED",
+      "utcDate": "2026-07-12T01:00:00Z",
+      "home": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": 3,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 95",
+        "resolved": true,
+        "fifaRank": 1
+      },
+      "away": {
+        "name": "Switzerland",
+        "owner": "Mat",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 96",
+        "resolved": true,
+        "fifaRank": 19
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
     },
     {
       "matchNo": 99,
@@ -646,35 +647,6 @@
       },
       "penalties": true,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 95,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "FINISHED",
-      "utcDate": "2026-07-07T16:00:00Z",
-      "home": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 86",
-        "resolved": true,
-        "fifaRank": 1
-      },
-      "away": {
-        "name": "Egypt",
-        "owner": "Tom",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 88",
-        "resolved": true,
-        "fifaRank": 29
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -724,13 +696,14 @@
         "fifaRank": 4
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Argentina",
+        "owner": "Nik",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 100",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 1
       },
       "penalties": false,
       "winner": null
@@ -1410,8 +1383,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 86",
-            "resolved": true,
-            "fifaRank": 1
+            "resolved": true
           },
           "away": {
             "name": "Egypt",
@@ -1420,8 +1392,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 88",
-            "resolved": true,
-            "fifaRank": 29
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1552,12 +1523,12 @@
           "matchNo": 100,
           "stage": "Quarter-final",
           "stageCode": "QUARTER_FINALS",
-          "status": "TIMED",
+          "status": "FINISHED",
           "utcDate": "2026-07-12T01:00:00Z",
           "home": {
             "name": "Argentina",
             "owner": "Nik",
-            "goals": null,
+            "goals": 3,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 95",
@@ -1567,7 +1538,7 @@
           "away": {
             "name": "Switzerland",
             "owner": "Mat",
-            "goals": null,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 96",
@@ -1575,7 +1546,7 @@
             "fifaRank": 19
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         }
       ]
     },
@@ -1629,13 +1600,14 @@
             "fifaRank": 4
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Argentina",
+            "owner": "Nik",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 100",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 1
           },
           "penalties": false,
           "winner": null
@@ -1799,7 +1771,7 @@
           "ga": 3,
           "gd": 4,
           "points": 7,
-          "conduct": -6,
+          "conduct": -11,
           "fifaRank": 19,
           "clinched": true,
           "clinchType": "winner"
@@ -2391,7 +2363,7 @@
           "ga": 1,
           "gd": 7,
           "points": 9,
-          "conduct": -3,
+          "conduct": -6,
           "fifaRank": 1,
           "clinched": true,
           "clinchType": "winner"
@@ -2908,16 +2880,6 @@
         "rank": 4
       },
       {
-        "team": "Argentina",
-        "owner": "Nik",
-        "yellow": 3,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -3,
-        "rank": 4
-      },
-      {
         "team": "Netherlands",
         "owner": "Charlotte",
         "yellow": 3,
@@ -2955,7 +2917,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Côte d'Ivoire",
@@ -2965,7 +2927,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "France",
@@ -2975,7 +2937,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Germany",
@@ -2985,7 +2947,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Japan",
@@ -2995,7 +2957,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Jordan",
@@ -3005,7 +2967,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "New Zealand",
@@ -3015,7 +2977,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "South Korea",
@@ -3025,7 +2987,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Uzbekistan",
@@ -3035,7 +2997,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -4,
-        "rank": 9
+        "rank": 8
       },
       {
         "team": "Australia",
@@ -3045,7 +3007,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Austria",
@@ -3055,7 +3017,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Cabo Verde",
@@ -3065,7 +3027,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Panama",
@@ -3075,7 +3037,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Scotland",
@@ -3085,7 +3047,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Spain",
@@ -3095,7 +3057,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
       },
       {
         "team": "Sweden",
@@ -3105,7 +3067,17 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -5,
-        "rank": 18
+        "rank": 17
+      },
+      {
+        "team": "Argentina",
+        "owner": "Nik",
+        "yellow": 6,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -6,
+        "rank": 24
       },
       {
         "team": "DR Congo",
@@ -3115,7 +3087,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Ghana",
@@ -3125,7 +3097,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Iran",
@@ -3135,7 +3107,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Saudi Arabia",
@@ -3145,17 +3117,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -6,
-        "rank": 25
-      },
-      {
-        "team": "Switzerland",
-        "owner": "Mat",
-        "yellow": 6,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -6,
-        "rank": 25
+        "rank": 24
       },
       {
         "team": "Curaçao",
@@ -3165,7 +3127,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 30
+        "rank": 29
       },
       {
         "team": "Haiti",
@@ -3175,7 +3137,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 30
+        "rank": 29
       },
       {
         "team": "Morocco",
@@ -3185,7 +3147,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 30
+        "rank": 29
       },
       {
         "team": "Portugal",
@@ -3195,7 +3157,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 30
+        "rank": 29
       },
       {
         "team": "Brazil",
@@ -3205,7 +3167,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Colombia",
@@ -3215,7 +3177,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Iraq",
@@ -3225,7 +3187,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Mexico",
@@ -3235,7 +3197,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 34
+        "rank": 33
       },
       {
         "team": "Uruguay",
@@ -3245,7 +3207,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -9,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Belgium",
@@ -3255,7 +3217,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3265,7 +3227,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Canada",
@@ -3275,7 +3237,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "England",
@@ -3285,7 +3247,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 39
+        "rank": 38
+      },
+      {
+        "team": "Switzerland",
+        "owner": "Mat",
+        "yellow": 6,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 1,
+        "score": -11,
+        "rank": 38
       },
       {
         "team": "United States",
@@ -3295,7 +3267,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 39
+        "rank": 38
       },
       {
         "team": "Ecuador",
@@ -3392,6 +3364,25 @@
         "rank": 2
       },
       {
+        "name": "Mat",
+        "score": -25,
+        "teams": [
+          {
+            "name": "England",
+            "score": -11
+          },
+          {
+            "name": "Switzerland",
+            "score": -11
+          },
+          {
+            "name": "Algeria",
+            "score": -3
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Paul",
         "score": -25,
         "teams": [
@@ -3435,7 +3426,7 @@
             "score": -4
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Darcy",
@@ -3458,7 +3449,7 @@
             "score": -7
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Iva",
@@ -3477,7 +3468,7 @@
             "score": -12
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Kelly",
@@ -3496,7 +3487,7 @@
             "score": -11
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Pete",
@@ -3515,7 +3506,7 @@
             "score": -14
           }
         ],
-        "rank": 5
+        "rank": 6
       },
       {
         "name": "Charlie",
@@ -3538,7 +3529,7 @@
             "score": -4
           }
         ],
-        "rank": 9
+        "rank": 10
       },
       {
         "name": "Agatha",
@@ -3557,26 +3548,7 @@
             "score": -8
           }
         ],
-        "rank": 10
-      },
-      {
-        "name": "Mat",
-        "score": -20,
-        "teams": [
-          {
-            "name": "England",
-            "score": -11
-          },
-          {
-            "name": "Switzerland",
-            "score": -6
-          },
-          {
-            "name": "Algeria",
-            "score": -3
-          }
-        ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Ondine",
@@ -3599,7 +3571,26 @@
             "score": -7
           }
         ],
-        "rank": 10
+        "rank": 11
+      },
+      {
+        "name": "Nik",
+        "score": -15,
+        "teams": [
+          {
+            "name": "Argentina",
+            "score": -6
+          },
+          {
+            "name": "Mexico",
+            "score": -8
+          },
+          {
+            "name": "Czechia",
+            "score": -1
+          }
+        ],
+        "rank": 13
       },
       {
         "name": "Charlotte",
@@ -3618,26 +3609,7 @@
             "score": -6
           }
         ],
-        "rank": 13
-      },
-      {
-        "name": "Nik",
-        "score": -12,
-        "teams": [
-          {
-            "name": "Argentina",
-            "score": -3
-          },
-          {
-            "name": "Mexico",
-            "score": -8
-          },
-          {
-            "name": "Czechia",
-            "score": -1
-          }
-        ],
-        "rank": 13
+        "rank": 14
       }
     ],
     "hasData": true
@@ -9385,7 +9357,7 @@
       "Switzerland": {
         "owner": "Mat",
         "canon": "Switzerland",
-        "conduct": -6,
+        "conduct": -11,
         "fifa": 19,
         "group": "B"
       },
@@ -9602,7 +9574,7 @@
       "Argentina": {
         "owner": "Nik",
         "canon": "Argentina",
-        "conduct": -3,
+        "conduct": -6,
         "fifa": 1,
         "group": "J"
       },
@@ -9970,8 +9942,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "QUARTER_FINALS",
+        "home": "Argentina",
+        "away": "Switzerland",
+        "homeGoals": 3,
+        "awayGoals": 1,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-12T01:05:02Z"
+  "generated": "2026-07-12T04:51:41Z"
 }
