@@ -2,13 +2,13 @@
   "standings": [
     {
       "name": "Darcy",
-      "odds": 0.396084,
+      "odds": 0.395267,
       "teams": [
         {
           "name": "France",
-          "odds": 0.396084,
-          "base": 0.395291,
-          "delta": 0.000793
+          "odds": 0.395267,
+          "base": 0.396084,
+          "delta": -0.000817
         },
         {
           "name": "United States",
@@ -30,18 +30,18 @@
         }
       ],
       "rank": 1,
-      "base": 0.395291,
-      "delta": 0.000793
+      "base": 0.396084,
+      "delta": -0.000817
     },
     {
       "name": "Mat",
-      "odds": 0.208333,
+      "odds": 0.20997,
       "teams": [
         {
           "name": "England",
-          "odds": 0.208333,
-          "base": 0.206914,
-          "delta": 0.001419
+          "odds": 0.20997,
+          "base": 0.208333,
+          "delta": 0.001637
         },
         {
           "name": "Switzerland",
@@ -57,18 +57,18 @@
         }
       ],
       "rank": 2,
-      "base": 0.206914,
-      "delta": 0.001419
+      "base": 0.208333,
+      "delta": 0.001637
     },
     {
       "name": "Pete",
-      "odds": 0.200301,
+      "odds": 0.199899,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.200301,
-          "base": 0.1999,
-          "delta": 0.000401
+          "odds": 0.199899,
+          "base": 0.200301,
+          "delta": -0.000402
         },
         {
           "name": "Japan",
@@ -84,18 +84,18 @@
         }
       ],
       "rank": 3,
-      "base": 0.1999,
-      "delta": 0.000401
+      "base": 0.200301,
+      "delta": -0.000402
     },
     {
       "name": "Nik",
-      "odds": 0.195281,
+      "odds": 0.194864,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.195281,
-          "base": 0.197896,
-          "delta": -0.002615
+          "odds": 0.194864,
+          "base": 0.195281,
+          "delta": -0.000417
         },
         {
           "name": "Mexico",
@@ -111,8 +111,8 @@
         }
       ],
       "rank": 4,
-      "base": 0.197896,
-      "delta": -0.002615
+      "base": 0.195281,
+      "delta": -0.000417
     },
     {
       "name": "Agatha",
@@ -415,8 +415,8 @@
       "delta": -0.004808
     }
   ],
-  "overround": 0.996,
+  "overround": 0.993,
   "source": "Kalshi",
   "event": "KXMENWORLDCUP-26",
-  "generated": "2026-07-12T07:06:56Z"
+  "generated": "2026-07-12T10:07:29Z"
 }
