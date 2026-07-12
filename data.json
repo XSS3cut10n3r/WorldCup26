@@ -2,11 +2,11 @@
   "leaderboard": [
     {
       "name": "Mat",
-      "points": 17.5,
+      "points": 20.5,
       "teams": [
         {
           "name": "England",
-          "points": 8.5,
+          "points": 11.5,
           "eliminated": false,
           "clinched": true,
           "clinchType": "winner"
@@ -42,7 +42,7 @@
         {
           "name": "Mexico",
           "points": 5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -54,7 +54,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Pete",
@@ -475,35 +475,6 @@
   "live": [],
   "recent": [
     {
-      "matchNo": 92,
-      "stage": "Round of 16",
-      "stageCode": "LAST_16",
-      "status": "FINISHED",
-      "utcDate": "2026-07-06T01:00:00Z",
-      "home": {
-        "name": "Mexico",
-        "owner": "Nik",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 79",
-        "resolved": true,
-        "fifaRank": 14
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 3,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 80",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
-    },
-    {
       "matchNo": 100,
       "stage": "Quarter-final",
       "stageCode": "QUARTER_FINALS",
@@ -683,7 +654,7 @@
       "matchNo": 102,
       "stage": "Semi-final",
       "stageCode": "SEMI_FINALS",
-      "status": "SCHEDULED",
+      "status": "TIMED",
       "utcDate": "2026-07-15T19:00:00Z",
       "home": {
         "name": "England",
@@ -1291,7 +1262,7 @@
           "matchNo": 92,
           "stage": "Round of 16",
           "stageCode": "LAST_16",
-          "status": "2026-07-06 01:00:00Z",
+          "status": "FINISHED",
           "utcDate": "2026-07-06T01:00:00Z",
           "home": {
             "name": "Mexico",
@@ -1300,8 +1271,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 79",
-            "resolved": true,
-            "fifaRank": 14
+            "resolved": true
           },
           "away": {
             "name": "England",
@@ -1310,8 +1280,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 80",
-            "resolved": true,
-            "fifaRank": 4
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1587,7 +1556,7 @@
           "matchNo": 102,
           "stage": "Semi-final",
           "stageCode": "SEMI_FINALS",
-          "status": "SCHEDULED",
+          "status": "TIMED",
           "utcDate": "2026-07-15T19:00:00Z",
           "home": {
             "name": "England",
@@ -9868,6 +9837,17 @@
       },
       {
         "stageCode": "LAST_16",
+        "home": "Mexico",
+        "away": "England",
+        "homeGoals": 2,
+        "awayGoals": 3,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "LAST_16",
         "home": "Portugal",
         "away": "Spain",
         "homeGoals": 0,
@@ -9956,5 +9936,5 @@
       }
     ]
   },
-  "generated": "2026-07-12T05:01:08Z"
+  "generated": "2026-07-12T07:27:59Z"
 }
