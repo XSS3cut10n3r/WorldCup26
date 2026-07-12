@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-12T10:10:42.346688Z",
+  "generated": "2026-07-12T11:40:50.844700Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,30 +294,30 @@
   "easiestPath": [
     {
       "name": "France",
-      "wins": 376389,
-      "winPct": 0.37639,
-      "avgStrength": -0.67961,
+      "wins": 381340,
+      "winPct": 0.38134,
+      "avgStrength": -0.68137,
       "avgOppRank": 2.22
     },
     {
       "name": "Spain",
-      "wins": 215870,
-      "winPct": 0.21587,
-      "avgStrength": -0.88356,
-      "avgOppRank": 2.72
+      "wins": 213838,
+      "winPct": 0.21384,
+      "avgStrength": -0.88525,
+      "avgOppRank": 2.73
     },
     {
       "name": "Argentina",
-      "wins": 209907,
-      "winPct": 0.20991,
-      "avgStrength": -1.1487,
+      "wins": 205196,
+      "winPct": 0.2052,
+      "avgStrength": -1.14923,
       "avgOppRank": 3.27
     },
     {
       "name": "England",
-      "wins": 197834,
-      "winPct": 0.19783,
-      "avgStrength": -0.45616,
+      "wins": 199626,
+      "winPct": 0.19963,
+      "avgStrength": -0.45649,
       "avgOppRank": 1.77
     }
   ],
@@ -327,7 +327,7 @@
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "pHome": 0.59725,
+      "pHome": 0.60037,
       "score": {
         "h": 1,
         "a": 0,
@@ -339,7 +339,7 @@
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
-      "pHome": 0.47928,
+      "pHome": 0.48325,
       "score": {
         "h": 0,
         "a": 1,
@@ -351,7 +351,7 @@
       "stage": "THIRD_PLACE",
       "home": "Spain",
       "away": "England",
-      "pHome": 0.55388,
+      "pHome": 0.55217,
       "score": {
         "h": 1,
         "a": 0,
@@ -363,7 +363,7 @@
       "stage": "FINAL",
       "home": "France",
       "away": "Argentina",
-      "pHome": 0.6271,
+      "pHome": 0.63387,
       "score": {
         "h": 2,
         "a": 1,
@@ -373,6 +373,6 @@
   ],
   "champion": {
     "name": "France",
-    "titlePct": 0.37639
+    "titlePct": 0.38134
   }
 }
