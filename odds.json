@@ -2,13 +2,13 @@
   "standings": [
     {
       "name": "Darcy",
-      "odds": 0.397887,
+      "odds": 0.396881,
       "teams": [
         {
           "name": "France",
-          "odds": 0.397887,
-          "base": 0.395896,
-          "delta": 0.001991
+          "odds": 0.396881,
+          "base": 0.397887,
+          "delta": -0.001006
         },
         {
           "name": "United States",
@@ -30,18 +30,18 @@
         }
       ],
       "rank": 1,
-      "base": 0.395896,
-      "delta": 0.001991
+      "base": 0.397887,
+      "delta": -0.001006
     },
     {
       "name": "Mat",
-      "odds": 0.216801,
+      "odds": 0.217807,
       "teams": [
         {
           "name": "England",
-          "odds": 0.216801,
-          "base": 0.215716,
-          "delta": 0.001085
+          "odds": 0.217807,
+          "base": 0.216801,
+          "delta": 0.001006
         },
         {
           "name": "Switzerland",
@@ -57,8 +57,8 @@
         }
       ],
       "rank": 2,
-      "base": 0.215716,
-      "delta": 0.001085
+      "base": 0.216801,
+      "delta": 0.001006
     },
     {
       "name": "Pete",
@@ -418,5 +418,5 @@
   "overround": 0.994,
   "source": "Kalshi",
   "event": "KXMENWORLDCUP-26",
-  "generated": "2026-07-13T21:29:05Z"
+  "generated": "2026-07-13T23:26:09Z"
 }
