@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-13T04:11:51.934902Z",
+  "generated": "2026-07-13T11:42:08.470877Z",
   "sims": 1000000,
   "games": [
     {
@@ -8,6 +8,14 @@
       "away": "Argentina",
       "knockout": true,
       "odds": {
+        "homeReg": 0.30924,
+        "homeET": 0.08442,
+        "homePen": 0.10018,
+        "awayReg": 0.33087,
+        "awayET": 0.0689,
+        "awayPen": 0.10638
+      },
+      "base": {
         "homeReg": 0.3102,
         "homeET": 0.08512,
         "homePen": 0.10013,
@@ -15,21 +23,13 @@
         "awayET": 0.06831,
         "awayPen": 0.10634
       },
-      "base": {
-        "homeReg": 0.31061,
-        "homeET": 0.08511,
-        "homePen": 0.10018,
-        "awayReg": 0.32949,
-        "awayET": 0.06827,
-        "awayPen": 0.10633
-      },
       "delta": {
-        "homeReg": -0.00041,
-        "homeET": 1e-05,
-        "homePen": -5e-05,
-        "awayReg": 0.00041,
-        "awayET": 4e-05,
-        "awayPen": 1e-05
+        "homeReg": -0.00096,
+        "homeET": -0.0007,
+        "homePen": 5e-05,
+        "awayReg": 0.00097,
+        "awayET": 0.00059,
+        "awayPen": 4e-05
       }
     },
     {
@@ -38,6 +38,14 @@
       "away": "Spain",
       "knockout": true,
       "odds": {
+        "homeReg": 0.37029,
+        "homeET": 0.10609,
+        "homePen": 0.11161,
+        "awayReg": 0.26066,
+        "awayET": 0.04951,
+        "awayPen": 0.10183
+      },
+      "base": {
         "homeReg": 0.37065,
         "homeET": 0.10618,
         "homePen": 0.11152,
@@ -45,21 +53,13 @@
         "awayET": 0.04933,
         "awayPen": 0.10185
       },
-      "base": {
-        "homeReg": 0.37517,
-        "homeET": 0.10894,
-        "homePen": 0.11086,
-        "awayReg": 0.2567,
-        "awayET": 0.04668,
-        "awayPen": 0.10165
-      },
       "delta": {
-        "homeReg": -0.00452,
-        "homeET": -0.00276,
-        "homePen": 0.00066,
-        "awayReg": 0.00377,
-        "awayET": 0.00265,
-        "awayPen": 0.0002
+        "homeReg": -0.00036,
+        "homeET": -9e-05,
+        "homePen": 9e-05,
+        "awayReg": 0.00019,
+        "awayET": 0.00018,
+        "awayPen": -2e-05
       }
     }
   ]
