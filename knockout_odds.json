@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-13T11:42:06.559345Z",
+  "generated": "2026-07-13T15:25:20.572635Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,30 +294,30 @@
   "easiestPath": [
     {
       "name": "France",
-      "wins": 369549,
-      "winPct": 0.36955,
-      "avgStrength": -0.6849,
-      "avgOppRank": 2.23
+      "wins": 371741,
+      "winPct": 0.37174,
+      "avgStrength": -0.68699,
+      "avgOppRank": 2.24
     },
     {
       "name": "Spain",
-      "wins": 225002,
-      "winPct": 0.225,
-      "avgStrength": -0.8878,
-      "avgOppRank": 2.73
+      "wins": 225952,
+      "winPct": 0.22595,
+      "avgStrength": -0.88922,
+      "avgOppRank": 2.74
     },
     {
       "name": "England",
-      "wins": 205331,
-      "winPct": 0.20533,
-      "avgStrength": -0.4549,
+      "wins": 205527,
+      "winPct": 0.20553,
+      "avgStrength": -0.45492,
       "avgOppRank": 1.77
     },
     {
       "name": "Argentina",
-      "wins": 200118,
-      "winPct": 0.20012,
-      "avgStrength": -1.1476,
+      "wins": 196780,
+      "winPct": 0.19678,
+      "avgStrength": -1.14763,
       "avgOppRank": 3.27
     }
   ],
@@ -327,7 +327,7 @@
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "pHome": 0.58965,
+      "pHome": 0.5904,
       "score": {
         "h": 1,
         "a": 0,
@@ -339,7 +339,7 @@
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
-      "pHome": 0.49278,
+      "pHome": 0.4966,
       "score": {
         "h": 0,
         "a": 1,
@@ -351,7 +351,7 @@
       "stage": "THIRD_PLACE",
       "home": "Spain",
       "away": "England",
-      "pHome": 0.55845,
+      "pHome": 0.5603,
       "score": {
         "h": 1,
         "a": 0,
@@ -363,7 +363,7 @@
       "stage": "FINAL",
       "home": "France",
       "away": "Argentina",
-      "pHome": 0.63355,
+      "pHome": 0.63828,
       "score": {
         "h": 2,
         "a": 1,
@@ -373,6 +373,6 @@
   ],
   "champion": {
     "name": "France",
-    "titlePct": 0.36955
+    "titlePct": 0.37174
   }
 }
