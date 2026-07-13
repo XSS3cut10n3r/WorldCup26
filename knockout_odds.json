@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-13T15:25:20.572635Z",
+  "generated": "2026-07-13T18:19:19.362215Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,30 +294,30 @@
   "easiestPath": [
     {
       "name": "France",
-      "wins": 371741,
-      "winPct": 0.37174,
-      "avgStrength": -0.68699,
+      "wins": 371726,
+      "winPct": 0.37173,
+      "avgStrength": -0.68632,
       "avgOppRank": 2.24
     },
     {
       "name": "Spain",
-      "wins": 225952,
-      "winPct": 0.22595,
-      "avgStrength": -0.88922,
-      "avgOppRank": 2.74
+      "wins": 224765,
+      "winPct": 0.22476,
+      "avgStrength": -0.88871,
+      "avgOppRank": 2.73
     },
     {
       "name": "England",
-      "wins": 205527,
-      "winPct": 0.20553,
-      "avgStrength": -0.45492,
+      "wins": 205575,
+      "winPct": 0.20558,
+      "avgStrength": -0.45507,
       "avgOppRank": 1.77
     },
     {
       "name": "Argentina",
-      "wins": 196780,
-      "winPct": 0.19678,
-      "avgStrength": -1.14763,
+      "wins": 197934,
+      "winPct": 0.19793,
+      "avgStrength": -1.14777,
       "avgOppRank": 3.27
     }
   ],
@@ -327,7 +327,7 @@
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "pHome": 0.5904,
+      "pHome": 0.5908,
       "score": {
         "h": 1,
         "a": 0,
@@ -339,7 +339,7 @@
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
-      "pHome": 0.4966,
+      "pHome": 0.4952,
       "score": {
         "h": 0,
         "a": 1,
@@ -351,7 +351,7 @@
       "stage": "THIRD_PLACE",
       "home": "Spain",
       "away": "England",
-      "pHome": 0.5603,
+      "pHome": 0.55853,
       "score": {
         "h": 1,
         "a": 0,
@@ -363,7 +363,7 @@
       "stage": "FINAL",
       "home": "France",
       "away": "Argentina",
-      "pHome": 0.63828,
+      "pHome": 0.63618,
       "score": {
         "h": 2,
         "a": 1,
@@ -373,6 +373,6 @@
   ],
   "champion": {
     "name": "France",
-    "titlePct": 0.37174
+    "titlePct": 0.37173
   }
 }
