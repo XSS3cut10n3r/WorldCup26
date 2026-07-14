@@ -1,18 +1,18 @@
 {
-  "generated": "2026-07-14T21:13:57.666912Z",
+  "generated": "2026-07-14T21:33:44.878135Z",
   "sims": 1000000,
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.66135,
-      "base": 0.3656,
-      "delta": 0.29575,
+      "odds": 0.65634,
+      "base": 0.66135,
+      "delta": -0.00501,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.66135,
-          "base": 0.3656,
-          "delta": 0.29575
+          "odds": 0.65634,
+          "base": 0.66135,
+          "delta": -0.00501
         },
         {
           "name": "Japan",
@@ -30,43 +30,16 @@
       "rank": 1
     },
     {
-      "name": "Nik",
-      "odds": 0.17076,
-      "base": 0.20798,
-      "delta": -0.03722,
-      "teams": [
-        {
-          "name": "Argentina",
-          "odds": 0.17076,
-          "base": 0.20798,
-          "delta": -0.03722
-        },
-        {
-          "name": "Mexico",
-          "odds": 0.0,
-          "base": 0.00302,
-          "delta": -0.00302
-        },
-        {
-          "name": "Czechia",
-          "odds": 0.0,
-          "base": 0.00063,
-          "delta": -0.00063
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Mat",
-      "odds": 0.16789,
-      "base": 0.20462,
-      "delta": -0.03673,
+      "odds": 0.17564,
+      "base": 0.16789,
+      "delta": 0.00775,
       "teams": [
         {
           "name": "England",
-          "odds": 0.16789,
-          "base": 0.20462,
-          "delta": -0.03673
+          "odds": 0.17564,
+          "base": 0.16789,
+          "delta": 0.00775
         },
         {
           "name": "Switzerland",
@@ -79,6 +52,33 @@
           "odds": 0.0,
           "base": 8e-05,
           "delta": -8e-05
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "name": "Nik",
+      "odds": 0.16802,
+      "base": 0.17076,
+      "delta": -0.00274,
+      "teams": [
+        {
+          "name": "Argentina",
+          "odds": 0.16802,
+          "base": 0.17076,
+          "delta": -0.00274
+        },
+        {
+          "name": "Mexico",
+          "odds": 0.0,
+          "base": 0.00302,
+          "delta": -0.00302
+        },
+        {
+          "name": "Czechia",
+          "odds": 0.0,
+          "base": 0.00063,
+          "delta": -0.00063
         }
       ],
       "rank": 3
