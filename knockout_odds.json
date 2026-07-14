@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-14T11:57:27.095438Z",
+  "generated": "2026-07-14T14:27:27.291157Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,31 +294,31 @@
   "easiestPath": [
     {
       "name": "France",
-      "wins": 373935,
-      "winPct": 0.37394,
-      "avgStrength": -0.69117,
-      "avgOppRank": 2.25
+      "wins": 368890,
+      "winPct": 0.36889,
+      "avgStrength": -0.68753,
+      "avgOppRank": 2.24
     },
     {
       "name": "Spain",
-      "wins": 229071,
-      "winPct": 0.22907,
-      "avgStrength": -0.89277,
+      "wins": 229507,
+      "winPct": 0.22951,
+      "avgStrength": -0.8901,
       "avgOppRank": 2.74
     },
     {
       "name": "England",
-      "wins": 208692,
-      "winPct": 0.20869,
-      "avgStrength": -0.4549,
+      "wins": 206087,
+      "winPct": 0.20609,
+      "avgStrength": -0.45464,
       "avgOppRank": 1.77
     },
     {
       "name": "Argentina",
-      "wins": 188302,
-      "winPct": 0.1883,
-      "avgStrength": -1.14724,
-      "avgOppRank": 3.27
+      "wins": 195516,
+      "winPct": 0.19552,
+      "avgStrength": -1.14691,
+      "avgOppRank": 3.26
     }
   ],
   "bracket": [
@@ -327,7 +327,7 @@
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "pHome": 0.58815,
+      "pHome": 0.58603,
       "score": {
         "h": 1,
         "a": 0,
@@ -339,9 +339,9 @@
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
-      "pHome": 0.50597,
+      "pHome": 0.49855,
       "score": {
-        "h": 2,
+        "h": 0,
         "a": 1,
         "type": "reg"
       }
@@ -350,8 +350,8 @@
       "match": 103,
       "stage": "THIRD_PLACE",
       "home": "Spain",
-      "away": "Argentina",
-      "pHome": 0.5787,
+      "away": "England",
+      "pHome": 0.56185,
       "score": {
         "h": 1,
         "a": 0,
@@ -362,8 +362,8 @@
       "match": 104,
       "stage": "FINAL",
       "home": "France",
-      "away": "England",
-      "pHome": 0.63892,
+      "away": "Argentina",
+      "pHome": 0.6385,
       "score": {
         "h": 2,
         "a": 1,
@@ -373,6 +373,6 @@
   ],
   "champion": {
     "name": "France",
-    "titlePct": 0.37394
+    "titlePct": 0.36889
   }
 }
