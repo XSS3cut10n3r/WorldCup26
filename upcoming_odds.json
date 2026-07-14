@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-14T17:44:16.032470Z",
+  "generated": "2026-07-14T19:54:01.242648Z",
   "sims": 1000000,
   "games": [
     {
@@ -8,6 +8,14 @@
       "away": "Argentina",
       "knockout": true,
       "odds": {
+        "homeReg": 0.30746,
+        "homeET": 0.08135,
+        "homePen": 0.10107,
+        "awayReg": 0.33265,
+        "awayET": 0.06979,
+        "awayPen": 0.10768
+      },
+      "base": {
         "homeReg": 0.31329,
         "homeET": 0.08601,
         "homePen": 0.10022,
@@ -15,51 +23,13 @@
         "awayET": 0.06734,
         "awayPen": 0.10662
       },
-      "base": {
-        "homeReg": 0.31649,
-        "homeET": 0.08819,
-        "homePen": 0.09997,
-        "awayReg": 0.32326,
-        "awayET": 0.06563,
-        "awayPen": 0.10647
-      },
       "delta": {
-        "homeReg": -0.0032,
-        "homeET": -0.00218,
-        "homePen": 0.00025,
-        "awayReg": 0.00326,
-        "awayET": 0.00171,
-        "awayPen": 0.00015
-      }
-    },
-    {
-      "stageCode": "SEMI_FINALS",
-      "home": "France",
-      "away": "Spain",
-      "knockout": true,
-      "odds": {
-        "homeReg": 0.35718,
-        "homeET": 0.09773,
-        "homePen": 0.11282,
-        "awayReg": 0.27323,
-        "awayET": 0.0557,
-        "awayPen": 0.10333
-      },
-      "base": {
-        "homeReg": 0.36631,
-        "homeET": 0.1035,
-        "homePen": 0.11178,
-        "awayReg": 0.26473,
-        "awayET": 0.05106,
-        "awayPen": 0.10263
-      },
-      "delta": {
-        "homeReg": -0.00913,
-        "homeET": -0.00577,
-        "homePen": 0.00104,
-        "awayReg": 0.0085,
-        "awayET": 0.00464,
-        "awayPen": 0.0007
+        "homeReg": -0.00583,
+        "homeET": -0.00466,
+        "homePen": 0.00085,
+        "awayReg": 0.00613,
+        "awayET": 0.00245,
+        "awayPen": 0.00106
       }
     }
   ]
