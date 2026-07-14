@@ -1,18 +1,18 @@
 {
-  "generated": "2026-07-14T19:53:59.868544Z",
+  "generated": "2026-07-14T21:13:57.666912Z",
   "sims": 1000000,
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.3656,
-      "base": 0.24366,
-      "delta": 0.12194,
+      "odds": 0.66135,
+      "base": 0.3656,
+      "delta": 0.29575,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.3656,
-          "base": 0.24366,
-          "delta": 0.12194
+          "odds": 0.66135,
+          "base": 0.3656,
+          "delta": 0.29575
         },
         {
           "name": "Japan",
@@ -30,49 +30,16 @@
       "rank": 1
     },
     {
-      "name": "Darcy",
-      "odds": 0.22181,
-      "base": 0.35621,
-      "delta": -0.1344,
-      "teams": [
-        {
-          "name": "France",
-          "odds": 0.22181,
-          "base": 0.35621,
-          "delta": -0.1344
-        },
-        {
-          "name": "United States",
-          "odds": 0.0,
-          "base": 0.01689,
-          "delta": -0.01689
-        },
-        {
-          "name": "Tunisia",
-          "odds": 0.0,
-          "base": 1e-05,
-          "delta": -1e-05
-        },
-        {
-          "name": "Haiti",
-          "odds": 0.0,
-          "base": 0.0,
-          "delta": null
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Nik",
-      "odds": 0.20798,
-      "base": 0.19423,
-      "delta": 0.01375,
+      "odds": 0.17076,
+      "base": 0.20798,
+      "delta": -0.03722,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.20798,
-          "base": 0.19423,
-          "delta": 0.01375
+          "odds": 0.17076,
+          "base": 0.20798,
+          "delta": -0.03722
         },
         {
           "name": "Mexico",
@@ -87,19 +54,19 @@
           "delta": -0.00063
         }
       ],
-      "rank": 3
+      "rank": 2
     },
     {
       "name": "Mat",
-      "odds": 0.20462,
-      "base": 0.2059,
-      "delta": -0.00128,
+      "odds": 0.16789,
+      "base": 0.20462,
+      "delta": -0.03673,
       "teams": [
         {
           "name": "England",
-          "odds": 0.20462,
-          "base": 0.2059,
-          "delta": -0.00128
+          "odds": 0.16789,
+          "base": 0.20462,
+          "delta": -0.03673
         },
         {
           "name": "Switzerland",
@@ -114,7 +81,7 @@
           "delta": -8e-05
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Agatha",
@@ -141,7 +108,7 @@
           "delta": -0.0006
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Charlie",
@@ -174,7 +141,7 @@
           "delta": -2e-05
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Charlotte",
@@ -201,7 +168,40 @@
           "delta": -0.00013
         }
       ],
-      "rank": 5
+      "rank": 4
+    },
+    {
+      "name": "Darcy",
+      "odds": 0.0,
+      "base": 0.22181,
+      "delta": -0.22181,
+      "teams": [
+        {
+          "name": "France",
+          "odds": 0.0,
+          "base": 0.22181,
+          "delta": -0.22181
+        },
+        {
+          "name": "United States",
+          "odds": 0.0,
+          "base": 0.01689,
+          "delta": -0.01689
+        },
+        {
+          "name": "Tunisia",
+          "odds": 0.0,
+          "base": 1e-05,
+          "delta": -1e-05
+        },
+        {
+          "name": "Haiti",
+          "odds": 0.0,
+          "base": 0.0,
+          "delta": null
+        }
+      ],
+      "rank": 4
     },
     {
       "name": "Iva",
@@ -228,7 +228,7 @@
           "delta": -1e-05
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Kelly",
@@ -255,7 +255,7 @@
           "delta": -0.00127
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Ondine",
@@ -288,7 +288,7 @@
           "delta": -1e-05
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Paul",
@@ -321,7 +321,7 @@
           "delta": -0.00081
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Sydney",
@@ -354,7 +354,7 @@
           "delta": -0.00012
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Tom",
@@ -381,7 +381,7 @@
           "delta": -0.00055
         }
       ],
-      "rank": 5
+      "rank": 4
     },
     {
       "name": "Tomi",
@@ -414,7 +414,7 @@
           "delta": -2e-05
         }
       ],
-      "rank": 5
+      "rank": 4
     }
   ]
 }
