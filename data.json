@@ -472,7 +472,37 @@
       "utcDate": "2026-07-07T20:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 101,
+      "stage": "Semi-final",
+      "stageCode": "SEMI_FINALS",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-14T19:00:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 97",
+        "resolved": true,
+        "fifaRank": 3
+      },
+      "away": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 98",
+        "resolved": true,
+        "fifaRank": 2
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 100,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 101,
-      "stage": "Semi-final",
-      "stageCode": "SEMI_FINALS",
-      "status": "TIMED",
-      "utcDate": "2026-07-14T19:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 97",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 98",
-        "resolved": true,
-        "fifaRank": 2
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 102,
       "stage": "Semi-final",
@@ -1527,12 +1528,12 @@
           "matchNo": 101,
           "stage": "Semi-final",
           "stageCode": "SEMI_FINALS",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-14T19:00:00Z",
           "home": {
             "name": "France",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 97",
@@ -1542,7 +1543,7 @@
           "away": {
             "name": "Spain",
             "owner": "Pete",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 98",
@@ -9936,5 +9937,5 @@
       }
     ]
   },
-  "generated": "2026-07-12T07:27:59Z"
+  "generated": "2026-07-14T19:17:45Z"
 }
