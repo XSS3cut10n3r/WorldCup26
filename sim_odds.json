@@ -1,18 +1,18 @@
 {
-  "generated": "2026-07-15T19:47:49.629453Z",
+  "generated": "2026-07-15T21:17:24.643964Z",
   "sims": 1000000,
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.6571,
-      "base": 0.6577,
-      "delta": -0.0006,
+      "odds": 0.58709,
+      "base": 0.6571,
+      "delta": -0.07001,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.6571,
-          "base": 0.6577,
-          "delta": -0.0006
+          "odds": 0.58709,
+          "base": 0.6571,
+          "delta": -0.07001
         },
         {
           "name": "Japan",
@@ -30,43 +30,16 @@
       "rank": 1
     },
     {
-      "name": "Mat",
-      "odds": 0.17464,
-      "base": 0.17193,
-      "delta": 0.00271,
-      "teams": [
-        {
-          "name": "England",
-          "odds": 0.17464,
-          "base": 0.17193,
-          "delta": 0.00271
-        },
-        {
-          "name": "Switzerland",
-          "odds": 0.0,
-          "base": 0.00255,
-          "delta": -0.00255
-        },
-        {
-          "name": "Algeria",
-          "odds": 0.0,
-          "base": 8e-05,
-          "delta": -8e-05
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Nik",
-      "odds": 0.16826,
-      "base": 0.17037,
-      "delta": -0.00211,
+      "odds": 0.41291,
+      "base": 0.16826,
+      "delta": 0.24465,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.16826,
-          "base": 0.17037,
-          "delta": -0.00211
+          "odds": 0.41291,
+          "base": 0.16826,
+          "delta": 0.24465
         },
         {
           "name": "Mexico",
@@ -81,7 +54,7 @@
           "delta": -0.00063
         }
       ],
-      "rank": 3
+      "rank": 2
     },
     {
       "name": "Agatha",
@@ -108,7 +81,7 @@
           "delta": -0.0006
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Charlie",
@@ -141,7 +114,7 @@
           "delta": -2e-05
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Charlotte",
@@ -168,7 +141,7 @@
           "delta": -0.00013
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Darcy",
@@ -201,7 +174,7 @@
           "delta": null
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Iva",
@@ -228,7 +201,7 @@
           "delta": -1e-05
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Kelly",
@@ -255,7 +228,34 @@
           "delta": -0.00127
         }
       ],
-      "rank": 4
+      "rank": 3
+    },
+    {
+      "name": "Mat",
+      "odds": 0.0,
+      "base": 0.17464,
+      "delta": -0.17464,
+      "teams": [
+        {
+          "name": "England",
+          "odds": 0.0,
+          "base": 0.17464,
+          "delta": -0.17464
+        },
+        {
+          "name": "Switzerland",
+          "odds": 0.0,
+          "base": 0.00255,
+          "delta": -0.00255
+        },
+        {
+          "name": "Algeria",
+          "odds": 0.0,
+          "base": 8e-05,
+          "delta": -8e-05
+        }
+      ],
+      "rank": 3
     },
     {
       "name": "Ondine",
@@ -288,7 +288,7 @@
           "delta": -1e-05
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Paul",
@@ -321,7 +321,7 @@
           "delta": -0.00081
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Sydney",
@@ -354,7 +354,7 @@
           "delta": -0.00012
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Tom",
@@ -381,7 +381,7 @@
           "delta": -0.00055
         }
       ],
-      "rank": 4
+      "rank": 3
     },
     {
       "name": "Tomi",
@@ -414,7 +414,7 @@
           "delta": -2e-05
         }
       ],
-      "rank": 4
+      "rank": 3
     }
   ]
 }

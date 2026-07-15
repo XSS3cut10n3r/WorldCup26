@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-15T19:47:50.063432Z",
+  "generated": "2026-07-15T21:17:25.013195Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,48 +294,29 @@
   "easiestPath": [
     {
       "name": "Spain",
-      "wins": 657104,
-      "winPct": 0.6571,
-      "avgStrength": -0.68161,
-      "avgOppRank": 2.48
-    },
-    {
-      "name": "England",
-      "wins": 174636,
-      "winPct": 0.17464,
-      "avgStrength": -0.34657,
-      "avgOppRank": 1.5
+      "wins": 587089,
+      "winPct": 0.58709,
+      "avgStrength": 0.0,
+      "avgOppRank": 1.0
     },
     {
       "name": "Argentina",
-      "wins": 168260,
-      "winPct": 0.16826,
-      "avgStrength": -1.03972,
-      "avgOppRank": 3.0
+      "wins": 412911,
+      "winPct": 0.41291,
+      "avgStrength": -0.69315,
+      "avgOppRank": 2.0
     }
   ],
   "bracket": [
-    {
-      "match": 102,
-      "stage": "SEMI_FINALS",
-      "home": "England",
-      "away": "Argentina",
-      "pHome": 0.4955,
-      "score": {
-        "h": 0,
-        "a": 1,
-        "type": "reg"
-      }
-    },
     {
       "match": 103,
       "stage": "THIRD_PLACE",
       "home": "France",
       "away": "England",
-      "pHome": 0.32615,
+      "pHome": 0.57405,
       "score": {
-        "h": 0,
-        "a": 1,
+        "h": 1,
+        "a": 0,
         "type": "reg"
       }
     },
@@ -344,7 +325,7 @@
       "stage": "FINAL",
       "home": "Spain",
       "away": "Argentina",
-      "pHome": 0.66768,
+      "pHome": 0.58642,
       "score": {
         "h": 2,
         "a": 1,
@@ -354,6 +335,6 @@
   ],
   "champion": {
     "name": "Spain",
-    "titlePct": 0.6571
+    "titlePct": 0.58709
   }
 }

@@ -1,35 +1,65 @@
 {
-  "generated": "2026-07-15T19:47:50.854299Z",
+  "generated": "2026-07-15T21:17:27.045205Z",
   "sims": 1000000,
   "games": [
     {
-      "stageCode": "SEMI_FINALS",
-      "home": "England",
+      "stageCode": "FINAL",
+      "home": "Spain",
       "away": "Argentina",
       "knockout": true,
       "odds": {
-        "homeReg": 0.31317,
-        "homeET": 0.08421,
-        "homePen": 0.10094,
-        "awayReg": 0.32771,
-        "awayET": 0.06617,
-        "awayPen": 0.1078
+        "homeReg": 0.38033,
+        "homeET": 0.11475,
+        "homePen": 0.10349,
+        "awayReg": 0.25571,
+        "awayET": 0.04163,
+        "awayPen": 0.10408
       },
       "base": {
-        "homeReg": 0.3103,
-        "homeET": 0.08271,
-        "homePen": 0.10096,
-        "awayReg": 0.33037,
-        "awayET": 0.06812,
-        "awayPen": 0.10754
+        "homeReg": 0.38033,
+        "homeET": 0.11475,
+        "homePen": 0.10349,
+        "awayReg": 0.25571,
+        "awayET": 0.04163,
+        "awayPen": 0.10408
       },
       "delta": {
-        "homeReg": 0.00287,
-        "homeET": 0.0015,
-        "homePen": -2e-05,
-        "awayReg": -0.00266,
-        "awayET": -0.00195,
-        "awayPen": 0.00026
+        "homeReg": null,
+        "homeET": null,
+        "homePen": null,
+        "awayReg": null,
+        "awayET": null,
+        "awayPen": null
+      }
+    },
+    {
+      "stageCode": "THIRD_PLACE",
+      "home": "France",
+      "away": "England",
+      "knockout": true,
+      "odds": {
+        "homeReg": 0.36849,
+        "homeET": 0.09523,
+        "homePen": 0.10881,
+        "awayReg": 0.26977,
+        "awayET": 0.0578,
+        "awayPen": 0.0999
+      },
+      "base": {
+        "homeReg": 0.36849,
+        "homeET": 0.09523,
+        "homePen": 0.10881,
+        "awayReg": 0.26977,
+        "awayET": 0.0578,
+        "awayPen": 0.0999
+      },
+      "delta": {
+        "homeReg": null,
+        "homeET": null,
+        "homePen": null,
+        "awayReg": null,
+        "awayET": null,
+        "awayPen": null
       }
     }
   ]

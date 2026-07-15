@@ -2,13 +2,13 @@
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.570363,
+      "odds": 0.5785,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.570363,
-          "base": 0.571643,
-          "delta": -0.00128
+          "odds": 0.5785,
+          "base": 0.570363,
+          "delta": 0.008137
         },
         {
           "name": "Japan",
@@ -24,45 +24,18 @@
         }
       ],
       "rank": 1,
-      "base": 0.571643,
-      "delta": -0.00128
-    },
-    {
-      "name": "Mat",
-      "odds": 0.230234,
-      "teams": [
-        {
-          "name": "England",
-          "odds": 0.230234,
-          "base": 0.227159,
-          "delta": 0.003075
-        },
-        {
-          "name": "Switzerland",
-          "odds": 0.0,
-          "base": 0.018649,
-          "delta": -0.018649
-        },
-        {
-          "name": "Algeria",
-          "odds": 0.0,
-          "base": 0.00048,
-          "delta": -0.00048
-        }
-      ],
-      "rank": 2,
-      "base": 0.227159,
-      "delta": 0.003075
+      "base": 0.570363,
+      "delta": 0.008137
     },
     {
       "name": "Nik",
-      "odds": 0.199403,
+      "odds": 0.4215,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.199403,
-          "base": 0.201198,
-          "delta": -0.001795
+          "odds": 0.4215,
+          "base": 0.199403,
+          "delta": 0.222097
         },
         {
           "name": "Mexico",
@@ -77,9 +50,9 @@
           "delta": -0.004621
         }
       ],
-      "rank": 3,
-      "base": 0.201198,
-      "delta": -0.001795
+      "rank": 2,
+      "base": 0.199403,
+      "delta": 0.222097
     },
     {
       "name": "Agatha",
@@ -104,7 +77,7 @@
           "delta": -0.004679
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000497,
       "delta": -0.000497
     },
@@ -137,7 +110,7 @@
           "delta": -0.000473
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000502,
       "delta": -0.000502
     },
@@ -164,7 +137,7 @@
           "delta": -0.000483
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000504,
       "delta": -0.000504
     },
@@ -197,7 +170,7 @@
           "delta": -0.000473
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.225937,
       "delta": -0.225937
     },
@@ -224,7 +197,7 @@
           "delta": -0.000462
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000468,
       "delta": -0.000468
     },
@@ -251,9 +224,36 @@
           "delta": -0.000483
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000499,
       "delta": -0.000499
+    },
+    {
+      "name": "Mat",
+      "odds": 0.0,
+      "teams": [
+        {
+          "name": "England",
+          "odds": 0.0,
+          "base": 0.230234,
+          "delta": -0.230234
+        },
+        {
+          "name": "Switzerland",
+          "odds": 0.0,
+          "base": 0.018649,
+          "delta": -0.018649
+        },
+        {
+          "name": "Algeria",
+          "odds": 0.0,
+          "base": 0.00048,
+          "delta": -0.00048
+        }
+      ],
+      "rank": 3,
+      "base": 0.230234,
+      "delta": -0.230234
     },
     {
       "name": "Ondine",
@@ -284,7 +284,7 @@
           "delta": -0.000468
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000477,
       "delta": -0.000477
     },
@@ -317,7 +317,7 @@
           "delta": -0.000474
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000495,
       "delta": -0.000495
     },
@@ -350,7 +350,7 @@
           "delta": -0.000476
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000489,
       "delta": -0.000489
     },
@@ -377,7 +377,7 @@
           "delta": -0.004737
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.000501,
       "delta": -0.000501
     },
@@ -410,13 +410,13 @@
           "delta": -0.000468
         }
       ],
-      "rank": 4,
+      "rank": 3,
       "base": 0.004808,
       "delta": -0.004808
     }
   ],
-  "overround": 1.0055,
+  "overround": 1.0,
   "source": "Kalshi",
   "event": "KXMENWORLDCUP-26",
-  "generated": "2026-07-15T19:45:35Z"
+  "generated": "2026-07-15T21:14:22Z"
 }
