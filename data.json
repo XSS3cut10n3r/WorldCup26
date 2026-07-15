@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Nik",
+      "points": 22.5,
+      "teams": [
+        {
+          "name": "Argentina",
+          "points": 17,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Mexico",
+          "points": 5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Czechia",
+          "points": 0.5,
+          "eliminated": true,
+          "clinched": false,
+          "clinchType": null
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Pete",
       "points": 22.0,
       "teams": [
@@ -26,7 +54,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Mat",
@@ -35,7 +63,7 @@
         {
           "name": "England",
           "points": 11.5,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -52,34 +80,6 @@
           "eliminated": true,
           "clinched": true,
           "clinchType": "third"
-        }
-      ],
-      "rank": 2
-    },
-    {
-      "name": "Nik",
-      "points": 17.5,
-      "teams": [
-        {
-          "name": "Argentina",
-          "points": 12,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Mexico",
-          "points": 5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Czechia",
-          "points": 0.5,
-          "eliminated": true,
-          "clinched": false,
-          "clinchType": null
         }
       ],
       "rank": 3
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Nik",
+      "team": "Argentina",
+      "points": 5,
+      "label": "Argentina won (Semi-final)",
+      "utcDate": "2026-07-15T19:00:00Z"
+    },
+    {
       "owner": "Pete",
       "team": "Spain",
       "points": 5,
@@ -463,13 +470,6 @@
       "points": 4,
       "label": "Spain won (Quarter-final)",
       "utcDate": "2026-07-10T19:00:00Z"
-    },
-    {
-      "owner": "Darcy",
-      "team": "France",
-      "points": 4,
-      "label": "France won (Quarter-final)",
-      "utcDate": "2026-07-09T20:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 97,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "FINISHED",
-      "utcDate": "2026-07-09T20:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 89",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "Morocco",
-        "owner": "Agatha",
-        "goals": 0,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 90",
-        "resolved": true,
-        "fifaRank": 7
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -667,13 +638,14 @@
         "fifaRank": 3
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "England",
+        "owner": "Mat",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Loser match 102",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 4
       },
       "penalties": false,
       "winner": null
@@ -695,13 +667,14 @@
         "fifaRank": 2
       },
       "away": {
-        "name": "TBD",
-        "owner": null,
+        "name": "Argentina",
+        "owner": "Nik",
         "goals": null,
         "penGoals": null,
         "projected": false,
         "slot": "Winner match 102",
-        "resolved": false
+        "resolved": true,
+        "fifaRank": 1
       },
       "penalties": false,
       "winner": null
@@ -1385,8 +1358,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 89",
-            "resolved": true,
-            "fifaRank": 3
+            "resolved": true
           },
           "away": {
             "name": "Morocco",
@@ -1395,8 +1367,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 90",
-            "resolved": true,
-            "fifaRank": 7
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1527,7 +1498,7 @@
           "matchNo": 102,
           "stage": "Semi-final",
           "stageCode": "SEMI_FINALS",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-15T19:00:00Z",
           "home": {
             "name": "England",
@@ -1575,13 +1546,14 @@
             "fifaRank": 2
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "Argentina",
+            "owner": "Nik",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 102",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 1
           },
           "penalties": false,
           "winner": null
@@ -1609,13 +1581,14 @@
             "fifaRank": 3
           },
           "away": {
-            "name": "TBD",
-            "owner": null,
+            "name": "England",
+            "owner": "Mat",
             "goals": null,
             "penGoals": null,
             "projected": false,
             "slot": "Loser match 102",
-            "resolved": false
+            "resolved": true,
+            "fifaRank": 4
           },
           "penalties": false,
           "winner": null
@@ -9917,8 +9890,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "SEMI_FINALS",
+        "home": "England",
+        "away": "Argentina",
+        "homeGoals": 1,
+        "awayGoals": 2,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-07-15T21:09:03Z"
+  "generated": "2026-07-15T21:10:06Z"
 }
