@@ -1,18 +1,18 @@
 {
-  "generated": "2026-07-15T03:48:06.169394Z",
+  "generated": "2026-07-15T06:38:02.519592Z",
   "sims": 1000000,
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.66426,
-      "base": 0.6602,
-      "delta": 0.00406,
+      "odds": 0.65996,
+      "base": 0.66426,
+      "delta": -0.0043,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.66426,
-          "base": 0.6602,
-          "delta": 0.00406
+          "odds": 0.65996,
+          "base": 0.66426,
+          "delta": -0.0043
         },
         {
           "name": "Japan",
@@ -30,43 +30,16 @@
       "rank": 1
     },
     {
-      "name": "Mat",
-      "odds": 0.17229,
-      "base": 0.17453,
-      "delta": -0.00224,
-      "teams": [
-        {
-          "name": "England",
-          "odds": 0.17229,
-          "base": 0.17453,
-          "delta": -0.00224
-        },
-        {
-          "name": "Switzerland",
-          "odds": 0.0,
-          "base": 0.00255,
-          "delta": -0.00255
-        },
-        {
-          "name": "Algeria",
-          "odds": 0.0,
-          "base": 8e-05,
-          "delta": -8e-05
-        }
-      ],
-      "rank": 2
-    },
-    {
       "name": "Nik",
-      "odds": 0.16344,
-      "base": 0.16527,
-      "delta": -0.00183,
+      "odds": 0.17145,
+      "base": 0.16344,
+      "delta": 0.00801,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.16344,
-          "base": 0.16527,
-          "delta": -0.00183
+          "odds": 0.17145,
+          "base": 0.16344,
+          "delta": 0.00801
         },
         {
           "name": "Mexico",
@@ -79,6 +52,33 @@
           "odds": 0.0,
           "base": 0.00063,
           "delta": -0.00063
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "name": "Mat",
+      "odds": 0.16858,
+      "base": 0.17229,
+      "delta": -0.00371,
+      "teams": [
+        {
+          "name": "England",
+          "odds": 0.16858,
+          "base": 0.17229,
+          "delta": -0.00371
+        },
+        {
+          "name": "Switzerland",
+          "odds": 0.0,
+          "base": 0.00255,
+          "delta": -0.00255
+        },
+        {
+          "name": "Algeria",
+          "odds": 0.0,
+          "base": 8e-05,
+          "delta": -8e-05
         }
       ],
       "rank": 3
