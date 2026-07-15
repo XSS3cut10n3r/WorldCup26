@@ -472,7 +472,37 @@
       "utcDate": "2026-07-09T20:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "matchNo": 102,
+      "stage": "Semi-final",
+      "stageCode": "SEMI_FINALS",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-15T19:00:00Z",
+      "home": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 99",
+        "resolved": true,
+        "fifaRank": 4
+      },
+      "away": {
+        "name": "Argentina",
+        "owner": "Nik",
+        "goals": 0,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 100",
+        "resolved": true,
+        "fifaRank": 1
+      },
+      "penalties": false,
+      "winner": null
+    }
+  ],
   "recent": [
     {
       "matchNo": 101,
@@ -621,35 +651,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 102,
-      "stage": "Semi-final",
-      "stageCode": "SEMI_FINALS",
-      "status": "TIMED",
-      "utcDate": "2026-07-15T19:00:00Z",
-      "home": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 99",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "away": {
-        "name": "Argentina",
-        "owner": "Nik",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 100",
-        "resolved": true,
-        "fifaRank": 1
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 103,
       "stage": "Third-place match",
@@ -1527,12 +1528,12 @@
           "matchNo": 102,
           "stage": "Semi-final",
           "stageCode": "SEMI_FINALS",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-15T19:00:00Z",
           "home": {
             "name": "England",
             "owner": "Mat",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 99",
@@ -1542,7 +1543,7 @@
           "away": {
             "name": "Argentina",
             "owner": "Nik",
-            "goals": null,
+            "goals": 0,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 100",
@@ -9920,5 +9921,5 @@
       }
     ]
   },
-  "generated": "2026-07-14T21:04:25Z"
+  "generated": "2026-07-15T19:54:59Z"
 }
