@@ -1532,7 +1532,7 @@
           "home": {
             "name": "England",
             "owner": "Mat",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 99",
@@ -1542,7 +1542,7 @@
           "away": {
             "name": "Argentina",
             "owner": "Nik",
-            "goals": 0,
+            "goals": 2,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 100",
@@ -1550,7 +1550,7 @@
             "fifaRank": 1
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         }
       ]
     },
@@ -2305,7 +2305,7 @@
           "ga": 1,
           "gd": 7,
           "points": 9,
-          "conduct": -6,
+          "conduct": -9,
           "fifaRank": 1,
           "clinched": true,
           "clinchType": "winner"
@@ -2453,7 +2453,7 @@
           "ga": 2,
           "gd": 4,
           "points": 7,
-          "conduct": -11,
+          "conduct": -12,
           "fifaRank": 4,
           "clinched": true,
           "clinchType": "winner"
@@ -2992,16 +2992,6 @@
         "rank": 16
       },
       {
-        "team": "Argentina",
-        "owner": "Nik",
-        "yellow": 6,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -6,
-        "rank": 22
-      },
-      {
         "team": "DR Congo",
         "owner": "Tom",
         "yellow": 6,
@@ -3069,7 +3059,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Haiti",
@@ -3079,7 +3069,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Morocco",
@@ -3089,7 +3079,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Portugal",
@@ -3099,7 +3089,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -7,
-        "rank": 29
+        "rank": 28
       },
       {
         "team": "Brazil",
@@ -3109,7 +3099,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 33
+        "rank": 32
       },
       {
         "team": "Colombia",
@@ -3119,7 +3109,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 33
+        "rank": 32
       },
       {
         "team": "Iraq",
@@ -3129,7 +3119,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 33
+        "rank": 32
       },
       {
         "team": "Mexico",
@@ -3139,7 +3129,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -8,
-        "rank": 33
+        "rank": 32
+      },
+      {
+        "team": "Argentina",
+        "owner": "Nik",
+        "yellow": 9,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 0,
+        "score": -9,
+        "rank": 36
       },
       {
         "team": "Uruguay",
@@ -3149,7 +3149,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -9,
-        "rank": 37
+        "rank": 36
       },
       {
         "team": "Belgium",
@@ -3182,16 +3182,6 @@
         "rank": 38
       },
       {
-        "team": "England",
-        "owner": "Mat",
-        "yellow": 7,
-        "indirect_red": 0,
-        "direct_red": 1,
-        "yellow_direct_red": 0,
-        "score": -11,
-        "rank": 38
-      },
-      {
         "team": "Switzerland",
         "owner": "Mat",
         "yellow": 6,
@@ -3219,7 +3209,17 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 44
+        "rank": 43
+      },
+      {
+        "team": "England",
+        "owner": "Mat",
+        "yellow": 8,
+        "indirect_red": 0,
+        "direct_red": 1,
+        "yellow_direct_red": 0,
+        "score": -12,
+        "rank": 43
       },
       {
         "team": "Qatar",
@@ -3229,7 +3229,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 44
+        "rank": 43
       },
       {
         "team": "South Africa",
@@ -3306,6 +3306,25 @@
         "rank": 2
       },
       {
+        "name": "Mat",
+        "score": -26,
+        "teams": [
+          {
+            "name": "England",
+            "score": -12
+          },
+          {
+            "name": "Switzerland",
+            "score": -11
+          },
+          {
+            "name": "Algeria",
+            "score": -3
+          }
+        ],
+        "rank": 3
+      },
+      {
         "name": "Darcy",
         "score": -25,
         "teams": [
@@ -3326,26 +3345,7 @@
             "score": -7
           }
         ],
-        "rank": 3
-      },
-      {
-        "name": "Mat",
-        "score": -25,
-        "teams": [
-          {
-            "name": "England",
-            "score": -11
-          },
-          {
-            "name": "Switzerland",
-            "score": -11
-          },
-          {
-            "name": "Algeria",
-            "score": -3
-          }
-        ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Paul",
@@ -3368,7 +3368,7 @@
             "score": -5
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Pete",
@@ -3517,11 +3517,11 @@
       },
       {
         "name": "Nik",
-        "score": -15,
+        "score": -18,
         "teams": [
           {
             "name": "Argentina",
-            "score": -6
+            "score": -9
           },
           {
             "name": "Mexico",
@@ -9516,7 +9516,7 @@
       "Argentina": {
         "owner": "Nik",
         "canon": "Argentina",
-        "conduct": -6,
+        "conduct": -9,
         "fifa": 1,
         "group": "J"
       },
@@ -9572,7 +9572,7 @@
       "England": {
         "owner": "Mat",
         "canon": "England",
-        "conduct": -11,
+        "conduct": -12,
         "fifa": 4,
         "group": "L"
       },
@@ -9920,5 +9920,5 @@
       }
     ]
   },
-  "generated": "2026-07-15T19:54:59Z"
+  "generated": "2026-07-15T21:03:47Z"
 }
