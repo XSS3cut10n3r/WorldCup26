@@ -472,12 +472,13 @@
       "utcDate": "2026-07-09T20:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "matchNo": 102,
       "stage": "Semi-final",
       "stageCode": "SEMI_FINALS",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-15T19:00:00Z",
       "home": {
         "name": "England",
@@ -500,10 +501,8 @@
         "fifaRank": 1
       },
       "penalties": false,
-      "winner": null
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM"
+    },
     {
       "matchNo": 101,
       "stage": "Semi-final",
