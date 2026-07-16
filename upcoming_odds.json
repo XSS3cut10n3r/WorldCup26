@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-16T07:03:52.988453Z",
+  "generated": "2026-07-16T12:06:13.593862Z",
   "sims": 1000000,
   "games": [
     {
@@ -8,6 +8,14 @@
       "away": "Argentina",
       "knockout": true,
       "odds": {
+        "homeReg": 0.38122,
+        "homeET": 0.11547,
+        "homePen": 0.10336,
+        "awayReg": 0.25468,
+        "awayET": 0.04115,
+        "awayPen": 0.10411
+      },
+      "base": {
         "homeReg": 0.38117,
         "homeET": 0.11535,
         "homePen": 0.10337,
@@ -15,21 +23,13 @@
         "awayET": 0.04122,
         "awayPen": 0.10408
       },
-      "base": {
-        "homeReg": 0.38061,
-        "homeET": 0.11491,
-        "homePen": 0.1035,
-        "awayReg": 0.25537,
-        "awayET": 0.04159,
-        "awayPen": 0.10403
-      },
       "delta": {
-        "homeReg": 0.00056,
-        "homeET": 0.00044,
-        "homePen": -0.00013,
-        "awayReg": -0.00056,
-        "awayET": -0.00037,
-        "awayPen": 5e-05
+        "homeReg": 5e-05,
+        "homeET": 0.00012,
+        "homePen": -1e-05,
+        "awayReg": -0.00013,
+        "awayET": -7e-05,
+        "awayPen": 3e-05
       }
     },
     {
@@ -38,14 +38,6 @@
       "away": "England",
       "knockout": true,
       "odds": {
-        "homeReg": 0.36849,
-        "homeET": 0.09523,
-        "homePen": 0.10881,
-        "awayReg": 0.26977,
-        "awayET": 0.0578,
-        "awayPen": 0.0999
-      },
-      "base": {
         "homeReg": 0.36855,
         "homeET": 0.09522,
         "homePen": 0.1088,
@@ -53,13 +45,21 @@
         "awayET": 0.05779,
         "awayPen": 0.09988
       },
+      "base": {
+        "homeReg": 0.36849,
+        "homeET": 0.09523,
+        "homePen": 0.10881,
+        "awayReg": 0.26977,
+        "awayET": 0.0578,
+        "awayPen": 0.0999
+      },
       "delta": {
-        "homeReg": -6e-05,
-        "homeET": 1e-05,
-        "homePen": 1e-05,
+        "homeReg": 6e-05,
+        "homeET": -1e-05,
+        "homePen": -1e-05,
         "awayReg": null,
-        "awayET": 1e-05,
-        "awayPen": 2e-05
+        "awayET": -1e-05,
+        "awayPen": -2e-05
       }
     }
   ]
