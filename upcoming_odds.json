@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-17T15:58:32.758670Z",
+  "generated": "2026-07-17T17:41:51.317949Z",
   "sims": 1000000,
   "games": [
     {
@@ -8,6 +8,14 @@
       "away": "Argentina",
       "knockout": true,
       "odds": {
+        "homeReg": 0.38669,
+        "homeET": 0.1186,
+        "homePen": 0.10254,
+        "awayReg": 0.24975,
+        "awayET": 0.03864,
+        "awayPen": 0.10378
+      },
+      "base": {
         "homeReg": 0.3867,
         "homeET": 0.11864,
         "homePen": 0.10251,
@@ -15,21 +23,13 @@
         "awayET": 0.03862,
         "awayPen": 0.10379
       },
-      "base": {
-        "homeReg": 0.38659,
-        "homeET": 0.11847,
-        "homePen": 0.10254,
-        "awayReg": 0.24998,
-        "awayET": 0.03866,
-        "awayPen": 0.10377
-      },
       "delta": {
-        "homeReg": 0.00011,
-        "homeET": 0.00017,
-        "homePen": -3e-05,
-        "awayReg": -0.00024,
-        "awayET": -4e-05,
-        "awayPen": 2e-05
+        "homeReg": -1e-05,
+        "homeET": -4e-05,
+        "homePen": 3e-05,
+        "awayReg": 1e-05,
+        "awayET": 2e-05,
+        "awayPen": -1e-05
       }
     },
     {
