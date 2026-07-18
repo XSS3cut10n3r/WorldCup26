@@ -475,31 +475,33 @@
   "live": [],
   "recent": [
     {
+      "matchNo": 103,
       "stage": "Third-place match",
       "stageCode": "THIRD_PLACE",
       "status": "FINISHED",
-      "utcDate": "2026-07-18T21:00Z",
+      "utcDate": "2026-07-18T21:00:00Z",
       "home": {
         "name": "France",
         "owner": "Darcy",
         "goals": 4,
         "penGoals": null,
-        "fifaRank": 3,
         "projected": false,
-        "resolved": true
+        "slot": "Loser match 101",
+        "resolved": true,
+        "fifaRank": 3
       },
       "away": {
         "name": "England",
         "owner": "Mat",
         "goals": 6,
         "penGoals": null,
-        "fifaRank": 4,
         "projected": false,
-        "resolved": true
+        "slot": "Loser match 102",
+        "resolved": true,
+        "fifaRank": 4
       },
       "penalties": false,
-      "winner": "AWAY_TEAM",
-      "_src": "espn-final"
+      "winner": "AWAY_TEAM"
     },
     {
       "matchNo": 102,
@@ -616,6 +618,35 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
+    },
+    {
+      "matchNo": 98,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "FINISHED",
+      "utcDate": "2026-07-10T19:00:00Z",
+      "home": {
+        "name": "Spain",
+        "owner": "Pete",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 93",
+        "resolved": true,
+        "fifaRank": 2
+      },
+      "away": {
+        "name": "Belgium",
+        "owner": "Paul",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 94",
+        "resolved": true,
+        "fifaRank": 9
+      },
+      "penalties": false,
+      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -1537,12 +1568,12 @@
           "matchNo": 103,
           "stage": "Third-place match",
           "stageCode": "THIRD_PLACE",
-          "status": "TIMED",
+          "status": "IN_PLAY",
           "utcDate": "2026-07-18T21:00:00Z",
           "home": {
             "name": "France",
             "owner": "Darcy",
-            "goals": null,
+            "goals": 3,
             "penGoals": null,
             "projected": false,
             "slot": "Loser match 101",
@@ -1552,7 +1583,7 @@
           "away": {
             "name": "England",
             "owner": "Mat",
-            "goals": null,
+            "goals": 5,
             "penGoals": null,
             "projected": false,
             "slot": "Loser match 102",
@@ -1560,7 +1591,7 @@
             "fifaRank": 4
           },
           "penalties": false,
-          "winner": null
+          "winner": "AWAY_TEAM"
         }
       ]
     }
@@ -9873,5 +9904,5 @@
       }
     ]
   },
-  "generated": "2026-07-16T08:10:28Z"
+  "generated": "2026-07-18T23:02:35Z"
 }
