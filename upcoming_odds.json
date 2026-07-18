@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-18T21:26:04.288780Z",
+  "generated": "2026-07-18T23:15:51.287392Z",
   "sims": 1000000,
   "games": [
     {
@@ -8,6 +8,14 @@
       "away": "Argentina",
       "knockout": true,
       "odds": {
+        "homeReg": 0.38662,
+        "homeET": 0.11964,
+        "homePen": 0.10337,
+        "awayReg": 0.24757,
+        "awayET": 0.03875,
+        "awayPen": 0.10404
+      },
+      "base": {
         "homeReg": 0.3915,
         "homeET": 0.1215,
         "homePen": 0.10254,
@@ -15,51 +23,13 @@
         "awayET": 0.0371,
         "awayPen": 0.10321
       },
-      "base": {
-        "homeReg": 0.39055,
-        "homeET": 0.12033,
-        "homePen": 0.10222,
-        "awayReg": 0.24685,
-        "awayET": 0.03701,
-        "awayPen": 0.10303
-      },
       "delta": {
-        "homeReg": 0.00095,
-        "homeET": 0.00117,
-        "homePen": 0.00032,
-        "awayReg": -0.0027,
-        "awayET": 9e-05,
-        "awayPen": 0.00018
-      }
-    },
-    {
-      "stageCode": "THIRD_PLACE",
-      "home": "France",
-      "away": "England",
-      "knockout": true,
-      "odds": {
-        "homeReg": 0.36708,
-        "homeET": 0.09485,
-        "homePen": 0.10809,
-        "awayReg": 0.27215,
-        "awayET": 0.05837,
-        "awayPen": 0.09946
-      },
-      "base": {
-        "homeReg": 0.36849,
-        "homeET": 0.09523,
-        "homePen": 0.10881,
-        "awayReg": 0.26977,
-        "awayET": 0.0578,
-        "awayPen": 0.0999
-      },
-      "delta": {
-        "homeReg": -0.00141,
-        "homeET": -0.00038,
-        "homePen": -0.00072,
-        "awayReg": 0.00238,
-        "awayET": 0.00057,
-        "awayPen": -0.00044
+        "homeReg": -0.00488,
+        "homeET": -0.00186,
+        "homePen": 0.00083,
+        "awayReg": 0.00342,
+        "awayET": 0.00165,
+        "awayPen": 0.00083
       }
     }
   ]
