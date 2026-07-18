@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Mat",
+      "points": 23.5,
+      "teams": [
+        {
+          "name": "England",
+          "points": 14.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Switzerland",
+          "points": 7.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Algeria",
+          "points": 1.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Nik",
       "points": 22.5,
       "teams": [
@@ -26,7 +54,7 @@
           "clinchType": null
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Pete",
@@ -49,34 +77,6 @@
         {
           "name": "Paraguay",
           "points": 3.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "third"
-        }
-      ],
-      "rank": 2
-    },
-    {
-      "name": "Mat",
-      "points": 20.5,
-      "teams": [
-        {
-          "name": "England",
-          "points": 11.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Switzerland",
-          "points": 7.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Algeria",
-          "points": 1.5,
           "eliminated": true,
           "clinched": true,
           "clinchType": "third"
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Mat",
+      "team": "England",
+      "points": 3,
+      "label": "England won (Third-place match)",
+      "utcDate": "2026-07-18T21:00:00Z"
+    },
+    {
       "owner": "Nik",
       "team": "Argentina",
       "points": 5,
@@ -463,13 +470,6 @@
       "points": 4,
       "label": "England won (Quarter-final)",
       "utcDate": "2026-07-11T21:00:00Z"
-    },
-    {
-      "owner": "Pete",
-      "team": "Spain",
-      "points": 4,
-      "label": "Spain won (Quarter-final)",
-      "utcDate": "2026-07-10T19:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 98,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "FINISHED",
-      "utcDate": "2026-07-10T19:00:00Z",
-      "home": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 93",
-        "resolved": true,
-        "fifaRank": 2
-      },
-      "away": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 94",
-        "resolved": true,
-        "fifaRank": 9
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
@@ -1385,8 +1356,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 93",
-            "resolved": true,
-            "fifaRank": 2
+            "resolved": true
           },
           "away": {
             "name": "Belgium",
@@ -1395,8 +1365,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 94",
-            "resolved": true,
-            "fifaRank": 9
+            "resolved": true
           },
           "penalties": false,
           "winner": "HOME_TEAM"
@@ -1568,7 +1537,7 @@
           "matchNo": 103,
           "stage": "Third-place match",
           "stageCode": "THIRD_PLACE",
-          "status": "IN_PLAY",
+          "status": "FINISHED",
           "utcDate": "2026-07-18T21:00:00Z",
           "home": {
             "name": "France",
@@ -9901,8 +9870,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "THIRD_PLACE",
+        "home": "France",
+        "away": "England",
+        "homeGoals": 4,
+        "awayGoals": 6,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "AWAY_TEAM"
       }
     ]
   },
-  "generated": "2026-07-18T23:07:48Z"
+  "generated": "2026-07-18T23:08:51Z"
 }
