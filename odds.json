@@ -2,13 +2,13 @@
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.587065,
+      "odds": 0.587794,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.587065,
-          "base": 0.588911,
-          "delta": -0.001846
+          "odds": 0.587794,
+          "base": 0.587065,
+          "delta": 0.000729
         },
         {
           "name": "Japan",
@@ -24,18 +24,18 @@
         }
       ],
       "rank": 1,
-      "base": 0.588911,
-      "delta": -0.001846
+      "base": 0.587065,
+      "delta": 0.000729
     },
     {
       "name": "Nik",
-      "odds": 0.412935,
+      "odds": 0.412206,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.412935,
-          "base": 0.411089,
-          "delta": 0.001846
+          "odds": 0.412206,
+          "base": 0.412935,
+          "delta": -0.000729
         },
         {
           "name": "Mexico",
@@ -51,8 +51,8 @@
         }
       ],
       "rank": 2,
-      "base": 0.411089,
-      "delta": 0.001846
+      "base": 0.412935,
+      "delta": -0.000729
     },
     {
       "name": "Agatha",
@@ -415,8 +415,8 @@
       "delta": -0.004808
     }
   ],
-  "overround": 1.005,
+  "overround": 0.9995,
   "source": "Kalshi",
   "event": "KXMENWORLDCUP-26",
-  "generated": "2026-07-18T11:30:02Z"
+  "generated": "2026-07-18T13:57:29Z"
 }
