@@ -472,7 +472,35 @@
       "utcDate": "2026-07-10T19:00:00Z"
     }
   ],
-  "live": [],
+  "live": [
+    {
+      "stage": "Third-place match",
+      "stageCode": "THIRD_PLACE",
+      "status": "IN_PLAY",
+      "utcDate": "2026-07-18T21:00Z",
+      "home": {
+        "name": "France",
+        "owner": "Darcy",
+        "goals": 0,
+        "penGoals": null,
+        "fifaRank": 3,
+        "projected": false,
+        "resolved": true
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 1,
+        "penGoals": null,
+        "fifaRank": 4,
+        "projected": false,
+        "resolved": true
+      },
+      "penalties": false,
+      "winner": null,
+      "_src": "espn-live"
+    }
+  ],
   "recent": [
     {
       "matchNo": 102,
@@ -621,35 +649,6 @@
     }
   ],
   "upcoming": [
-    {
-      "matchNo": 103,
-      "stage": "Third-place match",
-      "stageCode": "THIRD_PLACE",
-      "status": "TIMED",
-      "utcDate": "2026-07-18T21:00:00Z",
-      "home": {
-        "name": "France",
-        "owner": "Darcy",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Loser match 101",
-        "resolved": true,
-        "fifaRank": 3
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": null,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Loser match 102",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": null
-    },
     {
       "matchNo": 104,
       "stage": "Final",
