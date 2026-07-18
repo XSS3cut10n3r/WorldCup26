@@ -472,11 +472,12 @@
       "utcDate": "2026-07-10T19:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Third-place match",
       "stageCode": "THIRD_PLACE",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-18T21:00Z",
       "home": {
         "name": "France",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "AWAY_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 102,
       "stage": "Semi-final",
@@ -617,35 +616,6 @@
       },
       "penalties": false,
       "winner": "AWAY_TEAM"
-    },
-    {
-      "matchNo": 98,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "FINISHED",
-      "utcDate": "2026-07-10T19:00:00Z",
-      "home": {
-        "name": "Spain",
-        "owner": "Pete",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 93",
-        "resolved": true,
-        "fifaRank": 2
-      },
-      "away": {
-        "name": "Belgium",
-        "owner": "Paul",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 94",
-        "resolved": true,
-        "fifaRank": 9
-      },
-      "penalties": false,
-      "winner": "HOME_TEAM"
     }
   ],
   "upcoming": [
