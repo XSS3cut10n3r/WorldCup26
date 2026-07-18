@@ -1,18 +1,18 @@
 {
-  "generated": "2026-07-18T19:45:30.072417Z",
+  "generated": "2026-07-18T21:26:02.429465Z",
   "sims": 1000000,
   "standings": [
     {
       "name": "Pete",
-      "odds": 0.60106,
-      "base": 0.59931,
-      "delta": 0.00175,
+      "odds": 0.60101,
+      "base": 0.60106,
+      "delta": -5e-05,
       "teams": [
         {
           "name": "Spain",
-          "odds": 0.60106,
-          "base": 0.59931,
-          "delta": 0.00175
+          "odds": 0.60101,
+          "base": 0.60106,
+          "delta": -5e-05
         },
         {
           "name": "Japan",
@@ -31,15 +31,15 @@
     },
     {
       "name": "Nik",
-      "odds": 0.39894,
-      "base": 0.40069,
-      "delta": -0.00175,
+      "odds": 0.39899,
+      "base": 0.39894,
+      "delta": 5e-05,
       "teams": [
         {
           "name": "Argentina",
-          "odds": 0.39894,
-          "base": 0.40069,
-          "delta": -0.00175
+          "odds": 0.39899,
+          "base": 0.39894,
+          "delta": 5e-05
         },
         {
           "name": "Mexico",
