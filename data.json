@@ -2246,7 +2246,7 @@
           "ga": 1,
           "gd": 7,
           "points": 9,
-          "conduct": -18,
+          "conduct": -22,
           "fifaRank": 1,
           "clinched": true,
           "clinchType": "winner"
@@ -3195,11 +3195,11 @@
       {
         "team": "Argentina",
         "owner": "Nik",
-        "yellow": 13,
+        "yellow": 12,
         "indirect_red": 0,
         "direct_red": 0,
-        "yellow_direct_red": 1,
-        "score": -18,
+        "yellow_direct_red": 2,
+        "score": -22,
         "rank": 48
       }
     ],
@@ -3229,11 +3229,11 @@
       },
       {
         "name": "Nik",
-        "score": -27,
+        "score": -31,
         "teams": [
           {
             "name": "Argentina",
-            "score": -18
+            "score": -22
           },
           {
             "name": "Mexico",
@@ -3263,7 +3263,7 @@
             "score": -6
           }
         ],
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "Mat",
@@ -9457,7 +9457,7 @@
       "Argentina": {
         "owner": "Nik",
         "canon": "Argentina",
-        "conduct": -18,
+        "conduct": -22,
         "fifa": 1,
         "group": "J"
       },
@@ -9883,5 +9883,5 @@
       }
     ]
   },
-  "generated": "2026-07-19T22:04:27Z"
+  "generated": "2026-07-19T22:05:29Z"
 }
