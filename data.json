@@ -1,6 +1,34 @@
 {
   "leaderboard": [
     {
+      "name": "Pete",
+      "points": 28.0,
+      "teams": [
+        {
+          "name": "Spain",
+          "points": 22.5,
+          "eliminated": false,
+          "clinched": true,
+          "clinchType": "winner"
+        },
+        {
+          "name": "Japan",
+          "points": 2.0,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "second"
+        },
+        {
+          "name": "Paraguay",
+          "points": 3.5,
+          "eliminated": true,
+          "clinched": true,
+          "clinchType": "third"
+        }
+      ],
+      "rank": 1
+    },
+    {
       "name": "Mat",
       "points": 23.5,
       "teams": [
@@ -26,7 +54,7 @@
           "clinchType": "third"
         }
       ],
-      "rank": 1
+      "rank": 2
     },
     {
       "name": "Nik",
@@ -35,7 +63,7 @@
         {
           "name": "Argentina",
           "points": 17,
-          "eliminated": false,
+          "eliminated": true,
           "clinched": true,
           "clinchType": "winner"
         },
@@ -52,34 +80,6 @@
           "eliminated": true,
           "clinched": false,
           "clinchType": null
-        }
-      ],
-      "rank": 2
-    },
-    {
-      "name": "Pete",
-      "points": 22.0,
-      "teams": [
-        {
-          "name": "Spain",
-          "points": 16.5,
-          "eliminated": false,
-          "clinched": true,
-          "clinchType": "winner"
-        },
-        {
-          "name": "Japan",
-          "points": 2.0,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "second"
-        },
-        {
-          "name": "Paraguay",
-          "points": 3.5,
-          "eliminated": true,
-          "clinched": true,
-          "clinchType": "third"
         }
       ],
       "rank": 3
@@ -437,6 +437,13 @@
   ],
   "events": [
     {
+      "owner": "Pete",
+      "team": "Spain",
+      "points": 6,
+      "label": "Spain won (Final)",
+      "utcDate": "2026-07-19T19:00:00Z"
+    },
+    {
       "owner": "Mat",
       "team": "England",
       "points": 3,
@@ -463,13 +470,6 @@
       "points": 4,
       "label": "Argentina won (Quarter-final)",
       "utcDate": "2026-07-12T01:00:00Z"
-    },
-    {
-      "owner": "Mat",
-      "team": "England",
-      "points": 4,
-      "label": "England won (Quarter-final)",
-      "utcDate": "2026-07-11T21:00:00Z"
     }
   ],
   "live": [],
@@ -618,35 +618,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 99,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "FINISHED",
-      "utcDate": "2026-07-11T21:00:00Z",
-      "home": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 91",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 92",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [],
@@ -1382,8 +1353,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 91",
-            "resolved": true,
-            "fifaRank": 31
+            "resolved": true
           },
           "away": {
             "name": "England",
@@ -1392,8 +1362,7 @@
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 92",
-            "resolved": true,
-            "fifaRank": 4
+            "resolved": true
           },
           "penalties": false,
           "winner": "AWAY_TEAM"
@@ -1501,7 +1470,7 @@
           "matchNo": 104,
           "stage": "Final",
           "stageCode": "FINAL",
-          "status": "LIVE",
+          "status": "FINISHED",
           "utcDate": "2026-07-19T19:00:00Z",
           "home": {
             "name": "Spain",
@@ -9880,8 +9849,19 @@
         "penHome": null,
         "penAway": null,
         "winner": "AWAY_TEAM"
+      },
+      {
+        "stageCode": "FINAL",
+        "home": "Spain",
+        "away": "Argentina",
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "penalties": false,
+        "penHome": null,
+        "penAway": null,
+        "winner": "HOME_TEAM"
       }
     ]
   },
-  "generated": "2026-07-19T22:06:31Z"
+  "generated": "2026-07-19T22:07:33Z"
 }
