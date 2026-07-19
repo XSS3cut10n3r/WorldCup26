@@ -472,11 +472,12 @@
       "utcDate": "2026-07-11T21:00:00Z"
     }
   ],
-  "live": [
+  "live": [],
+  "recent": [
     {
       "stage": "Final",
       "stageCode": "FINAL",
-      "status": "IN_PLAY",
+      "status": "FINISHED",
       "utcDate": "2026-07-19T19:00Z",
       "home": {
         "name": "Spain",
@@ -497,11 +498,9 @@
         "resolved": true
       },
       "penalties": false,
-      "winner": null,
-      "_src": "espn-live"
-    }
-  ],
-  "recent": [
+      "winner": "HOME_TEAM",
+      "_src": "espn-final"
+    },
     {
       "matchNo": 103,
       "stage": "Third-place match",
@@ -617,35 +616,6 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
-    },
-    {
-      "matchNo": 99,
-      "stage": "Quarter-final",
-      "stageCode": "QUARTER_FINALS",
-      "status": "FINISHED",
-      "utcDate": "2026-07-11T21:00:00Z",
-      "home": {
-        "name": "Norway",
-        "owner": "Charlotte",
-        "goals": 1,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 91",
-        "resolved": true,
-        "fifaRank": 31
-      },
-      "away": {
-        "name": "England",
-        "owner": "Mat",
-        "goals": 2,
-        "penGoals": null,
-        "projected": false,
-        "slot": "Winner match 92",
-        "resolved": true,
-        "fifaRank": 4
-      },
-      "penalties": false,
-      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [],
