@@ -475,31 +475,33 @@
   "live": [],
   "recent": [
     {
+      "matchNo": 104,
       "stage": "Final",
       "stageCode": "FINAL",
       "status": "FINISHED",
-      "utcDate": "2026-07-19T19:00Z",
+      "utcDate": "2026-07-19T19:00:00Z",
       "home": {
         "name": "Spain",
         "owner": "Pete",
         "goals": 1,
         "penGoals": null,
-        "fifaRank": 2,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 101",
+        "resolved": true,
+        "fifaRank": 2
       },
       "away": {
         "name": "Argentina",
         "owner": "Nik",
         "goals": 0,
         "penGoals": null,
-        "fifaRank": 1,
         "projected": false,
-        "resolved": true
+        "slot": "Winner match 102",
+        "resolved": true,
+        "fifaRank": 1
       },
       "penalties": false,
-      "winner": "HOME_TEAM",
-      "_src": "espn-final"
+      "winner": "HOME_TEAM"
     },
     {
       "matchNo": 103,
@@ -616,6 +618,35 @@
       },
       "penalties": false,
       "winner": "HOME_TEAM"
+    },
+    {
+      "matchNo": 99,
+      "stage": "Quarter-final",
+      "stageCode": "QUARTER_FINALS",
+      "status": "FINISHED",
+      "utcDate": "2026-07-11T21:00:00Z",
+      "home": {
+        "name": "Norway",
+        "owner": "Charlotte",
+        "goals": 1,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 91",
+        "resolved": true,
+        "fifaRank": 31
+      },
+      "away": {
+        "name": "England",
+        "owner": "Mat",
+        "goals": 2,
+        "penGoals": null,
+        "projected": false,
+        "slot": "Winner match 92",
+        "resolved": true,
+        "fifaRank": 4
+      },
+      "penalties": false,
+      "winner": "AWAY_TEAM"
     }
   ],
   "upcoming": [],
@@ -1475,7 +1506,7 @@
           "home": {
             "name": "Spain",
             "owner": "Pete",
-            "goals": 0,
+            "goals": 1,
             "penGoals": null,
             "projected": false,
             "slot": "Winner match 101",
@@ -1493,7 +1524,7 @@
             "fifaRank": 1
           },
           "penalties": false,
-          "winner": null
+          "winner": "HOME_TEAM"
         }
       ]
     },
@@ -2215,7 +2246,7 @@
           "ga": 1,
           "gd": 7,
           "points": 9,
-          "conduct": -9,
+          "conduct": -18,
           "fifaRank": 1,
           "clinched": true,
           "clinchType": "winner"
@@ -3042,16 +3073,6 @@
         "rank": 32
       },
       {
-        "team": "Argentina",
-        "owner": "Nik",
-        "yellow": 9,
-        "indirect_red": 0,
-        "direct_red": 0,
-        "yellow_direct_red": 0,
-        "score": -9,
-        "rank": 36
-      },
-      {
         "team": "Uruguay",
         "owner": "Iva",
         "yellow": 5,
@@ -3069,7 +3090,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Bosnia and Herzegovina",
@@ -3079,7 +3100,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Canada",
@@ -3089,7 +3110,7 @@
         "direct_red": 0,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Switzerland",
@@ -3099,7 +3120,7 @@
         "direct_red": 0,
         "yellow_direct_red": 1,
         "score": -11,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "United States",
@@ -3109,7 +3130,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -11,
-        "rank": 38
+        "rank": 37
       },
       {
         "team": "Ecuador",
@@ -3119,7 +3140,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "England",
@@ -3129,7 +3150,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "Qatar",
@@ -3139,7 +3160,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -12,
-        "rank": 43
+        "rank": 42
       },
       {
         "team": "South Africa",
@@ -3149,7 +3170,7 @@
         "direct_red": 2,
         "yellow_direct_red": 0,
         "score": -13,
-        "rank": 46
+        "rank": 45
       },
       {
         "team": "Paraguay",
@@ -3159,7 +3180,7 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -14,
-        "rank": 47
+        "rank": 46
       },
       {
         "team": "Egypt",
@@ -3169,6 +3190,16 @@
         "direct_red": 1,
         "yellow_direct_red": 0,
         "score": -17,
+        "rank": 47
+      },
+      {
+        "team": "Argentina",
+        "owner": "Nik",
+        "yellow": 13,
+        "indirect_red": 0,
+        "direct_red": 0,
+        "yellow_direct_red": 1,
+        "score": -18,
         "rank": 48
       }
     ],
@@ -3195,6 +3226,25 @@
           }
         ],
         "rank": 1
+      },
+      {
+        "name": "Nik",
+        "score": -27,
+        "teams": [
+          {
+            "name": "Argentina",
+            "score": -18
+          },
+          {
+            "name": "Mexico",
+            "score": -8
+          },
+          {
+            "name": "Czechia",
+            "score": -1
+          }
+        ],
+        "rank": 2
       },
       {
         "name": "Tom",
@@ -3232,7 +3282,7 @@
             "score": -3
           }
         ],
-        "rank": 3
+        "rank": 4
       },
       {
         "name": "Darcy",
@@ -3255,7 +3305,7 @@
             "score": -7
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Paul",
@@ -3278,7 +3328,7 @@
             "score": -5
           }
         ],
-        "rank": 4
+        "rank": 5
       },
       {
         "name": "Pete",
@@ -3297,7 +3347,7 @@
             "score": -14
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Tomi",
@@ -3320,7 +3370,7 @@
             "score": -4
           }
         ],
-        "rank": 6
+        "rank": 7
       },
       {
         "name": "Iva",
@@ -3339,7 +3389,7 @@
             "score": -12
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Kelly",
@@ -3358,7 +3408,7 @@
             "score": -11
           }
         ],
-        "rank": 8
+        "rank": 9
       },
       {
         "name": "Charlie",
@@ -3381,7 +3431,7 @@
             "score": -4
           }
         ],
-        "rank": 10
+        "rank": 11
       },
       {
         "name": "Agatha",
@@ -3400,7 +3450,7 @@
             "score": -8
           }
         ],
-        "rank": 11
+        "rank": 12
       },
       {
         "name": "Ondine",
@@ -3423,26 +3473,7 @@
             "score": -7
           }
         ],
-        "rank": 11
-      },
-      {
-        "name": "Nik",
-        "score": -18,
-        "teams": [
-          {
-            "name": "Argentina",
-            "score": -9
-          },
-          {
-            "name": "Mexico",
-            "score": -8
-          },
-          {
-            "name": "Czechia",
-            "score": -1
-          }
-        ],
-        "rank": 13
+        "rank": 12
       },
       {
         "name": "Charlotte",
@@ -9426,7 +9457,7 @@
       "Argentina": {
         "owner": "Nik",
         "canon": "Argentina",
-        "conduct": -9,
+        "conduct": -18,
         "fifa": 1,
         "group": "J"
       },
@@ -9852,5 +9883,5 @@
       }
     ]
   },
-  "generated": "2026-07-19T19:41:36Z"
+  "generated": "2026-07-19T22:03:24Z"
 }
