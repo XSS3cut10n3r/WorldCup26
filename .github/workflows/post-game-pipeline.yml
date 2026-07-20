@@ -24,7 +24,7 @@ jobs:
         env:
           BRANCH: ${{ github.ref_name }}
         run: |
-          set -u
+          set -ue
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
