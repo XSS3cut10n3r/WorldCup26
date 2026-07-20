@@ -108,6 +108,40 @@ def fetch_markets(event_ticker: str) -> list:
     return markets
 
 
+def champion_from_local_results():
+    """Fallback for once the tournament is over and Kalshi's market has
+    closed: read the known champion straight from our own data.json
+    (bracket -> FINAL stage -> match winner), rather than depending on an
+    external market that's no longer live.
+
+    Returns the normalized team name, or None if data.json / the final
+    result isn't available yet (tournament still in progress, etc).
+    """
+    path = ROOT / "data.json"
+    if not path.exists():
+        return None
+    try:
+        data = load_json(path)
+    except (json.JSONDecodeError, OSError):
+        return None
+
+    final_stage = next(
+        (s for s in data.get("bracket", []) if s.get("stageCode") == "FINAL"),
+        None,
+    )
+    if not final_stage or not final_stage.get("matches"):
+        return None
+
+    match = final_stage["matches"][0]
+    winner_side = match.get("winner")  # "HOME_TEAM" or "AWAY_TEAM"
+    side = {"HOME_TEAM": "home", "AWAY_TEAM": "away"}.get(winner_side)
+    if not side:
+        return None
+
+    team = (match.get(side) or {}).get("name")
+    return normalize(team) if team else None
+
+
 def market_price(m: dict):
     """Implied YES price for a market, in cents (0..100), or None.
 
@@ -175,31 +209,51 @@ def main():
     assignments = load_json(ROOT / "assignments.json")
     participants = assignments["participants"]
 
+    source = "Kalshi"
     markets = fetch_markets(EVENT_TICKER)
-    if not markets:
-        sys.exit(f"No markets returned for event {EVENT_TICKER}. "
-                 "Check the event ticker is live on Kalshi.")
 
-    # normalized team name -> implied price (cents). If Kalshi ever lists a
-    # team twice, keep the richer (higher) quote.
-    price_by_team = {}
-    raw_total = 0.0
-    for m in markets:
-        nm = normalize(team_name_of(m))
-        price = market_price(m)
-        if not nm or price is None:
-            continue
-        raw_total += price
-        if nm not in price_by_team or price > price_by_team[nm]:
-            price_by_team[nm] = price
+    if markets:
+        # ---- Normal path: live Kalshi market -----------------------------
+        # normalized team name -> implied price (cents). If Kalshi ever lists
+        # a team twice, keep the richer (higher) quote.
+        price_by_team = {}
+        raw_total = 0.0
+        for m in markets:
+            nm = normalize(team_name_of(m))
+            price = market_price(m)
+            if not nm or price is None:
+                continue
+            raw_total += price
+            if nm not in price_by_team or price > price_by_team[nm]:
+                price_by_team[nm] = price
 
-    total = sum(price_by_team.values())
-    if total <= 0:
-        sys.exit("All Kalshi prices were zero/unavailable; nothing to normalize.")
+        total = sum(price_by_team.values())
+        if total <= 0:
+            sys.exit("All Kalshi prices were zero/unavailable; nothing to normalize.")
 
-    # prob(team) = price(team) / sum(all prices). Dividing by the total
-    # removes the overround so the field sums to exactly 1.0.
-    prob_by_team = {nm: p / total for nm, p in price_by_team.items()}
+        # prob(team) = price(team) / sum(all prices). Dividing by the total
+        # removes the overround so the field sums to exactly 1.0.
+        prob_by_team = {nm: p / total for nm, p in price_by_team.items()}
+        overround = round(raw_total / 100.0, 4)  # e.g. 1.05 = 105%
+    else:
+        # ---- Fallback: Kalshi market has closed (tournament is over) -----
+        # There's nothing left to price on Kalshi once the event resolves,
+        # so fall back to the champion we already know from our own results.
+        print(f"No open Kalshi markets for {EVENT_TICKER} "
+              "(tournament likely decided) — falling back to data.json.")
+        champion = champion_from_local_results()
+        if not champion:
+            sys.exit(
+                f"No markets returned for event {EVENT_TICKER}, and no "
+                "champion could be read from data.json's FINAL bracket "
+                "match either. Check the event ticker is live on Kalshi, "
+                "or that data.json has a finished FINAL match."
+            )
+        print(f"Using known champion from data.json: {champion}")
+        prob_by_team = {champion: 1.0}
+        price_by_team = {champion: 100.0}  # for the "N priced markets" log line
+        overround = 1.0  # fully settled book, no market margin to report
+        source = "Results (Kalshi market closed)"
 
     # ---- Roll up to family members --------------------------------------
     standings = []
@@ -237,8 +291,8 @@ def main():
 
     payload = {
         "standings": standings,
-        "overround": round(raw_total / 100.0, 4),  # e.g. 1.05 = 105%
-        "source": "Kalshi",
+        "overround": overround,
+        "source": source,
         "event": EVENT_TICKER,
     }
 
