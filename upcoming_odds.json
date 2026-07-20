@@ -1,36 +1,5 @@
 {
-  "generated": "2026-07-19T21:27:30.576847Z",
+  "generated": "2026-07-20T04:36:41.810429Z",
   "sims": 1000000,
-  "games": [
-    {
-      "stageCode": "FINAL",
-      "home": "Spain",
-      "away": "Argentina",
-      "knockout": true,
-      "odds": {
-        "homeReg": 0.37922,
-        "homeET": 0.11459,
-        "homePen": 0.10479,
-        "awayReg": 0.25438,
-        "awayET": 0.04218,
-        "awayPen": 0.10483
-      },
-      "base": {
-        "homeReg": 0.3782,
-        "homeET": 0.11406,
-        "homePen": 0.10493,
-        "awayReg": 0.25515,
-        "awayET": 0.04276,
-        "awayPen": 0.10491
-      },
-      "delta": {
-        "homeReg": 0.00102,
-        "homeET": 0.00053,
-        "homePen": -0.00014,
-        "awayReg": -0.00077,
-        "awayET": -0.00058,
-        "awayPen": -8e-05
-      }
-    }
-  ]
+  "games": []
 }

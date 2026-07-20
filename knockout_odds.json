@@ -1,5 +1,5 @@
 {
-  "generated": "2026-07-19T21:27:29.557237Z",
+  "generated": "2026-07-20T04:36:41.809805Z",
   "sims": 1000000,
   "teams": [
     {
@@ -294,35 +294,12 @@
   "easiestPath": [
     {
       "name": "Spain",
-      "wins": 585619,
-      "winPct": 0.58562,
+      "wins": 1000000,
+      "winPct": 1.0,
       "avgStrength": 0.0,
-      "avgOppRank": 1.0
-    },
-    {
-      "name": "Argentina",
-      "wins": 414381,
-      "winPct": 0.41438,
-      "avgStrength": -0.69315,
-      "avgOppRank": 2.0
+      "avgOppRank": 0.0
     }
   ],
-  "bracket": [
-    {
-      "match": 104,
-      "stage": "FINAL",
-      "home": "Spain",
-      "away": "Argentina",
-      "pHome": 0.58503,
-      "score": {
-        "h": 2,
-        "a": 1,
-        "type": "reg"
-      }
-    }
-  ],
-  "champion": {
-    "name": "Spain",
-    "titlePct": 0.58562
-  }
+  "bracket": [],
+  "champion": null
 }
